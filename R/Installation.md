@@ -32,18 +32,18 @@ Please go through the installation steps below to install R and RStudio before t
 If you have any problems installing you can use one of the CDS computers, or ask questions by email or after the session.
 
 ### Windows
-* Download R from here
+* Download R from here [https://cran.r-project.org/bin/windows/base/release.htm](https://cran.r-project.org/bin/windows/base/release.htm)
 * Run the .exe file that was just downloaded
-* Go to the RStudio Download page
-* Under Installers select RStudio 1.0.44 - Windows Vista/7/8/10
+* Go to the RStudio Download page [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
+* Under Installers select RStudio 1.0.153 - Windows Vista/7/8/10  
 * Double click the file to install it
 * Once it's installed, open RStudio to make sure it works and there is no error messages.
 ### Mac
-* Download R from CRAN and click on Download R for (Mac) OS X
+* Download R from CRAN and click on Download R for (Mac) OS X [https://cran.r-project.org/bin/macosx/R-3.4.1.pkg](https://cran.r-project.org/bin/macosx/R-3.4.1.pkg)
 * Select the .pkg file for the version of OS X that you have and the file will download.
 * Double click on the file that was downloaded and R will install
 * Go to the RStudio Download page
-* Under Installers select RStudio 1.0.44 - Mac OS X 10.6+ (64-bit) to download it.
+* Under Installers select RStudio 1.0.153 - Mac OS X 10.6+ (64-bit)  to download it.
 * Once it's downloaded, double click the file to install it
 * Once it's installed, open RStudio to make sure it works and there is no error messages.
 ### Linux
