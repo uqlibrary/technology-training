@@ -117,14 +117,16 @@ Environment:
   * Views: View in data viewer
   
 ### Packages
+install.packages("ggplot2")
 
 ### Import files  
 
+
+    #!/usr/bin/env Rscript
+    # Title: importing
+    # Author: Paula A. Martinez
+    # Date: 28/09/2017
+
+    download.file(url = "https://raw.githubusercontent.com/orchid00/CDS/master/R/scripts/gapminder_example.R",
+              destfile = "scripts/gapminder_example.R")
   
-
-
-### Packages
-install.packages("ggplot2")
-
-### Import files
-
