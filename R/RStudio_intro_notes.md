@@ -61,8 +61,7 @@ Files:
 ### Shortcuts
 tab completion
 
-
-#### Layout 
+#### Working in pairs - Layout 
 Work in pairs 3min
 
 Task Windows/Linux Mac
@@ -76,6 +75,8 @@ Task Windows/Linux Mac
 - Show Packages Ctrl+7 Ctrl+7
 - Show Environment Ctrl+8 Ctrl+8
 - Show Git/SVN Ctrl+9 Ctrl+9
+
+Discuss
 
 ####
 - Interrupt current command Esc Esc
