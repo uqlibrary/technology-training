@@ -8,6 +8,7 @@ Please create a folder called "RProjects" under "Documents"
 
 ### Rstudio Project
 
+(2min)
 Challenge 1 - New Rstudio Project
 1. Click the "File" menu button (top left corner), then "New Project"
 2. Click "New Directory"
@@ -29,6 +30,8 @@ Projects make managing multiple directories straightforward. You can create an R
 
 - sessionInfo()
 provides information about your platform, the versions of R and the packages that you are using and their versions
+does anyone has something different? Why would that be?
+
 - getwd()
 - setwd()
 - citation()
@@ -56,9 +59,13 @@ Files:
 
 
 ### Shortcuts
-
-#### LAYOUT Windows/Linux Mac
 tab completion
+
+
+#### Layout 
+Work in pairs 3min
+
+Task Windows/Linux Mac
 
 - Move focus to Source Editor Ctrl+1 Ctrl+1
 - Move focus to Console Ctrl+2 Ctrl+2
