@@ -1,5 +1,10 @@
 # RStudio Intro hands-on session
 
+Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving.
+
+Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the CDS computers.
+Manuals, commands and more information on how to continue your R learning are provided in the set-up instructions: [https://etherpad.wikimedia.org/p/cds](https://etherpad.wikimedia.org/p/cds).
+
 ## Keep in mind
 
 * Case sensitive
@@ -28,11 +33,19 @@ At the end of this session you will be able to:
    * Know where to find help
    * Know where packages are
    * Import files/datasets
+   
+## Attendees   
+
+* Full name / email / twitter 
+* Paula Andrea Martinez / p.martinez at uq.edu.au / orchid00
+* 
+
 
 ## Material
 
 ### Location
 Please create a folder called "RProjects" under "Documents"
+
 ### Rstudio Project
 
 ### Creating a folder structure
