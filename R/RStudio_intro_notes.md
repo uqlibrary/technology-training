@@ -36,6 +36,11 @@ does anyone has something different? Why would that be?
 - setwd()
 - citation()
 - ls()
+- show folders and files with dir()
+- list objects in the R environment with ls()
+- a <- 12345667 
+- remove objects from the environment rm(list = ls())
+- list files again ls()
 
 #### Working in pairs
 
@@ -50,11 +55,11 @@ Files:
   * Create new documents Ctrl+Shift+N Cmd+Shift+N
   in the scripts folder, with the following names: test1.R, test2.R, test3.R
   
-  * then delete the file with:  file.remove("scripts/cmds.R") 
+  * then delete the file with:  file.remove("scripts/test1.R") 
   
   * Delete file/folder
-  * Rename file
-  * Copy file
+  * Rename file test2.R for mytest.R
+  * Copy file test3.R
   * Change directory to data
 
 
@@ -76,7 +81,7 @@ Task Windows/Linux Mac
 - Show Environment Ctrl+8 Ctrl+8
 - Show Git/SVN Ctrl+9 Ctrl+9
 
-Discuss
+Discuss with your peers
 
 ####
 - Interrupt current command Esc Esc
@@ -111,6 +116,9 @@ Environment:
   * Displays saved objects by type with short description
   * Views: View in data viewer
   
+### Packages
+
+### Import files  
 
   
 
