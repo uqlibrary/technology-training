@@ -15,7 +15,7 @@ Manuals, commands and more information on how to continue your R learning are pr
 
 * If you are using your own laptop please open RStudio
 
-* On Centre for Digital Scholarship computers:
+* On CDS computers:
   * Log in with your UQ username and password
   * Make sure you have a working internet connection
   * Open the ZENworks application
