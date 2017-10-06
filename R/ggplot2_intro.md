@@ -30,7 +30,7 @@ Manuals, commands and more information on how to continue your R learning are pr
 At the end of this session you will be able to:
 
    * Have a visualisation package installed (ggplot2) 
-   * Learn how to import files
+   * Learn how to explore data
    * Learn about the basic ggplot2 layers 
    * Create diferent kinds of plots 
    * Be able to modify plots quickly
@@ -79,7 +79,7 @@ Exercise 2 - ggplot2 setup (3 min)
     * install.packages("ggplot2")
     * library(ggplot2)
 
-### Import files
+### Explore data
 
 ### Basic ggplot2 layers
 
