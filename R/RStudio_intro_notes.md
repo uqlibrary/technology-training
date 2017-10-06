@@ -14,7 +14,7 @@ Challenge 1 - New Rstudio Project
 2. Click "New Directory"
 3. Click "Empty Project"
 4. Type in the name of your project, e.g. "RStudio_Intro"
-(Select a folder where to locate your project)
+(Select a folder where to locate your project like RProjects) 
 5. Click the "Create Project" button
 
 Projects make managing multiple directories straightforward. You can create an RPROJ file in a new directory or an existing directory that already has R code and data. You can also create the project file by cloning a version control repository, such as Git or Subversion.
@@ -64,31 +64,15 @@ Files:
 
 
 ### Shortcuts
-tab completion
-
-#### Working in pairs - Layout 
-Work in pairs 3min
-
-Task Windows/Linux Mac
-
-- Move focus to Source Editor Ctrl+1 Ctrl+1
-- Move focus to Console Ctrl+2 Ctrl+2
-- Move focus to Help Ctrl+3 Ctrl+3
-- Show History Ctrl+4 Ctrl+4
-- Show Files Ctrl+5 Ctrl+5
-- Show Plots Ctrl+6 Ctrl+6
-- Show Packages Ctrl+7 Ctrl+7
-- Show Environment Ctrl+8 Ctrl+8
-- Show Git/SVN Ctrl+9 Ctrl+9
-
-Discuss with your peers
-
+arrows up and down
+ctrl+ S
+ctrl + Enter
+home and end button
 ####
 - Interrupt current command Esc Esc
 - Run current line/selection Ctrl+Enter Cmd+Enter
 - Find Ctrl+F
 - Find in Files Ctrl+Shift+F Cmd+Shift+F
-
 ####
 - Cut Ctrl+X Cmd+X
 - Copy Ctrl+C Cmd+C
@@ -110,16 +94,31 @@ Discuss with your peers
 
 - See shortcuts Alt+Shift+K
 
-### Layouts
+#### Working in pairs - Layout 
+Work in pairs 3min
 
-Environment: 
-  * Displays saved objects by type with short description
-  * Views: View in data viewer
+Task Windows/Linux Mac
+
+- Move focus to Source Editor Ctrl+1 Ctrl+1
+- Move focus to Console Ctrl+2 Ctrl+2
+- Move focus to Help Ctrl+3 Ctrl+3
+- Show History Ctrl+4 Ctrl+4
+- Show Files Ctrl+5 Ctrl+5
+- Show Plots Ctrl+6 Ctrl+6
+- Show Packages Ctrl+7 Ctrl+7
+- Show Environment Ctrl+8 Ctrl+8
+- Show Git/SVN Ctrl+9 Ctrl+9
+
+Discuss with your peers
   
 ### Packages
 install.packages("ggplot2")
 
 ### Import files  
+
+download.file()
+read.table()
+read.csv()
 
 
     #!/usr/bin/env Rscript
