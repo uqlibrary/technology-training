@@ -1,9 +1,11 @@
 # RStudio Intro hands-on session
 
-Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving.
+Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving [http://tiny.cc/CDS_feedback_R](http://tiny.cc/CDS_feedback_R).
 
-Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the CDS computers.
-Manuals, commands and more information on how to continue your R learning are provided in the set-up instructions: [https://etherpad.wikimedia.org/p/cds](https://etherpad.wikimedia.org/p/cds).
+If you want to review the installation instructions: https://github.com/orchid00/CDS/blob/master/R/Installation.md
+
+Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
+Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad [https://etherpad.wikimedia.org/p/cds](https://etherpad.wikimedia.org/p/cds).
 
 ## Keep in mind
 
@@ -14,6 +16,7 @@ Manuals, commands and more information on how to continue your R learning are pr
 ## Open RStudio
 
 * If you are using your own laptop please open RStudio
+  * Make sure you have a working internet connection
 
 * On CDS computers:
   * Log in with your UQ username and password
@@ -28,9 +31,9 @@ At the end of this session you will be able to:
 
    * Create a project for data analysis
    * Create a folder structure
-   * Understand and move layouts 
-   * Use a few shortcuts
    * Know where to find help
+   * Understand and move around layouts 
+   * Use a few shortcuts
    * Know where packages are
    * Import files/datasets
    
@@ -45,20 +48,84 @@ At the end of this session you will be able to:
 
 ### Location
 Please create a folder called "RProjects" under "Documents"
+This is important for our project structure
 
 ### Rstudio Project
+Exercise 1:
+ 
+(2min) Challenge 1 - New Rstudio Project
+
+    * Click the "File" menu button (top left corner), then "New Project"
+    * Click "New Directory"
+    * Click "Empty Project"
+    * Type in the name of your project, e.g. "RStudio_Intro" 
+    (Select a folder where to locate your project the RProjects folder)
+    * Click the "Create Project" button
+
+### Help
+3 ways to find help in R
+
+Exercise 2 - Check what these functions are
+
+ls()
+class()
+rm()
+getwd()
 
 ### Creating a folder structure
 
-### Layouts
 
-### Shortcuts
+Exercise 3 - create a folder called "data"
 
-### Help
+
+## Playing with objects
+
+
+Exercise 4 - after creating two objects
+- list them by using ls()
+- remove them or delete them using rm()
+- check your objects again using ls()
+
+
+Exercise 5 - Discuss 
+- how can you delete more than one object at the time? (2 min)
+
+
+
+### Shortcuts and Layouts
+
+tab completion
+arrow keys
+
+####Layouts
+    Move focus to Source Editor Ctrl+1 Ctrl+1
+    Move focus to Console Ctrl+2 Ctrl+2
+    Move focus to Help Ctrl+3 Ctrl+3
+    Show History Ctrl+4 Ctrl+4
+    Show Files Ctrl+5 Ctrl+5
+    Show Plots Ctrl+6 Ctrl+6
+    Show Packages Ctrl+7 Ctrl+7
+    Show Environment Ctrl+8 Ctrl+8
+    Show Git/SVN Ctrl+9 Ctrl+9
+
 
 ### Packages
 
+install.packages()
+
+
 ### Import files
+
+download.file()
+read.table()
+read.csv()
+
+
+# Close Rproject
+
+File
+close project
+then close RStudio
 
 
 ## After the workshop
