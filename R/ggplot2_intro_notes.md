@@ -78,11 +78,25 @@ Exercise 2 - ggplot2 setup (4 min)
   in the "scripts" folder
   * install and load the package ggplot2
     * install.packages("ggplot2")
+    * While you wait for ggplot2 to be installed, check Rdocumentation.org and type ggplot2
     * library(ggplot2)
+    
+Th R package ggplot2 was developed by Hadley Wickham with the objective of creating a grammar of
+graphics for categorical data (in 2007). It is based on the book the Grammar of Graphics Developed by Leland Wilkinson 1999/2005. 
+
+You only need to install a package once, and reload it every time you start a new R session.
 
 ### Explore data
 
 ### Basic ggplot2 layers
+
+The idea that you can build every graph from the same few components: 
+ - a dataset
+ - a set of geoms —visual marks that represent data points
+ - a coordinate system.
+
+ggplot(data = <dataset>, mapping = aes(<MAPPINGS>)) + 
+  <geom_function>()
 
 ### Create diferent kinds of plots 
 
@@ -106,7 +120,7 @@ Please fill in the feedback form before leaving: http://tiny.cc/CDS_feedback_R
 
 ## Important links
 
-* R ggplot2 Cheatsheet [https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+* R ggplot2 Cheatsheet [https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
 * RStudio Cheatsheet [https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
 * RStudio online learning [https://www.rstudio.com/online-learning/](https://www.rstudio.com/online-learning/)
 * Basic and advanced manuals [https://cran.r-project.org/manuals.html](https://cran.r-project.org/manuals.html)
