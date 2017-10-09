@@ -18,7 +18,7 @@ Manuals, commands and more information on how to continue your R learning are pr
 * If you are using your own laptop please open RStudio
   * Make sure you have a working internet connection
 
-* On CDS computers:
+* On CDS computers (the first time takes about 10 min):
   * Log in with your UQ username and password
   * Make sure you have a working internet connection
   * Open the ZENworks application
@@ -30,7 +30,7 @@ Manuals, commands and more information on how to continue your R learning are pr
 At the end of this session you will be able to:
 
    * Have a visualisation package installed (ggplot2) 
-   * Learn how to import files
+   * Learn how to explore data
    * Learn about the basic ggplot2 layers 
    * Create diferent kinds of plots 
    * Be able to modify plots quickly
@@ -38,7 +38,6 @@ At the end of this session you will be able to:
 ## Disclaimer
 
 We will assume you are an R beginner, who has used R before.
-This is not a stats course. 
    
 ## Attendees   
 
@@ -46,12 +45,14 @@ This is not a stats course.
 * Paula Andrea Martinez / p.martinez at uq.edu.au / orchid00
 * 
 
+## Introductions
+
 Introduce yourself to one other person in the session. We will work in pairs.
 
 ## Material
 
 ### Location
-Please create a folder called "RProjects" under "Documents"
+Please create a folder called "RProjects" under "Documents". 
 This is important for our project structure
 
 ### Rstudio Project
@@ -71,7 +72,7 @@ Challenge 1 - New Rstudio Project (3 min)
       * plots
 
 ### Introducing ggplot2
-Exercise 2 - ggplot2 setup (3 min)
+Exercise 2 - ggplot2 setup (4 min)
 
   * create a new R file called "ggplot2_intro.R" 
   in the "scripts" folder
@@ -79,26 +80,24 @@ Exercise 2 - ggplot2 setup (3 min)
     * install.packages("ggplot2")
     * library(ggplot2)
 
-### Import files
+### Explore data
 
 ### Basic ggplot2 layers
-
-1. a dataset "data" and set of mappings from variables to aesthetics "aes",
-2. a layer having one geometric object "geom_"
 
 ### Create diferent kinds of plots 
 
 
-### Play time!
+## Play time!
 
 Modify your plots
 
 
 ## Close Rproject
+If you want to close R Studio, you should save your project first.
 
 - File
-- close project
-- then close RStudio
+- close project (It will ask you if you want to save your history)
+- then, close RStudio
 
 
 ## After the workshop
@@ -106,6 +105,8 @@ Modify your plots
 Please fill in the feedback form before leaving: http://tiny.cc/CDS_feedback_R
 
 ## Important links
+
+* R ggplot2 Cheatsheet [https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
 * RStudio Cheatsheet [https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
 * RStudio online learning [https://www.rstudio.com/online-learning/](https://www.rstudio.com/online-learning/)
 * Basic and advanced manuals [https://cran.r-project.org/manuals.html](https://cran.r-project.org/manuals.html)
