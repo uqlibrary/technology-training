@@ -56,9 +56,7 @@ Please create a folder called "RProjects" under "Documents".
 This is important for our project structure
 
 ### Rstudio Project
-Exercise 1:
- 
-Challenge 1 - New Rstudio Project (3 min) 
+Exercise 1: - New Rstudio Project (3 min) 
 
     * Click the "File" menu button (top left corner), then "New Project"
     * Click "New Directory"
@@ -78,11 +76,17 @@ Exercise 2 - ggplot2 setup (4 min)
   in the "scripts" folder
   * install and load the package ggplot2
     * install.packages("ggplot2")
+    * While you wait for ggplot2 to be installed, check Rdocumentation.org and type ggplot2
     * library(ggplot2)
+   
 
 ### Explore data
 
+We are going to work with different datasets that come with the ggplot2 package.
+
 ### Basic ggplot2 layers
+?ggplot
+
 
 ### Create diferent kinds of plots 
 
