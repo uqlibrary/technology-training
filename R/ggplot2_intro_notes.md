@@ -88,15 +88,24 @@ You only need to install a package once, and reload it every time you start a ne
 
 ### Explore data
 
+We are going to work with different datasets that come with the ggplot2 package. For any dataset or function doubts that you might have. 
+Don't forget the three ways of getting help from R
+
+1. ?functionname
+2. help(functionname)
+3. functionname + F1
+
 ### Basic ggplot2 layers
 
 The idea that you can build every graph from the same few components: 
- - a dataset
- - a set of geoms —visual marks that represent data points
- - a coordinate system.
 
-ggplot(data = <dataset>, mapping = aes(<MAPPINGS>)) + 
-  <geom_function>()
+ ggplot(data = <dataset>, mapping = aes( <x, y, fill, colour>)) + 
+ <geom_function>()
+
+
+ ? ggplot
+
+ggplot() initializes a ggplot object. It can be used to declare the input data frame for a graphic and to specify the set of plot aesthetics intended to be common throughout all subsequent layers unless specifically overridden.
 
 ### Create diferent kinds of plots 
 
