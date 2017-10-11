@@ -56,9 +56,7 @@ Please create a folder called "RProjects" under "Documents".
 This is important for our project structure
 
 ### Rstudio Project
-Exercise 1:
- 
-Challenge 1 - New Rstudio Project (3 min) 
+Exercise 1 - New Rstudio Project (3 min) 
 
     * Click the "File" menu button (top left corner), then "New Project"
     * Click "New Directory"
