@@ -10,7 +10,7 @@ library(ggplot2)
 ?economics
 str(economics)
 
-# Do you think that the rate of enemployment is stable over the years?
+# Do you think that the rate of unemployment is stable over the years?
 ?ggplot
 
 # ggplot(data = <dataset>, mapping = aes( <x, y, fill, colour>)) + 
@@ -30,6 +30,9 @@ str(mpg)
 # when they travel the same distance.
 
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point()
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, colour = class)) +
   geom_point()
 
 # The plot shows a negative relationship between engine size (displ) and fuel efficiency (hwy).
@@ -102,3 +105,18 @@ ggplot(data = diamonds, mapping = aes(x = cut)) +
   coord_flip() +
   theme_bw()
 ggsave(filename = "plots/horizontalbarplot.png")
+
+## notes
+
+# About centre title https://stackoverflow.com/questions/40675778/center-plot-title-in-ggplot2
+# From the release news of ggplot 2.2.0: "The main plot title is now left-aligned to better 
+# work better with a subtitle". See also the plot.title argument in ?theme: "left-aligned by 
+# default". 
+
+# #theme(plot.title = element_text(hjust = 0.5))
+# If you always want to have the title in the middle
+# theme_update(plot.title = element_text(hjust = 0.5))
+
+## vertical labels
+# https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2
+# theme(axis.text.x = element_text(angle = 90, hjust = 1))
