@@ -23,7 +23,7 @@ Manuals, commands and more information on how to continue your R learning are pr
   * Log in with your UQ username and password
   * Make sure you have a working internet connection
   * Open the ZENworks application
-  * Look for RStudio
+  * Look for the letter R 
   * Double click on RStudio which will install both R and RStudio 
   * Make sure you have ggplot2 installed
 
@@ -40,15 +40,14 @@ At the end of this session you will be able to:
 ## Disclaimer
 
 We will assume you are an R intermediate user and that you have used ggplot2 before.
-This is not a stats course. 
    
 ## Attendees   
 
-* Full name / email / twitter 
-* Paula Andrea Martinez / p.martinez at uq.edu.au / orchid00
+* Full name / email 
+* Paula Andrea Martinez / p.martinez at uq.edu.au 
 * 
 
-Introduce yourself to one other person in the session. We will work in pairs.
+Introduce yourself to one other person in the session. We will try to work in pairs.
 
 ## Material
 
@@ -57,29 +56,27 @@ Please create a folder called "RProjects" under "Documents"
 This is important for our project structure
 
 ### Rstudio Project
-Exercise 1:
- 
-Challenge 1 - New Rstudio Project (3 min) 
+Exercise 1 - New Rstudio Project (3 min) 
 
     * Click the "File" menu button (top left corner), then "New Project"
     * Click "New Directory"
     * Click "Empty Project"
     * Type in the name of your project, e.g. "Rggplot2" 
-    (Select a folder where to locate your project the RProjects folder)
+    (Browse and select a folder where to locate your project, e.g. the RProjects folder)
     * Click the "Create Project" button
     * create three folders
       * scripts
       * data
       * plots
 
-### Introducing ggplot2
-Exercise 2 - ggplot2 setup (3 min)
+### Make sure you have ggplot2 installed and loaded
+Exercise 2 - (1 min)
 
   * create a new R file called "ggplot2_intermediate.R" 
   in the "scripts" folder
   * install and load the package ggplot2
-    * install only if you haven't yet done so.
-    * library(ggplot2)
+    * install only if you haven't yet done so. install.packages("ggplot2")
+    * load the package using library(ggplot2)
 
 ### Import files
 
