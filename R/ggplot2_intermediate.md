@@ -70,9 +70,9 @@ Exercise 1 - New Rstudio Project (3 min)
       * plots
 
 ### Make sure you have ggplot2 installed and loaded
-Exercise 2 - (1 min)
+Exercise 2 - setting up (1 min)
 
-  * create a new R file called "ggplot2_intermediate.R" 
+  * create a new R script file called "ggplot2_intermediate.R" 
   in the "scripts" folder
   * install and load the package ggplot2
     * install only if you haven't yet done so. install.packages("ggplot2")
@@ -80,14 +80,31 @@ Exercise 2 - (1 min)
 
 ### Import files
 
+Downloading data to your project
+
+     download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
+     
+Exercise 3 - read the data in an R object (1 min)
+
+      gapminder <- ...
+
 ### Layers used in ggplot2
 
-### Select your own colours
+ ggplot(data = <dataset>, mapping = aes( <x, y, fill, colour, shape, size>)) + 
+ <geom_function>() +
+  facet_function( ̃class) +
+  theme_function() +
+  scale_function() +
+  coord_function() +
+  
+  
+  
+
+### Colour, Size, Shape and Other Aesthetic Attributes
 
 ### Change labels
 
 ### Save your plots in different formats and resolutions
-
 
 ### Play time!
 
@@ -112,5 +129,8 @@ Please fill in the feedback form before leaving: http://tiny.cc/CDS_feedback_R
 * Ask about any function or package [http://www.rdocumentation.org/](http://www.rdocumentation.org/)
 * If you are looking how-to's or how to fix an error [http://stackoverflow.com/questions/tagged/r](http://stackoverflow.com/questions/tagged/r) 
 * Lynda.com R training and tutorials [https://www.lynda.com/R-training-tutorials/1570-0.html](https://www.lynda.com/R-training-tutorials/1570-0.html) remember to sign in with your organisational portal, [for example](https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses)
+* R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+* Book: Hadley Wickham. ggplot2 Elegant Graphics for Data Analysis Second  Edition. 2016 
+https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
 * If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
 * If you have further questions, please contact me p.martinez at uq.edu.au 
