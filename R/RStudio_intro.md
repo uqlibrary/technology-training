@@ -67,10 +67,10 @@ Exercise 1:
 
 Exercise 2 - Check what these functions are
 
-ls()
-class()
-rm()
-getwd()
+  ls()
+  class()
+  rm()
+  getwd()
 
 ### Creating a folder structure
 
@@ -97,7 +97,8 @@ Exercise 5 - Discuss
 tab completion
 arrow keys
 
-####Layouts
+#### Layouts
+
     Move focus to Source Editor Ctrl+1 Ctrl+1
     Move focus to Console Ctrl+2 Ctrl+2
     Move focus to Help Ctrl+3 Ctrl+3
