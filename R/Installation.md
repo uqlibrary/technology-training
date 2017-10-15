@@ -1,29 +1,17 @@
-# RStudio short intro
+# R Installation instructuctions
 
-The UQ Library Centre for Digital Scholarship (CDS) is offering free RStudio intro hands on session.
-We recommend that you bring your own laptop and have R and RStudio installed, however the software is also available on the CDS computers.
+The UQ Library Centre for Digital Scholarship (CDS) is offering free R sessions.
+CDS provides software training and consultation sessions to students and staff. Our aim is to equip the UQ community with digital tools to perform data analysis and management in a clear and reproducible way.
 
-Please note that places are limited. Only register if you:
+If you have R specific questions you are welcome to book a time for consultation via email - cds@library.uq.edu.au or p.martinez at uq.edu.au. Other training can be planned after consultation with CDS staff.
 
-    *Would like to learn about RStudio options and settings
-    *Want to learn how to organise an R project
-    *Can commit to attend the entire session
 
-If you have R specific questions you are welcome to book a time for consultation via email - cds@library.uq.edu.au or p.martinez@uq.edu.au. Other training can be planned after consultation with CDS staff.
+## Set up instructions
 
-# Welcome to the RStudio intro hands-on session
+Participants are encouraged to **bring and use their own laptops with the software already installed** and **working internet connection**, to ensure that you can continue using what you learn once you leave the workshop. However, if you need, you can use one of the University computers in the training room. 
 
-The Centre for Digital Scholarship (CDS), at the University of Queensland library, provides software training and consultation sessions to students and staff. Our aim is to equip the UQ community with digital tools to perform data analysis and management in a clear and reproducible way.
 
-## Introduction
-
-This is a short hands-on workshop for beginners, hence **we will assume no prior knowledge about R**. 
-
-Participants are encouraged to **bring and use their own laptops with the software already installed** and **working internet connection**, to ensure that you can continue using what you learn once you leave the workshop. However, if you need, you can use one of the Library computers in the training room. 
-
-If you have any questions about these instructions you are welcome to contact us via email - p.martinez@uq.edu.au.
-
-## Workshop setup instructions 
+** Install R and RStudio **
 
 For the workshop we will use RStudio. RStudio is a nice interface to use the programming language R. To use RStudio, you need to install both R and RStudio.
 
