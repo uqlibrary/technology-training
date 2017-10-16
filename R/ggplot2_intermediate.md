@@ -88,6 +88,11 @@ Exercise 3 - read the data in an R object (1 min)
 
       gapminder <- ...
 
+Explore the dataset
+  str()
+  
+  Exercise 4 - check if your country is in the dataset
+  
 ### Layers used in ggplot2
 
  ggplot(data = <dataset>, mapping = aes( <x, y, fill, colour, shape, size>)) + 
@@ -97,18 +102,37 @@ Exercise 3 - read the data in an R object (1 min)
   scale_function() +
   coord_function() +
   
+ ## Colour, Size, Shape and Other Aesthetic Attributes
+
+colour
+
+shape
+
+fill
+
+## facet and theme
+
+##  Labels
+
+## Limits and scales
+
+## Save your plots in different formats and resolutions
+
+## Play time!
+
+* Create a dotplot of gdpPercap vs lifeExp
+
+    use the shape for continent
+
+    label the plot
+
+
+* Create a a boxplot of continent vs pop
+     Colour and fill by continent
+     try to limit the y axis to see the boxes better
+     let's see if you are able to move the legend to the bottom 
   
-  
-
-### Colour, Size, Shape and Other Aesthetic Attributes
-
-### Change labels
-
-### Save your plots in different formats and resolutions
-
-### Play time!
-
-Modify your plots
+## Modify your plots
 
 
 ## Close Rproject
