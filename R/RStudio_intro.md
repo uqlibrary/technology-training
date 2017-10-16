@@ -51,15 +51,13 @@ Please create a folder called "RProjects" under "Documents"
 This is important for our project structure
 
 ### Rstudio Project
-Exercise 1:
- 
-(2min) Challenge 1 - New Rstudio Project
+Exercise 1 - New Rstudio Project (2 min)
 
     * Click the "File" menu button (top left corner), then "New Project"
     * Click "New Directory"
     * Click "Empty Project"
     * Type in the name of your project, e.g. "RStudio_Intro" 
-    (Select a folder where to locate your project the RProjects folder)
+      (Browse and select a folder where to locate your project, for example the RProjects folder)
     * Click the "Create Project" button
 
 ### Help
@@ -69,9 +67,7 @@ Exercise 2 - Check what these functions are
 
   ls()
   class()
-  rm()
-  getwd()
-
+  
 ### Creating a folder structure
 
 
