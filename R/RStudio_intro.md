@@ -55,8 +55,8 @@ Exercise 1 - New Rstudio Project (2 min)
 
     * Click the "File" menu button (top left corner), then "New Project"
     * Click "New Directory"
-    * Click "Empty Project"
-    * Type in the name of your project, e.g. "RStudio_Intro" 
+    * Click "New Project"
+    * In Directory name type the name of your project, e.g. "RStudio_Intro" 
       (Browse and select a folder where to locate your project, for example the RProjects folder)
     * Click the "Create Project" button
 
