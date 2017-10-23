@@ -1,4 +1,4 @@
-# R Installation instructuctions
+# R Installation instructions
 
 The UQ Library Centre for Digital Scholarship (CDS) is offering free R sessions.
 CDS provides software training and consultation sessions to students and staff. Our aim is to equip the UQ community with digital tools to perform data analysis and management in a clear and reproducible way.
