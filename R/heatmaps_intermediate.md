@@ -1,6 +1,6 @@
 # Heatmaps in R - for intermediate users - hands-on session
 
-Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving http://tiny.cc/CDS_feedback_R.
+Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving http://tiny.cc/CDS_feedback_R
 
 If you want to review the installation instructions: https://github.com/orchid00/CDS/blob/master/R/Installation.md
 
@@ -55,7 +55,7 @@ Exercise 1 - New Rstudio Project (3 min)
 
     * Click the "File" menu button (top left corner), then "New Project"
     * Click "New Directory"
-    * Click "Empty Project"
+    * Click "New Project" ("New empty project" if you have an older version of RStudio)
     * Type in the name of your project, e.g. "Heatmaps" 
     (Browse and select a folder where to locate your project, e.g. the "RProjects" folder)
     * Click the "Create Project" button
