@@ -362,3 +362,6 @@ h1 <- Heatmap(mat,
 draw(h1, heatmap_legend_side = "left")
 
 dev.off()
+
+# Clean my environment
+rm(list = ls())
