@@ -5,7 +5,7 @@ Thanks for attending this session at the UQ library Centre for Digital Scholarsh
 If you want to review the installation instructions: https://github.com/orchid00/CDS/blob/master/R/Installation.md
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
-Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad [https://etherpad.wikimedia.org/p/cds](https://etherpad.wikimedia.org/p/cds).
+Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad https://etherpad.wikimedia.org/p/cds.
 
 ## Keep in mind
 
@@ -30,7 +30,8 @@ Manuals, commands and more information on how to continue your R learning are pr
 At the end of this session you will be able to:
 
    * Produce a simple heatmap
-   * Know other options to produce heatmaps
+   * Learn other options to produce heatmaps
+   * Examples of other packages
    
 ## Disclaimer
 
@@ -38,7 +39,7 @@ We will assume you are an R intermediate user and that you have used RStudio bef
    
 ## Attendees   
 
-* Full name / email 
+* Full name / email (optional)
 * Paula Andrea Martinez / p.martinez at uq.edu.au 
 * 
 
@@ -55,7 +56,7 @@ Exercise 1 - New Rstudio Project (3 min)
 
     * Click the "File" menu button (top left corner), then "New Project"
     * Click "New Directory"
-    * Click "New Project" ("New empty project" if you have an older version of RStudio)
+    * Click "New Project" ("Empty project" if you have an older version of RStudio)
     * Type in the name of your project, e.g. "Heatmaps" 
     (Browse and select a folder where to locate your project, e.g. the "RProjects" folder)
     * Click the "Create Project" button
@@ -67,68 +68,82 @@ Exercise 1 - New Rstudio Project (3 min)
 ### Make sure you have ggplot2 installed and loaded
 Exercise 2 - setting up (1 min)
 
-  * create a new R script file called "ggplot2_intermediate.R" 
+  * create a new R script file called "heatmaps.R" 
   in the "scripts" folder
-  * install and load the package ggplot2
-    * install only if you haven't yet done so. install.packages("ggplot2")
-    * load the package using library(ggplot2)
 
-### Import files
+### Steps to create a simple heatmap
 
-Downloading data to your project
+Step 1 data 
 
-     download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
+    ?read.csv
+    nba <- read.csv(file = "http://datasets.flowingdata.com/ppg2008.csv")
+
+Step 2 - exercise explore the data (2 min)
+
+     dim(nba)
+
+Step 3 - exercise - update the dataset (2 min)
+
+1. assign the Name column to rownames(nba)
+
+2. delete the column Name
+
+Step 4 - Prepare data, again
+
+exercise convert the nba data into a matrix (1 min) - discuss
+
+Step 5 - Make a heatmap
+
+Exercise (2 min) look for the heatmap help
+read the scale atribute
+
+     ?heatmap
      
-Exercise 3 - read the data in an R object (1 min)
-
-      gapminder <- ...
-
-Explore the dataset
-  str()
-  
-  Exercise 4 - check if your country is in the dataset
-  
-### Layers used in ggplot2
-
- ggplot(data = <dataset>, mapping = aes( <x, y, fill, colour, shape, size>)) + 
- <geom_function>() +
-  facet_function( ̃class) +
-  theme_function() +
-  scale_function() +
-  coord_function() +
-  
- ## Colour, Size, Shape and Other Aesthetic Attributes
-
-colour
-
-shape
-
-fill
-
-## facet and theme
-
-##  Labels
-
-## Limits and scales
-
-## Save your plots in different formats and resolutions
 
 ## Play time!
 
-* Create a dotplot of gdpPercap vs lifeExp
+* remove dendrograms
 
-    use the shape for continent
-
-    label the plot
+* Add labels
 
 
-* Create a a boxplot of continent vs pop
-     Colour and fill by continent
-     try to limit the y axis to see the boxes better
-     let's see if you are able to move the legend to the bottom 
+Clean my environment
+rm(list = ls())
   
-## Modify your plots
+## Example 2 
 
+     install.packages("gplots")
+     library(gplots)
+     install.packages("RColorBrewer")
+     library(RColorBrewer)
+
+Step 1 data
+
+observations for 63 proteins for three control experiments and three experiments
+where cells are treated with a growth factor.
+
+    rawdata <- read.csv("https://raw.githubusercontent.com/ab604/heatmap/master/leanne_testdata.csv")
+
+    ?heatmap.2
+
+## Example 3
+
+    install.packages("grid")
+    library(grid)    
+    install.packages("pheatmap")
+    library(pheatmap)
+
+    ?pheatmap
+
+## Example 4
+
+    source("https://bioconductor.org/biocLite.R")
+    biocLite("ComplexHeatmap") 
+    library(ComplexHeatmap)
+    install.packages("circlize")
+    library(circlize)
+
+    ?Heatmap
 
 ## Close Rproject
 
@@ -142,14 +157,17 @@ fill
 Please fill in the feedback form before leaving: http://tiny.cc/CDS_feedback_R
 
 ## Important links
-* RStudio Cheatsheet [https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
-* RStudio online learning [https://www.rstudio.com/online-learning/](https://www.rstudio.com/online-learning/)
-* Basic and advanced manuals [https://cran.r-project.org/manuals.html](https://cran.r-project.org/manuals.html)
-* Ask about any function or package [http://www.rdocumentation.org/](http://www.rdocumentation.org/)
-* If you are looking how-to's or how to fix an error [http://stackoverflow.com/questions/tagged/r](http://stackoverflow.com/questions/tagged/r) 
-* Lynda.com R training and tutorials [https://www.lynda.com/R-training-tutorials/1570-0.html](https://www.lynda.com/R-training-tutorials/1570-0.html) remember to sign in with your organisational portal, [for example](https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses)
+* RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
+* RStudio online learning https://www.rstudio.com/online-learning/
+* Basic and advanced manuals https://cran.r-project.org/manuals.html
+* Ask about any function or package http://www.rdocumentation.org/
+* If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
+* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in with your organisational portal,https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses
 * R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
 * Book: Hadley Wickham. ggplot2 Elegant Graphics for Data Analysis Second  Edition. 2016 
 https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
+* Examples of heatmaps: https://flowingdata.com/2010/01/21/how-to-make-a-heatmap-a-quick-and-easy-solution/
+ https://rpubs.com/ab604/98032  https://stackoverflow.com/questions/15505607/diagonal-labels-orientation-on-x-axis-in-heatmaps  https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s2.single_heatmap.html
+
 * If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
 * If you have further questions, please contact me p.martinez at uq.edu.au 
