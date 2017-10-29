@@ -1,11 +1,11 @@
 # An Intro to R visualisations using ggplot2 - hands-on session
 
-Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving [http://tiny.cc/CDS_feedback_R](http://tiny.cc/CDS_feedback_R).
+Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving http://tiny.cc/CDS_feedback_R.
 
 If you want to review the installation instructions: https://github.com/orchid00/CDS/blob/master/R/Installation.md
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
-Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad [https://etherpad.wikimedia.org/p/cds](https://etherpad.wikimedia.org/p/cds).
+Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad https://etherpad.wikimedia.org/p/cds.
 
 ## Keep in mind
 
@@ -41,13 +41,13 @@ We will assume you are an R beginner, who has used R before.
    
 ## Attendees   
 
-* Full name / email / twitter 
-* Paula Andrea Martinez / p.martinez at uq.edu.au / orchid00
+* Full name / email (optional)
+* Paula Andrea Martinez / p.martinez at uq.edu.au 
 * 
 
 ## Introductions
 
-Introduce yourself to one other person in the session. We will work in pairs.
+Introduce yourself to one other person in the session. We will try to work in pairs.
 
 ## Material
 
@@ -60,11 +60,11 @@ Exercise 1 - New Rstudio Project (3 min)
 
     * Click the "File" menu button (top left corner), then "New Project"
     * Click "New Directory"
-    * Click "Empty Project"
+    * Click "New Project" ("Empty project" if you have an older version of RStudio)
     * Type in the name of your project, e.g. "Rggplot2_Intro" 
     (Select a folder where to locate your project the RProjects folder)
     * Click the "Create Project" button
-    * create three folders
+    * create three folders in your new project
       * scripts
       * data
       * plots
@@ -72,11 +72,16 @@ Exercise 1 - New Rstudio Project (3 min)
 ### Introducing ggplot2
 Exercise 2 - ggplot2 setup (4 min)
 
-  * create a new R file called "ggplot2_intro.R" 
+  * Menu: Top left corner, click the green "plus" symbol, or press the shortcut
+(for Windows/Linux) Ctrl+Shift+N or (for Mac) Cmd+Shift+N
+This will open an "Untitle1" file
+  * Go to file "Save" or press (for Windows/Linux) Ctrl+S or (for Mac) Cmd+S 
+ This will ask where you cant to save your file and the name of the new file
+  * Call your file "ggplot2_intro.R" located 
   in the "scripts" folder
   * install and load the package ggplot2
     * install.packages("ggplot2")
-    * While you wait for ggplot2 to be installed, check Rdocumentation.org and type ggplot2
+    * While you wait for ggplot2 to be installed, check Rdocumentation.org and type ggplot2 in the search
     * library(ggplot2)
     
 Th R package ggplot2 was developed by Hadley Wickham with the objective of creating a grammar of
@@ -86,8 +91,7 @@ You only need to install a package once, and reload it every time you start a ne
 
 ### Explore data
 
-We are going to work with different datasets that come with the ggplot2 package. For any dataset or function doubts that you might have. 
-Don't forget the three ways of getting help from R
+We are going to work with different datasets that come with the ggplot2 package. For any dataset or function doubts that you might have. Don't forget the three ways of getting help from R
 
 1. ?functionname
 2. help(functionname)
