@@ -65,7 +65,6 @@ Exercise 1 - New Rstudio Project (3 min)
       * data
       * plots
 
-### Make sure you have ggplot2 installed and loaded
 Exercise 2 - setting up (1 min)
 
   * create a new R script file called "heatmaps.R" 
