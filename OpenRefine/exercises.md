@@ -1,7 +1,9 @@
 # OpenRefine
-        https://data-lessons.github.io/library-openrefine/
-        Video walk throughs:
-        http://openrefine.org/
+        
+   https://data-lessons.github.io/library-openrefine/
+   
+   Video walk throughs:
+   http://openrefine.org/
 
 ## We are going to do learn how to:
 
@@ -21,6 +23,7 @@ Create a project
     Select web addresses (URL)
 
 Data:
+
     https://raw.githubusercontent.com/data-lessons/library-openrefine/gh-pages/data/doaj-article-sample.csv
     click next
     Parse text: separator comma, and first line is a header
@@ -87,6 +90,7 @@ Exercise 9
     why do we have two that look so similar?
 
      Edit cells > Common transforms > Trim leading and trailing whitespace
+
 Exercise 10 
 
     Change Titles into Title Case
@@ -124,7 +128,7 @@ Exercise 11
 
     Edit cells > transform
 
-cells['Citation 1'].value + ', ' + cells['Citation 2'].value + ', ' + cells['Citation 3'].value + ', ' + cells['Citation 4'].value
+    cells['Citation 1'].value + ', ' + cells['Citation 2'].value + ', ' + cells['Citation 3'].value + ', ' + cells['Citation 4'].value
 
     To remove
 
