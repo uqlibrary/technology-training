@@ -1,4 +1,4 @@
-#A few execises on OpenRefine 
+# A few execises on OpenRefine 
 
 Exercises based on library Carpentry
 
