@@ -1,0 +1,380 @@
+[
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column Language",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "Language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "English"
+        ],
+        "to": "EN"
+      }
+    ]
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Authors using expression grel:value.replace(\"|\",\";\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "EN",
+                "l": "EN"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Language",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Language"
+        }
+      ]
+    },
+    "columnName": "Authors",
+    "expression": "grel:value.replace(\"|\",\";\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "description": "Split multi-valued cells in column Authors",
+    "columnName": "Authors",
+    "keyColumnName": "Title",
+    "separator": ";",
+    "mode": "plain"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column Authors",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "EN",
+                "l": "EN"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Language",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Language"
+        }
+      ]
+    },
+    "columnName": "Authors",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "A. Khan Vakeel",
+          "Vakeel A. Khan"
+        ],
+        "to": "A. Khan Vakeel"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Chandra Naveen",
+          "Naveen Chandra"
+        ],
+        "to": "Chandra Naveen"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "B. K. Revathi",
+          "B. K Revathi"
+        ],
+        "to": "B. K. Revathi"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column Authors",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "EN",
+                "l": "EN"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Language",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Language"
+        }
+      ]
+    },
+    "columnName": "Authors",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "G. Anbalagan",
+          "K. Anbalagan"
+        ],
+        "to": "G. Anbalagan"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "R. V. Krishnakumar",
+          "R.V. Krishnakumar"
+        ],
+        "to": "R. V. Krishnakumar"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column Authors",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "EN",
+                "l": "EN"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Language",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Language"
+        }
+      ]
+    },
+    "columnName": "Authors",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Santiago Garcia-Granda",
+          "Santiago García-Granda"
+        ],
+        "to": "Santiago Garcia-Granda"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Pavel Slepukhin",
+          "Pavel A. Slepukhin"
+        ],
+        "to": "Pavel Slepukhin"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "R. A. Nagalakshmi",
+          "R.A. Nagalakshmi"
+        ],
+        "to": "R. A. Nagalakshmi"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column Authors",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "EN",
+                "l": "EN"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Language",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Language"
+        }
+      ]
+    },
+    "columnName": "Authors",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Jian-Chao Yuan",
+          "Jianchao Yuan"
+        ],
+        "to": "Jian-Chao Yuan"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Chang-Ge Zheng",
+          "ChangGe Zheng"
+        ],
+        "to": "Chang-Ge Zheng"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Il'ya A. Gural'skiy",
+          "Il`ya A. Gural`skiy"
+        ],
+        "to": "Il'ya A. Gural'skiy"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Rongbin Huang",
+          "Rong-Bin Huang"
+        ],
+        "to": "Rongbin Huang"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Sheng-Lan Zhao",
+          "Shenglan Zhao"
+        ],
+        "to": "Sheng-Lan Zhao"
+      }
+    ]
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Publisher using expression value.trim()",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "EN",
+                "l": "EN"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Language",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Language"
+        }
+      ]
+    },
+    "columnName": "Publisher",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Title using expression grel:value.toTitlecase()",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Akshantala Enterprises",
+                "l": "Akshantala Enterprises"
+              }
+            },
+            {
+              "v": {
+                "v": "Society of Pharmaceutical Technocrats",
+                "l": "Society of Pharmaceutical Technocrats"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Publisher",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Publisher"
+        }
+      ]
+    },
+    "columnName": "Title",
+    "expression": "grel:value.toTitlecase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
