@@ -106,7 +106,7 @@ Exercise 4 - Create a new R script file
     - click on R script
     - Save the file (ctrl + s or command + s)
     - called "myscript.R"
-    - lacate this file under the "scripts" folder
+    - locate this file under the "scripts" folder
 
 Exercise 5 - Add comments to your new R script file
 
