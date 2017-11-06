@@ -95,6 +95,10 @@ Explore the dataset
   
 ### Layers used in ggplot2
 
+?ggplot
+
+Check the Details section
+
  ggplot(data = <dataset>, mapping = aes( <x, y, fill, colour, shape, size>)) + 
  <geom_function>() +
   facet_function( ̃class) +
