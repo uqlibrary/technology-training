@@ -12,9 +12,9 @@ Please create a folder called "RProjects" under "Documents"
 Challenge 1 - New Rstudio Project
 1. Click the "File" menu button (top left corner), then "New Project"
 2. Click "New Directory"
-3. Click "Empty Project"
-4. Type in the name of your project, e.g. "RStudio_Intro"
-(Select a folder where to locate your project like RProjects) 
+3. Click "New Project" ("New empty project" if you have an older version of RStudio)
+4. In Directory name type the name of your project, e.g. "RStudio_Intro" 
+(Browse and select a folder where to locate your project, for example the RProjects folder)
 5. Click the "Create Project" button
 
 Projects make managing multiple directories straightforward. You can create an RPROJ file in a new directory or an existing directory that already has R code and data. You can also create the project file by cloning a version control repository, such as Git or Subversion.
