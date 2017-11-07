@@ -138,16 +138,65 @@ To change the color based on a category use
 
     colour = 
     fill = 
+
+Exercise - 5 Pick one color from: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf and modify your plot
     
-Exercise - 5 How would you know all the years in this study with out repetitives?
+Exercise - 6 How would you know all the years in this study with out repetitives?
 
-## facet and theme
-
-## Labels
+    unique_years <- 
 
 ## Limits and scales
 
+Exercise 7 - Modify the x label of the plot by adding a layer
+
+     scale_x_continuous(breaks = unique_years)
+
+
+To change the scale use breaks and labels
+
+     scale_y_continuous(breaks = c(0, 100000000, 200000000, 500000000, 1000000000),
+                        labels = c(0, "100 mi", "200 mi", "500 mi", "1 billio"))
+
+Exercise 9 - Modify your y scale
+
+
+To restrict the range use xlim or ylim
+
+      ylim(c(0, 360000000))
+      
+Let's talk about the warning message
+
+### histograms
+
+Exercise 10 - Create a histogram of life expectation
+
+How to you modify the bars?
+
+
+## facet and theme
+
+ggplot(data = gapminder, mapping = aes(x = lifeExp, fill = continent)) +
+  geom_histogram(bins = 40) +
+  facet_wrap(~ continent) 
+  
+  
+ How do you remove the legend?
+ 
+ Try different themes
+ 
+ 
+## Labels
+
+how does life Expectation relates to GDP per capita?
+
+add labels using
+labs(title = "" , x = "", y = "")
+
 ## Save your plots in different formats and resolutions
+
+Use 
+
+?ggsave
 
 ## Play time!
 
@@ -171,12 +220,12 @@ Exercise - 5 How would you know all the years in this study with out repetitives
 Please fill in the feedback form before leaving: http://tiny.cc/CDS_feedback_R
 
 ## Important links
-* RStudio Cheatsheet [https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
-* RStudio online learning [https://www.rstudio.com/online-learning/](https://www.rstudio.com/online-learning/)
-* Basic and advanced manuals [https://cran.r-project.org/manuals.html](https://cran.r-project.org/manuals.html)
-* Ask about any function or package [http://www.rdocumentation.org/](http://www.rdocumentation.org/)
-* If you are looking how-to's or how to fix an error [http://stackoverflow.com/questions/tagged/r](http://stackoverflow.com/questions/tagged/r) 
-* Lynda.com R training and tutorials [https://www.lynda.com/R-training-tutorials/1570-0.html](https://www.lynda.com/R-training-tutorials/1570-0.html) remember to sign in with your organisational portal, [for example](https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses)
+* RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
+* RStudio online learning https://www.rstudio.com/online-learning/
+* Basic and advanced manuals https://cran.r-project.org/manuals.html
+* Ask about any function or package http://www.rdocumentation.org/
+* If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
+* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in with your organisational portal, https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses
 * R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
 * Book: Hadley Wickham. ggplot2 Elegant Graphics for Data Analysis Second  Edition. 2016 
 https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
