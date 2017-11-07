@@ -22,6 +22,7 @@ Manuals, commands and more information on how to continue your R learning are pr
 * On CDS computers:
   * Log in with your UQ username and password
   * Make sure you have a working internet connection
+  * Go to search the magnifying glass (bottom left)
   * Open the ZENworks application
   * Look for the letter R 
   * Double click on RStudio which will install both R and RStudio 
@@ -43,7 +44,7 @@ We will assume you are an R intermediate user and that you have used ggplot2 bef
    
 ## Attendees   
 
-* Full name / email 
+* Full name / email (optional)
 * Paula Andrea Martinez / p.martinez at uq.edu.au 
 * 
 
@@ -72,15 +73,15 @@ Exercise 1 - New Rstudio Project (3 min)
 ### Make sure you have ggplot2 installed and loaded
 Exercise 2 - setting up (1 min)
 
-  * create a new R script file called "ggplot2_intermediate.R" 
-  in the "scripts" folder
+  * In the "scripts" folder create a new R script file called "gapminder_example.R" 
   * install and load the package ggplot2
-    * install only if you haven't yet done so. install.packages("ggplot2")
+    * install only if you haven't yet done so using install.packages("ggplot2")
     * load the package using library(ggplot2)
 
 ### Import files
 
-Downloading data to your project
+Downloading data to your project in your R script gapminder_example.R
+
 
      download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
      
@@ -89,9 +90,10 @@ Exercise 3 - read the data in an R object (1 min)
       gapminder <- ...
 
 Explore the dataset
-  str()
   
-  Exercise 4 - check if your country is in the dataset
+      str()
+  
+Exercise 4 - check if your country is in the dataset
   
 ### Layers used in ggplot2
 
@@ -99,9 +101,9 @@ Explore the dataset
 
 Check the Details section
 
- ggplot(data = <dataset>, mapping = aes( <x, y, fill, colour, shape, size>)) + 
- <geom_function>() +
-  facet_function( ̃class) +
+ ggplot(data = <dataset>, mapping = aes( x, y, fill, colour, shape, size)) + 
+  geom_function() +
+  facet_function(~ class) +
   theme_function() +
   scale_function() +
   coord_function() +
@@ -116,7 +118,7 @@ fill
 
 ## facet and theme
 
-##  Labels
+## Labels
 
 ## Limits and scales
 
@@ -124,17 +126,10 @@ fill
 
 ## Play time!
 
-* Create a dotplot of gdpPercap vs lifeExp
-
-    use the shape for continent
-
-    label the plot
-
-
 * Create a a boxplot of continent vs pop
-     Colour and fill by continent
-     try to limit the y axis to see the boxes better
-     let's see if you are able to move the legend to the bottom 
+     * Colour and fill by continent
+     * try to limit the y axis to see the boxes better
+     * let's see if you are able to move the legend to the bottom 
   
 ## Modify your plots
 
@@ -160,5 +155,6 @@ Please fill in the feedback form before leaving: http://tiny.cc/CDS_feedback_R
 * R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
 * Book: Hadley Wickham. ggplot2 Elegant Graphics for Data Analysis Second  Edition. 2016 
 https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
+* R gapminder csv https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv"
 * If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
 * If you have further questions, please contact me p.martinez at uq.edu.au 
