@@ -82,6 +82,14 @@ Exercise 2 - setting up (1 min)
 
 Downloading data to your project in your R script gapminder_example.R
 
+Don't forget to add some comments to your header
+        # Description : We are going to create many plots 
+        # using ggplot2
+        # Author: Paula A. Martinez
+        # Date: today's date, 2017
+
+
+
 
      download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
      
@@ -89,32 +97,49 @@ Exercise 3 - read the data in an R object (1 min)
 
       gapminder <- ...
 
-Explore the dataset
+Explore the dataset 
   
       str()
   
-Exercise 4 - check if your country is in the dataset
-  
+Exercise 4 - check if your country is in the dataset (2 min)
+
+To be able to plot we should be familiar with the column names
+
+     colnames(gapminder)
+   
 ### Layers used in ggplot2
 
 ?ggplot
 
 Check the Details section
 
- ggplot(data = <dataset>, mapping = aes( x, y, fill, colour, shape, size)) + 
-  geom_function() +
-  facet_function(~ class) +
-  theme_function() +
-  scale_function() +
-  coord_function() +
+     ggplot(data = <dataset>, mapping = aes( x, y, fill, colour, shape, size)) + 
+      geom_function() +
+      facet_function(~ class) +
+      theme_function() +
+      scale_function() +
+      coord_function() +
+ 
+ 
+Does population grow over the years?
+
+Let's make a simple plot with the basics of ggplot2
+
+     ggplot(data = gapminder, mapping = aes(x = year, y = pop)) +
+       geom_point()
   
  ## Colour, Size, Shape and Other Aesthetic Attributes
 
-colour
+To change the shape based on a category use 
 
-shape
+    shape = 
+    
+To change the color based on a category use
 
-fill
+    colour = 
+    fill = 
+    
+Exercise - 5 How would you know all the years in this study with out repetitives?
 
 ## facet and theme
 
