@@ -48,7 +48,7 @@ At the end of this session you will be able to:
    
 ## Attendees   
 
-* Full name / email
+* Full name / email (optional)
 * Paula Andrea Martinez / p.martinez at uq.edu.au
 
 
@@ -89,9 +89,9 @@ Exercise 2 - Check what the description of these functions
 
 We are creating 2 folders:
     * scripts
-    * plots
+    * data
     
-Exercise 3 - create a folder called "data"
+Exercise 3 - create a folder called "plots"
 
 Exercise 4 - Create a new R script file
 
@@ -106,18 +106,18 @@ Exercise 5 - Add comments to your new R script file
 Comments start with #
 
              # Description:
-             # Author
+             # Author:
              # Date:
 
-Shift + cmd + c or Shift + ctrl + c
+To add comments to many lines: Shift + cmd + c or Shift + ctrl + c
 
 ### Import files
 
 Exercise 6 - Read the description of these functions:
     
-    ?download.file()
-    ?read.table()
-    ?read.csv()
+    ?download.file
+    ?read.table
+    ?read.csv
 
 
     download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminderdata.csv")
@@ -127,8 +127,8 @@ Exercise 6 - Read the description of these functions:
     ?str
     str(mydata)
 
-    ?ls()
-    rm()
+    ?ls
+    ?rm
 
 
 #### Layouts
@@ -151,7 +151,7 @@ Exercise 6 - Read the description of these functions:
 
 ### demo
 
-A real life example to use R for linear models and anova 
+A real life example to use R graphics 
 demo(graphics)
 
 # Close Rproject
