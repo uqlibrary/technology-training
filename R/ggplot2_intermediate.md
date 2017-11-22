@@ -5,7 +5,7 @@ Thanks for attending this session at the UQ library Centre for Digital Scholarsh
 If you want to review the installation instructions: https://github.com/orchid00/CDS/blob/master/R/Installation.md
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
-Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad [https://etherpad.wikimedia.org/p/cds](https://etherpad.wikimedia.org/p/cds).
+Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad https://etherpad.wikimedia.org/p/cds.
 
 ## Keep in mind
 
@@ -15,10 +15,6 @@ Manuals, commands and more information on how to continue your R learning are pr
 
 ## Open RStudio
 
-* If you are using your own laptop please open RStudio
-  * Make sure you have a working internet connection
-  * Make sure you have ggplot2 installed
-
 * On CDS computers:
   * Log in with your UQ username and password
   * Make sure you have a working internet connection
@@ -27,20 +23,24 @@ Manuals, commands and more information on how to continue your R learning are pr
   * Look for the letter R 
   * Double click on RStudio which will install both R and RStudio 
   * Make sure you have ggplot2 installed
+  
+* If you are using your own laptop please open RStudio
+  * Make sure you have a working internet connection
+  * Make sure you have ggplot2 installed
+   
+## Disclaimer
+
+We will assume you are an R intermediate user and that you have used ggplot2 before.
 
 ## What are we going to learn?
 
 At the end of this session you will be able to:
 
-   * know about the layers used in ggplot2
+   * Know about the layers used in ggplot2
    * Select your own colours
    * Change labels
    * Save your plots in different formats and resolutions
    * Be able to modify plots quickly
-   
-## Disclaimer
-
-We will assume you are an R intermediate user and that you have used ggplot2 before.
    
 ## Attendees   
 
@@ -75,8 +75,10 @@ Exercise 2 - setting up (1 min)
 
   * In the "scripts" folder create a new R script file called "gapminder_example.R" 
   * install and load the package ggplot2
-    * install only if you haven't yet done so using install.packages("ggplot2")
-    * load the package using library(ggplot2)
+    * install only if you haven't yet done so using 
+          install.packages("ggplot2")
+    * load the package using 
+          library(ggplot2)
 
 ### Import files
 
@@ -88,28 +90,28 @@ Don't forget to add some comments to your header
         # Author: Paula A. Martinez
         # Date: today's date, 2017
 
+        # how to dowload?
+        ?download.file
 
 
-
-     download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
+        download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminder.csv")
      
 Exercise 3 - read the data in an R object (1 min)
 
       gapminder <- ...
 
-Explore the dataset 
+Exercise 4 - Explore the dataset (1 min)
   
-      str()
   
-Exercise 4 - check if your country is in the dataset (2 min)
-
-To be able to plot we should be familiar with the column names
+      You can use dim(), str(), head(), tail()
+  
+Exercise 5 - To be able to plot we should be familiar with the column names
 
      colnames(gapminder)
    
 ### Layers used in ggplot2
 
-?ggplot
+    ?ggplot
 
 Check the Details section
 
@@ -121,9 +123,9 @@ Check the Details section
       coord_function() +
  
  
-Does population grow over the years?
+Let's start with a question. Does population grow over the years?
 
-Let's make a simple plot with the basics of ggplot2
+We can make a simple plot with the basics of ggplot2
 
      ggplot(data = gapminder, mapping = aes(x = year, y = pop)) +
        geom_point()
