@@ -81,9 +81,9 @@ There are 3 ways to find help in R
 
 Exercise 2 - Check what the description of these functions
 
-    sessionInfo()
-    list.files()
-    ls()
+    sessionInfo
+    list.files
+    ls
   
 ### Creating a folder structure
 
@@ -146,7 +146,7 @@ Exercise 6 - Read the description of these functions:
 
 ### Packages
 
-    install.packages()
+    ?install.packages
 
 
 ### demo
@@ -157,7 +157,7 @@ demo(graphics)
 # Close Rproject
 
 File
-close project
+close project (It asks if you want to save your data)
 then close RStudio
 
 
