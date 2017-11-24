@@ -28,7 +28,7 @@ We can use R for calculations and visualisations.
 * On CDS computers:
   * Log in with your UQ username and password
   * Make sure you have a working internet connection
-  * Go to search 
+  * Go to search at bottom left corner (magnifiying glass) 
   * Open the ZENworks application
   * Look for the letter R 
   * Double click on RStudio which will install both R and RStudio 
