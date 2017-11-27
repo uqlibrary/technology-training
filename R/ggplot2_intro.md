@@ -21,6 +21,7 @@ Manuals, commands and more information on how to continue your R learning are pr
 * On CDS computers (the first time takes about 10 min):
   * Log in with your UQ username and password
   * Make sure you have a working internet connection
+  * Go to search at bottom left corner (magnifiying glass) 
   * Open the ZENworks application
   * Look for RStudio
   * Double click on RStudio which will install both R and RStudio 
@@ -32,7 +33,7 @@ At the end of this session you will be able to:
    * Have a visualisation package installed (ggplot2) 
    * Learn how to explore data
    * Learn about the basic ggplot2 layers 
-   * Create diferent kinds of plots 
+   * Create different kinds of plots 
    * Be able to modify plots quickly
    
 ## Disclaimer
