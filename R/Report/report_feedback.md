@@ -17,7 +17,7 @@ Q.3 One thing we can do to improve the next session
 
 Q.4 How did you hear about the session?
 
-![](figures/_hear_.png)
+![](figures/_Hear_.png)
 
 Q.5 Are you?
 
@@ -30,3 +30,4 @@ Q.6 what is your school?
 
 
 Updated, Dec 1, 2017
+source code can be found in the scripts folder
