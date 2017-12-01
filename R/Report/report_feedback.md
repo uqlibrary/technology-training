@@ -1,7 +1,7 @@
 # Report feedback of 2017 R sessions
 
 For every session we have collected feedback from attendees and these are the summary responses.
-There was 13 sessions with ~ 400 attendees and we have collected 233 responses.
+There was 13 sessions with ~ 300 attendees and we have collected 233 responses.
 
 Q.1 Was the session useful for you? (1 not useful - 5 very useful)
 
