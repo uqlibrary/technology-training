@@ -5,7 +5,7 @@ There was 13 session and we have collected 233 responses.
 
 Q.1 Was the session useful for you? (1 not useful - 5 very useful)
 
-![](plots/.png)
+![](figures/_useful_.png)
 
 Q.2 What did you like about the session?
 
