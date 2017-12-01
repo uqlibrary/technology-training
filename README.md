@@ -1,7 +1,8 @@
 # CDS - Centre for Digital Scholarship
-Instructions for courses 
+Instructions for R sessions
 
 Author: Paula Andrea Martinez
+
 Date: September - November 2017
 
 ## Description
