@@ -1,5 +1,7 @@
 # R Installation instructions
 
+These instructions have been last updated on Nov 1st, 2017. Some of the links might need to be checked again for new updates.
+
 The UQ Library Centre for Digital Scholarship (CDS) is offering free R sessions.
 CDS provides software training and consultation sessions to students and staff. Our aim is to equip the UQ community with digital tools to perform data analysis and management in a clear and reproducible way.
 
@@ -13,7 +15,7 @@ Participants are encouraged to **bring and use their own laptops with the softwa
 
 ** Install R and RStudio **
 
-For the workshop we will use **RStudio**. RStudio is a nice interface to use the programming language **R**. *To use RStudio, you need to install both R and RStudio*.
+For the workshop, we will use **RStudio**. RStudio is a nice interface to use the programming language **R**. *To use RStudio, you need to install both R and RStudio*.
 
 Please go through the installation steps below to install R and RStudio before the start of the workshop. Then, make sure that you not only installed them but start them up to make sure they are working. To install software you need administrator rights, if you have a UQ computer and you do not have administrator rights you might need to contact IT to install the software for you.
 
