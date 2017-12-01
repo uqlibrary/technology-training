@@ -1,6 +1,13 @@
 # Useful Links
 
+## Cheatsheet
+
 * RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
+* R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
+* R dplyr cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
+
+## Extra learning
+
 * RStudio online learning https://www.rstudio.com/online-learning/
 * Basic and advanced manuals https://cran.r-project.org/manuals.html
 * Ask about any function or package http://www.rdocumentation.org/
@@ -15,4 +22,4 @@
 
 # Contact
 
-If you have further questions, please contact me p.martinez at uq.edu.au
+If you have further questions, please contact me using the details on the README.md
