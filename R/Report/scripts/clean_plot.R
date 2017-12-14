@@ -8,7 +8,6 @@
 
 library(readxl)
 mydir <- getwd()
-setwd("/Users/uqpmart6/Documents/Paula/R/feedback/")
 
 file_list <- list.files(pattern='*.xlsx')
 file_list
