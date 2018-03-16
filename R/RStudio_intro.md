@@ -1,6 +1,8 @@
 R for beginners using RStudio
 -----------------------------
 
+`version: 2018-03-16`
+
 Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving https://framaforms.org/cds-r-sessions-feedback-1521148191
 
 If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
@@ -97,7 +99,6 @@ Here are more functions to explore:
 * `citation()`
 * `dir()`
 
-
 ### Creating a folder structure
 
 We are creating 2 folders:
@@ -126,7 +127,7 @@ Scripts are useful to save a set of useful commands and make research reproducib
 
 **Exercise 4** - Create a new R script file
 
-* click the button (+) located at the top left corner of your RStudio  (or Shift + cmd + n or Shift + ctrl + n)
+* click the button (+) located at the top left corner of your RStudio
 * click on R script
 * Save the file: File > Save (or ctrl + s or command + s)
 * name the file "myscript.R"
@@ -142,6 +143,11 @@ file.create("scripts/cmds.R")
 
 To delete a file, use the `file.remove()` function:
 
+```
+file.remove("scripts/cmds.R")
+```
+
+You can recall your recent commands with the up arrow, which is especially useful to correct typos or slightly modify a long command.
 
 **Exercise 5** - Add comments to your new R script file
 
@@ -154,6 +160,8 @@ Comments start with `#`
 ```
 
 To add comments to many lines: Ctrl + Shift + C or Cmd + Shift + C
+
+While editing your script, you can run the active line (or the selected block of lines) by using Ctrl + Enter (or Cmd + Enter).
 
 ### Import files
 
@@ -171,7 +179,7 @@ Copy, paste and execute the following two commands:
 
 ```
 download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminderdata.csv")
-mydata <- read.csv("data/gapminderdata.csv")
+gapminder <- read.csv("data/gapminderdata.csv")
 ```
 
 What do you think they do? Describe each one in detail.
@@ -265,14 +273,17 @@ demo(graphics)
 Please fill in the feedback form before leaving: http://tiny.cc/CDS_feedback_R
 
 ## Important links
+
+* A more extensive introduction to R and RStudio is offered by The Carpentries: https://swcarpentry.github.io/r-novice-gapminder/
+* R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
+* R dplyr cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
 * RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
 * RStudio online learning https://www.rstudio.com/online-learning/
 * Basic and advanced manuals https://cran.r-project.org/manuals.html
 * Ask about any function or package http://www.rdocumentation.org/
-* If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
-* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in with your organisational portal, https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses)
+* If you are looking for how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
+* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in from UQ, https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses
 * ANOVA in R http://homepages.inf.ed.ac.uk/bwebb/statistics/ANOVA_in_R.pdf or https://rcompanion.org/rcompanion/e_01.html
-* R gapminder csv https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv"
-* If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. 
-https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
-* If you have further questions, please contact me p.martinez at uq.edu.au 
+* If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
+* Ask questions to other researchers during the weekly Hacky Hour: https://rcc.uq.edu.au/meetups
+* Contact your unit's statistician
