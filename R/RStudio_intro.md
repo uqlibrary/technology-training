@@ -1,17 +1,18 @@
-# RStudio Intro hands-on session
+R for beginners using RStudio
+-----------------------------
 
-Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving http://tiny.cc/CDS_feedback_R
+Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving https://framaforms.org/cds-r-sessions-feedback-1521148191
 
-If you want to review the installation instructions: https://github.com/orchid00/CDS/blob/master/R/Installation.md
+If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
 
 Everything we write today will be saved in your R project. If you use the University computers, please remember to save your files in your H drive or USB.
 
-Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad https://etherpad.wikimedia.org/p/cds
+Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad: https://public.etherpad-mozilla.org/p/rstudio-intro-cds
 After the workshop you can save this etherpad with the important links and information (top right double arrow, export).
 
 ## RStudio
 
-RStudio is an open source interface for the R programming language.
+RStudio is an open source IDE (Integrated Development Interface) for the R programming language.
 We can use R for calculations and visualisations.
 
 ## Keep in mind
@@ -45,121 +46,219 @@ At the end of this session you will be able to:
    * Use a few shortcuts
    * Know where packages are
 
-   
-## Attendees   
-
-* Full name / email (optional)
-* Paula Andrea Martinez / p.martinez at uq.edu.au
-
-
 ## Material
 
 ### Location
+
 Please create a folder called "RProjects" under "Documents"
 This is important for our project structure
 
 ### Rstudio Project
-Exercise 1 - New Rstudio Project (2 min)
 
-    * Click the "File" menu button (top left corner), then "New Project"
-    * Click "New Directory"
-    * Click "New Project" ("New empty project" if you have an older version of RStudio)
-    * In Directory name type the name of your project, e.g. "RStudio_Intro" 
-      (Browse and select a folder where to locate your project, for example the RProjects folder)
-    * Click the "Create Project" button
+**Exercise 1** - New RStudio Project (2 min)
+
+* Click the "File" menu button (top left corner), then "New Project"
+* Click "New Directory"
+* Click "New Project" ("New empty project" if you have an older version of RStudio)
+* In Directory name type the name of your project, e.g. "RStudio_Intro" (Browse and select a folder where to locate your project, in our case the RProjects folder)
+* Click the "Create Project" button
     
-FYI: Projects make managing multiple directories straightforward. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. The .Rproj stores information about our folder structure and the objects in the project (hence, manages history and .RData)
+FYI: Projects make managing multiple directories straightforward. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. The .Rproj file stores information about our folder structure and the objects in the project (hence, manages history and .RData).
 
 ### Help
 
 There are 3 ways to find help in R
 
-1.
-2.
-3.
+1. help(functionname)
+2. functionname F1
+3. ?functionname
+
+**Exercise 2** - Use the help pages to find out what these functions do:
+
+* `sessionInfo()`
+* `list.files()`
+* `ls()`
+
+`sessionInfo()` provides information about your platform, the version of R and the packages that you are using and their versions.
+`list.files()` lists all the files in your working directory.
+`ls()` lists the objects in the current R environment.
+For example, try running the `ls()` function after executing the command `a <- 42`.
+Now, remove all objects from the environment with:
+
+```
+rm(list = ls())
+```
+And list files again with `ls()`.
+
+Here are more functions to explore:
+
+* `getwd()`
+* `setwd()`
+* `citation()`
+* `dir()`
 
 
-Exercise 2 - Check what the description of these functions
-
-    sessionInfo
-    list.files
-    ls
-  
 ### Creating a folder structure
 
 We are creating 2 folders:
-    * scripts
-    * data
+
+* scripts
+* data
+
+For that, we use the function `dir.create()`:
+
+```
+dir.create("scripts")
+dir.create("data")
+```
     
-Exercise 3 - create a folder called "plots"
+**Exercise 3** - create a folder called "plots"
 
-Exercise 4 - Create a new R script file
+To create a folder called "plots":
 
-    - click the button (+) located at the top left corner of your RStudio  (or Shift + cmd + n or Shift + ctrl + n)
-    - click on R script
-    - Save the file File > Save (or ctrl + s or command + s)
-    - name the file "myscript.R"
-    - locate this file under the "scripts" folder
+```
+dir.create("plots")
+```
 
-Exercise 5 - Add comments to your new R script file
+### Scripts
 
-Comments start with #
+Scripts are useful to save a set of useful commands and make research reproducible.
 
-             # Description:
-             # Author:
-             # Date:
+**Exercise 4** - Create a new R script file
 
-To add comments to many lines: Shift + cmd + c or Shift + ctrl + c
+* click the button (+) located at the top left corner of your RStudio  (or Shift + cmd + n or Shift + ctrl + n)
+* click on R script
+* Save the file: File > Save (or ctrl + s or command + s)
+* name the file "myscript.R"
+* locate this file under the "scripts" folder
+
+You can also create a script with the following command:
+
+```
+file.create("scripts/cmds.R")
+```
+
+... or using the shortcuts Ctrl + Shift + N (or Cmd + Shift + N).
+
+To delete a file, use the `file.remove()` function:
+
+
+**Exercise 5** - Add comments to your new R script file
+
+Comments start with `#`
+
+```
+# Description:
+# Author:
+# Date:
+```
+
+To add comments to many lines: Ctrl + Shift + C or Cmd + Shift + C
 
 ### Import files
 
-Exercise 6 - Read the description of these functions:
-    
-    ?download.file
-    ?read.table
-    ?read.csv
+**Exercise 6** - Read the description of these functions:
+
+```
+?download.file
+?read.table
+?read.csv
+```
+
+**Exercise 7** – Import data
+
+Copy, paste and execute the following two commands:
+
+```
+download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminderdata.csv")
+mydata <- read.csv("data/gapminderdata.csv")
+```
+
+What do you think they do? Describe each one in detail.
+
+You can type the name of your new object to print it to screen:
+
+```
+gapminder
+```
+
+Now find out more about the `str()` function, and have a look at the data:
+
+```
+?str
+str(gapminder)
+```
+
+Remember that you can check what is in your environment with `ls()`, and remove objects with `rm()`.
+
+### Plotting
+
+We are now going to create a plot, and save it into the right folder.
+
+```
+png(filename = "plots/plot_population.png")
+plot(pop~year, data = gapminder, main = "Population growth by year", xlab = "year", ylab = "population")
+dev.off()
+```
+
+In this set of commands, `png()` creates a graphics file, `plot()` plots the data, and `dev.off()` shuts down the graphics device.
 
 
-    download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminderdata.csv")
+### More shortcuts
 
-    mydata <- read.csv("data/gapminderdata.csv")
-
-    ?str
-    str(mydata)
-
-    ?ls
-    ?rm
-
+* Run current line/selection: Ctrl + Enter (or Cmd + Enter)
+* Find: Ctrl + F (or Cmd + F)
+* Find in files: Ctrl + Shift + F (or Cmd + Shift + F)
+* Cut: Ctrl + X (or Cmd + X)
+* Copy: Ctrl + C (or Cmd + C)
+* Paste: Ctrl + V (or Cmd + V)
+* Select all: Ctrl + A (or Cmd + A)
+* Delete line: Ctrl + D (or Cmd + D)
+* Clear console: Ctrl + L (or Cmd  + L)
+* Indent: Tab (at start of line)
+* Outdent: Shift + Tab
+* Insert `<-`: Alt + - (or Option + -)
+* (Un)Comment lines: Ctrl + Shift + C (or Cmd + Shift + C)
+* See shortcuts: Alt + Shift + K
 
 #### Layouts
 
-    Move focus to Source Editor Ctrl+1 Ctrl+1
-    Move focus to Console Ctrl+2 Ctrl+2
-    Move focus to Help Ctrl+3 Ctrl+3
-    Show History Ctrl+4 Ctrl+4
-    Show Files Ctrl+5 Ctrl+5
-    Show Plots Ctrl+6 Ctrl+6
-    Show Packages Ctrl+7 Ctrl+7
-    Show Environment Ctrl+8 Ctrl+8
-    Show Git/SVN or viewer Ctrl+9 Ctrl+9
-
+* Move focus to Source Editor Ctrl+1
+* Move focus to Console Ctrl+2
+* Move focus to Help Ctrl+3
+* Show History Ctrl+4
+* Show Files Ctrl+5
+* Show Plots Ctrl+6
+* Show Packages Ctrl+7
+* Show Environment Ctrl+8
+* Show Git/SVN or viewer Ctrl+9
 
 ### Packages
 
-    ?install.packages
+```
+?install.packages
+?ggplot
+??ggplot
+install.packages("ggplot2")
+?ggplot
+?ggplot2::ggplot
+library(ggplot2
+?ggplot
+```
 
+### Demos
 
-### demo
+A real life example to use R graphics:
 
-A real life example to use R graphics 
+```
 demo(graphics)
+```
 
 # Close Rproject
 
-File
-close project (It asks if you want to save your data)
-then close RStudio
-
+* File
+* close project (It asks if you want to save your data)
+* close RStudio
 
 ## After the workshop
 
