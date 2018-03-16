@@ -270,20 +270,16 @@ demo(graphics)
 
 ## After the workshop
 
-Please fill in the feedback form before leaving: http://tiny.cc/CDS_feedback_R
+Please fill in the feedback form before leaving: https://framaforms.org/cds-r-sessions-feedback-1521148191
 
 ## Important links
-
-* A more extensive introduction to R and RStudio is offered by The Carpentries: https://swcarpentry.github.io/r-novice-gapminder/
-* R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
-* R dplyr cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
 * RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
 * RStudio online learning https://www.rstudio.com/online-learning/
 * Basic and advanced manuals https://cran.r-project.org/manuals.html
 * Ask about any function or package http://www.rdocumentation.org/
-* If you are looking for how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
-* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in from UQ, https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses
+* If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
+* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in with your organisational portal, https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses)
 * ANOVA in R http://homepages.inf.ed.ac.uk/bwebb/statistics/ANOVA_in_R.pdf or https://rcompanion.org/rcompanion/e_01.html
-* If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
-* Ask questions to other researchers during the weekly Hacky Hour: https://rcc.uq.edu.au/meetups
-* Contact your unit's statistician
+* R gapminder csv https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv
+* If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. 
+https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
