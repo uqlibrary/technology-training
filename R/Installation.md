@@ -26,8 +26,8 @@ If you have any problems installing you can use one of the university computers,
 
 * Download R from here [https://cran.r-project.org/bin/windows/base/release.htm](https://cran.r-project.org/bin/windows/base/release.htm)
 * Run the .exe file that was just downloaded
-* Then, go to the RStudio Download page [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
-* Go to the bottom of the page, under Installers select [RStudio 1.1.383 - Windows Vista/7/8/10](https://download1.rstudio.org/RStudio-1.1.383.exe)  
+* Go to the [RStudio Download page](https://www.rstudio.com/products/rstudio/download/#download)
+* Under "Installers for Supported Platforms", select the Windows installer.
 * Double click the file to install it
 * Once it's installed, open RStudio to make sure it works and there is no error messages.
 
@@ -37,8 +37,8 @@ If you have any problems installing you can use one of the university computers,
 * Download R from CRAN and click on Download R for (Mac) OS X [https://cran.r-project.org/bin/macosx/](https://cran.r-project.org/bin/macosx/)
 * Select the .pkg file for the version of OS X that you have, and the file will download.
 * Double click on the file that was downloaded and R will be installed
-* Go to the RStudio Download page [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
-* Under Installers select [https://download1.rstudio.org/RStudio-1.1.383.dmg](https://download1.rstudio.org/RStudio-1.1.383.dmg) to download it.
+* Go to the [RStudio Download page](https://www.rstudio.com/products/rstudio/download/#download)
+* Under "Installers for Supported Platforms", select the Mac OS X installer.
 * Once it's downloaded, double click the file to install it
 * Once it's installed, open RStudio to make sure it works and there is no error messages.
 
@@ -46,8 +46,8 @@ If you have any problems installing you can use one of the university computers,
 *To use RStudio, you need to install both R and RStudio*
 
 * Download R by following the instructions for your distribution from CRAN. For most distributions, you can use your package manager (e.g. for Debian/Ubuntu run sudo apt-get install r-base, and for Fedora run sudo yum install R) 
-* To install RStudio, go to the RStudio Download page
-* Under Installers select the version for your distribution.
+* Go to the [RStudio Download page](https://www.rstudio.com/products/rstudio/download/#download)
+* Under "Installers for Supported Platforms", select the installer for your distribution.
 * Once it's downloaded, double click the file to install it, or sudo dpkg -i rstudio-x.yy.zzz-amd64.deb at the terminal, or use software centre in Ubuntu.
 * Once it's installed, open RStudio to make sure it works and there is no error messages.
 
