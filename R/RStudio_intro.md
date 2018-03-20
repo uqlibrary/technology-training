@@ -1,7 +1,7 @@
 R for beginners using RStudio
 -----------------------------
 
-`version: 2018-03-16`
+`version: 2018-03-20`
 
 Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving https://framaforms.org/cds-r-sessions-feedback-1521148191
 
@@ -201,7 +201,13 @@ Remember that you can check what is in your environment with `ls()`, and remove 
 
 ### Plotting
 
-We are now going to create a plot, and save it into the right folder.
+R has a number of plotting functions to visualise data in many different ways. Let's test the basic function `plot()`:
+
+```
+plot(pop~year, data = gapminder, main = "Population growth by year", xlab = "year", ylab = "population")
+```
+
+We are now going to create the same plot, but with extra wrapping functions that will allow us to save a copy of it.
 
 ```
 png(filename = "plots/plot_population.png")
