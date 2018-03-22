@@ -1,7 +1,7 @@
 R for beginners using RStudio
 -----------------------------
 
-`version: 2018-03-20`
+`version: 2018-03-22`
 
 Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving https://framaforms.org/cds-r-sessions-feedback-1521148191
 
@@ -162,6 +162,8 @@ Comments start with `#`
 To add comments to many lines: Ctrl + Shift + C or Cmd + Shift + C
 
 While editing your script, you can run the active line (or the selected block of lines) by using Ctrl + Enter (or Cmd + Enter).
+
+Instead of opening an RProject, you can open an R script and directly execute its content. This is helpful to re-run a whole project from the beginning (including necessary `library()` commands).
 
 ### Import files
 
