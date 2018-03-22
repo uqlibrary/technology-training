@@ -40,6 +40,19 @@ At the end of this session you will be able to:
         summarize()
         mutate()
 
+        
+From _R for Data Science_:
+
+You are going to learn the five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:
+
+    Pick observations by their values (filter()).
+    Reorder the rows (arrange()).
+    Pick variables by their names (select()).
+    Create new variables with functions of existing variables (mutate()).
+    Collapse many values down to a single summary (summarise()).
+
+These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation.
+
 ## Disclaimer
 
 We will assume you are an R beginner, who has used R before.
@@ -86,10 +99,12 @@ This will open an "Untitled1" file
 
 
 At home install:https://www.tidyverse.org/
-Install the complete tidyverse with: It takes a few minutes depending on your internet conection but installs many useful
-packages install.packages("tidyverse")
+Install the complete tidyverse with:
+  packages install.packages("tidyverse")
 
-The R package dplyr was developed by Hadley Wickham for data manipulation
+(It takes a few minutes depending on your internet conection but installs many useful packages)
+
+The R package dplyr was developed by Hadley Wickham for data manipulation.
 You only need to install a package once, and reload it every time you start a new R session. 
 
 ### Explore data
@@ -123,7 +138,8 @@ For any dataset or function doubts that you might have. Don't forget the three w
 We need a pipe symbol %>% (Similar to "+" in ggplot2)
 
  filter() # use "filter" to filter rows
- select() # Selecting Columns from a dataframe group_by()
+ select() # Selecting Columns from a dataframe
+ group_by()
  summarize()
  mutate()
  group_by() and summarize() are used together
