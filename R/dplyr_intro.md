@@ -1,76 +1,60 @@
-# An Intro to R data manipulation using dplyr - hands-on session
+Introduction to R data manipulation using dplyr
+===
 
-Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving http://tiny.cc/CDS_feedback_R.
+Thank you for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving https://framaforms.org/cds-sessions-feedback-1521148191.
 
-If you want to review the installation instructions: https://github.com/orchid00/CDS/blob/master/R/Installation.md
+If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
 
-Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
+Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you are using Library computers.
 
 Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad https://etherpad.wikimedia.org/p/cds.
 
 ## Keep in mind
+
 * Case sensitive
 * No spaces in names
 * Be ready to learn a new language, lots of new vocabulary
 
-
 ## Open RStudio
+
 * If you are using your own laptop please open RStudio 
 * Make sure you have a working internet connection
 * On CDS computers (the first time takes about 10 min): 
-* Log in with your UQ username and password
-* Make sure you have a working internet connection
-* Go to search at bottom left corner (magnifiying glass) 
-* Open the ZENworks application
-* Look for RStudio
-* Double click on RStudio which will install both R and RStudio
+    * Log in with your UQ username and password
+    * Make sure you have a working internet connection
+    * Go to search at bottom left corner (magnifiying glass) 
+    * Open the ZENworks application
+    * Look for RStudio
+    * Double click on RStudio which will install both R and RStudio
 
 
 ## What are we going to learn?
 
-At the end of this session you will be able to:
+In this hands-on session, you will use RStudio and the `dplyr` package to manipulate your data.
 
-* About the tidyverse umbrella of packages 
-* About dplyr
-* Some dplyr verbs
+Specifically, you will learn how to explore, filter and reorganise your data with the following verbs:
 
-        select()
-        filter()
-        group_by()
-        summarize()
-        mutate()
-
-        
-From _R for Data Science_:
-
-You are going to learn the five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:
-
-    Pick observations by their values (filter()).
-    Reorder the rows (arrange()).
-    Pick variables by their names (select()).
-    Create new variables with functions of existing variables (mutate()).
-    Collapse many values down to a single summary (summarise()).
-
-These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation.
+```
+select()
+filter()
+group_by()
+summarise()
+mutate()
+```
 
 ## Disclaimer
 
 We will assume you are an R beginner, who has used R before.
 
-## Attendees
-* Full name / email (optional)
-* Paula Andrea Martinez 
-
-
 ## Introductions
 
-Introduce yourself to one other person in the session. We will try to work in pairs.
+Introduce yourself to your neighbour. We will try to work in pairs.
 
 ## Material
 
 ### Location
 
-Please create a folder called "RProjects" under "Documents". This is important for our project structure
+Please create a folder called "RProjects" under "Documents". This is important for our project structure.
 
 ### Rstudio Project
 
@@ -78,7 +62,7 @@ Exercise 1 - New Rstudio Project (3 min)
 * Click the "File" menu button (top left corner), then "New Project"
 * Click "New Directory"
 * Click "New Project" ("Empty project" if you have an older version of RStudio) * Type in the name of your project, e.g. "Rdplyr_Intro"
-(Select a folder where to locate your project the RProjects folder)
+(Select the folder where to locate your project: the RProjects folder)
 * Click the "Create Project" button
 * create three folders in your new project
     * scripts 
@@ -89,86 +73,213 @@ Exercise 1 - New Rstudio Project (3 min)
 
 Exercise 2 - dplyr setup (4 min)
 
-* Menu: Top left corner, click the green "plus" symbol, or press the shortcut (for Windows/Linux) Ctrl+Shift+N or (for Mac) Cmd+Shift+N
-This will open an "Untitled1" file
-* Go to file "Save" or press (for Windows/Linux) Ctrl+S or (for Mac) Cmd+S This will ask where you cant to save your file and the name of the new file
+* Menu: Top left corner, click the green "plus" symbol, or press the shortcut (for Windows/Linux) Ctrl+Shift+N or (for Mac) Cmd+Shift+N. This will open an "Untitled1" file.
+* Go to "File > Save" or press (for Windows/Linux) Ctrl+S or (for Mac) Cmd+S. This will ask where you want to save your file and the name of the new file.
 * Call your file "gdplyr_intro.R" located in the "scripts" folder
-* install and load the package dplyr
-* install.packages("dplyr")
-* While you wait for dplyr to be installed, check Rdocumentation.org and type dplyr in the search * library(dplyr)
+* install and load the `dplyr` package:
+    * `install.packages("dplyr")`
+    * While you wait for dplyr to be installed, check Rdocumentation.org and type "dplyr" in the search
+    * `library(dplyr)`
 
+At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)": 
 
-At home install:https://www.tidyverse.org/
-Install the complete tidyverse with:
-  packages install.packages("tidyverse")
+```
+install.packages("tidyverse")
+```
 
 (It takes a few minutes depending on your internet conection but installs many useful packages)
 
 The R package dplyr was developed by Hadley Wickham for data manipulation.
-You only need to install a package once, and reload it every time you start a new R session. 
+You only need to install a package once (with `install.packages()`), and reload it every time you start a new R session (with `library()`).
 
 ### Explore data
 
-Exercise 3 (3 min)
+Exercise 3 – import and explore data
+
 1. download the data from the internet
-https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv
-?download.file
-destfile = "data/gapminder.csv" download.file(url="https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder- FiveYearData.csv", destfile = "data/gapminder.csv")
-2. read the data into a an object called gapminder mydata<-read.csv("data/gapminder.csv")
-3. Explore the gapminder using dim()
+    * the file is located at https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv
+    * read about the `download.file()` function with: `?download.file`
+    * `download.file(url="https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminder.csv")`
+2. read the data into a an object called gapminder:
+```
+mydata <- read.csv("data/gapminder.csv")
+```
+3. Explore the gapminder dataset using `dim()` and `str()`
 
-str()
+How can we get the dataframe's variable names? `names(gapminder)` returns the names regardless of the object type, such as list, vector, data.frame etc., whereas `colnames(gapminder)` returns the variable names for matrix-like objects, such as matrix, data.frame
 
-how to get the column names
-names(gapminder) - return the names regardles of the object type, such as list, vector, data.frame etc. colnames(gapminder) - return the names for matrix-like objects, such as matrix, data.frame
+To select one specific column in the dataframe, use `gapminder$year`. For example, try these:
 
-select one column gapminder$year
-nlevels(gapminder$country) 
+```
+nlevels(gapminder$country)
+class(gapminder$country)
+```
 
 ### Help
 
-For any dataset or function doubts that you might have. Don't forget the three ways of getting help from R
+For any dataset or function doubts that you might have. Don't forget the three ways of getting help from R:
+
 1. ?functionname
 2. help(functionname) 
 3. functionname + F1
 
 ### Basic dplyr verbs
 
+From _[R for Data Science](http://r4ds.had.co.nz)_:
 
-We need a pipe symbol %>% (Similar to "+" in ggplot2)
+You are going to learn the five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:
 
- filter() # use "filter" to filter rows
- select() # Selecting Columns from a dataframe
- group_by()
- summarize()
- mutate()
- group_by() and summarize() are used together
- 
-### Conditionals 
-= is to give the value to the name, == is to set the condition 
+* Pick observations by their values with `filter()`.
+* Reorder the rows with `arrange()`.
+* Pick variables by their names with `select()`.
+* Create new variables with functions of existing variables with `mutate()`.
+* Collapse many values down to a single summary with `summarise()`.
 
-        == equal != different 
-        >
-        <
-        >=
-        <=
+These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the **verbs for a language of data manipulation**.
 
-double quote: for a string, not a number
+To use the verbs to their full extent, we will need **pipes** and **conditionals**.
 
-Exercise Select the observations form Eritrea on 2002
+We can use a pipe symbol `%>%` (Similar to "+" in ggplot2) to **string commands together**.
 
-    Eritrea_2002 <- 
+Conditionals allow us to **check for a condition**. Remember: `=` is to give a value to the variable, `==` is to set a condition 
+
+* `==` equal
+* `!=` different 
+* `>` greater than
+* `<` smaller than
+* `>=` greater or equal
+* `<=` smaller or equal
+
+
+#### Pick observations with `filter()`
+
+Filter the observations for Australia, using `filter()` and a conditional:
+
+```
+Australia <- filter(gapminder, country == "Australia")
+Australia
+```
+
+Filter the rows that have a life expectancy `lifeExp` greater than 80 years:
+
+```
+life80 <- filter(gapminder, lifeExp > 80)
+dim(life80)
+```
+
+#### Pick variables with `select()`
+
+Select allows use to pick variable (i.e. columns) from the dataset. For example, to only keep the data about year, country and GDP per capita:
+
+```
+gapminder_small <- select(gapminder, year, country, gdpPercap)
+```
+
+If we only want this data for 1995, we can associate `select()` to `filter()`:
+
+```
+gapminder_small_2014 <- filter(gapminder_small, year == 2002)
+```
+
+We can make our code more readable and avoid creating useless objects by **piping** commands into each other. To do what we just did in one command:
+
+```
+gapminder_small_2014 <- gapminder %>%
+    select(year, country, gdpPercap) %>%
+    filter(year == 2002)
+```
+
+Use Shift + Enter to go to the next line without executing the command.
+
+Exercise 4 – Select the 2002 life expectancy observations for Eritrea
+
+```
+Eritrea_2002 <- gapminder %>%
+    select(year, country, lifeExp) %>%
+    filter(country == "Eritrea", year == 2002)
+```
+
+#### `group_by()` and `summarise()`
+
+Exercise 5 – Understand `group_by()` and `summarise()`
+
+```
+?group_by
+?summarise
+```
+
+`group_by()` changes the scope of each function from operating on the entire dataset to operating on it group-by-group. For example, to group by continents:
+
+```
+continents_gapminder <- gapminder %>%
+    group_by(continent)
+head(continents_gapminder)
+```
+
+`summarise()` collapse many values down to a single summary. For example, to find the mean life expectancy for the whole dataset:
+
+```
+gapminder %>%
+  summarise(meanLE = mean(lifeExp))
+```
+
+Associating the two functions makes it more interesting. To find out the mean life expectancy of each continent, we can do the following:
+
+```
+continents_gapminder_LE <- gapminder %>% 
+    group_by(continent) %>%
+    summarise(meanLE = mean(lifeExp))
+continents_gapminder_LE
+```
+
+Exercise 6 – group by continent and country, and find out the max life expectancy
+
+Hint: `?max`
+
+```
+continents_country_gapminder_LE <- gapminder %>% 
+    group_by(continent, country) %>%
+    summarise(maxLE = max(lifeExp))
+continents_country_gapminder_LE
+```
+
+#### Create new variables with `mutate()`
+
+Have a look at what the verb `mutate()` can do with `?mutate`.
+
+Let's see what those two variables can be used for:
+
+```
+head(gapminder$gdpPercap)
+head(gapminder$pop)
+```
+
+Exercise 7 – use `mutate()` to create a `gdp` variable
+
+Name your new dataset `gapminder_gdp`. When finished, `dim(gapminder_gdp)` should result in `1704 7`.
+
+Hint: use the `*` operator within `mutate()`.
+
+```
+gapminder_gdp <- gapminder %>%
+    mutate(gdp = gdpPercap * pop)
+dim(gapminder_gdp)
+head(gapminder_gdp)
+```
+
+Explore the variation `transmute()`.
 
 ## Close Rproject
-If you want to close R Studio, you should save your project first.
-- File
-- close project (It will ask you if you want to save your history) 
-- then, close RStudio
 
+If you want to close RStudio, you should save your project first.
+
+* File
+* close project (It will ask you if you want to save your history) 
+* then, close RStudio
 
 ## After the workshop
 
-Please fill in the feedback form before leaving: http://tiny.cc/CDS_feedback_R
+Please fill in the feedback form before leaving: [https://framaforms.org/cds-sessions-feedback-1521148191](https://framaforms.org/cds-sessions-feedback-1521148191)
 
 ## Important links
 * R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf * R dplyr cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
