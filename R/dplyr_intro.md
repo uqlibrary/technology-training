@@ -1,6 +1,8 @@
 Introduction to R data manipulation using dplyr
 ===
 
+[]
+
 Thank you for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving https://framaforms.org/cds-sessions-feedback-1521148191.
 
 If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
@@ -340,14 +342,15 @@ If you want to close RStudio, you should save your project first.
 Please fill in the feedback form before leaving: [https://framaforms.org/cds-sessions-feedback-1521148191](https://framaforms.org/cds-sessions-feedback-1521148191)
 
 ## Important links
+
 * R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
 * R dplyr cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
 * RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
-* RStudio online learning https://www.rstudio.com/online-learning/
-* Basic and advanced manuals https://cran.r-project.org/manuals.html
-* Ask about any function or package http://www.rdocumentation.org/
-* If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
-* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in from UQ,
+* RStudio online learning: https://www.rstudio.com/online-learning/
+* Basic and advanced manuals: https://cran.r-project.org/manuals.html
+* Ask about any function or package: http://www.rdocumentation.org/
+* If you are looking how-to's or how to fix an error: http://stackoverflow.com/questions/tagged/r
+* Lynda.com R training and tutorials: https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in from UQ,
  https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses
-* ANOVA in R http://homepages.inf.ed.ac.uk/bwebb/statistics/ANOVA_in_R.pdf or https://rcompanion.org/rcompanion/e_01.html
-* If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
+* ANOVA in R: http://homepages.inf.ed.ac.uk/bwebb/statistics/ANOVA_in_R.pdf or https://rcompanion.org/rcompanion/e_01.html
+* If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you: https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
