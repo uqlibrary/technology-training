@@ -115,6 +115,16 @@ nlevels(gapminder$country)
 class(gapminder$country)
 ```
 
+:::info
+If we want nicer printing, we can convert our dataframe to a "tibble":
+
+```
+install.packages(tibble)
+library(tibble)
+gapminder <- as_tibble(gapminder)
+```
+:::
+
 ### Help
 
 For any dataset or function doubts that you might have, don't forget the three ways of getting help in RStudio:
