@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>cds-dplyr</title>
+<meta name="generator" content="Etherpad">
+<meta name="author" content="Etherpad">
+<meta name="changedby" content="Etherpad">
+<meta charset="utf-8">
+<style>
+* {
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  line-height: 17px;
+}
+ul.indent {
+  list-style-type: none;
+}
+ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+body > ol {
+  counter-reset: first second third fourth fifth sixth seventh eigth ninth tenth eleventh twelth thirteenth fourteenth fifteenth sixteenth;
+}
+ol > li:before {
+  content: counter(first) ". ";
+  counter-increment: first;
+}
+ol > ol > li:before {
+  content: counter(first) "." counter(second) ". ";
+  counter-increment: second;
+}
+ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) ". ";
+  counter-increment: third;
+}
+ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) ". ";
+  counter-increment: fourth;
+}
+ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) ". ";
+  counter-increment: fifth;
+}
+ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) ". ";
+  counter-increment: sixth;
+}
+ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) ". ";
+  counter-increment: seventh;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) ". ";
+  counter-increment: eigth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) ". ";
+  counter-increment: ninth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) ". ";
+  counter-increment: tenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) ". ";
+  counter-increment: eleventh;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) ". ";
+  counter-increment: twelth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) ". ";
+  counter-increment: thirteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) ". ";
+  counter-increment: fourteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) "." counter(fifteenth) ". ";
+  counter-increment: fifteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) "." counter(fifteenth) "." counter(sixthteenth) ". ";
+  counter-increment: sixthteenth;
+}
+ol {
+  text-indent: 0px;
+}
+ol > ol {
+  text-indent: 10px;
+}
+ol > ol > ol {
+  text-indent: 20px;
+}
+ol > ol > ol > ol {
+  text-indent: 30px;
+}
+ol > ol > ol > ol > ol {
+  text-indent: 40px;
+}
+ol > ol > ol > ol > ol > ol {
+  text-indent: 50px;
+}
+ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 60px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 70px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 80px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 90px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 100px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 110px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 120px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 130px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 140px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 150px;
+}
+
+</style>
+</head>
+<body>
+<strong>Introduction to R data manipulation using dplyr</strong><br><strong>&#8211; CDS session</strong><br><br><strong># Links</strong><br><br>This <strong>pad</strong> text is synchronised as you type, so that everyone viewing this page sees the same text. This allows you to collaborate seamlessly.<br>It can be accessed via tis link: <a href="https&#x3a;&#x2F;&#x2F;etherpad&#x2e;wikimedia&#x2e;org&#x2F;p&#x2F;cds&#x2d;dplyr">https:&#x2F;&#x2F;etherpad.wikimedia.org&#x2F;p&#x2F;cds-dplyr</a><br>This should be the only document you neet to have open during the session.<br><br>If you want to review the <strong>installation instructions</strong>: <a href="https&#x3a;&#x2F;&#x2F;github&#x2e;com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;Installation&#x2e;md">https:&#x2F;&#x2F;github.com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;Installation.md</a><br><br>No need to take notes, as the <strong>run-through</strong> of the session is online, for you to consult after the session: <a href="https&#x3a;&#x2F;&#x2F;github&#x2e;com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;dplyr&#x5f;intro&#x2e;md">https:&#x2F;&#x2F;github.com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;dplyr_intro.md</a><br><br><strong>Before leaving</strong>, please fill in this short survey so we can improve our courses: <a href="https&#x3a;&#x2F;&#x2F;framaforms&#x2e;org&#x2F;cds&#x2d;sessions&#x2d;feedback&#x2d;1521148191">https:&#x2F;&#x2F;framaforms.org&#x2F;cds-sessions-feedback-1521148191</a><br><br><br><strong># Attendees (name &#x2F; affiliation &#x2F; email &#x2F; social media handle)</strong><br><em>[only what you feel comfortable with!]</em><br><br><ul class="bullet"><li>St&#233;phane Guillou &#x2F; CDS + School of Agriculture &#x2F; s.guillou@uq.edu.au &#x2F; mastodon: stragu@mastodon.indie.host</li><li>Gajender&#x2F;Visiting Academic, SAFS&#x2F; y.gaggender@uq.edu.au</li></ul><br><br><strong># What are we going to learn?</strong><br><br>In this hands-on session, you will use RStudio and the dplyr package to manipulate your data.<br>Specifically, you will learn how to <strong>explore, filter, reorganise and process</strong> your data with the following verbs:<br>filter()<br>arrange()<br>select()<br>group_by()<br>summarise()<br>mutate()<br><br><strong># Help</strong><br><br>For any dataset or function doubts that you might have. Don&#x27;t forget the three ways of getting help from R:<br><br>1. ?functionname<br>2. help(functionname)&nbsp;<br>3. functionname + F1<br><br><br><strong># Challenges</strong><br><br><strong>Exercise 1 - New RStudio project</strong><br><br>* Click the &quot;File&quot; menu button (top left corner), then &quot;New Project&quot;<br>* Click &quot;New Directory&quot;<br>* Click &quot;New Project&quot; (&quot;Empty project&quot; if you have an older version of RStudio)<br>* In &quot;Directory name&quot;, type the name of your project, e.g. &quot;dplyr_intro&quot;<br>* Select the folder where to locate your project: the `Documents&#x2F;RProjects` folder, which you can create if it doesn&#x27;t exist yet.<br>* Click the &quot;Create Project&quot; button<br>* create three folders in your new project<br>&nbsp;&nbsp;&nbsp; * `dir.create(&quot;scripts&quot;) `<br>&nbsp;&nbsp;&nbsp; * `dir.create(&quot;data&quot;)`<br>&nbsp;&nbsp;&nbsp; * `dir.create(&quot;plots&quot;)`<br><br><br><strong>Exercise 2 - create a script, install `dplyr`</strong><br><br>* Menu: Top left corner, click the green &quot;plus&quot; symbol, or press the shortcut (for Windows&#x2F;Linux) Ctrl+Shift+N or (for Mac) Cmd+Shift+N. This will open an &quot;Untitled1&quot; file.<br>* Go to &quot;File &gt; Save&quot; or press (for Windows&#x2F;Linux) Ctrl+S or (for Mac) Cmd+S. This will ask where you want to save your file and the name of the new file.<br>* Call your file &quot;dplyr_intro.R&quot; located in the &quot;scripts&quot; folder<br><br>We can add a sequence of useful commands to our script as we go.<br><br>* Install and load the `dplyr` package:<br>&nbsp;&nbsp;&nbsp; * in the console, install the package: `install.
+packages(&quot;dplyr&quot;)`<br>&nbsp;&nbsp;&nbsp; * while you wait for dplyr to be installed, check <a href="https&#x3a;&#x2F;&#x2F;www&#x2e;rdocumentation&#x2e;org">https:&#x2F;&#x2F;www.rdocumentation.org</a> and type &quot;dplyr&quot; in the search<br>&nbsp;&nbsp;&nbsp; * load the package: `library(dplyr)`<br><br><br><strong>Exercise 3 &#8211; import and explore data</strong><br><br>1. import the data from the internet<br>&nbsp;&nbsp;&nbsp; * the file is located at <a href="https&#x3a;&#x2F;&#x2F;raw&#x2e;githubusercontent&#x2e;com&#x2F;resbaz&#x2F;r&#x2d;novice&#x2d;gapminder&#x2d;files&#x2F;master&#x2F;data&#x2F;gapminder&#x2d;FiveYearData&#x2e;csv">https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;resbaz&#x2F;r-novice-gapminder-files&#x2F;master&#x2F;data&#x2F;gapminder-FiveYearData.csv</a><br>&nbsp;&nbsp;&nbsp; * read about the `download.file()` function with: `?download.file`<br>&nbsp;&nbsp;&nbsp; * use `download.file()` to download the file and to save it locally as `data&#x2F;gapminder.csv`<br>2. read the data into a an object called &quot;gapminder&quot;, using the function `read.csv()`:<br>3. Explore the gapminder dataset using `dim()` and `str()`<br><br><br><strong>Exercise 4 &#8211; Select the 2002 life expectancy observation for Eritrea</strong><br><br>eritrea_2002 &lt;- ...<br><br><br><strong>Exercise 5 &#8211; Understand `group_by()` and `summarise()`</strong><br><br>```<br>?group_by<br>?summarise<br>```<br><br><strong>Exercise 6 &#8211; group by continent and country, and find out the max life expectancy ever recorded</strong><br><br>Hint: `?max`<br><br><br><strong>Exercise 7 &#8211; use `mutate()` to create a `gdp` variable</strong><br><br>Name your new dataset `gapminder_gdp`. When finished, `dim(gapminder_gdp)` should result in `1704 7`.<br><br>Hint: use the `*` operator within `mutate()`.<br><br><br><br><br><strong># Questions for later?</strong><br><br><ul class="bullet"><li><br></li></ul><br><br><strong># Future courses</strong><br><br>Please check UQ StudentHub or the CDS website for upcoming R courses, including R graphics:<br><br><ul class="bullet"><li><a href="https&#x3a;&#x2F;&#x2F;studenthub&#x2e;uq&#x2e;edu&#x2e;au&#x2F;">https:&#x2F;&#x2F;studenthub.uq.edu.au&#x2F;</a> (all events)</li><li><a href="https&#x3a;&#x2F;&#x2F;web&#x2e;library&#x2e;uq&#x2e;edu&#x2e;au&#x2F;locations&#x2d;hours&#x2F;centre&#x2d;digital&#x2d;scholarship">https:&#x2F;&#x2F;web.library.uq.edu.au&#x2F;locations-hours&#x2F;centre-digital-scholarship</a> (only CDS sessions)</li></ul><br><br><strong># R Important links</strong><br><br><ul class="bullet"><li>A more extensive introduction to R and RStudio is offered by The Carpentries: <a href="https&#x3a;&#x2F;&#x2F;swcarpentry&#x2e;github&#x2e;io&#x2F;r&#x2d;novice&#x2d;gapminder&#x2F;">https:&#x2F;&#x2F;swcarpentry.github.io&#x2F;r-novice-gapminder&#x2F;</a></li><li>R ggplot2 Cheatsheet <a href="https&#x3a;&#x2F;&#x2F;github&#x2e;com&#x2F;rstudio&#x2F;cheatsheets&#x2F;raw&#x2F;master&#x2F;data&#x2d;visualization&#x2d;2&#x2e;1&#x2e;pdf">https:&#x2F;&#x2F;github.com&#x2F;rstudio&#x2F;cheatsheets&#x2F;raw&#x2F;master&#x2F;data-visualization-2.1.pdf</a></li><li>R dplyr cheatsheet <a href="https&#x3a;&#x2F;&#x2F;github&#x2e;com&#x2F;rstudio&#x2F;cheatsheets&#x2F;raw&#x2F;master&#x2F;data&#x2d;transformation&#x2e;pdf">https:&#x2F;&#x2F;github.com&#x2F;rstudio&#x2F;cheatsheets&#x2F;raw&#x2F;master&#x2F;data-transformation.pdf</a></li><li>RStudio Cheatsheet <a href="https&#x3a;&#x2F;&#x2F;github&#x2e;com&#x2F;rstudio&#x2F;cheatsheets&#x2F;raw&#x2F;master&#x2F;rstudio&#x2d;ide&#x2e;pdf">https:&#x2F;&#x2F;github.com&#x2F;rstudio&#x2F;cheatsheets&#x2F;raw&#x2F;master&#x2F;rstudio-ide.pdf</a></li><li>RStudio online learning <a href="https&#x3a;&#x2F;&#x2F;www&#x2e;rstudio&#x2e;com&#x2F;online&#x2d;learning&#x2F;">https:&#x2F;&#x2F;www.rstudio.com&#x2F;online-learning&#x2F;</a></li><li>Basic and advanced manuals <a href="https&#x3a;&#x2F;&#x2F;cran&#x2e;r&#x2d;project&#x2e;org&#x2F;manuals&#x2e;html">https:&#x2F;&#x2F;cran.r-project.org&#x2F;manuals.html</a></li><li>Ask about any 
+function or package <a href="http&#x3a;&#x2F;&#x2F;www&#x2e;rdocumentation&#x2e;org&#x2F;">http:&#x2F;&#x2F;www.rdocumentation.org&#x2F;</a></li><li>If you are looking for how-to&#x27;s or how to fix an error <a href="http&#x3a;&#x2F;&#x2F;stackoverflow&#x2e;com&#x2F;questions&#x2F;tagged&#x2F;r">http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;tagged&#x2F;r</a></li><li>Lynda.com R training and tutorials <a href="https&#x3a;&#x2F;&#x2F;www&#x2e;lynda&#x2e;com&#x2F;R&#x2d;training&#x2d;tutorials&#x2F;1570&#x2d;0&#x2e;html">https:&#x2F;&#x2F;www.lynda.com&#x2F;R-training-tutorials&#x2F;1570-0.html</a> remember to sign in from UQ, <a href="https&#x3a;&#x2F;&#x2F;web&#x2e;library&#x2e;uq&#x2e;edu&#x2e;au&#x2F;library&#x2d;services&#x2F;training&#x2F;lyndacom&#x2d;online&#x2d;courses">https:&#x2F;&#x2F;web.library.uq.edu.au&#x2F;library-services&#x2F;training&#x2F;lyndacom-online-courses</a></li><li>ANOVA in R <a href="http&#x3a;&#x2F;&#x2F;homepages&#x2e;inf&#x2e;ed&#x2e;ac&#x2e;uk&#x2F;bwebb&#x2F;statistics&#x2F;ANOVA&#x5f;in&#x5f;R&#x2e;pdf">http:&#x2F;&#x2F;homepages.inf.ed.ac.uk&#x2F;bwebb&#x2F;statistics&#x2F;ANOVA_in_R.pdf</a> or <a href="https&#x3a;&#x2F;&#x2F;rcompanion&#x2e;org&#x2F;rcompanion&#x2F;e&#x5f;01&#x2e;html">https:&#x2F;&#x2F;rcompanion.org&#x2F;rcompanion&#x2F;e_01.html</a></li><li>If you need an R and&#x2F;or RStudio workshop&#x2F;session, please contact Centre for Digital Scholarship staff to organise one for you. <a href="https&#x3a;&#x2F;&#x2F;web&#x2e;library&#x2e;uq&#x2e;edu&#x2e;au&#x2F;locations&#x2d;hours&#x2F;centre&#x2d;digital&#x2d;scholarship">https:&#x2F;&#x2F;web.library.uq.edu.au&#x2F;locations-hours&#x2F;centre-digital-scholarship</a></li><li>Ask questions to other researchers during the weekly Hacky Hour: <a href="https&#x3a;&#x2F;&#x2F;rcc&#x2e;uq&#x2e;edu&#x2e;au&#x2F;meetups">https:&#x2F;&#x2F;rcc.uq.edu.au&#x2F;meetups</a></li><li>contact your unit&#x27;s statistician</li></ul><br><br><strong># Extras</strong><br><br><br><br><br>starwars %&gt;%&nbsp;<br>&nbsp;&nbsp;&nbsp; group_by(species) %&gt;%&nbsp;<br>&nbsp;&nbsp;&nbsp; summarise(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n = n(),<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mass = mean(mass, na.rm = TRUE)<br>&nbsp;&nbsp;&nbsp; ) %&gt;%&nbsp;<br>&nbsp;&nbsp;&nbsp; filter(n &gt; 1)<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div style="display:none"><a href="/javascript" data-jslicense="1">JavaScript license information</a></div>
+</body>
+</html>
