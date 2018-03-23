@@ -1,9 +1,13 @@
 R for beginners using RStudio
 ===
 
-`version: 2018-03-22`
+`version: 2018-03-23`
 
-Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving https://framaforms.org/cds-r-sessions-feedback-1521148191
+:::info
+This document is formatted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/rywVJcdtf#
+:::
+
+Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving: https://framaforms.org/cds-sessions-feedback-1521148191
 
 If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
 
@@ -278,7 +282,7 @@ demo(graphics)
 
 ## After the workshop
 
-Please fill in the feedback form before leaving: https://framaforms.org/cds-r-sessions-feedback-1521148191
+Please fill in the feedback form before leaving: https://framaforms.org/cds-sessions-feedback-1521148191
 
 ## Important links
 * RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
