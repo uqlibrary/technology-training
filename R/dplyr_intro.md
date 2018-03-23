@@ -1,7 +1,7 @@
 Introduction to R data manipulation using dplyr
 ===
 
-[]
+`last revision: 2018-03-23`
 
 Thank you for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving https://framaforms.org/cds-sessions-feedback-1521148191.
 
@@ -97,14 +97,22 @@ You only need to install a package once (with `install.packages()`), but you nee
 
 Exercise 3 – import and explore data
 
-1. import the data from the internet
-    * the file is located at https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv
-    * read about the `download.file()` function with: `?download.file`
-    * `download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminder.csv")`
-2. read the data into a an object called "gapminder", using `read.csv()`:
+1. import the data from the Internet:
+
+* The file is located at https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv
+* Read about the `download.file()` function with: `?download.file`
+* Download the file with the following command:
+```
+download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv",
+    destfile = "data/gapminder.csv")
+```
+
+2. read the data into an object called "gapminder", using `read.csv()`:
+
 ```
 gapminder <- read.csv("data/gapminder.csv")
 ```
+
 3. Explore the gapminder dataset using `dim()` and `str()`
 
 How can we get the dataframe's variable names? There are two ways: `names(gapminder)` returns the names regardless of the object type, such as list, vector, data.frame etc., whereas `colnames(gapminder)` returns the variable names for matrix-like objects, such as matrix, data.frame
@@ -130,9 +138,9 @@ gapminder <- as_tibble(gapminder)
 
 For any dataset or function doubts that you might have, don't forget the three ways of getting help in RStudio:
 
-1. ?functionname
-2. help(functionname) 
-3. functionname + F1
+1. the shortcut command: `?functionname`
+2. the help function: `help(functionname)`
+3. the keyboard shortcut: press F1 after writing a function name
 
 ### Basic dplyr verbs
 
@@ -293,7 +301,7 @@ dim(gapminder_gdp)
 head(gapminder_gdp)
 ```
 
-#### More
+#### More examples
 
 Explore the variation `transmute()`:
 
