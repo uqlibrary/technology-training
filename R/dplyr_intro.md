@@ -16,19 +16,6 @@ During the session, it is the only document you need to have open.
 * No spaces in names
 * Be ready to learn a new language, lots of new vocabulary
 
-## Open RStudio
-
-* If you are using your own laptop please open RStudio 
-* Make sure you have a working internet connection
-* On CDS computers (the first time takes about 10 min): 
-    * Log in with your UQ username and password
-    * Make sure you have a working internet connection
-    * Go to search at bottom left corner (magnifiying glass) 
-    * Open the ZENworks application
-    * Look for RStudio
-    * Double click on RStudio which will install both R and RStudio
-
-
 ## What are we going to learn?
 
 In this hands-on session, you will use RStudio and the `dplyr` package to manipulate your data.
@@ -47,6 +34,18 @@ mutate()
 ## Disclaimer
 
 We will assume you are an R beginner, who has used R before.
+
+## Open RStudio
+
+* If you are using your own laptop please open RStudio 
+* Make sure you have a working internet connection
+* On CDS computers (the first time takes about 10 min): 
+    * Log in with your UQ username and password
+    * Make sure you have a working internet connection
+    * Go to search at bottom left corner (magnifiying glass) 
+    * Open the ZENworks application
+    * Look for RStudio
+    * Double click on RStudio which will install both R and RStudio
 
 ## Material
 
@@ -328,7 +327,6 @@ starwars %>%
   filter(n > 1)
 ```
 
-
 ## Close Rproject
 
 If you want to close RStudio, you should save your project first.
@@ -342,7 +340,8 @@ If you want to close RStudio, you should save your project first.
 Please fill in the feedback form before leaving: [https://framaforms.org/cds-sessions-feedback-1521148191](https://framaforms.org/cds-sessions-feedback-1521148191)
 
 ## Important links
-* R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf * R dplyr cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
+* R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
+* R dplyr cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
 * RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
 * RStudio online learning https://www.rstudio.com/online-learning/
 * Basic and advanced manuals https://cran.r-project.org/manuals.html
