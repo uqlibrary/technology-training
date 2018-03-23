@@ -7,7 +7,7 @@ If you want to review the installation instructions: https://github.com/stragu/C
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you are using Library computers.
 
-Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad https://etherpad.wikimedia.org/p/cds.
+Useful links, exercises and more information on how to continue your R learning are provided in our community resource in this Etherpad: https://etherpad.wikimedia.org/p/cds-dplyr
 
 ## Keep in mind
 
@@ -292,4 +292,3 @@ Please fill in the feedback form before leaving: [https://framaforms.org/cds-ses
  https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses
 * ANOVA in R http://homepages.inf.ed.ac.uk/bwebb/statistics/ANOVA_in_R.pdf or https://rcompanion.org/rcompanion/e_01.html
 * If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
-
