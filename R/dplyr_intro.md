@@ -192,29 +192,33 @@ arrange(gapminder, desc(gdpPercap))
 Select allows use to pick variable (i.e. columns) from the dataset. For example, to only keep the data about year, country and GDP per capita:
 
 ```
-gapminder_small <- select(gapminder, year, country, gdpPercap)
+(gapminder_small <- select(gapminder, year, country, gdpPercap))
 ```
 
-If we only want this data for 1995, we can associate `select()` to `filter()`:
+We wrap it in parentheses so it also prints to screen.
+
+If we only want this data for 1997, we can associate `select()` to `filter()`:
 
 ```
-gapminder_small_2014 <- filter(gapminder_small, year == 2002)
+gapminder_small_1997 <- filter(gapminder_small, year == 1997)
 ```
 
 We can make our code more readable and avoid creating useless objects by **piping** commands into each other. To do what we just did in one command:
 
 ```
-gapminder_small_2014 <- gapminder %>%
+gapminder_small_1997 <- gapminder %>%
     select(year, country, gdpPercap) %>%
-    filter(year == 2002)
+    filter(year == 1997)
 ```
 
 Use Shift + Enter to go to the next line without executing the command.
 
-Exercise 4 – Select the 2002 life expectancy observations for Eritrea
+Probably a good time to copy our code to our script!
+
+Exercise 4 – Select the 2002 life expectancy observation for Eritrea
 
 ```
-Eritrea_2002 <- gapminder %>%
+eritrea_2002 <- gapminder %>%
     select(year, country, lifeExp) %>%
     filter(country == "Eritrea", year == 2002)
 ```
@@ -231,47 +235,48 @@ Exercise 5 – Understand `group_by()` and `summarise()`
 `group_by()` changes the scope of each function from operating on the entire dataset to operating on it group-by-group. For example, to group by continents:
 
 ```
-continents_gapminder <- gapminder %>%
+gapminder_continents <- gapminder %>%
     group_by(continent)
-head(continents_gapminder)
+head(gapminder_continents)
 ```
 
-`summarise()` collapse many values down to a single summary. For example, to find the mean life expectancy for the whole dataset:
+`summarise()` collapses many values down to a single summary. For example, to find the mean life expectancy for the whole dataset:
 
 ```
 gapminder %>%
   summarise(meanLE = mean(lifeExp))
 ```
 
-Associating the two functions makes it more interesting. To find out the mean life expectancy of each continent, we can do the following:
+Associating the two functions makes it more interesting. To find out the mean life expectancyfor each continent in 2007, we can do the following:
 
 ```
-continents_gapminder_LE <- gapminder %>% 
+gapminder_continents_LE2007 <- gapminder %>% 
+    filter(year == 2007) %>%
     group_by(continent) %>%
     summarise(meanLE = mean(lifeExp))
-continents_gapminder_LE
+gapminder_continents_LE2007
 ```
 
-Exercise 6 – group by continent and country, and find out the max life expectancy
+Exercise 6 – group by continent and country, and find out the max life expectancy ever recorded
 
 Hint: `?max`
 
 ```
-continents_country_gapminder_LE <- gapminder %>% 
+gapminder_continents_country_LE <- gapminder %>% 
     group_by(continent, country) %>%
     summarise(maxLE = max(lifeExp))
-continents_country_gapminder_LE
+gapminder_continents_country_LE
 ```
 
 #### Create new variables with `mutate()`
 
 Have a look at what the verb `mutate()` can do with `?mutate`.
 
-Let's see what those two variables can be used for:
+Let's see what the two following variables can be used for:
 
 ```
-head(gapminder$gdpPercap)
-head(gapminder$pop)
+gapminder %>%
+    select(gdpPercap, pop)
 ```
 
 Exercise 7 – use `mutate()` to create a `gdp` variable
@@ -289,13 +294,40 @@ head(gapminder_gdp)
 
 #### More
 
-Explore the variation `transmute()`.
+Explore the variation `transmute()`:
+
+```
+(gapminder_gdp <- gapminder %>%
+    transmute(gdp = gdpPercap * pop))
+```
+
+Reuse a variable computed by 'mutate()':
+
+```
+(gapminder_gdp <- gapminder %>%
+    mutate(gdp = gdpPercap * pop, gdpMil = gdp / 10^6))
+```
+
+Another example of new variable with `mutate()`:
 
 ```
 starwars %>% 
   mutate(name, bmi = mass / ((height / 100)  ^ 2)) %>%
   select(name:mass, bmi)
 ```
+
+And a more complex processing of a dataset:
+
+```
+starwars %>%
+  group_by(species) %>%
+  summarise(
+    n = n(),
+    mass = mean(mass, na.rm = TRUE)
+  ) %>%
+  filter(n > 1)
+```
+
 
 ## Close Rproject
 
