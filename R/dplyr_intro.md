@@ -8,6 +8,7 @@ If you want to review the installation instructions: https://github.com/stragu/C
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you are using Library computers.
 
 Useful links, exercises and more information on how to continue your R learning are provided in our community resource in this Etherpad: https://etherpad.wikimedia.org/p/cds-dplyr
+During the session, it is the only document you need to have open.
 
 ## Keep in mind
 
@@ -32,11 +33,12 @@ Useful links, exercises and more information on how to continue your R learning 
 
 In this hands-on session, you will use RStudio and the `dplyr` package to manipulate your data.
 
-Specifically, you will learn how to explore, filter and reorganise your data with the following verbs:
+Specifically, you will learn how to **explore, filter, reorganise and process** your data with the following verbs:
 
 ```
-select()
 filter()
+arrange()
+select()
 group_by()
 summarise()
 mutate()
@@ -46,69 +48,67 @@ mutate()
 
 We will assume you are an R beginner, who has used R before.
 
-## Introductions
-
-Introduce yourself to your neighbour. We will try to work in pairs.
-
 ## Material
 
-### Location
+### Project and folders
 
-Please create a folder called "RProjects" under "Documents". This is important for our project structure.
+Exercise 1 - New RStudio project
 
-### Rstudio Project
-
-Exercise 1 - New Rstudio Project (3 min)
 * Click the "File" menu button (top left corner), then "New Project"
 * Click "New Directory"
-* Click "New Project" ("Empty project" if you have an older version of RStudio) * Type in the name of your project, e.g. "Rdplyr_Intro"
-(Select the folder where to locate your project: the RProjects folder)
+* Click "New Project" ("Empty project" if you have an older version of RStudio)
+* In "Directory name", type the name of your project, e.g. "dplyr_intro"
+* Select the folder where to locate your project: the `Documents/RProjects` folder, which you can create if it doesn't exist yet.
 * Click the "Create Project" button
 * create three folders in your new project
-    * scripts 
-    * data
-    * plots
+    * `dir.create("scripts") `
+    * `dir.create("data")`
+    * `dir.create("plots")`
 
-### Introducing dplyr
+### Setting up
 
-Exercise 2 - dplyr setup (4 min)
+Exercise 2 - create a script, install `dplyr`
 
 * Menu: Top left corner, click the green "plus" symbol, or press the shortcut (for Windows/Linux) Ctrl+Shift+N or (for Mac) Cmd+Shift+N. This will open an "Untitled1" file.
 * Go to "File > Save" or press (for Windows/Linux) Ctrl+S or (for Mac) Cmd+S. This will ask where you want to save your file and the name of the new file.
-* Call your file "gdplyr_intro.R" located in the "scripts" folder
-* install and load the `dplyr` package:
-    * `install.packages("dplyr")`
-    * While you wait for dplyr to be installed, check Rdocumentation.org and type "dplyr" in the search
-    * `library(dplyr)`
+* Call your file "dplyr_intro.R" located in the "scripts" folder
 
-At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)": 
+We can add a sequence of useful commands to our script as we go.
+
+* Install and load the `dplyr` package:
+    * in the console, install the package: `install.packages("dplyr")`
+    * While you wait for dplyr to be installed, check https://www.rdocumentation.org and type "dplyr" in the search
+    * load the package: `library(dplyr)`
+
+:::info
+At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)", a meta-package of useful packages for data science: 
 
 ```
 install.packages("tidyverse")
 ```
 
-(It takes a few minutes depending on your internet conection but installs many useful packages)
+(It takes a few minutes depending on your internet connection but installs many useful packages)
+:::
 
-The R package dplyr was developed by Hadley Wickham for data manipulation.
-You only need to install a package once (with `install.packages()`), and reload it every time you start a new R session (with `library()`).
+You only need to install a package once (with `install.packages()`), but you need to reload it every time you start a new R session (with `library()`).
 
-### Explore data
+### Introducing our data
 
 Exercise 3 – import and explore data
 
-1. download the data from the internet
+1. import the data from the internet
     * the file is located at https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv
     * read about the `download.file()` function with: `?download.file`
-    * `download.file(url="https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminder.csv")`
-2. read the data into a an object called gapminder:
+    * `download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminder.csv")`
+2. read the data into a an object called "gapminder", using `read.csv()`:
 ```
-mydata <- read.csv("data/gapminder.csv")
+gapminder <- read.csv("data/gapminder.csv")
 ```
 3. Explore the gapminder dataset using `dim()` and `str()`
 
-How can we get the dataframe's variable names? `names(gapminder)` returns the names regardless of the object type, such as list, vector, data.frame etc., whereas `colnames(gapminder)` returns the variable names for matrix-like objects, such as matrix, data.frame
+How can we get the dataframe's variable names? There are two ways: `names(gapminder)` returns the names regardless of the object type, such as list, vector, data.frame etc., whereas `colnames(gapminder)` returns the variable names for matrix-like objects, such as matrix, data.frame
 
-To select one specific column in the dataframe, use `gapminder$year`. For example, try these:
+To select one specific column in the dataframe, you can use the dollar sign as in: `gapminder$year`. For example, try these:
 
 ```
 nlevels(gapminder$country)
@@ -117,7 +117,7 @@ class(gapminder$country)
 
 ### Help
 
-For any dataset or function doubts that you might have. Don't forget the three ways of getting help from R:
+For any dataset or function doubts that you might have, don't forget the three ways of getting help in RStudio:
 
 1. ?functionname
 2. help(functionname) 
@@ -125,17 +125,19 @@ For any dataset or function doubts that you might have. Don't forget the three w
 
 ### Basic dplyr verbs
 
-From _[R for Data Science](http://r4ds.had.co.nz)_:
+The R package `dplyr` was developed by Hadley Wickham for data manipulation.
 
-You are going to learn the five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:
+The book _[R for Data Science](http://r4ds.had.co.nz)_ introduces the package as follows:
 
-* Pick observations by their values with `filter()`.
-* Reorder the rows with `arrange()`.
-* Pick variables by their names with `select()`.
-* Create new variables with functions of existing variables with `mutate()`.
-* Collapse many values down to a single summary with `summarise()`.
-
-These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the **verbs for a language of data manipulation**.
+> You are going to learn the five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:
+> 
+> * Pick observations by their values with `filter()`.
+> * Reorder the rows with `arrange()`.
+> * Pick variables by their names with `select()`.
+> * Create new variables with functions of existing variables with `mutate()`.
+> * Collapse many values down to a single summary with `summarise()`.
+> 
+> These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the **verbs for a language of data manipulation**.
 
 To use the verbs to their full extent, we will need **pipes** and **conditionals**.
 
@@ -156,8 +158,8 @@ Conditionals allow us to **check for a condition**. Remember: `=` is to give a v
 Filter the observations for Australia, using `filter()` and a conditional:
 
 ```
-Australia <- filter(gapminder, country == "Australia")
-Australia
+australia <- filter(gapminder, country == "Australia")
+australia
 ```
 
 Filter the rows that have a life expectancy `lifeExp` greater than 80 years:
@@ -165,6 +167,14 @@ Filter the rows that have a life expectancy `lifeExp` greater than 80 years:
 ```
 life80 <- filter(gapminder, lifeExp > 80)
 dim(life80)
+```
+
+#### Reorder rows with `arrange()`
+
+If we want to have a look at the entries with highest GDP per capita:
+
+```
+arrange(gapminder, desc(gdpPercap))
 ```
 
 #### Pick variables with `select()`
@@ -267,7 +277,15 @@ dim(gapminder_gdp)
 head(gapminder_gdp)
 ```
 
+#### More
+
 Explore the variation `transmute()`.
+
+```
+starwars %>% 
+  mutate(name, bmi = mass / ((height / 100)  ^ 2)) %>%
+  select(name:mass, bmi)
+```
 
 ## Close Rproject
 
