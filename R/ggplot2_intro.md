@@ -216,26 +216,22 @@ What would happen if you moved the `colour = class` aesthetic from the geometry 
 
 Let's use a similar approach with the `economics` data.
 
-First, we have to modify our data slightly. Take a look at the structure of the dataset:
+Let's take a look at the structure of the dataset:
 
 ```
 str(economics)
 ```
 
-We want to create a new `year` variable, based on the existing `date` variable:
-
-```
-economics$year <- as.numeric(format(economics$date, "%Y")) 
-str(economics)
-```
-
-Now, let's colour the data according to the year, and add a 
+The continuous variable `uempmed` is defined by the help page as "median duration of unemployment, in weeks".
+Let's colour the data according to the duration of unemployment, and add a smoothing function on top:
 
 ```
 ggplot(data = economics, mapping = aes(x = date, y = unemploy)) + 
-    geom_point(mapping = aes(colour = year)) +
+    geom_point(mapping = aes(colour = uempmed)) +
     geom_smooth()
 ```
+
+See how the legend changes depending on the type of data mapped to the `colour` aesthetic? (i.e. categorical vs continuous)
 
 Let's use the `diamonds` dataset now.
 The `diamonds` dataset comes in ggplot2 and contains information about ~54,000 diamonds, including the price, carat, color, clarity, and cut of each diamond.
