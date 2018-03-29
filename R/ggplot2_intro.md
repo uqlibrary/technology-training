@@ -107,6 +107,8 @@ ggplot(data = <dataset>, mapping = aesthetics( <x, y, fill, colour>)) +
  <modifiers>()
 ```
 
+
+
 Find out more about the package:
 
 ```
@@ -337,6 +339,7 @@ Please fill in the feedback survey before leaving!
 * For ggplot2:
     * R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
     * Official ggplot2 documentation: http://docs.ggplot2.org/current/
+    * Chapter on data visualisation in the book _R for Data Science_: http://r4ds.had.co.nz/data-visualisation.html
     * Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
     * Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
     * STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
