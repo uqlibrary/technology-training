@@ -243,14 +243,14 @@ summary(diamonds)
 ?diamonds
 ```
 
-Let’s take a look at a bar chart. Bar charts seem simple, but they are interesting because they reveal something subtle about plots. Consider a basic bar chart, as drawn with `geom_bar()`. The following chart displays the total number of diamonds in the `diamonds` dataset, grouped by cut.
+Let’s take a look at a bar chart. Bar charts seem simple, but they are interesting because they reveal something subtle about ggplot. Consider a basic bar chart, as drawn with `geom_bar()`. The following chart displays the total number of diamonds in the `diamonds` dataset, grouped by cut:
 
 ```
 ggplot(data = diamonds, mapping = aes(x = cut)) + 
     geom_bar()
 ```
 
-The chart shows that more diamonds are available with high quality cuts than with low quality cuts.
+The chart shows that more diamonds are available with high quality cuts than with low quality cuts. See how the data was processed intuitively by the functions?
 
 **Exercise 4 – add information with `fill`**
 
