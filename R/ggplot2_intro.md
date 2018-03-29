@@ -1,10 +1,10 @@
 Introduction to R data visualisation using ggplot2
 ===
 
-`last revision: 2018-03-28`
+`last revision: 2018-03-29`
 
 :::info
-This document is formatted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/HJII85b5G#
+This document is formatted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/BJjLQWYqz
 :::
 
 Thank you for attending this session at the UQ library Centre for Digital Scholarship (CDS).
@@ -101,14 +101,15 @@ We are going to work with different datasets that come with the ggplot2 package.
 ggplot2 is based on the idea that you can build every graph from the same few components. Here is an example in pseudo-code:
 
 ```
-ggplot(data = <dataset>, mapping = aes( <x, y, fill, colour>)) + 
- <geom_function>()
+ggplot(data = <dataset>, mapping = aesthetics( <x, y, fill, colour>)) + 
+ <geometry>()
+ <modifiers>()
 ```
 
 Find out more about the package:
 
 ```
-? ggplot
+?ggplot
 ```
 
 The `ggplot()` function initialises a ggplot object. It can be used to declare the input data frame for a graphic and to specify the set of plot aesthetics intended to be common throughout all subsequent layers unless specifically overridden.
@@ -124,19 +125,16 @@ str(economics)
 
 Do you think that the rate of unemployment is stable over the years?
 
-We can base our plot code on our previous pseudo-code:
-
-```
-ggplot(data = <dataset>, mapping = aes( <x, y>)) + 
-    <geom_function>()
-```
-
-For our plot, we are going to use a "point" geometry:
+We can base our plot code on our previous pseudo-code, using a point geometry:
 
 ```
 ggplot(data = economics, mapping = aes(x = date, y = unemploy)) + 
     geom_point()
 ```
+
+:::info
+Make sure you use "Shift + Enter" to got to the next line when adding layers, for readability and to easily recall the whole code block with the up arrow.
+:::
 
 New dataset: "mpg", which stands for "miles per gallon".
 
@@ -145,12 +143,14 @@ New dataset: "mpg", which stands for "miles per gallon".
 str(mpg)
 ```
 
-Do you think that cars with big engines use fuel less efficiently than cars with small engines?
-
-> displ, a car’s engine size, in litres.
-> hwy, a car’s fuel efficiency on the highway, in miles per gallon (mpg).
-
 A car with a low fuel efficiency consumes more fuel than a car with a high fuel efficiency when they travel the same distance.
+
+We can focus on two variables:
+
+> `displ`: a car’s engine size, in litres.
+> `hwy`: a car’s fuel efficiency on the highway, in miles per gallon.
+
+Do you think that cars with big engines use fuel less efficiently than cars with small engines?
 
 ```
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
@@ -168,7 +168,8 @@ The plot shows a negative relationship between engine size (displ) and fuel effi
 In other words, cars with big engines use more fuel. Does this confirm or refute your hypothesis about fuel efficiency and engine size?
 
 We now know how to create a simple dotplot.
-What is the last plot showing us?
+
+`last_plot()` allows us to recall the latest plot we created, so we can string extra functions and layers quickly.
 
 ```
 last_plot()
@@ -192,7 +193,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 Different geoms can also have their own mappings that overwrite the defaults.
 If you place mappings in a geom function, ggplot2 will treat them as local mappings for the layer. It will use these mappings to extend or overwrite the global mappings for that layer only. This makes it possible to display different aesthetics in different layers.
 
-Introducing colour and legend:
+Introducing **colour** and **legend**:
 
 ```
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
@@ -200,38 +201,82 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
     geom_smooth()
 ```
 
+**Exercise 3 – where should aesthetics be defined?**
+
+Take the last plot we created:
+
+```
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+    geom_point(mapping = aes(colour = class)) + 
+    geom_smooth()
+```
+
+What would happen if you moved the `colour = class` aesthetic from the geometry function to the `ggplot()` call?
+
 Let's use a similar approach with the `economics` data.
+
+First, we have to modify our data slightly. Take a look at the structure of the dataset:
+
+```
+str(economics)
+```
+
+We want to create a new `year` variable, based on the existing `date` variable:
 
 ```
 economics$year <- as.numeric(format(economics$date, "%Y")) 
+str(economics)
+```
+
+Now, let's colour the data according to the year, and add a 
+
+```
 ggplot(data = economics, mapping = aes(x = date, y = unemploy)) + 
     geom_point(mapping = aes(colour = year)) +
     geom_smooth()
 ```
 
-Next, let’s take a look at a bar chart. Bar charts seem simple, but they are interesting because they reveal something subtle about plots. Consider a basic bar chart, as drawn with `geom_bar()`. The following chart displays the total number of diamonds in the `diamonds` dataset, grouped by cut.
+Let's use the `diamonds` dataset now.
+The `diamonds` dataset comes in ggplot2 and contains information about ~54,000 diamonds, including the price, carat, color, clarity, and cut of each diamond. The chart shows that more diamonds are available with high quality cuts than with low quality cuts.
+
+```
+str(diamonds)
+diamonds
+summary(diamonds)
+?diamonds
+```
+
+Let’s take a look at a bar chart. Bar charts seem simple, but they are interesting because they reveal something subtle about plots. Consider a basic bar chart, as drawn with `geom_bar()`. The following chart displays the total number of diamonds in the `diamonds` dataset, grouped by cut.
 
 ```
 ggplot(data = diamonds, mapping = aes(x = cut)) + 
     geom_bar()
 ```
 
-The `diamonds` dataset comes in ggplot2 and contains information about ~54,000 diamonds, including the price, carat, color, clarity, and cut of each diamond. The chart shows that more diamonds are available with high quality cuts than with low quality cuts.
+**Exercise 4 – add information with `fill`**
+
+Use the previous plot and add information the diamonds' `cut` with the `fill` aesthetic:
 
 ```
-?diamonds
-str(diamonds)
+ggplot(data = diamonds, mapping = aes(x = cut), fill = cut) + 
+    geom_bar()
 ```
 
-We can pick our favourite colour in `geom_bar()`, and modify labels with the `labs()` function to make our plot more self-explanatory:
+What is the difference with the `colour` aesthetic?
+
+Let's modify our plot: we can pick our favourite colour in `geom_bar()`, and modify labels with the `labs()` function to make our plot more self-explanatory:
 
 ```
 ggplot(data = diamonds, mapping = aes(x = cut)) + 
     geom_bar(fill = "tomato") +
     labs(title = "How many diamonds have good or better quality?",
         x = "Quality",
-        y = " Counts")
+        y = "Counts")
 ```
+
+**Exercise 5: where should `fill` go?**
+
+We assigned different values to the `fill` argument in previous plots. But why are they located inside or outside of the `aes()` call?
 
 Let's have a look at what `labs()` can do:
 
@@ -251,7 +296,7 @@ ggplot(data = diamonds, mapping = aes(x = cut)) +
   coord_flip()
 ```
 
-And some functions allow to set a bunch of theme defaults easily, like `theme_bw()`:
+Some functions allow to set a bunch of theme defaults easily, like `theme_bw()`:
 
 ```
 ggplot(data = diamonds, mapping = aes(x = cut)) + 
@@ -267,6 +312,10 @@ To save the last plot, use `ggsave()`:
 ```
 ggsave(filename = "plots/horizontalbarplot.png")
 ```
+
+**Exercise 6: explore geometries**
+
+When creating a new layer, start typing `geom_` and see what suggestions pop up. Are there any suggestions that sound useful or familiar to you?
 
 ## Play time!
 
@@ -289,6 +338,7 @@ Please fill in the feedback survey before leaving!
 * For ggplot2:
     * R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
     * Official ggplot2 documentation: http://docs.ggplot2.org/current/
+    * Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
     * Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
     * STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
 * R and RStudio in general:
@@ -301,3 +351,5 @@ Please fill in the feedback survey before leaving!
     * ANOVA in R http://homepages.inf.ed.ac.uk/bwebb/statistics/ANOVA_in_R.pdf or https://rcompanion.org/rcompanion/e_01.html
     * If you need an R and/or RStudio workshop/session, please contact the Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
     * If you have further questions about R, please contact the CDS: cds@library.uq.edu.au
+    * Ask questions to other researchers during the weekly Hacky Hour: [https://rcc.uq.edu.au/meetups](https://rcc.uq.edu.au/meetups)
+    * Contact your unit's statistician (if you have one?)
