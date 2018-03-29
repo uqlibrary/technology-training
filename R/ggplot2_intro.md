@@ -84,38 +84,51 @@ Introduce yourself to one other person in the session. We will try to work in pa
     * install it with `install.packages("ggplot2")`
     * While you wait for ggplot2 to be installed, check out Rdocumentation.org and type "ggplot2" in the search
     * load the package with `library(ggplot2)`
-    
-Th R package ggplot2 was developed by Hadley Wickham with the objective of creating a grammar of graphics for categorical data (in 2007). It is based on the book _The Grammar of Graphics_ Developed by Leland Wilkinson (1999/2005). 
+
+The R package ggplot2 was developed by Hadley Wickham with the objective of creating a grammar of graphics for categorical data (in 2007). It is based on the book _The Grammar of Graphics_ Developed by Leland Wilkinson (1999/2005). 
 
 You only need to install a package once, and reload it every time you start a new R session.
 
-### Explore data
+### Find help
 
-We are going to work with different datasets that come with the ggplot2 package. For any dataset or function doubts that you might have. Don't forget the three ways of getting help from R:
+We are going to work with different datasets that come with the ggplot2 package. For any dataset or function doubts that you might have, don't forget the three ways of getting help from R:
 
 1.  the shortcut command: `?functionname`
 2.  the help function: `help(functionname)`
 3.  the keyboard shortcut: press F1 after writing a function name
 
-### Basic ggplot2 layers
+### ggplot2 components and layers
 
-ggplot2 is based on the idea that you can build every graph from the same few components. Here is an example in pseudo-code:
+ggplot2 is based on the idea that you can build every graph from the same few components.
+
+The main components that compose a plot are the **data**, the **aesthetic mappings**, and **geometric objects**.
+Extra elements can be specified, like:
+
+* scales,
+* facetting,
+* position,
+* statistical transformations,
+* a coordinate system, and
+* a theme.
+
+Together, the data, mappings, stats and geoms form a **layer**.
+
+Here is an example of pseudo-code to build a plot:
 
 ```
-ggplot(data = <dataset>, mapping = aesthetics( <x, y, fill, colour>)) + 
- <geometry>()
- <modifiers>()
-```
-
-
-
-Find out more about the package:
-
-```
-?ggplot
+ggplot(data = <dataset>), mapping = aesthetics(<x, y, colour>)) + 
+ <geometric_object>() +
+ <...>()
 ```
 
 The `ggplot()` function initialises a ggplot object. It can be used to declare the input data frame for a graphic and to specify the set of plot aesthetics intended to be common throughout all subsequent layers unless specifically overridden.
+
+Find out more about the package and the base function:
+
+```
+?ggplot2
+?ggplot
+```
 
 ### Create different kinds of plots 
 
