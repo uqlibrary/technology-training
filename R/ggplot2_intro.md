@@ -258,10 +258,10 @@ The chart shows that more diamonds are available with high quality cuts than wit
 
 **Exercise 4 – add information with `fill`**
 
-Use the previous plot and add information the diamonds' `cut` with the `fill` aesthetic:
+Use the previous plot and add information about the diamonds' `clarity` with the `fill` aesthetic:
 
 ```
-ggplot(data = diamonds, mapping = aes(x = cut), fill = cut) + 
+ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) + 
     geom_bar()
 ```
 
