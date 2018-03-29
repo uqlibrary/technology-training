@@ -238,7 +238,7 @@ ggplot(data = economics, mapping = aes(x = date, y = unemploy)) +
 ```
 
 Let's use the `diamonds` dataset now.
-The `diamonds` dataset comes in ggplot2 and contains information about ~54,000 diamonds, including the price, carat, color, clarity, and cut of each diamond. The chart shows that more diamonds are available with high quality cuts than with low quality cuts.
+The `diamonds` dataset comes in ggplot2 and contains information about ~54,000 diamonds, including the price, carat, color, clarity, and cut of each diamond.
 
 ```
 str(diamonds)
@@ -253,6 +253,8 @@ Let’s take a look at a bar chart. Bar charts seem simple, but they are interes
 ggplot(data = diamonds, mapping = aes(x = cut)) + 
     geom_bar()
 ```
+
+The chart shows that more diamonds are available with high quality cuts than with low quality cuts.
 
 **Exercise 4 – add information with `fill`**
 
