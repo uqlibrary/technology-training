@@ -4,7 +4,8 @@ Introduction to R data visualisation using ggplot2
 `last revision: 2018-03-29`
 
 :::info
-This document is formatted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/BJjLQWYqz
+This document is redacted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/BJjLQWYqz
+The source code is available on [GitHub](https://github.com/stragu/CDS/blob/master/R/ggplot2_intro.md).
 :::
 
 Thank you for attending this session at the UQ library Centre for Digital Scholarship (CDS).
