@@ -115,7 +115,7 @@ Find out more about the package:
 
 The `ggplot()` function initialises a ggplot object. It can be used to declare the input data frame for a graphic and to specify the set of plot aesthetics intended to be common throughout all subsequent layers unless specifically overridden.
 
-### Create diferent kinds of plots 
+### Create different kinds of plots 
 
 Let's have a look at our dataset:
 
