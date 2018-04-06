@@ -55,26 +55,23 @@ At the end of this session you will be able to:
 
 ## Material
 
-### Location
-
-Please create a folder called "RProjects" under "Documents"
-This is important for our project structure
-
 ### Rstudio Project
 
-**Exercise 1** - New RStudio Project (2 min)
+**Exercise 1** - New RStudio Project
 
 * Click the "File" menu button (top left corner), then "New Project"
 * Click "New Directory"
 * Click "New Project" ("New empty project" if you have an older version of RStudio)
-* In Directory name type the name of your project, e.g. "RStudio_Intro" (Browse and select a folder where to locate your project, in our case the RProjects folder)
+* In Directory name type the name of your project, e.g. "rstudio_intro" (Browse and select a folder where to locate your project, in our case the RProjects folder. If you don't have an RProjects folder, create it.)
 * Click the "Create Project" button
-    
-FYI: Projects make managing multiple directories straightforward. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. The .Rproj file stores information about our folder structure and the objects in the project (hence, manages history and .RData).
+
+:::info
+Projects make managing multiple directories straightforward. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. The .Rproj file stores information about our folder structure and the objects in the project (hence, manages history and .RData).
+:::
 
 ### Help
 
-There are 3 ways to find help in R
+There are 3 ways to find help in R:
 
 1. help(functionname)
 2. functionname F1
@@ -84,25 +81,36 @@ There are 3 ways to find help in R
 
 * `sessionInfo()`
 * `list.files()`
-* `ls()`
+* `citation()`
+* `setwd()`
 
 `sessionInfo()` provides information about your platform, the version of R and the packages that you are using and their versions.
+
 `list.files()` lists all the files in your working directory.
+
+`citation()` outputs the proper way to cite the R software.
+
+`setwd()` changes the working directory, i.e. the directory where we are located. This function _requires_ an argument: it can't run without setting a value for `dir` because it does not have a default for it.
+
+### Using functions
+
+Let's do some operations with two new functions:
+
 `ls()` lists the objects in the current R environment.
 For example, try running the `ls()` function after executing the command `a <- 42`.
-Now, remove all objects from the environment with:
+Now, remove that object with the following command:
+
+```
+rm(a)
+```
+
+And list objects again with `ls()`.
+
+You can also remove all the objects in the environment by using `ls()` as the value for the `list` argument:
 
 ```
 rm(list = ls())
 ```
-And list files again with `ls()`.
-
-Here are more functions to explore:
-
-* `getwd()`
-* `setwd()`
-* `citation()`
-* `dir()`
 
 ### Creating a folder structure
 
