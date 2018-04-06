@@ -69,13 +69,29 @@ At the end of this session you will be able to:
 Projects make managing multiple directories straightforward. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. The .Rproj file stores information about our folder structure and the objects in the project (hence, manages history and .RData).
 :::
 
-### Help
+### Using functions
 
-There are 3 ways to find help in R:
+An R function looks like this:
 
-1. help(functionname)
-2. functionname F1
-3. ?functionname
+```
+<functionname>(<argument(s)>)
+```
+
+In the console, we write and command and then execute it by pressing Enter.
+
+For example, try running the following command:
+
+```
+getwd()
+```
+
+#### Help
+
+There are 3 ways to find help about a function in RStudio:
+
+1. the shortcut command: `?functionname`
+1. the help function: `help(functionname)`
+1. the keyboard shortcut: press F1 after writing a function name
 
 **Exercise 2** - Use the help pages to find out what these functions do:
 
@@ -91,8 +107,6 @@ There are 3 ways to find help in R:
 `citation()` outputs the proper way to cite the R software.
 
 `setwd()` changes the working directory, i.e. the directory where we are located. This function _requires_ an argument: it can't run without setting a value for `dir` because it does not have a default for it.
-
-### Using functions
 
 Let's do some operations with two new functions:
 
