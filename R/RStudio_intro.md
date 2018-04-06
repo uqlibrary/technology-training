@@ -69,6 +69,25 @@ At the end of this session you will be able to:
 Projects make managing multiple directories straightforward. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. The .Rproj file stores information about our folder structure and the objects in the project (hence, manages history and .RData).
 :::
 
+### Maths and objects
+
+R can be used like a calculator. Try the following commands:
+
+```
+3 * 4
+10 / 2
+11^6
+```
+
+We can store data by creating objects, and assigning values to them with the assignement operator `<-`:
+
+```
+x <- 42
+y <- x / 9
+```
+
+You can use the shortcut Alt + - to type the assignement operator quicker.
+
 ### Using functions
 
 An R function looks like this:
@@ -82,7 +101,7 @@ In the console, we write a command and then execute it by pressing Enter.
 For example, try running the following command:
 
 ```
-getwd()
+log10(x)
 ```
 
 #### Help
