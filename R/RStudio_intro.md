@@ -1,10 +1,11 @@
 R for beginners using RStudio
 ===
 
-`version: 2018-03-23`
+`version: 2018-04-06`
 
 :::info
 This document is formatted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/rywVJcdtf#
+The source code is available on GitHub: https://github.com/stragu/CDS/blob/master/R/RStudio_intro.md
 :::
 
 Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving: https://framaforms.org/cds-sessions-feedback-1521148191
