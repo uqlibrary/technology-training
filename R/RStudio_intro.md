@@ -77,7 +77,7 @@ An R function looks like this:
 <functionname>(<argument(s)>)
 ```
 
-In the console, we write and command and then execute it by pressing Enter.
+In the console, we write a command and then execute it by pressing Enter.
 
 For example, try running the following command:
 
