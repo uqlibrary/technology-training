@@ -1,11 +1,14 @@
-# An intermediate session to R visualisations using ggplot2 - hands-on session
+An intermediate session to R visualisations using ggplot2 - hands-on session
+===
 
-Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving http://tiny.cc/CDS_feedback_R
+`last revision: 2018-03-29`
 
-If you want to review the installation instructions: https://github.com/orchid00/CDS/blob/master/R/Installation.md
+Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving: https://framaforms.org/cds-sessions-feedback-1521148191
+
+If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
-Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad https://etherpad.wikimedia.org/p/cds.
+Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad https://etherpad.wikimedia.org/p/cds-ggplot2-inter
 
 ## Keep in mind
 
@@ -36,78 +39,73 @@ We will assume you are an R intermediate user and that you have used ggplot2 bef
 
 At the end of this session you will be able to:
 
-   * Know about the layers used in ggplot2
-   * Select your own colours
-   * Change labels
-   * Save your plots in different formats and resolutions
-   * Be able to modify plots quickly
-   
-## Attendees   
-
-* Full name / email (optional)
-* Paula Andrea Martinez / p.martinez at uq.edu.au 
-* 
-
-Introduce yourself to one other person in the session. We will try to work in pairs.
+* Know about the layers used in ggplot2
+* Select your own colours
+* Change labels
+* Save your plots in different formats and resolutions
+* Be able to modify plots quickly
 
 ## Material
-
-### Location
-Please create a folder called "RProjects" under "Documents"
-This is important for our project structure
 
 ### Rstudio Project
 Exercise 1 - New Rstudio Project (3 min) 
 
-    * Click the "File" menu button (top left corner), then "New Project"
-    * Click "New Directory"
-    * Click "Empty Project"
-    * Type in the name of your project, e.g. "Rggplot2" 
-    (Browse and select a folder where to locate your project, e.g. the RProjects folder)
-    * Click the "Create Project" button
-    * create three folders
-      * scripts
-      * data
-      * plots
+* Click the "File" menu button (top left corner), then "New Project"
+* Click "New Directory"
+* Click "Empty Project"
+* Type in the name of your project, e.g. "Rggplot2" 
+(Browse and select a folder where to locate your project, e.g. the RProjects folder)
+* Click the "Create Project" button
+* create three folders
+  * scripts
+  * data
+  * plots
 
 ### Make sure you have ggplot2 installed and loaded
 Exercise 2 - setting up (1 min)
 
-  * In the "scripts" folder create a new R script file called "gapminder_example.R" 
-  * install and load the package ggplot2
-    * install only if you haven't yet done so using 
-          install.packages("ggplot2")
-    * load the package using 
-          library(ggplot2)
+* In the "scripts" folder create a new R script file called "gapminder_example.R" 
+* install and load the package ggplot2
+  * install only if you haven't yet done so using 
+        `install.packages("ggplot2")`
+  * load the package using:
+
+```{r}
+library(ggplot2)
+```
 
 ### Import files
 
 Downloading data to your project in your R script gapminder_example.R
 
-Don't forget to add some comments to your header
-        # Description : We are going to create many plots 
-        # using ggplot2
-        # Author: Paula A. Martinez
-        # Date: today's date, 2017
+Don't forget to add some comments to your header:
 
-        # how to dowload?
-        ?download.file
+# Description : We are going to create many plots 
+# using ggplot2
+# Author: Stéphane Guillou
+# Date: today's date
 
+How can we dowload data from the internet?
+?download.file
 
-        download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminder.csv")
-     
-Exercise 3 - read the data in an R object (1 min)
+```{r}
+download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv",
+              destfile = "data/gapminder.csv")
+```
 
-      gapminder <- ...
+Exercise 3 - read the data into an R object (1 min)
+
+```
+gapminder <- ...
+```
 
 Exercise 4 - Explore the dataset (1 min)
-  
-  
-      You can use dim(), str(), head(), tail()
+
+You can use dim(), str(), head(), tail()
   
 Exercise 5 - To be able to plot we should be familiar with the column names
 
-     colnames(gapminder)
+colnames(gapminder)
    
 ### Layers used in ggplot2
 
