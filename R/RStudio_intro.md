@@ -327,6 +327,7 @@ demo(graphics)
 Please fill in the feedback form before leaving: https://framaforms.org/cds-sessions-feedback-1521148191
 
 ## Important links
+
 * RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
 * RStudio online learning https://www.rstudio.com/online-learning/
 * Basic and advanced manuals https://cran.r-project.org/manuals.html
