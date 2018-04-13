@@ -12,6 +12,17 @@ Based on work by: Paula Andrea Martinez
 
 Here you will find notes for R, Shell and Git sessions held at the Centre for Digital Scholarhip (part of the University of Queensland's Library).
 
+### Format
+
+Courses use the "live-coding" format in which the instructor and the attendees type and execute commands together.
+An Etherpad is used to list useful links, exercises and to interact.
+
+Documents available for each course:
+
+* Markdown notes that the instructor can use to teach, and that students can refer to after the course;
+* An HTML Etherpad export that can be used to initialise a pad (https://etherpad.wikimedia.org is recommended to publish);
+* A text file that describes the session, useful to create an event on StudenHub.
+
 ## License
 
 All of the information on this repository (https://github.com/stragu/CDS/) is freely available under the [Creative Commons - Attribution 4.0 International Licence](https://creativecommons.org/licenses/by/4.0/). You may re-use and re-mix the material in any way you wish, without asking permission, provided you cite the original source.
