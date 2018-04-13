@@ -1,7 +1,7 @@
 R for beginners using RStudio
 ===
 
-`version: 2018-04-06`
+`version: 2018-04-13`
 
 :::info
 This document is formatted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/rywVJcdtf#
@@ -14,7 +14,7 @@ If you want to review the installation instructions: https://github.com/stragu/C
 
 Everything we write today will be saved in your R project. If you use the University computers, please remember to save your files in your H drive or USB.
 
-Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad: https://public.etherpad-mozilla.org/p/rstudio-intro-cds
+Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad: https://etherpad.wikimedia.org/p/cds-rstudio
 After the workshop you can save this etherpad with the important links and information (top right double arrow, export).
 
 ## RStudio
