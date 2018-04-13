@@ -1,7 +1,12 @@
-An intermediate session to R visualisations using ggplot2 - hands-on session
+R visualisations using ggplot2 – intermediate
 ===
 
-`last revision: 2018-03-29`
+`last revision: 2018-04-13`
+
+:::info
+This document is formatted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/BkT_1YTsM#
+The source code is available on GitHub: https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate.Rmd
+:::
 
 Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving: https://framaforms.org/cds-sessions-feedback-1521148191
 
@@ -14,7 +19,6 @@ Manuals, commands and more information on how to continue your R learning are pr
 
 * Case sensitive
 * No spaces in names
-* Be ready to learn a new language, lots of new vocabulary
 
 ## Open RStudio
 
@@ -37,34 +41,38 @@ We will assume you are an R intermediate user and that you have used ggplot2 bef
 
 ## What are we going to learn?
 
-At the end of this session you will be able to:
+During this hands-on session, you will:
 
-* Know about the layers used in ggplot2
-* Select your own colours
-* Change labels
-* Save your plots in different formats and resolutions
-* Be able to modify plots quickly
+* learn more about the layers used in ggplot2;
+* select your own colours;
+* modify scales and labels;
+* save your plots in different formats and resolutions;
+* learn how to modify plots quickly.
 
 ## Material
 
 ### Rstudio Project
-Exercise 1 - New Rstudio Project (3 min) 
+
+*Exercise 1 - New RStudio Project*
 
 * Click the "File" menu button (top left corner), then "New Project"
 * Click "New Directory"
-* Click "Empty Project"
-* Type in the name of your project, e.g. "Rggplot2" 
-(Browse and select a folder where to locate your project, e.g. the RProjects folder)
+* Click "New Project" ("Empty project" if you have an older version of RStudio)
+* In "Directory name", type the name of your project, e.g. "ggplot2_inter"
+* Select the folder where to locate your project: the `Documents/RProjects` folder, which you can create if it doesn't exist yet.
 * Click the "Create Project" button
-* create three folders
-  * scripts
-  * data
-  * plots
+* create three folders: "scripts", "data" and "plots".
+
+```{r}
+dir.create("scripts")
+dir.create("data")
+dir.create("plots")
+```
 
 ### Make sure you have ggplot2 installed and loaded
-Exercise 2 - setting up (1 min)
 
-* In the "scripts" folder create a new R script file called "gapminder_example.R" 
+*Exercise 2 - Setting up: packages and scripts*
+
 * install and load the package ggplot2
   * install only if you haven't yet done so using 
         `install.packages("ggplot2")`
@@ -74,161 +82,388 @@ Exercise 2 - setting up (1 min)
 library(ggplot2)
 ```
 
-### Import files
+* In the "scripts" folder create (and open) a new R script file called "gapminder_example.R":
 
-Downloading data to your project in your R script gapminder_example.R
+```{r}
+file.create("scripts/gapminder_example.R")  # create
+file.edit("scripts/gapminder_example.R")    # open
+```
 
 Don't forget to add some comments to your header:
 
-# Description : We are going to create many plots 
-# using ggplot2
+```
+# Description : create useful plots using ggplot2
 # Author: Stéphane Guillou
 # Date: today's date
+```
 
-How can we dowload data from the internet?
-?download.file
+### Import files
+
+How do we dowload data from the Internet with a command?
 
 ```{r}
+?download.file
 download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv",
               destfile = "data/gapminder.csv")
 ```
 
-Exercise 3 - read the data into an R object (1 min)
+*Exercise 3 – Read the data into an R object*
+
+Using the following syntax, how can you read the downloaded CSV data into an R object?
 
 ```
 gapminder <- ...
 ```
 
-Exercise 4 - Explore the dataset (1 min)
+You have to use the `read.csv()` function:
 
-You can use dim(), str(), head(), tail()
-  
-Exercise 5 - To be able to plot we should be familiar with the column names
+```{r}
+gapminder <- read.csv(file = "data/gapminder.csv")
+```
 
+*Exercise 4 - Explore the dataset*
+
+You can use `dim()`, `str()`, `head()`, `tail()` and `View()` to explore your dataset.
+
+```{r}
+dim(gapminder)  # what size is the data frame?
+str(gapminder)  # how is it structured?
+head(gapminder) # have a look at the first few observations
+tail(gapminder) # have a look at the last few observations
+View(gapminder) # use the GUI to view a spreadsheet
+```
+
+
+Familiarise yourself with the variable names:
+
+```{r}
 colnames(gapminder)
-   
+```
+
 ### Layers used in ggplot2
 
-    ?ggplot
+Have a look at the the "Details" section of the help page:
 
-Check the Details section
+```{r}
+?ggplot
+```
 
-     ggplot(data = <dataset>, mapping = aes( x, y, fill, colour, shape, size)) + 
-      geom_function() +
-      facet_function(~ class) +
-      theme_function() +
-      scale_function() +
-      coord_function() +
- 
- 
-Let's start with a question. Does population grow over the years?
+This pseudo-code gives a general idea of how ggplot plots are constructed:
 
-We can make a simple plot with the basics of ggplot2
+```
+ggplot(<data>) +
+  geom_<type>(aes(x, y, fill, colour, shape, size, <more mappings>),
+              stat = <stat>,
+              position = <position>) +
+  facet_<type>() +
+  theme_<type>() +
+  scale_<type>() +
+  coord_<type>() +
+  <...>
+```
 
-     ggplot(data = gapminder, mapping = aes(x = year, y = pop)) +
-       geom_point()
+Only the *data*, the *geometry* and the *aesthetic mappings* always need to be specified.
+
+Let's start with a question: Does population grow over the years?
+
+We can make a simple plot with the basics of ggplot2:
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x = year, y = pop)) +
+  geom_point()
+```
   
- ## Colour, Size, Shape and Other Aesthetic Attributes
+ ## Colour, size, shape and other aesthetic attributes
 
-To change the shape based on a category use 
-
-    shape = 
+To change the shape based on a variable, use `shape = <discrete variable>`.
     
-To change the color based on a category use
+To change the colour based on a variable, use `colour = <variable>` and `fill = <variable>`.
 
-    colour = 
-    fill = 
+*Exercise 5 – Choosing colours*
 
-Exercise - 5 Pick one color from: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf and modify your plot
-    
-Exercise - 6 How would you know all the years in this study with out repetitives?
+The `colourpicker` package is a handy addin for RStudio. Install it and use the new "Addins > Colour Picker" menu to pick a different colour for your geometry.
 
-    unique_years <- 
+For example:
 
-## Limits and scales
+```{r}
+# install the package if you don't have it already:
+# install.packages("colourpicker")
+ggplot(data = gapminder, mapping = aes(x = year, y = pop)) +
+  geom_point(colour = "chartreuse3") # change the default colour
+```
 
-Exercise 7 - Modify the x label of the plot by adding a layer
+*Exercise 6 – Colour according to continent*
 
-     scale_x_continuous(breaks = unique_years)
+Modify your plot to colour the points according to the continent variable.
 
+```{r}
+ggplot(data = gapminder, mapping = aes(x = year, y = pop, colour = continent)) +
+  geom_point()
+```
 
-To change the scale use breaks and labels
+### Scales and limits
 
-     scale_y_continuous(breaks = c(0, 100000000, 200000000, 500000000, 1000000000),
-                        labels = c(0, "100 mi", "200 mi", "500 mi", "1 billio"))
+We could further modify our plot to use a different y axis scale to space out the data:
 
-Exercise 9 - Modify your y scale
+```{r}
+ggplot(data = gapminder, mapping = aes(x = year, y = pop, colour = continent)) +
+  geom_point() +
+  scale_y_log10()
+```
 
+To reuse the constant base of our plot (the `ggplot()` call and the point geometry), we can create an object:
 
-To restrict the range use xlim or ylim
+```{r}
+ggbase <- ggplot(data = gapminder, mapping = aes(x = year, y = pop, colour = continent)) +
+  geom_point()
+```
 
-      ylim(c(0, 360000000))
+*Exercise 7 - Modify the axis breaks*
+
+Our x axis is not detailed enough.
+
+We can create a list of all the years when data was collected with the `unique()` function, and modify our plot to add more breaks to our x axis with the `scale_x_continuous()` function. How would you use them?
+
+```{r}
+# list all the unique values for year
+unique_years <- unique(gapminder$year)
+# modify the x axis scale
+ggbase +
+  scale_y_log10() +
+  scale_x_continuous(breaks = unique_years)
+```
+
+We can further customise a scale with breaks and labels
+
+```{r}
+ggbase +
+  scale_x_continuous(breaks = unique_years) +
+  scale_y_continuous(breaks = c(0, 100000000, 200000000, 500000000, 1000000000),
+                     labels = c(0, "100 m", "200 m", "500 m", "1 b"))
+```
+
+*Exercise 8 - Modify your y scale range*
+
+To zoom in, we might want to restrict the range by using `ylim()`.
+
+```{r}
+ggbase +
+  ylim(c(0, 360000000))
+```
       
-Let's talk about the warning message
+Let's talk about that warning message. We could use the `subset()` function to avoir that.
 
-### histograms
+### Histograms
 
-Exercise 10 - Create a histogram of life expectation
+*Exercise 9 - Create a histogram of life expectancy*
 
-How to you modify the bars?
+Search for the histogram geometry function, and plot the life expectancy.
+How can we modify the bars?
+
+```{r}
+ggplot(gapminder, aes(x = lifeExp)) +
+  geom_histogram() # by default, bins = 30
+```
+
+Let's change the bin width:
+
+```{r}
+ggplot(gapminder, aes(x = lifeExp)) +
+  geom_histogram(binwidth = 15)
+```
+
+We can also change the number of bins:
+
+```{r}
+ggplot(gapminder, aes(x = lifeExp)) +
+  geom_histogram(bins = 10)
+```
+
+And colour by continent:
+
+```{r}
+ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
+  geom_histogram(bins = 10)
+```
+
+It might be more readable if we change the position of the geometry:
+
+```{r}
+ggplot(gapminder,
+       aes(x = lifeExp,
+           fill = continent)) +
+  geom_histogram(bins = 10,
+                 position = "dodge")
+```
 
 
-## facet and theme
+### Faceting
 
-ggplot(data = gapminder, mapping = aes(x = lifeExp, fill = continent)) +
+An even more readable representation could use facetting:
+
+```{r}
+ggplot(gapminder,
+       aes(x = lifeExp,
+           fill = continent)) +
   geom_histogram(bins = 40) +
   facet_wrap(~ continent) 
-  
-  
- How do you remove the legend?
+```
+
+### Theming
+
+ The legend is probably superfluous. How do you remove it?
  
- Try different themes
- 
- 
-## Labels
+```{r}
+ggplot(gapminder,
+       aes(x = lifeExp,
+           fill = continent)) +
+  geom_histogram(bins = 40) +
+  facet_wrap(~ continent) +
+  theme(legend.position = "none")
+```
 
-how does life Expectation relates to GDP per capita?
+A theme function can overwrite some defaults:
 
-add labels using
-labs(title = "" , x = "", y = "")
+```{r}
+ggplot(gapminder,
+       aes(x = lifeExp,
+           fill = continent)) +
+  geom_histogram(bins = 40) +
+  facet_wrap(~ continent) +
+  theme_minimal() + # before customising the legend
+  theme(legend.position = "none")
+```
 
-## Save your plots in different formats and resolutions
+### Labels
 
-Use 
+We can make our plot better with descriptive labels:
 
-?ggsave
+```{r}
+ggplot(gapminder,
+       aes(x = lifeExp,
+           fill = continent)) +
+  geom_histogram(bins = 40) +
+  facet_wrap(~ continent) +
+  theme_minimal() + # before customising the legend
+  theme(legend.position = "none") +
+  xlab("life expectancy") +
+  ylab("count")
+```
 
-## Play time!
+### Customise a scatterplot
 
-* Create a a boxplot of continent vs pop
+New research question: how does life expectancy relate to GDP per capita?
+
+```{r}
+ggplot(gapminder,
+       aes(x = gdpPercap,
+           y = lifeExp)) +
+  geom_point() +
+  labs(x = "GDP per capita",
+       y = "Life expectancy",
+       title = "How does GDP relate to life expectancy?") +
+  theme_bw()
+```
+
+The `labs()` function allows you to group all the labels in one call.
+
+Now, let's make it better: spread the data with a modified scale, add a linear regression, colour the continents and add some transparency.
+
+```{r}
+ggplot(gapminder,
+       aes(x = gdpPercap,
+           y = lifeExp)) +
+  geom_point(aes(colour = continent),
+             alpha = 0.5) +
+  geom_smooth(method = "lm") +
+  scale_x_log10() +
+  labs(x = "GDP per capita",
+       y = "Life expectancy",
+       title = "How does GDP relate to life expectancy?") +
+  theme_bw()
+```
+
+### Save your plots
+
+To Save your plots in different formats and resolutions, use 
+
+```{r}
+ggsave("myplot.png", width = 7, height = 5)
+```
+
+### Other geometries
+
+To count categorical data, use `geom_bar()`:
+
+```{r}
+ggplot(gapminder, aes(x = continent)) +
+  geom_bar()
+```
+
+A simple boxplot to visualise distribution in categories:
+
+```{r}
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot()
+```
+
+Violin plots might be the way:
+
+```{r}
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_violin()
+```
+
+If the categories get too cramped on the axis, you can rotate them:
+
+```{r}
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_violin() +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+### Play time!
+
+* Create a a boxplot of continent vs population
      * Colour and fill by continent
      * try to limit the y axis to see the boxes better
      * let's see if you are able to move the legend to the bottom 
   
-## Modify your plots
+### Modify your plots
 
 
-## Close Rproject
+### Close RProject
 
 - File
 - close project
 - then close RStudio
-
 
 ## After the workshop
 
 Please fill in the feedback form before leaving: http://tiny.cc/CDS_feedback_R
 
 ## Important links
-* RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
-* RStudio online learning https://www.rstudio.com/online-learning/
-* Basic and advanced manuals https://cran.r-project.org/manuals.html
-* Ask about any function or package http://www.rdocumentation.org/
-* If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
-* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in with your organisational portal, https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses
-* R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
-* Book: Hadley Wickham. ggplot2 Elegant Graphics for Data Analysis Second  Edition. 2016 
+
+* For ggplot2:
+    * R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
+    * Official ggplot2 documentation: http://docs.ggplot2.org/current/
+    * Official ggplot2 website: http://ggplot2.tidyverse.org/
+    * Chapter on data visualisation in the book _R for Data Science_: http://r4ds.had.co.nz/data-visualisation.html
+    * Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
+    * Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
+    * STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
+    * R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+    * Book: Hadley Wickham. ggplot2 Elegant Graphics for Data Analysis Second  Edition. 2016 
 https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
-* R gapminder csv https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv"
-* If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
-* If you have further questions, please contact me p.martinez at uq.edu.au 
+* R and RStudio in general:
+    * RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
+    * RStudio online learning https://www.rstudio.com/online-learning/
+    * Basic and advanced manuals https://cran.r-project.org/manuals.html
+    * Ask about any function or package http://www.rdocumentation.org/
+    * If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
+    * Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in from UQ, https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses
+    * ANOVA in R http://homepages.inf.ed.ac.uk/bwebb/statistics/ANOVA_in_R.pdf or https://rcompanion.org/rcompanion/e_01.html
+    * If you need an R and/or RStudio workshop/session, please contact the Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
+    * If you have further questions about R, please contact the CDS: cds@library.uq.edu.au
+    * Ask questions to other researchers during the weekly Hacky Hour: [https://rcc.uq.edu.au/meetups](https://rcc.uq.edu.au/meetups)
+    * Contact your unit's statistician (if you have one?)
