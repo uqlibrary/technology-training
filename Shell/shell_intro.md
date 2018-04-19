@@ -1,0 +1,730 @@
+# Unix shell introduction
+
+## Legal
+
+This short course is based on the longer course _[The Unix Shell](https://swcarpentry.github.io/shell-novice/)_ developped by the non-profit organisation [The Carpentries](https://software-carpentry.org/). The original material [is licensed](https://software-carpentry.org/license/) under a Creative Commons Attribution license ([CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)), and this modified version uses the same license. You are therefore free to:
+
+
+* **Share** — copy and redistribute the material in any medium or format
+* **Adapt** — remix, transform, and build upon the material
+
+... as long as you give attribution, i.e. you give appropriate credit to the original author, and link to the license.
+
+## Setup
+
+### Data
+
+Download the data archive from [this link](https://swcarpentry.github.io/shell-novice/data/shell-novice-data.zip) and extract its contents on your Desktop.
+
+### Software
+
+If you use Linux or OSX, you probably already have a access to Bash as the default Unix shell.
+
+On Windows, you might have to activate the Windows 10 feature by [following these steps](https://www.windowscentral.com/how-install-bash-shell-command-line-windows-10), or install [Git for Windows](https://gitforwindows.org/). If you dont have administrative rights on your machine, you can use a virtual desktop provided by TERN on [CoESRA](https://portal.coesra.org.au/strudel-web/#/system-selector).
+
+For more details about setting up, head to [this page](https://swcarpentry.github.io/shell-novice/setup.html).
+
+## Introduction
+
+:::info
+The shell is a program that enables us to send commands to the computer and receive output. It is also referred to as the "terminal" or "command line".
+
+When we use the shell, we use a **command-line interface** (or CLI) instead of a graphical user interface (or GUI). We type a command, and press enter to execute it.
+:::
+
+### Why use the shell?
+
+* The shell’s main advantages are its **high action-to-keystroke ratio**, its support for **light task automation**, and its capacity to **access networked machines**.
+* The shell’s main disadvantages are its primarily textual nature and how cryptic its commands and operation can be.
+
+The Unix shell has been around longer than most of its users have been alive. It has survived so long because it’s a power tool that allows people to do complex things with just a few keystrokes. More importantly, it helps them combine existing programs in new ways and automate repetitive tasks so they aren’t typing the same things over and over again. Use of the shell is fundamental to using a wide range of other powerful tools and computing resources (including “high-performance computing” supercomputers). These lessons will start you on a path towards using these resources effectively.
+
+### Format
+
+We will learn doing some **live-coding**, which means we will all be using the shell and typing the same things – agreat way to learn. No need to take notes as they are available online for later reference.
+
+### Our data: Nelle's research
+
+The main data we use as an example for this lesson is a collection of 1520 files that contain information about protein abundance in samples collected by a marine biologist, Nelle Nemo. They need to be run through a program called `goostats` but that would take too much time if each file was run manually.
+
+The command shell might be helpful to automate this repetitive task.
+
+First, we'll need to understand how to navigate through our file system inside the shell.
+
+## Navigating the file system
+
+The part of the operating system responsible for managing files and directories is called the **file system**. It organises our data into **files**, which hold information, and **directories** (also called “folders”), which hold files or other directories.
+
+To navigate our file system in the shell, let's learn a few useful commands. Type the following command and press enter:
+
+```shell
+pwd
+```
+
+`pwd` stand for "print working directory" and outputs the name of the directory we are currently located in. For most, it will be the home directory of the current user.
+
+Now, try this command:
+
+```shell
+ls
+```
+
+`ls` stands for "listing". It lists the contents of the current working directory.
+
+Commands can often take extra parameters, called **flags** (also called "options"). We can add the flag `-F` (for "classi**F**y") to our `ls` command in order to make the output more informative:
+
+```shell
+ls -F
+```
+
+This shows which items are directories, thanks to a trailing `/`.
+
+To find out more about on particular command, including what flags exist for it, use the `--help` flag after it, like so:
+
+```shell
+ls --help
+```
+
+The `man` (for "manual") command will offer more information about a command:
+
+```shell
+man ls
+```
+
+To look at the contents of a different directory, we can specify it by adding the directory's name as an **argument**:
+
+```shell
+ls Desktop
+```
+
+As you can see, a command can take both flags and arguments. For example, the command:
+
+```shell
+ls -lh Documents
+```
+
+... associates the two flags `-l` (for "long listing") and `-h` (for "human-readable") to output extra information and make file sizes more user-friendly, and specifies that we want to list what the `Documents` directory contains.
+
+To navigate into our data directory, we'll use a new command called `cd` for "change directory".
+
+```shell
+cd Desktop
+cd data-shell
+cd data
+```
+
+We just navigated down three levels of directories, one at a time, starting from our home directory. It is also possible to do that in one command:
+
+```shell
+cd Desktop/data-shell/data
+```
+
+You can always check where you are currently with `pwd`, and have a look at where you can navigate next with `ls`.
+
+I you want to go back to the `data-shell` directory, there is a shortcut to move up to the parent directory:
+
+```shell
+cd ..
+```
+
+Similarly, the shortcut to specify the current working directory is a single dot: `.`.
+
+`cd` on its own will bring you back to your home directory.
+
+We have been using **relative paths** so far, always referring to where we currently are in the file system, but we can also specify **absolute paths** by using a leading `/`, which represents the root directory (i.e. the highest in your file system). For example, you can always use one of the following commands to go to the `data-shell`folder, wherever you are (replace "username" by your user name):
+
+```shell
+cd /Users/username/Desktop/data-shell
+cd /home/username/Desktop/data-shell
+```
+
+Two more shortcuts are handy when it comes to changing or specifying directories: `~` is the home directory, and `-` is the previous directory we were in.
+
+:::info
+Another useful feature is "**tab completion**". To access folders with longer names, it is often possible to auto-complete the folder name by hitting the tab key after typing a few letters: typing `cd nor` and pressing the tab key will auto-complete to `cd north-pacific-gyre/`. Another press of the tab key will add `2012-07-03/` to the command as it is the only item in the folder. If there are several options, pressing the tab key twice will bring up a list.
+:::
+
+## Working with files and directories
+
+We now know how to explore files and directories, but how do we create, modify and delete them?
+
+In the `data-shell` directory, let's create a new directory called `thesis` thanks to the `mkdir` command (for "make directory"):
+
+```shell
+cd ../..
+mkdir thesis
+```
+
+:::info
+To work more comfortably with the shell, it is a good idea to name files and directory without using whitespaces, as they are usually used to separate arguments in commands.
+:::
+
+Using `ls` will now list the newly created directory.
+
+We can check that the new directory is in fact empty:
+
+```shell
+ls thesis
+```
+
+Let's move into it and create a new text file called `draft.txt` using a text editor called Nano:
+
+```shell
+cd thesis
+nano draft.txt
+```
+
+Type a few lines of text, and save with `ctrl + O`. (Nano uses the symbol `^` for the control key.) Nano also checks that you are happy with the file name: press enter at the prompt, and exit the editor with `ctrl + X`.
+
+Nano does not leave any ouptut, but you can check that the file exists with `ls`.
+
+If you are not happy with your work, you can remove the file with the `rm` command, but beware: in the shell, **deleting is forever**! There is no rubbish bin.
+
+```shell
+rm draft.txt
+```
+Let’s re-create that file and then move up one directory to `/Users/username/Desktop/data-shell` using `cd ..`:
+
+```shell
+nano draft.txt
+ls
+cd ..
+```
+
+If we try to delete the `thesis` directory, we get an error message:
+
+```shell
+rm thesis
+```
+
+This happens because `rm` by default only works on files, not directories.
+
+To really get rid of `thesis` we must also delete the file `draft.txt`. We can do this with the [recursive](https://en.wikipedia.org/wiki/Recursion) flag for `rm`:
+
+```shell
+rm -r thesis
+```
+
+:::info
+Removing the files in a directory recursively can be a very dangerous operation. If we’re concerned about what we might be deleting we can add the “interactive” flag `-i` to `rm` which will ask us for confirmation before each step
+
+```shell
+rm -r -i thesis
+```
+
+This removes everything in the directory, then the directory itself, asking at each step for you to confirm the deletion.
+:::
+
+Let's create the directory and file on more time:
+
+```shell
+mkdir thesis
+nano thesis/draft.txt
+ls thesis
+```
+
+The name of our new file is not very informative. We can change it with the `mv` command (for "move"):
+
+```shell
+mv thesis/draft.txt thesis/quotes.txt
+```
+
+The first argument tells `mv` what we’re “moving”, while the second is where it’s to go.
+
+:::info
+`mv` can silently overwrite any existing file with the same name, which is why using the `-i` flag is also a good idea here.
+:::
+
+Let's move `quotes.txt` into the current working directory, by using the `.` shortcut:
+
+```shell
+mv thesis/quotes.txt .
+```
+
+We can now check that thesis is empty, and that `quotes.txt` exists in the current directory:
+
+```shell
+ls thesis
+ls quotes.txt
+```
+
+The `cp` command copies a file. Let's copy the file into the `thesis` directory, with a new name, and check that the original file and the copy both exist:
+
+```shell
+cp quotes.txt thesis/quotations.txt
+ls quotes.txt thesis/quotations.txt
+```
+
+Now, let's delete the original file and check with `ls` that it is actually gone:
+
+```shell
+rm quotes.txt
+ls quotes.txt
+```
+
+## Pipes and filters
+
+:::info
+Pipes and filters are the two building blocks for more complex commands. **Pipes** send the output of a command as an input of another one, whereas **filters** are commands that allow the transformation of a stream of input into a stream of output. Many commands fit this definition of filters and constitute "small pieces" that can be "loosely joined", i.e. stringed in new ways. The "pipes and filters" programming model is permitted by the Unix focus on creating small single-purpose tools that work well together.
+:::
+
+In the `molecules` directory, let's use the `wc` command (for "word count"):
+
+```shell
+cd molecules
+wc *.pdb
+```
+
+The `*` **wildcard** is used to match zero of more characters. Other wildcards include `?` to match one single character.
+
+Flags for `wc` include `-l` for restricting the output to line numbers, `-w` for words, and `-c` for characters.
+
+To figure out which file is the shortest, we can first **redirect** the number of lines into a new file thanks to `>`:
+
+```shell
+wc -l *.pdb > lengths.txt
+```
+
+This creates the file, or overwrites it if it already exists. `>>` on the other hand will _append_ to an existing file.
+
+The command `cat` (for "concatenate") will print the contents of a file to screen:
+
+```shell
+cat lengths.txt
+```
+
+On the other hand, `head` and `tail` will respectively show the beginning and the end of the file. It is possile to overwrite the default of 10 lines with a flag:
+
+```shell
+head -2 lengths.txt
+tail -3 lengths.txt
+```
+
+The `sort` command will print the alphabetically sorted data to screen. Using the `-n` flag will sort it numerically instead:
+
+```shell
+sort -n lengths.txt
+```
+
+Now, to find out which data file is the shortest, we can run the following:
+
+```shell
+sort -n lengths.txt > sorted-lengths.txt
+head -1 sorted-lengths.txt
+```
+
+However, intermediate files make it complicated to follow, and clutter your hard drive. We can instead run the two command together:
+
+```shell
+sort -n lengths.txt | head -1
+```
+
+The vertical bar, `|`, is called a **pipe**. It tells the shell we want to use the output of the command on the left as the input for the command on the right. We can string as many pipes as we want, which makes it possible to do the whole task in one **pipeline**:
+
+```shell
+wc -l *.pdb | sort -n | head -1
+```
+
+The pipeline could be read backwards as "we want the one-line head of the numerically sorted line-count of all PDB files".
+
+:::warning
+usefulness of teaching `uniq` ? And `cut` ?
+:::
+
+### Nelle's pipeline
+
+Nelle has run samples through the assay machines and created 17 files located in the `north-pacific-gyre/2012-07-03` directory (use `cd` to move into it). To check the consistency of her data, she types:
+
+```shell
+wc -l *.txt | sort -n | head -5
+```
+
+On file seems to be 60 lines shorter than the others. Before re-running that sample, she checks if other files have _too much_ data:
+
+```shell
+wc -l *.txt | sort -n | tail -5
+```
+
+:::info
+To re-run a command you typed not long ago, or to slightly modify it, use the up arrow to navigate your history of commands.
+:::
+
+The numbers look good, but the "Z" in there is not expected: everything should be marked either "A" or "B", by convention. To find others, she types:
+
+```shell
+ls *Z.txt
+```
+
+Those two files do not match with any depth she recorded, and she therefore won't use them in her analysis. In case she still might need them later on, she won't delete them; in the future, she might instead select the files she wants with the following wildcard expression:
+
+```shell
+<command> *[AB].txt
+```
+
+This will match all files ending in `A.txt` or `B.txt`.
+
+## Loops
+
+> How can we perform the same action on many different files?
+
+:::info
+**Loops** are key to productivity improvements through automation as they allow us to execute commands repetitively. Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes).
+:::
+
+In the `creatures` directory (reached with `cd ../../creatures`), using the following command to create backups of our data files will throw an error:
+
+```shell
+cp *.dat original-*.dat
+```
+
+The issue is that it expands to giving `cp` more than two inputs, and therefore expects the last one to be a directory where the copies can go.
+
+The way around that is to use a loop, to do some operation _once for each element in a list_. For example, to display the first three lines of each file in turn:
+
+```shell
+for filename in basilisk.dat unicorn.dat
+do
+    head -3 $filename
+done
+```
+
+In this loop, `filename` is a variable which is assigned a different file name in each run. The variable can be named whatever we want, but a descriptive name is better.
+
+Here is a slightly more complicated loop:
+
+```shell
+for filename in *.dat
+do
+    echo $filename
+    head -100 $filename | tail -20
+done
+```
+
+When running this loop, the shell does the following:
+* expand `*.dat` to create a list of files
+* execute the **loop body** for each of those files:
+    * `echo` prints the file name to screen
+    * the pipeline selects lines 81-100
+
+:::info
+If your file names contain spaces, you will have to use quotation marks around the filenames and the variable calls. But it is simpler to always avoid using whitespaces when naming files and directories!
+:::
+
+To solve our file copying problem we can use this loop:
+
+```shell
+for filename in *.dat
+do
+    cp $filename original-$filename
+done
+```
+
+You can check that your loop will do what you expect it to do beforehand, by prefixing the command in the loop body with `echo`:
+
+```shell
+for filename in *.dat
+do
+    echo cp $filename original-$filename
+done
+```
+
+### Nelle's pipeline
+
+Nelle now wants to calculate stats on her data files with her lab's shell script called `goostats`. The script takes two arguments: an input file (the raw data) and an output file (to store the stats).
+
+Located in the `north-pacific-gyre/2012-07-03`, she designs the following loop:
+
+```shell
+for datafile in NENE*[AB].txt
+    do bash goostats $datafile stats-$datafile
+done
+```
+
+When she runs it, the shell seems stalled and nothing gets printed to the screen. She kills the running command with `ctrl + C`, uses the up arrow to edit the command and add an `echo` line to the loop body in order to know which file is being processed:
+
+```shell
+for datafile in NENE*[AB].txt; do echo $datafile; bash goostats $datafile stats-$datafile; done
+```
+
+It looks like processing her whole dataset (1518 files) will take about two hours. She checks that a sample output file looks good with:
+
+```shell
+cat stats-NENE01729A.txt
+```
+
+... runs her loops and lets the computer process it all.
+
+:::warning
+Usefulness of teaching history tricks like `history` and `!<nb>`, `ctrl + R`, `!!`, `!$`... ?
+:::
+
+Here is another example of how useful a loop can be: to create a logical directory structure. Say a researcher wants to organise experiments measuring reaction rate constants with different compounds and different temperatures. They could use a **nested loop** like this one:
+
+```shell
+for species in cubane ethane methane butane
+do
+    for temperature in 25 30 37 40 50 60
+    do
+        mkdir $species-$temperature
+    done
+done
+```
+
+This nested loop would create 24 directories in a few seconds. How much time would that take with a graphical file browser?
+
+## Shell scripts
+
+> How can I save and reuse commands?
+
+We are finally ready to see what makes the shell such a powerful programming environment. We are going to take the commands we repeat frequently and save them in files so that we can re-run all those operations again later by typing a single command. For historical reasons, a bunch of commands saved in a file is usually called a **shell script**, but make no mistake: these are actually small programs.
+
+Let's start by going back the the `molecules/` folder and creating a new file called `middle.sh`:
+
+```shell
+cd molecules
+nano middle.sh
+```
+
+In the document, type the following line and save (i.e. write out and exit):
+
+```shell
+head -n 15 octane.pdb | tail -n 5
+```
+
+This is a variation on a previous pipeline: it selects lines 11-15 of the file `octane.pdb`.
+
+Once we save the file, we can ask the shell to execute the commands it contains with the following command:
+
+```shell
+bash middle.sh
+```
+
+In order to apply this script to other files – without re-writing the script every time! –, we need to make it more versatile. Open the script in Nano once more:
+
+```shell
+nano middle.sh
+```
+
+... and replace `octane.pdb` with the special variable `$1`, so the command looks like this:
+
+```shell
+head -n 15 "$1" | tail -n 5
+```
+
+Inside a shell script, `$1` means "the first argument used when calling the script". We can now run our script with, for example:
+
+```shell
+bash middle.sh pentane.pdb
+```
+
+We can now add more special variables to pass on to `head` and `tail`, in order to customise the line range. Modify the script like so:
+
+```shell
+head -n "$2" "$1" | tail -n "$3"
+```
+
+To select lines 16-20, we can now run:
+
+```shell
+bash middle.sh pentane.pdb 20 5
+```
+
+It works, but the counter-intuitive range setting could benefit from some **comments**, using the `#` character at the beginning of a script line:
+
+```shell
+# Select lines from the middle of a file.
+# Usage: bash middle.sh filename end_line num_lines
+head -n "$2" "$1" | tail -n "$3"
+```
+
+The computer ignore comments when it executes the script, but they are very useful to people reading your code, including your future self!
+
+If you want to accept an undefined number of arguments, you can use the special variable `$@`, which means "all of the command-line arguments to the shell script". Consider this `sorted.sh` script:
+
+```shell
+# Sort filenames by their length.
+# Usage: bash sorted.sh one_or_more_filenames
+wc -l "$@" | sort -n
+```
+
+It could be used to order (by number of lines) different kinds of files from different folders:
+
+```shell
+bash sorted.sh *.pdb ../creatures/*.dat
+```
+
+Here is another example of a script that would take any number of CSV files as arguments, and would use a loop as well as the `cut`, `sort` and `uniq`:
+
+```shell
+# Script to find unique species in csv files where species is the second data field
+# This script accepts any number of file names as command line arguments
+
+# Loop over all files
+for file in $@ 
+do
+	echo "Unique species in $file:"
+	# Extract species names
+	cut -d , -f 2 $file | sort | uniq
+done
+```
+
+:::info
+If you are unsure about what a command does, remember you can use `man <command>` to read its manual.
+:::
+
+### Nelle's pipeline
+
+To store her analytics and make them reproducible, Nelle creates the following script:
+
+```shell
+# calculate stats for data files
+for datafile in "$@"
+do
+    echo $datafile
+    bash goostats $datafile stats-$datafile
+done
+```
+
+She saves it as `do-stats.sh` so she can re-do her first analysis by running:
+
+```shell
+bash do-stats.sh NENE*[AB].txt
+```
+
+The good thing about her script is that she lets the user decide what files to process. However, she has to remember to exclude the "Z" files.
+
+:::info
+Designing a script always involves tradeoffs between flexibility and complexity.
+:::
+
+## Finding things
+
+> How can I find files, and find things in files?
+
+`grep` (for "global / regular expression / print") is a command that finds and prints lines in files that match a pattern. To test this, we are going to work on a file that contains three haikus. To have a look at it, run the following commands:
+
+```shell
+cd
+cd Desktop/data-shell/writing
+cat haiku.txt
+```
+
+To find lines that contatin the word "not", run the following:
+
+```shell
+grep not haiku.txt
+```
+
+The output is the three lines in the file that contain the letters "not".
+
+If we look for the pattern "The":
+
+```shell
+grep The haiku.txt
+```
+
+... the output will show two lines, with one instance of those letters contained within a larger word: "Thesis".
+
+To restrict to lines containing "The" on its own, we can use the `-w` flag (for "word"):
+
+```shell
+grep -w The haiku.txt
+```
+
+We can also search for a phrase:
+
+```shell
+grep -w "is not" haiku.txt
+```
+
+We don't have to use quotes for patterns without spaces, but we still can do that to be consistent.
+Another useful flag is `-n` (for line **n**umber):
+
+```shell
+grep -n "it" haiku.txt
+```
+
+We can also combine flags with this command. Let's add the `-i` flag to make the search case-insensitive:
+
+```shell
+grep -nwi "the" haiku.txt
+```
+
+We can also in**v**ert our search with the `-v` flag, i.e. to output the lines that do _not_ contain the pattern "the":
+
+```shell
+grep -nwv "the" haiku.txt
+```
+
+The are many more flags available for `grep`. You can see a full list with the command `grep --help`.
+
+`grep`'s real power comes from the fact that patterns can contain **regular expressions**. Regular expressions are both complex and powerful. For example, you can search for lines that have an "o" in the second position:
+
+```shell
+grep -E '^.o' haiku.txt
+```
+
+We use quotes and the `-E` flag (for "extended regular expression") to prevent the shell from interpreting it. The `^` anchors the match to the start of the line; the `.` matches a single character; the `o` matches an actual lowercase "o".
+
+Let's try to analyse a bigger file, like the text from _Little Women_ by Louisa May Alcott. We want to figure out which of the four sisters in the book (Jo, Meg, Beth and Amy) is the most mentioned, something we can achieve with a `for` loop and `grep`:
+
+```shell
+cd data
+for sis in Jo Meg Beth Amy
+do
+    echo $sis:
+    grep -ow $sis LittleWomen.txt | wc -l
+done
+```
+
+We use the `-o` flag (for "only matching") in order to account for multiple occurences on a single line.
+
+While `grep` finds lines in files, the `find` command finds files themselves. Let's move into the `writing` directory and test it:
+
+```shell
+cd ..
+find .
+```
+
+When given the current working directory as the only argument, `find`'s output is the names of every file and directory under the current working directory. We can start filtering the output with the `-type` flag. `d` is for directory, and `f` is for files:
+
+```shell
+find . -type d
+find . -type f
+```
+
+We can also match by name:
+
+```shell
+find . -name *.txt
+```
+
+The issue here is that the shell expanded the wildcard _before_ running the command. To find _all_ the text files in the directory tree, we have to use quotes:
+
+```shell
+find . -name '*.txt'
+```
+
+If we want to combine find with other commands, we might need a different method than building a pipeline. For example, to count the lines in each one of the found files, one would intuitively try the following:
+
+```shell
+find . -name '*.txt' | wc -l
+```
+
+... which would only return the number of files `find` found.
+In order to pass each of the found files as separate arguments, we can use the following syntax instead:
+
+```shell
+wc -l $(find . -name '*.txt')
+```
+
+When the shell executes this command, it first expands whatever is inside `$()` before running the rest of the command, just like for wildcards. In short, `$(command)` inserts a command's output in place.
+
+Here is an example combining `grep` and `find`:
+
+```shell
+grep "FE" $(find .. -name '*.pdb')
+```
+
+This command will list all the PDB files that contain iron atoms.
+

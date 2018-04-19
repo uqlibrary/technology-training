@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>cds-shell</title>
+<meta name="generator" content="Etherpad">
+<meta name="author" content="Etherpad">
+<meta name="changedby" content="Etherpad">
+<meta charset="utf-8">
+<style>
+* {
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  line-height: 17px;
+}
+ul.indent {
+  list-style-type: none;
+}
+ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+body > ol {
+  counter-reset: first second third fourth fifth sixth seventh eigth ninth tenth eleventh twelth thirteenth fourteenth fifteenth sixteenth;
+}
+ol > li:before {
+  content: counter(first) ". ";
+  counter-increment: first;
+}
+ol > ol > li:before {
+  content: counter(first) "." counter(second) ". ";
+  counter-increment: second;
+}
+ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) ". ";
+  counter-increment: third;
+}
+ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) ". ";
+  counter-increment: fourth;
+}
+ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) ". ";
+  counter-increment: fifth;
+}
+ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) ". ";
+  counter-increment: sixth;
+}
+ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) ". ";
+  counter-increment: seventh;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) ". ";
+  counter-increment: eigth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) ". ";
+  counter-increment: ninth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) ". ";
+  counter-increment: tenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) ". ";
+  counter-increment: eleventh;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) ". ";
+  counter-increment: twelth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) ". ";
+  counter-increment: thirteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) ". ";
+  counter-increment: fourteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) "." counter(fifteenth) ". ";
+  counter-increment: fifteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) "." counter(fifteenth) "." counter(sixthteenth) ". ";
+  counter-increment: sixthteenth;
+}
+ol {
+  text-indent: 0px;
+}
+ol > ol {
+  text-indent: 10px;
+}
+ol > ol > ol {
+  text-indent: 20px;
+}
+ol > ol > ol > ol {
+  text-indent: 30px;
+}
+ol > ol > ol > ol > ol {
+  text-indent: 40px;
+}
+ol > ol > ol > ol > ol > ol {
+  text-indent: 50px;
+}
+ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 60px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 70px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 80px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 90px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 100px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 110px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 120px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 130px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 140px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 150px;
+}
+
+</style>
+</head>
+<body>
+<em>Welcome to Etherpad!</em><br><br><em>This pad text is synchronized as you type, so that everyone viewing this page sees the same text. This allows you to collaborate seamlessly on documents!</em><br><br><em>It is generously hosted by Mozilla.</em><br><br><strong>### Centre for Digital Scholarship - Unix Shell introduction ###</strong><br><br><strong>### Links</strong><br><br>This Etherpad: <a href="https&#x3a;&#x2F;&#x2F;frama&#x2e;link&#x2F;shell&#x2d;pad">https:&#x2F;&#x2F;frama.link&#x2F;shell-pad</a><br><br>Course notes: <a href="https&#x3a;&#x2F;&#x2F;frama&#x2e;link&#x2F;shell&#x2d;notes">https:&#x2F;&#x2F;frama.link&#x2F;shell-notes</a><br><br>Full Carpentries course (with exercises): <a href="https&#x3a;&#x2F;&#x2F;swcarpentry&#x2e;github&#x2e;io&#x2F;shell&#x2d;novice">https:&#x2F;&#x2F;swcarpentry.github.io&#x2F;shell-novice</a><br><br><br><strong>### Setup</strong><br><br>Software: <a href="https&#x3a;&#x2F;&#x2F;swcarpentry&#x2e;github&#x2e;io&#x2F;shell&#x2d;novice&#x2F;setup&#x2e;html">https:&#x2F;&#x2F;swcarpentry.github.io&#x2F;shell-novice&#x2F;setup.html</a><br>&nbsp;&nbsp;&nbsp; If that does not work, try CoESRA: <a href="https&#x3a;&#x2F;&#x2F;portal&#x2e;coesra&#x2e;org&#x2e;au&#x2F;strudel&#x2d;web&#x2F;&#x23;&#x2F;system&#x2d;selector">https:&#x2F;&#x2F;portal.coesra.org.au&#x2F;strudel-web&#x2F;#&#x2F;system-selector</a><br>&nbsp;&nbsp;&nbsp; CoEsRA is down, got do DH Box: <a href="http&#x3a;&#x2F;&#x2F;dhbox&#x2e;org">http:&#x2F;&#x2F;dhbox.org</a> and use the credentials &quot;demonstration&quot; and &quot;demonstration&quot; in the Terminal tab.<br><br>Data archive: <a href="https&#x3a;&#x2F;&#x2F;swcarpentry&#x2e;github&#x2e;io&#x2F;shell&#x2d;novice&#x2F;data&#x2F;shell&#x2d;novice&#x2d;data&#x2e;zip">https:&#x2F;&#x2F;swcarpentry.github.io&#x2F;shell-novice&#x2F;data&#x2F;shell-novice-data.zip</a><br><br><br><strong>### Need more help?</strong><br><br>Hacky Hour UQ, every Tuesday, 3 pm at Nano&#x27;s<br><a href="https&#x3a;&#x2F;&#x2F;hackyhourstluc&#x2e;wordpress&#x2e;com&#x2F;">https:&#x2F;&#x2F;hackyhourstluc.wordpress.com&#x2F;</a><br><a href="https&#x3a;&#x2F;&#x2F;twitter&#x2e;com&#x2F;HackyHourStLuc">https:&#x2F;&#x2F;twitter.com&#x2F;HackyHourStLuc</a><br><br>Send us a question or book a session: cds@library.uq.edu.au<br><br><strong>### Shared notes</strong><br><br><br><br><strong>### Questions?</strong><br><br><br>
+</body>
+</html>
