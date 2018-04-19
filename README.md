@@ -17,11 +17,23 @@ Here you will find notes for R, Shell and Git sessions held at the Centre for Di
 Courses use the "live-coding" format in which the instructor and the attendees type and execute commands together.
 An Etherpad is used to list useful links, exercises and to interact.
 
-Documents available for each course:
+Files available for each course, hosted in this repository:
 
 * Markdown notes that the instructor can use to teach, and that students can refer to after the course;
 * An HTML Etherpad export that can be used to initialise a pad (https://etherpad.wikimedia.org is recommended to publish);
 * A text file that describes the session, useful to create an event on StudenHub.
+
+### Quick access to resources
+
+| Course | Notes | Description | Pad |
+|:-|-|-|-|
+| Introduction to R and RStudio | [md](https://github.com/stragu/CDS/blob/master/R/RStudio_intro.md) | [txt](https://github.com/stragu/CDS/blob/master/R/RStudio_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-rstudio) |
+| Data manipulation with dplyr | [md](https://github.com/stragu/CDS/blob/master/R/dplyr_intro.md) | [txt](https://github.com/stragu/CDS/blob/master/R/dplyr_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-dplyr) |
+| Introduction to ggplot2 | [md](https://github.com/stragu/CDS/blob/master/R/ggplot2_intro.md) | [txt](https://github.com/stragu/CDS/blob/master/R/ggplot2_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-intro) |
+| ggplot2 – intermediate | [md](https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate.Rmd) | [txt](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-inter) |
+| Heatmaps with R | [md](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate.md) | [txt](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
+| Introduction to the Unix Shell | [md](https://github.com/stragu/CDS/blob/master/Shell/shell_intro.md) | [txt](https://github.com/stragu/CDS/blob/master/Shell/shell_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-shell) |
+| Git revision control for collaboration | ... | ... | ... |
 
 ## License
 
