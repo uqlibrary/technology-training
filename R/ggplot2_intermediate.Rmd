@@ -1,24 +1,20 @@
 R visualisations using ggplot2 – intermediate
 ===
 
-`last revision: 2018-04-13`
+`last revision: 2018-04-19`
 
-:::info
-This document is formatted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/BkT_1YTsM#
-The source code is available on GitHub: https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate.Rmd
-:::
+> This document is formatted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/BkT_1YTsM#
+> The source code is available on GitHub: https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate.Rmd
 
-Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving: https://framaforms.org/cds-sessions-feedback-1521148191
-
-If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
+If you need to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
-Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad https://etherpad.wikimedia.org/p/cds-ggplot2-inter
 
 ## Keep in mind
 
 * Case sensitive
 * No spaces in names
+* You can use Ctrl + Shift to space out your code and Ctrl + Enter to run a command.
 
 ## Open RStudio
 
@@ -55,13 +51,13 @@ During this hands-on session, you will:
 
 *Exercise 1 - New RStudio Project*
 
-* Click the "File" menu button (top left corner), then "New Project"
+* Click the "Create a project" button (top left cube icon)
 * Click "New Directory"
 * Click "New Project" ("Empty project" if you have an older version of RStudio)
 * In "Directory name", type the name of your project, e.g. "ggplot2_inter"
-* Select the folder where to locate your project: the `Documents/RProjects` folder, which you can create if it doesn't exist yet.
+* Select the folder where to locate your project: the `Documents/RProjects` folder, which you can create if it doesn't exist yet
 * Click the "Create Project" button
-* create three folders: "scripts", "data" and "plots".
+* Create three folders: "scripts", "data" and "plots".
 
 ```{r}
 dir.create("scripts")
@@ -73,10 +69,10 @@ dir.create("plots")
 
 *Exercise 2 - Setting up: packages and scripts*
 
-* install and load the package ggplot2
-  * install only if you haven't yet done so using 
+* Install and load the package ggplot2
+  * Install only if you haven't yet done so using 
         `install.packages("ggplot2")`
-  * load the package using:
+  * Load the package using:
 
 ```{r}
 library(ggplot2)
@@ -93,32 +89,25 @@ Don't forget to add some comments to your header:
 
 ```
 # Description : create useful plots using ggplot2
-# Author: Stéphane Guillou
-# Date: today's date
+# Author: <your name>
+# Date: <today's date>
 ```
 
 ### Import files
 
-How do we dowload data from the Internet with a command?
+*Exercise 3 – Read the onine data into an R object*
 
-```{r}
-?download.file
-download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv",
-              destfile = "data/gapminder.csv")
-```
-
-*Exercise 3 – Read the data into an R object*
-
-Using the following syntax, how can you read the downloaded CSV data into an R object?
+Using the following syntax, how can you read the online CSV data into an R object?
 
 ```
 gapminder <- ...
 ```
 
-You have to use the `read.csv()` function:
+You have to use the `read.csv()` function, which can take a URL:
 
 ```{r}
-gapminder <- read.csv(file = "data/gapminder.csv")
+gapminder <- read.csv(
+  file = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
 
 *Exercise 4 - Explore the dataset*
@@ -130,9 +119,8 @@ dim(gapminder)  # what size is the data frame?
 str(gapminder)  # how is it structured?
 head(gapminder) # have a look at the first few observations
 tail(gapminder) # have a look at the last few observations
-View(gapminder) # use the GUI to view a spreadsheet
+View(gapminder) # view as a separate spreadsheet
 ```
-
 
 Familiarise yourself with the variable names:
 
@@ -164,31 +152,37 @@ ggplot(<data>) +
 
 Only the *data*, the *geometry* and the *aesthetic mappings* always need to be specified.
 
+### Explore data visually
+
 Let's start with a question: Does population grow over the years?
 
 We can make a simple plot with the basics of ggplot2:
 
 ```{r}
-ggplot(data = gapminder, mapping = aes(x = year, y = pop)) +
+ggplot(data = gapminder,
+       mapping = aes(x = year,
+                     y = pop)) +
   geom_point()
 ```
   
  ## Colour, size, shape and other aesthetic attributes
 
-To change the shape based on a variable, use `shape = <discrete variable>`.
+To change the shape based on a variable, use `shape = <discrete variable>` inside the `aes()` call.
     
-To change the colour based on a variable, use `colour = <variable>` and `fill = <variable>`.
+Similarly, to change the colour based on a variable, use `colour = <variable>` and `fill = <variable>` inside the `aes()` call.
 
 *Exercise 5 – Choosing colours*
 
 The `colourpicker` package is a handy addin for RStudio. Install it and use the new "Addins > Colour Picker" menu to pick a different colour for your geometry.
 
-For example:
+For example, to colour all the points in my geometry (regardless of data):
 
 ```{r}
 # install the package if you don't have it already:
 # install.packages("colourpicker")
-ggplot(data = gapminder, mapping = aes(x = year, y = pop)) +
+ggplot(data = gapminder,
+       mapping = aes(x = year,
+                     y = pop)) +
   geom_point(colour = "chartreuse3") # change the default colour
 ```
 
@@ -197,7 +191,10 @@ ggplot(data = gapminder, mapping = aes(x = year, y = pop)) +
 Modify your plot to colour the points according to the continent variable.
 
 ```{r}
-ggplot(data = gapminder, mapping = aes(x = year, y = pop, colour = continent)) +
+ggplot(data = gapminder,
+       mapping = aes(x = year,
+                     y = pop,
+                     colour = continent)) +
   geom_point()
 ```
 
@@ -206,15 +203,23 @@ ggplot(data = gapminder, mapping = aes(x = year, y = pop, colour = continent)) +
 We could further modify our plot to use a different y axis scale to space out the data:
 
 ```{r}
-ggplot(data = gapminder, mapping = aes(x = year, y = pop, colour = continent)) +
+ggplot(data = gapminder,
+       mapping = aes(x = year,
+                     y = pop,
+                     colour = continent)) +
   geom_point() +
   scale_y_log10()
 ```
 
+> Being explicit about the *argument names* is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like `data =` and `mapping =`
+
 To reuse the constant base of our plot (the `ggplot()` call and the point geometry), we can create an object:
 
 ```{r}
-ggbase <- ggplot(data = gapminder, mapping = aes(x = year, y = pop, colour = continent)) +
+ggbase <- ggplot(gapminder,
+                 aes(x = year,
+                     y = pop,
+                     colour = continent)) +
   geom_point()
 ```
 
@@ -228,15 +233,15 @@ We can create a list of all the years when data was collected with the `unique()
 # list all the unique values for year
 unique_years <- unique(gapminder$year)
 # modify the x axis scale
-ggbase +
+gg_scatter +
   scale_y_log10() +
   scale_x_continuous(breaks = unique_years)
 ```
 
-We can further customise a scale with breaks and labels
+We can further customise a scale with breaks and labels:
 
 ```{r}
-ggbase +
+gg_scatter +
   scale_x_continuous(breaks = unique_years) +
   scale_y_continuous(breaks = c(0, 100000000, 200000000, 500000000, 1000000000),
                      labels = c(0, "100 m", "200 m", "500 m", "1 b"))
@@ -247,18 +252,17 @@ ggbase +
 To zoom in, we might want to restrict the range by using `ylim()`.
 
 ```{r}
-ggbase +
+gg_scatter +
   ylim(c(0, 360000000))
 ```
       
-Let's talk about that warning message. We could use the `subset()` function to avoir that.
+Let's talk about that warning message. We could use the `subset()` function to avoid that.
 
 ### Histograms
 
-*Exercise 9 - Create a histogram of life expectancy*
+*Exercise 9 – Create a histogram of life expectancy*
 
-Search for the histogram geometry function, and plot the life expectancy.
-How can we modify the bars?
+Search for the histogram geometry function, and plot the life expectancy. How can we modify the bars?
 
 ```{r}
 ggplot(gapminder, aes(x = lifeExp)) +
@@ -286,7 +290,17 @@ ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
   geom_histogram(bins = 10)
 ```
 
-It might be more readable if we change the position of the geometry:
+The histogram geometry uses the "stack" **position** by default. It might be more readable if we change it so it uses ratios instead, using `position = "fill"` argument:
+
+```{r}
+ggplot(gapminder,
+       aes(x = lifeExp,
+           fill = continent)) +
+  geom_histogram(bins = 10,
+                 position = "fill")
+```
+
+We can also make the bars "dodge"" each other:
 
 ```{r}
 ggplot(gapminder,
@@ -299,7 +313,7 @@ ggplot(gapminder,
 
 ### Faceting
 
-An even more readable representation could use facetting:
+An even more readable representation could use **facetting**:
 
 ```{r}
 ggplot(gapminder,
@@ -311,7 +325,7 @@ ggplot(gapminder,
 
 ### Theming
 
- The legend is probably superfluous. How do you remove it?
+The legend is probably superfluous. We want to keep the colours, but we use the `theme()` function to customise the look of our plot:
  
 ```{r}
 ggplot(gapminder,
@@ -322,7 +336,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-A theme function can overwrite some defaults:
+A pre-built theme function can overwrite some defaults:
 
 ```{r}
 ggplot(gapminder,
@@ -334,9 +348,11 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
+Try other pre-built themes, like `theme_bw()` and `theme_light()`. You can also start with an empty theme thanks to `theme_void()`.
+
 ### Labels
 
-We can make our plot better with descriptive labels:
+We can make our plot better with descriptive **labels**:
 
 ```{r}
 ggplot(gapminder,
@@ -352,7 +368,7 @@ ggplot(gapminder,
 
 ### Customise a scatterplot
 
-New research question: how does life expectancy relate to GDP per capita?
+New research question: *How does life expectancy relate to GDP per capita?*
 
 ```{r}
 ggplot(gapminder,
@@ -367,7 +383,7 @@ ggplot(gapminder,
 
 The `labs()` function allows you to group all the labels in one call.
 
-Now, let's make it better: spread the data with a modified scale, add a linear regression, colour the continents and add some transparency.
+Now, let's make it better: spread the data with a modified **scale**, add a **linear regression**, **colour** the continents and add some **transparency**.
 
 ```{r}
 ggplot(gapminder,
@@ -391,6 +407,8 @@ To Save your plots in different formats and resolutions, use
 ggsave("myplot.png", width = 7, height = 5)
 ```
 
+`ggsave()` allows you to specify more parameters than RStudio's "Export" menu, and is very helpful to export visualisations that will be printed on a poster (`width` and `height` also resize the font, and `DPI` will allow a bigger resolution).
+
 ### Other geometries
 
 To count categorical data, use `geom_bar()`:
@@ -407,7 +425,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
 
-Violin plots might be the way:
+Violin plots might be better at visualising densities:
 
 ```{r}
 ggplot(gapminder, aes(x = continent, y = lifeExp)) +
@@ -431,16 +449,11 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   
 ### Modify your plots
 
+Have a look at this [ggplot2 cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) and experiment customising your plots.
 
 ### Close RProject
 
-- File
-- close project
-- then close RStudio
-
-## After the workshop
-
-Please fill in the feedback form before leaving: http://tiny.cc/CDS_feedback_R
+Closing RStudio will ask you if you want to save your project.
 
 ## Important links
 
