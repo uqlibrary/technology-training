@@ -1,0 +1,579 @@
+---
+title: Heatmaps in R for intermediate users
+date: 2018-04-20
+output:
+  html_document: default
+  pdf_document: default
+  github_document: default
+---
+
+> This document is edited as an R markdown file, and regularly exported as a GitHub document.
+> See the source code: https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd
+> See the published printer-friendly version: 
+
+Thank you for attending this session at the UQ library Centre for Digital Scholarship (CDS).
+
+If you want to review the installation instructions: https://github.com/orchid00/CDS/blob/master/R/Installation.md
+
+Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
+Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad: https://etherpad.wikimedia.org/p/cds-heatmaps.
+
+## Keep in mind
+
+* Case sensitive
+* No spaces in names
+* Use Ctrl + Enter to run a command, and Ctrl + Shift to make your code more readable.
+
+## Open RStudio
+
+* If you are using your own laptop please open RStudio
+  * Make sure you have a working internet connection
+
+* On CDS computers:
+  * Log in with your UQ username and password
+  * Make sure you have a working internet connection
+  * Open the ZENworks application
+  * Look for the letter R 
+  * Double click on RStudio which will install both R and RStudio 
+## What are we going to learn?
+
+During this session, you will:
+
+* Learn how to produce a simple heatmap;
+* Learn about other alternatives to produce heatmaps;
+* See examples of other packages
+
+A **heatmap** is a way of visualizing a table of numbers, where you substitute the numbers with colored cells. It’s useful for finding highs and lows, and see patterns more clearly.
+
+## Disclaimer
+
+We will assume you are an R intermediate user and that you have used RStudio before.
+
+## Material
+
+### RStudio Project
+
+**Exercise 1 - New RStudio Project**
+
+* New project:
+  * Click the "New project" menu icon
+  * Click "New Directory"
+  * Click "New Project" ("New empty project" if you have an older version of RStudio)
+  * In Directory name type the name of your project, e.g. "rstudio_intro" (Browse and select a folder where to locate your project, in our case the RProjects folder. If you don't have an RProjects folder, create it.)
+  * Click the "Create Project" button
+* Create new folders with the following commands:
+
+```{r include=FALSE}
+dir.create("scripts")
+dir.create("data")
+dir.create("plots")
+```
+
+**Exercise 2 - setting up**
+
+* create a new R script file called "heatmaps.R" in the "scripts" folder
+
+```{r eval=FALSE, include=FALSE}
+file.create("scripts/heatmaps.R")
+file.edit("scripts/heatmaps.R")
+```
+
+### Method 1: the base `heatmap()` function
+
+*Step 1: import the data*
+
+```{r}
+?read.csv
+nba <- read.csv(file = "http://datasets.flowingdata.com/ppg2008.csv")
+```
+
+*Step 2: explore the data*
+
+```{r eval=FALSE, include=FALSE}
+dim(nba)
+str(nba)
+head(nba)
+View(nba)
+```
+
+*Step 3: update the dataset*
+
+Assign the Name values to `rownames(nba)`:
+
+```{r}
+rownames(nba)
+rownames(nba) <- nba$Name
+rownames(nba)
+```
+
+Delete the column Name:
+
+```{r}
+nba$Name <- NULL
+head(nba)
+```
+
+*Step 4: prepare data, again*
+
+Are you noticing something here? It’s important to note that a lot of visualisations involve gathering and preparing data. Rarely do you get data exactly how you need it, so you should expect to do some data munging before the visuals.
+
+The data was loaded into a data frame, but it has to be a **data matrix** to make your heatmap. The difference between a frame and a matrix is not important for this tutorial. You need to know how to change it.
+
+**Exercise 3 – Convert the nba data into a matrix**
+
+```{r}
+class(nba)
+nba_matrix <- data.matrix(nba) # convert a DF to a numeric matrix
+nba_matrix1 <- matrix(nba) # creates matrix from set of values
+nba_matrix2 <- as.matrix(nba) # attempts to turn its argument into a matrix
+class(nba_matrix2)
+class(nba_matrix1)
+class(nba_matrix)
+identical(nba_matrix1, nba_matrix) # compare
+```
+
+*Step 5: make a heatmap*
+
+We are going to use the `heatmap()` function.
+
+**Exercise 4 – look for the `heatmap()` help**
+
+Read the description of the `scale` argument in particular.
+
+```{r}
+?heatmap
+```
+
+Create a first heatmap:
+
+```{r}
+nba_heatmap <- heatmap(nba_matrix)
+```
+
+**Scale** is important: the values should be centered and scaled in either the row direction or the column direction.
+
+```{r}
+heatmap(nba_matrix, scale = "column")
+```
+
+#### Colours
+
+In the palette function `cm.colours(n)`, n is the number of colors (>= 1) contained in the palette. It can be used in the `col` argument.
+
+In the `margins` arguments, the first value is for column names and the second one for row names.
+
+```{r}
+nba_heatmap <- heatmap(nba_matrix,
+        col = cm.colors(15),
+        scale = "column",
+        margins = c(8, 8))
+```
+
+#### Remove dendrograms
+
+Dendrograms don't really make sense for this dataset. `Rowv` and `Colv` can be set to `NA` to remove them.
+
+```{r}
+nba_heatmap <- heatmap(nba_matrix,
+                       col = cm.colors(100),
+                       scale = "column",
+                       Rowv = NA,
+                       Colv = NA)
+```
+
+#### Play time!
+
+* Add labels
+
+#### Clean the environment
+
+We can start with a fresh environment, using:
+
+```{r}
+rm(list = ls())
+```
+
+### Method 2: `gplots::heatmap.2()`
+
+If you don't have the `gplots` package yet, use `install.packages("gplots")`. We will also need the `RColorBrewer`, so use `install.packages("RColorBrewer")` if you don't have it installed already.
+
+```{r}
+library(gplots)
+library(RColorBrewer)
+```
+
+#### Protein data example
+
+*Step 1: data*
+
+Observations for 63 proteins in three control experiments and three experiments where cells are treated with a growth factor.
+
+```{r}
+rawdata <- read.csv("https://raw.githubusercontent.com/ab604/heatmap/master/leanne_testdata.csv")
+?heatmap.2
+```
+
+This `gplots` heatmap function provides a number of extensions to the standard R heatmap function.
+
+*Step 2: explore the data*
+
+```{r}
+dim(rawdata)
+str(rawdata)
+head(rawdata)
+View(rawdata)
+```
+
+*Step 3: data munging*
+
+```{r}
+rawdata$Row_ID <- NULL
+rawdata$T.test <- NULL
+head(rawdata)
+colnames(rawdata) <- c(paste(rep("Control_", 3), 1:3), 
+                       paste(rep("Treatment_", 3), 1:3))
+head(rawdata)
+```
+
+*Step 4: convert the dataframe into a matrix*
+
+```{r}
+class(rawdata)
+data_matrix <- data.matrix(rawdata)
+head(data_matrix)
+class(data_matrix)
+```
+
+*Step 5: more munging*
+
+```{r}
+?scale
+
+```
+
+`scale` is generic function whose default method centers and/or scales the columns of a numeric matrix. We **normalise** the data using `scale()`, **transposing** using `t()` to perform row-wise normalisation of the protein data. This normalises the data across each experiment so we can compare them to each other.
+Additionally, we transpose the data back to the original form, for use later on.
+
+```{r}
+# Normalise data, transpose for row wise normalisation
+data_scaled_t <- scale(t(rawdata))
+# check normalisation for each protein by:
+  # checking that means are zero
+round(colMeans(data_scaled_t), 1)
+  # check std devs are 1
+apply(data_scaled_t, 2, sd)
+# transpose to original form
+data_scaled <- t(data_scaled_t)
+```
+
+*Step 5: create heatmaps*
+
+First, let's experiment with the base `heatmap()` function.
+
+```{r}
+heatmap(data_scaled)
+```
+
+```{r}
+heatmap(data_scaled,
+        col = heat.colors(8), 
+        margins = c(8,12)) # , reveal col labels, reduce width
+```
+
+Let's create a new palette with 25 increments:
+
+```{r}
+my_palette <- colorRampPalette(c("blue",
+                                 "white",
+                                 "red"))(n = 25)
+```
+
+Now, let's use `heatmap.2()`:
+
+```{r}
+dev.off()
+par(cex.main = 0.75)                    # Shrink title fonts on plot
+heatmap.2(data_scaled,                  # normalised data
+          density.info = "histogram",   # Plot histogram of data and colour key
+          trace = "none",               # Turn off trace lines from heatmap
+          col = my_palette,             # Use my colour scheme
+          cexRow = 0.5, cexCol = 0.75)  # Amend row and column label fonts
+```
+
+Fix a few things and add a few extras:
+
+```{r}
+heatmap.2(data_scaled,
+          density.info = "histogram",
+          Colv = NA,                    # only row dendrogram
+          trace = "none",
+          col = my_palette,
+          main = "Difference between proteins",
+          margins = c(8, 5),            # more space from border
+          offsetRow = 1,                # space between plot and labels
+          keysize = 2,                  # make key and histogram fit
+          cexRow = 0.5, cexCol = 0.75)
+```
+
+Clean up the environment with:
+
+```{r}
+rm(list = ls())
+```
+
+#### Genechip data example
+
+The `BiocInstaller` package allows to use the `biocLite()` function to install extra packages, including the `affy` package which we need in this example (it contains the data).
+Install BiocInstaller with `source("https://bioconductor.org/biocLite.R")`, and then `affy` with the command `biocLite("affy")`
+
+```{r eval=FALSE, include=FALSE}
+library(affy)
+data(SpikeIn)
+pms <- SpikeIn@pm
+str(pms)
+class(pms)
+# just the data, scaled across rows
+par(cex.main = 0.75)  
+labs <- colnames(pms)
+heatmap.2(pms, 
+          col = rev(heat.colors(16)), 
+          main = "SpikeIn@pm",
+          xlab = "Relative Concentration", 
+          ylab="Probeset",
+          trace = "none",
+          labCol = "",
+          add.expr = text( x = seq_along(labs), y = -2, srt = 45,
+                           labels = labs, xpd = TRUE),
+          scale="row")
+```
+
+Clean up your environment with:
+
+```{r}
+rm(list = ls())
+```
+
+### Method 3: `pheatmap()`
+
+If you don't have it already, install `pheatmap` with `install.packages("pheatmap")`.
+Load the packages with:
+
+```{r}
+library(grid)     # this is a base package  
+library(pheatmap) # stands for "pretty heatmaps"
+```
+
+How does `pheatmap` differ?
+
+```{r}
+?pheatmap
+```
+
+> A function to draw clustered heatmaps where one has better control over some graphical parameters such as cell size, etc.
+
+Create your data matrix:
+
+```{r}
+set.seed(100)
+d <- matrix(rnorm(25), 5, 5)
+colnames(d) <- paste("Treatment", 1:5, sep = "")
+rownames(d) <- paste("Gene", 1:5, sep = "")
+```
+
+Try it out:
+```{r}
+pheatmap(d, 
+         main = "Pretty heatmap",
+         cellwidth =  50,
+         cellheight = 30,
+         fontsize = 12,
+         filename = "plots/heatmap.pdf")
+```
+
+Clean up your environment with:
+
+```{r}
+rm(list = ls())
+```
+
+### Method 4: a dataframe in `ggplot2`
+
+Load the necessary libraries:
+
+```{r}
+library(reshape2)
+library(ggplot2)
+```
+
+Labels the rows and columns:
+
+```{r}
+name_genes <- paste(rep("GEN", 20), LETTERS[1:20], sep="_") # rows
+name_patients <- paste(rep("PATIENT", 20), seq(1,20,1), sep="_")  # columns
+```
+
+Generation of dataframe:
+
+```{r}
+value_expression <- data.frame(genes = name_genes, 
+                               matrix(rnorm(400, 2, 1.8),
+                                      nrow = 20,
+                                      ncol = 20))
+names(value_expression)[2:21] <- name_patients
+```
+
+ 
+Melt dataframe:
+```{r}
+df_heatmap <- melt(value_expression, id.vars = "genes")
+names(df_heatmap)[2:3] <- c("patient", "expression_level")
+head(df_heatmap)
+```
+
+```{r}
+ggplot(df_heatmap, aes(patient, genes)) +
+  geom_tile(aes(fill = expression_level), color = "white") +
+  scale_fill_gradient(low = "white", high = "steelblue") +
+  ylab("List of genes") +
+  xlab("List of patients") +
+  theme(legend.title = element_text(size = 10),
+        legend.text = element_text(size = 12),
+        plot.title = element_text(size=16),
+        axis.title=element_text(size=14,face="bold"),
+        axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(fill = "Expression level")
+```
+
+Clean up your environment with:
+
+```{r}
+rm(list = ls())
+```
+
+### Method 5: `ComplexHeatmap::Heatmap`
+
+URL: https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s2.single_heatmap.html
+
+*Step 1*
+
+```{r}
+# source("https://bioconductor.org/biocLite.R")
+# biocLite("ComplexHeatmap") 
+library(ComplexHeatmap)
+# install.packages("circlize")
+library(circlize)
+```
+
+Create a data matrix:
+
+```{r}
+set.seed(123)
+mat <- cbind(rbind(matrix(rnorm(16, -1), 4), matrix(rnorm(32, 1), 8)),
+            rbind(matrix(rnorm(24, 1), 4), matrix(rnorm(48, -1), 8)))
+```
+
+*Step 2: munging*
+
+Permute the rows and columns
+```{r}
+mat <- mat[sample(nrow(mat), nrow(mat)), sample(ncol(mat), ncol(mat))]
+rownames(mat) <- paste0("R", 1:12)
+colnames(mat) <- paste0("C", 1:10)
+```
+
+*Step 3: make a heatmap*
+
+```{r}
+?Heatmap
+Heatmap(mat)
+```
+
+```{r}
+Heatmap(mat, 
+        col = colorRamp2(c(-3, 0, 3), c("brown", "white", "yellow")), 
+        cluster_rows = FALSE, 
+        cluster_columns = FALSE,
+        heatmap_legend_param = list(title = "Values"))
+```
+
+```{r}
+Heatmap(mat, 
+        col = colorRamp2(c(-3, 0, 3), c("brown", "white", "yellow")), 
+        heatmap_legend_param = list(title = "Values"))
+```
+
+```{r}
+mat_with_na <- mat
+mat_with_na[sample(c(TRUE, FALSE), nrow(mat)*ncol(mat), replace = TRUE, prob = c(1, 9))] <- NA
+Heatmap(mat_with_na, 
+        col = topo.colors(100),
+        na_col = "orange", 
+        clustering_distance_rows = "pearson",
+        heatmap_legend_param = list(title = "Values"))
+```
+
+
+```{r}
+Heatmap(mat, 
+        name = "values", 
+        row_names_side = "left", 
+        row_dend_side = "right", 
+        column_names_side = "top", 
+        column_dend_side = "bottom")
+```
+
+```{r}
+Heatmap(mat, 
+        name = "values", 
+        row_names_side = "left", 
+        row_dend_side = "right", 
+        column_names_side = "top", 
+        column_dend_side = "bottom",
+        km = 2)
+```
+
+```{r}
+h1 <- Heatmap(mat, 
+        name = "values", 
+        #col = topo.colors(50),
+        color_space = "sRGB",
+        row_dend_width = unit(2, "cm"),
+        column_dend_height = unit(2, "cm"),
+        row_dend_reorder = TRUE,
+        column_dend_reorder = TRUE,
+        row_names_gp = gpar(fontsize = 8),
+        column_names_gp = gpar(fontsize = 7),
+        column_names_max_height = unit(2, "cm"),
+        row_names_max_width = unit(9, "cm"),
+        column_title = "This is a complex heatmap")
+draw(h1, heatmap_legend_side = "left")
+```
+
+
+Clean my environment with:
+
+```{r}
+rm(list = ls())
+```
+
+## Close Rproject
+
+- File
+- close project
+- then close RStudio
+
+## Important links
+* RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
+* RStudio online learning https://www.rstudio.com/online-learning/
+* Basic and advanced manuals https://cran.r-project.org/manuals.html
+* Ask about any function or package http://www.rdocumentation.org/
+* If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
+* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in with your organisational portal,https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses
+* R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+* Book: Hadley Wickham. ggplot2 Elegant Graphics for Data Analysis Second  Edition. 2016 
+https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
+* Examples of heatmaps: https://flowingdata.com/2010/01/21/how-to-make-a-heatmap-a-quick-and-easy-solution/
+ https://rpubs.com/ab604/98032  https://stackoverflow.com/questions/15505607/diagonal-labels-orientation-on-x-axis-in-heatmaps  https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s2.single_heatmap.html
+
+* If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
+* If you have further questions, please contact me p.martinez at uq.edu.au 

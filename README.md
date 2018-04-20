@@ -31,7 +31,7 @@ Files available for each course, hosted in this repository:
 | Data manipulation with dplyr | [md](https://github.com/stragu/CDS/blob/master/R/dplyr_intro.md) | [txt](https://github.com/stragu/CDS/blob/master/R/dplyr_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-dplyr) |
 | Introduction to ggplot2 | [md](https://github.com/stragu/CDS/blob/master/R/ggplot2_intro.md) | [txt](https://github.com/stragu/CDS/blob/master/R/ggplot2_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-intro) |
 | ggplot2 – intermediate | [md](https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate.Rmd) | [txt](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-inter) |
-| Heatmaps with R | [md](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate.md) | [txt](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
+| Heatmaps with R | [md](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd) | [txt](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
 | Introduction to the Unix Shell | [md](https://github.com/stragu/CDS/blob/master/Shell/shell_intro.md) | [txt](https://github.com/stragu/CDS/blob/master/Shell/shell_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-shell) |
 | Git revision control for collaboration | ... | ... | ... |
 
