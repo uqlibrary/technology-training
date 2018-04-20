@@ -230,8 +230,8 @@ View(rawdata)
 rawdata$Row_ID <- NULL
 rawdata$T.test <- NULL
 head(rawdata)
-colnames(rawdata) <- c(paste(rep("Control_", 3), 1:3), 
-                       paste(rep("Treatment_", 3), 1:3))
+colnames(rawdata) <- c(paste("Control_", 1:3, sep = ""), 
+                       paste("Treatment_", 1:3, sep = ""))
 head(rawdata)
 ```
 
@@ -408,8 +408,8 @@ library(ggplot2)
 Labels the rows and columns:
 
 ```{r}
-name_genes <- paste(rep("GEN", 20), LETTERS[1:20], sep="_") # rows
-name_patients <- paste(rep("PATIENT", 20), seq(1,20,1), sep="_")  # columns
+name_genes <- paste("GEN", LETTERS[1:20], sep="_") # rows
+name_patients <- paste("PATIENT", 1:20, sep="_")  # columns
 ```
 
 Generation of dataframe:
