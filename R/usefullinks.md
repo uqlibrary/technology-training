@@ -14,6 +14,7 @@
 * If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
 * Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in with your organisational portal
 * If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
+* QFAB offers advanced paid workshops: https://qfab.org/training
 
 ## References
 
