@@ -1,28 +1,25 @@
 ---
 title: Heatmaps in R for intermediate users
-date: 2018-04-20
+date: 2018-04-26
 output:
-  html_document: default
-  pdf_document: default
   github_document: default
+  pdf_document: default
+  html_document: default
 ---
 
 > This document is edited as an R markdown file, and regularly exported as a GitHub document.
-> See the source code: https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd
-> See the published printer-friendly version: 
+> The source code is [here](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd)
+> The published printer-friendly version is [here](https://github.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md)
 
-Thank you for attending this session at the UQ library Centre for Digital Scholarship (CDS).
-
-If you want to review the installation instructions: https://github.com/orchid00/CDS/blob/master/R/Installation.md
+If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
-Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad: https://etherpad.wikimedia.org/p/cds-heatmaps.
 
 ## Keep in mind
 
 * Case sensitive
 * No spaces in names
-* Use Ctrl + Enter to run a command, and Ctrl + Shift to make your code more readable.
+* Use <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to run a command, and <kbd>Ctrl</kbd>+<kbd>Shift</kbd> to make your code more readable.
 
 ## Open RStudio
 
@@ -63,7 +60,7 @@ We will assume you are an R intermediate user and that you have used RStudio bef
   * Click the "Create Project" button
 * Create new folders with the following commands:
 
-```{r include=FALSE}
+```{r eval=FALSE, include=FALSE}
 dir.create("scripts")
 dir.create("data")
 dir.create("plots")
@@ -321,7 +318,7 @@ Clean up the environment with:
 rm(list = ls())
 ```
 
-#### Genechip data example
+#### (optional) Genechip data example
 
 The `BiocInstaller` package allows to use the `biocLite()` function to install extra packages, including the `affy` package which we need in this example (it contains the data).
 Install BiocInstaller with `source("https://bioconductor.org/biocLite.R")`, and then `affy` with the command `biocLite("affy")`
@@ -450,7 +447,7 @@ Clean up your environment with:
 rm(list = ls())
 ```
 
-### Method 5: `ComplexHeatmap::Heatmap`
+### (optional) Method 5: `ComplexHeatmap::Heatmap`
 
 URL: https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s2.single_heatmap.html
 
