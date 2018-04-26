@@ -40,7 +40,7 @@ During this session, you will:
 * Learn about alternatives to produce more complex heatmaps, like `heatmap.2()` and `pheatmap()`;
 * Learn how to produce a rudimentary heatmap with the `ggplot2` package.
 
-A **heatmap** is a way of visualizing a table of numbers, where you substitute the numbers with colored cells. It’s useful for finding highs and lows, and see patterns more clearly.
+A **heatmap** is a way of visualising a table of numbers, where you substitute the numbers with colored cells. It’s useful for finding highs and lows, and see patterns more clearly.
 
 ## Disclaimer
 
@@ -214,7 +214,7 @@ This `gplots` heatmap function provides a number of extensions to the standard R
 
 *Step 2: explore the data*
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 dim(rawdata)
 str(rawdata)
 head(rawdata)
@@ -227,8 +227,8 @@ View(rawdata)
 rawdata$Row_ID <- NULL
 rawdata$T.test <- NULL
 head(rawdata)
-colnames(rawdata) <- c(paste("Control_", 1:3, sep = ""), 
-                       paste("Treatment_", 1:3, sep = ""))
+colnames(rawdata) <- c(paste("Control", 1:3, sep = "_"), 
+                       paste("Treatment", 1:3, sep = "_"))
 head(rawdata)
 ```
 
@@ -249,7 +249,7 @@ class(data_matrix)
 ```
 
 `scale` is generic function whose default method centers and/or scales the columns of a numeric matrix. We **normalise** the data using `scale()`, **transposing** using `t()` to perform row-wise normalisation of the protein data. This normalises the data across each experiment so we can compare them to each other.
-Additionally, we transpose the data back to the original form, for use later on.
+Finally, we transpose the data back to the original form.
 
 ```{r}
 # Normalise data, transpose for row wise normalisation
@@ -383,6 +383,16 @@ pheatmap(d,
          main = "Pretty heatmap",
          cellwidth =  50,
          cellheight = 30,
+         fontsize = 12)
+```
+
+You can save your plot with an extra argument:
+
+```{r eval=FALSE, include=FALSE}
+pheatmap(d, 
+         main = "Pretty heatmap",
+         cellwidth =  50,
+         cellheight = 30,
          fontsize = 12,
          filename = "plots/heatmap.pdf")
 ```
@@ -420,12 +430,15 @@ names(value_expression)[2:21] <- name_patients
 ```
 
  
-Melt dataframe:
+Melt the dataframe:
+
 ```{r}
 df_heatmap <- melt(value_expression, id.vars = "genes")
 names(df_heatmap)[2:3] <- c("patient", "expression_level")
 head(df_heatmap)
 ```
+
+Create a basic heatmaps from the dataframe:
 
 ```{r}
 ggplot(df_heatmap, aes(patient, genes)) +
@@ -440,6 +453,8 @@ ggplot(df_heatmap, aes(patient, genes)) +
         axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(fill = "Expression level")
 ```
+
+This ggplot2 method does not allow to create dendrograms.
 
 Clean up your environment with:
 
