@@ -4,7 +4,6 @@
 
 This short course is based on the longer course _[The Unix Shell](https://swcarpentry.github.io/shell-novice/)_ developped by the non-profit organisation [The Carpentries](https://software-carpentry.org/). The original material [is licensed](https://software-carpentry.org/license/) under a Creative Commons Attribution license ([CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)), and this modified version uses the same license. You are therefore free to:
 
-
 * **Share** — copy and redistribute the material in any medium or format
 * **Adapt** — remix, transform, and build upon the material
 
@@ -12,17 +11,15 @@ This short course is based on the longer course _[The Unix Shell](https://swcarp
 
 ## Setup
 
-### Data
-
-Download the data archive from [this link](https://swcarpentry.github.io/shell-novice/data/shell-novice-data.zip) and extract its contents on your Desktop.
-
 ### Software
 
-If you use Linux or OSX, you probably already have a access to Bash as the default Unix shell.
+The Unix shell we use for this lesson is called **Bash**.
 
-On Windows, you might have to activate the Windows 10 feature by [following these steps](https://www.windowscentral.com/how-install-bash-shell-command-line-windows-10), or install [Git for Windows](https://gitforwindows.org/). If you dont have administrative rights on your machine, you can use a virtual desktop provided by TERN on [CoESRA](https://portal.coesra.org.au/strudel-web/#/system-selector).
+Installation instructions are available on [this page](https://github.com/stragu/CDS/blob/master/Shell/installation.md).
 
-For more details about setting up, head to [this page](https://swcarpentry.github.io/shell-novice/setup.html).
+### Data
+
+Download the data archive from [this link](https://swcarpentry.github.io/shell-novice/data/data-shell.zip) and extract its contents on your Desktop.
 
 ## Introduction
 
@@ -34,7 +31,7 @@ For more details about setting up, head to [this page](https://swcarpentry.githu
 * The shell’s main advantages are its **high action-to-keystroke ratio**, its support for **light task automation**, and its capacity to **access networked machines**.
 * The shell’s main disadvantages are its primarily textual nature and how cryptic its commands and operation can be.
 
-The Unix shell has been around longer than most of its users have been alive. It has survived so long because it’s a power tool that allows people to do complex things with just a few keystrokes. More importantly, it helps them combine existing programs in new ways and automate repetitive tasks so they aren’t typing the same things over and over again. Use of the shell is fundamental to using a wide range of other powerful tools and computing resources (including “high-performance computing” supercomputers). These lessons will start you on a path towards using these resources effectively.
+The Unix shell has been around longer than most of its users have been alive. It has survived so long because it’s a power tool that allows people to do complex things with just a few keystrokes. More importantly, it helps them combine existing programs in new ways and automate repetitive tasks so they aren’t typing the same things over and over again. Use of the shell is fundamental to using a wide range of other powerful tools and computing resources (including “high-performance computing” supercomputers). This lesson will start you on a path towards using these resources effectively.
 
 ### Format
 
