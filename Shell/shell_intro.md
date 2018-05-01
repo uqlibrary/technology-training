@@ -26,11 +26,8 @@ For more details about setting up, head to [this page](https://swcarpentry.githu
 
 ## Introduction
 
-:::info
-The shell is a program that enables us to send commands to the computer and receive output. It is also referred to as the "terminal" or "command line".
-
-When we use the shell, we use a **command-line interface** (or CLI) instead of a graphical user interface (or GUI). We type a command, and press enter to execute it.
-:::
+> The shell is a program that enables us to send commands to the computer and receive output. It is also referred to as the "terminal" or "command line".
+> When we use the shell, we use a **command-line interface** (or CLI) instead of a graphical user interface (or GUI). We type a command, and press enter to execute it.
 
 ### Why use the shell?
 
@@ -85,12 +82,6 @@ To find out more about on particular command, including what flags exist for it,
 ls --help
 ```
 
-The `man` (for "manual") command will offer more information about a command:
-
-```shell
-man ls
-```
-
 To look at the contents of a different directory, we can specify it by adding the directory's name as an **argument**:
 
 ```shell
@@ -140,9 +131,7 @@ cd /home/username/Desktop/data-shell
 
 Two more shortcuts are handy when it comes to changing or specifying directories: `~` is the home directory, and `-` is the previous directory we were in.
 
-:::info
-Another useful feature is "**tab completion**". To access folders with longer names, it is often possible to auto-complete the folder name by hitting the tab key after typing a few letters: typing `cd nor` and pressing the tab key will auto-complete to `cd north-pacific-gyre/`. Another press of the tab key will add `2012-07-03/` to the command as it is the only item in the folder. If there are several options, pressing the tab key twice will bring up a list.
-:::
+> Another useful feature is "**tab completion**". To access folders with longer names, it is often possible to auto-complete the folder name by hitting the tab key after typing a few letters: typing `cd nor` and pressing the tab key will auto-complete to `cd north-pacific-gyre/`. Another press of the tab key will add `2012-07-03/` to the command as it is the only item in the folder. If there are several options, pressing the tab key twice will bring up a list.
 
 ## Working with files and directories
 
@@ -155,9 +144,7 @@ cd ../..
 mkdir thesis
 ```
 
-:::info
-To work more comfortably with the shell, it is a good idea to name files and directory without using whitespaces, as they are usually used to separate arguments in commands.
-:::
+> To work more comfortably with the shell, it is a good idea to name files and directory without using whitespaces, as they are usually used to separate arguments in commands.
 
 Using `ls` will now list the newly created directory.
 
@@ -174,7 +161,7 @@ cd thesis
 nano draft.txt
 ```
 
-Type a few lines of text, and save with `ctrl + O`. (Nano uses the symbol `^` for the control key.) Nano also checks that you are happy with the file name: press enter at the prompt, and exit the editor with `ctrl + X`.
+Type a few lines of text, and save with <kbd>Ctrl</kbd>+<kbd>O</kbd>. (Nano uses the symbol `^` for the control key.) Nano also checks that you are happy with the file name: press enter at the prompt, and exit the editor with <kbd>Ctrl</kbd>+<kbd>X</kbd>.
 
 Nano does not leave any ouptut, but you can check that the file exists with `ls`.
 
@@ -205,15 +192,11 @@ To really get rid of `thesis` we must also delete the file `draft.txt`. We can d
 rm -r thesis
 ```
 
-:::info
-Removing the files in a directory recursively can be a very dangerous operation. If we’re concerned about what we might be deleting we can add the “interactive” flag `-i` to `rm` which will ask us for confirmation before each step
-
+> Removing the files in a directory recursively can be a very dangerous operation. If we’re concerned about what we might be deleting we can add the “interactive” flag `-i` to `rm` which will ask us for confirmation before each step
 ```shell
 rm -r -i thesis
 ```
-
-This removes everything in the directory, then the directory itself, asking at each step for you to confirm the deletion.
-:::
+> This removes everything in the directory, then the directory itself, asking at each step for you to confirm the deletion.
 
 Let's create the directory and file on more time:
 
@@ -231,9 +214,7 @@ mv thesis/draft.txt thesis/quotes.txt
 
 The first argument tells `mv` what we’re “moving”, while the second is where it’s to go.
 
-:::info
-`mv` can silently overwrite any existing file with the same name, which is why using the `-i` flag is also a good idea here.
-:::
+> `mv` can silently overwrite any existing file with the same name, which is why using the `-i` flag is also a good idea here.
 
 Let's move `quotes.txt` into the current working directory, by using the `.` shortcut:
 
@@ -264,9 +245,7 @@ ls quotes.txt
 
 ## Pipes and filters
 
-:::info
-Pipes and filters are the two building blocks for more complex commands. **Pipes** send the output of a command as an input of another one, whereas **filters** are commands that allow the transformation of a stream of input into a stream of output. Many commands fit this definition of filters and constitute "small pieces" that can be "loosely joined", i.e. stringed in new ways. The "pipes and filters" programming model is permitted by the Unix focus on creating small single-purpose tools that work well together.
-:::
+> Pipes and filters are the two building blocks for more complex commands. **Pipes** send the output of a command as an input of another one, whereas **filters** are commands that allow the transformation of a stream of input into a stream of output. Many commands fit this definition of filters and constitute "small pieces" that can be "loosely joined", i.e. stringed in new ways. The "pipes and filters" programming model is permitted by the Unix focus on creating small single-purpose tools that work well together.
 
 In the `molecules` directory, let's use the `wc` command (for "word count"):
 
@@ -327,10 +306,6 @@ wc -l *.pdb | sort -n | head -1
 
 The pipeline could be read backwards as "we want the one-line head of the numerically sorted line-count of all PDB files".
 
-:::warning
-usefulness of teaching `uniq` ? And `cut` ?
-:::
-
 ### Nelle's pipeline
 
 Nelle has run samples through the assay machines and created 17 files located in the `north-pacific-gyre/2012-07-03` directory (use `cd` to move into it). To check the consistency of her data, she types:
@@ -345,9 +320,7 @@ On file seems to be 60 lines shorter than the others. Before re-running that sam
 wc -l *.txt | sort -n | tail -5
 ```
 
-:::info
-To re-run a command you typed not long ago, or to slightly modify it, use the up arrow to navigate your history of commands.
-:::
+> To re-run a command you typed not long ago, or to slightly modify it, use the up arrow to navigate your history of commands.
 
 The numbers look good, but the "Z" in there is not expected: everything should be marked either "A" or "B", by convention. To find others, she types:
 
@@ -367,9 +340,7 @@ This will match all files ending in `A.txt` or `B.txt`.
 
 > How can we perform the same action on many different files?
 
-:::info
-**Loops** are key to productivity improvements through automation as they allow us to execute commands repetitively. Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes).
-:::
+> **Loops** are key to productivity improvements through automation as they allow us to execute commands repetitively. Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes).
 
 In the `creatures` directory (reached with `cd ../../creatures`), using the following command to create backups of our data files will throw an error:
 
@@ -406,9 +377,7 @@ When running this loop, the shell does the following:
     * `echo` prints the file name to screen
     * the pipeline selects lines 81-100
 
-:::info
-If your file names contain spaces, you will have to use quotation marks around the filenames and the variable calls. But it is simpler to always avoid using whitespaces when naming files and directories!
-:::
+> If your file names contain spaces, you will have to use quotation marks around the filenames and the variable calls. But it is simpler to always avoid using whitespaces when naming files and directories!
 
 To solve our file copying problem we can use this loop:
 
@@ -453,10 +422,6 @@ cat stats-NENE01729A.txt
 ```
 
 ... runs her loops and lets the computer process it all.
-
-:::warning
-Usefulness of teaching history tricks like `history` and `!<nb>`, `ctrl + R`, `!!`, `!$`... ?
-:::
 
 Here is another example of how useful a loop can be: to create a logical directory structure. Say a researcher wants to organise experiments measuring reaction rate constants with different compounds and different temperatures. They could use a **nested loop** like this one:
 
@@ -568,9 +533,7 @@ do
 done
 ```
 
-:::info
-If you are unsure about what a command does, remember you can use `man <command>` to read its manual.
-:::
+> If you are unsure about what a command does, remember you can run `<command> --help`.
 
 ### Nelle's pipeline
 
@@ -593,9 +556,7 @@ bash do-stats.sh NENE*[AB].txt
 
 The good thing about her script is that she lets the user decide what files to process. However, she has to remember to exclude the "Z" files.
 
-:::info
-Designing a script always involves tradeoffs between flexibility and complexity.
-:::
+> Designing a script always involves tradeoffs between flexibility and complexity.
 
 ## Finding things
 
