@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>cds-heatmaps</title>
+<meta name="generator" content="Etherpad">
+<meta name="author" content="Etherpad">
+<meta name="changedby" content="Etherpad">
+<meta charset="utf-8">
+<style>
+* {
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  line-height: 17px;
+}
+ul.indent {
+  list-style-type: none;
+}
+ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+body > ol {
+  counter-reset: first second third fourth fifth sixth seventh eigth ninth tenth eleventh twelth thirteenth fourteenth fifteenth sixteenth;
+}
+ol > li:before {
+  content: counter(first) ". ";
+  counter-increment: first;
+}
+ol > ol > li:before {
+  content: counter(first) "." counter(second) ". ";
+  counter-increment: second;
+}
+ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) ". ";
+  counter-increment: third;
+}
+ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) ". ";
+  counter-increment: fourth;
+}
+ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) ". ";
+  counter-increment: fifth;
+}
+ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) ". ";
+  counter-increment: sixth;
+}
+ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) ". ";
+  counter-increment: seventh;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) ". ";
+  counter-increment: eigth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) ". ";
+  counter-increment: ninth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) ". ";
+  counter-increment: tenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) ". ";
+  counter-increment: eleventh;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) ". ";
+  counter-increment: twelth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) ". ";
+  counter-increment: thirteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) ". ";
+  counter-increment: fourteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) "." counter(fifteenth) ". ";
+  counter-increment: fifteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) "." counter(fifteenth) "." counter(sixthteenth) ". ";
+  counter-increment: sixthteenth;
+}
+ol {
+  text-indent: 0px;
+}
+ol > ol {
+  text-indent: 10px;
+}
+ol > ol > ol {
+  text-indent: 20px;
+}
+ol > ol > ol > ol {
+  text-indent: 30px;
+}
+ol > ol > ol > ol > ol {
+  text-indent: 40px;
+}
+ol > ol > ol > ol > ol > ol {
+  text-indent: 50px;
+}
+ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 60px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 70px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 80px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 90px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 100px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 110px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 120px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 130px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 140px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 150px;
+}
+
+</style>
+</head>
+<body>
+<strong>&nbsp;Heatmaps in R</strong><br><strong>&#8211; CDS session</strong><br><br><strong># Links</strong><br><br>Thank you for attending this session at the Centre for Digital Scholarship!<br><br>This <strong>pad</strong> text is synchronised as you type, so that everyone viewing this page sees the same text. This allows us to collaborate seamlessly.<br>It can be accessed via this link: <a href="https&#x3a;&#x2F;&#x2F;etherpad&#x2e;wikimedia&#x2e;org&#x2F;p&#x2F;cds&#x2d;heatmaps">https:&#x2F;&#x2F;etherpad.wikimedia.org&#x2F;p&#x2F;cds-heatmaps</a><br>This should be the only document you neet to have open during the session.<br><br>If you want to review the <strong>installation instructions</strong>: <a href="https&#x3a;&#x2F;&#x2F;github&#x2e;com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;Installation&#x2e;md">https:&#x2F;&#x2F;github.com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;Installation.md</a><br><br>No need to take notes, as the <strong>run-through</strong> of the session is online, for you to consult after the session: <a href="https&#x3a;&#x2F;&#x2F;github&#x2e;com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;heatmaps&#x2F;heatmaps&#x5f;intermediate&#x2e;md">https:&#x2F;&#x2F;github.com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;heatmaps&#x2F;heatmaps_intermediate.md</a><br><br><strong>Before leaving</strong>, please fill in this short survey so we can improve our courses: <a href="https&#x3a;&#x2F;&#x2F;framaforms&#x2e;org&#x2F;cds&#x2d;sessions&#x2d;feedback&#x2d;1521148191">https:&#x2F;&#x2F;framaforms.org&#x2F;cds-sessions-feedback-1521148191</a><br><br><br><strong># Attendees (name &#x2F; affiliation &#x2F; email &#x2F; social media handle)</strong><br><em>only what you feel comfortable with!</em><br><br><ul class="bullet"><li>St&#233;phane Guillou &#x2F; CDS + School of Agriculture &#x2F; s.guillou@uq.edu.au &#x2F; mastodon: stragu@mastodon.indie.host</li><li><br></li></ul><br><br><strong># What are we going to learn?</strong><br><br>During this session, you will:<br><br><ul class="bullet"><li>Learn how to produce a simple heatmap;</li><li>Learn about other alternatives to produce heatmaps;</li><li>See examples of other packages</li></ul><br><br><strong># Help</strong><br><br>For any dataset or function doubts that you might have, you can find help with:<br><ul class="bullet"><li>the shortcut command: ?functionname</li><li>the keyboard shortcut: press F1 after writing a function name</li></ul><br><br><strong># Challenges</strong><br><br><br><br><br><strong># Questions for later</strong><br><br>Colour of dendrograms in heatmap()?<br><br><br><br><br><strong># Future courses</strong><br><br>Please check UQ StudentHub or the CDS website for upcoming R courses, including R graphics:<br><br><ul class="bullet"><li><a href="https&#x3a;&#x2F;&#x2F;studenthub&#x2e;uq&#x2e;edu&#x2e;au&#x2F;">https:&#x2F;&#x2F;studenthub.uq.edu.au&#x2F;</a> (all events)</li><li><a href="https&#x3a;&#x2F;&#x2F;web&#x2e;library&#x2e;uq&#x2e;edu&#x2e;au&#x2F;locations&#x2d;hours&#x2F;centre&#x2d;digital&#x2d;scholarship">https:&#x2F;&#x2F;web.library.uq.edu.au&#x2F;locations-hours&#x2F;centre-digital-scholarship</a> (only CDS sessions)</li></ul><br><br><strong># R Important links</strong><br><br><ul class="bullet"><li>For ggplot2:&nbsp;</li><ul class="bullet"><li>R ggplot2 Cheatsheet <a href="https&#x3a;&#x2F;&#x2F;github&#x2e;com&#x2F;rstudio&#x2F;cheatsheets&#x2F;raw&#x2F;master&#x2F;data&#x2d;visualization&#x2d;2&#x2e;1&#x2e;pdf">https:&#x2F;&#x2F;github.com&#x2F;rstudio&#x2F;cheatsheets&#x2F;raw&#x2F;master&#x2F;data-visualization-2.1.pdf</a></li><li>Official ggplot2 documentation: <a href="http&#x3a;&#x2F;&#x2F;docs&#x2e;ggplot2&#x2e;org&#x2F;current&#x2F;">http:&#x2F;&#x2F;docs.ggplot2.org&#x2F;current&#x2F;</a></li><li>Coding Club&#8217;s data visualisation tutorial: <a href="https&#x3a;&#x2F;&#x2F;ourcodingclub&#x2e;github&#x2e;io&#x2F;2017&#x2F;01&#x2F;29&#x2F;datavis&#x2e;html">https:&#x2F;&#x2F;ourcodingclub.github.io&#x2F;2017&#x2F;01&#x2F;29&#x2F;datavis.html</a></li><li>Cookbook for R graphs: <a href="http&#x3a;&#x2F;&#x2F;www&#x2e;cookbook&#x2d;r&#x2e;com&#x2F;Graphs&#x2F;">http:&#x2F;&#x2F;www.cookbook-r.com&#x2F;Graphs&#x2F;</a></li><li>STHDA&#8217;s ggplot2 essentials: <a href="http&#x3a;&#x2F;&#x2F;www&#x2e;sthda&#x2e;com&#x2F;english&#x2F;wiki&#x2F;ggplot2&#x2d;essentials">http:&#x2F;&#x2F;www.sthda.com&#x2F;english&#x2F;wiki&#x2F;ggplot2-essentials</a></li></ul></ul><br><ul class="bullet"><li>R and RStudio in general:&nbsp;</li><ul class="bullet"><li>RStudio Cheatsheet <a href="https&#x3a;&#x2F;&#x2F;github&#x2e;com&#x2F;rstudio&#x2F;cheatsheets&#x2F;raw&#x2F;master&#x2F;rstudio&#x2d;ide&#x2e;pdf">https:&#x2F;&#x2F;github.com&#x2F;rstudio&#x2F;cheatsheets&#x2F;raw&#x2F;master&#x2F;rstudio-ide.pdf</a></li><li>RStudio online learning <a href="https&#x3a;&#x2F;&#x2F;www&#x2e;rstudio&#x2e;com&#x2F;online&#x2d;learning&#x2F;">https:&#x2F;&#x2F;www.rstudio.com&#x2F;online-learning&#x2F;</a></li><li>Basic and advanced manuals <a href="https&#x3a;&#x2F;&#x2F;cran&#x2e;r&#x2d;project&#x2e;org&#x2F;manuals&#x2e;html">https:&#x2F;&#x2F;cran.r-project.org&#x2F;manuals.html</a></li><li>Ask about any function or package <a href="http&#x3a;&#x2F;&#x2F;www&#x2e;rdocumentation&#x2e;org&#x2F;">http:&#x2F;&#x2F;www.rdocumentation.org&#x2F;</a></li><li>If you are looking how-to&#8217;s or how to fix an error <a href="http&#x3a;&#x2F;&#x2F;stackoverflow&#x2e;com&#x2F;questions&#x2F;tagged&#x2F;r">http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;tagged&#x2F;r</a></li><li>Lynda.com R training and tutorials <a href="https&#x3a;&#x2F;&#x2F;www&#x2e;lynda&#x2e;com&#x2F;R&#x2d;training&#x2d;tutorials&#x2F;1570&#x2d;0&#x2e;html">https:&#x2F;&#x2F;www.lynda.com&#x2F;R-training-tutorials&#x2F;1570-0.html</a> remember to sign in from UQ, <a href="https&#x3a;&#x2F;&#x2F;web&#x2e;library&#x2e;uq&#x2e;edu&#x2e;au&#x2F;library&#x2d;services&#x2F;training&#x2F;lyndacom&#x2d;online&#x2d;courses">https:&#x2F;&#x2F;web.library.uq.edu.au&#x2F;library-services&#x2F;training&#x2F;lyndacom-online-courses</a></li><li>ANOVA in R <a href="http&#x3a;&#x2F;&#x2F;homepages&#x2e;inf&#x2e;ed&#x2e;ac&#x2e;uk&#x2F;bwebb&#x2F;statistics&#x2F;ANOVA&#x5f;in&#x5f;R&#x2e;pdf">http:&#x2F;&#x2F;homepages.inf.ed.ac.uk&#x2F;bwebb&#x2F;statistics&#x2F;ANOVA_in_R.pdf</a> or <a href="https&#x3a;&#x2F;&#x2F;rcompanion&#x2e;org&#x2F;rcompanion&#x2F;e&#x5f;01&#x2e;html">https:&#x2F;&#x2F;rcompanion.org&#x2F;rcompanion&#x2F;e_01.html</a></li><li>If you need an R and&#x2F;or RStudio workshop&#x2F;session, please contact the Centre for Digital Scholarship staff to organise one for you. <a href="https&#x3a;&#x2F;&#x2F;web&#x2e;library&#x2e;uq&#x2e;edu&#x2e;au&#x2F;locations&#x2d;hours&#x2F;centre&#x2d;digital&#x2d;scholarship">https:&#x2F;&#x2F;web.library.uq.edu.au&#x2F;locations-hours&#x2F;centre-digital-scholarship</a></li><li>If you have further questions about R, please contact the CDS: cds@library.uq.edu.au</li></ul></ul><br><ul class="bullet"><li>Ask questions to other researchers during the weekly Hacky Hour: <a href="https&#x3a;&#x2F;&#x2F;rcc&#x2e;uq&#x2e;edu&#x2e;au&#x2F;meetups">https:&#x2F;&#x2F;rcc.uq.edu.au&#x2F;meetups</a></li><li>contact your unit&#x27;s statistician</li></ul><br><br><strong># Extras</strong><br><br>Datasets:<br><br><ul class="bullet"><li>NBA dataset: <a href="http&#x3a;&#x2F;&#x2F;datasets&#x2e;flowingdata&#x2e;com&#x2F;ppg2008&#x2e;csv">http:&#x2F;&#x2F;datasets.flowingdata.com&#x2F;ppg2008.csv</a></li><li>Protein dataset: <a href="https&#x3a;&#x2F;&#x2F;raw&#x2e;githubusercontent&#x2e;com&#x2F;ab604&#x2F;heatmap&#x2F;master&#x2F;leanne&#x5f;testdata&#x2e;csv">https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;ab604&#x2F;heatmap&#x2F;master&#x2F;leanne_testdata.csv</a></li></ul>&nbsp;&nbsp;&nbsp;&nbsp;<br><br><strong># Previous questions</strong><br><br>Why do you specify the number of colours for the function colorRampPalette as a separate object external to the function? (seems to have something to do with colorRampPalette being a function that returns another function (which takes an integer argument) but I find it hard to wrap my head around this!) --Jayden<br><br><ul class="indent"><li><strong>Response</strong>:</li></ul>&nbsp;&nbsp;&nbsp;&nbsp;<br>It looks like the colorRampPalette() function creates another function. So, when we did this:<br><br><ul class="indent"><li>my_palette &lt;- colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(n = 25)</li></ul><br>we created a function, and directly used it with the single argument `n = 25` to create a list of colours. In a way, the whole of &quot;colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))&quot; is the name of the function, followed by its arguments between parentheses.<br>That would be equivalent to the two separate steps here:<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp; # Create the custom function:<br>&nbsp;&nbsp;&nbsp; my_palette_function &lt;- colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))<br>&nbsp;&nbsp;&nbsp; # `my_palette_function()` is listed under &quot;Functions&quot; in you environment pane. If you run `my_palette_function`, it will print the code of the function.<br>&nbsp;&nbsp;&nbsp; # Create the object, using the custom function with `n = 25`:<br>&nbsp;&nbsp;&nbsp; my_palette &lt;- my_palette_function(n = 25)<br><br>Hope that makes sense! :) ~ Steph<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</body>
+</html>
