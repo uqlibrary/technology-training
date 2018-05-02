@@ -1,6 +1,6 @@
 Heatmaps in R for intermediate users
 ================
-2018-04-26
+2018-05-02
 
 > This document is edited as an R markdown file, and regularly exported as a GitHub document. The source code is [here](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd) The published printer-friendly version is [here](https://github.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md)
 
@@ -26,7 +26,10 @@ Open RStudio
 -   Make sure you have a working internet connection
 -   Open the ZENworks application
 -   Look for the letter R
--   Double click on RStudio which will install both R and RStudio \#\# What are we going to learn?
+-   Double click on RStudio which will install both R and RStudio
+
+What are we going to learn?
+---------------------------
 
 During this session, you will:
 
@@ -56,9 +59,20 @@ Material
 -   Click the "Create Project" button
 -   Create new folders with the following commands:
 
+``` r
+dir.create("scripts")
+dir.create("data")
+dir.create("plots")
+```
+
 **Exercise 2 - setting up**
 
 -   create a new R script file called "heatmaps.R" in the "scripts" folder
+
+``` r
+file.create("scripts/heatmaps.R")
+file.edit("scripts/heatmaps.R")
+```
 
 ### Method 1: the base `heatmap()` function
 
@@ -70,6 +84,13 @@ nba <- read.csv(file = "http://datasets.flowingdata.com/ppg2008.csv")
 ```
 
 *Step 2: explore the data*
+
+``` r
+dim(nba)
+str(nba)
+head(nba)
+View(nba)
+```
 
 *Step 3: update the dataset*
 
@@ -145,30 +166,10 @@ class(nba)
 
 ``` r
 nba_matrix <- data.matrix(nba) # convert a DF to a numeric matrix
-nba_matrix1 <- matrix(nba) # creates matrix from set of values
-nba_matrix2 <- as.matrix(nba) # attempts to turn its argument into a matrix
-class(nba_matrix2)
-```
-
-    ## [1] "matrix"
-
-``` r
-class(nba_matrix1)
-```
-
-    ## [1] "matrix"
-
-``` r
 class(nba_matrix)
 ```
 
     ## [1] "matrix"
-
-``` r
-identical(nba_matrix1, nba_matrix) # compare
-```
-
-    ## [1] FALSE
 
 *Step 5: make a heatmap*
 
@@ -200,7 +201,7 @@ heatmap(nba_matrix, scale = "column")
 
 #### Colours
 
-In the palette function `cm.colours(n)`, n is the number of colors (&gt;= 1) contained in the palette. It can be used in the `col` argument.
+In the palette function `cm.colors(n)`, n is the number of colors (&gt;= 1) contained in the palette. It can be used in the `col` argument.
 
 In the `margins` arguments, the first value is for column names and the second one for row names.
 
@@ -227,10 +228,6 @@ nba_heatmap <- heatmap(nba_matrix,
 
 ![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
-#### Play time!
-
--   Add labels
-
 #### Clean the environment
 
 We can start with a fresh environment, using:
@@ -242,21 +239,6 @@ rm(list = ls())
 ### Method 2: `gplots::heatmap.2()`
 
 If you don't have the `gplots` package yet, use `install.packages("gplots")`. We will also need the `RColorBrewer`, so use `install.packages("RColorBrewer")` if you don't have it installed already.
-
-``` r
-library(gplots)
-```
-
-    ## 
-    ## Attaching package: 'gplots'
-
-    ## The following object is masked from 'package:stats':
-    ## 
-    ##     lowess
-
-``` r
-library(RColorBrewer)
-```
 
 #### Protein data example
 
@@ -272,6 +254,13 @@ rawdata <- read.csv("https://raw.githubusercontent.com/ab604/heatmap/master/lean
 This `gplots` heatmap function provides a number of extensions to the standard R heatmap function.
 
 *Step 2: explore the data*
+
+``` r
+dim(rawdata)
+str(rawdata)
+head(rawdata)
+View(rawdata)
+```
 
 *Step 3: data munging*
 
@@ -391,39 +380,30 @@ my_palette <- colorRampPalette(c("blue",
 Now, let's use `heatmap.2()`:
 
 ``` r
-dev.off()
-```
-
-    ## null device 
-    ##           1
-
-``` r
-par(cex.main = 0.75)                    # Shrink title fonts on plot
 heatmap.2(data_scaled,                  # normalised data
-          density.info = "histogram",   # Plot histogram of data and colour key
-          trace = "none",               # Turn off trace lines from heatmap
-          col = my_palette,             # Use my colour scheme
-          cexRow = 0.5, cexCol = 0.75)  # Amend row and column label fonts
+          density.info = "histogram",   # plot histogram of data and colour key
+          trace = "none",               # turn off trace lines from heatmap
+          col = my_palette)             # use my colour scheme
 ```
+
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-24-1.png)
 
 Fix a few things and add a few extras:
 
 ``` r
+par(cex.main = 0.75)                  # shrink title fonts on plot
 heatmap.2(data_scaled,
           density.info = "histogram",
-          Colv = NA,                    # only row dendrogram
+          dendrogram = "row",         # only row dendrogram
           trace = "none",
           col = my_palette,
           main = "Difference between proteins",
-          margins = c(8, 5),            # more space from border
-          offsetRow = 1,                # space between plot and labels
-          keysize = 2,                  # make key and histogram fit
-          cexRow = 0.5, cexCol = 0.75)
+          margins = c(8, 5),          # more space from border
+          offsetRow = 1,              # space between plot and labels
+          keysize = 2,                # make key and histogram fit
+          cexRow = 0.5,               # amend row font
+          cexCol = 0.75)              # amend column font
 ```
-
-    ## Warning in heatmap.2(data_scaled, density.info = "histogram", Colv = NA, :
-    ## Discrepancy: Colv is FALSE, while dendrogram is `both'. Omitting column
-    ## dendogram.
 
 ![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-25-1.png)
 
@@ -436,6 +416,27 @@ rm(list = ls())
 #### (optional) Genechip data example
 
 The `BiocInstaller` package allows to use the `biocLite()` function to install extra packages, including the `affy` package which we need in this example (it contains the data). Install BiocInstaller with `source("https://bioconductor.org/biocLite.R")`, and then `affy` with the command `biocLite("affy")`
+
+``` r
+library(affy)
+data(SpikeIn)
+pms <- SpikeIn@pm
+str(pms)
+class(pms)
+# just the data, scaled across rows
+par(cex.main = 0.75)  
+labs <- colnames(pms)
+heatmap.2(pms, 
+          col = rev(heat.colors(16)), 
+          main = "SpikeIn@pm",
+          xlab = "Relative Concentration", 
+          ylab="Probeset",
+          trace = "none",
+          labCol = "",
+          add.expr = text( x = seq_along(labs), y = -2, srt = 45,
+                           labels = labs, xpd = TRUE),
+          scale="row")
+```
 
 Clean up your environment with:
 
@@ -482,6 +483,15 @@ pheatmap(d,
 ![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-32-1.png)
 
 You can save your plot with an extra argument:
+
+``` r
+pheatmap(d, 
+         main = "Pretty heatmap",
+         cellwidth =  50,
+         cellheight = 30,
+         fontsize = 12,
+         filename = "plots/heatmap.pdf")
+```
 
 Clean up your environment with:
 
@@ -707,9 +717,7 @@ rm(list = ls())
 Close Rproject
 --------------
 
--   File
--   close project
--   then close RStudio
+When closing RStudio, you should be prompted to save your workspace.
 
 Important links
 ---------------
