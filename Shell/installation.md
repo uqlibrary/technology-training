@@ -18,14 +18,14 @@ Here are the different options, **in order of preference**:
 
 ### Bash for Windows 10 on your laptop
 
-Windows 10 introduces the Windows Subsystem for Linux, which allows using Bash inside Windows. If you have admin rights on our laptop, follow these steps:
+Windows 10 introduces the Windows Subsystem for Linux, which allows using Bash inside Windows. If you have admin rights on your laptop, follow these steps:
 
 1. Go to Control Panel > Programs > Turn Windows features on or off;
 1. Tick the check box for  "Windows Subsystem for Linux";
 1. Restart your computer;
 1. Open the Microsoft Store, search for "Ubuntu" and install it;
 1. Launch Ubuntu from the start menu;
-1. Set your username and password to use this Linux Environment.
+1. Set your username and password to use this GNU/Linux Environment.
 
 ### Git for Windows on your laptop
 
