@@ -1,10 +1,8 @@
 ---
 title: Heatmaps in R for intermediate users
-date: 2018-04-26
+date: 2018-05-02
 output:
   github_document: default
-  pdf_document: default
-  html_document: default
 ---
 
 > This document is edited as an R markdown file, and regularly exported as a GitHub document.
@@ -32,6 +30,7 @@ Everything we write today will be saved in your R project. Please remember to sa
   * Open the ZENworks application
   * Look for the letter R 
   * Double click on RStudio which will install both R and RStudio 
+
 ## What are we going to learn?
 
 During this session, you will:
@@ -60,7 +59,7 @@ We will assume you are an R intermediate user and that you have used RStudio bef
   * Click the "Create Project" button
 * Create new folders with the following commands:
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=FALSE}
 dir.create("scripts")
 dir.create("data")
 dir.create("plots")
@@ -70,7 +69,7 @@ dir.create("plots")
 
 * create a new R script file called "heatmaps.R" in the "scripts" folder
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=FALSE}
 file.create("scripts/heatmaps.R")
 file.edit("scripts/heatmaps.R")
 ```
@@ -86,7 +85,7 @@ nba <- read.csv(file = "http://datasets.flowingdata.com/ppg2008.csv")
 
 *Step 2: explore the data*
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=FALSE}
 dim(nba)
 str(nba)
 head(nba)
@@ -121,12 +120,7 @@ The data was loaded into a data frame, but it has to be a **data matrix** to mak
 ```{r}
 class(nba)
 nba_matrix <- data.matrix(nba) # convert a DF to a numeric matrix
-nba_matrix1 <- matrix(nba) # creates matrix from set of values
-nba_matrix2 <- as.matrix(nba) # attempts to turn its argument into a matrix
-class(nba_matrix2)
-class(nba_matrix1)
 class(nba_matrix)
-identical(nba_matrix1, nba_matrix) # compare
 ```
 
 *Step 5: make a heatmap*
@@ -155,7 +149,7 @@ heatmap(nba_matrix, scale = "column")
 
 #### Colours
 
-In the palette function `cm.colours(n)`, n is the number of colors (>= 1) contained in the palette. It can be used in the `col` argument.
+In the palette function `cm.colors(n)`, n is the number of colors (>= 1) contained in the palette. It can be used in the `col` argument.
 
 In the `margins` arguments, the first value is for column names and the second one for row names.
 
@@ -178,10 +172,6 @@ nba_heatmap <- heatmap(nba_matrix,
                        Colv = NA)
 ```
 
-#### Play time!
-
-* Add labels
-
 #### Clean the environment
 
 We can start with a fresh environment, using:
@@ -194,7 +184,7 @@ rm(list = ls())
 
 If you don't have the `gplots` package yet, use `install.packages("gplots")`. We will also need the `RColorBrewer`, so use `install.packages("RColorBrewer")` if you don't have it installed already.
 
-```{r}
+```{r include=FALSE}
 library(gplots)
 library(RColorBrewer)
 ```
@@ -214,7 +204,7 @@ This `gplots` heatmap function provides a number of extensions to the standard R
 
 *Step 2: explore the data*
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=FALSE}
 dim(rawdata)
 str(rawdata)
 head(rawdata)
@@ -243,9 +233,8 @@ class(data_matrix)
 
 *Step 5: more munging*
 
-```{r}
+```{r eval=FALSE}
 ?scale
-
 ```
 
 `scale` is generic function whose default method centers and/or scales the columns of a numeric matrix. We **normalise** the data using `scale()`, **transposing** using `t()` to perform row-wise normalisation of the protein data. This normalises the data across each experiment so we can compare them to each other.
@@ -288,28 +277,27 @@ my_palette <- colorRampPalette(c("blue",
 Now, let's use `heatmap.2()`:
 
 ```{r}
-dev.off()
-par(cex.main = 0.75)                    # Shrink title fonts on plot
 heatmap.2(data_scaled,                  # normalised data
-          density.info = "histogram",   # Plot histogram of data and colour key
-          trace = "none",               # Turn off trace lines from heatmap
-          col = my_palette,             # Use my colour scheme
-          cexRow = 0.5, cexCol = 0.75)  # Amend row and column label fonts
+          density.info = "histogram",   # plot histogram of data and colour key
+          trace = "none",               # turn off trace lines from heatmap
+          col = my_palette)             # use my colour scheme
 ```
 
 Fix a few things and add a few extras:
 
 ```{r}
+par(cex.main = 0.75)                  # shrink title fonts on plot
 heatmap.2(data_scaled,
           density.info = "histogram",
-          Colv = NA,                    # only row dendrogram
+          dendrogram = "row",         # only row dendrogram
           trace = "none",
           col = my_palette,
           main = "Difference between proteins",
-          margins = c(8, 5),            # more space from border
-          offsetRow = 1,                # space between plot and labels
-          keysize = 2,                  # make key and histogram fit
-          cexRow = 0.5, cexCol = 0.75)
+          margins = c(8, 5),          # more space from border
+          offsetRow = 1,              # space between plot and labels
+          keysize = 2,                # make key and histogram fit
+          cexRow = 0.5,               # amend row font
+          cexCol = 0.75)              # amend column font
 ```
 
 Clean up the environment with:
@@ -323,7 +311,7 @@ rm(list = ls())
 The `BiocInstaller` package allows to use the `biocLite()` function to install extra packages, including the `affy` package which we need in this example (it contains the data).
 Install BiocInstaller with `source("https://bioconductor.org/biocLite.R")`, and then `affy` with the command `biocLite("affy")`
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=FALSE}
 library(affy)
 data(SpikeIn)
 pms <- SpikeIn@pm
@@ -362,7 +350,7 @@ library(pheatmap) # stands for "pretty heatmaps"
 
 How does `pheatmap` differ?
 
-```{r}
+```{r eval=FALSE}
 ?pheatmap
 ```
 
@@ -388,7 +376,7 @@ pheatmap(d,
 
 You can save your plot with an extra argument:
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=FALSE}
 pheatmap(d, 
          main = "Pretty heatmap",
          cellwidth =  50,
@@ -429,7 +417,6 @@ value_expression <- data.frame(genes = name_genes,
 names(value_expression)[2:21] <- name_patients
 ```
 
- 
 Melt the dataframe:
 
 ```{r}
@@ -570,11 +557,10 @@ rm(list = ls())
 
 ## Close Rproject
 
-- File
-- close project
-- then close RStudio
+When closing RStudio, you should be prompted to save your workspace.
 
 ## Important links
+
 * RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
 * RStudio online learning https://www.rstudio.com/online-learning/
 * Basic and advanced manuals https://cran.r-project.org/manuals.html
