@@ -16,7 +16,7 @@ On macOS, the default shell is Bash, which you can use by opening the Terminal u
 
 Here are the different options, **in order of preference**:
 
-### Bash for Windows 10 on your laptop
+### Ubuntu for Windows 10 on your laptop
 
 Windows 10 introduces the Windows Subsystem for Linux, which allows using Bash inside Windows. If you have admin rights on your laptop, follow these steps:
 
@@ -33,17 +33,12 @@ If you don't have Windows 10, or if you can't install Ubuntu for Windows:
 
 1. Go to the Git for Windows website and click on "Download": https://gitforwindows.org/
 1. Download and execute the installer that starts with "Git" and finishes with ".exe";
-1. Launch "Git Bash" from the start menu.
+1. Once installed, launch "Git Bash" from the start menu.
 
 ### Git for Windows on a library computer
 
 If you can't install software on your own laptop, you can still use the library computers:
 
-1. Go to ZENworks;
+1. Launch ZENworks;
 1. Search for "Git for Windows" and double-click on the icon to install it;
-1. Once installed, launch "Git Bash" from the start menu;
-1. Type the following command (with `<yourusername>` replaced by your username, e.g. `s1234567`) and press enter:
-```shell
-cd /C/home/<yourusername>
-```
-That command changes your working directory to your home directory. (More on that during the sessions!)
+1. Once installed, launch "Git Bash" from the start menu.
