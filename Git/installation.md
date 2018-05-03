@@ -38,7 +38,7 @@ If you don't have Windows 10, or if you can't install Ubuntu for Windows:
 
 1. Go to the Git for Windows website and click on "Download": https://gitforwindows.org/
 1. Download and run the installer that starts with "Git" and finishes with ".exe";
-1. Launch "Git Bash" from the start menu.
+1. Once installed, launch "Git Bash" from the start menu.
 
 ### Git for Windows on a library computer
 
@@ -46,9 +46,4 @@ If you can't install software on your own laptop, you can still use the library 
 
 1. Go to ZENworks;
 1. Search for "Git for Windows" and double-click on the icon to install it;
-1. Once installed, launch "Git Bash" from the start menu;
-1. Type the following command (with `<yourusername>` replaced by your username, e.g. `s1234567`) and press enter:
-```shell
-cd /C/home/<yourusername>
-```
-That command changes your working directory to your home directory.
+1. Once installed, launch "Git Bash" from the start menu.
