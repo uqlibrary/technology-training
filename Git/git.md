@@ -440,4 +440,75 @@ Switch roles and repeat.
 
 Use the GitHub interface to add a comment to your partner's commit and suggest something. See your notifications afterward.
 
-What do I do when changes conflict with someone else's?
+### Conflicts
+
+> What do I do when changes conflict with someone else's?
+
+As soon as people can work in parallel, they’ll likely step on each other’s toes. This will even happen with a single person: if we are working on a piece of software on both our laptop and a server in the lab, we could make different changes to each copy. Version control helps us manage these conflicts by giving us tools to resolve overlapping changes.
+
+To see how we can resolve conflicts, we must first create one. The file mars.txt is currently in the same state in both copies of the `planets` repository.
+
+The Collaborator can add a line to their partner's copy, and push to GitHub:
+
+```bash
+nano mars.txt
+git add mars.txt
+git commit -m "Add a line in my friend's file"
+git push origin master
+```
+
+Now let’s have the Owner make a different change to their own copy _without pulling from GitHub beforehand_:
+
+```bash
+nano mars.txt
+```
+
+The Owner can commit the change locally:
+
+```bash
+git add mars.txt
+git commit -m "Add a line in my own copy"
+git push origin master
+```
+
+But Git won't let us push to GitHub:
+
+```bash
+git push origin master
+```
+
+Git rejects the push because it detects that the remote repository has new updates that have not been incorporated into the local branch. What we have to do is **pull** the changes from GitHub, **merge** them into the copy we’re currently working in, and then **push** that. Let’s start by pulling:
+
+```bash
+git pull origin master
+```
+
+Git detects that changes made to the local copy overlap with those made to the remote repository, and therefore refuses to merge the two versions to stop us from trampling on our previous work. The conflict is marked in in the affected file:
+
+```bash
+cat mars.txt
+```
+
+Our change is preceded by `<<<<<<< HEAD`. Git has then inserted `=======` as a separator between the conflicting changes and marked the end of the content downloaded from GitHub with `>>>>>>>`. (The string of letters and digits after that marker identifies the commit we’ve just downloaded.)
+
+It is now up to the Owner to fix this conflict:
+
+```bash
+nano mars.txt
+```
+
+They can now add and commit to their local repo, and then push the changes to GitHub:
+
+```bash
+git add mars.txt
+git commit -m "Merge changes from GitHub"
+git push origin master
+```
+
+Git keeps track of merged files. The Collaborator can now pull the changes from GitHub:
+
+```bash
+git pull origin master
+git log -3
+```
+
