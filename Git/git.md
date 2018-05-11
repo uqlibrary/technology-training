@@ -90,4 +90,134 @@ git status
 
 ### Tracking changes
 
+> How do we record changes and make notes about them?
+
+You should still be in the `planets` directory, which you can check with the `pwd` command.
+
+Let's create a new text file that contains some notes about the Red Planet’s suitability as a base. We'll use the `nano` text editor:
+
+```
+nano mars.txt
+```
+
+Type the following text into it:
+
+```
+Cold and dry, but everything is my favorite color
+```
+
+Write out with <kbd>Ctrl</kbd>+<kbd>O</kbd> and exit nano with <kbd>Ctrl</kbd>+<kbd>X</kbd>. You can check the contents of your new file with the `cat` command:
+
+```
+cat mars.txt
+```
+
+Now, check the status of our project:
+
+```
+git status
+```
+
+Git noticed there is a new file. The "untracked files” message means that there’s a file in the directory that Git isn’t keeping track of. We can tell Git to track a file using git add:
+
+```
+git add mars.txt
+```
+
+... and use `git status` again to see what happenned:
+
+```
+git status
+```
+
+Git now knows that it's supposed to keep track of `mars.txt`, but it hasn’t recorded these changes as a commit yet. To get it to do that, we need to run one more command:
+
+```
+git commit -m "Start notes on Mars as a base"
+```
+
+When we run `git commit`, Git takes everything we have told it to save by using `git add` and stores a copy permanently inside the special .git directory. This permanent copy is called a **commit** (or **revision**) and it is given a short identifier.
+
+We use the `-m` flag (for "message") to record a short descriptive comment that will help us remember what was done and why.
+
+If we run `git status` now:
+
+```
+git status
+```
+
+To see the recent history, we can use `git log`:
+
+```
+git log
+```
+
+`git log` lists all commits made to a repository in reverse chronological order. The listing for each commit includes the commit’s full identifier (which starts with the same characters as the short identifier printed by the `git commit` command earlier), the commit’s author, when it was created, and the log message Git was given when the commit was created.
+
+Now, let's add a line to our text file:
+
+```
+nano mars.txt
+```
+
+After writing out and saving, let's check the status:
+
+```
+git status
+```
+
+We have changed this file, but we haven’t told Git we will want to save those changes (which we do with `git add`) nor have we saved them (which we do with `git commit`). So let’s do that now. It is good practice to always review our changes before saving them. We do this using `git diff`. This shows us the differences between the current state of the file and the most recently saved version:
+
+```
+git diff
+```
+
+There is a quite a bit of cryptic-looking information in there: it contains the command used to compare the files, the names and identifiers of the files, and finally the actual differences. The `+` sign indicates which line was added.
+
+It is now time to commit it:
+
+```
+git commit -m "<your comment>"
+```
+
+That didn't work, because we forgot to use `git add` first. Let's fix that:
+
+```
+git add
+git commit -m "<your comment>"
+```
+
+Using `git add` allows us to select which changes are going to make it into a commit, and which ones won't. It sends them to what is called the **staging area**. In a way, `git add` specifies _what_ will go in a snapshot (putting things in the staging area), and git commit then actually _takes_ the snapshot.
+
+We can watch a new edit move from our text editor to the staging area and into long-term storage as a commit:
+
+```
+nano mars.txt
+git diff
+```
+
+This shows the difference between the working directory and the staging area.
+
+Now, let's add our edited file to the staging area and check again the difference:
+
+```
+git add mars.txt
+git diff
+```
+
+There is no output: as far as Git can tell, there’s no difference between what it’s been asked to save permanently and what’s currently in the directory. However, we can do this:
+
+```
+git diff --staged
+```
+
+... it show the difference between the last commited change and the staging area.
+
+Let's save our changes and check our status:
+
+```
+git commit -m "<your comment>"
+git status
+```
+
 
