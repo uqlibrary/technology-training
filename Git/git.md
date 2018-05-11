@@ -351,3 +351,40 @@ git commit -m "Ignore data files"
 git status
 ```
 
+### Remotes in GitHub
+
+> How do I share my changes with others on the web?
+
+Version control really becomes extra useful when we begin to collaborate with other people. We already have most of the machinery we need to do this; the only thing missing is to copy changes from one repository to another.
+
+It is easiest to use on copy as a central hub, stored online.
+
+Let's share our repository with the world. Log into GitHub and create a new repository called `planets` ("+" in the top-right corner).
+
+Our local repository (on our computer) contains our recent work, but the **remote repository** on GitHub's servers doesn't.
+
+We now need to connect the two: we do this by making the GitHub repository a remote for the local repository. The home page of the repository on GitHub includes the URL we need to identify it, under "HTTPS". Copy it to your clipboard, and in your local repository, run the following command:
+
+```bash
+git remote add origin https://github.com/<your_username>/planets.git
+```
+
+The name `origin` is a local nickname for your remote repository. We could use something else if we wanted to, but `origin` is by far the most common choice.
+
+Now, we can **push** our changes from our local repository to the remote on GitHub:
+
+```bash
+git push origin master
+```
+
+You can see on GitHub that you changes were pushed to the remote repository.
+
+You can edit files directly on GitHub if you want. Try adding a line on a file.
+
+If you do that, you will then need to **pull** changes from the remote repository to your local one before further editing:
+
+```bash
+git pull origin master
+```
+
+`git push` sends commited changes to a remote repository, whereas `git pull` gets commited changes from the remote to your local repository.
