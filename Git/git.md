@@ -213,11 +213,106 @@ git diff --staged
 
 ... it show the difference between the last commited change and the staging area.
 
-Let's save our changes and check our status:
+Let's save our changes and check our status and history:
 
 ```
 git commit -m "<your comment>"
 git status
+git log
 ```
 
+**Challenge 1**
+
+The staging area can hold changes from any number of files that you want to commit as a single snapshot.
+
+1. Add some text to mars.txt noting your decision to consider Venus as a base
+1. Create a new file venus.txt with your initial thoughts about Venus as a base for you and your friends
+1. And changes from both files to the staging area, and commit those changes.
+
+### Exploring history
+
+> How can we identify old versions of files, review changes and recover old versions?
+
+As we saw in the previous lesson, we can refer to commits by their identifiers. You can refer to the _most recent commit_ of the working directory by using the identifier `HEAD`.
+
+Let's add a line to our file:
+
+```
+nano mars.txt
+```
+
+We can now check the difference with the head:
+
+```
+git diff HEAD mars.txt
+```
+
+Which is the same as using `git diff mars.txt`. What is useful is that we can refer to previous commits, for example for the commit before HEAD:
+
+```
+git diff HEAD~1 mars.txt
+```
+
+Similarly, `git show` can help us find out what was changed in a specific commit:
+
+```
+git show HEAD~2 mars.txt
+```
+
+We can also use the unique 7-character identifiers that were attributed to each commit:
+
+```
+git diff XXXXXXX mars.txt
+```
+
+How do we restore older versions of our file?
+
+Overwrite your whole text with one single new line:
+
+```
+nano mars.txt
+git diff
+git status
+```
+
+We can put things back the way they were by using `git checkout`:
+
+```bash
+git checkout HEAD mars.txt
+cat mars.txt
+```
+
+`git checkout` checks out (i.e., restores) an old version of a file. In this case, we’re telling Git that we want to recover the version of the file recorded in `HEAD`, which is the last saved commit. If we want to go back even further, we can use a commit identifier instead:
+
+```bash
+git log -3
+git checkout XXXXXXX mars.txt
+cat mars.txt
+git status
+```
+
+Notice that the changes are on the staged area. Again, we can put things back the way they were by using git checkout:
+
+```bash
+git checkout HEAD mars.txt
+cat mars.txt
+```
+
+**Challenge 2**
+
+Jennifer has made changes to the Python script that she has been working on for weeks, and the modifications she made this morning “broke” the script and it no longer runs. She has spent ~ 1hr trying to fix it, with no luck…
+  
+Luckily, she has been keeping track of her project’s versions using Git! Which commands below will let her recover the last committed version of her Python script called data_cruncher.py?
+ 
+1. `git checkout HEAD`
+1. `git checkout HEAD data_cruncher.py`
+1. `git checkout HEAD~1 data_cruncher.py`
+1. `git checkout <unique ID of last commit> data_cruncher.py`
+1. Both 2 and 4
+
+`git revert` is used if the bad change has _already_ been commited (whereas `git checkout` is used if the changes have not yet been commited). If you want to revert the last commited change, you can use the following command:
+
+```bash
+git revert HEAD
+```
 
