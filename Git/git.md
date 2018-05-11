@@ -512,3 +512,8 @@ git pull origin master
 git log -3
 ```
 
+### Hosting
+
+GitHub? GitLab? BitBucket?
+
+External company, purchased domain and host, or local server at the lab?
