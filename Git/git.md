@@ -388,3 +388,56 @@ git pull origin master
 ```
 
 `git push` sends commited changes to a remote repository, whereas `git pull` gets commited changes from the remote to your local repository.
+
+### Collaborating
+
+> How do we use version control to collaborate?
+
+Now, let's get into pairs: one person is the "Owner", the other is the "Collaborator".
+
+First, the Owner needs to give the collaborator editing access to the repository. On GitHub, go to "Settings > Collaborators" and search for your partner's username.
+
+The Collaborator can accept the invitation by navigating to their notifications.
+
+Next, the Collaborator needs to download a copy of the Owner's repository to their machine, which is called "**cloning a repository**". To do that in your Desktop directory:
+
+```bash
+git clone https://github.com/<owner_username>/planets.git ~/Desktop/partner-planets
+```
+
+The Collaborator can now make changes in their clone of the Owner's repository:
+
+```bash
+cd ~/Desktop/partner-planets
+nano pluto.txt
+git commit -m "add notes about Pluto"
+```
+
+Then push the change to the owner's repository on GitHub:
+
+```bash
+git push origin master
+```
+
+We didn't have to create a remote called `origin`, that was done by default by Git when cloning the repository.
+
+You can see that the changes are now live on GitHub.
+
+The Owner can now download the Collaborator's changes from GitHub:
+
+```bash
+git pull origin master
+```
+
+If you collaborate on a remote repository, remember to `pull` before working!
+
+**Challenge 3**
+
+Switch roles and repeat.
+
+
+**Challenge 4**
+
+Use the GitHub interface to add a comment to your partner's commit and suggest something. See your notifications afterward.
+
+What do I do when changes conflict with someone else's?
