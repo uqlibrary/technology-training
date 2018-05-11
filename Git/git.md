@@ -316,3 +316,38 @@ Luckily, she has been keeping track of her project’s versions using Git! Which
 git revert HEAD
 ```
 
+### Ignoring things
+
+> How can I tell git to ignore things?
+
+Sometimes, we don't want git to track files like automatic backup files or intermediate files created during an analysis.
+
+Say you create a bunch of `.dat` files like so:
+
+```
+mkdir
+touch a.dat b.dat c.dat
+git status
+```
+
+If you don't want to track them, create a `.gitignore` file:
+
+```bash
+nano .gitignore
+```
+
+... and add the following line to it:
+
+```
+*.dat
+```
+
+That will make sure no file finishing with `.dat` will be tracked by git.
+
+```bash
+git status
+git add .gitignore
+git commit -m "Ignore data files"
+git status
+```
+
