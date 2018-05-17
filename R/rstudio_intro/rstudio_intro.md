@@ -1,21 +1,11 @@
 R for beginners using RStudio
 ===
 
-`version: 2018-04-13`
+`version: 2018-05-17`
 
-:::info
-This document is formatted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/rywVJcdtf#
-The source code is available on GitHub: https://github.com/stragu/CDS/blob/master/R/RStudio_intro.md
-:::
-
-Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving: https://framaforms.org/cds-sessions-feedback-1521148191
+> These notes are available on GitHub: https://github.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro.md
 
 If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
-
-Everything we write today will be saved in your R project. If you use the University computers, please remember to save your files in your H drive or USB.
-
-Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad: https://etherpad.wikimedia.org/p/cds-rstudio
-After the workshop you can save this etherpad with the important links and information (top right double arrow, export).
 
 ## RStudio
 
@@ -247,24 +237,37 @@ str(gapminder)
 
 Remember that you can check what is in your environment with `ls()`, and remove objects with `rm()`.
 
+### Packages
+
+Packages add functionnalities to R and RStudio. There are more the 15000 available.
+
+You can see the list of installed packages in your "Packages" tab.
+
+We are going to install and load a new package that is useful for data visualisation: `ggplot2`.
+
+```
+?install.packages
+?ggplot
+??ggplot
+install.packages("ggplot2")
+?ggplot
+?ggplot2::ggplot
+library(ggplot2)
+?ggplot
+```
+
 ### Plotting
 
-R has a number of plotting functions to visualise data in many different ways. Let's test the basic function `plot()`:
+R has a number of base plotting functions to visualise data in many different ways, but the package `ggplot2` introduces a logic that makes data visualisation more streamlined, called "Grammar of graphics".
+
+In its most basic form, a `ggplot2` plot needs a dataset, data mapped to aesthetics, and a geometry.
 
 ```
-plot(pop~year, data = gapminder, main = "Population growth by year", xlab = "year", ylab = "population")
+ggplot(gapminder, aes(x = year, y = pop)) +
+  geom_point()
 ```
 
-We are now going to create the same plot, but with extra wrapping functions that will allow us to save a copy of it.
-
-```
-png(filename = "plots/plot_population.png")
-plot(pop~year, data = gapminder, main = "Population growth by year", xlab = "year", ylab = "population")
-dev.off()
-```
-
-In this set of commands, `png()` creates a graphics file, `plot()` plots the data, and `dev.off()` shuts down the graphics device.
-
+We can then add layers, map mor data to aesthetics, and further modify elements.
 
 ### More shortcuts
 
@@ -294,19 +297,6 @@ In this set of commands, `png()` creates a graphics file, `plot()` plots the dat
 * Show Packages Ctrl+7
 * Show Environment Ctrl+8
 * Show Git/SVN or viewer Ctrl+9
-
-### Packages
-
-```
-?install.packages
-?ggplot
-??ggplot
-install.packages("ggplot2")
-?ggplot
-?ggplot2::ggplot
-library(ggplot2
-?ggplot
-```
 
 ### Demos
 
