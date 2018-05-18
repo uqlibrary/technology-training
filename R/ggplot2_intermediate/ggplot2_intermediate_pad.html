@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>cds-ggplot2-inter</title>
+<meta name="generator" content="Etherpad">
+<meta name="author" content="Etherpad">
+<meta name="changedby" content="Etherpad">
+<meta charset="utf-8">
+<style>
+* {
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  line-height: 17px;
+}
+ul.indent {
+  list-style-type: none;
+}
+ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+body > ol {
+  counter-reset: first second third fourth fifth sixth seventh eigth ninth tenth eleventh twelth thirteenth fourteenth fifteenth sixteenth;
+}
+ol > li:before {
+  content: counter(first) ". ";
+  counter-increment: first;
+}
+ol > ol > li:before {
+  content: counter(first) "." counter(second) ". ";
+  counter-increment: second;
+}
+ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) ". ";
+  counter-increment: third;
+}
+ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) ". ";
+  counter-increment: fourth;
+}
+ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) ". ";
+  counter-increment: fifth;
+}
+ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) ". ";
+  counter-increment: sixth;
+}
+ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) ". ";
+  counter-increment: seventh;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) ". ";
+  counter-increment: eigth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) ". ";
+  counter-increment: ninth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) ". ";
+  counter-increment: tenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) ". ";
+  counter-increment: eleventh;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) ". ";
+  counter-increment: twelth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) ". ";
+  counter-increment: thirteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) ". ";
+  counter-increment: fourteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) "." counter(fifteenth) ". ";
+  counter-increment: fifteenth;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > li:before {
+  content: counter(first) "." counter(second) "." counter(third) "." counter(fourth) "." counter(fifth) "." counter(sixth) "." counter(seventh) "." counter(eigth) "." counter(ninth) "." counter(tenth) "." counter(eleventh) "." counter(twelth) "." counter(thirteenth) "." counter(fourteenth) "." counter(fifteenth) "." counter(sixthteenth) ". ";
+  counter-increment: sixthteenth;
+}
+ol {
+  text-indent: 0px;
+}
+ol > ol {
+  text-indent: 10px;
+}
+ol > ol > ol {
+  text-indent: 20px;
+}
+ol > ol > ol > ol {
+  text-indent: 30px;
+}
+ol > ol > ol > ol > ol {
+  text-indent: 40px;
+}
+ol > ol > ol > ol > ol > ol {
+  text-indent: 50px;
+}
+ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 60px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 70px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 80px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 90px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 100px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 110px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 120px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 130px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 140px;
+}
+ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol > ol {
+  text-indent: 150px;
+}
+
+</style>
+</head>
+<body>
+<strong># Useful links</strong><br><br>This <strong>pad</strong> is synchronised as you type, so that everyone viewing this page sees the same text. This allows you to collaborate seamlessly on documents!<br>It can be accessed via the link <a href="https&#x3a;&#x2F;&#x2F;etherpad&#x2e;wikimedia&#x2e;org&#x2F;p&#x2F;cds&#x2d;ggplot2&#x2d;inter">https:&#x2F;&#x2F;etherpad.wikimedia.org&#x2F;p&#x2F;cds-ggplot2-inter</a><br><strong><em>It is all you need to have open for this session (+ RStudio)</em></strong><br><br>The <strong>run-through</strong> of the session is online, so you don&#x27;t need to take notes: <a href="https&#x3a;&#x2F;&#x2F;github&#x2e;com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;ggplot2&#x5f;intermediate&#x2F;ggplot2&#x5f;intermediate&#x2e;md">https:&#x2F;&#x2F;github.com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;ggplot2_intermediate&#x2F;ggplot2_intermediate.md</a><br><br><strong>Before leaving</strong>, please fill in this short survey so we can improve our courses: <a href="https&#x3a;&#x2F;&#x2F;framaforms&#x2e;org&#x2F;cds&#x2d;sessions&#x2d;feedback&#x2d;1521148191">https:&#x2F;&#x2F;framaforms.org&#x2F;cds-sessions-feedback-1521148191</a><br><br>If you want to review the <strong>installation instructions</strong>: <a href="https&#x3a;&#x2F;&#x2F;github&#x2e;com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;Installation&#x2e;md">https:&#x2F;&#x2F;github.com&#x2F;stragu&#x2F;CDS&#x2F;blob&#x2F;master&#x2F;R&#x2F;Installation.md</a><br>If you are using a Library computer:<br><ul class="bullet"><li>Make sure you have a working Internet connection</li><li>In the Windows menu search for &quot;ZENworks&quot;</li><li>Under &quot;R&quot;, double-click on &quot;RStudio&quot;</li><li>Open RStudio from the Windows menu</li></ul><br>Everything we write today will be saved in your R project. Please remember to save it on your H drive or USB stick if you a library computer.<br><br><strong># Attendees (name &#x2F; affiliation &#x2F; email &#x2F; social media handle)</strong><br><em>[only what you feel comfortable with!]</em><br><br><ul class="bullet"><li>St&#233;phane Guillou &#x2F; CDS + School of Agriculture &#x2F; s.guillou@uq.edu.au &#x2F; mastodon: stragu@mastodon.indie.host</li><li><br></li><li><br></li><li><br></li></ul><strong># Challenges</strong><br><br><strong>*Exercise 1 - New RStudio Project*</strong><br><br>* Click the &quot;File&quot; menu button (top left corner), then &quot;New Project&quot;<br>* Click &quot;New Directory&quot;<br>* Click &quot;New Project&quot; (&quot;Empty project&quot; if you have an older version of RStudio)<br>* In &quot;Directory name&quot;, type the name of your project, e.g. &quot;ggplot2_inter&quot;<br>* Select the folder where to locate your project: the `Documents&#x2F;RProjects` folder, which you can create if it doesn&#x27;t exist yet.<br>* Click the &quot;Create Project&quot; button<br>* create three folders: &quot;scripts&quot;, &quot;data&quot; and &quot;plots&quot;.<br><br><br><strong>*Exercise 2 - Setting up: packages and scripts*</strong><br><br>* install and load the package ggplot2<br>&nbsp; * install only if you haven&#x27;t yet done so using&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `install.packages(&quot;ggplot2&quot;)`<br>&nbsp; * load the package using: `library(ggplot2)`<br>&nbsp; * In the &quot;scripts&quot; folder create (and open) a new R script file called &quot;gapminder_example.R&quot;:<br><br>file.create(&quot;scripts&#x2F;gapminder_example.R&quot;)&nbsp; # create<br>file.edit(&quot;scripts&#x2F;gapminder_example.R&quot;)&nbsp;&nbsp;&nbsp; # open<br><br><br><strong>*Exercise 3 &#8211; Read the onine data into an R object*</strong><br><br>Using the following syntax, how can you read the online CSV data into an R object?<br><br>```<br>gapminder &lt;- ...<br>```<br><br><br><strong>*Exercise 4 - Explore the dataset*</strong><br><br>You can use `dim()`, `str()`, `head()`, `tail()` and `View()` to explore your dataset.<br><br><br><strong>*Exercise 5 &#8211; Choosing colours*</strong><br><br>The `colourpicker` package is a handy addin for RStudio. Install it and use the new &quot;Addins &gt; Colour Picker&quot; menu to pick a different colour for your geometry.<br><br><br><strong>*Exercise 6 &#8211; Colour according to continent*</strong><br><br>Modify your plot to colour the points according to the continent variable.<br><br><br><strong>*Exercise 7 - Modify the axis breaks*</strong><br><br>Our x axis is not detailed enough.<br><br>We can create a list of all the years when data was collected with the `unique()` function, and modify our plot to add more breaks to our x axis with the `scale_x_continuous()` function. How would you use them?<br><br><br><strong>*Exercise 8 - Modify your y scale range*</strong><br><br>To zoom in, we might want to restrict the range by using `ylim()`.<br><br><br><strong>*Exercise 9 - Create a histogram of life expectancy*</strong><br><br>Search for the histogram geometry function, and plot the life expectancy.<br>How can we modify the bars?<br><br><strong>## Extras</strong><br><br>URL for the dataset: <a href="https&#x3a;&#x2F;&#x2F;raw&#x2e;githubusercontent&#x2e;com&#x2F;resbaz&#x2F;r&#x2d;novice&#x2d;gapminder&#x2d;files&#x2F;master&#x2F;data&#x2F;gapminder&#x2d;FiveYearData&#x2e;csv">https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;resbaz&#x2F;r-novice-gapminder-files&#x2F;master&#x2F;data&#x2F;gapminder-FiveYearData.csv</a><br><br>Erro bars with stat_summary() : <a href="https&#x3a;&#x2F;&#x2F;stackoverflow&#x2e;com&#x2F;questions&#x2F;44872951&#x2F;how&#x2d;do&#x2d;i&#x2d;add&#x2d;se&#x2d;error&#x2d;bars&#x2d;to&#x2d;my&#x2d;barplot&#x2d;in&#x2d;ggplot2&#x3f;utm&#x5f;medium&#x3d;organic&amp;utm&#x5f;source&#x3d;google&#x5f;rich&#x5f;qa&amp;utm&#x5f;campaign&#x3d;google&#x5f;rich&#x5f;qa">https:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;44872951&#x2F;how-do-i-add-se-error-bars-to-my-barplot-in-ggplot2?utm_medium=organic&amp;utm_source=google_rich_qa&amp;utm_campaign=google_rich_qa</a><br>Cookbook for erro bars: <a href="http&#x3a;&#x2F;&#x2F;www&#x2e;cookbook&#x2d;r&#x2e;com&#x2F;Graphs&#x2F;Plotting&#x5f;means&#x5f;and&#x5f;error&#x5f;bars&#x5f;&#x28;ggplot2&#x29;&#x2F;">http:&#x2F;&#x2F;www.cookbook-r.com&#x2F;Graphs&#x2F;Plotting_means_and_error_bars_(ggplot2)&#x2F;</a><br><br>Cookbook for colours: <a href="http&#x3a;&#x2F;&#x2F;www&#x2e;cookbook&#x2d;r&#x2e;com&#x2F;Graphs&#x2F;Colors&#x5f;&#x28;ggplot2&#x29;&#x2F;">http:&#x2F;&#x2F;www.cookbook-r.com&#x2F;Graphs&#x2F;Colors_(ggplot2)&#x2F;</a><br><br><strong>## Questions for later?</strong><br><br><br>
+</body>
+</html>
