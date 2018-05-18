@@ -26,12 +26,12 @@ Files available for each course, hosted in this repository:
 ### Quick access to course resources
 
 | Title | Course notes | Event description | Live Etherpad |
-|:-|-|-|-|
+|:-|:-:|:-:|:-:|
 | Introduction to R and RStudio | [md](https://github.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro.md) | [txt](https://github.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-rstudio) |
 | Data manipulation with dplyr | [md](https://github.com/stragu/CDS/blob/master/R/dplyr/dplyr.md) | [txt](https://github.com/stragu/CDS/blob/master/R/dplyr/dplyr_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-dplyr) |
 | Introduction to ggplot2 | [md](https://github.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.md) | [txt](https://github.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-intro) |
-| ggplot2 – intermediate | [md]()<sup>[source](https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [txt](https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-inter) |
-| Heatmaps with R | [md](https://github.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md)<sup>[source](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd)</sup> | [txt](https://github.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
+| ggplot2 – intermediate | [md](https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [txt](https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-inter) |
+| Heatmaps with R | [md](https://github.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md) <sup>[source](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd)</sup> | [txt](https://github.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
 | Introduction to the Unix Shell | [md](https://github.com/stragu/CDS/blob/master/Shell/shell_intro.md) | [txt](https://github.com/stragu/CDS/blob/master/Shell/shell_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-shell) |
 | Git revision control for collaboration | [md](https://github.com/stragu/CDS/blob/master/Git/git.md) | [txt](https://github.com/stragu/CDS/blob/master/Git/git_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-git) |
 | Cleaning up data with OpenRefine (coming next) | ... | ... | ... |
