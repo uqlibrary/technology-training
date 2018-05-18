@@ -217,10 +217,10 @@ ggplot(data = gapminder,
 To reuse the constant base of our plot (the `ggplot()` call and the point geometry), we can create an object:
 
 ```{r}
-ggbase <- ggplot(gapminder,
-                 aes(x = year,
-                     y = pop,
-                     colour = continent)) +
+gg_scatter <- ggplot(gapminder,
+                     aes(x = year,
+                         y = pop,
+                         colour = continent)) +
   geom_point()
 ```
 
