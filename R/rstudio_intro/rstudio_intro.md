@@ -216,7 +216,8 @@ Instead of opening an RProject, you can open an R script and directly execute it
 Copy, paste and execute the following two commands:
 
 ```
-download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = "data/gapminderdata.csv")
+download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv",
+  destfile = "data/gapminderdata.csv")
 gapminder <- read.csv("data/gapminderdata.csv")
 ```
 
@@ -239,9 +240,9 @@ Remember that you can check what is in your environment with `ls()`, and remove 
 
 ### Packages
 
-Packages add functionnalities to R and RStudio. There are more the 15000 available.
+Packages add functionnalities to R and RStudio. There are more than 15000 available.
 
-You can see the list of installed packages in your "Packages" tab.
+You can see the list of installed packages in your "Packages" tab, or by using the `library()` function without any argument.
 
 We are going to install and load a new package that is useful for data visualisation: `ggplot2`.
 
@@ -267,7 +268,7 @@ ggplot(gapminder, aes(x = year, y = pop)) +
   geom_point()
 ```
 
-We can then add layers, map mor data to aesthetics, and further modify elements.
+We can then add layers, map mor data to aesthetics, and further modify elements. For example, we can map the `colour` easthetic to the `continent` data.
 
 ### More shortcuts
 
@@ -312,9 +313,8 @@ demo(graphics)
 * close project (It asks if you want to save your data)
 * close RStudio
 
-## After the workshop
-
-Please fill in the feedback form before leaving: https://framaforms.org/cds-sessions-feedback-1521148191
+When you create a **project** in RStudio, it create an .Rproj file that gathers information about your project, and it allows you to save your **workspace** inside an .Rdata file. The .Rdata file is by default used to reload your workspace when you open your Rproject again. That brings back quite a few things, including the objects loaded in your **environment**, whatever source file (e.g. script) you had open, and your command history. You will find your command history in the "History" tab (upper right panel): all the commands that we used should be in there.
+The console, on the other hand, only shows a brand new R **session**. Sessions are not persistent, and a new one is started when you open your project again, which is why you have to load any extra package your work requires again with the `library()` function.
 
 ## Important links
 
