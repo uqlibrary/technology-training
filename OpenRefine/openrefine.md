@@ -3,40 +3,76 @@
 ## Legal
 
 This lesson is based on a Library Carpentry lesson, available here: https://librarycarpentry.github.io/lc-open-refine/
+It is also released under a [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/). The following is a human-readable summary of
+(and not a substitute for) the [full legal text of the CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/legalcode).
+
+You are free:
+
+* to **Share** – copy and redistribute the material in any medium or format
+* to **Adapt** – remix, transform, and build upon the material
+
+for any purpose, even commercially.
+
+Under the following terms:
+
+* **Attribution** – You must give appropriate credit (mentioning that your work is derived from work that is Copyright © Stéphane Guillou and, where practical, linking to https://github.com/stragu/CDS), provide a [link to the license](https://creativecommons.org/licenses/by/4.0/), and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 
 ## Installation
 
 To install the software, please follow the instruction on the OpenRefine website: http://openrefine.org/download.html
+This lesson was designed using OpenRefine 2.8 but should be compatible with other supported versions.
+OpenRefine requires to have a Java Runtime Environment (JRE) installed, so you might need to install one to be able to use it: http://java.com/
 
 ## OpenRefine?
 
+OpenRefine is self-described as "a power tool for dealing with messy data". It can help you deal with inconsistencies in data stored in a tabular format (spreadsheets, CSV files, etc.).
+
+It can help you:
+
+* Get an overview of a data set
+* Resolve inconsistencies in a data set, for example standardizing date formatting
+* Help you split data up into more granular parts, for example splitting up cells with multiple authors into separate cells
+* Match local data up to other data sets, for example in matching local subjects against the Library of Congress Subject Headings
+* Enhance a data set with data from other sources
+
+Some common scenarios might be:
+
+* Where you want to know how many times a particular value (name, publisher, subject) appears in a column in your data
+* Where you want to know how values are distributed across your whole data set
+* Where you have a list of dates which are formatted in different ways, and want to change all the dates in the list to a single common date format
+* Where you have a list of names or terms that differ from each other but refer to the same people, places or concepts
+* Where you have several bits of data combined together in a single column, and you want to separate them out into individual bits of data with one column for each bit of the data.
+
+## What you will learn today
+
+1. Importing and exporting data
+2. What "facets" are
+3. Editing cells
+4. Editing columns
+5. Grouping and transforming data
+
+## Material
+
+### Creating a project
+
+OpenRefine can deal with formats like TSV, CSV, ODS, XLS and XLSX, JSON, RDF, XML and more.
+
+**Exercise 1** – Create a project and import data
+
+1. Select `Web Addresses (URL)`
+2. Input the URL to our data: https://raw.githubusercontent.com/LibraryCarpentry/lc-open-refine/gh-pages/data/doaj-article-sample.csv
+3. Click "next"
+4. Click in the `Character encoding` box and select `UTF-8`
+5. Click on `Create Project`
+
+### Layout of OpenRefine
+
+> How is data organised?
+> How do I navigate?
+> How do I with cells that contain multiple kinds of data?
 
 
-## We are going to do learn how to:
-
-    1. Import / export
-    2. facets
-    3. Edit cell
-    4. Edit column
-
-With 3 and 4 we can group data and transform data
-
-
-
-
-Exercise 1
-Create a project
-
-    Select web addresses (URL)
-
-Data:
-
-    https://raw.githubusercontent.com/data-lessons/library-openrefine/gh-pages/data/doaj-article-sample.csv
-    click next
-    Parse text: separator comma, and first line is a header
-    Then click Create project
-    
-Exercise 2
+**Exercise 2** – 
 
     Have a look at the dataset
 
@@ -181,3 +217,10 @@ Exercise 12 Retrieving data!!!!!!
 ## Links
 
 * Video walk throughs: http://openrefine.org/
+* Getting started with OpenRefine by Thomas Padilla: http://thomaspadilla.org/dataprep/
+* Cleaning Data with OpenRefine by Seth van Hooland, Ruben Verborgh and Max De Wilde: http://programminghistorian.org/lessons/cleaning-data-with-openrefine
+* Blog posts on using OpenRefine from Owen Stephens: http://www.meanboyfriend.com/overdue_ideas/tag/openrefine/?orderby=date&order=ASC
+* Identifying potential headings for Authority work using III Sierra, MS Excel and OpenRefine: http://epublications.marquette.edu/lib_fac/81/
+* Free your metadata website: http://freeyourmetadata.org/
+* Data Munging Tools in Preparation for RDF: Catmandu and LODRefine by Christina Harlow: http://journal.code4lib.org/articles/11013
+* OpenRefine News (monthly round up of new blog posts, tutorials and other information): http://openrefine.org/blog.html
