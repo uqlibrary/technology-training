@@ -71,12 +71,42 @@ OpenRefine can deal with formats like TSV, CSV, ODS, XLS and XLSX, JSON, RDF, XM
 > How do I navigate?
 > How do I with cells that contain multiple kinds of data?
 
+OpenRefine displays data in a tabular format: rows usually are records, and columns are a type of information.
+You can decide how many rows you want to show at once.
 
-**Exercise 2** – 
+Drop-down menus next to the column headers allow you to do operations on the whole column.
 
-    Have a look at the dataset
+OpenRefine has two modes for viewing data: `Rows` and `Records`. In `Records` mode, OpenRefine can link together multiple rows as belonging to the same record.
+To demonstrate what the `Records` mode does, we are going to split author names into separate cells.
 
-    Check the names of the columns
+Author names are currently separated with the pipe symbol `|`. We can use the `Split multi-valued cells` function to put them in their own cells.
+
+**Exercise 2** – Split multi-valued cells
+
+1. Open the drop-down menu for the `Authors` column
+1. Select `Edit cells` > `Split multi-valued cells`. Note that the rows are still numbered sequentially.
+1. Use the pipe character `|` as a separator.
+1. Switch to the `records` mode. Note how the numbering has changed: several rows are related to the same record.
+
+How do we join data from several cells together, for example after cleaning the data up?
+
+**Exercise 3** – Join multi-valued cells
+
+1. Open the drop-down menu for the `Authors` column
+1. Select `Edit cells` > `Join multi-valued cells`. Note that the rows are still numbered sequentially.
+1. Use the pipe character `|` as a delimiter and click `OK`.
+
+Split rows are now gone. `Rows` and `records` views are now back to the same numbers.
+Make sure you choose the right delimiter for the kind of data you deal with!
+
+**Exercise 4** – Practice splitting and joining
+
+How would you split and then join again the data in the `Subjects` column?
+
+### Facetting and filtering
+
+
+
 
 Exercise 3
 
