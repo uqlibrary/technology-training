@@ -1,9 +1,16 @@
-# OpenRefine
-        
-   https://data-lessons.github.io/library-openrefine/
-   
-   Video walk throughs:
-   http://openrefine.org/
+# Cleaning data with OpenRefine
+
+## Legal
+
+This lesson is based on a Library Carpentry lesson, available here: https://librarycarpentry.github.io/lc-open-refine/
+
+## Installation
+
+To install the software, please follow the instruction on the OpenRefine website: http://openrefine.org/download.html
+
+## OpenRefine?
+
+
 
 ## We are going to do learn how to:
 
@@ -170,3 +177,7 @@ Exercise 12 Retrieving data!!!!!!
     Journal Title
 
     value.parseJson().message.title
+    
+## Links
+
+* Video walk throughs: http://openrefine.org/
