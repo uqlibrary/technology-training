@@ -160,9 +160,52 @@ Use a text facet on the `Language` column to replace `English` values with the l
 
 ### Clustering
 
+> What can I use to identify and replace varying forms of the same data?
+
+The `Cluster` function uses an algorithm to group together similar, but inconsistent values in a given column and lets you merge these inconsistent values into a single value you choose.
+
+This is very effective where you have data with minor variations in data values, e.g. names of people, organisations, places, classification terms.
+
+By default, OpenRefine uses the most common value to merge the data, but we can choose which value we prefer.
+
+**Exercise 8** – clean up the author names
+
+1. Split out the author names into individual cells using `Edit cells -> Split multi-valued cells`, using the pipe (`|`) character as the separator
+1. Choose `Edit cells -> Cluster` and edit from the `Authors` column.
+1. Using the defaults (`key collision` Method and `fingerprint` Keying Function), work through the clusters of values, merging them to a single value where appropriate
+1. Try changing the clustering method being used - which ones work well? Do they identify extra clusters?
+
+The best clustering algorithm will depend on the kind of data your are processing.
+
+### Reorganising the data
+
+You can **re-order the columns** by clicking the drop-down menu at the top of the first column (labelled ‘All’), and choosing `Edit columns -> Re-order / remove columns …`
+
+You can then drag and drop column names to re-order the columns, or remove columns completely if they are not required.
+
+You can also sort the rows by clicking on the drop-down menu for the column you want to sort on, and choosing `Sort`.The sorting is not permanent, and a new `Sort` drop-down menu appears at the top, which allows you to modify the current sort, remove it, or make the sort permanent.
+
+### Transformations
+
+Facets, filters and clusters already allow us to explore and clean up our data.
+
+To do more advanced operationgs, like splitting data into several columns, standardising a format without losing the original values, or extracting a data type from a string, we need **transformations**.
+
+Transformations are ways of manipulating data in columns. Transformations are normally written in a special language called **GREL** (General Refine Expression Language).
+
+Some common transformations are accessible directly in the menus, for example to change the case of the values, or to remove bounding whitespace characters.
+
+**Exercises 9** – Correct publisher data
+
+1. Create a text facet on the `Publisher` column
+2. Note that in the values there are two that look identical – why does this value appear twice?
+3. On the `Publisher` column, use the dropdown menu to select `Edit cells -> Common transforms -> Trim leading and trailing whitespace`
+4. Look at the publisher facet now – has it changed? (if it hasn’t changed, try clicking the Refresh option to make sure it updates)
+
+#### Writing transformations
 
 
-Exercises 6
+
 
     Replacing Text
 
@@ -286,3 +329,4 @@ Exercise 12 Retrieving data!!!!!!
 * Free your metadata website: http://freeyourmetadata.org/
 * Data Munging Tools in Preparation for RDF: Catmandu and LODRefine by Christina Harlow: http://journal.code4lib.org/articles/11013
 * OpenRefine News (monthly round up of new blog posts, tutorials and other information): http://openrefine.org/blog.html
+* GREL documentation: https://github.com/OpenRefine/OpenRefine/wiki/General-Refine-Expression-Language
