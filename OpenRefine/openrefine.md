@@ -67,9 +67,8 @@ OpenRefine can deal with formats like TSV, CSV, ODS, XLS and XLSX, JSON, RDF, XM
 
 ### Layout of OpenRefine
 
-> How is data organised?
-> How do I navigate?
-> How do I with cells that contain multiple kinds of data?
+> How is data organised? How do I navigate it?
+> How do I deal with cells that contain multiple kinds of data?
 
 OpenRefine displays data in a tabular format: rows usually are records, and columns are a type of information.
 You can decide how many rows you want to show at once.
@@ -105,30 +104,63 @@ How would you split and then join again the data in the `Subjects` column?
 
 ### Facetting and filtering
 
+> What are facets and filters in OpenRefine? How can they help me navigate data?
+> How can I correct common data issues?
+
+#### Facets
+
+A **facet** groups all the values that appear in a column, and allows you to filter the data by these values and edit values across many records at the same time.
+
+The simplest type of Facet is called a ‘Text facet’. This simply groups all the text values in a column and lists each value with the number of records it appears in. The facet information always appears in the left hand panel in the OpenRefine interface.
+
+Let's create a Text Facet for a column:
+
+1. Click on the drop down menu at the top of the `Publisher` column and choose `Facet -> Text Facet`
+1. Filter the data by clicking on a value
+1. Add more values with `include`
+1. You can `invert` your selection
+1. Click `reset` to deselect all values, or remove the facet with the cross.
+
+**Exercise 5** – Explore licenses
+
+Which licenses are used for articles in this dataset? Which one is the most common? How many articles don't have a license?
+
+1. In the `License` column drop-down menu, choose `Facet -> Text facet`
+1. `CC BY` has the highest count
+1. 6 articles don't have a `License` value, marked `(blank)`
+
+There are more facets available, like numeric and timeline facets that produce graphs, or even custom facets for more advanced operations, like facets that return a logical value.
+
+Exercise 6 – Facet by blank
+
+Find all the publications without a DOI (digital object identifier) with the `Facet by blank`. How many are there?
+
+1. `Facet > Customized facet > Facet by blank`
+
+This is more efficient than a text facet, as it will only give two categories.
+
+#### Filters
+
+You can also apply a **text filter** to your data. In the column drop-down menu, you can use the `Text filter` item and specify any string you want to filter for.
+
+> When you filter your data with facets or text filters, remember that any operation that you carry out will only apply to the filtered data.
+
+#### Amending data
+
+Using a text facet, you can edit values for a whole subset in one action with the `edit` option. This is very useful for fixing small typos or variations in spelling.
 
 
+**Exercise 7** – Correct values
 
-Exercise 3
+Use a text facet on the `Language` column to replace `English` values with the language code `EN`.
 
-    Which licences are used for articles in this file?
+1. `Facet > Text facet`
+1. Hover over the term `English` and click `edit`
+1. Replace it with `EN` and click `Apply`
 
-    Facet > Text facet
+### Clustering
 
-Exercise 4
 
-    Find all the publications without a DOI (digital object identifier) 
-
-    Facet > Customized facet Text facets > facet by blank
-
-    How many?
-
-Exercise 5
-
-    How to correct values using a facet?
-
-    Facet > Text facet
-
-    clik - edit
 
 Exercises 6
 
