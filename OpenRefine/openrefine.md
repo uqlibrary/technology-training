@@ -204,16 +204,96 @@ Some common transformations are accessible directly in the menus, for example to
 
 #### Writing transformations
 
+The transformation screen is available through `Edit cells -> Transform...`, in which you can write your GREL command and preview its effect.
+
+GREL supports two types of syntax:
+
+* value.function(options)
+* function(value, options)
+
+Either is valid, and which is used is completely down to personal preference. In these notes the first syntax is used.
+
+The most simple "transformation" is `value`, which will keep the data as it is. Press `OK` to execute it, and go back to the transformation screen.
+
+You can now see your history of transformations, and save your favourite ones by clicking on the star next to them. The `Help` tab is also a helpful reference.
+
+**Exercise 10** – Put titles into Title Case
+
+Use Facets and the GREL expression `value.toTitlecase()` to put the titles in Title Case:
+
+1. Facet by publisher
+1. Select “Akshantala Enterprises” and “Society of Pharmaceutical Technocrats” (To select multiple values in the facet, use the include link that appears to the right of the facet.)
+1. See that the Titles for these are all in uppercase
+1. Click the dropdown menu on the Title column
+1. Choose `Edit cells -> Transform...`
+1. In the Expression box type `value.toTitlecase()`
+1. In the review note that you can see what the affect of running this will be
+1. Click OK
+
+#### Undo and redo transformations
+
+In the left-hand panel, you can open the `Undo / Redo` tab to access all the steps taken so far, and undo steps by clicking the last step you want to preserve.
+
+The `Extract...` button allows you to save a set of steps as a JSON script, to re-apply them later on this or any other dataset. To executed an extracted set of steps, click the `Apply` button.
+
+#### Transforming strings, numbers, dates and boolean
+
+> How do I transform different data types?
+
+**Data types** and **regular expressions** will allow you to write more complex GREL transformations.
+
+All data in OpenRefine has a "type". The most common is "string", which is a piece of text. Data types supported are:
+
+* String
+* Number
+* Date
+* Boolean
+* Array
+
+**Date and numbers**: we currently have a `Date` column where the data is represented as a string. If we wanted to sort according to this data, it would not end up chronological. We therefore need to convert the values to a date or number for OpenRefine to interpret them properly.
+
+**Exercise 11** – Reformat the date
+
+1. Make sure you remove all Facets and Filters
+1. On the Date column, use the dropdown menu to select `Edit cells -> Common transforms -> To date`
+1. Note how the values are now displayed in green and follow a standard convention for their display format (ISO8601) - this indicates they are now stored as date data types in OpenRefine. We can now carry out functions that are specific to Dates
+1. On the Date column dropdown select `Edit column -> Add column based on this column`. Using this function you can create a new column, while preserving the old column
+1. In the ‘New column name’ type “Formatted Date”
+1. In the ‘Expression’ box type the GREL expression `value.toString("dd MMMM yyyy")`
+
+**Booleans**: a boolean is a binary value that can either be "true" or "false". They are often used in GREL expressions, for example:
+
+```
+vale.contains("test")
+```
+
+... generates a boolean value which depends on whether the cell value contains the string "test" anywhere.
+
+That allows use to build more complex transformations, for example by carrying out a transformation _only if a test is successful_:
+
+```
+if(value.contains("test"),"Test data",value)
+```
+
+... replaces a cell value with the words "Test data" only if the value in the cell contains the string "test" anywhere.
+
+**Exercise 12** – Find reversed author names
+
+In this exercise we are going to use the Boolean data type. If you look at the Authors column, you can see that most of the author names are written in the natural order. However, a few have been reversed to put the family name first.
+
+We can do a crude test for reversed author names by looking for those that contain a comma:
+
+1. Make sure you have already split the author names into individual cells using `Edit cells -> Split multi-valued cells` (you should have done this in a previous exercise)
+1. On the Authors column, use the dropdown menu and select `Facet -> Custom text facet...`
+1. The Custom text facet function allows you to write GREL functions to create a facet
+1. In the Expression box type `value.contains(",")`
+  1. Click OK
+  1. Since the ‘contains’ function outputs a Boolean value, you should see a facet that contains ‘false’ and ‘true’. These represent the outcome of the expression, i.e. true = values containing a comma; false = values not containing a comma
+  1. We will change the name order in the next exercise
+
+#### Transformations – handling arrays
 
 
-
-    Replacing Text
-
-    Using GREL - General Refine Expression Language
-
-    Edit cells > Transform
-
-    value.replace("|", ";")
 
 Exercise 7
 
@@ -330,3 +410,5 @@ Exercise 12 Retrieving data!!!!!!
 * Data Munging Tools in Preparation for RDF: Catmandu and LODRefine by Christina Harlow: http://journal.code4lib.org/articles/11013
 * OpenRefine News (monthly round up of new blog posts, tutorials and other information): http://openrefine.org/blog.html
 * GREL documentation: https://github.com/OpenRefine/OpenRefine/wiki/General-Refine-Expression-Language
+
+*[JSON]: JavaScript Object Notation
