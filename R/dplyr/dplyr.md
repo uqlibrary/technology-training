@@ -1,13 +1,8 @@
-Introduction to R data manipulation using dplyr
-===
+---
+Title: Introduction to R data manipulation using dplyr
+---
 
-`last revision: 2018-03-23`
-
-:::info
-This document is formatted in hackmd.io, and is best viewed at (and printed from) https://hackmd.io/s/HJII85b5G#
-:::
-
-Thank you for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving https://framaforms.org/cds-sessions-feedback-1521148191.
+`last revision: 2018-05-31`
 
 If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
 
@@ -29,12 +24,12 @@ In this hands-on session, you will use RStudio and the `dplyr` package to manipu
 Specifically, you will learn how to **explore, filter, reorganise and process** your data with the following verbs:
 
 ```
-filter()
-arrange()
-select()
-group_by()
-summarise()
-mutate()
+filter() # pick observations
+arrange() # reorder rows
+select() # pick variables
+group_by() # change the scope of function
+summarise() # collapse to a single summary
+mutate() # create new variables
 ```
 
 ## Disclaimer
@@ -65,10 +60,6 @@ Exercise 1 - New RStudio project
 * In "Directory name", type the name of your project, e.g. "dplyr_intro"
 * Select the folder where to locate your project: the `Documents/RProjects` folder, which you can create if it doesn't exist yet.
 * Click the "Create Project" button
-* create three folders in your new project
-    * `dir.create("scripts") `
-    * `dir.create("data")`
-    * `dir.create("plots")`
 
 ### Setting up
 
@@ -348,10 +339,6 @@ If you want to close RStudio, you should save your project first.
 * File
 * close project (It will ask you if you want to save your history) 
 * then, close RStudio
-
-## After the workshop
-
-Please fill in the feedback form before leaving: [https://framaforms.org/cds-sessions-feedback-1521148191](https://framaforms.org/cds-sessions-feedback-1521148191)
 
 ## Important links
 
