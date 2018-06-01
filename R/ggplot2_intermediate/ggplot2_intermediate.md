@@ -1,9 +1,11 @@
 R visualisations using ggplot2 – intermediate
 ================
 
-`last revision: 2018-05-18`
+`last revision: 2018-06-01`
 
-> This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document. The source code is available at: <https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd> The published document is available at: <https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md>
+> This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document.
+> The source code is available at: <https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd>
+> The published document is available at: <https://github.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md>
 
 If you need to review the installation instructions: <https://github.com/stragu/CDS/blob/master/R/Installation.md>
 
@@ -42,14 +44,16 @@ During this hands-on session, you will:
 
 -   learn more about the layers used in ggplot2;
 -   select your own colours;
+-   modify aesthetics like shape and size;
 -   modify scales and labels;
--   save your plots in different formats and resolutions;
+-   use facets;
+-   experiment with new geometries;
 -   learn how to modify plots quickly.
 
 Material
 --------
 
-### Rstudio Project
+### Setting up
 
 *Exercise 1 - New RStudio Project*
 
@@ -59,15 +63,12 @@ Material
 -   In "Directory name", type the name of your project, e.g. "ggplot2\_inter"
 -   Select the folder where to locate your project: the `Documents/RProjects` folder, which you can create if it doesn't exist yet
 -   Click the "Create Project" button
--   Create three folders: "scripts", "data" and "plots".
+-   Create two folders: "scripts" and "plots".
 
 ``` r
 dir.create("scripts")
-dir.create("data")
 dir.create("plots")
 ```
-
-### Make sure you have ggplot2 installed and loaded
 
 *Exercise 2 - Setting up: packages and scripts*
 
@@ -92,9 +93,9 @@ Don't forget to add some comments to your header:
     # Author: <your name>
     # Date: <today's date>
 
-### Import files
+### Import data
 
-*Exercise 3 – Read the onine data into an R object*
+*Exercise 3 – Read the online data into an R object*
 
 Using the following syntax, how can you read the online CSV data into an R object?
 
@@ -164,11 +165,13 @@ ggplot(data = gapminder,
 
 ![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
-\#\# Colour, size, shape and other aesthetic attributes
+### Colour, size, shape and other aesthetic attributes
 
-To change the shape based on a variable, use `shape = <discrete variable>` inside the `aes()` call.
+To change the *shape* based on a variable, use `shape = <discrete variable>` inside the `aes()` call.
 
-Similarly, to change the colour based on a variable, use `colour = <variable>` and `fill = <variable>` inside the `aes()` call.
+Similarly, to change the *colour* based on a variable, use `colour = <variable>` and `fill = <variable>` inside the `aes()` call.
+
+Finally, if you want to change the size of the geometric object, you can use the `size = <variable>` argument.
 
 *Exercise 5 – Choosing colours*
 
@@ -380,7 +383,7 @@ ggplot(gapminder,
 
 ![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-24-1.png)
 
-Try other pre-built themes, like `theme_bw()` and `theme_light()`. You can also start with an empty theme thanks to `theme_void()`.
+Try other pre-built themes, like `theme_bw()` and `theme_light()`. You can also start with an empty theme thanks to `theme_void()`, and even install extras with the package `ggthemes`.
 
 ### Labels
 
@@ -495,7 +498,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
 
 ### Modify your plots
 
-Have a look at this [ggplot2 cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) and experiment customising your plots.
+Have a look at this [ggplot2 cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) and experiment customising your plots.
 
 ### Close RProject
 
@@ -505,7 +508,7 @@ Important links
 ---------------
 
 -   For ggplot2:
-    -   R ggplot2 Cheatsheet <https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf>
+    -   ggplot2 cheatsheet: <https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf>
     -   Official ggplot2 documentation: <http://docs.ggplot2.org/current/>
     -   Official ggplot2 website: <http://ggplot2.tidyverse.org/>
     -   Chapter on data visualisation in the book *R for Data Science*: <http://r4ds.had.co.nz/data-visualisation.html>
