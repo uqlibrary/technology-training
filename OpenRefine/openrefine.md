@@ -264,7 +264,7 @@ All data in OpenRefine has a "type". The most common is "string", which is a pie
 **Booleans**: a boolean is a binary value that can either be "true" or "false". They are often used in GREL expressions, for example:
 
 ```
-vale.contains("test")
+value.contains("test")
 ```
 
 ... generates a boolean value which depends on whether the cell value contains the string "test" anywhere.
