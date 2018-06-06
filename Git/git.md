@@ -15,7 +15,7 @@ This short course is based on the longer course _[Version Control with Git](http
 
 We will use Git inside a command-line shell called Bash.
 
-Installation instructions are available on [this page](https://github.com/stragu/CDS/blob/master/Git/installation.md).
+Installation instructions are available on [this page](https://gitlab.com/stragu/CDS/blob/master/Git/installation.md).
 
 ## Material
 
@@ -366,7 +366,7 @@ Our local repository (on our computer) contains our recent work, but the **remot
 We now need to connect the two: we do this by making the GitHub repository a remote for the local repository. The home page of the repository on GitHub includes the URL we need to identify it, under "HTTPS". Copy it to your clipboard, and in your local repository, run the following command:
 
 ```bash
-git remote add origin https://github.com/<your_username>/planets.git
+git remote add origin https://gitlab.com/<your_username>/planets.git
 ```
 
 The name `origin` is a local nickname for your remote repository. We could use something else if we wanted to, but `origin` is by far the most common choice.
@@ -402,7 +402,7 @@ The Collaborator can accept the invitation by navigating to their notifications.
 Next, the Collaborator needs to download a copy of the Owner's repository to their machine, which is called "**cloning a repository**". To do that in your Desktop directory:
 
 ```bash
-git clone https://github.com/<owner_username>/planets.git ~/Desktop/partner-planets
+git clone https://gitlab.com/<owner_username>/planets.git ~/Desktop/partner-planets
 ```
 
 The Collaborator can now make changes in their clone of the Owner's repository:

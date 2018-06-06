@@ -3,9 +3,9 @@ R for beginners using RStudio
 
 `version: 2018-05-17`
 
-> These notes are available on GitHub: https://github.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro.md
+> These notes are available on GitHub: https://gitlab.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro.md
 
-If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
+If you want to review the installation instructions: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
 
 ## RStudio
 

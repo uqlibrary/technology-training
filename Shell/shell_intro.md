@@ -15,7 +15,7 @@ This short course is based on the longer course _[The Unix Shell](https://swcarp
 
 The Unix shell we use for this lesson is called **Bash**.
 
-Installation instructions are available on [this page](https://github.com/stragu/CDS/blob/master/Shell/installation.md).
+Installation instructions are available on [this page](https://gitlab.com/stragu/CDS/blob/master/Shell/installation.md).
 
 ### Data
 

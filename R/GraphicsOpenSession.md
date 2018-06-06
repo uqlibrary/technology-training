@@ -2,7 +2,7 @@
 
 Thanks for attending this session at the UQ library Centre for Digital Scholarship (CDS). Please complete the following feedback form before leaving http://tiny.cc/CDS_feedback_R.
 
-If you want to review the installation instructions: https://github.com/orchid00/CDS/blob/master/R/Installation.md
+If you want to review the installation instructions: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
 Manuals, commands and more information on how to continue your R learning are provided in our community resource in this etherpad https://etherpad.wikimedia.org/p/cds.

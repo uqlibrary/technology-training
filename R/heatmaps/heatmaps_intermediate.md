@@ -2,9 +2,9 @@ Heatmaps in R for intermediate users
 ================
 2018-05-02
 
-> This document is edited as an R markdown file, and regularly exported as a GitHub document. The source code is [here](https://github.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd) The published printer-friendly version is [here](https://github.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md)
+> This document is edited as an R markdown file, and regularly exported as a GitHub document. The source code is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd) The published printer-friendly version is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md)
 
-If you want to review the installation instructions: <https://github.com/stragu/CDS/blob/master/R/Installation.md>
+If you want to review the installation instructions: <https://gitlab.com/stragu/CDS/blob/master/R/Installation.md>
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
 
@@ -722,7 +722,7 @@ When closing RStudio, you should be prompted to save your workspace.
 Important links
 ---------------
 
--   RStudio Cheatsheet <https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf>
+-   RStudio Cheatsheet <https://gitlab.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf>
 -   RStudio online learning <https://www.rstudio.com/online-learning/>
 -   Basic and advanced manuals <https://cran.r-project.org/manuals.html>
 -   Ask about any function or package <http://www.rdocumentation.org/>

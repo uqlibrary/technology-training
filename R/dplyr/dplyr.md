@@ -4,7 +4,7 @@ Title: Introduction to R data manipulation using dplyr
 
 `last revision: 2018-05-31`
 
-If you want to review the installation instructions: https://github.com/stragu/CDS/blob/master/R/Installation.md
+If you want to review the installation instructions: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you are using Library computers.
 
