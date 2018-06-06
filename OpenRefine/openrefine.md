@@ -277,7 +277,7 @@ if(value.contains("test"),"Test data",value)
 
 ... replaces a cell value with the words "Test data" only if the value in the cell contains the string "test" anywhere.
 
-**Exercise 12** – Find reversed author names
+**Exercise 12a** – Find reversed author names
 
 In this exercise we are going to use the Boolean data type. If you look at the Authors column, you can see that most of the author names are written in the natural order. However, a few have been reversed to put the family name first.
 
@@ -291,113 +291,84 @@ We can do a crude test for reversed author names by looking for those that conta
   1. Since the ‘contains’ function outputs a Boolean value, you should see a facet that contains ‘false’ and ‘true’. These represent the outcome of the expression, i.e. true = values containing a comma; false = values not containing a comma
   1. We will change the name order in the next exercise
 
-#### Transformations – handling arrays
+#### Handling arrays
+
+> How do I use arrays in a GREL expression?
+
+An ***array** is a list of values. Arrays can be sorted, de-duplicated and manipulated in other ways in GREL expressions. They usually are the _result_ of a transformation, and cells can't contain them.
+
+For example, if a cell contains the following string:
+
+```
+“Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday”
+```
+
+... it can be transformed into an array with the `split` function:
+
+```
+value.split(",")
+```
+
+... which would result in the following array:
+
+```
+[“Monday”,”Tuesday”,”Wednesday”,”Thursday”,”Friday”,”Saturday”,”Sunday”]
+```
+
+Combining the `split` function with a `sort` function like so:
+
+```
+value.split(",").sort()
+```
+
+... would resut in an array of days of the week sorted alphabetically:
+
+```
+[“Friday”,”Monday”,”Saturday”,”Sunday”,”Thursday”,”Tuesday”,”Wednesday”]
+```
+
+You can output a value from an array by specifying its position in the list. To extract the first value of the array created by the `split` funtion:
+
+```
+value.split(",")[0]
+```
+
+If you want to go back to one single string, in order to store the resut in cells, you can use the `join` function:
+
+```
+value.split(",").sort().join(",")
+```
+
+**Exercise 12b** – Reverse author names
+
+Now that we have narrowed down to the lines with a comma in a name, we can use the `match` function. The match function allows you to use regular expressions, and output the capture groups as an array, which you can then manipulate.
+
+1. On the Authors column use the dropdown menu and select `Edit cells -> Transform`
+1. In the Expression box type `value.match(/(.*),(.*)/)`. The `/`, means you are using a regular expression inside a GREL expression. The parentheses indicate you are going to match a group of characters. The `.\*` expression will match any character 0, 1 or more times. So here we are matching any number of characters, a comma, and another set of any number of characters.
+1. See how this creates an array with two members in each row in the Preview column
+
+To get the author name in the natural order you can reverse the array and join it back together with a space to create the string you need:
+
+1. In the Expression box, add to the existing expression until it reads `value.match(/(.*),(.*)/).reverse().join(" ")`
+1. In the Preview view you should be able see this has reversed the array, and joined it back into a string, without any comma
+1. Click OK to apply your transformation, and notice how the "true" group of your facet has 0 members
+
+#### Exporting
+
+> How do I export transformed data?
+
+OpenRefine can export a transformed dataset into a variety of formats. You can access the menu with the top-right "Export" button.
+
+The Custom Tabular Exporter offers extra options, like selecting a subset of columns, reordering them, removing headers, selecting a format and uploading as a Google Spreadsheet.
+
+#### Advanced functions
+
+> How do I fetch data from an API?
+> How do I reconcile my data by comparing it to authoritative datasets?
+> How do I install extensions?
 
 
-
-Exercise 7
-
-    How do we split author names into separated cells?
-
-    Edit cells > Split multi-valued cells
-
-    type ";" click OK
-
-Exercise 8
-
-    How to clean up author data?
-
-    Edit cells > cluster and edit
-
-Exercise 9
-
-    correct publisher data
-
-    facet > text facet
-
-    why do we have two that look so similar?
-
-     Edit cells > Common transforms > Trim leading and trailing whitespace
-
-Exercise 10 
-
-    Change Titles into Title Case
-
-    publisher
-
-    facet > text facet
-
-    include
-
-    title
-
-    edit cells > transform
-
-    value.toTitlecase()
-
-
-    Check the Undo/ Redo
-
-    demo
-
-
-Exercise 11
-
-    splitting and joining columns
-
-    Citation
-
-    Edit column > split into several columns
-
-    "," OK
-
-
-    to rejoin
-
-    Edit cells > transform
-
-    cells['Citation 1'].value + ', ' + cells['Citation 2'].value + ', ' + cells['Citation 3'].value + ', ' + cells['Citation 4'].value
-
-    To remove
-
-    Edit column > remove this column
-
-
-    To rename
-
-    Edit column > rename this column
-
-
-
-Exercise 12 Retrieving data!!!!!!
-
-    We will be using CrossRef
-
-    use the ISSN
-
-    select the first row with ISSN
-
-    click star 
-
-    All > Facet by Start
-
-    ISSN
-
-    Edit column > Add column by fetching URLS
-
-
-    New Column Name: JournalDetails
-
-    "https://api.crossref.org/journals/"+value
-
-    OK
-
-
-    Edit column > add column based on this column
-
-    Journal Title
-
-    value.parseJson().message.title
+...
     
 ## Links
 
@@ -412,3 +383,4 @@ Exercise 12 Retrieving data!!!!!!
 * GREL documentation: https://github.com/OpenRefine/OpenRefine/wiki/General-Refine-Expression-Language
 
 *[JSON]: JavaScript Object Notation
+*[API]: Application Programming Interface
