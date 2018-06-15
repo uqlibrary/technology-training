@@ -131,7 +131,7 @@ Which licenses are used for articles in this dataset? Which one is the most comm
 
 There are more facets available, like numeric and timeline facets that produce graphs, or even custom facets for more advanced operations, like facets that return a logical value.
 
-Exercise 6 – Facet by blank
+**Exercise 6** – Facet by blank
 
 Find all the publications without a DOI (digital object identifier) with the `Facet by blank`. How many are there?
 
@@ -183,7 +183,7 @@ You can **re-order the columns** by clicking the drop-down menu at the top of th
 
 You can then drag and drop column names to re-order the columns, or remove columns completely if they are not required.
 
-You can also sort the rows by clicking on the drop-down menu for the column you want to sort on, and choosing `Sort`.The sorting is not permanent, and a new `Sort` drop-down menu appears at the top, which allows you to modify the current sort, remove it, or make the sort permanent.
+You can also **sort the rows** by clicking on the drop-down menu for the column you want to sort on, and choosing `Sort`.The sorting is not permanent, and a new `Sort` drop-down menu appears at the top, which allows you to modify the current sort, remove it, or make the sort permanent.
 
 ### Transformations
 
@@ -200,7 +200,7 @@ Some common transformations are accessible directly in the menus, for example to
 1. Create a text facet on the `Publisher` column
 2. Note that in the values there are two that look identical – why does this value appear twice?
 3. On the `Publisher` column, use the dropdown menu to select `Edit cells -> Common transforms -> Trim leading and trailing whitespace`
-4. Look at the publisher facet now – has it changed? (if it hasn’t changed, try clicking the Refresh option to make sure it updates)
+4. Look at the publisher facet now – has it changed? (if it hasn’t changed, try clicking the `Refresh` option to make sure it updates)
 
 #### Writing transformations
 
@@ -208,8 +208,8 @@ The transformation screen is available through `Edit cells -> Transform...`, in 
 
 GREL supports two types of syntax:
 
-* value.function(options)
-* function(value, options)
+* `value.function(options)`
+* `function(value, options)`
 
 Either is valid, and which is used is completely down to personal preference. In these notes the first syntax is used.
 
@@ -227,14 +227,14 @@ Use Facets and the GREL expression `value.toTitlecase()` to put the titles in Ti
 1. Click the dropdown menu on the Title column
 1. Choose `Edit cells -> Transform...`
 1. In the Expression box type `value.toTitlecase()`
-1. In the review note that you can see what the affect of running this will be
+1. In the `Review` tab, note that you can see what the effect of running this will be
 1. Click OK
 
 #### Undo and redo transformations
 
-In the left-hand panel, you can open the `Undo / Redo` tab to access all the steps taken so far, and undo steps by clicking the last step you want to preserve.
+In the left-hand panel, you can open the `Undo / Redo` tab to access all the steps taken so far, and **undo steps** by clicking the last step you want to preserve.
 
-The `Extract...` button allows you to save a set of steps as a JSON script, to re-apply them later on this or any other dataset. To executed an extracted set of steps, click the `Apply` button.
+The `Extract...` button allows you to **save a set of steps** as a JSON (JavaScript Object Notation) script, to re-apply them later on this or any other dataset. To executed an extracted set of steps, click the `Apply` button.
 
 #### Transforming strings, numbers, dates and boolean
 
@@ -288,7 +288,8 @@ We can do a crude test for reversed author names by looking for those that conta
 1. The Custom text facet function allows you to write GREL functions to create a facet
 1. In the Expression box type `value.contains(",")`
   1. Click OK
-  1. Since the ‘contains’ function outputs a Boolean value, you should see a facet that contains ‘false’ and ‘true’. These represent the outcome of the expression, i.e. true = values containing a comma; false = values not containing a comma
+  1. Since the ‘contains’ function outputs a Boolean value, you should see a facet that contains ‘false’ and ‘true’. These represent the outcome of the expression, i.e. `true` = values containing a comma; `false` = values not containing a comma.
+  1. Select the `true` facet
   1. We will change the name order in the next exercise
 
 #### Handling arrays
@@ -344,8 +345,8 @@ value.split(",").sort().join(",")
 Now that we have narrowed down to the lines with a comma in a name, we can use the `match` function. The match function allows you to use regular expressions, and output the capture groups as an array, which you can then manipulate.
 
 1. On the Authors column use the dropdown menu and select `Edit cells -> Transform`
-1. In the Expression box type `value.match(/(.*),(.*)/)`. The `/`, means you are using a regular expression inside a GREL expression. The parentheses indicate you are going to match a group of characters. The `.\*` expression will match any character 0, 1 or more times. So here we are matching any number of characters, a comma, and another set of any number of characters.
-1. See how this creates an array with two members in each row in the Preview column
+1. In the Expression box type `value.match(/(.*),(.*)/)`. The `/`, means you are using a regular expression inside a GREL expression. The parentheses indicate you are going to match a group of characters. The `.*` expression will match any character 0, 1 or more times. So here we are matching any number of characters, a comma, and another set of any number of characters.
+1. See how this creates an array with two members in each row in the `Preview` column
 
 To get the author name in the natural order you can reverse the array and join it back together with a space to create the string you need:
 
@@ -353,22 +354,21 @@ To get the author name in the natural order you can reverse the array and join i
 1. In the Preview view you should be able see this has reversed the array, and joined it back into a string, without any comma
 1. Click OK to apply your transformation, and notice how the "true" group of your facet has 0 members
 
-#### Exporting
+#### Exporting the data and saving a project
 
 > How do I export transformed data?
 
-OpenRefine can export a transformed dataset into a variety of formats. You can access the menu with the top-right "Export" button.
+OpenRefine can **export a transformed dataset** into a variety of formats. You can access the menu with the top-right `Export` button. The `Custom Tabular Exporter` offers extra options, like selecting a subset of columns, reordering them, removing headers, selecting a format and uploading as a Google Spreadsheet.
 
-The Custom Tabular Exporter offers extra options, like selecting a subset of columns, reordering them, removing headers, selecting a format and uploading as a Google Spreadsheet.
+Your project is **automatically saved** and can be reopened with `Open Project` when you next start OpenRefine. However, if you need to share or save a snapshot of your project, you can use `Export -> Export project` to download an archive.
 
-#### Advanced functions
+#### Extra: Advanced functions
 
-> How do I fetch data from an API?
+> How do I fetch data from an API (Application Programming Interface)?
 > How do I reconcile my data by comparing it to authoritative datasets?
 > How do I install extensions?
 
-
-...
+You can find examples on [this page](https://librarycarpentry.github.io/lc-open-refine/).
     
 ## Links
 
@@ -381,6 +381,3 @@ The Custom Tabular Exporter offers extra options, like selecting a subset of col
 * Data Munging Tools in Preparation for RDF: Catmandu and LODRefine by Christina Harlow: http://journal.code4lib.org/articles/11013
 * OpenRefine News (monthly round up of new blog posts, tutorials and other information): http://openrefine.org/blog.html
 * GREL documentation: https://github.com/OpenRefine/OpenRefine/wiki/General-Refine-Expression-Language
-
-*[JSON]: JavaScript Object Notation
-*[API]: Application Programming Interface
