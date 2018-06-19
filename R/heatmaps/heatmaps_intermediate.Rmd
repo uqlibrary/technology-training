@@ -305,7 +305,7 @@ Load the required package with:
 library(pheatmap)
 ```
 
-How does `pheatmap` (which stands for "Pretty Heatmaps") differ from other functions?
+How does `pheatmap` (which stands for "pretty heatmap") differ from other functions?
 
 ```{r eval=FALSE}
 ?pheatmap
@@ -350,52 +350,44 @@ rm(list = ls())
 
 ### Method 4: a dataframe in `ggplot2`
 
-Load the necessary libraries:
+If you want to stick to the `ggplot2` package for all your data visualisation, there is a way to create a simple heatmap. So far, we have seen methods that make use of data matrices; however, `ggplot2` deals with dataframes.
+
+If you don't have `ggplot2` installed on your system, you can do that with the command `install.packages("ggplot2")`.
+
+Load the necessary library:
 
 ```{r}
-library(reshape2)
 library(ggplot2)
 ```
 
-Labels the rows and columns:
+We are using a built-in dataset about oesophageal cancer occurence: `esoph`.
 
-```{r}
-name_genes <- paste("GEN", LETTERS[1:20], sep="_") # rows
-name_patients <- paste("PATIENT", 1:20, sep="_")  # columns
+```{r eval=FALSE}
+?esoph
 ```
 
-Generation of dataframe:
+Let's subset the data we want to look at, i.e. only 55-64 year-olds:
 
 ```{r}
-value_expression <- data.frame(genes = name_genes, 
-                               matrix(rnorm(400, 2, 1.8),
-                                      nrow = 20,
-                                      ncol = 20))
-names(value_expression)[2:21] <- name_patients
+esoph_sub <- subset(esoph, agegp == "55-64")
 ```
 
-Melt the dataframe:
+Create a basic heatmap from the dataframe:
 
 ```{r}
-df_heatmap <- melt(value_expression, id.vars = "genes")
-names(df_heatmap)[2:3] <- c("patient", "expression_level")
-head(df_heatmap)
-```
-
-Create a basic heatmaps from the dataframe:
-
-```{r}
-ggplot(df_heatmap, aes(patient, genes)) +
-  geom_tile(aes(fill = expression_level), color = "white") +
-  scale_fill_gradient(low = "white", high = "steelblue") +
-  ylab("List of genes") +
-  xlab("List of patients") +
+ggplot(esoph_sub, aes(x = alcgp,
+                      y = tobgp)) +
+  geom_tile(aes(fill = ncases/(ncases+ncontrols)),
+            color = "white") +
+  scale_fill_gradient(low = "white",
+                      high = "steelblue") +
+  xlab("Alcohol consumption") +
+  ylab("Tobacco consumption") +
   theme(legend.title = element_text(size = 10),
-        legend.text = element_text(size = 12),
-        plot.title = element_text(size=16),
-        axis.title=element_text(size=14,face="bold"),
+        legend.text = element_text(size = 10),
+        axis.title = element_text(size=12),
         axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(fill = "Expression level")
+  labs(fill = "Cancer freq.")
 ```
 
 This ggplot2 method does not allow to create dendrograms.
