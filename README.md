@@ -1,20 +1,20 @@
-# Material for Centre for Digital Scholarship sessions
-
-Instructions and notes for courses held at the Centre for Digital Scholarship
-
+---
+Title: CDS resources
 Author: Stéphane Guillou
+Date: 2018-06-15
+---
 
-Date: 2018-05
+Instructions and notes for sessions held at the [Centre for Digital Scholarship](https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship) (CDS).
 
 Based on work by: Paula Andrea Martinez
 
 ## Description
 
-Here you will find notes for R, Shell and Git sessions held at the Centre for Digital Scholarhip (part of the University of Queensland's Library).
+Here you will resources related to R, Shell, Git and OpenRefine sessions held at the Centre for Digital Scholarhip (part of the University of Queensland's Library).
 
 ### Format
 
-Courses use the "live-coding" format in which the instructor and the attendees type and execute commands together.
+Most sessions use the "live-coding" format in which the instructor and the attendees type and execute commands together.
 An Etherpad is used to list useful links, exercises and to interact.
 
 Files available for each course, hosted in this repository:
@@ -34,7 +34,8 @@ Files available for each course, hosted in this repository:
 | Heatmaps with R | [md](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md) <sup>[source](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd)</sup> | [txt](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
 | Introduction to the Unix Shell | [md](https://gitlab.com/stragu/CDS/blob/master/Shell/shell_intro.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/Shell/shell_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-shell) |
 | Git revision control for collaboration | [md](https://gitlab.com/stragu/CDS/blob/master/Git/git.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/Git/git_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-git) |
-| Cleaning up data with OpenRefine (coming next) | ... | ... | ... |
+| Cleaning up data with OpenRefine | [md](https://gitlab.com/stragu/CDS/blob/master/OpenRefine/openrefine.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/OpenRefine/openrefine_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-openrefine) |
+| next: OpenSource software for your research | ... | ... | ... |
 
 ## License
 
