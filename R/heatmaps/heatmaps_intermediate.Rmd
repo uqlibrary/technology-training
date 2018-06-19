@@ -1,6 +1,6 @@
 ---
 title: Heatmaps in R for intermediate users
-date: 2018-05-02
+date: 2018-06-19
 output:
   github_document: default
 ---
@@ -11,7 +11,7 @@ output:
 
 If you want to review the installation instructions: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
 
-Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you used the University computers.
+Everything we write today will be saved in your R Project. Please remember to save it in your H drive or USB if you use the University computers.
 
 ## Keep in mind
 
@@ -28,7 +28,7 @@ Everything we write today will be saved in your R project. Please remember to sa
   * Log in with your UQ username and password
   * Make sure you have a working internet connection
   * Open the ZENworks application
-  * Look for the letter R 
+  * Look for the letter "R"
   * Double click on RStudio which will install both R and RStudio 
 
 ## What are we going to learn?
@@ -55,7 +55,7 @@ We will assume you are an R intermediate user and that you have used RStudio bef
   * Click the "New project" menu icon
   * Click "New Directory"
   * Click "New Project" ("New empty project" if you have an older version of RStudio)
-  * In Directory name type the name of your project, e.g. "rstudio_intro" (Browse and select a folder where to locate your project, in our case the RProjects folder. If you don't have an RProjects folder, create it.)
+  * In Directory name type the name of your project, e.g. "heatmaps" (Browse and select a folder where to locate your project, in our case the RProjects folder. If you don't have an RProjects folder, create it.)
   * Click the "Create Project" button
 * Create new folders with the following commands:
 
@@ -67,7 +67,7 @@ dir.create("plots")
 
 **Exercise 2 - setting up**
 
-* create a new R script file called "heatmaps.R" in the "scripts" folder
+* create a new R script called "heatmaps.R" in the "scripts" folder
 
 ```{r eval=FALSE}
 file.create("scripts/heatmaps.R")
@@ -76,54 +76,32 @@ file.edit("scripts/heatmaps.R")
 
 ### Method 1: the base `heatmap()` function
 
-*Step 1: import the data*
+As a first example, we will use a built-in datasets called `mtcars`.
 
-```{r}
-?read.csv
-nba <- read.csv(file = "http://datasets.flowingdata.com/ppg2008.csv")
-```
-
-*Step 2: explore the data*
+*Step 1: explore the data*
 
 ```{r eval=FALSE}
-dim(nba)
-str(nba)
-head(nba)
-View(nba)
+?mtcars
+dim(mtcars)
+str(mtcars)
+head(mtcars)
+View(mtcars)
+class(mtcars)
 ```
 
-*Step 3: update the dataset*
+*Step 2: prepare data*
 
-Assign the Name values to `rownames(nba)`:
+The data is a dataframe, but it has to be a **numeric matrix** to make your heatmap. Dataframes can contain variables with different data classes
+
+**Exercise 3 – Convert the mtcars data into a matrix**
 
 ```{r}
-rownames(nba)
-rownames(nba) <- nba$Name
-rownames(nba)
+class(mtcars)
+mtcars_matrix <- data.matrix(mtcars) # convert a DF to a numeric matrix
+class(mtcars_matrix)
 ```
 
-Delete the column Name:
-
-```{r}
-nba$Name <- NULL
-head(nba)
-```
-
-*Step 4: prepare data, again*
-
-Are you noticing something here? It’s important to note that a lot of visualisations involve gathering and preparing data. Rarely do you get data exactly how you need it, so you should expect to do some data munging before the visuals.
-
-The data was loaded into a data frame, but it has to be a **data matrix** to make your heatmap. The difference between a frame and a matrix is not important for this tutorial. You need to know how to change it.
-
-**Exercise 3 – Convert the nba data into a matrix**
-
-```{r}
-class(nba)
-nba_matrix <- data.matrix(nba) # convert a DF to a numeric matrix
-class(nba_matrix)
-```
-
-*Step 5: make a heatmap*
+*Step 3: make a heatmap*
 
 We are going to use the `heatmap()` function.
 
@@ -138,38 +116,40 @@ Read the description of the `scale` argument in particular.
 Create a first heatmap:
 
 ```{r}
-nba_heatmap <- heatmap(nba_matrix)
+heatmap(mtcars_matrix)
 ```
 
-**Scale** is important: the values should be centered and scaled in either the row direction or the column direction.
+**Scale** is important: the values should be centered and scaled in either rows or columns. In our case, the variables are contained in columns.
 
 ```{r}
-heatmap(nba_matrix, scale = "column")
+heatmap(mtcars_matrix, scale = "column")
 ```
 
 #### Colours
 
-In the palette function `cm.colors(n)`, n is the number of colors (>= 1) contained in the palette. It can be used in the `col` argument.
+The default heatmap palette goes from red for low values to white for high values. You can however replace the default palette and use different colours, and different numbers of levels.
 
-In the `margins` arguments, the first value is for column names and the second one for row names.
+For example, in the palette function `cm.colors(n)`, n is the number of levels (>= 1) contained in the cyan-to-magenta palette. It can be used in the `col` argument.
 
 ```{r}
-nba_heatmap <- heatmap(nba_matrix,
+heatmap(mtcars_matrix,
         col = cm.colors(15),
         scale = "column",
         margins = c(8, 8))
 ```
+
+You can try other functions, like `rainbow()` or `terrain.colors()`.
 
 #### Remove dendrograms
 
 Dendrograms don't really make sense for this dataset. `Rowv` and `Colv` can be set to `NA` to remove them.
 
 ```{r}
-nba_heatmap <- heatmap(nba_matrix,
-                       col = cm.colors(100),
-                       scale = "column",
-                       Rowv = NA,
-                       Colv = NA)
+heatmap(mtcars_matrix,
+        col = cm.colors(100),
+        scale = "column",
+        Rowv = NA,
+        Colv = NA)
 ```
 
 #### Clean the environment
@@ -193,7 +173,7 @@ library(RColorBrewer)
 
 *Step 1: data*
 
-Observations for 63 proteins in three control experiments and three experiments where cells are treated with a growth factor.
+The dataset contains observations for 63 proteins in three control experiments and three experiments where cells are treated with a growth factor.
 
 ```{r}
 rawdata <- read.csv("https://raw.githubusercontent.com/ab604/heatmap/master/leanne_testdata.csv")
@@ -213,13 +193,13 @@ View(rawdata)
 
 *Step 3: data munging*
 
+It’s important to note that a lot of visualisations involve gathering and preparing data. Rarely do you get data exactly how you need it, so you should expect to do some data munging before producing the visuals.
+
 ```{r}
 rawdata$Row_ID <- NULL
 rawdata$T.test <- NULL
-head(rawdata)
 colnames(rawdata) <- c(paste("Control", 1:3, sep = "_"), 
                        paste("Treatment", 1:3, sep = "_"))
-head(rawdata)
 ```
 
 *Step 4: convert the dataframe into a matrix*
@@ -547,7 +527,6 @@ h1 <- Heatmap(mat,
         column_title = "This is a complex heatmap")
 draw(h1, heatmap_legend_side = "left")
 ```
-
 
 Clean my environment with:
 
