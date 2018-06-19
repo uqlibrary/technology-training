@@ -299,14 +299,13 @@ rm(list = ls())
 
 If you don't have it already, install `pheatmap` with `install.packages("pheatmap")`.
 
-Load the required packages with:
+Load the required package with:
 
 ```{r}
-library(grid)     # this is a base package  
-library(pheatmap) # stands for "pretty heatmaps"
+library(pheatmap)
 ```
 
-How does `pheatmap` differ?
+How does `pheatmap` (which stands for "Pretty Heatmaps") differ from other functions?
 
 ```{r eval=FALSE}
 ?pheatmap
@@ -314,7 +313,7 @@ How does `pheatmap` differ?
 
 > A function to draw clustered heatmaps where one has better control over some graphical parameters such as cell size, etc.
 
-Create your data matrix:
+Create a data matrix from pseudo-random numbers:
 
 ```{r}
 set.seed(100)
