@@ -127,7 +127,7 @@ heatmap(mtcars_matrix, scale = "column")
 
 #### Colours
 
-The default heatmap palette goes from red for low values to white for high values. You can however replace the default palette and use different colours, and different numbers of levels.
+The default heatmap palette, `heat.colors()`, goes from red for low values to white for high values. You can however replace the default palette and use different colours, and different numbers of levels.
 
 For example, in the palette function `cm.colors(n)`, n is the number of levels (>= 1) contained in the cyan-to-magenta palette. It can be used in the `col` argument.
 
@@ -138,11 +138,11 @@ heatmap(mtcars_matrix,
         margins = c(8, 8))
 ```
 
-You can try other functions, like `rainbow()` or `terrain.colors()`.
+You can try other functions, like `rainbow()` or `terrain.colors()`, and you can reverse them with `rev()`.
 
 #### Remove dendrograms
 
-Dendrograms don't really make sense for this dataset. `Rowv` and `Colv` can be set to `NA` to remove them.
+Dendrograms don't really make sense for this dataset. `Rowv` and `Colv` can be set to `NA` to remove them, which also means the data won't be reorganised.
 
 ```{r}
 heatmap(mtcars_matrix,
@@ -167,25 +167,24 @@ If you don't have the `gplots` package yet, use `install.packages("gplots")`. We
 ```{r include=FALSE}
 library(gplots)
 library(RColorBrewer)
-```
-
-#### Protein data example
-
-*Step 1: data*
-
-The dataset contains observations for 63 proteins in three control experiments and three experiments where cells are treated with a growth factor.
-
-```{r}
-rawdata <- read.csv("https://raw.githubusercontent.com/ab604/heatmap/master/leanne_testdata.csv")
 ?heatmap.2
 ```
 
 This `gplots` heatmap function provides a number of extensions to the standard R heatmap function.
 
+#### Protein data example
+
+*Step 1: import data*
+
+The dataset contains observations for 63 proteins in three control experiments and three experiments where cells are treated with a growth factor. We need to import it from the Internet:
+
+```{r}
+rawdata <- read.csv("https://raw.githubusercontent.com/ab604/heatmap/master/leanne_testdata.csv")
+```
+
 *Step 2: explore the data*
 
 ```{r eval=FALSE}
-dim(rawdata)
 str(rawdata)
 head(rawdata)
 View(rawdata)
@@ -207,7 +206,6 @@ colnames(rawdata) <- c(paste("Control", 1:3, sep = "_"),
 ```{r}
 class(rawdata)
 data_matrix <- data.matrix(rawdata)
-head(data_matrix)
 class(data_matrix)
 ```
 
@@ -217,17 +215,17 @@ class(data_matrix)
 ?scale
 ```
 
-`scale` is generic function whose default method centers and/or scales the columns of a numeric matrix. We **normalise** the data using `scale()`, **transposing** using `t()` to perform row-wise normalisation of the protein data. This normalises the data across each experiment so we can compare them to each other.
-Finally, we transpose the data back to the original form.
+`scale` is a generic function which centers and/or scales the columns of a numeric matrix. We **normalise** the data using `scale()`, **transposing** using `t()` to perform row-wise normalisation of the data (i.e. for each protein). This normalises the data across each experiment so we can compare them to each other. Finally, we transpose the data back to the original form.
 
-```{r}
-# Normalise data, transpose for row wise normalisation
-data_scaled_t <- scale(t(rawdata))
+```{r include=FALSE}
+# Normalise data for each protein,
+# but transpose first so it operates on rows
+data_scaled_t <- scale(t(data_matrix))
 # check normalisation for each protein by:
   # checking that means are zero
-round(colMeans(data_scaled_t), 1)
-  # check std devs are 1
-apply(data_scaled_t, 2, sd)
+summary(data_scaled_t)
+  # check that std devs are 1
+apply(data_scaled_t, MARGIN = 2, sd) # `MARGIN = 2` is for columns
 # transpose to original form
 data_scaled <- t(data_scaled_t)
 ```
@@ -240,25 +238,38 @@ First, let's experiment with the base `heatmap()` function.
 heatmap(data_scaled)
 ```
 
+You can compare it with a heatmap that uses the original data:
+
+```{r}
+heatmap(data_matrix)
+```
+
+Normalising the data allows the function to reorganise the data properly.
+
 ```{r}
 heatmap(data_scaled,
-        col = heat.colors(8), 
         margins = c(8,12)) # , reveal col labels, reduce width
 ```
+Now, let's use `heatmap.2()`:
+
+```{r}
+heatmap.2(data_scaled)
+```
+
+#### More control over colours
 
 Let's create a new palette with 25 increments:
 
 ```{r}
 my_palette <- colorRampPalette(c("blue",
                                  "white",
-                                 "red"))(n = 25)
+                                 "red"))(n = 25) # from low to high
 ```
 
-Now, let's use `heatmap.2()`:
+Now, we can use it and further customise our heatmap:
 
 ```{r}
-heatmap.2(data_scaled,                  # normalised data
-          density.info = "histogram",   # plot histogram of data and colour key
+heatmap.2(data_scaled,
           trace = "none",               # turn off trace lines from heatmap
           col = my_palette)             # use my colour scheme
 ```
@@ -268,15 +279,13 @@ Fix a few things and add a few extras:
 ```{r}
 par(cex.main = 0.75)                  # shrink title fonts on plot
 heatmap.2(data_scaled,
-          density.info = "histogram",
           dendrogram = "row",         # only row dendrogram
           trace = "none",
           col = my_palette,
-          main = "Difference between proteins",
-          margins = c(8, 5),          # more space from border
-          offsetRow = 1,              # space between plot and labels
-          keysize = 2,                # make key and histogram fit
-          cexRow = 0.5,               # amend row font
+          main = "A good title",      # add title
+          margins = c(6, 4),          # more space from border
+          keysize = 2,                # make key and histogram bigger
+          cexRow = 0.25,              # amend row font
           cexCol = 0.75)              # amend column font
 ```
 
