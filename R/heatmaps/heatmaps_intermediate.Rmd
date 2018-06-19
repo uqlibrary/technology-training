@@ -295,42 +295,11 @@ Clean up the environment with:
 rm(list = ls())
 ```
 
-#### (optional) Genechip data example
-
-The `BiocInstaller` package allows to use the `biocLite()` function to install extra packages, including the `affy` package which we need in this example (it contains the data).
-Install BiocInstaller with `source("https://bioconductor.org/biocLite.R")`, and then `affy` with the command `biocLite("affy")`
-
-```{r eval=FALSE}
-library(affy)
-data(SpikeIn)
-pms <- SpikeIn@pm
-str(pms)
-class(pms)
-# just the data, scaled across rows
-par(cex.main = 0.75)  
-labs <- colnames(pms)
-heatmap.2(pms, 
-          col = rev(heat.colors(16)), 
-          main = "SpikeIn@pm",
-          xlab = "Relative Concentration", 
-          ylab="Probeset",
-          trace = "none",
-          labCol = "",
-          add.expr = text( x = seq_along(labs), y = -2, srt = 45,
-                           labels = labs, xpd = TRUE),
-          scale="row")
-```
-
-Clean up your environment with:
-
-```{r}
-rm(list = ls())
-```
-
 ### Method 3: `pheatmap()`
 
 If you don't have it already, install `pheatmap` with `install.packages("pheatmap")`.
-Load the packages with:
+
+Load the required packages with:
 
 ```{r}
 library(grid)     # this is a base package  
