@@ -1,6 +1,6 @@
 ---
 title: Heatmaps in R for intermediate users
-date: 2018-06-19
+date: 2018-06-20
 output:
   github_document: default
 ---
@@ -402,9 +402,9 @@ rm(list = ls())
 
 URL: https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s2.single_heatmap.html
 
-*Step 1*
+*Step 1: install and load*
 
-```{r}
+```{r include=FALSE}
 # source("https://bioconductor.org/biocLite.R")
 # biocLite("ComplexHeatmap") 
 library(ComplexHeatmap)
@@ -412,19 +412,30 @@ library(ComplexHeatmap)
 library(circlize)
 ```
 
+How is the `Heatmap()` function different to the base `heatmap()`?
+
+```{r eval=FALSE}
+?Heatmap
+```
+
+*Step 2: create and manipulate data*
+
 Create a data matrix:
 
 ```{r}
 set.seed(123)
-mat <- cbind(rbind(matrix(rnorm(16, -1), 4), matrix(rnorm(32, 1), 8)),
-            rbind(matrix(rnorm(24, 1), 4), matrix(rnorm(48, -1), 8)))
+mat <- cbind(rbind(matrix(rnorm(16, -1), 4),
+                   matrix(rnorm(32, 1), 8)),
+             rbind(matrix(rnorm(24, 1), 4),
+                   matrix(rnorm(48, -1), 8)))
 ```
-
-*Step 2: munging*
 
 Permute the rows and columns
 ```{r}
-mat <- mat[sample(nrow(mat), nrow(mat)), sample(ncol(mat), ncol(mat))]
+mat <- mat[sample(nrow(mat),
+                  nrow(mat)),
+           sample(ncol(mat),
+                  ncol(mat))]
 rownames(mat) <- paste0("R", 1:12)
 colnames(mat) <- paste0("C", 1:10)
 ```
@@ -432,27 +443,31 @@ colnames(mat) <- paste0("C", 1:10)
 *Step 3: make a heatmap*
 
 ```{r}
-?Heatmap
 Heatmap(mat)
 ```
 
+Modify the colour and the labels, remove dendrograms (and don't cluster the data):
+
 ```{r}
 Heatmap(mat, 
-        col = colorRamp2(c(-3, 0, 3), c("brown", "white", "yellow")), 
+        col = colorRamp2(c(-3, 0, 3),
+                         c("brown", "white", "yellow")), 
         cluster_rows = FALSE, 
         cluster_columns = FALSE,
         heatmap_legend_param = list(title = "Values"))
 ```
 
-```{r}
-Heatmap(mat, 
-        col = colorRamp2(c(-3, 0, 3), c("brown", "white", "yellow")), 
-        heatmap_legend_param = list(title = "Values"))
-```
+The `cluster_` arguments can take external clustering information, which means you can use any type of clustering method.
+
+Now, let's see how this function deals with missing values:
+
 
 ```{r}
 mat_with_na <- mat
-mat_with_na[sample(c(TRUE, FALSE), nrow(mat)*ncol(mat), replace = TRUE, prob = c(1, 9))] <- NA
+mat_with_na[sample(c(TRUE, FALSE),
+                   nrow(mat)*ncol(mat),
+                   replace = TRUE,
+                   prob = c(1, 9))] <- NA
 Heatmap(mat_with_na, 
         col = topo.colors(100),
         na_col = "orange", 
@@ -460,19 +475,24 @@ Heatmap(mat_with_na,
         heatmap_legend_param = list(title = "Values"))
 ```
 
+`Heatmap()` automatically removes NA values to calculate the distance.
+
+We can also reorganise dendrograms and labels:
 
 ```{r}
 Heatmap(mat, 
-        name = "values", 
+        name = "abundance", 
         row_names_side = "left", 
         row_dend_side = "right", 
         column_names_side = "top", 
         column_dend_side = "bottom")
 ```
 
+To separate clusters, we can use the `km` argument, which allows k-means clustering on rows.
+
 ```{r}
 Heatmap(mat, 
-        name = "values", 
+        name = "abundance", 
         row_names_side = "left", 
         row_dend_side = "right", 
         column_names_side = "top", 
@@ -480,17 +500,19 @@ Heatmap(mat,
         km = 2)
 ```
 
+We can add options, save the base plot as an object and then slightly modify if with the `draw()` function:
+
 ```{r}
 h1 <- Heatmap(mat, 
-        name = "values", 
-        #col = topo.colors(50),
+        name = "abundance", 
+        col = topo.colors(50),
         color_space = "sRGB",
-        row_dend_width = unit(2, "cm"),
-        column_dend_height = unit(2, "cm"),
+        row_dend_width = unit(1, "cm"),
+        column_dend_height = unit(1, "cm"),
         row_dend_reorder = TRUE,
         column_dend_reorder = TRUE,
-        row_names_gp = gpar(fontsize = 8),
-        column_names_gp = gpar(fontsize = 7),
+        row_names_gp = gpar(fontsize = 7),
+        column_names_gp = gpar(fontsize = 9),
         column_names_max_height = unit(2, "cm"),
         row_names_max_width = unit(9, "cm"),
         column_title = "This is a complex heatmap")
