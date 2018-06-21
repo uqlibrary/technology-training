@@ -164,7 +164,7 @@ rm(list = ls())
 
 If you don't have the `gplots` package yet, use `install.packages("gplots")`. We will also need the `RColorBrewer`, so use `install.packages("RColorBrewer")` if you don't have it installed already.
 
-```{r include=FALSE}
+```{r echo=FALSE}
 library(gplots)
 library(RColorBrewer)
 ?heatmap.2
@@ -217,16 +217,16 @@ class(data_matrix)
 
 `scale` is a generic function which centers and/or scales the columns of a numeric matrix. We **normalise** the data using `scale()`, **transposing** using `t()` to perform row-wise normalisation of the data (i.e. for each protein). This normalises the data across each experiment so we can compare them to each other. Finally, we transpose the data back to the original form.
 
-```{r include=FALSE}
+```{r echo=FALSE}
 # Normalise data for each protein,
 # but transpose first so it operates on rows
 data_scaled_t <- scale(t(data_matrix))
 # check normalisation for each protein by:
-  # checking that means are zero
+  # check that means are zero
 summary(data_scaled_t)
   # check that std devs are 1
 apply(data_scaled_t, MARGIN = 2, sd) # `MARGIN = 2` is for columns
-# transpose to original form
+# transpose back to original form
 data_scaled <- t(data_scaled_t)
 ```
 
@@ -404,7 +404,7 @@ URL: https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/i
 
 *Step 1: install and load*
 
-```{r include=FALSE}
+```{r}
 # source("https://bioconductor.org/biocLite.R")
 # biocLite("ComplexHeatmap") 
 library(ComplexHeatmap)
