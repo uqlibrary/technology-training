@@ -1,26 +1,34 @@
-# Useful Links
+# What next?
 
-## Cheatsheet
+## Cheatsheets
 
-* RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
-* R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
-* R dplyr cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
+* R and RStudio-related cheatsheets: https://www.rstudio.com/resources/cheatsheets/
+
+## Documentation
+
+* Packages from CRAN, Bioconductor and GitHub: http://www.rdocumentation.org/
+* Packages from CRAN, Bioconductor, R-Forge and GitHub: https://rdrr.io/
+* Explore reviews for CRAN packages: https://crantastic.org/
 
 ## Extra learning
 
-* RStudio online learning https://www.rstudio.com/online-learning/
-* Basic and advanced manuals https://cran.r-project.org/manuals.html
-* Ask about any function or package http://www.rdocumentation.org/
-* If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
-* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in with your organisational portal
-* If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
+* _R for Data Science_, excellent free online book: http://r4ds.had.co.nz/
+* RStudio's _Online Learning_ page lists useful resources: https://www.rstudio.com/online-learning/
+* CRAN's basic and advanced manuals: https://cran.r-project.org/manuals.html
+* Lots of quality tutorials on _STHDA_: http://www.sthda.com/english/
+* Lots of quality tutorials on _Quick-R_: https://www.statmethods.net/index.html
+* Lots of quality tutorials on _Cookbook for R_: http://www.cookbook-r.com/
+* If you are looking for specific questions and answers: http://stackoverflow.com/questions/tagged/r (for programming) and https://stats.stackexchange.com/questions/tagged/r (for stats)
+* Lynda.com R courses: https://www.lynda.com/search?q=R (remember to sign in with your organisational portal)
+
+## R news
+
+* Daily news and tutorials on _R-bloggers_: https://www.r-bloggers.com/
+
+## At UQ
+
+* See the next sessions at the CDS: https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
+* If you need an extra R/RStudio session or a 1-on-1 consultation, please contact the CDS staff to organise one for you: cds@library.uq.edu.au
+* Ask questions to other researchers during the weekly Hacky Hour (Tuesdays at 3 pm, Café Nano): https://rcc.uq.edu.au/meetups
 * QFAB offers advanced paid workshops: https://qfab.org/training
-
-## References
-
-* NIH library https://nihlibrary.nih.gov/training/online-tutorials
-* workflow R source https://www.youtube.com/watch?list=PLWYwQdaelu4cSVRgcOKtP6sdz7K-HYblA&v=ZFe4IJPMWRA
-
-# Contact
-
-If you have further questions, please contact me using the details on the README.md
+* Contact your unit's statistician
