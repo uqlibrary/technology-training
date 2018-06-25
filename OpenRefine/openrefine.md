@@ -115,7 +115,7 @@ The simplest type of Facet is called a ‘Text facet’. This simply groups all 
 
 Let's create a Text Facet for a column:
 
-1. Click on the drop down menu at the top of the `Publisher` column and choose `Facet -> Text Facet`
+1. Click on the drop down menu at the top of the `Publisher` column and choose `Facet > Text Facet`
 1. Filter the data by clicking on a value
 1. Add more values with `include`
 1. You can `invert` your selection
@@ -125,7 +125,7 @@ Let's create a Text Facet for a column:
 
 Which licenses are used for articles in this dataset? Which one is the most common? How many articles don't have a license?
 
-1. In the `License` column drop-down menu, choose `Facet -> Text facet`
+1. In the `License` column drop-down menu, choose `Facet > Text facet`
 1. `CC BY` has the highest count
 1. 6 articles don't have a `License` value, marked `(blank)`
 
@@ -170,8 +170,8 @@ By default, OpenRefine uses the most common value to merge the data, but we can 
 
 **Exercise 8** – clean up the author names
 
-1. Split out the author names into individual cells using `Edit cells -> Split multi-valued cells`, using the pipe (`|`) character as the separator
-1. Choose `Edit cells -> Cluster` and edit from the `Authors` column.
+1. Split out the author names into individual cells using `Edit cells > Split multi-valued cells`, using the pipe (`|`) character as the separator
+1. Choose `Edit cells > Cluster` and edit from the `Authors` column.
 1. Using the defaults (`key collision` Method and `fingerprint` Keying Function), work through the clusters of values, merging them to a single value where appropriate
 1. Try changing the clustering method being used - which ones work well? Do they identify extra clusters?
 
@@ -179,7 +179,7 @@ The best clustering algorithm will depend on the kind of data your are processin
 
 ### Reorganising the data
 
-You can **re-order the columns** by clicking the drop-down menu at the top of the first column (labelled ‘All’), and choosing `Edit columns -> Re-order / remove columns …`
+You can **re-order the columns** by clicking the drop-down menu at the top of the first column (labelled ‘All’), and choosing `Edit columns > Re-order / remove columns …`
 
 You can then drag and drop column names to re-order the columns, or remove columns completely if they are not required.
 
@@ -199,12 +199,12 @@ Some common transformations are accessible directly in the menus, for example to
 
 1. Create a text facet on the `Publisher` column
 2. Note that in the values there are two that look identical – why does this value appear twice?
-3. On the `Publisher` column, use the dropdown menu to select `Edit cells -> Common transforms -> Trim leading and trailing whitespace`
+3. On the `Publisher` column, use the dropdown menu to select `Edit cells > Common transforms > Trim leading and trailing whitespace`
 4. Look at the publisher facet now – has it changed? (if it hasn’t changed, try clicking the `Refresh` option to make sure it updates)
 
 #### Writing transformations
 
-The transformation screen is available through `Edit cells -> Transform...`, in which you can write your GREL command and preview its effect.
+The transformation screen is available through `Edit cells > Transform...`, in which you can write your GREL command and preview its effect.
 
 GREL supports two types of syntax:
 
@@ -225,7 +225,7 @@ Use Facets and the GREL expression `value.toTitlecase()` to put the titles in Ti
 1. Select “Akshantala Enterprises” and “Society of Pharmaceutical Technocrats” (To select multiple values in the facet, use the include link that appears to the right of the facet.)
 1. See that the Titles for these are all in uppercase
 1. Click the dropdown menu on the Title column
-1. Choose `Edit cells -> Transform...`
+1. Choose `Edit cells > Transform...`
 1. In the Expression box type `value.toTitlecase()`
 1. In the `Review` tab, note that you can see what the effect of running this will be
 1. Click OK
@@ -255,9 +255,9 @@ All data in OpenRefine has a "type". The most common is "string", which is a pie
 **Exercise 11** – Reformat the date
 
 1. Make sure you remove all Facets and Filters
-1. On the Date column, use the dropdown menu to select `Edit cells -> Common transforms -> To date`
+1. On the Date column, use the dropdown menu to select `Edit cells > Common transforms > To date`
 1. Note how the values are now displayed in green and follow a standard convention for their display format (ISO8601) - this indicates they are now stored as date data types in OpenRefine. We can now carry out functions that are specific to Dates
-1. On the Date column dropdown select `Edit column -> Add column based on this column`. Using this function you can create a new column, while preserving the old column
+1. On the Date column dropdown select `Edit column > Add column based on this column`. Using this function you can create a new column, while preserving the old column
 1. In the ‘New column name’ type “Formatted Date”
 1. In the ‘Expression’ box type the GREL expression `value.toString("dd MMMM yyyy")`
 
@@ -283,8 +283,8 @@ In this exercise we are going to use the Boolean data type. If you look at the A
 
 We can do a crude test for reversed author names by looking for those that contain a comma:
 
-1. Make sure you have already split the author names into individual cells using `Edit cells -> Split multi-valued cells` (you should have done this in a previous exercise)
-1. On the Authors column, use the dropdown menu and select `Facet -> Custom text facet...`
+1. Make sure you have already split the author names into individual cells using `Edit cells > Split multi-valued cells` (you should have done this in a previous exercise)
+1. On the Authors column, use the dropdown menu and select `Facet > Custom text facet...`
 1. The Custom text facet function allows you to write GREL functions to create a facet
 1. In the Expression box type `value.contains(",")`
   1. Click OK
@@ -296,7 +296,7 @@ We can do a crude test for reversed author names by looking for those that conta
 
 > How do I use arrays in a GREL expression?
 
-An ***array** is a list of values. Arrays can be sorted, de-duplicated and manipulated in other ways in GREL expressions. They usually are the _result_ of a transformation, and cells can't contain them.
+An **array** is a list of values. Arrays can be sorted, de-duplicated and manipulated in other ways in GREL expressions. They usually are the _result_ of a transformation, and cells can't contain them.
 
 For example, if a cell contains the following string:
 
@@ -344,7 +344,7 @@ value.split(",").sort().join(",")
 
 Now that we have narrowed down to the lines with a comma in a name, we can use the `match` function. The match function allows you to use regular expressions, and output the capture groups as an array, which you can then manipulate.
 
-1. On the Authors column use the dropdown menu and select `Edit cells -> Transform`
+1. On the Authors column use the dropdown menu and select `Edit cells > Transform`
 1. In the Expression box type `value.match(/(.*),(.*)/)`. The `/`, means you are using a regular expression inside a GREL expression. The parentheses indicate you are going to match a group of characters. The `.*` expression will match any character 0, 1 or more times. So here we are matching any number of characters, a comma, and another set of any number of characters.
 1. See how this creates an array with two members in each row in the `Preview` column
 
@@ -360,7 +360,7 @@ To get the author name in the natural order you can reverse the array and join i
 
 OpenRefine can **export a transformed dataset** into a variety of formats. You can access the menu with the top-right `Export` button. The `Custom Tabular Exporter` offers extra options, like selecting a subset of columns, reordering them, removing headers, selecting a format and uploading as a Google Spreadsheet.
 
-Your project is **automatically saved** and can be reopened with `Open Project` when you next start OpenRefine. However, if you need to share or save a snapshot of your project, you can use `Export -> Export project` to download an archive.
+Your project is **automatically saved** and can be reopened with `Open Project` when you next start OpenRefine. However, if you need to share or save a snapshot of your project, you can use `Export > Export project` to download an archive.
 
 #### Extra: Advanced functions
 
@@ -368,7 +368,7 @@ Your project is **automatically saved** and can be reopened with `Open Project` 
 > How do I reconcile my data by comparing it to authoritative datasets?
 > How do I install extensions?
 
-You can find examples on [this page](https://librarycarpentry.github.io/lc-open-refine/).
+You can find examples on [this page](https://librarycarpentry.github.io/lc-open-refine/13-looking-up-data/).
     
 ## Links
 
