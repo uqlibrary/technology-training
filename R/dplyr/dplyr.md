@@ -281,7 +281,7 @@ Hint: `?max`
 
 ```
 gapminder %>% 
-    group_by(continent, country) %>%
+    group_by(country) %>%
     summarise(maxLE = max(lifeExp))
 ```
 
