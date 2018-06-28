@@ -76,15 +76,7 @@ We can add a sequence of useful commands to our script as we go.
     * While you wait for dplyr to be installed, check https://www.rdocumentation.org and type "dplyr" in the search
     * load the package: `library(dplyr)`
 
-:::info
-At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)", a meta-package of useful packages for data science: 
-
-```
-install.packages("tidyverse")
-```
-
-(It takes a few minutes depending on your internet connection but installs many useful packages)
-:::
+> At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)", a meta-package of useful packages for data science: 
 
 You only need to install a package once (with `install.packages()`), but you need to reload it every time you start a new R session (with `library()`).
 
@@ -119,7 +111,6 @@ nlevels(gapminder$country)
 class(gapminder$country)
 ```
 
-:::info
 If we want nicer printing, we can convert our dataframe to a "tibble":
 
 ```
@@ -127,7 +118,6 @@ install.packages(tibble)
 library(tibble)
 gapminder <- as_tibble(gapminder)
 ```
-:::
 
 ### Help
 
