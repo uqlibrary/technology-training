@@ -275,15 +275,14 @@ gapminder_continents_LE2007 <- gapminder %>%
 gapminder_continents_LE2007
 ```
 
-Exercise 7 – group by continent and country, and find out the max life expectancy ever recorded
+Exercise 7 – group by country, and find out the maximum life expectancy ever recorded
 
 Hint: `?max`
 
 ```
-gapminder_continents_country_LE <- gapminder %>% 
+gapminder %>% 
     group_by(continent, country) %>%
     summarise(maxLE = max(lifeExp))
-gapminder_continents_country_LE
 ```
 
 #### More examples
