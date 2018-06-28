@@ -1,7 +1,7 @@
 ---
 Title: CDS resources
 Author: Stéphane Guillou
-Date: 2018-06-15
+Date: 2018-06-28
 ---
 
 Instructions and notes for sessions held at the [Centre for Digital Scholarship](https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship) (CDS).
@@ -29,7 +29,7 @@ Files available for each course, hosted in this repository:
 |:-|:-:|:-:|:-:|
 | Introduction to R and RStudio | [md](https://gitlab.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-rstudio) |
 | Data manipulation with dplyr | [md](https://gitlab.com/stragu/CDS/blob/master/R/dplyr/dplyr.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/R/dplyr/dplyr_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-dplyr) |
-| Introduction to ggplot2 | [md](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-intro) |
+| Introduction to ggplot2 | [md](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.md) <sup>[source](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [txt](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-intro) |
 | ggplot2 – intermediate | [md](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [txt](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-inter) |
 | Heatmaps with R | [md](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md) <sup>[source](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd)</sup> | [txt](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
 | Introduction to the Unix Shell | [md](https://gitlab.com/stragu/CDS/blob/master/Shell/shell_intro.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/Shell/shell_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-shell) |
