@@ -2,7 +2,7 @@
 Title: Introduction to R data manipulation using dplyr
 ---
 
-`last revision: 2018-05-31`
+`last revision: 2018-06-28`
 
 If you want to review the installation instructions: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
 
@@ -27,9 +27,9 @@ Specifically, you will learn how to **explore, filter, reorganise and process** 
 filter() # pick observations
 arrange() # reorder rows
 select() # pick variables
-group_by() # change the scope of function
-summarise() # collapse to a single summary
 mutate() # create new variables
+summarise() # collapse to a single summary
+group_by() # change the scope of function
 ```
 
 ## Disclaimer
@@ -217,9 +217,33 @@ eritrea_2002 <- gapminder %>%
     filter(country == "Eritrea", year == 2002)
 ```
 
+#### Create new variables with `mutate()`
+
+Have a look at what the verb `mutate()` can do with `?mutate`.
+
+Let's see what the two following variables can be used for:
+
+```
+gapminder %>%
+    select(gdpPercap, pop)
+```
+
+Exercise 5 – use `mutate()` to create a `gdp` variable
+
+Name your new dataset `gapminder_gdp`. When finished, `dim(gapminder_gdp)` should result in `1704 7`.
+
+Hint: use the `*` operator within `mutate()`.
+
+```
+gapminder_gdp <- gapminder %>%
+    mutate(gdp = gdpPercap * pop)
+dim(gapminder_gdp)
+head(gapminder_gdp)
+```
+
 #### `group_by()` and `summarise()`
 
-Exercise 5 – Understand `group_by()` and `summarise()`
+Exercise 6 – Understand `group_by()` and `summarise()`
 
 ```
 ?group_by
@@ -241,7 +265,7 @@ gapminder %>%
   summarise(meanLE = mean(lifeExp))
 ```
 
-Associating the two functions makes it more interesting. To find out the mean life expectancyfor each continent in 2007, we can do the following:
+Associating the two functions makes it more interesting. To find out the mean life expectancy for each continent in 2007, we can do the following:
 
 ```
 gapminder_continents_LE2007 <- gapminder %>% 
@@ -251,7 +275,7 @@ gapminder_continents_LE2007 <- gapminder %>%
 gapminder_continents_LE2007
 ```
 
-Exercise 6 – group by continent and country, and find out the max life expectancy ever recorded
+Exercise 7 – group by continent and country, and find out the max life expectancy ever recorded
 
 Hint: `?max`
 
@@ -262,33 +286,9 @@ gapminder_continents_country_LE <- gapminder %>%
 gapminder_continents_country_LE
 ```
 
-#### Create new variables with `mutate()`
-
-Have a look at what the verb `mutate()` can do with `?mutate`.
-
-Let's see what the two following variables can be used for:
-
-```
-gapminder %>%
-    select(gdpPercap, pop)
-```
-
-Exercise 7 – use `mutate()` to create a `gdp` variable
-
-Name your new dataset `gapminder_gdp`. When finished, `dim(gapminder_gdp)` should result in `1704 7`.
-
-Hint: use the `*` operator within `mutate()`.
-
-```
-gapminder_gdp <- gapminder %>%
-    mutate(gdp = gdpPercap * pop)
-dim(gapminder_gdp)
-head(gapminder_gdp)
-```
-
 #### More examples
 
-Explore the variation `transmute()`:
+Explore the function `transmute()`:
 
 ```
 (gapminder_gdp <- gapminder %>%
