@@ -15,7 +15,14 @@ During the session, it is the only document you need to have open.
 
 * Case sensitive
 * No spaces in names
-* Be ready to learn a new language, lots of new vocabulary
+
+### Help
+
+For any dataset or function doubts that you might have, don't forget the three ways of getting help in RStudio:
+
+1. the shortcut command: `?functionname`
+2. the help function: `help(functionname)`
+3. the keyboard shortcut: press F1 after writing a function name
 
 ## What are we going to learn?
 
@@ -50,7 +57,7 @@ We will assume you are an R beginner, who has used R before.
 
 ## Material
 
-### Project and folders
+### New project
 
 Exercise 1 - New RStudio project
 
@@ -67,7 +74,7 @@ Exercise 2 - create a script, install `dplyr`
 
 * Menu: Top left corner, click the green "plus" symbol, or press the shortcut (for Windows/Linux) Ctrl+Shift+N or (for Mac) Cmd+Shift+N. This will open an "Untitled1" file.
 * Go to "File > Save" or press (for Windows/Linux) Ctrl+S or (for Mac) Cmd+S. This will ask where you want to save your file and the name of the new file.
-* Call your file "dplyr_intro.R" located in the "scripts" folder
+* Call your file "dplyr_intro.R"
 
 We can add a sequence of useful commands to our script as we go.
 
@@ -84,27 +91,17 @@ You only need to install a package once (with `install.packages()`), but you nee
 
 Exercise 3 – import and explore data
 
-1. import the data from the Internet:
-
-* The file is located at https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv
-* Read about the `download.file()` function with: `?download.file`
-* Download the file with the following command:
-```
-download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv",
-    destfile = "data/gapminder.csv")
-```
-
-2. read the data into an object called "gapminder", using `read.csv()`:
+1. read the data into an object called "gapminder", using `read.csv()`:
 
 ```
-gapminder <- read.csv("data/gapminder.csv")
+gapminder <- read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
 
-3. Explore the gapminder dataset using `dim()` and `str()`
+2. Explore the gapminder dataset using `dim()` and `str()`
 
-How can we get the dataframe's variable names? There are two ways: `names(gapminder)` returns the names regardless of the object type, such as list, vector, data.frame etc., whereas `colnames(gapminder)` returns the variable names for matrix-like objects, such as matrix, data.frame
+How can we get the dataframe's variable names? There are two ways: `names(gapminder)` returns the names regardless of the object type, such as list, vector, data.frame etc., whereas `colnames(gapminder)` returns the variable names for matrix-like objects, such as matrices, dataframes...
 
-To select one specific column in the dataframe, you can use the dollar sign as in: `gapminder$year`. For example, try these:
+To select one specific column in the dataframe, you can use the dollar sign in: `gapminder$year`. For example, try these:
 
 ```
 nlevels(gapminder$country)
@@ -118,14 +115,6 @@ install.packages(tibble)
 library(tibble)
 gapminder <- as_tibble(gapminder)
 ```
-
-### Help
-
-For any dataset or function doubts that you might have, don't forget the three ways of getting help in RStudio:
-
-1. the shortcut command: `?functionname`
-2. the help function: `help(functionname)`
-3. the keyboard shortcut: press F1 after writing a function name
 
 ### Basic dplyr verbs
 
@@ -143,11 +132,13 @@ The book _[R for Data Science](http://r4ds.had.co.nz)_ introduces the package as
 > 
 > These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the **verbs for a language of data manipulation**.
 
-To use the verbs to their full extent, we will need **pipes** and **conditionals**.
+To use the verbs to their full extent, we will need **pipes** and **logical operators**, which we will introduce as we go.
 
-We can use a pipe symbol `%>%` (Similar to "+" in ggplot2) to **string commands together**.
+#### Pick observations with `filter()`
 
-Conditionals allow us to **check for a condition**. Remember: `=` is to give a value to the variable, `==` is to set a condition 
+The `filter()` function allows use to pick observations depending on one ore several conditions.
+
+**Logical operators** allow us to **check for a condition**. Remember: `=` is to assign a value to a variable, `==` is to check for a condition.
 
 * `==` equal
 * `!=` different 
@@ -156,10 +147,7 @@ Conditionals allow us to **check for a condition**. Remember: `=` is to give a v
 * `>=` greater or equal
 * `<=` smaller or equal
 
-
-#### Pick observations with `filter()`
-
-Filter the observations for Australia, using `filter()` and a conditional:
+Filter the observations for Australia, using `filter()` and a logical operator:
 
 ```
 australia <- filter(gapminder, country == "Australia")
@@ -197,7 +185,22 @@ If we only want this data for 1997, we can associate `select()` to `filter()`:
 gapminder_small_1997 <- filter(gapminder_small, year == 1997)
 ```
 
-We can make our code more readable and avoid creating useless objects by **piping** commands into each other. To do what we just did in one command:
+We can make our code more readable and avoid creating useless intermediate objects by **piping** commands into each other. The pipe symbol `%>%` **strings commands together**, using the left-side output as the first argument of the right-side function.
+
+For example, this command:
+
+```
+gapminder %>%
+  filter(country != France)
+```
+
+... becomes:
+
+```
+filter(gapminder, country != France)
+```
+
+To do what we did previously in one single command:
 
 ```
 gapminder_small_1997 <- gapminder %>%
@@ -205,11 +208,13 @@ gapminder_small_1997 <- gapminder %>%
     filter(year == 1997)
 ```
 
-Use Shift + Enter to go to the next line without executing the command.
+The pipe operator can be read as "then" and makes the code a lot more readable than when nesting functions into each other.
 
-Probably a good time to copy our code to our script!
+From now on, we'll use this syntax.
 
-Exercise 4 – Select the 2002 life expectancy observation for Eritrea
+> When in the console, use <kbd>Shift</kbd> + <kbd>Enter</kbd> to go to the next line without executing the command.
+
+Exercise 4 – Select the 2002 life expectancy observation for Eritrea (and remove the rest of the variables)
 
 ```
 eritrea_2002 <- gapminder %>%
@@ -241,6 +246,13 @@ dim(gapminder_gdp)
 head(gapminder_gdp)
 ```
 
+Reuse a variable computed by 'mutate()' straight away:
+
+```
+(gapminder_gdp <- gapminder %>%
+    mutate(gdp = gdpPercap * pop, gdpMil = gdp / 10^6))
+```
+
 #### `group_by()` and `summarise()`
 
 Exercise 6 – Understand `group_by()` and `summarise()`
@@ -268,11 +280,10 @@ gapminder %>%
 Associating the two functions makes it more interesting. To find out the mean life expectancy for each continent in 2007, we can do the following:
 
 ```
-gapminder_continents_LE2007 <- gapminder %>% 
+gapminder %>% 
     filter(year == 2007) %>%
     group_by(continent) %>%
     summarise(meanLE = mean(lifeExp))
-gapminder_continents_LE2007
 ```
 
 Exercise 7 – group by country, and find out the maximum life expectancy ever recorded
@@ -290,15 +301,8 @@ gapminder %>%
 Explore the function `transmute()`:
 
 ```
-(gapminder_gdp <- gapminder %>%
-    transmute(gdp = gdpPercap * pop))
-```
-
-Reuse a variable computed by 'mutate()':
-
-```
-(gapminder_gdp <- gapminder %>%
-    mutate(gdp = gdpPercap * pop, gdpMil = gdp / 10^6))
+gapminder %>%
+    transmute(gdp = gdpPercap * pop)
 ```
 
 Another example of new variable with `mutate()`:
