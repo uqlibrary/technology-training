@@ -105,26 +105,30 @@ Extra elements can be specified, like:
 
 Together, the data, mappings, stats and geoms form a **layer**.
 
-Here is an example of pseudo-code to build a plot:
+In its most basic form, a ggplot2 plot can be written with the`qplot()` function:
 
+```{r}
+qplot(data = diamonds,
+      x = cut,
+      geom = "bar")
 ```
-ggplot(data = <dataset>, mapping = aesthetics(<x, y, colour>)) + 
- <geometric_object>() +
- <...>()
-```
 
-The `ggplot()` function initialises a ggplot object. It can be used to declare the input data frame for a graphic and to specify the set of plot aesthetics intended to be common throughout all subsequent layers unless specifically overridden.
+We can see our three essential elements:
 
-Find out more about the package and the base function:
+1. the data comes from the `diamonds` dataset included in `ggplot2`;
+1. the variable `cut` is mapped to the aesthetic `x`;
+1. the geometry is `"bar"`, for "bar chart".
+
+Find out more about the package and the "quick plot" function:
 
 ```{r eval=FALSE}
 ?ggplot2
-?ggplot
+?qplot
 ```
 
 ### Create different kinds of plots 
 
-Let's have a look at our dataset:
+Let's have a look at another dataset:
 
 ```{r}
 ?economics
@@ -133,7 +137,7 @@ str(economics)
 
 Do you think that the rate of unemployment is stable over the years?
 
-We can base our plot code on our previous pseudo-code, using a point geometry:
+Let's use the more advanced `ggplot2` syntax from now on, se we can build up our plots further:
 
 ```{r}
 ggplot(data = economics,
@@ -141,6 +145,12 @@ ggplot(data = economics,
                      y = unemploy)) + 
     geom_point()
 ```
+
+The `ggplot()` function initialises a ggplot object. It can be used to declare the input data frame and to specify the set of plot aesthetics intended to be common throughout all subsequent layers (unless specifically overridden).
+
+The `aes()` function groups our aesthetic mappings.
+
+The `geom_<...>()` functions specify what geometric element we want to use.
 
 > Make sure you use "Shift + Enter" to go to the next line when adding layers, for readability and to easily recall the whole code block with the up arrow.
 
@@ -151,14 +161,12 @@ New dataset: `mpg`, which stands for "miles per gallon".
 str(mpg)
 ```
 
-A car with a low fuel efficiency consumes more fuel than a car with a high fuel efficiency when they travel the same distance.
+Do you think that cars with big engines use fuel less efficiently than cars with small engines?
 
 We can focus on two variables:
 
 > `displ`: a car’s engine size, in litres.
 > `hwy`: a car’s fuel efficiency on the highway, in miles per gallon.
-
-Do you think that cars with big engines use fuel less efficiently than cars with small engines?
 
 ```{r}
 ggplot(data = mpg,
