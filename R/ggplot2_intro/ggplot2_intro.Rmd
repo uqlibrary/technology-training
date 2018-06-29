@@ -3,7 +3,7 @@ title: Introduction to R data visualisation using ggplot2
 output: github_document
 ---
 
-`last revision: 2018-03-29`
+`last revision: 2018-06-29`
 
 > This document is redacted in Rmd; the source file is available here: https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd
 > It is then knitted as a GitHub document, which is the best version to view online and to print: https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.md
@@ -33,14 +33,15 @@ Everything we write today will be saved in your R project. Please remember to sa
 
 ## What are we going to learn?
 
-At the end of this session you will be able to:
+During this session, you will:
 
-   * Have a visualisation package installed (ggplot2) 
+   * Have a visualisation package installed (`ggplot2`)
    * Learn how to explore data
-   * Learn about the basic ggplot2 layers 
-   * Create different kinds of plots 
-   * Be able to modify plots quickly
-   
+   * Learn about the basic ggplot2 components
+   * Use different kinds of visualisations
+   * Layer several visualisations
+   * Learn how to amend colours, labels, themes and coordinates.
+
 ## Disclaimer
 
 We will assume you are an R beginner, who has used R before.
@@ -126,7 +127,7 @@ Find out more about the package and the "quick plot" function:
 ?qplot
 ```
 
-### Create different kinds of plots 
+### Scatterplots 
 
 Let's have a look at another dataset:
 
@@ -175,26 +176,27 @@ ggplot(data = mpg,
     geom_point()
 ```
 
+The plot shows a negative relationship between engine size (`displ`) and fuel efficiency (`hwy`). In other words, cars with big engines use more fuel. Does this confirm or refute your hypothesis about fuel efficiency and engine size?
+
+However, we can see some outliers. We need to find out more about our data.
+
+### Add aesthetics
+
 We can highlight the "class" factor to understand the data better:
 
 ```{r}
 ggplot(data = mpg,
-      mapping = aes(x = displ,
-                    y = hwy,
-                    colour = class)) +
+       mapping = aes(x = displ,
+                     y = hwy,
+                     colour = class)) +
     geom_point()
 ```
 
-The plot shows a negative relationship between engine size (`displ`) and fuel efficiency (`hwy`).
-In other words, cars with big engines use more fuel. Does this confirm or refute your hypothesis about fuel efficiency and engine size?
+It seems that two-seaters are more fuel efficient than other cars with a similar engine size, which can be explained by the weight of the car.
 
 We now know how to create a simple dotplot.
 
-`last_plot()` allows us to recall the latest plot we created, so we can string extra functions and layers quickly.
-
-```{r eval=FALSE}
-last_plot()
-```
+### Trend lines
 
 A trend will be best displayed as: 
 
@@ -205,7 +207,7 @@ ggplot(data = mpg,
     geom_smooth()
 ```
 
-Do you think it is possible to combine both plots?
+How can we combine both plots?
 
 ```{r}
 ggplot(data = mpg,
@@ -216,9 +218,11 @@ ggplot(data = mpg,
 ```
 
 Different geoms can also have their own mappings that overwrite the defaults.
-If you place mappings in a geom function, ggplot2 will treat them as local mappings for the layer. It will use these mappings to extend or overwrite the global mappings for that layer only. This makes it possible to display different aesthetics in different layers.
+If you place mappings in a geom function, `ggplot2` will treat them as local mappings for the layer. It will use these mappings to extend or overwrite the global mappings for that layer only. This makes it possible to display different aesthetics in different layers.
 
-Introducing **colour** and **legend**:
+### Colours
+
+We can once again add some information to our visualisation by mapping the `class` variable to the `colour` aesthetic:
 
 ```{r}
 ggplot(data = mpg,
@@ -263,8 +267,10 @@ ggplot(data = economics,
 
 See how the legend changes depending on the type of data mapped to the `colour` aesthetic? (i.e. categorical vs continuous)
 
+### Bar charts
+
 Let's use the `diamonds` dataset now.
-The `diamonds` dataset comes in ggplot2 and contains information about ~54,000 diamonds, including the price, carat, color, clarity, and cut of each diamond.
+The `diamonds` dataset comes with `ggplot2` and contains information about ~54,000 diamonds, including the price, carat, color, clarity, and cut of each diamond.
 
 ```{r eval=FALSE}
 str(diamonds)
@@ -296,6 +302,8 @@ ggplot(data = diamonds,
 
 What is the difference with the `colour` aesthetic?
 
+### Labels
+
 Let's modify our plot: we can pick our favourite colour in `geom_bar()`, and modify labels with the `labs()` function to make our plot more self-explanatory:
 
 ```{r}
@@ -319,6 +327,8 @@ Let's have a look at what `labs()` can do:
 
 It can edit the title, the subtitle, the x and y axes labels, and the caption. But remember that captions and titles are better sorted out in the publication itself.
 
+### Flip coordinates
+
 `coord_flip()` can be used to quickly flip the axes around:
 
 ```{r}
@@ -330,6 +340,8 @@ ggplot(data = diamonds,
        y = "Number of diamonds") +
   coord_flip()
 ```
+
+### Built-in themes
 
 Some functions allow to set a bunch of theme defaults easily, like `theme_bw()`:
 
@@ -343,6 +355,16 @@ ggplot(data = diamonds,
   coord_flip() +
   theme_bw()
 ```
+
+### Recycle a plot
+
+`last_plot()` allows us to recall the latest plot we created, so we can string extra functions and layers quickly. For example:
+
+```{r eval=FALSE}
+last_plot() + theme_dark()
+```
+
+### Export
 
 To save the last plot, use `ggsave()`:
 
@@ -365,10 +387,6 @@ If you want to close R Studio, you should save your project first.
 * File
 * close project (It will ask you if you want to save your history)
 * then, close RStudio
-
-## After the workshop
-
-Please fill in the feedback survey before leaving!
 
 ## Useful links
 
