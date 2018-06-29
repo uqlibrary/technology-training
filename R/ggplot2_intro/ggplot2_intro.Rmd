@@ -180,9 +180,9 @@ The plot shows a negative relationship between engine size (`displ`) and fuel ef
 
 However, we can see some outliers. We need to find out more about our data.
 
-### Add aesthetics
+### Adding aesthetics
 
-We can highlight the "class" factor to understand the data better:
+We can highlight the "class" factor by adding a new aesthetic:
 
 ```{r}
 ggplot(data = mpg,
@@ -198,7 +198,7 @@ We now know how to create a simple dotplot.
 
 ### Trend lines
 
-A trend will be best displayed as: 
+A trend line can be created with the `geom_smooth()` function:
 
 ```{r}
 ggplot(data = mpg,
@@ -207,7 +207,9 @@ ggplot(data = mpg,
     geom_smooth()
 ```
 
-How can we combine both plots?
+### Layering
+
+How can we combine several layers?
 
 ```{r}
 ggplot(data = mpg,
@@ -220,7 +222,7 @@ ggplot(data = mpg,
 Different geoms can also have their own mappings that overwrite the defaults.
 If you place mappings in a geom function, `ggplot2` will treat them as local mappings for the layer. It will use these mappings to extend or overwrite the global mappings for that layer only. This makes it possible to display different aesthetics in different layers.
 
-### Colours
+### The `colour` aesthetic
 
 We can once again add some information to our visualisation by mapping the `class` variable to the `colour` aesthetic:
 
@@ -302,7 +304,7 @@ ggplot(data = diamonds,
 
 What is the difference with the `colour` aesthetic?
 
-### Labels
+### Theming
 
 Let's modify our plot: we can pick our favourite colour in `geom_bar()`, and modify labels with the `labs()` function to make our plot more self-explanatory:
 
