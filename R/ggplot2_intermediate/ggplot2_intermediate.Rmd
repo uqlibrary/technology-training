@@ -128,30 +128,6 @@ Familiarise yourself with the variable names:
 colnames(gapminder)
 ```
 
-### Layers used in ggplot2
-
-Have a look at the the "Details" section of the help page:
-
-```{r eval=FALSE}
-?ggplot
-```
-
-This pseudo-code gives a general idea of how ggplot plots are constructed:
-
-```
-ggplot(<data>) +
-  geom_<type>(aes(x, y, fill, colour, shape, size, <more mappings>),
-              stat = <stat>,
-              position = <position>) +
-  facet_<type>() +
-  theme_<type>() +
-  scale_<type>() +
-  coord_<type>() +
-  <...>
-```
-
-Only the *data*, the *geometry* and the *aesthetic mappings* always need to be specified.
-
 ### Explore data visually
 
 Let's start with a question: Does population grow over the years?
@@ -164,7 +140,9 @@ ggplot(data = gapminder,
                      y = pop)) +
   geom_point()
 ```
-  
+
+Remember that only the *data*, the *geometry* and the *aesthetic mappings* always need to be specified.
+
 ### Colour, size, shape and other aesthetic attributes
 
 To change the *shape* based on a variable, use `shape = <discrete variable>` inside the `aes()` call.
@@ -312,7 +290,6 @@ ggplot(gapminder,
                  position = "dodge")
 ```
 
-
 ### Faceting
 
 An even more readable representation could use **facetting**:
@@ -440,6 +417,28 @@ If the categories get too cramped on the axis, you can rotate them:
 ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_violin() +
   theme(axis.text.x = element_text(angle = 90))
+```
+
+### Another example
+
+This extra example gives a an idea of how a complex `ggplot2` visualisation might be constructed:
+
+```{r}
+ggplot(diamonds,
+       aes(x = price,
+           y = carat)) +
+  geom_point(aes(colour = color),
+             alpha = 0.5,
+             size = 0.5) +
+  scale_color_brewer(palette = "Spectral") +
+  geom_smooth(se = FALSE,
+              linetype = "dashed",
+              colour = "black",
+              size = 0.5) +
+  facet_wrap(~cut) +
+  theme_minimal() +
+  labs(x = "price (USD)") +
+  coord_flip()
 ```
 
 ### Play time!
