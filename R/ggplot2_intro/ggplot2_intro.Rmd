@@ -323,10 +323,11 @@ It can edit the title, the subtitle, the x and y axes labels, and the caption. B
 
 ```{r}
 ggplot(data = diamonds,
-       mapping = aes(x = cut)) + 
+       mapping = aes(x = cut)) +
   geom_bar(fill = "tomato") +
-  labs(title = "How many diamonds have good or better quality?",
-       x = "Quality", y = " Counts") +
+  labs(title = "Where are the bad ones gone?",
+       x = "Quality of the cut",
+       y = "Number of diamonds") +
   coord_flip()
 ```
 
@@ -335,12 +336,12 @@ Some functions allow to set a bunch of theme defaults easily, like `theme_bw()`:
 ```{r}
 ggplot(data = diamonds,
        mapping = aes(x = cut)) + 
-    geom_bar(fill = "tomato") +
-    labs(title = "How many diamonds have good or better quality?",
-         x = "Quality",
-         y = " Counts") +
-    coord_flip() +
-    theme_bw()
+  geom_bar(fill = "tomato") +
+  labs(title = "Where are the bad ones gone?",
+       x = "Quality of the cut",
+       y = "Number of diamonds") +
+  coord_flip() +
+  theme_bw()
 ```
 
 To save the last plot, use `ggsave()`:
