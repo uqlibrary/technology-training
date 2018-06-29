@@ -108,15 +108,15 @@ Together, the data, mappings, stats and geoms form a **layer**.
 In its most basic form, a ggplot2 plot can be written with the`qplot()` function:
 
 ```{r}
-qplot(data = diamonds,
-      x = cut,
+qplot(data = msleep,
+      x = conservation,
       geom = "bar")
 ```
 
 We can see our three essential elements:
 
-1. the data comes from the `diamonds` dataset included in `ggplot2`;
-1. the variable `cut` is mapped to the aesthetic `x`;
+1. the data comes from the `msleep` dataset included in `ggplot2`;
+1. the variable `conservation` is mapped to the aesthetic `x`;
 1. the geometry is `"bar"`, for "bar chart".
 
 Find out more about the package and the "quick plot" function:
