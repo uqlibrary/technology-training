@@ -1,9 +1,8 @@
 ---
 title: R visualisations using ggplot2 – intermediate
-output: github_document 
+output: github_document
+date: 2018-07-05
 ---
-
-`last revision: 2018-06-29`
 
 > This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document.  
 > The source code is available at: https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd  
@@ -20,21 +19,21 @@ If you need to review the installation instructions: https://gitlab.com/stragu/C
 ## Open RStudio
 
 * On CDS computers:
-  * Log in with your UQ username and password
-  * Make sure you have a working internet connection
-  * Go to search the magnifying glass (bottom left)
-  * Open the ZENworks application
-  * Look for the letter R 
-  * Double click on RStudio which will install both R and RStudio 
-  * Make sure you have ggplot2 installed
+  + Log in with your UQ username and password
+  + Make sure you have a working internet connection
+  + Go to search the magnifying glass (bottom left)
+  + Open the ZENworks application
+  + Look for the letter R 
+  + Double click on RStudio which will install both R and RStudio 
+  + Make sure you have ggplot2 installed
 
 * If you are using your own laptop please open RStudio
-  * Make sure you have a working internet connection
-  * Make sure you have ggplot2 installed
+  + Make sure you have a working internet connection
+  + Make sure you have ggplot2 installed
 
 ## Disclaimer
 
-We will assume you are an R intermediate user and that you have used ggplot2 before.
+We will assume you are an R intermediate user and that you have used `ggplot2` before.
 
 ## What are we going to learn?
 
@@ -143,13 +142,15 @@ ggplot(data = gapminder,
 
 Remember that only the *data*, the *geometry* and the *aesthetic mappings* always need to be specified.
 
-### Colour, size, shape and other aesthetic attributes
+### Aesthetics available
 
 To change the *shape* based on a variable, use `shape = <discrete variable>` inside the `aes()` call.
     
 Similarly, to change the *colour* based on a variable, use `colour = <variable>` and `fill = <variable>` inside the `aes()` call.
 
 Finally, if you want to change the size of the geometric object, you can use the `size = <variable>` argument.
+
+#### More control over colours
 
 *Exercise 5 – Choosing colours*
 
@@ -176,6 +177,26 @@ ggplot(data = gapminder,
                      y = pop,
                      colour = continent)) +
   geom_point()
+```
+
+We can also use different palettes. You can see the ones available in `ggplot2` by looking at the help page of, for example, `scale_colour_brewer()`.
+
+If you want a visual overview of the Brewer palettes, install the `RColorBrewer` package and try the following functions:
+
+```{r}
+library(RColorBrewer)
+display.brewer.all() # all palettes
+display.brewer.all(colorblindFriendly = TRUE) # only colourblind-friendly palettes
+```
+Now, try a different palette for your continents:
+
+```{r}
+ggplot(data = gapminder,
+       mapping = aes(x = year,
+                     y = pop,
+                     colour = continent)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Set2")
 ```
 
 ### Scales and limits
