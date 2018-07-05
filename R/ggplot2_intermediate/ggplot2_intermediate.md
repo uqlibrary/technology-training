@@ -1,7 +1,7 @@
 R visualisations using ggplot2 – intermediate
 ================
 
-`last revision: 2018-06-01`
+`last revision: 2018-06-29`
 
 > This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document.
 > The source code is available at: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd>
@@ -42,13 +42,13 @@ What are we going to learn?
 
 During this hands-on session, you will:
 
--   learn more about the layers used in ggplot2;
--   select your own colours;
--   modify aesthetics like shape and size;
--   modify scales and labels;
--   use facets;
--   experiment with new geometries;
--   learn how to modify plots quickly.
+-   install a tool for picking colours;
+-   customise scales and ranges;
+-   divide a visualisation in facets;
+-   explore new geometries;
+-   modify statistical transformations;
+-   adjust a geometry's position;
+-   further modify themes.
 
 Material
 --------
@@ -128,28 +128,6 @@ colnames(gapminder)
 
     ## [1] "country"   "year"      "pop"       "continent" "lifeExp"   "gdpPercap"
 
-### Layers used in ggplot2
-
-Have a look at the the "Details" section of the help page:
-
-``` r
-?ggplot
-```
-
-This pseudo-code gives a general idea of how ggplot plots are constructed:
-
-    ggplot(<data>) +
-      geom_<type>(aes(x, y, fill, colour, shape, size, <more mappings>),
-                  stat = <stat>,
-                  position = <position>) +
-      facet_<type>() +
-      theme_<type>() +
-      scale_<type>() +
-      coord_<type>() +
-      <...>
-
-Only the *data*, the *geometry* and the *aesthetic mappings* always need to be specified.
-
 ### Explore data visually
 
 Let's start with a question: Does population grow over the years?
@@ -163,7 +141,9 @@ ggplot(data = gapminder,
   geom_point()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-7-1.png)
+
+Remember that only the *data*, the *geometry* and the *aesthetic mappings* always need to be specified.
 
 ### Colour, size, shape and other aesthetic attributes
 
@@ -188,7 +168,7 @@ ggplot(data = gapminder,
   geom_point(colour = "chartreuse3") # change the default colour
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 *Exercise 6 – Colour according to continent*
 
@@ -202,7 +182,7 @@ ggplot(data = gapminder,
   geom_point()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ### Scales and limits
 
@@ -217,7 +197,7 @@ ggplot(data = gapminder,
   scale_y_log10()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 > Being explicit about the *argument names* is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like `data =` and `mapping =`
 
@@ -246,7 +226,7 @@ gg_scatter +
   scale_x_continuous(breaks = unique_years)
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-13-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 We can further customise a scale with breaks and labels:
 
@@ -257,7 +237,7 @@ gg_scatter +
                      labels = c(0, "100 m", "200 m", "500 m", "1 b"))
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-14-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
 *Exercise 8 - Modify your y scale range*
 
@@ -270,7 +250,7 @@ gg_scatter +
 
     ## Warning: Removed 24 rows containing missing values (geom_point).
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-15-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
 Let's talk about that warning message. We could use the `subset()` function to avoid that.
 
@@ -287,7 +267,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-16-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
 Let's change the bin width:
 
@@ -296,7 +276,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(binwidth = 15)
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-17-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 We can also change the number of bins:
 
@@ -305,7 +285,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-18-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-17-1.png)
 
 And colour by continent:
 
@@ -314,7 +294,7 @@ ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-19-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-18-1.png)
 
 The histogram geometry uses the "stack" **position** by default. It might be more readable if we change it so it uses ratios instead, using `position = "fill"` argument:
 
@@ -326,7 +306,7 @@ ggplot(gapminder,
                  position = "fill")
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-20-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
 We can also make the bars "dodge"" each other:
 
@@ -338,7 +318,7 @@ ggplot(gapminder,
                  position = "dodge")
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-21-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
 ### Faceting
 
@@ -352,7 +332,7 @@ ggplot(gapminder,
   facet_wrap(~ continent) 
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-22-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-21-1.png)
 
 ### Theming
 
@@ -367,7 +347,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-23-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
 A pre-built theme function can overwrite some defaults:
 
@@ -381,7 +361,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-24-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-23-1.png)
 
 Try other pre-built themes, like `theme_bw()` and `theme_light()`. You can also start with an empty theme thanks to `theme_void()`, and even install extras with the package `ggthemes`.
 
@@ -401,7 +381,7 @@ ggplot(gapminder,
   ylab("count")
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-25-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-24-1.png)
 
 ### Customise a scatterplot
 
@@ -418,7 +398,7 @@ ggplot(gapminder,
   theme_bw()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-26-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-25-1.png)
 
 The `labs()` function allows you to group all the labels in one call.
 
@@ -438,7 +418,7 @@ ggplot(gapminder,
   theme_bw()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-27-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-26-1.png)
 
 ### Save your plots
 
@@ -459,7 +439,7 @@ ggplot(gapminder, aes(x = continent)) +
   geom_bar()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-29-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-28-1.png)
 
 A simple boxplot to visualise distribution in categories:
 
@@ -468,7 +448,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-30-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-29-1.png)
 
 Violin plots might be better at visualising densities:
 
@@ -477,7 +457,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_violin()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-31-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-30-1.png)
 
 If the categories get too cramped on the axis, you can rotate them:
 
@@ -486,6 +466,32 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_violin() +
   theme(axis.text.x = element_text(angle = 90))
 ```
+
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-31-1.png)
+
+### Another example
+
+This extra example gives a an idea of how a complex `ggplot2` visualisation might be constructed:
+
+``` r
+ggplot(diamonds,
+       aes(x = price,
+           y = carat)) +
+  geom_point(aes(colour = color),
+             alpha = 0.5,
+             size = 0.5) +
+  scale_color_brewer(palette = "Spectral") +
+  geom_smooth(se = FALSE,
+              linetype = "dashed",
+              colour = "black",
+              size = 0.5) +
+  facet_wrap(~cut) +
+  theme_minimal() +
+  labs(x = "price (USD)") +
+  coord_flip()
+```
+
+    ## `geom_smooth()` using method = 'gam'
 
 ![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-32-1.png)
 
