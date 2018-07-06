@@ -16,7 +16,6 @@ We can use R for calculations and visualisations.
 
 * Case sensitive
 * No spaces in names
-* Be ready to learn a new language, lots of new vocabulary
 
 ## Open RStudio
 
@@ -55,9 +54,7 @@ At the end of this session you will be able to:
 * In Directory name type the name of your project, e.g. "rstudio_intro" (Browse and select a folder where to locate your project, in our case the RProjects folder. If you don't have an RProjects folder, create it.)
 * Click the "Create Project" button
 
-:::info
-Projects make managing multiple directories straightforward. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. The .Rproj file stores information about our folder structure and the objects in the project (hence, manages history and .RData).
-:::
+> Projects make managing multiple directories straightforward. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. The .Rproj file stores information about our folder structure and the objects in the project (hence, manages history and .RData).
 
 ### Maths and objects
 
@@ -86,7 +83,7 @@ An R function looks like this:
 <functionname>(<argument(s)>)
 ```
 
-In the console, we write a command and then execute it by pressing Enter.
+In the console, we write a command and then evaluate it by pressing Enter.
 
 For example, try running the following command:
 
@@ -96,26 +93,25 @@ log10(x)
 
 #### Help
 
-There are 3 ways to find help about a function in RStudio:
+There are two main ways to find help about a function in RStudio:
 
 1. the shortcut command: `?functionname`
-1. the help function: `help(functionname)`
-1. the keyboard shortcut: press F1 after writing a function name
+1. the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a function name
 
 **Exercise 2** - Use the help pages to find out what these functions do:
 
 * `sessionInfo()`
-* `list.files()`
 * `citation()`
-* `setwd()`
+* `c()`
+* `dir.create()`
 
-`sessionInfo()` provides information about your platform, the version of R and the packages that you are using and their versions.
+`sessionInfo()` provides information about your platform, the version of R and the packages that you are using and their versions. Note how the case in the function name matters.
 
-`list.files()` lists all the files in your working directory.
+`citation()` outputs the proper way to cite R, or a different package if we overwrite the default value for the `package` argument.
 
-`citation()` outputs the proper way to cite the R software.
+`c()` concatenates the arguments into a vector.
 
-`setwd()` changes the working directory, i.e. the directory where we are located. This function _requires_ an argument: it can't run without setting a value for `dir` because it does not have a default for it.
+`dir.create()` opens a spreadsheet-like view of a dataset. This function _requires_ an argument: it can't run without setting a value for the `x` argument because it does not have a default for it.
 
 Let's do some operations with two new functions:
 
@@ -163,27 +159,19 @@ Scripts are useful to save a set of useful commands and make research reproducib
 
 **Exercise 4** - Create a new R script file
 
-* click the button (+) located at the top left corner of your RStudio
-* click on R script
-* Save the file: File > Save (or ctrl + s or command + s)
-* name the file "myscript.R"
-* locate this file under the "scripts" folder
-
-You can also create a script with the following command:
+You can create a script with the following command:
 
 ```
 file.create("scripts/cmds.R")
 ```
 
-... or using the shortcuts Ctrl + Shift + N (or Cmd + Shift + N).
-
-To delete a file, use the `file.remove()` function:
+To edit a file, use the `file.edit()` function:
 
 ```
-file.remove("scripts/cmds.R")
+file.edit("scripts/cmds.R")
 ```
 
-You can recall your recent commands with the up arrow, which is especially useful to correct typos or slightly modify a long command.
+> You can recall your recent commands with the up arrow, which is especially useful to correct typos or slightly modify a long command.
 
 **Exercise 5** - Add comments to your new R script file
 
@@ -195,11 +183,22 @@ Comments start with `#`
 # Date:
 ```
 
-To add comments to many lines: Ctrl + Shift + C or Cmd + Shift + C
+To add comments to many lines: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>
 
-While editing your script, you can run the active line (or the selected block of lines) by using Ctrl + Enter (or Cmd + Enter).
+While editing your script, you can run the active line (or the selected block of lines) by using <kbd>Ctrl</kbd>+<kbd>Enter.</kbd>
 
-Instead of opening an RProject, you can open an R script and directly execute its content. This is helpful to re-run a whole project from the beginning (including necessary `library()` commands).
+You can open an R script and directly execute its content. This is helpful to re-run a whole set of data-processing commands in one go.
+
+### Many ways to do one thing
+
+As in many apps, there are many ways to achieve one thing.
+
+For example, we used commands to create and edit a script, but we could also:
+
+* use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
+* use the top left drop-down menus
+
+Learning how to use functions rather than the GUI elements will allow you to integrate them in scripts, and will sometimes help you to do things faster.
 
 ### Import files
 
@@ -264,11 +263,14 @@ R has a number of base plotting functions to visualise data in many different wa
 In its most basic form, a `ggplot2` plot needs a dataset, data mapped to aesthetics, and a geometry.
 
 ```
-ggplot(gapminder, aes(x = year, y = pop)) +
-  geom_point()
+qplot(gapminder, x = year, y = pop, geom = "point")
 ```
 
-We can then add layers, map mor data to aesthetics, and further modify elements. For example, we can map the `colour` easthetic to the `continent` data.
+We can then add layers, map more data to aesthetics, and further modify elements. For example, we can map the `colour` easthetic to the `continent` data.
+
+```
+qplot(gapminder, x = year, y = pop, colour = continent, geom = "point")
+```
 
 ### More shortcuts
 
@@ -299,12 +301,13 @@ We can then add layers, map mor data to aesthetics, and further modify elements.
 * Show Environment Ctrl+8
 * Show Git/SVN or viewer Ctrl+9
 
-### Demos
+### Vignettes
 
-A real life example to use R graphics:
+Vignettes are documentation files that offer some extra information about functions and packages.
 
 ```
-demo(graphics)
+vignette() # list available vignettes
+vignette("ggplot2-specs")
 ```
 
 # Close Rproject
@@ -314,6 +317,7 @@ demo(graphics)
 * close RStudio
 
 When you create a **project** in RStudio, it create an .Rproj file that gathers information about your project, and it allows you to save your **workspace** inside an .Rdata file. The .Rdata file is by default used to reload your workspace when you open your Rproject again. That brings back quite a few things, including the objects loaded in your **environment**, whatever source file (e.g. script) you had open, and your command history. You will find your command history in the "History" tab (upper right panel): all the commands that we used should be in there.
+
 The console, on the other hand, only shows a brand new R **session**. Sessions are not persistent, and a new one is started when you open your project again, which is why you have to load any extra package your work requires again with the `library()` function.
 
 ## Important links
