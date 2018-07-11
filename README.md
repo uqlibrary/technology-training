@@ -10,7 +10,7 @@ Based on work by: Paula Andrea Martinez
 
 ## Description
 
-Here you will resources related to R, Shell, Git and OpenRefine sessions held at the Centre for Digital Scholarhip (part of the University of Queensland's Library).
+Here you will find resources related to R, Shell, Git and OpenRefine sessions held at the Centre for Digital Scholarhip (part of the University of Queensland's Library).
 
 ### Format
 
@@ -20,7 +20,7 @@ An Etherpad is used to list useful links, exercises and to interact.
 Files available for each course, hosted in this repository:
 
 * Markdown notes that the instructor can use to teach, and that students can refer to after the course;
-* An HTML Etherpad export that can be used to initialise a pad (https://etherpad.wikimedia.org is recommended to publish);
+* A HTML Etherpad export that can be used to initialise a pad (https://etherpad.wikimedia.org is recommended to publish);
 * A text file that describes the session, useful to create an event on StudenHub.
 
 ### Quick access to course resources
@@ -35,7 +35,7 @@ Files available for each course, hosted in this repository:
 | Introduction to the Unix Shell | [md](https://gitlab.com/stragu/CDS/blob/master/Shell/shell_intro.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/Shell/shell_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-shell) |
 | Git revision control for collaboration | [md](https://gitlab.com/stragu/CDS/blob/master/Git/git.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/Git/git_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-git) |
 | Cleaning up data with OpenRefine | [md](https://gitlab.com/stragu/CDS/blob/master/OpenRefine/openrefine.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/OpenRefine/openrefine_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-openrefine) |
-| next: OpenSource software for your research | ... | ... | ... |
+| next: OpenSource tools for your research | ... | ... | ... |
 
 ## License
 
@@ -50,4 +50,4 @@ If you have questions about contributing please contact me. You can also raise a
 
 ## Contact
  
-My name is Stéphane Guillou and I am happy to be contacted about anything related to this material, here on the repository or via any method listed on [my website](https://stragu.github.io/contact/).
+My name is Stéphane Guillou and I am happy to be contacted about anything related to this material, here on the repository or via any method listed on [my website](https://stragu.gitlab.io/contact/).
