@@ -103,7 +103,7 @@ There are two main ways to find help about a function in RStudio:
 * `sessionInfo()`
 * `citation()`
 * `c()`
-* `dir.create()`
+* `View()`
 
 `sessionInfo()` provides information about your platform, the version of R and the packages that you are using and their versions. Note how the case in the function name matters.
 
@@ -111,7 +111,7 @@ There are two main ways to find help about a function in RStudio:
 
 `c()` concatenates the arguments into a vector.
 
-`dir.create()` opens a spreadsheet-like view of a dataset. This function _requires_ an argument: it can't run without setting a value for the `x` argument because it does not have a default for it.
+`View()` opens a spreadsheet-like view of a dataset. This function _requires_ an argument: it can't run without setting a value for the `x` argument because it does not have a default for it.
 
 Let's do some operations with two new functions:
 
