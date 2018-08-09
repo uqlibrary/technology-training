@@ -1,7 +1,7 @@
 R for beginners using RStudio
 ===
 
-`version: 2018-05-17`
+`version: 2018-08-09`
 
 > These notes are available on GitHub: https://gitlab.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro.md
 
@@ -263,13 +263,13 @@ R has a number of base plotting functions to visualise data in many different wa
 In its most basic form, a `ggplot2` plot needs a dataset, data mapped to aesthetics, and a geometry.
 
 ```
-qplot(gapminder, x = year, y = pop, geom = "point")
+qplot(data = gapminder, x = year, y = pop, geom = "point")
 ```
 
 We can then add layers, map more data to aesthetics, and further modify elements. For example, we can map the `colour` easthetic to the `continent` data.
 
 ```
-qplot(gapminder, x = year, y = pop, colour = continent, geom = "point")
+qplot(data = gapminder, x = year, y = pop, colour = continent, geom = "point")
 ```
 
 ### More shortcuts
