@@ -13,6 +13,7 @@
 ## Extra learning
 
 * _R for Data Science_, excellent free online book: http://r4ds.had.co.nz/
+* _R for Reproducible Scientific Analysis_, an extensive introduction to R by The Carpentries: https://swcarpentry.github.io/r-novice-gapminder/
 * RStudio's _Online Learning_ page lists useful resources: https://www.rstudio.com/online-learning/
 * CRAN's basic and advanced manuals: https://cran.r-project.org/manuals.html
 * Lots of quality tutorials on _STHDA_: http://www.sthda.com/english/
