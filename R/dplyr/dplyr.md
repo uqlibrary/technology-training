@@ -2,7 +2,7 @@
 Title: Introduction to R data manipulation using dplyr
 ---
 
-`last revision: 2018-06-28`
+`last revision: 2018-08-16`
 
 If you want to review the installation instructions: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
 
@@ -191,13 +191,13 @@ For example, this command:
 
 ```
 gapminder %>%
-  filter(country != France)
+  filter(country != "France")
 ```
 
 ... becomes:
 
 ```
-filter(gapminder, country != France)
+filter(gapminder, country != "France")
 ```
 
 To do what we did previously in one single command:
@@ -255,13 +255,6 @@ Reuse a variable computed by 'mutate()' straight away:
 
 #### `group_by()` and `summarise()`
 
-Exercise 6 – Understand `group_by()` and `summarise()`
-
-```
-?group_by
-?summarise
-```
-
 `group_by()` changes the scope of each function from operating on the entire dataset to operating on it group-by-group. For example, to group by continents:
 
 ```
@@ -286,7 +279,7 @@ gapminder %>%
     summarise(meanLE = mean(lifeExp))
 ```
 
-Exercise 7 – group by country, and find out the maximum life expectancy ever recorded
+Exercise 6 – group by country, and find out the maximum life expectancy ever recorded
 
 Hint: `?max`
 
