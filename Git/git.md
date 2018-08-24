@@ -21,7 +21,7 @@ Installation instructions are available on [this page](https://gitlab.com/stragu
 
 ### Git??
 
-If you need to collaborate on a project, a script, some code or a document, there are a few ways to operate. Sending a file back and forth and taking turns is not efficient; a cloud-based office suite requires a connection to the Internet and does not keep a clean record of contributions.
+If you need to collaborate on a project, a script, some code or a document, there are a few ways to operate. Sending a file back and forth and taking turns is not efficient; a cloud-based office suite requires a connection to the Internet and doesn't usually keep a clean record of contributions.
 
 **Version control** allows users to:
 
@@ -39,13 +39,13 @@ A version control system is a tool that keeps track of changes for us, effective
 
 On a command line, Git commands are written as `git verb`, where `verb` is what we actually want to do.
 
-Before we use Git, we need to configure it with some defaults, like our credentials and our favourite text editor. For example:
+Before we use Git, we need to **configure** it with some defaults, like our credentials and our favourite text editor. For example:
 
 ```bash
 git config --global user.name "Vlad Dracula"
 git config --global user.email "vlad@tran.sylvan.ia"
 ```
-This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to GitHub, BitBucket, GitLab or another Git host server in the future will include this information. This has to match your GitHub credentials.
+This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to GitLab, GitHub, BitBucket or another Git host server in the future will include this information. This has to match your GitLab credentials.
 
 ```bash
 git config --global core.editor "nano -w"
@@ -103,7 +103,7 @@ nano mars.txt
 Type the following text into it:
 
 ```
-Cold and dry, but everything is my favorite color
+Cold and dry, but everything is my favorite colour
 ```
 
 Write out with <kbd>Ctrl</kbd>+<kbd>O</kbd> and exit nano with <kbd>Ctrl</kbd>+<kbd>X</kbd>. You can check the contents of your new file with the `cat` command:
@@ -118,7 +118,7 @@ Now, check the status of our project:
 git status
 ```
 
-Git noticed there is a new file. The "untracked files” message means that there’s a file in the directory that Git isn’t keeping track of. We can tell Git to track a file using git add:
+Git noticed there is a new file. The "Untracked files” message means that there’s a file in the directory that Git isn’t keeping track of. We can tell Git to **track a file** using `git add`:
 
 ```
 git add mars.txt
@@ -146,7 +146,9 @@ If we run `git status` now:
 git status
 ```
 
-To see the recent history, we can use `git log`:
+... we can see that the working tree is clean.
+
+To see the recent **history**, we can use `git log`:
 
 ```
 git log
@@ -166,7 +168,7 @@ After writing out and saving, let's check the status:
 git status
 ```
 
-We have changed this file, but we haven’t told Git we will want to save those changes (which we do with `git add`) nor have we saved them (which we do with `git commit`). So let’s do that now. It is good practice to always review our changes before saving them. We do this using `git diff`. This shows us the differences between the current state of the file and the most recently saved version:
+We have changed this file, but we haven’t told Git we will want to save those changes (which we do with `git add`) nor have we saved them (which we do with `git commit`). So let’s do that now. It is good practice to always **review our changes** before saving them. We do this using `git diff`. This shows us the differences between the current state of the file and the most recently saved version:
 
 ```
 git diff
@@ -183,7 +185,7 @@ git commit -m "<your comment>"
 That didn't work, because we forgot to use `git add` first. Let's fix that:
 
 ```
-git add
+git add mars.txt
 git commit -m "<your comment>"
 ```
 
@@ -227,7 +229,7 @@ The staging area can hold changes from any number of files that you want to comm
 
 1. Add some text to mars.txt noting your decision to consider Venus as a base
 1. Create a new file venus.txt with your initial thoughts about Venus as a base for you and your friends
-1. And changes from both files to the staging area, and commit those changes.
+1. Add changes from both files to the staging area, and commit those changes as one single commit.
 
 ### Exploring history
 
@@ -237,42 +239,41 @@ As we saw in the previous lesson, we can refer to commits by their identifiers. 
 
 Let's add a line to our file:
 
-```
+```bash
 nano mars.txt
 ```
 
 We can now check the difference with the head:
 
-```
+```bash
 git diff HEAD mars.txt
 ```
 
-Which is the same as using `git diff mars.txt`. What is useful is that we can refer to previous commits, for example for the commit before HEAD:
+Which is the same as using `git diff mars.txt`. What is useful is that we can **refer to previous commits**, for example for the commit before `HEAD`:
 
-```
+```bash
 git diff HEAD~1 mars.txt
 ```
 
 Similarly, `git show` can help us find out what was changed in a specific commit:
 
-```
+```bash
 git show HEAD~2 mars.txt
 ```
 
 We can also use the unique 7-character identifiers that were attributed to each commit:
 
-```
+```bash
 git diff XXXXXXX mars.txt
 ```
 
-How do we restore older versions of our file?
+> How do we **restore older versions** of our file?
 
 Overwrite your whole text with one single new line:
 
-```
+```bash
 nano mars.txt
 git diff
-git status
 ```
 
 We can put things back the way they were by using `git checkout`:
@@ -291,7 +292,7 @@ cat mars.txt
 git status
 ```
 
-Notice that the changes are on the staged area. Again, we can put things back the way they were by using git checkout:
+Notice that **the changes are on the staged area**. Again, we can put things back the way they were by using git checkout:
 
 ```bash
 git checkout HEAD mars.txt
@@ -300,7 +301,7 @@ cat mars.txt
 
 **Challenge 2**
 
-Jennifer has made changes to the Python script that she has been working on for weeks, and the modifications she made this morning “broke” the script and it no longer runs. She has spent ~ 1hr trying to fix it, with no luck…
+Jennifer has made changes to the Python script that she has been working on for weeks, and the modifications she made this morning “broke” the script and it no longer runs. She has spent more than an hour trying to fix it, with no luck…
   
 Luckily, she has been keeping track of her project’s versions using Git! Which commands below will let her recover the last committed version of her Python script called data_cruncher.py?
  
@@ -310,7 +311,7 @@ Luckily, she has been keeping track of her project’s versions using Git! Which
 1. `git checkout <unique ID of last commit> data_cruncher.py`
 1. Both 2 and 4
 
-`git revert` is used if the bad change has _already_ been commited (whereas `git checkout` is used if the changes have not yet been commited). If you want to revert the last commited change, you can use the following command:
+`git revert` is used if the bad change has _already_ been commited (whereas `git checkout` is used if the changes have not yet been commited). If you want to **revert the last commited change**, you can use the following command:
 
 ```bash
 git revert HEAD
@@ -324,8 +325,7 @@ Sometimes, we don't want git to track files like automatic backup files or inter
 
 Say you create a bunch of `.dat` files like so:
 
-```
-mkdir
+```bash
 touch a.dat b.dat c.dat
 git status
 ```
@@ -338,7 +338,7 @@ nano .gitignore
 
 ... and add the following line to it:
 
-```
+```bash
 *.dat
 ```
 
@@ -351,19 +351,19 @@ git commit -m "Ignore data files"
 git status
 ```
 
-### Remotes in GitHub
+### Remotes in GitLab
 
 > How do I share my changes with others on the web?
 
-Version control really becomes extra useful when we begin to collaborate with other people. We already have most of the machinery we need to do this; the only thing missing is to copy changes from one repository to another.
+Version control really becomes extra useful when we begin to **collaborate with other people**. We already have most of the machinery we need to do this; the only thing missing is to **copy changes from one repository to another**.
 
 It is easiest to use on copy as a central hub, stored online.
 
-Let's share our repository with the world. Log into GitHub and create a new repository called `planets` ("+" in the top-right corner).
+Let's **share our repository with the world**. Log into GitLab and create a new repository called `planets` ("+ > New project" in the top toolbar). Make sure you select "Public" for the visibility level.
 
 Our local repository (on our computer) contains our recent work, but the **remote repository** on GitHub's servers doesn't.
 
-We now need to connect the two: we do this by making the GitHub repository a remote for the local repository. The home page of the repository on GitHub includes the URL we need to identify it, under "HTTPS". Copy it to your clipboard, and in your local repository, run the following command:
+We now need to connect the two: we do this by making the GitLab repository a **remote** for the local repository. The home page of the repository on GitLab includes the URL we need to identify it, under "HTTPS". Copy it to your clipboard, and in your local repository, run the following command:
 
 ```bash
 git remote add origin https://gitlab.com/<your_username>/planets.git
@@ -371,23 +371,24 @@ git remote add origin https://gitlab.com/<your_username>/planets.git
 
 The name `origin` is a local nickname for your remote repository. We could use something else if we wanted to, but `origin` is by far the most common choice.
 
-Now, we can **push** our changes from our local repository to the remote on GitHub:
+Now, we can **push** our changes from our local repository to the remote on GitLab:
 
 ```bash
 git push origin master
 ```
 
-You can see on GitHub that you changes were pushed to the remote repository.
+You can see on GitLab that you changes were pushed to the remote repository.
 
-You can edit files directly on GitHub if you want. Try adding a line on a file.
+You can edit files directly on GitLab if you want. Try adding a line on mars.txt by clicking on "Edit".
 
 If you do that, you will then need to **pull** changes from the remote repository to your local one before further editing:
 
 ```bash
 git pull origin master
+cat mars.txt
 ```
 
-`git push` sends commited changes to a remote repository, whereas `git pull` gets commited changes from the remote to your local repository.
+In summary: `git push` sends commited changes to a remote repository, whereas `git pull` gets commited changes from the remote to your local repository.
 
 ### Collaborating
 
@@ -395,9 +396,9 @@ git pull origin master
 
 Now, let's get into pairs: one person is the "Owner", the other is the "Collaborator".
 
-First, the Owner needs to give the collaborator editing access to the repository. On GitHub, go to "Settings > Collaborators" and search for your partner's username.
+First, the Owner needs to give the collaborator editing access to the repository. On GitLab's left panel, go to "Settings > Members", search for your partner's username and click "Add to project".
 
-The Collaborator can accept the invitation by navigating to their notifications.
+The Collaborator can then accept the invitation.
 
 Next, the Collaborator needs to download a copy of the Owner's repository to their machine, which is called "**cloning a repository**". To do that in your Desktop directory:
 
@@ -413,7 +414,7 @@ nano pluto.txt
 git commit -m "add notes about Pluto"
 ```
 
-Then push the change to the owner's repository on GitHub:
+Then push the change to the owner's repository on GitLab:
 
 ```bash
 git push origin master
@@ -421,7 +422,7 @@ git push origin master
 
 We didn't have to create a remote called `origin`, that was done by default by Git when cloning the repository.
 
-You can see that the changes are now live on GitHub.
+You can see that the changes are now live on GitLab.
 
 The Owner can now download the Collaborator's changes from GitHub:
 
@@ -429,16 +430,15 @@ The Owner can now download the Collaborator's changes from GitHub:
 git pull origin master
 ```
 
-If you collaborate on a remote repository, remember to `pull` before working!
+If you collaborate on a remote repository, **remember to `pull` before working**!
 
 **Challenge 3**
 
-Switch roles and repeat.
-
+Switch roles and repeat the process!
 
 **Challenge 4**
 
-Use the GitHub interface to add a comment to your partner's commit and suggest something. See your notifications afterward.
+Use the GitLab interface to add a comment to your partner's commit and suggest something. See your notifications in "Activity" afterwards.
 
 ### Conflicts
 
@@ -446,9 +446,9 @@ Use the GitHub interface to add a comment to your partner's commit and suggest s
 
 As soon as people can work in parallel, they’ll likely step on each other’s toes. This will even happen with a single person: if we are working on a piece of software on both our laptop and a server in the lab, we could make different changes to each copy. Version control helps us manage these conflicts by giving us tools to resolve overlapping changes.
 
-To see how we can resolve conflicts, we must first create one. The file mars.txt is currently in the same state in both copies of the `planets` repository.
+To see how we can **resolve conflicts**, we must first create one. The file mars.txt is currently in the same state in both copies of the `planets` repository.
 
-The Collaborator can add a line to their partner's copy, and push to GitHub:
+The Collaborator can add a line to their partner's copy, and push to GitLab:
 
 ```bash
 nano mars.txt
@@ -468,7 +468,6 @@ The Owner can commit the change locally:
 ```bash
 git add mars.txt
 git commit -m "Add a line in my own copy"
-git push origin master
 ```
 
 But Git won't let us push to GitHub:
@@ -477,19 +476,19 @@ But Git won't let us push to GitHub:
 git push origin master
 ```
 
-Git rejects the push because it detects that the remote repository has new updates that have not been incorporated into the local branch. What we have to do is **pull** the changes from GitHub, **merge** them into the copy we’re currently working in, and then **push** that. Let’s start by pulling:
+Git rejects the push because it detects that the remote repository has new updates that have not been incorporated into the local branch. What we have to do is (1) **pull** the changes from GitLab, (2) **merge** them into the copy we’re currently working in, and then (3) **push** that. Let’s start by pulling:
 
 ```bash
 git pull origin master
 ```
 
-Git detects that changes made to the local copy overlap with those made to the remote repository, and therefore refuses to merge the two versions to stop us from trampling on our previous work. The conflict is marked in in the affected file:
+Git detects that changes made to the local copy overlap with those made to the remote repository, and therefore refuses to merge the two versions to stop us from trampling on our previous work. The conflict is marked in the affected file:
 
 ```bash
 cat mars.txt
 ```
 
-Our change is preceded by `<<<<<<< HEAD`. Git has then inserted `=======` as a separator between the conflicting changes and marked the end of the content downloaded from GitHub with `>>>>>>>`. (The string of letters and digits after that marker identifies the commit we’ve just downloaded.)
+Our change is preceded by `<<<<<<< HEAD`. Git has then inserted `=======` as a separator between the conflicting changes and marked the end of the content downloaded from GitLab with `>>>>>>>`. (The string of letters and digits after that marker identifies the commit we’ve just downloaded.)
 
 It is now up to the Owner to fix this conflict:
 
@@ -497,7 +496,7 @@ It is now up to the Owner to fix this conflict:
 nano mars.txt
 ```
 
-They can now add and commit to their local repo, and then push the changes to GitHub:
+They can now add and commit to their local repo, and then push the changes to GitLab:
 
 ```bash
 git add mars.txt
@@ -505,7 +504,7 @@ git commit -m "Merge changes from GitHub"
 git push origin master
 ```
 
-Git keeps track of merged files. The Collaborator can now pull the changes from GitHub:
+Git keeps track of merged files. The Collaborator can now pull the changes from GitLab:
 
 ```bash
 git pull origin master
