@@ -1,10 +1,8 @@
 R visualisations using ggplot2 – intermediate
 ================
+2018-08-30
 
-`last revision: 2018-06-29`
-
-> This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document.
-> The source code is available at: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd>
+> This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document. The source code is available at: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd>
 > The published document is available at: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md>
 
 If you need to review the installation instructions: <https://gitlab.com/stragu/CDS/blob/master/R/Installation.md>
@@ -19,36 +17,37 @@ Keep in mind
 Open RStudio
 ------------
 
--   On CDS computers:
+On library computers:
+
 -   Log in with your UQ username and password
 -   Make sure you have a working internet connection
 -   Go to search the magnifying glass (bottom left)
 -   Open the ZENworks application
 -   Look for the letter R
 -   Double click on RStudio which will install both R and RStudio
--   Make sure you have ggplot2 installed
 
--   If you are using your own laptop please open RStudio
+If you are using your own laptop:
+
 -   Make sure you have a working internet connection
--   Make sure you have ggplot2 installed
+-   Open RStudio
 
 Disclaimer
 ----------
 
-We will assume you are an R intermediate user and that you have used ggplot2 before.
+We will assume you are an R intermediate user and that you have used `ggplot2` before.
 
 What are we going to learn?
 ---------------------------
 
 During this hands-on session, you will:
 
--   install a tool for picking colours;
--   customise scales and ranges;
--   divide a visualisation in facets;
--   explore new geometries;
--   modify statistical transformations;
--   adjust a geometry's position;
--   further modify themes.
+-   install a tool for picking colours
+-   customise scales and ranges
+-   divide a visualisation in facets
+-   explore new geometries
+-   modify statistical transformations
+-   adjust a geometry's position
+-   further modify themes
 
 Material
 --------
@@ -72,8 +71,8 @@ dir.create("plots")
 
 *Exercise 2 - Setting up: packages and scripts*
 
--   Install and load the package ggplot2
--   Install only if you haven't yet done so using `install.packages("ggplot2")`
+-   Install and load the package `ggplot2`
+-   Install only if you haven't yet done so using: `install.packages("ggplot2")`
 -   Load the package using:
 
 ``` r
@@ -89,7 +88,7 @@ file.edit("scripts/gapminder_example.R")    # open
 
 Don't forget to add some comments to your header:
 
-    # Description : create useful plots using ggplot2
+    # Description : ggplot2 intermediate with gapminder data
     # Author: <your name>
     # Date: <today's date>
 
@@ -110,14 +109,15 @@ gapminder <- read.csv(
 
 *Exercise 4 - Explore the dataset*
 
-You can use `dim()`, `str()`, `head()`, `tail()` and `View()` to explore your dataset.
+You can use `dim()`, `str()`, `head()`, `tail()`, `View()` and `summary()` to explore your dataset.
 
 ``` r
-dim(gapminder)  # what size is the data frame?
-str(gapminder)  # how is it structured?
-head(gapminder) # have a look at the first few observations
-tail(gapminder) # have a look at the last few observations
-View(gapminder) # view as a separate spreadsheet
+dim(gapminder)     # what size is the data frame?
+str(gapminder)     # how is it structured?
+head(gapminder)    # have a look at the first few observations
+tail(gapminder)    # have a look at the last few observations
+View(gapminder)    # view as a separate spreadsheet
+summary(gapminder) # summary statistics for each variable
 ```
 
 Familiarise yourself with the variable names:
@@ -132,7 +132,7 @@ colnames(gapminder)
 
 Let's start with a question: Does population grow over the years?
 
-We can make a simple plot with the basics of ggplot2:
+We can make a simple plot with the basics of `ggplot2`:
 
 ``` r
 ggplot(data = gapminder,
@@ -145,13 +145,15 @@ ggplot(data = gapminder,
 
 Remember that only the *data*, the *geometry* and the *aesthetic mappings* always need to be specified.
 
-### Colour, size, shape and other aesthetic attributes
+### Aesthetics available
 
 To change the *shape* based on a variable, use `shape = <discrete variable>` inside the `aes()` call.
 
 Similarly, to change the *colour* based on a variable, use `colour = <variable>` and `fill = <variable>` inside the `aes()` call.
 
 Finally, if you want to change the size of the geometric object, you can use the `size = <variable>` argument.
+
+#### More control over colours
 
 *Exercise 5 – Choosing colours*
 
@@ -184,6 +186,36 @@ ggplot(data = gapminder,
 
 ![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
+We can also use different palettes. You can see the ones available in `ggplot2` by looking at the help page of, for example, `scale_colour_brewer()`.
+
+If you want a visual overview of the Brewer palettes, install the `RColorBrewer` package and try the following functions:
+
+``` r
+library(RColorBrewer)
+display.brewer.all() # all palettes
+```
+
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-10-1.png)
+
+``` r
+display.brewer.all(colorblindFriendly = TRUE) # only colourblind-friendly palettes
+```
+
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-10-2.png)
+
+Now, try a different palette for your continents:
+
+``` r
+ggplot(data = gapminder,
+       mapping = aes(x = year,
+                     y = pop,
+                     colour = continent)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Set2")
+```
+
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-11-1.png)
+
 ### Scales and limits
 
 We could further modify our plot to use a different y axis scale to space out the data:
@@ -197,9 +229,9 @@ ggplot(data = gapminder,
   scale_y_log10()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
-> Being explicit about the *argument names* is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like `data =` and `mapping =`
+> Being explicit about the **argument names** is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like `data =` and `mapping =` (as long as they are used in the right order!).
 
 To reuse the constant base of our plot (the `ggplot()` call and the point geometry), we can create an object:
 
@@ -226,7 +258,7 @@ gg_scatter +
   scale_x_continuous(breaks = unique_years)
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
 We can further customise a scale with breaks and labels:
 
@@ -237,7 +269,7 @@ gg_scatter +
                      labels = c(0, "100 m", "200 m", "500 m", "1 b"))
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-13-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
 *Exercise 8 - Modify your y scale range*
 
@@ -250,7 +282,7 @@ gg_scatter +
 
     ## Warning: Removed 24 rows containing missing values (geom_point).
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-14-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 Let's talk about that warning message. We could use the `subset()` function to avoid that.
 
@@ -267,7 +299,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-15-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-17-1.png)
 
 Let's change the bin width:
 
@@ -276,7 +308,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(binwidth = 15)
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-16-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-18-1.png)
 
 We can also change the number of bins:
 
@@ -285,7 +317,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-17-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
 And colour by continent:
 
@@ -294,7 +326,7 @@ ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-18-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
 The histogram geometry uses the "stack" **position** by default. It might be more readable if we change it so it uses ratios instead, using `position = "fill"` argument:
 
@@ -306,7 +338,7 @@ ggplot(gapminder,
                  position = "fill")
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-19-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-21-1.png)
 
 We can also make the bars "dodge"" each other:
 
@@ -318,7 +350,7 @@ ggplot(gapminder,
                  position = "dodge")
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-20-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
 ### Faceting
 
@@ -332,7 +364,7 @@ ggplot(gapminder,
   facet_wrap(~ continent) 
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-21-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-23-1.png)
 
 ### Theming
 
@@ -347,7 +379,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-22-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-24-1.png)
 
 A pre-built theme function can overwrite some defaults:
 
@@ -361,7 +393,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-23-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-25-1.png)
 
 Try other pre-built themes, like `theme_bw()` and `theme_light()`. You can also start with an empty theme thanks to `theme_void()`, and even install extras with the package `ggthemes`.
 
@@ -381,7 +413,7 @@ ggplot(gapminder,
   ylab("count")
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-24-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-26-1.png)
 
 ### Customise a scatterplot
 
@@ -398,7 +430,7 @@ ggplot(gapminder,
   theme_bw()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-25-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-27-1.png)
 
 The `labs()` function allows you to group all the labels in one call.
 
@@ -418,7 +450,7 @@ ggplot(gapminder,
   theme_bw()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-26-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-28-1.png)
 
 ### Save your plots
 
@@ -439,7 +471,7 @@ ggplot(gapminder, aes(x = continent)) +
   geom_bar()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-28-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-30-1.png)
 
 A simple boxplot to visualise distribution in categories:
 
@@ -448,7 +480,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-29-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-31-1.png)
 
 Violin plots might be better at visualising densities:
 
@@ -457,7 +489,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_violin()
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-30-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-32-1.png)
 
 If the categories get too cramped on the axis, you can rotate them:
 
@@ -467,7 +499,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-31-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-33-1.png)
 
 ### Another example
 
@@ -491,16 +523,16 @@ ggplot(diamonds,
   coord_flip()
 ```
 
-    ## `geom_smooth()` using method = 'gam'
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-32-1.png)
+![](ggplot2_intermediate_files/figure-markdown_github/unnamed-chunk-34-1.png)
 
 ### Play time!
 
--   Create a a boxplot of continent vs population
-    -   Colour and fill by continent
-    -   try to limit the y axis to see the boxes better
-    -   let's see if you are able to move the legend to the bottom
+-   Create a a boxplot for each continent's population data
+-   Colour and fill by continent
+-   Try to limit the y axis to see the boxes better
+-   Let's see if you are able to move the legend to the bottom
 
 ### Modify your plots
 
@@ -513,25 +545,14 @@ Closing RStudio will ask you if you want to save your workspace and scripts.
 Important links
 ---------------
 
--   For ggplot2:
-    -   ggplot2 cheatsheet: <https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf>
-    -   Official ggplot2 documentation: <http://docs.ggplot2.org/current/>
-    -   Official ggplot2 website: <http://ggplot2.tidyverse.org/>
-    -   Chapter on data visualisation in the book *R for Data Science*: <http://r4ds.had.co.nz/data-visualisation.html>
-    -   Coding Club's data visualisation tutorial: <https://ourcodingclub.github.io/2017/01/29/datavis.html>
-    -   Cookbook for R graphs: <http://www.cookbook-r.com/Graphs/>
-    -   STHDA's ggplot2 essentials: <http://www.sthda.com/english/wiki/ggplot2-essentials>
-    -   R colours <http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf>
-    -   Book: Hadley Wickham. ggplot2 Elegant Graphics for Data Analysis Second Edition. 2016 <https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf>
--   R and RStudio in general:
-    -   RStudio Cheatsheet <https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf>
-    -   RStudio online learning <https://www.rstudio.com/online-learning/>
-    -   Basic and advanced manuals <https://cran.r-project.org/manuals.html>
-    -   Ask about any function or package <http://www.rdocumentation.org/>
-    -   If you are looking how-to's or how to fix an error <http://stackoverflow.com/questions/tagged/r>
-    -   Lynda.com R training and tutorials <https://www.lynda.com/R-training-tutorials/1570-0.html> remember to sign in from UQ, <https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses>
-    -   ANOVA in R <http://homepages.inf.ed.ac.uk/bwebb/statistics/ANOVA_in_R.pdf> or <https://rcompanion.org/rcompanion/e_01.html>
-    -   If you need an R and/or RStudio workshop/session, please contact the Centre for Digital Scholarship staff to organise one for you. <https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship>
-    -   If you have further questions about R, please contact the CDS: <cds@library.uq.edu.au>
-    -   Ask questions to other researchers during the weekly Hacky Hour: <https://rcc.uq.edu.au/meetups>
-    -   Contact your unit's statistician (if you have one?)
+-   For `ggplot2`:
+-   ggplot2 cheatsheet: <https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf>
+-   Official ggplot2 documentation: <http://docs.ggplot2.org/current/>
+-   Official ggplot2 website: <http://ggplot2.tidyverse.org/>
+-   Chapter on data visualisation in the book *R for Data Science*: <http://r4ds.had.co.nz/data-visualisation.html>
+-   Coding Club's data visualisation tutorial: <https://ourcodingclub.github.io/2017/01/29/datavis.html>
+-   Cookbook for R graphs: <http://www.cookbook-r.com/Graphs/>
+-   STHDA's ggplot2 essentials: <http://www.sthda.com/english/wiki/ggplot2-essentials>
+-   R colours <http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf>
+-   Hadley Wickham's book *ggplot2: Elegant Graphics for Data Analysis*: <https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf>
+-   More ressources for R in general: <https://gitlab.com/stragu/CDS/blob/master/R/usefullinks.md>

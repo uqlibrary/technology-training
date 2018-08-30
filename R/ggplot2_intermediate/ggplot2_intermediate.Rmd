@@ -1,10 +1,10 @@
 ---
 title: R visualisations using ggplot2 – intermediate
 output: github_document
-date: 2018-07-05
+date: 2018-08-30
 ---
 
-> This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document.  
+> This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document. 
 > The source code is available at: https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd  
 > The published document is available at: https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md
 
@@ -18,18 +18,19 @@ If you need to review the installation instructions: https://gitlab.com/stragu/C
 
 ## Open RStudio
 
-* On CDS computers:
-  + Log in with your UQ username and password
-  + Make sure you have a working internet connection
-  + Go to search the magnifying glass (bottom left)
-  + Open the ZENworks application
-  + Look for the letter R 
-  + Double click on RStudio which will install both R and RStudio 
-  + Make sure you have ggplot2 installed
+On library computers:
 
-* If you are using your own laptop please open RStudio
-  + Make sure you have a working internet connection
-  + Make sure you have ggplot2 installed
+* Log in with your UQ username and password
+* Make sure you have a working internet connection
+* Go to search the magnifying glass (bottom left)
+* Open the ZENworks application
+* Look for the letter R 
+* Double click on RStudio which will install both R and RStudio 
+
+If you are using your own laptop:
+
+* Make sure you have a working internet connection
+* Open RStudio
 
 ## Disclaimer
 
@@ -39,13 +40,13 @@ We will assume you are an R intermediate user and that you have used `ggplot2` b
 
 During this hands-on session, you will:
 
-* install a tool for picking colours;
-* customise scales and ranges;
-* divide a visualisation in facets;
-* explore new geometries;
-* modify statistical transformations;
-* adjust a geometry's position;
-* further modify themes.
+* install a tool for picking colours
+* customise scales and ranges
+* divide a visualisation in facets
+* explore new geometries
+* modify statistical transformations
+* adjust a geometry's position
+* further modify themes
 
 ## Material
 
@@ -68,10 +69,9 @@ dir.create("plots")
 
 *Exercise 2 - Setting up: packages and scripts*
 
-* Install and load the package ggplot2
-  * Install only if you haven't yet done so using 
-        `install.packages("ggplot2")`
-  * Load the package using:
+* Install and load the package `ggplot2`
+  + Install only if you haven't yet done so using: `install.packages("ggplot2")`
+  + Load the package using:
 
 ```{r}
 library(ggplot2)
@@ -87,7 +87,7 @@ file.edit("scripts/gapminder_example.R")    # open
 Don't forget to add some comments to your header:
 
 ```
-# Description : create useful plots using ggplot2
+# Description : ggplot2 intermediate with gapminder data
 # Author: <your name>
 # Date: <today's date>
 ```
@@ -111,14 +111,15 @@ gapminder <- read.csv(
 
 *Exercise 4 - Explore the dataset*
 
-You can use `dim()`, `str()`, `head()`, `tail()` and `View()` to explore your dataset.
+You can use `dim()`, `str()`, `head()`, `tail()`, `View()` and `summary()` to explore your dataset.
 
 ```{r eval=FALSE}
-dim(gapminder)  # what size is the data frame?
-str(gapminder)  # how is it structured?
-head(gapminder) # have a look at the first few observations
-tail(gapminder) # have a look at the last few observations
-View(gapminder) # view as a separate spreadsheet
+dim(gapminder)     # what size is the data frame?
+str(gapminder)     # how is it structured?
+head(gapminder)    # have a look at the first few observations
+tail(gapminder)    # have a look at the last few observations
+View(gapminder)    # view as a separate spreadsheet
+summary(gapminder) # summary statistics for each variable
 ```
 
 Familiarise yourself with the variable names:
@@ -131,7 +132,7 @@ colnames(gapminder)
 
 Let's start with a question: Does population grow over the years?
 
-We can make a simple plot with the basics of ggplot2:
+We can make a simple plot with the basics of `ggplot2`:
 
 ```{r}
 ggplot(data = gapminder,
@@ -188,6 +189,7 @@ library(RColorBrewer)
 display.brewer.all() # all palettes
 display.brewer.all(colorblindFriendly = TRUE) # only colourblind-friendly palettes
 ```
+
 Now, try a different palette for your continents:
 
 ```{r}
@@ -212,7 +214,7 @@ ggplot(data = gapminder,
   scale_y_log10()
 ```
 
-> Being explicit about the *argument names* is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like `data =` and `mapping =`
+> Being explicit about the **argument names** is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like `data =` and `mapping =` (as long as they are used in the right order!).
 
 To reuse the constant base of our plot (the `ggplot()` call and the point geometry), we can create an object:
 
@@ -464,10 +466,10 @@ ggplot(diamonds,
 
 ### Play time!
 
-* Create a a boxplot of continent vs population
-     * Colour and fill by continent
-     * try to limit the y axis to see the boxes better
-     * let's see if you are able to move the legend to the bottom 
+* Create a a boxplot for each continent's population data
+  + Colour and fill by continent
+  + Try to limit the y axis to see the boxes better
+  + Let's see if you are able to move the legend to the bottom 
 
 ### Modify your plots
 
@@ -479,26 +481,14 @@ Closing RStudio will ask you if you want to save your workspace and scripts.
 
 ## Important links
 
-* For ggplot2:
-    * ggplot2 cheatsheet: https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
-    * Official ggplot2 documentation: http://docs.ggplot2.org/current/
-    * Official ggplot2 website: http://ggplot2.tidyverse.org/
-    * Chapter on data visualisation in the book _R for Data Science_: http://r4ds.had.co.nz/data-visualisation.html
-    * Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
-    * Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
-    * STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
-    * R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
-    * Book: Hadley Wickham. ggplot2 Elegant Graphics for Data Analysis Second  Edition. 2016 
-https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
-* R and RStudio in general:
-    * RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
-    * RStudio online learning https://www.rstudio.com/online-learning/
-    * Basic and advanced manuals https://cran.r-project.org/manuals.html
-    * Ask about any function or package http://www.rdocumentation.org/
-    * If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
-    * Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in from UQ, https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses
-    * ANOVA in R http://homepages.inf.ed.ac.uk/bwebb/statistics/ANOVA_in_R.pdf or https://rcompanion.org/rcompanion/e_01.html
-    * If you need an R and/or RStudio workshop/session, please contact the Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
-    * If you have further questions about R, please contact the CDS: cds@library.uq.edu.au
-    * Ask questions to other researchers during the weekly Hacky Hour: [https://rcc.uq.edu.au/meetups](https://rcc.uq.edu.au/meetups)
-    * Contact your unit's statistician (if you have one?)
+* For `ggplot2`:
+  + ggplot2 cheatsheet: https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
+  + Official ggplot2 documentation: http://docs.ggplot2.org/current/
+  + Official ggplot2 website: http://ggplot2.tidyverse.org/
+  + Chapter on data visualisation in the book _R for Data Science_: http://r4ds.had.co.nz/data-visualisation.html
+  + Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
+  + Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
+  + STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
+  + R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+  + Hadley Wickham's book _ggplot2: Elegant Graphics for Data Analysis_: https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
+* More ressources for R in general: https://gitlab.com/stragu/CDS/blob/master/R/usefullinks.md
