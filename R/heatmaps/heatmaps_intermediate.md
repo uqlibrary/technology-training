@@ -1,6 +1,6 @@
 Heatmaps in R for intermediate users
 ================
-2018-06-20
+2018-09-06
 
 > This document is edited as an R markdown file, and regularly exported as a GitHub document. The source code is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd) The published printer-friendly version is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md)
 
@@ -18,10 +18,10 @@ Keep in mind
 Open RStudio
 ------------
 
--   If you are using your own laptop please open RStudio
+-   On your own laptop:
+-   Open RStudio
 -   Make sure you have a working internet connection
-
--   On CDS computers:
+-   On Library computers:
 -   Log in with your UQ username and password
 -   Make sure you have a working internet connection
 -   Open the ZENworks application
@@ -33,7 +33,7 @@ What are we going to learn?
 
 During this session, you will:
 
--   Learn how to produce a simple heatmap with the base package `heatmap()`;
+-   Learn how to produce a simple heatmap with the base function `heatmap()`;
 -   Learn about alternatives to produce more complex heatmaps, like `heatmap.2()` and `pheatmap()`;
 -   Learn how to produce a rudimentary heatmap with the `ggplot2` package.
 
@@ -49,9 +49,9 @@ Material
 
 ### RStudio Project
 
-**Exercise 1 - New RStudio Project**
+**Exercise 1 - Setting up a new RStudio Project**
 
--   New project:
+-   Create a new project:
 -   Click the "New project" menu icon
 -   Click "New Directory"
 -   Click "New Project" ("New empty project" if you have an older version of RStudio)
@@ -61,13 +61,10 @@ Material
 
 ``` r
 dir.create("scripts")
-dir.create("data")
 dir.create("plots")
 ```
 
-**Exercise 2 - setting up**
-
--   create a new R script called "heatmaps.R" in the "scripts" folder
+-   Create a new R script called "heatmaps.R" in the "scripts" folder:
 
 ``` r
 file.create("scripts/heatmaps.R")
@@ -76,7 +73,7 @@ file.edit("scripts/heatmaps.R")
 
 ### Method 1: the base `heatmap()` function
 
-As a first example, we will use a built-in datasets called `mtcars`.
+As a first example, we will use a built-in dataset called `mtcars`.
 
 *Step 1: explore the data*
 
@@ -86,14 +83,13 @@ dim(mtcars)
 str(mtcars)
 head(mtcars)
 View(mtcars)
-class(mtcars)
 ```
 
 *Step 2: prepare data*
 
-The data is a dataframe, but it has to be a **numeric matrix** to make your heatmap. Dataframes can contain variables with different data classes
+The data is a dataframe, but it has to be a **numeric matrix** to make your heatmap. Dataframes can contain variables with different data classes, whereas matrices only contain one data class.
 
-**Exercise 3 – Convert the mtcars data into a matrix**
+**Exercise 2 – Convert the mtcars data into a matrix**
 
 ``` r
 class(mtcars)
@@ -112,7 +108,7 @@ class(mtcars_matrix)
 
 We are going to use the `heatmap()` function.
 
-**Exercise 4 – look for the `heatmap()` help**
+**Exercise 3 – look for the `heatmap()` help**
 
 Read the description of the `scale` argument in particular.
 
@@ -361,8 +357,8 @@ Create a data matrix from pseudo-random numbers:
 ``` r
 set.seed(100)
 d <- matrix(rnorm(25), 5, 5)
-colnames(d) <- paste("Treatment", 1:5, sep = "")
-rownames(d) <- paste("Gene", 1:5, sep = "")
+colnames(d) <- paste0("Treatment", 1:5)
+rownames(d) <- paste0("Gene", 1:5)
 ```
 
 Try it out:
@@ -427,13 +423,13 @@ ggplot(esoph_sub, aes(x = alcgp,
             color = "white") +
   scale_fill_gradient(low = "white",
                       high = "steelblue") +
-  xlab("Alcohol consumption") +
-  ylab("Tobacco consumption") +
   theme(legend.title = element_text(size = 10),
         legend.text = element_text(size = 10),
         axis.title = element_text(size=12),
         axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(fill = "Cancer freq.")
+  labs(fill = "Cancer freq.",
+       x = "Alcohol consumption",
+       y = "Tobacco consumption")
 ```
 
 ![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-35-1.png)
@@ -472,7 +468,6 @@ library(ComplexHeatmap)
     ## ========================================
 
 ``` r
-# install.packages("circlize")
 library(circlize)
 ```
 
