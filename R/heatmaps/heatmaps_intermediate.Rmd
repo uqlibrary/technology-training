@@ -191,8 +191,7 @@ View(rawdata)
 It’s important to note that a lot of visualisations involve gathering and preparing data. Rarely do you get data exactly how you need it, so you should expect to do some data munging before producing the visuals.
 
 ```{r}
-rawdata$Row_ID <- NULL
-rawdata$T.test <- NULL
+rawdata <- rawdata[ , 2:7] # remove superfluous columns
 colnames(rawdata) <- c(paste("Control", 1:3, sep = "_"), 
                        paste("Treatment", 1:3, sep = "_"))
 ```
