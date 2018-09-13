@@ -1,7 +1,7 @@
 R for beginners using RStudio
 ===
 
-`version: 2018-08-09`
+`version: 2018-09-13`
 
 > These notes are available on GitHub: https://gitlab.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro.md
 
@@ -21,7 +21,6 @@ We can use R for calculations and visualisations.
 
 * If you are using your own laptop please open RStudio
   * Make sure you have a working internet connection
-
 * On CDS computers:
   * Log in with your UQ username and password
   * Make sure you have a working internet connection
@@ -100,32 +99,25 @@ There are two main ways to find help about a function in RStudio:
 
 **Exercise 2** - Use the help pages to find out what these functions do:
 
-* `sessionInfo()`
 * `citation()`
 * `c()`
-* `View()`
-
-`sessionInfo()` provides information about your platform, the version of R and the packages that you are using and their versions. Note how the case in the function name matters.
+* `seq()`
+* `rm()`
 
 `citation()` outputs the proper way to cite R, or a different package if we overwrite the default value for the `package` argument.
 
 `c()` concatenates the arguments into a vector.
 
-`View()` opens a spreadsheet-like view of a dataset. This function _requires_ an argument: it can't run without setting a value for the `x` argument because it does not have a default for it.
+`seq()` creates a sequence of numbers from the parameters you give it.
 
-Let's do some operations with two new functions:
+`rm()` removes an object from your environment.
+
+Let's do some more complex operations by combining two functions:
 
 `ls()` lists the objects in the current R environment.
 For example, try running the `ls()` function after executing the command `a <- 42`.
-Now, remove that object with the following command:
 
-```
-rm(a)
-```
-
-And list objects again with `ls()`.
-
-You can also remove all the objects in the environment by using `ls()` as the value for the `list` argument:
+You can remove *all* the objects in the environment by using `ls()` as the value for the `list` argument:
 
 ```
 rm(list = ls())
@@ -232,7 +224,9 @@ Now find out more about the `str()` function, and have a look at the data:
 
 ```
 ?str
-str(gapminder)
+str(gapminder) # structure
+summary(gapminder) # summary statistics
+View(gapminder) # spreadsheet-like view. Not how the case matters in R
 ```
 
 Remember that you can check what is in your environment with `ls()`, and remove objects with `rm()`.
