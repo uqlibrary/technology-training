@@ -129,9 +129,8 @@ For example, in the palette function `cm.colors(n)`, n is the number of levels (
 
 ```{r}
 heatmap(mtcars_matrix,
-        col = cm.colors(15),
         scale = "column",
-        margins = c(8, 8))
+        col = cm.colors(n = 15))
 ```
 
 You can try other functions, like `rainbow()` or `terrain.colors()`, and you can reverse them with `rev()`.
@@ -142,8 +141,8 @@ Dendrograms don't really make sense for this dataset. `Rowv` and `Colv` can be s
 
 ```{r}
 heatmap(mtcars_matrix,
-        col = cm.colors(100),
         scale = "column",
+        col = cm.colors(100),
         Rowv = NA,
         Colv = NA)
 ```
