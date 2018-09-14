@@ -370,15 +370,12 @@ Create a basic heatmap from the dataframe:
 
 ```{r}
 ggplot(esoph_sub, aes(x = alcgp,
-                      y = tobgp)) +
-  geom_tile(aes(fill = ncases/(ncases+ncontrols)),
-            color = "white") +
+                      y = tobgp,
+                      fill = ncases / (ncases + ncontrols))) +
+  geom_tile(colour = "white") + # grid colour
   scale_fill_gradient(low = "white",
                       high = "steelblue") +
-  theme(legend.title = element_text(size = 10),
-        legend.text = element_text(size = 10),
-        axis.title = element_text(size=12),
-        axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme_minimal() +
   labs(fill = "Cancer freq.",
        x = "Alcohol consumption",
        y = "Tobacco consumption")
