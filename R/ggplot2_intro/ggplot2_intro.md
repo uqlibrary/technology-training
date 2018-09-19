@@ -1,7 +1,6 @@
 Introduction to R data visualisation using ggplot2
 ================
-
-`last revision: 2018-06-29`
+2018-07-05
 
 > This document is redacted in Rmd; the source file is available here: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd> It is then knitted as a GitHub document, which is the best version to view online and to print: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.md>
 
@@ -14,18 +13,17 @@ Keep in mind
 
 -   Case sensitive
 -   No spaces in names
--   Be ready to learn a new language, lots of new vocabulary
+-   You can use <kbd>Ctrl</kbd>+<kbd>Shift</kbd> to space out your code and <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to run a command.
 
 Open RStudio
 ------------
 
 -   If you are using your own laptop please open RStudio
--   Make sure you have a working internet connection
+-   Make sure you have a working Internet connection
 
 -   On CDS computers (the first time takes about 10 min):
 -   Log in with your UQ username and password
--   Make sure you have a working internet connection
--   Go to search at bottom left corner (magnifiying glass)
+-   Make sure you have a working Internet connection
 -   Open the ZENworks application
 -   Look for RStudio
 -   Double click on RStudio which will install both R and RStudio
@@ -60,10 +58,9 @@ Material
 -   In "Directory name", type the name of your project, e.g. "ggplot2\_intro"
 -   Select the folder where to locate your project: the `Documents/RProjects` folder, which you can create if it doesn't exist yet.
 -   Click the "Create Project" button
--   create three folders in your new project
-    -   `dir.create("scripts")`
-    -   `dir.create("data")`
-    -   `dir.create("plots")`
+-   create two folders in your new project
+-   `dir.create("scripts")`
+-   `dir.create("plots")`
 
 ### Introducing ggplot2
 
@@ -73,9 +70,9 @@ Material
 -   Go to file "Save" or press (for Windows/Linux) Ctrl+S or (for Mac) Cmd+S. This will ask where you want to save your file and the name of the new file
 -   Call your file "ggplot2\_intro.R" located in the "scripts" folder
 -   install and load the package ggplot2:
-    -   install it with `install.packages("ggplot2")`
-    -   While you wait for ggplot2 to be installed, check out Rdocumentation.org and type "ggplot2" in the search
-    -   load the package with:
+-   install it with `install.packages("ggplot2")`
+-   While you wait for ggplot2 to be installed, check out Rdocumentation.org and type "ggplot2" in the search
+-   load the package with:
 
 ``` r
 library(ggplot2)
@@ -223,7 +220,7 @@ ggplot(data = mpg,
     geom_smooth()
 ```
 
-    ## `geom_smooth()` using method = 'loess'
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
 ![](ggplot2_intro_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
@@ -239,7 +236,7 @@ ggplot(data = mpg,
     geom_smooth()
 ```
 
-    ## `geom_smooth()` using method = 'loess'
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
 ![](ggplot2_intro_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
@@ -257,7 +254,7 @@ ggplot(data = mpg,
     geom_smooth()
 ```
 
-    ## `geom_smooth()` using method = 'loess'
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
 ![](ggplot2_intro_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
@@ -301,7 +298,7 @@ ggplot(data = economics,
     geom_smooth()
 ```
 
-    ## `geom_smooth()` using method = 'loess'
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
 ![](ggplot2_intro_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
@@ -415,11 +412,13 @@ last_plot() + theme_dark()
 
 ### Export
 
-To save the last plot, use `ggsave()`:
+To save the last plot, you can use the "export" menu, or use the `ggsave()` function:
 
 ``` r
 ggsave(filename = "plots/horizontalbarplot.png")
 ```
+
+`ggsave()` has more options, like setting the DPI, which is useful for higher posters for example.
 
 **Exercise 6: explore geometries**
 
