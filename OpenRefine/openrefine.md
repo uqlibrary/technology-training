@@ -143,6 +143,8 @@ This is more efficient than a text facet, as it will only give two categories.
 
 You can also apply a **text filter** to your data. In the column drop-down menu, you can use the `Text filter` item and specify any string you want to filter for.
 
+For example, try filtering the `Subjects` column with the term `physic`.
+
 > When you filter your data with facets or text filters, remember that any operation that you carry out will only apply to the filtered data.
 
 #### Amending data
@@ -171,7 +173,7 @@ By default, OpenRefine uses the most common value to merge the data, but we can 
 **Exercise 8** – clean up the author names
 
 1. Split out the author names into individual cells using `Edit cells > Split multi-valued cells`, using the pipe (`|`) character as the separator
-1. Choose `Edit cells > Cluster` and edit from the `Authors` column.
+1. Choose `Edit cells > Cluster and edit` from the `Authors` column.
 1. Using the defaults (`key collision` Method and `fingerprint` Keying Function), work through the clusters of values, merging them to a single value where appropriate
 1. Try changing the clustering method being used - which ones work well? Do they identify extra clusters?
 
