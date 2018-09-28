@@ -1,9 +1,8 @@
-Introduction to R data visualisation using ggplot2
+R data visualisation with RStudio and ggplot2: an introduction
 ================
-2018-09-20
+2018-09-28
 
-> This document is redacted in Rmd; the source file is available here: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd>
-> It is then knitted as a GitHub document, which is the best version to view online and to print: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.md>
+> This document is redacted in Rmd; the source file is available here: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd> It is then knitted as a GitHub document, which is the best version to view online and to print: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.md>
 
 If you want to review the installation instructions: <https://gitlab.com/stragu/CDS/blob/master/R/Installation.md>
 
@@ -20,13 +19,13 @@ Open RStudio
 ------------
 
 -   If you are using your own laptop please open RStudio
--   Make sure you have a working Internet connection
+    -   Make sure you have a working Internet connection
 -   On CDS computers (the first time takes about 10 min):
--   Log in with your UQ username and password
--   Make sure you have a working Internet connection
--   Open the ZENworks application
--   Look for RStudio
--   Double click on RStudio which will install both R and RStudio
+    -   Log in with your UQ username and password
+    -   Make sure you have a working Internet connection
+    -   Open the ZENworks application
+    -   Look for RStudio
+    -   Double click on RStudio which will install both R and RStudio
 
 What are we going to learn?
 ---------------------------
@@ -54,25 +53,25 @@ Material
 
 -   Click the "File" menu button (top left corner), then "New Project"
 -   Click "New Directory"
--   Click "New Project" ("Empty project" if you have an older version of RStudio)
+-   Click "New Project"
 -   In "Directory name", type the name of your project, e.g. "ggplot2\_intro"
 -   Select the folder where to locate your project: the `Documents/RProjects` folder, which you can create if it doesn't exist yet.
 -   Click the "Create Project" button
 -   create two folders in your new project
--   `dir.create("scripts")`
--   `dir.create("plots")`
+    -   `dir.create("scripts")`
+    -   `dir.create("plots")`
 
 ### Introducing ggplot2
 
 **Exercise 2 - create a script, ggplot2 setup**
 
--   Menu: Top left corner, click the green "plus" symbol, or press the shortcut (for Windows/Linux) Ctrl+Shift+N or (for Mac) Cmd+Shift+N. This will open an "Untitled1" file.
--   Go to file "Save" or press (for Windows/Linux) Ctrl+S or (for Mac) Cmd+S. This will ask where you want to save your file and the name of the new file
+-   Menu: Top left corner, click the green "plus" symbol, or press the shortcut (for Windows/Linux) <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an "Untitled1" file.
+-   Go to "File &gt; Save" or press (for Windows/Linux) <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save your file and the name of the new file.
 -   Call your file "ggplot2\_intro.R" located in the "scripts" folder
 -   install and load the package ggplot2:
--   install it with `install.packages("ggplot2")`
--   While you wait for ggplot2 to be installed, check out Rdocumentation.org and type "ggplot2" in the search
--   load the package with:
+    -   install it with `install.packages("ggplot2")`
+    -   While you wait for ggplot2 to be installed, check out Rdocumentation.org and type "ggplot2" in the search
+    -   load the package with:
 
 ``` r
 library(ggplot2)
