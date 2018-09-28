@@ -1,8 +1,8 @@
 ---
-Title: Introduction to R data manipulation using dplyr
+Title: R data manipulation with RStudio and dplyr: an introduction
 ---
 
-`last revision: 2018-08-16`
+`last revision: 2018-09-28`
 
 If you want to review the installation instructions: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
 

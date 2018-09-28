@@ -1,4 +1,6 @@
-# Unix shell introduction
+# Unix Shell: an introduction
+
+Last updated: 2018-09-28
 
 ## Legal
 

@@ -1,4 +1,6 @@
-# Cleaning data with OpenRefine
+# OpenRefine: an introduction to dealing with messy data
+
+Last updated: 2018-09-28
 
 ## Legal
 

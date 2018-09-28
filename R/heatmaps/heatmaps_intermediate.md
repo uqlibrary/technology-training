@@ -1,6 +1,6 @@
-Heatmaps in R for intermediate users
+R data visualisation with RStudio: heatmaps
 ================
-2018-09-06
+2018-09-28
 
 > This document is edited as an R markdown file, and regularly exported as a GitHub document. The source code is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd) The published printer-friendly version is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md)
 
@@ -140,9 +140,8 @@ For example, in the palette function `cm.colors(n)`, n is the number of levels (
 
 ``` r
 heatmap(mtcars_matrix,
-        col = cm.colors(15),
         scale = "column",
-        margins = c(8, 8))
+        col = cm.colors(n = 15))
 ```
 
 ![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-8-1.png)
@@ -155,8 +154,8 @@ Dendrograms don't really make sense for this dataset. `Rowv` and `Colv` can be s
 
 ``` r
 heatmap(mtcars_matrix,
-        col = cm.colors(100),
         scale = "column",
+        col = cm.colors(100),
         Rowv = NA,
         Colv = NA)
 ```
@@ -216,8 +215,7 @@ View(rawdata)
 It’s important to note that a lot of visualisations involve gathering and preparing data. Rarely do you get data exactly how you need it, so you should expect to do some data munging before producing the visuals.
 
 ``` r
-rawdata$Row_ID <- NULL
-rawdata$T.test <- NULL
+rawdata <- rawdata[ , 2:7] # remove superfluous columns
 colnames(rawdata) <- c(paste("Control", 1:3, sep = "_"), 
                        paste("Treatment", 1:3, sep = "_"))
 ```
@@ -355,7 +353,6 @@ How does `pheatmap` (which stands for "pretty heatmap") differ from other functi
 Create a data matrix from pseudo-random numbers:
 
 ``` r
-set.seed(100)
 d <- matrix(rnorm(25), 5, 5)
 colnames(d) <- paste0("Treatment", 1:5)
 rownames(d) <- paste0("Gene", 1:5)
@@ -418,15 +415,12 @@ Create a basic heatmap from the dataframe:
 
 ``` r
 ggplot(esoph_sub, aes(x = alcgp,
-                      y = tobgp)) +
-  geom_tile(aes(fill = ncases/(ncases+ncontrols)),
-            color = "white") +
+                      y = tobgp,
+                      fill = ncases / (ncases + ncontrols))) +
+  geom_tile(colour = "white") + # grid colour
   scale_fill_gradient(low = "white",
                       high = "steelblue") +
-  theme(legend.title = element_text(size = 10),
-        legend.text = element_text(size = 10),
-        axis.title = element_text(size=12),
-        axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme_minimal() +
   labs(fill = "Cancer freq.",
        x = "Alcohol consumption",
        y = "Tobacco consumption")

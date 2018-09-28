@@ -1,7 +1,7 @@
-R for beginners using RStudio
+R with RStudio: getting started
 ===
 
-`version: 2018-09-13`
+`version: 2018-09-28`
 
 > These notes are available on GitHub: https://gitlab.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro.md
 

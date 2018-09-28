@@ -1,6 +1,6 @@
-R visualisations using ggplot2 – intermediate
+R data visualisation with RStudio and ggplot2: intermediate
 ================
-2018-08-30
+2018-09-28
 
 > This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document. The source code is available at: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd>
 > The published document is available at: <https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md>
