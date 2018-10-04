@@ -1,6 +1,6 @@
 R data visualisation with RStudio: heatmaps
 ================
-2018-09-28
+2018-10-04
 
 > This document is edited as an R markdown file, and regularly exported as a GitHub document. The source code is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd) The published printer-friendly version is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md)
 
@@ -19,14 +19,14 @@ Open RStudio
 ------------
 
 -   On your own laptop:
--   Open RStudio
--   Make sure you have a working internet connection
+    -   Open RStudio
+    -   Make sure you have a working internet connection
 -   On Library computers:
--   Log in with your UQ username and password
--   Make sure you have a working internet connection
--   Open the ZENworks application
--   Look for the letter "R"
--   Double click on RStudio which will install both R and RStudio
+    -   Log in with your UQ username and password
+    -   Make sure you have a working internet connection
+    -   Open the ZENworks application
+    -   Look for the letter "R"
+    -   Double click on RStudio which will install both R and RStudio
 
 What are we going to learn?
 ---------------------------
@@ -52,11 +52,11 @@ Material
 **Exercise 1 - Setting up a new RStudio Project**
 
 -   Create a new project:
--   Click the "New project" menu icon
--   Click "New Directory"
--   Click "New Project" ("New empty project" if you have an older version of RStudio)
--   In Directory name type the name of your project, e.g. "heatmaps" (Browse and select a folder where to locate your project, in our case the RProjects folder. If you don't have an RProjects folder, create it.)
--   Click the "Create Project" button
+    -   Click the "New project" menu icon
+    -   Click "New Directory"
+    -   Click "New Project" ("New empty project" if you have an older version of RStudio)
+    -   In Directory name type the name of your project, e.g. "heatmaps" (Browse and select a folder where to locate your project, in our case the RProjects folder. If you don't have an RProjects folder, create it.)
+    -   Click the "Create Project" button
 -   Create new folders with the following commands:
 
 ``` r
@@ -150,13 +150,12 @@ You can try other functions, like `rainbow()` or `terrain.colors()`, and you can
 
 #### Remove dendrograms
 
-Dendrograms don't really make sense for this dataset. `Rowv` and `Colv` can be set to `NA` to remove them, which also means the data won't be reorganised.
+The column dendrogram doesn't really make sense for this dataset. `Rowv` and `Colv` can be set to `NA` to remove dendrograms, which also means the data won't be reorganised according to the clustering method.
 
 ``` r
 heatmap(mtcars_matrix,
         scale = "column",
         col = cm.colors(100),
-        Rowv = NA,
         Colv = NA)
 ```
 
@@ -172,7 +171,7 @@ rm(list = ls())
 
 ### Method 2: `gplots::heatmap.2()`
 
-If you don't have the `gplots` package yet, use `install.packages("gplots")`. We will also need the `RColorBrewer`, so use `install.packages("RColorBrewer")` if you don't have it installed already.
+If you don't have the `gplots` package yet, use `install.packages("gplots")`.
 
 ``` r
 library(gplots)
@@ -186,7 +185,6 @@ library(gplots)
     ##     lowess
 
 ``` r
-library(RColorBrewer)
 ?heatmap.2
 ```
 
@@ -241,17 +239,17 @@ class(data_matrix)
 ?scale
 ```
 
-`scale` is a generic function which centers and/or scales the columns of a numeric matrix. We **normalise** the data using `scale()`, **transposing** using `t()` to perform row-wise normalisation of the data (i.e. for each protein). This normalises the data across each experiment so we can compare them to each other. Finally, we transpose the data back to the original form.
+`scale()` is a function that centres and scales the columns of a numeric matrix. We **transpose** the matrix with `t()` to then **centre and scale** each protein's data with `scale()`. Finally, we transpose the data back to the original form. This allows us to compare protein abundance change more effectively.
 
 ``` r
-# Normalise data for each protein,
+# Scale and centre data for each protein,
 # but transpose first so it operates on rows
 data_scaled_t <- scale(t(data_matrix))
-# check normalisation for each protein by:
-  # check that means are zero
-summary(data_scaled_t)
+# confirm the transformation for each protein:
   # check that std devs are 1
-apply(data_scaled_t, MARGIN = 2, sd) # `MARGIN = 2` is for columns
+apply(data_scaled_t, MARGIN = 2, FUN = sd) # `MARGIN = 2` is for columns
+  # check that means are (close enough to) 0
+round(apply(data_scaled_t, MARGIN = 2, FUN = mean), digits = 2)
 # transpose back to original form
 data_scaled <- t(data_scaled_t)
 ```
@@ -274,29 +272,26 @@ heatmap(data_matrix)
 
 ![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
-Normalising the data allows the function to reorganise the data properly.
+Transforming the data allowed the function to cluster the data properly.
 
-``` r
-heatmap(data_scaled,
-        margins = c(8,12)) # , reveal col labels, reduce width
-```
-
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-20-1.png) Now, let's use `heatmap.2()`:
+Now, let's use `heatmap.2()`:
 
 ``` r
 heatmap.2(data_scaled)
 ```
 
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-21-1.png)
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-20-1.png)
+
+> Keep in mind that the `scale` argument in `heatmap.2()` is by default set to `"none"`!
 
 #### More control over colours
 
-Let's create a new palette with 25 increments:
+Let's create a new palette function:
 
 ``` r
 my_palette <- colorRampPalette(c("blue",
                                  "white",
-                                 "red"))(n = 25) # from low to high
+                                 "red")) # from low to high
 ```
 
 Now, we can use it and further customise our heatmap:
@@ -304,24 +299,43 @@ Now, we can use it and further customise our heatmap:
 ``` r
 heatmap.2(data_scaled,
           trace = "none",               # turn off trace lines from heatmap
-          col = my_palette)             # use my colour scheme
+          col = my_palette(25))         # use my colour scheme with 25 levels
 ```
 
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-23-1.png)
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
 Fix a few things and add a few extras:
 
 ``` r
-par(cex.main = 0.75)                  # shrink title fonts on plot
 heatmap.2(data_scaled,
-          dendrogram = "row",         # only row dendrogram
+          Colv = NA,                # no clustering on columns
           trace = "none",
-          col = my_palette,
-          main = "A good title",      # add title
-          margins = c(6, 4),          # more space from border
-          keysize = 2,                # make key and histogram bigger
-          cexRow = 0.25,              # amend row font
-          cexCol = 0.75)              # amend column font
+          col = my_palette(25),
+          main = "A good title",    # add title
+          margins = c(6, 4),        # more space from border
+          keysize = 2,              # make key and histogram bigger
+          cexRow = 0.40,            # amend row font
+          cexCol = 0.80)            # amend column font
+```
+
+    ## Warning in heatmap.2(data_scaled, Colv = NA, trace = "none", col =
+    ## my_palette(25), : Discrepancy: Colv is FALSE, while dendrogram is `both'.
+    ## Omitting column dendogram.
+
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-23-1.png)
+
+If you want to remove a dendrogram but keep the clustering:
+
+``` r
+heatmap.2(data_scaled,
+          dendrogram = "row",     # only show the row dendrogram
+          trace = "none",
+          col = my_palette(25),
+          main = "A good title",
+          margins = c(6, 4),
+          keysize = 2,
+          cexRow = 0.40,
+          cexCol = 0.80)
 ```
 
 ![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-24-1.png)
