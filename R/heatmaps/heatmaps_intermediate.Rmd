@@ -207,17 +207,17 @@ class(data_matrix)
 ?scale
 ```
 
-`scale` is a generic function which centers and/or scales the columns of a numeric matrix. We **normalise** the data using `scale()`, **transposing** using `t()` to perform row-wise normalisation of the data (i.e. for each protein). This normalises the data across each experiment so we can compare them to each other. Finally, we transpose the data back to the original form.
+`scale()` is a function that centres and scales the columns of a numeric matrix. We **transpose** the matrix with `t()` to then **centre and scale** each protein's data with `scale()`. Finally, we transpose the data back to the original form. This allows us to compare protein abundance change more effectively.
 
 ```{r results='hide'}
-# Normalise data for each protein,
+# Scale and centre data for each protein,
 # but transpose first so it operates on rows
 data_scaled_t <- scale(t(data_matrix))
-# check normalisation for each protein by:
-  # check that means are zero
-summary(data_scaled_t)
+# confirm the transformation for each protein:
   # check that std devs are 1
-apply(data_scaled_t, MARGIN = 2, sd) # `MARGIN = 2` is for columns
+apply(data_scaled_t, MARGIN = 2, FUN = sd) # `MARGIN = 2` is for columns
+  # check that means are (close enough to) 0
+round(apply(data_scaled_t, MARGIN = 2, FUN = mean), digits = 2)
 # transpose back to original form
 data_scaled <- t(data_scaled_t)
 ```
@@ -236,17 +236,15 @@ You can compare it with a heatmap that uses the original data:
 heatmap(data_matrix)
 ```
 
-Normalising the data allows the function to reorganise the data properly.
+Transforming the data allowed the function to cluster the data properly.
 
-```{r}
-heatmap(data_scaled,
-        margins = c(8,12)) # , reveal col labels, reduce width
-```
 Now, let's use `heatmap.2()`:
 
 ```{r}
 heatmap.2(data_scaled)
 ```
+
+> Keep in mind that the `scale` argument in `heatmap.2()` is by default set to `"none"`!
 
 #### More control over colours
 
