@@ -248,12 +248,12 @@ heatmap.2(data_scaled)
 
 #### More control over colours
 
-Let's create a new palette with 25 increments:
+Let's create a new palette function:
 
 ```{r}
 my_palette <- colorRampPalette(c("blue",
                                  "white",
-                                 "red"))(n = 25) # from low to high
+                                 "red")) # from low to high
 ```
 
 Now, we can use it and further customise our heatmap:
@@ -261,22 +261,35 @@ Now, we can use it and further customise our heatmap:
 ```{r}
 heatmap.2(data_scaled,
           trace = "none",               # turn off trace lines from heatmap
-          col = my_palette)             # use my colour scheme
+          col = my_palette(25))         # use my colour scheme with 25 levels
 ```
 
 Fix a few things and add a few extras:
 
 ```{r}
-par(cex.main = 0.75)                  # shrink title fonts on plot
 heatmap.2(data_scaled,
-          dendrogram = "row",         # only row dendrogram
+          Colv = NA,                # no clustering on columns
           trace = "none",
-          col = my_palette,
-          main = "A good title",      # add title
-          margins = c(6, 4),          # more space from border
-          keysize = 2,                # make key and histogram bigger
-          cexRow = 0.25,              # amend row font
-          cexCol = 0.75)              # amend column font
+          col = my_palette(25),
+          main = "A good title",    # add title
+          margins = c(6, 4),        # more space from border
+          keysize = 2,              # make key and histogram bigger
+          cexRow = 0.40,            # amend row font
+          cexCol = 0.80)            # amend column font
+```
+
+If you want to remove a dendrogram but keep the clustering:
+
+```{r}
+heatmap.2(data_scaled,
+          dendrogram = "row",     # only show the row dendrogram
+          trace = "none",
+          col = my_palette(25),
+          main = "A good title",
+          margins = c(6, 4),
+          keysize = 2,
+          cexRow = 0.40,
+          cexCol = 0.80)
 ```
 
 Clean up the environment with:
