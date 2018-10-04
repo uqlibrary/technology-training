@@ -137,13 +137,12 @@ You can try other functions, like `rainbow()` or `terrain.colors()`, and you can
 
 #### Remove dendrograms
 
-Dendrograms don't really make sense for this dataset. `Rowv` and `Colv` can be set to `NA` to remove them, which also means the data won't be reorganised.
+The column dendrogram doesn't really make sense for this dataset. `Rowv` and `Colv` can be set to `NA` to remove dendrograms, which also means the data won't be reorganised according to the clustering method.
 
 ```{r}
 heatmap(mtcars_matrix,
         scale = "column",
         col = cm.colors(100),
-        Rowv = NA,
         Colv = NA)
 ```
 
