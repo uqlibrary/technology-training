@@ -78,3 +78,40 @@ distinct(mpg, manufacturer, .keep_all = TRUE)
 ```
 
 This command will take the `mpg` dataset (from the `ggplot2` package) and only keep the first row when a level of the variable `manufacturer` is repeated across a number of rows. The argument `.keep_all = TRUE` keeps all other variables in the output.
+
+
+### Filter for several values in a variable
+
+Create a list of values:
+
+```
+target <- c("Eritrea", "France") 
+```
+
+And then use the `%in%` operator in the condition:
+
+```
+eritrea_france_2002 <- gapminder %>%
+  select(year, country, lifeExp) %>%
+  filter(year == 2002, country %in% target)
+```
+
+### Why does a subset keep all the factor levels?
+
+This is the default behaviour with data stored as a factor: levels are kept even if further operations remove all occurences. This allows to keep this information for further operations, for example checking for the following condition:
+
+```
+ordered_factor[1] > ordered_factor[4]
+```
+
+If you want to drop the unused factor levels, you can use the `droplevels()` function.
+
+For example, to remove all levels in the `australia$country` variable:
+
+```
+australia$country <- droplevels(australia$country)
+```
+
+If you want to avoid those issues, you can use the Tidyverse way of interpreting data, which conserves character vectors and does not create factors with levels automatically (by using the `read_csv()` function from the `readr` package to import data for example).
+
+Relevant StackExchange Q&A: https://stackoverflow.com/questions/1195826/drop-factor-levels-in-a-subsetted-data-frame
