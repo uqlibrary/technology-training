@@ -139,6 +139,16 @@ If you want to avoid those issues, you can use the Tidyverse way of interpreting
 
 Relevant StackExchange Q&A: https://stackoverflow.com/questions/1195826/drop-factor-levels-in-a-subsetted-data-frame
 
+### Large datasets (for merge / joins for example)
+
+It looks like the package `data.table` might provide a more efficient way than base `merge()` or the `plyr` package. This Stack Overflow QA has some pointers, and a comparison of how much time it takes to `merge()` two data.frames vs two data.tables: https://stackoverflow.com/questions/11146967/efficient-alternatives-to-merge-for-larger-data-frames-r
+
+The help page for `data.tables::merge` should give you enough information on how to use it.
+
+This article might be of interest: https://freakonometrics.hypotheses.org/19645
+
+Again, the author concludes that data.tables are the way to go.
+
 ## ggplot2
 
 ### Are there other functions (other than `aes`) that can be used for the `mapping` argument?
@@ -181,9 +191,24 @@ ggplot(ChickWeight, aes(x = Diet,  y = weight, colour = Time)) +
 	scale_colour_continuous(low = "#36C288", high = "#CF3030")
 ```
 
+### Colourblind-friendly palettes?
+
+Mentionned in this cookbook: http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
+
+Many choices on the Colour Brewer website: http://colorbrewer2.org
+
+You can visual a list with:
+
+```
+library(RColorBrewer)
+display.brewer.all(colorblindFriendly = TRUE)
+```
+
 ### Colour the bars in a bar chart according to a continuous variable
 
-Looks like it is not supported by `ggplot2`, which makes sense as it would be hard to guess how to do it best (for example: divide the bars in how many sections?). One way to deal with that could be to create ranges in order to have a categorical variable (and add a `scale_fill_*()` function to use sequential colour palette).
+Looks like it is not supported by `ggplot2`, which makes sense as it would be hard to guess how to do it best (for example: divide the bars in how many sections?). There is one exception: if your `fill` uses the same data as your `y` aesthetic (which results in one single colour for each bar).
+
+An alternative would be to create ranges in order to have a categorical variable (and add a `scale_fill_*()` function to use sequential colour palette).
 
 ### Extract equation from a drawn `geom_smooth()`
 
@@ -240,7 +265,77 @@ diamonds %>%
 	geom_bar(stat = "identity")
 ```
 
-Note how we can build one single command to process and visualise data using the pipe operator.
+Note how we can build one single command to process and visualise data using the pipe operator (provided by `dplyr`).
+
+An alternative is to use the `stat_summary()` function to directly access summarised y values in `ggplot2`:
+
+```
+ggplot(diamonds, aes(x = cut, y = carat)) +
+	stat_summary(geom = "bar", fun.y = mean)
+```
+
+### Add error bars
+
+Error bars with stat_summary() : https://stackoverflow.com/questions/44872951/how-do-i-add-se-error-bars-to-my-barplot-in-ggplot2?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+
+Cookbook for error bars: http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/
+
+### Plot several densities
+
+To stack several density plots, the data has to be "grouped" by mapping the differenciating discrete variable to an aesthetic. The colour aesthetic is probably most suited.
+
+You can try the following code as an example, which uses the `diamonds` dataset included in the `ggplot2` package:
 
 
+```
+library(ggplot2)
+ggplot(diamonds) +
+	geom_density(aes(x = price, colour = cut))
+```
 
+If you don't want to use different colours, you can use the `group` aesthetic instead of `colour`. Here are some examples: http://ggplot2.tidyverse.org/reference/aes_group_order.html
+
+### Modify order of legend
+
+This blog details a couple of methods: https://learnr.wordpress.com/2010/03/23/ggplot2-changing-the-default-order-of-legend-labels-and-stacking-of-data/
+
+### Modify names of levels in a legend
+
+You could either modify the original data, i.e. change the strings in your dataset, or you could replace the values by hand using a scale function (that corresponds to the easthetic associated to the labels):
+
+```
+... +
+	scale_colour_manual(labels = c("blah", "bleh", "blih"))
+```
+
+### Plot geographical data
+
+An interesting package to investigate, for slippy maps: leaflet for R -> https://rstudio.github.io/leaflet
+
+Geographical data can be represented with ggplot2 too. An example: http://zevross.com/blog/2014/07/16/mapping-in-r-using-the-ggplot2-package/
+
+Since version 3 of `ggplot2`, there is some `sf` integration which makes it easier to create maps: https://www.tidyverse.org/articles/2018/07/ggplot2-3-0-0/
+
+### 3D plots in R
+
+`ggplot2` can't deal with 3D plots. It is recommended to try to visualise your data in 2D first, as 3D plots can be confusing and hard to interpret.
+
+If you do find that you absolutely have to visualise your data in 3D (surface data for example), you can experiment with packages like `plot3D`, `lattice`, `plotly`, `scatterplot3d` and others.
+
+Base R also has a `persp()` function that can represent 3D data. You can see a demonstration of its capabilities with `demo(persp)`
+
+### Secondary y axes
+
+It is often not recommended to superimpose two visualisations that relate to different data, which is why it was never prioritised in `ggplot2`. The reasons relate to how it adds unnecessary technical complexity, and how it can be used to mislead interpretation. See the main developper's explanation here: https://stackoverflow.com/a/3101876/1494531
+
+However, it is possible to have a second y axis that is a transformation of the first one, which is demonstrated in the same Q&A: https://stackoverflow.com/a/39805869/1494531
+
+If you want an alternative to dual axes, and you are plotting the same kind of data, you can use `facet_wrap()` with the `scales = "free_y"` argument, which will allow the two facets to have different ordinate ranges.
+
+For a secondary axis that shows completely different data, there are more involved solutions that either hack around the built-in secondary axis limitation, make use of dummy facetting, or play with the internals of `ggplot2` with the `gtable` package:
+
+* https://rpubs.com/MarkusLoew/226759
+* https://github.com/tidyverse/ggplot2/wiki/Align-two-plots-on-a-page
+* https://rpubs.com/kohske/dual_axis_in_ggplot2
+
+However, there are other packages that make it easy to do that. For example, the function `twoord.plot()` in the package `plotrix`.
