@@ -339,3 +339,72 @@ For a secondary axis that shows completely different data, there are more involv
 * https://rpubs.com/kohske/dual_axis_in_ggplot2
 
 However, there are other packages that make it easy to do that. For example, the function `twoord.plot()` in the package `plotrix`.
+
+## Heatmaps
+
+### Use of `colorRampPalette()`
+
+"Why do you specify the number of colours for the function `colorRampPalette()` as a separate object external to the function?"
+
+The `colorRampPalette()` function creates another function. So, when we did this:
+
+```
+my_palette <- colorRampPalette(c("blue", "white", "red"))(n = 25)
+```
+
+...we created a function, and directly used it with the single argument `n = 25` to create a list of colours. In a way, the whole of "colorRampPalette(c("blue", "white", "red"))" is the name of the function, followed by its arguments between parentheses.
+
+That would be equivalent to the two separate steps here:
+
+```
+# Create the custom function:
+my_palette_function <- colorRampPalette(c("blue", "white", "red"))
+# `my_palette_function()` is listed under "Functions" in you environment pane. If you run `my_palette_function`, it will print the code of the function.
+# Create the object, using the custom function with `n = 25`:
+my_palette <- my_palette_function(n = 25)
+```
+
+### How do different packages handle NA values?
+
+* `heatmap()` and `heatmap.2()` have a `na.rm` argument that is by default set to `TRUE`
+* `heatmap.2()` has a `na.color` argument to specify a colour for NA values (background color by default)
+* `pheatmap()` has a `na_col` argument to specify a colour for NA values (by default grey: #DDDDDD)
+
+
+### Change the colour of dendrograms in `heatmap()`
+
+Some potential methods here: http://www.sthda.com/english/wiki/beautiful-dendrogram-visualizations-in-r-5-must-known-methods-unsupervised-machine-learning
+
+### Change font in `pheatmap()`
+
+Changing fonts for R base plots (which `heatmap()` is a part of) requires to use the `par(family = "<familyname>")` function before building the plot (see the help page for `par()` for more on that).
+
+However, for packages like `ggplot2` or `pheatmap`, the method is different.
+
+In `ggplot2`, you can add an extra element to change the font settings, like so:
+
+```
+<previous_layers> +
+	theme(text=element_text(family="mono", face="bold", size=12))
+```
+
+If the default built-in font families ("serif", "sans", "mono" and the Hershey font families) are not enough, you can import your system's fonts with the `extrafont` package.
+
+`extrafont` needs to be setup first. Install it with `install.packages("extrafont")` and then:
+
+```
+library(extrafont)
+font_import() # needs to be done only once to import the system's fonts
+font() # this lists the fonts available
+loadfonts() # automatically done when you load extrafont
+```
+
+For `pheatmap`.... `FIXME`
+
+### Scale data according to different scaling method?
+
+The `scale()` function can already turn both the scaling and the centering on or off. For more custom "normalisation", the `sweep()` function can by default subtract the value passed on to the `STATS` argument, or can handle it accordingly to a custom formula replacing the default `FUN` argument's value.
+
+### color palette / scaling method above / below zero
+
+The `sweep()` function can be used to scale the data differently. A custom color palette can then be designed so the "middle" colour corresponds to a specific value, for example with the ... `FIXME`
