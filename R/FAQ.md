@@ -2,11 +2,24 @@
 
 This is a compilation of questions and answers that have been asked during R sessions at the CDS.
 
-## general
+## General
 
+### Importing data
+
+You can use `read.table()` to read delimited data file, or the more specific `read.csv()` for CSV files. Look at the help page to overwrite defaults like delimiter or headings.
+
+Basic operation:
+
+```
+read.csv("path/to/file.csv")
+
+```
+
+You can also use the graphical user interface: "File > Import dataset > From text (base)"
+
+There are also options to import Excel files directly (with the package `readxl`) and other formats (ODS, Stata, SPSS, SAS...).
 
 ### Exporting data
-
 
 You can use `write.table()`. There are a few arguments that you can overwrite to get the output you want.
 For example, to export the object `australia` and save it as "data.csv" in the working directory, but removing the row names (i.e. the numbers at the beginning of each observation) and removing the quotes around character strings:
@@ -45,6 +58,16 @@ I had to ask about this one: https://stackoverflow.com/questions/52739502
 
 To create an int vector with `c()`, we'd have to use the notation `c(1L, 2L, 3L)`.
 
+### Difference between `require()` and `library()`?
+
+From the great answers on this page: https://stackoverflow.com/questions/5595512/what-is-the-difference-between-require-and-library
+
+`require()` is useful when programming as it returns `TRUE` or `FALSE` depending on if R managed to load the packages, which for example would allow to check for a package's availability in an `if` statement.
+
+
+`library()` is useful interactively as it throws an error if it didn't manage to load the package (whereas `require()` only gives a warning).
+
+So, in short: `require()` is more used programmatically, whereas `library()` is better for interactive use.
 
 ## dplyr
 
@@ -115,3 +138,109 @@ australia$country <- droplevels(australia$country)
 If you want to avoid those issues, you can use the Tidyverse way of interpreting data, which conserves character vectors and does not create factors with levels automatically (by using the `read_csv()` function from the `readr` package to import data for example).
 
 Relevant StackExchange Q&A: https://stackoverflow.com/questions/1195826/drop-factor-levels-in-a-subsetted-data-frame
+
+## ggplot2
+
+### Are there other functions (other than `aes`) that can be used for the `mapping` argument?
+
+From what I can see, no other functions are used for the `mapping` argument. `aes()` is systematically used. One reason to use a function here is that it allows us to group the mapping arguments together.
+
+### Several plots in single view
+
+After saving your plots as objects, you can use the `grid.arrange()` function like so: `grid.arrange(plot1, plot2, plot3, plot4, ncol = 2)`
+
+More examples here: https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html
+
+### Using symbols
+
+The aesthetic `shape` can assign different symbols to categorical data. You can also specify what shapes you want to use by specifying a list of shapes in `scale_shape_manual()` (find the integers and names associated to shapes with `vignette("ggplot2-specs")`).
+
+### Custom colour scales
+
+The cheatsheet details a few methods: https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
+
+A few examples of customisation are listed in this Cookbook: http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
+
+You can change the colour palette with `scale_` functions. For example, if you want to replace the default colour palette for a `colour` aesthetic in a scatterplot:
+
+```
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, colour = Species)) +
+	geom_point() +
+	scale_colour_brewer(palette = "Greens")
+```
+
+Note: brewer colours were mainly designed for discrete data.
+
+If you know how many levels you have, and want to specify a falue for each one, use a concatenated list of the values in the function `scale_<aes>_manual()` (this is when `ColourPicker` is extra useful).
+
+If you want to create your own custom continuous palette:
+
+```
+ggplot(ChickWeight, aes(x = Diet,  y = weight, colour = Time)) +
+	geom_point() +
+	scale_colour_continuous(low = "#36C288", high = "#CF3030")
+```
+
+### Colour the bars in a bar chart according to a continuous variable
+
+Looks like it is not supported by `ggplot2`, which makes sense as it would be hard to guess how to do it best (for example: divide the bars in how many sections?). One way to deal with that could be to create ranges in order to have a categorical variable (and add a `scale_fill_*()` function to use sequential colour palette).
+
+### Extract equation from a drawn `geom_smooth()`
+
+This answer looks at printing a known equation on the plot: https://stackoverflow.com/questions/7549694/adding-regression-line-equation-and-r2-on-graph/7549819
+
+This answer looks at extracting the function from the `geom_smooth()` function: https://stackoverflow.com/questions/9789871/method-to-extract-stat-smooth-line-fit#9790803
+
+
+### Change the font size and family
+
+Usually defined in the `element_text()` functions for each theme element (or element groups):
+
+```
+element_text(size = 20, family = "serif")
+```
+
+In base R, you can use "serif", "sans" and "mono", and the Hershey font families (see `?Hershey` and `demo(Hershey)`).
+
+### Use a transparent background
+
+You can use the following theme option to remove all rectangle elements:
+
+```
+theme(rect = element_blank())
+```
+
+However, you will need to use the `ggsave()` function as RStudio's plot export menu does not support transparency:
+
+```
+ggsave(filename = "plot.png", bg = "transparent")
+```
+
+### Remove the grid?
+
+There is something better than `colour = "white"` or `size = 0`:
+
+You can use the following syntax:
+
+```
+theme(panel.grid = element_blank())
+```
+
+### Barchart of means
+
+Sometimes, we need to do some data-processing before plotting. Here, we can use functions from the `dplyr` package, and we overwrite the default geom statistic in order to plot means of grouped data as a bar chart:
+
+```
+library(dplyr)
+library(ggplot2)
+diamonds %>%
+	group_by(cut) %>% 
+	summarise(caratMean = mean(carat)) %>%
+	ggplot(aes(x = cut, y = caratMean)) +
+	geom_bar(stat = "identity")
+```
+
+Note how we can build one single command to process and visualise data using the pipe operator.
+
+
+
