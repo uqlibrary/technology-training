@@ -77,7 +77,7 @@ pi
 
 To install more: might need Pip, or from the Anaconda Navigator.
 
-```
+```bash
 python -m pip install SomePackage
 ```
 
@@ -123,4 +123,81 @@ with pandas
 
 ### Visualise data
 
-with matplotlib
+Matplotlib and Pyplot
+
+Matplotlib is a large collection of data visualisation functions, and Pyplot is a subset of Matplotlib that contains essentials.
+
+```python
+import matplotlib.pyplot as plt
+plt.plot([0,1,4,9,16])
+```
+
+This shows a plot in the IPython console.
+
+> In a python shell, you might have to use the `plt.show()` command to show the plot.
+
+We can style a plot with only a few characters:
+
+```python
+x = np.linspace(0, 10, 20)
+y = x**2
+# blue, circles, line
+plt.plot(x, y, "bo-")
+# green, squares, dashes:
+plt.plot(x, y, "gs--")
+```
+
+Extra arguments can be used to style further:
+
+```python
+# red, diamonds, line; change width of line and size of diamonds:
+plt.plot(x, y, "rd-", linewidth = 3, markersize = 6)
+```
+
+Executing several lines together will render everything on the same visualisation. See for example this code that plots two lines together, modifies axis ranges, adds a legend and styles axis labels with LaTex, and saves to pdf:
+
+```python
+plt.plot(x, y, "bo-", label = "High")
+plt.plot(x, x**1.5, "gs--", label = "Low")
+# we can use LaTex
+plt.xlabel("$X$")
+plt.ylabel("$Y$")
+# change axis limits: [xmin, xmax, ymin, ymax]
+plt.axis([-0.5, 10.5, -10, 120])
+plt.legend(loc = "upper left")
+# save plot
+plt.savefig("hi-lo.pdf")
+```
+
+```python
+x = np.random.normal(size = 1000)
+plt.hist(x, density = True)
+```
+
+Modify the bins setting to have 25 bins between -5 and 5:
+
+```python
+plt.hist(x, density = True, bins = np.linspace(-5, 5, 26))
+```
+
+> Note that to define `n` bins, we need `n+1` numbers.
+
+
+We can join several plots on the same image with the `subplot()` function, which takes three numbers: the number of rows, number of columns, and position of the subplot.
+
+```python
+x = np.random.gamma(2, 3, 100000) # create data
+plt.figure() # initialise
+plt.subplot(221)
+plt.hist(x, bins = 30)
+plt.subplot(222)
+plt.hist(x, bins = 30, cumulative = True)
+plt.subplot(223)
+plt.plot(x)
+plt.subplot(224)
+plt.boxplot(x)
+```
+
+> You can also use `subplot()` with three separate arguments, e.g. `subplot(3, 3, 7)`
+
+
