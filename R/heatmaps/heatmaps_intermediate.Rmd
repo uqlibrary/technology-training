@@ -1,6 +1,6 @@
 ---
 title: "R data visualisation with RStudio: heatmaps"
-date: 2018-10-04
+date: 2018-11-02
 output:
   github_document: default
 ---
@@ -201,50 +201,50 @@ data_matrix <- data.matrix(rawdata)
 class(data_matrix)
 ```
 
-*Step 5: more munging*
+We can now visualise the data with `heatmap.2()`:
+
+```{r}
+heatmap.2(data_matrix)
+```
+
+> The `scale` argument in `heatmap.2()` is by default set to `"none"`!
+
+For a more informative visualisation, we can scale the data for each protein:
+
+```{r}
+heatmap.2(data_matrix,
+          scale = "row")
+```
+
+We can now see each protein's response to treatments.
+
+> Notice how the visualisation is more readable, but the clustering does not take into account the scaling? That's because the scaling is done *after* the clustering.
+
+*Step 5: pre-scale the dataset*
+
+If we want to cluster rows according to the scaled data, we have to scale it *prior* to generating the heatmap.
 
 ```{r eval=FALSE}
 ?scale
 ```
 
-`scale()` is a function that centres and scales the columns of a numeric matrix. We **transpose** the matrix with `t()` to then **centre and scale** each protein's data with `scale()`. Finally, we transpose the data back to the original form. This allows us to compare protein abundance change more effectively.
+`scale()` is a function that centres and scales the *columns* of a numeric matrix. We **transpose** the matrix with `t()` to then **centre and scale** each protein's data (i.e. the rows) with `scale()`. Finally, we transpose the data back to the original form.
 
 ```{r results='hide'}
 # Scale and centre data for each protein,
 # but transpose first so it operates on rows
 data_scaled_t <- scale(t(data_matrix))
-# confirm the transformation for each protein:
-  # check that std devs are 1
-apply(data_scaled_t, MARGIN = 2, FUN = sd) # `MARGIN = 2` is for columns
-  # check that means are (close enough to) 0
-round(apply(data_scaled_t, MARGIN = 2, FUN = mean), digits = 2)
 # transpose back to original form
 data_scaled <- t(data_scaled_t)
 ```
 
-*Step 5: create heatmaps*
-
-First, let's experiment with the base `heatmap()` function.
-
-```{r}
-heatmap(data_scaled)
-```
-
-You can compare it with a heatmap that uses the original data:
-
-```{r}
-heatmap(data_matrix)
-```
-
-Transforming the data allowed the function to cluster the data properly.
-
-Now, let's use `heatmap.2()`:
+*Step 6: create heatmaps*
 
 ```{r}
 heatmap.2(data_scaled)
 ```
 
-> Keep in mind that the `scale` argument in `heatmap.2()` is by default set to `"none"`!
+We can now see clearer groups.
 
 #### More control over colours
 
@@ -330,7 +330,20 @@ pheatmap(d,
          main = "Pretty heatmap",
          cellwidth =  50,
          cellheight = 30,
-         fontsize = 12)
+         fontsize = 12,
+         display_numbers = TRUE)
+```
+
+> By default, the `scale` argument is set to `"none"`. If you do scale the data, the clustering will take it into account (i.e. the clustering happens *after* the scaling).
+
+```{r}
+pheatmap(d, 
+         main = "Pretty heatmap",
+         cellwidth =  50,
+         cellheight = 30,
+         fontsize = 12,
+         display_numbers = TRUE,
+         scale = "row")
 ```
 
 You can save your plot with an extra argument:

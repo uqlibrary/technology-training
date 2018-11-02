@@ -1,6 +1,6 @@
 R data visualisation with RStudio: heatmaps
 ================
-2018-10-04
+2018-11-02
 
 > This document is edited as an R markdown file, and regularly exported as a GitHub document. The source code is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd) The published printer-friendly version is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md)
 
@@ -233,48 +233,48 @@ class(data_matrix)
 
     ## [1] "matrix"
 
-*Step 5: more munging*
+We can now visualise the data with `heatmap.2()`:
+
+``` r
+heatmap.2(data_matrix)
+```
+
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-16-1.png)
+
+> The `scale` argument in `heatmap.2()` is by default set to `"none"`!
+
+For a more informative visualisation, we can scale the data for each protein:
+
+``` r
+heatmap.2(data_matrix,
+          scale = "row")
+```
+
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-17-1.png)
+
+We can now see each protein's response to treatments.
+
+> Notice how the visualisation is more readable, but the clustering does not take into account the scaling? That's because the scaling is done *after* the clustering.
+
+*Step 5: pre-scale the dataset*
+
+If we want to cluster rows according to the scaled data, we have to scale it *prior* to generating the heatmap.
 
 ``` r
 ?scale
 ```
 
-`scale()` is a function that centres and scales the columns of a numeric matrix. We **transpose** the matrix with `t()` to then **centre and scale** each protein's data with `scale()`. Finally, we transpose the data back to the original form. This allows us to compare protein abundance change more effectively.
+`scale()` is a function that centres and scales the *columns* of a numeric matrix. We **transpose** the matrix with `t()` to then **centre and scale** each protein's data (i.e. the rows) with `scale()`. Finally, we transpose the data back to the original form.
 
 ``` r
 # Scale and centre data for each protein,
 # but transpose first so it operates on rows
 data_scaled_t <- scale(t(data_matrix))
-# confirm the transformation for each protein:
-  # check that std devs are 1
-apply(data_scaled_t, MARGIN = 2, FUN = sd) # `MARGIN = 2` is for columns
-  # check that means are (close enough to) 0
-round(apply(data_scaled_t, MARGIN = 2, FUN = mean), digits = 2)
 # transpose back to original form
 data_scaled <- t(data_scaled_t)
 ```
 
-*Step 5: create heatmaps*
-
-First, let's experiment with the base `heatmap()` function.
-
-``` r
-heatmap(data_scaled)
-```
-
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-18-1.png)
-
-You can compare it with a heatmap that uses the original data:
-
-``` r
-heatmap(data_matrix)
-```
-
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-19-1.png)
-
-Transforming the data allowed the function to cluster the data properly.
-
-Now, let's use `heatmap.2()`:
+*Step 6: create heatmaps*
 
 ``` r
 heatmap.2(data_scaled)
@@ -282,7 +282,7 @@ heatmap.2(data_scaled)
 
 ![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
-> Keep in mind that the `scale` argument in `heatmap.2()` is by default set to `"none"`!
+We can now see clearer groups.
 
 #### More control over colours
 
@@ -379,10 +379,25 @@ pheatmap(d,
          main = "Pretty heatmap",
          cellwidth =  50,
          cellheight = 30,
-         fontsize = 12)
+         fontsize = 12,
+         display_numbers = TRUE)
 ```
 
 ![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-29-1.png)
+
+> By default, the `scale` argument is set to `"none"`. If you do scale the data, the clustering will take it into account (i.e. the clustering happens *after* the scaling).
+
+``` r
+pheatmap(d, 
+         main = "Pretty heatmap",
+         cellwidth =  50,
+         cellheight = 30,
+         fontsize = 12,
+         display_numbers = TRUE,
+         scale = "row")
+```
+
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-30-1.png)
 
 You can save your plot with an extra argument:
 
@@ -440,7 +455,7 @@ ggplot(esoph_sub, aes(x = alcgp,
        y = "Tobacco consumption")
 ```
 
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-35-1.png)
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-36-1.png)
 
 This ggplot2 method does not allow to create dendrograms.
 
@@ -525,7 +540,7 @@ colnames(mat) <- paste0("C", 1:10)
 Heatmap(mat)
 ```
 
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-41-1.png)
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-42-1.png)
 
 Modify the colour and the labels, remove dendrograms (and don't cluster the data):
 
@@ -538,7 +553,7 @@ Heatmap(mat,
         heatmap_legend_param = list(title = "Values"))
 ```
 
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-42-1.png)
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-43-1.png)
 
 The `cluster_` arguments can take external clustering information, which means you can use any type of clustering method.
 
@@ -560,7 +575,7 @@ Heatmap(mat_with_na,
     ## Warning in get_dist(submat, distance): NA exists in the matrix, calculating
     ## distance by removing NA values.
 
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-43-1.png)
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-44-1.png)
 
 `Heatmap()` automatically removes NA values to calculate the distance.
 
@@ -575,7 +590,7 @@ Heatmap(mat,
         column_dend_side = "bottom")
 ```
 
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-44-1.png)
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-45-1.png)
 
 To separate clusters, we can use the `km` argument, which allows k-means clustering on rows.
 
@@ -589,7 +604,7 @@ Heatmap(mat,
         km = 2)
 ```
 
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-45-1.png)
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-46-1.png)
 
 We can add options, save the base plot as an object and then slightly modify if with the `draw()` function:
 
@@ -610,7 +625,7 @@ h1 <- Heatmap(mat,
 draw(h1, heatmap_legend_side = "left")
 ```
 
-![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-46-1.png)
+![](heatmaps_intermediate_files/figure-markdown_github/unnamed-chunk-47-1.png)
 
 Clean my environment with:
 
