@@ -4,7 +4,7 @@ This hands-on course will get you started on using Python 3 and the Spyder IDE t
 
 ## Setup
 
-The easiest way to use Python 3 and Spyder is to install the Anaconda distribution. Make sure you download the Python 3 version.
+The easiest way to use Python 3 and Spyder is to install the Anaconda distribution. Make sure you download the Python 3 version: https://www.anaconda.com/download
 
 ## Introducing Python and Spyder
 
@@ -20,60 +20,116 @@ We will start by using the IPython console to work interactively.
 
 We can use Python like a calculator.
 
+```python
+1 + 1
+2 * 3
+4 / 10
+6**3
+9 % 2
+```
+
 ## Variables
 
 Variables will store data.
 
+```python
+favNumber = 42
+otherNumber = 5.678
+prod1 = favNumber * otherNumber
+sentence = "Hello world!"
+```
+
 ## Data types
 
-Int, float, Strings
+Variables have different types. The most commons are `int` for integers, `float` for decimals and `string` for strings of characters.
 
-Booleans
+We can also create lists, which will store several variables (not necessary of the same type). We need to use square brackets for that:
 
-Lists
+```python
+myList = [1, 6, 4]
+diverse = [3, "Hi!", 9.0]
+```
 
-Dict ??? Set ???
+We can use the `*` and `+` operators to repeat and append strings and lists:
+
+```python
+sentence + " How are you?"
+myList + diverse
+3 * myList
+```
+
+Another important data type is `bool`  for "boolean". Booleans are often are the result of checking for a condition. For example:
+
+```python
+1 == 1
+1 == 2
+1 != 2
+5 > 7
+bool1 = favNumber > otherNumber
+```
+
+There are other data types like tuples, dictionaries and sets, but we won't get into details today.
 
 ### Mutable vs immutable
 
+Some data types are mutable (like lists), others are inmutable (like integers, floats, strings and tuples).
+
 ### Indexing
 
-Starts at 0, does not include upper bound.
+Indexing in Python **starts at 0**, and does not include the upper bound. For example:
+
+```python
+myList[0]
+myList[2]
+myList[0:2]
+```
 
 ## Functions
 
-min
+Some functions are built in and ready to use:
 
-max
+```python
+min(myList)
+max(myList)
+sum(myList)
+round(otherNumber)
+round(otherNumber, 2)
+```
 
-sum
+> Notice how Spyder gives you hints about the available arguments after typing the function name?
 
-round
-
-len
+```python
+len(myList)
+```
 
 ## Finding help
 
+To find help about a function, you can use the `help()` function, or a `?` after a function name:
+
+```python
 help(max)
-
 print?
+```
 
-Ctrl + I in Spyder
+In Spyder, you can use the <kbd>Ctrl</kbd> + <kbd>I</kbd> keyboard shortcut to open the help in a separate pane.
 
-Online docs: https://docs.python.org/3/
+For a comprehensive manual, go to the online documentation: https://docs.python.org/3/
 
-Q&As: Stack Exchange and Stack Overflow
+For questions and answers, typing the right question in a search engine will usually lead you to something helpful. If you can't find an answer, StackOverflow is a great Q&A community: https://stackoverflow.com/questions/tagged/python
 
 ## Libraries
 
+To do more with Python, we will need to import extra libraries. Here are a few that are helpful:
+
+```python
+pi # throws an error
 import math
 math.pi
-
-import math as m
+import math as m # give a shorter name
 m.pi
-
-from math import pi
+from math import pi # only import what is necessary
 pi
+```
 
 To install more: might need Pip, or from the Anaconda Navigator.
 
@@ -83,45 +139,27 @@ python -m pip install SomePackage
 
 ### NumPy for arrays
 
+Arrays are a data type introduced by NumPy. They can be very useful in many cases.
+
+```python
 import numpy as np
+myArray = np.array([[1, 2], [3, 4]])
+myArray * 2
+```
 
 ### Pandas for data frames
 
+Pandas introduces dataframes, which are often used to store two-dimensional data with different kinds of variables in each column.
+
+```python
 import pandas as pd
+DF = pd.DataFrame(columns = ("Name", "Age"))
+DF.loc[1] = "Josephine", 70
+DF.loc[2] = "Dilsah", 38
+DF
+```
 
-### Updates?
-
-## Loops
-
-For
-
-While
-
-### Comprehension
-
-
-
-## Custom functions
-
-def my_function(arg1, arg2):
-	prod = arg1 * arg2
-	return prod
-
-## Example project
-
-### Create a new project
-
-Create a project with `Projects > New project...`
-
-### Import data
-
-with pandas
-
-### Analyse data
-
-...
-
-### Visualise data
+### Matplotlib for visualisation
 
 Matplotlib and Pyplot
 
@@ -200,4 +238,75 @@ plt.boxplot(x)
 
 > You can also use `subplot()` with three separate arguments, e.g. `subplot(3, 3, 7)`
 
+
+## Loops
+
+A "for loop" will execute something for each element of a list:
+
+```python
+friends = ["Mary", "Toya", "Fernand"]
+for name in friends:
+	print(name + "is a perfectly fine name")
+```
+
+### Comprehension
+
+...
+
+## Custom functions
+
+We can create our own custom functions to reuse later on:
+
+```python
+def my_function(arg1, arg2):
+	prod = arg1 * arg2
+	sum = prod + 10
+	return sum
+my_function(3, 5)
+```
+
+We have to specify the function **name**, what **arguments** are available, what **operations** we do with them, and what the function **returns**.
+
+## Example project
+
+### Create a new project
+
+Create a project with `Projects > New project...`
+
+### Create a script
+
+Click on  the "New file" icon, and save it as "process.py" in your project directory.
+
+Remember to add comments (they start with the `#` symbol) to document your work.
+
+To execute something from the script (the current line, or a selected block), use the <kbd>F9</kbd> keyboard shortcut.
+
+### Import data
+
+It is possible to read a CSV file with a Pandas function:
+
+```python
+import pandas as pd
+data = pd.read_csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
+data.shape
+data.head()
+data.tail()
+```
+
+
+### Analyse data
+
+```python
+data.describe()
+data.groupby(by = "year").mean()
+```
+
+### Visualise data
+
+
+```python
+import matplotlib.pyplot as plt
+plt.plot(data.gdpPercap, data.lifeExp, "go")
+plt.plot(data.groupby(by = "year").mean().lifeExp)
+```
 
