@@ -310,3 +310,15 @@ plt.plot(data.gdpPercap, data.lifeExp, "go")
 plt.plot(data.groupby(by = "year").mean().lifeExp)
 ```
 
+You can save you plots as PNG by right-clicking on them. To save automatically with some code, you can use:
+
+```python
+plt.savefig("myPlot.pdf")
+```
+
+## Saving your work
+
+You project can be reopened from the "Projects" menu in Spyder.
+
+By default, your variables are *not* saved, which is another reason why working with a script is important. You can however save your variables as a `.spydata` file if you want to.
+
