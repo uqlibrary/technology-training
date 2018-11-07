@@ -213,7 +213,7 @@ There is no output: as far as Git can tell, there’s no difference between what
 git diff --staged
 ```
 
-... it show the difference between the last commited change and the staging area.
+... it shows the difference between the last commited change and the staging area.
 
 Let's save our changes and check our status and history:
 
