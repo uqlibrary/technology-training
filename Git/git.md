@@ -361,7 +361,7 @@ It is easiest to use on copy as a central hub, stored online.
 
 Let's **share our repository with the world**. Log into GitLab and create a new repository called `planets` ("+ > New project" in the top toolbar). Make sure you select "Public" for the visibility level.
 
-Our local repository (on our computer) contains our recent work, but the **remote repository** on GitHub's servers doesn't.
+Our local repository (on our computer) contains our recent work, but the **remote repository** on GitLab's servers doesn't.
 
 We now need to connect the two: we do this by making the GitLab repository a **remote** for the local repository. The home page of the repository on GitLab includes the URL we need to identify it, under "HTTPS". Copy it to your clipboard, and in your local repository, run the following command:
 
