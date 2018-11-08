@@ -27,15 +27,16 @@ Files available for each course, hosted in this repository:
 
 | Title | Course notes | Event description | Live Etherpad |
 |:-|:-:|:-:|:-:|
-| R with RStudio: getting started | [md](https://gitlab.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-rstudio) |
-| R data manipulation with RStudio and dplyr: an introduction | [md](https://gitlab.com/stragu/CDS/blob/master/R/dplyr/dplyr.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/R/dplyr/dplyr_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-dplyr) |
-| R data visualisation with RStudio and ggplot2: an introduction | [md](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.md) <sup>[source](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [txt](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-intro) |
-| R data visualisation with RStudio and ggplot2: intermediate | [md](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [txt](https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-inter) |
-| R data visualisation with RStudio: heatmaps | [md](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md) <sup>[source](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd)</sup> | [txt](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
-| Unix Shell: an introduction | [md](https://gitlab.com/stragu/CDS/blob/master/Shell/shell_intro.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/Shell/shell_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-shell) |
-| Git version control for collaboration | [md](https://gitlab.com/stragu/CDS/blob/master/Git/git.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/Git/git_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-git) |
-| OpenRefine: an introduction to dealing with messy data | [md](https://gitlab.com/stragu/CDS/blob/master/OpenRefine/openrefine.md) | [txt](https://gitlab.com/stragu/CDS/blob/master/OpenRefine/openrefine_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-openrefine) |
-| next: OpenSource tools for your research | ... | ... | ... |
+| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) | [txt](R/rstudio_intro/rstudio_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-rstudio) |
+| R data manipulation with RStudio and dplyr: an introduction | [md](R/dplyr/dplyr.md) | [txt](R/dplyr/dplyr_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-dplyr) |
+| R data visualisation with RStudio and ggplot2: an introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [txt](R/ggplot2_intro/ggplot2_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-intro) |
+| R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [txt](R/ggplot2_intermediate/ggplot2_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-inter) |
+| R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps_intermediate.Rmd)</sup> | [txt](R/heatmaps/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
+| Unix Shell: an introduction | [md](Shell/shell_intro.md) | [txt](Shell/shell_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-shell) |
+| Git version control for collaboration | [md](Git/git.md) | [txt](Git/git_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-git) |
+| OpenRefine: an introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [txt](OpenRefine/openrefine_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-openrefine) |
+| Python with Spyder: an introduction to data science | [md](Python/python_intro.md) | [txt](Python/python_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-python) |
+| next: Free Software for your research | ... | ... | ... |
 
 ## License
 
