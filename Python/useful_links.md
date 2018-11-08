@@ -4,12 +4,17 @@
 
 ## Books and tutorials
 
+* Video tutorials on Lynda.com (free with UQ credentials): https://www.lynda.com/learning-paths/Developer/become-a-python-developer
 * _Scipy Lecture Notes_ to learn numerics, science and data with Python: https://www.scipy-lectures.org/
 * _Python Programming_ on WikiBooks: https://en.wikibooks.org/wiki/Python_Programming
 * _Dive Into Python 3_: http://getpython3.com/diveintopython3/
 * _The Hitchhiker's Guide to Python_ for general Python programming: https://docs.python-guide.org/
 * _10 Minutes to pandas_, an introduction to pandas' capabilities: https://pandas.pydata.org/pandas-docs/stable/10min.html
 * _Programming with Python_ by The Carpentries: https://swcarpentry.github.io/python-novice-inflammation/
+
+## Documentation
+
+* Official Python 3 documentation: https://docs.python.org/3/
 
 ## Practice Python
 
