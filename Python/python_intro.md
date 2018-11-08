@@ -324,11 +324,13 @@ plt.plot(data.gdpPercap, data.lifeExp, "go")
 plt.plot(data.groupby(by = "year").mean().lifeExp)
 ```
 
-You can save you plots as PNG by right-clicking on them. To save automatically with some code, you can use:
+You can save you plots as PNG by right-clicking on them. To save automatically with some code, you add the following line:
 
 ```python
 plt.savefig("myPlot.pdf")
 ```
+
+> Make sure that you execute the code that generates the plot *together* with the code that saves the file.
 
 ## Saving your work
 
