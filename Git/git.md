@@ -357,7 +357,7 @@ git status
 
 Version control really becomes extra useful when we begin to **collaborate with other people**. We already have most of the machinery we need to do this; the only thing missing is to **copy changes from one repository to another**.
 
-It is easiest to use on copy as a central hub, stored online.
+It is easiest to use one copy as a central hub, stored online.
 
 Let's **share our repository with the world**. Log into GitLab and create a new repository called `planets` ("+ > New project" in the top toolbar). Make sure you select "Public" for the visibility level.
 
@@ -396,7 +396,7 @@ In summary: `git push` sends commited changes to a remote repository, whereas `g
 
 Now, let's get into pairs: one person is the "Owner", the other is the "Collaborator".
 
-First, the Owner needs to give the collaborator editing access to the repository. On GitLab's left panel, go to "Settings > Members", search for your partner's username and click "Add to project".
+First, the Owner needs to give the collaborator editing access to the repository. On GitLab's left panel, go to "Settings > Members", search for your partner's username, select "Maintainer" and click "Add to project".
 
 The Collaborator can then accept the invitation.
 
@@ -424,7 +424,7 @@ We didn't have to create a remote called `origin`, that was done by default by G
 
 You can see that the changes are now live on GitLab.
 
-The Owner can now download the Collaborator's changes from GitHub:
+The Owner can now download the Collaborator's changes from GitLab:
 
 ```bash
 git pull origin master
@@ -457,7 +457,7 @@ git commit -m "Add a line in my friend's file"
 git push origin master
 ```
 
-Now let’s have the Owner make a different change to their own copy _without pulling from GitHub beforehand_:
+Now let’s have the Owner make a different change to their own copy _without pulling from GitLab beforehand_:
 
 ```bash
 nano mars.txt
@@ -470,7 +470,7 @@ git add mars.txt
 git commit -m "Add a line in my own copy"
 ```
 
-But Git won't let us push to GitHub:
+But Git won't let us push to GitLab:
 
 ```bash
 git push origin master
@@ -500,7 +500,7 @@ They can now add and commit to their local repo, and then push the changes to Gi
 
 ```bash
 git add mars.txt
-git commit -m "Merge changes from GitHub"
+git commit -m "Merge changes from GitLab"
 git push origin master
 ```
 
