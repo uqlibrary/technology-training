@@ -43,6 +43,8 @@ sentence = "Hello world!"
 
 Variables have different types. The most commons are `int` for integers, `float` for decimals and `string` for strings of characters.
 
+> You can see the type of your existing variables in the "Variable explorer" pane.
+
 We can also create lists, which will store several variables (not necessary of the same type). We need to use square brackets for that:
 
 ```python
@@ -50,7 +52,7 @@ myList = [1, 6, 4]
 diverse = [3, "Hi!", 9.0]
 ```
 
-We can use the `*` and `+` operators to repeat and append strings and lists:
+Operators give different results depending on types. For example, we can use the `*` and `+` operators to repeat and append strings and lists:
 
 ```python
 sentence + " How are you?"
@@ -72,7 +74,7 @@ There are other data types like tuples, dictionaries and sets, but we won't get 
 
 ### Mutable vs immutable
 
-Some data types are mutable (like lists), others are inmutable (like integers, floats, strings and tuples).
+Some data types are mutable (like lists and dictionaries), others are immutable (like integers, floats, strings and tuples).
 
 ### Indexing
 
@@ -89,18 +91,20 @@ myList[0:2]
 Some functions are built in and ready to use:
 
 ```python
+len(myList)
 min(myList)
 max(myList)
 sum(myList)
 round(otherNumber)
-round(otherNumber, 2)
 ```
 
 > Notice how Spyder gives you hints about the available arguments after typing the function name?
 
 ```python
-len(myList)
+round(otherNumber, 2)
 ```
+
+Functions always have parentheses behind their name, and they can take one or several **arguments**, or none at all.
 
 ## Finding help
 
@@ -119,7 +123,7 @@ For questions and answers, typing the right question in a search engine will usu
 
 ## Libraries
 
-To do more with Python, we will need to import extra libraries. Here are a few that are helpful:
+To do more with Python, it is easier to import extra libraries. Here are a few that are helpful:
 
 ```python
 pi # throws an error
@@ -131,7 +135,7 @@ from math import pi # only import what is necessary
 pi
 ```
 
-To install more: might need Pip, or from the Anaconda Navigator.
+To install more: might need Pip, or to do it from the Anaconda Navigator.
 
 ```bash
 python -m pip install SomePackage
@@ -153,10 +157,11 @@ Pandas introduces dataframes, which are often used to store two-dimensional data
 
 ```python
 import pandas as pd
-DF = pd.DataFrame(columns = ("Name", "Age"))
-DF.loc[1] = "Josephine", 70
-DF.loc[2] = "Dilsah", 38
-DF
+df = pd.DataFrame(columns = ("Name", "Age"))
+df.loc[1] = "Josephine", 70
+df.loc[2] = "Dilsah", 38
+df
+df.Age
 ```
 
 ### Matplotlib for visualisation
@@ -177,10 +182,10 @@ This shows a plot in the IPython console.
 We can style a plot with only a few characters:
 
 ```python
-x = np.linspace(0, 10, 20)
+x = np.linspace(0, 15, 8)
 y = x**2
-# blue, circles, line
-plt.plot(x, y, "bo-")
+# only blue circles
+plt.plot(x, y, "bo")
 # green, squares, dashes:
 plt.plot(x, y, "gs--")
 ```
@@ -189,7 +194,7 @@ Extra arguments can be used to style further:
 
 ```python
 # red, diamonds, line; change width of line and size of diamonds:
-plt.plot(x, y, "rd-", linewidth = 3, markersize = 6)
+plt.plot(x, y, "rd-", linewidth = 3, markersize = 10)
 ```
 
 Executing several lines together will render everything on the same visualisation. See for example this code that plots two lines together, modifies axis ranges, adds a legend and styles axis labels with LaTex, and saves to pdf:
@@ -200,26 +205,18 @@ plt.plot(x, x**1.5, "gs--", label = "Low")
 # we can use LaTex
 plt.xlabel("$X$")
 plt.ylabel("$Y$")
-# change axis limits: [xmin, xmax, ymin, ymax]
-plt.axis([-0.5, 10.5, -10, 120])
 plt.legend(loc = "upper left")
 # save plot
 plt.savefig("hi-lo.pdf")
 ```
 
+To create a histogram:
+
 ```python
 x = np.random.normal(size = 1000)
-plt.hist(x, density = True)
+plt.hist(x)
+plt.hist(x, bins = 20)
 ```
-
-Modify the bins setting to have 25 bins between -5 and 5:
-
-```python
-plt.hist(x, density = True, bins = np.linspace(-5, 5, 26))
-```
-
-> Note that to define `n` bins, we need `n+1` numbers.
-
 
 We can join several plots on the same image with the `subplot()` function, which takes three numbers: the number of rows, number of columns, and position of the subplot.
 
@@ -231,7 +228,7 @@ plt.hist(x, bins = 30)
 plt.subplot(222)
 plt.hist(x, bins = 30, cumulative = True)
 plt.subplot(223)
-plt.plot(x)
+plt.hist(x, bins = 30, density = True)
 plt.subplot(224)
 plt.boxplot(x)
 ```
@@ -288,11 +285,15 @@ It is possible to read a CSV file with a Pandas function:
 ```python
 import pandas as pd
 data = pd.read_csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
+```
+
+Some functions are useful to familiarise yourself with the data:
+
+```python
 data.shape
 data.head()
 data.tail()
 ```
-
 
 ### Analyse data
 
@@ -302,7 +303,6 @@ data.groupby(by = "year").mean()
 ```
 
 ### Visualise data
-
 
 ```python
 import matplotlib.pyplot as plt
