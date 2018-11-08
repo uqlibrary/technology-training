@@ -121,9 +121,9 @@ For a comprehensive manual, go to the online documentation: https://docs.python.
 
 For questions and answers, typing the right question in a search engine will usually lead you to something helpful. If you can't find an answer, StackOverflow is a great Q&A community: https://stackoverflow.com/questions/tagged/python
 
-## Libraries
+## Modules
 
-To do more with Python, it is easier to import extra libraries. Here are a few that are helpful:
+To do more with Python, it is easier to import extra **modules**. For example, to access the `pi` constant:
 
 ```python
 pi # throws an error
@@ -135,15 +135,31 @@ from math import pi # only import what is necessary
 pi
 ```
 
-To install more: might need Pip, or to do it from the Anaconda Navigator.
+`math` is part of the "Python standard library". You can see all the functions and constants available in the `math` module here: https://docs.python.org/3/library/math.html
+
+Python distributions like Anaconda already come with a number of useful modules for science.
+
+To install more modules, you might need to use `pip` (on most systems) or `conda` (if you use Anaconda or Miniconda) from the command line.
+
+With `pip`, which will fetch the module from the [Python Package Index](https://pypi.org/) (PyPI):
 
 ```bash
-python -m pip install SomePackage
+pip install some-module
 ```
+
+With `conda`, which will fetch the module from the Anaconda repository:
+
+```bash
+conda install some-module
+```
+
+Refer to the module's website to find what is recommended.
+
+Here, we present a few libraries that are very central to data manipulation and analysis with Python.
 
 ### NumPy for arrays
 
-Arrays are a data type introduced by NumPy. They can be very useful in many cases.
+Arrays are a data type introduced by `numpy`. They can be very useful in many cases.
 
 ```python
 import numpy as np
@@ -151,9 +167,9 @@ myArray = np.array([[1, 2], [3, 4]])
 myArray * 2
 ```
 
-### Pandas for data frames
+### Pandas for dataframes
 
-Pandas introduces dataframes, which are often used to store two-dimensional data with different kinds of variables in each column.
+`pandas` introduces dataframes, which are often used to store two-dimensional data with different kinds of variables in each column.
 
 ```python
 import pandas as pd
@@ -166,9 +182,7 @@ df.Age
 
 ### Matplotlib for visualisation
 
-Matplotlib and Pyplot
-
-Matplotlib is a large collection of data visualisation functions, and Pyplot is a subset of Matplotlib that contains essentials.
+`matplotlib` is a large collection of data visualisation functions, and `pyplot` is a submodule of `matplotlib` that contains essentials.
 
 ```python
 import matplotlib.pyplot as plt
@@ -177,7 +191,7 @@ plt.plot([0,1,4,9,16])
 
 This shows a plot in the IPython console.
 
-> In a python shell, you might have to use the `plt.show()` command to show the plot.
+> In a Python shell, you might have to use the `plt.show()` command to show the plot.
 
 We can style a plot with only a few characters:
 
