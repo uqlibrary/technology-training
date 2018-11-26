@@ -22,6 +22,10 @@
 * If you are looking for specific questions and answers: http://stackoverflow.com/questions/tagged/r (for programming) and https://stats.stackexchange.com/questions/tagged/r (for stats)
 * Lynda.com R courses: https://www.lynda.com/search?q=R (remember to sign in with your organisational portal)
 
+### Data visualisation
+
+* _The R Graph Gallery_ for categorised examples and code: https://www.r-graph-gallery.com/
+
 ## R news
 
 * Daily news and tutorials on _R-bloggers_: https://www.r-bloggers.com/
