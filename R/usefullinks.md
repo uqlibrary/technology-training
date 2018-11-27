@@ -4,27 +4,32 @@
 
 * R and RStudio-related cheatsheets: https://www.rstudio.com/resources/cheatsheets/
 
-## Documentation
-
-* Packages from CRAN, Bioconductor and GitHub: http://www.rdocumentation.org/
-* Packages from CRAN, Bioconductor, R-Forge and GitHub: https://rdrr.io/
-* Explore reviews for CRAN packages: https://crantastic.org/
-
-## Extra learning
+## Tutorials
 
 * _R for Data Science_, excellent free online book: http://r4ds.had.co.nz/
 * _R for Reproducible Scientific Analysis_, an extensive introduction to R by The Carpentries: https://swcarpentry.github.io/r-novice-gapminder/
+* `swirl` is a package that allows you to learn R interactively in an R session: https://swirlstats.com/
 * RStudio's _Online Learning_ page lists useful resources: https://www.rstudio.com/online-learning/
 * CRAN's basic and advanced manuals: https://cran.r-project.org/manuals.html
 * Lots of quality tutorials on _STHDA_: http://www.sthda.com/english/
 * Lots of quality tutorials on _Quick-R_: https://www.statmethods.net/index.html
 * Lots of quality tutorials on _Cookbook for R_: http://www.cookbook-r.com/
-* If you are looking for specific questions and answers: http://stackoverflow.com/questions/tagged/r (for programming) and https://stats.stackexchange.com/questions/tagged/r (for stats)
 * Lynda.com R courses: https://www.lynda.com/search?q=R (remember to sign in with your organisational portal)
 
 ### Data visualisation
 
 * _The R Graph Gallery_ for categorised examples and code: https://www.r-graph-gallery.com/
+
+## Questions and answers
+
+* For R programming: http://stackoverflow.com/questions/tagged/r
+* About statistics specifically: https://stats.stackexchange.com/questions/tagged/r
+
+## Documentation
+
+* Packages from CRAN, Bioconductor and GitHub: http://www.rdocumentation.org/
+* Packages from CRAN, Bioconductor, R-Forge and GitHub: https://rdrr.io/
+* Explore reviews for CRAN packages: https://crantastic.org/
 
 ## R news
 
