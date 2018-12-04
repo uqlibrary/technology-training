@@ -34,7 +34,7 @@ Files available for each course, hosted in this repository:
 | Git version control for collaboration | [md](Git/git.md) | [txt](Git/git_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-git) |
 | OpenRefine: an introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [txt](OpenRefine/openrefine_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-openrefine) |
 | Python with Spyder: an introduction to data science | [md](Python/python_intro.md) | [txt](Python/python_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-python) |
-| Introduction to scientific computing | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.Rmd)</sup> | [txt](intro_to_programming/intro_to_programming_description.txt) | [html](https://frama.link/intro_prog) |
+| Introduction to scientific programming | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.Rmd)</sup> | [txt](intro_to_programming/intro_to_programming_description.txt) | [html](https://frama.link/intro_prog) |
 | OpenStreetMap: contribute and use the data | ... | ... | ... |
 | next: Open Source tools for your research | ... | ... | ... |
 
