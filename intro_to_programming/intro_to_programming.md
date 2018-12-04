@@ -1,32 +1,29 @@
----
-title: "Introduction to scientific programming"
-author: "Stéphane Guillou"
-date: "4 December 2018"
-output: github_document
----
+Introduction to scientific programming
+================
+Stéphane Guillou
+4 December 2018
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## Welcome!
+Welcome!
+--------
 
 This workshop assumes no prior technical knowledge and focuses on:
 
-* using a language interactively in a Command Line Interface
-* introducing concepts and tools central to scientific programming
-* working with source code efficiently
-* automating tasks and enhancing reproducibility with small programs
+-   using a language interactively in a Command Line Interface
+-   introducing concepts and tools central to scientific programming
+-   working with source code efficiently
+-   automating tasks and enhancing reproducibility with small programs
 
 This seminar will focus on the R language for a hands-on practice and extensive examples, but other languages will be presented, highlighting the differences between options.
 
 The best way to learn is to practise, so we will quickly get into coding by all typing and executing the same commands. This is called "live-coding".
 
-## Installation
+Installation
+------------
 
-Today, we will use R and RStudio. They are available on the library's training computers, but if you want to use your own laptop, please follow the instructions here: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
+Today, we will use R and RStudio. They are available on the library's training computers, but if you want to use your own laptop, please follow the instructions here: <https://gitlab.com/stragu/CDS/blob/master/R/Installation.md>
 
-## Introduction
+Introduction
+------------
 
 Let's start by adding our names and some info about us in our collaborative pad.
 
@@ -62,15 +59,14 @@ An integrated development environment, or **IDE**, is a program that allows to w
 
 RStudio is an IDE primarily designed to work on R code.
 
-## Programming with R
+Programming with R
+------------------
 
 ### Getting to know R
 
 Let's open RStudio and start using the R language interactively.
 
 ### Finding help
-
-
 
 Q&A websites from the Stack Exchange network are a wonderful resource.
 
@@ -94,7 +90,8 @@ People have already developped many functions for specific uses, and made them a
 
 ### Experiment with it!
 
-## Other tools
+Other tools
+-----------
 
 ### Python: another language
 
@@ -102,4 +99,5 @@ People have already developped many functions for specific uses, and made them a
 
 ### Bash: control a computer
 
-## What next?
+What next?
+----------
