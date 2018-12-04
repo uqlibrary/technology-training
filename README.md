@@ -1,31 +1,29 @@
 ---
 Title: CDS resources
 Author: Stéphane Guillou
-Date: 2018-06-28
+Date: 2018-12-04
 ---
 
 Instructions and notes for sessions held at the [Centre for Digital Scholarship](https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship) (CDS).
 
-Based on work by: Paula Andrea Martinez
-
 ## Description
 
-Here you will find resources related to R, Shell, Git and OpenRefine sessions held at the Centre for Digital Scholarhip (part of the University of Queensland's Library).
+Here you will find resources related to R, Python, Shell, Git and OpenRefine sessions held at the Centre for Digital Scholarhip (part of the University of Queensland's Library).
 
 ### Format
 
 Most sessions use the "live-coding" format in which the instructor and the attendees type and execute commands together.
-An Etherpad is used to list useful links, exercises and to interact.
+A collaborative online pad is used to list useful links, exercises and to interact.
 
 Files available for each course, hosted in this repository:
 
 * Markdown notes that the instructor can use to teach, and that students can refer to after the course;
-* A HTML Etherpad export that can be used to initialise a pad (https://etherpad.wikimedia.org is recommended to publish);
+* A HTML pad export that can be used to initialise a pad (https://etherpad.wikimedia.org or https://cryptpad.fr/code are recommended to publish);
 * A text file that describes the session, useful to create an event on StudenHub.
 
 ### Quick access to course resources
 
-| Title | Course notes | Event description | Live Etherpad |
+| Title | Course notes | Event description | Live collaborative pad |
 |:-|:-:|:-:|:-:|
 | R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) | [txt](R/rstudio_intro/rstudio_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-rstudio) |
 | R data manipulation with RStudio and dplyr: an introduction | [md](R/dplyr/dplyr.md) | [txt](R/dplyr/dplyr_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-dplyr) |
@@ -36,7 +34,9 @@ Files available for each course, hosted in this repository:
 | Git version control for collaboration | [md](Git/git.md) | [txt](Git/git_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-git) |
 | OpenRefine: an introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [txt](OpenRefine/openrefine_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-openrefine) |
 | Python with Spyder: an introduction to data science | [md](Python/python_intro.md) | [txt](Python/python_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-python) |
-| next: Free Software for your research | ... | ... | ... |
+| Introduction to scientific computing | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.Rmd)</sup> | [txt](intro_to_programming/intro_to_programming_description.txt) | [html](https://frama.link/intro_prog) |
+| OpenStreetMap: contribute and use the data | ... | ... | ... |
+| next: Open Source tools for your research | ... | ... | ... |
 
 ## License
 
