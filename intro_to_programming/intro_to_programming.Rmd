@@ -311,7 +311,7 @@ Anthem_clean <- Anthem_lower[Anthem_lower != ""]
 
 We want to find how characters the book contains:
 
-```{r echo=FALSE}
+```{r results="hide"}
 nchar(Anthem_clean)
 sum(nchar(Anthem_clean)) # base R
 sum(str_length(Anthem_clean)) # stringr
@@ -321,7 +321,7 @@ sum(str_length(Anthem_clean)) # stringr
 
 We also want to find specific terms, and count them:
 
-```{r echo=FALSE}
+```{r results="hide"}
 # find terms visually
 str_view(Anthem_clean, "the")
 
@@ -332,7 +332,7 @@ sum(str_count(Anthem_clean, "love"))
 
 How many words does the book contain?
 
-```{r echo=FALSE}
+```{r results="hide"}
 str_count(Anthem_clean, "\\w+")
 sum(str_count(Anthem_clean, "\\w+"))
 ```
@@ -465,7 +465,7 @@ View(data)
 
 `dplyr` is a useful package to manipulate data.
 
-```{r echo=FALSE}
+```{r results="hide"}
 library(dplyr)
 data <- data %>% 
   mutate(word_length = char_count / word_count,
@@ -476,7 +476,7 @@ View(data)
 
 ### Visualise
 
-`ggplot2` is a useful package to manipulate data.
+`ggplot2` is a useful package to visualise data.
 
 ```{r}
 library(ggplot2)
