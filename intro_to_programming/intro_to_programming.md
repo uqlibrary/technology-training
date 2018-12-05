@@ -156,7 +156,7 @@ library(praise) # load the package
 praise() # use a function
 ```
 
-    ## [1] "You are stunning!"
+    ## [1] "You are geometric!"
 
 ### Custom functions
 
@@ -233,7 +233,7 @@ if (number > 0) {
 }
 ```
 
-    ## [1] "Negative"
+    ## [1] "Positive"
 
 ### Indexing
 
@@ -265,12 +265,6 @@ Let's put what we just learned to use with a concrete example!
 
 File &gt; New Project &gt; New Directory &gt; New Project
 
-### Our data
-
-We are going to work on a dataset of ten books from Project Gutenberg. We want to get some numbers on them, and to search for the frequency of some terms. But we want to make sure that we **automate the process**, as we are likely to do that on many more books.
-
-Download the dataset from <https://cloudstor.aarnet.edu.au/plus/s/rqOEQQCjcwBv36x/download> and unzip it inside your project directory.
-
 ### Creating a script
 
 Working from a **script** is a lot more comfortable, and allows us to create a succession of steps to reproduce our process – in other words, a little program.
@@ -286,6 +280,18 @@ The RStudio source pane helps us writing code thanks to:
 After building a script, we can execute in one click of a button.
 
 You can create a script from the File &gt; New File &gt; R Script.
+
+### Our data
+
+We are going to work on a dataset of ten books from Project Gutenberg. We want to get some numbers on them, and to search for the frequency of some terms. But we want to make sure that we **automate the process**, as we are likely to do that on many more books.
+
+The data archive is located at <https://cloudstor.aarnet.edu.au/plus/s/rqOEQQCjcwBv36x/download> and we can use the following commands to download and unzip it:
+
+``` r
+download.file(url = "https://cloudstor.aarnet.edu.au/plus/s/O4XHRi4VqiaAmMK/download",
+              destfile = "data.zip")
+unzip("data.zip")
+```
 
 ### Import a book
 
@@ -535,7 +541,7 @@ ggplot(data,
   ylim(c(0, NA))
 ```
 
-![](intro_to_programming_files/figure-markdown_github/unnamed-chunk-28-1.png)
+![](intro_to_programming_files/figure-markdown_github/unnamed-chunk-29-1.png)
 
 Experiment with code!
 ---------------------
