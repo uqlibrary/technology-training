@@ -1,8 +1,9 @@
 ---
 title: "Introduction to scientific programming"
 author: "Stéphane Guillou"
-date: "4 December 2018"
+date: "6 December 2018"
 output: github_document
+always_allow_html: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -251,19 +252,244 @@ File > New Project > New Directory > New Project
 
 ### Our data
 
-Download the dataset from  and unzip it inside your project directory.
+We are going to work on a dataset of ten books from Project Gutenberg. We want to get some numbers on them, and to search for the frequency of some terms. But we want to make sure that we **automate the process**, as we are likely to do that on many more books.
+
+Download the dataset from https://gitlab.com/stragu/CDS/-/archive/master/CDS-master.zip and unzip it inside your project directory.
 
 ### Creating a script
 
-### Our first function
+Working from a **script** is a lot more comfortable, and allows us to create a succession of steps to reproduce our process – in other words, a little program.
 
-### Looping
+The RStudio source pane helps us writing code thanks to:
 
-### Branching
+* handy shortcuts
+* syntax highlighting
+* automatic indentation
+* feedback on code errors
+* commenting
 
-### Visualising
+After building a script, we can execute in one click of a button.
 
-### Experiment with it!
+You can create a script from the File > New File > R Script.
+
+### Import a book
+
+```{r}
+Anthem <- readLines("data/AynRand_Anthem.txt")
+```
+
+### Clean up the data
+
+`stringr` is a useful library to work with strings.
+
+```{r}
+library(stringr)
+```
+
+> You can find a handy cheatsheet for this package here: https://github.com/rstudio/cheatsheets/raw/master/strings.pdf
+
+The books all have a header and a footer that we want to remove.
+
+```{r}
+start <- str_which(Anthem, "START OF TH") + 1
+end <- str_which(Anthem, "END OF TH") - 1
+Anthem_sub <- Anthem[start:end]
+```
+
+We also want to convert everything to lowercase:
+
+```{r}
+Anthem_lower <- str_to_lower(Anthem_sub)
+```
+
+And remove the empty lines:
+
+```{r}
+Anthem_clean <- Anthem_lower[Anthem_lower != ""]
+```
+
+### Analyse the book
+
+We want to find how characters the book contains:
+
+```{r echo=FALSE}
+nchar(Anthem_clean)
+sum(nchar(Anthem_clean)) # base R
+sum(str_length(Anthem_clean)) # stringr
+```
+
+> There are often many ways to do one thing.
+
+We also want to find specific terms, and count them:
+
+```{r echo=FALSE}
+# find terms visually
+str_view(Anthem_clean, "the")
+
+# count specific terms
+str_count(Anthem_clean, "love")
+sum(str_count(Anthem_clean, "love"))
+```
+
+How many words does the book contain?
+
+```{r echo=FALSE}
+str_count(Anthem_clean, "\\w+")
+sum(str_count(Anthem_clean, "\\w+"))
+```
+
+> **Regular expressions**, or **RegEx**, can be used to detect any pattern and create complex queries.
+
+And how many lines?
+
+```{r}
+length(Anthem_clean)
+```
+
+### Creating functions
+
+We want to create functions so we can reuse the code easily, on any book.
+
+We can separate our process in two steps:
+
+1. Importing and cleaning the data
+2. Analysing the data
+
+Let's start with the function to import and clean up a book:
+
+```{r}
+import_clean <- function(file) {
+  book <- readLines(file)
+  start <- str_which(book, "START OF TH") + 1
+  end <- str_which(book, "END OF TH") - 1
+  book <- book[start:end]
+  book <- str_to_lower(book)
+}
+```
+
+#### Challenge N {.tabset}
+##### Instructions
+
+There's one more step missing: removing the empty strings. Can you add it to the function?
+
+##### Solution
+
+```{r}
+import_clean <- function(file) {
+  book <- readLines(file)
+  start <- str_which(book, "START OF TH") + 1
+  end <- str_which(book, "END OF TH") - 1
+  book <- book[start:end]
+  book <- str_to_lower(book)
+  book <- book[book != ""]
+}
+```
+####
+
+Let's test our function:
+
+```{r}
+JaneEyre <- import_clean("data/CharlotteBronte_JaneEyre.txt")
+```
+
+Now, let's create the function that analyses the data. It needs to output a list that contains our stats:
+
+```{r}
+book_stats <- function(book) {
+  characters <- sum(str_length(book))
+  words <- sum(str_count(book, "\\w+"))
+  lines <- length(book)
+  results <- list(char_count = characters,
+                  word_count = words,
+                  line_count = lines)
+  results
+}
+```
+
+#### Challenge N {.tabset}
+##### Instructions
+
+We've got the characters, the words and the lines. How would you add the search term data to your function?
+
+##### Solution
+
+```{r}
+book_stats <- function(book, search_term) {
+  characters <- sum(str_length(book))
+  words <- sum(str_count(book, "\\w+"))
+  lines <- length(book)
+  terms <- sum(str_count(book, search_term))
+  results <- list(char_count = characters,
+                  word_count = words,
+                  line_count = lines,
+                  term_count = terms)
+  results
+}
+```
+
+####
+
+Let's test our second function on the book we just imported:
+
+```{r}
+book_stats(JaneEyre, "love")
+```
+
+### Loop through all files
+
+We will now use our functions on all our files, and store the data into a dataframe. But to save us some typing, we will use a loop.
+
+First, let's create an empty dataframe:
+
+```{r}
+data <- data.frame()
+```
+
+Then, let build our `for` loop. We want to add an extra variable in there: the name of the file the data comes from.
+
+```{r}
+for (filename in list.files("data")) {
+  book <- import_clean(paste0("data/", filename))
+  results <- book_stats(book, "love")
+  results <- append(list(file = filename), results)
+  data <- rbind(data, results, stringsAsFactors = FALSE)
+}
+```
+
+After executing our loop, we can visualise our dataset with:
+
+```{r eval=FALSE}
+View(data)
+```
+
+### Create new variables
+
+`dplyr` is a useful package to manipulate data.
+
+```{r echo=FALSE}
+library(dplyr)
+data <- data %>% 
+  mutate(word_length = char_count / word_count,
+         love_score = term_count / word_count) %>% 
+  arrange(love_score)
+View(data)
+```
+
+### Visualise
+
+`ggplot2` is a useful package to manipulate data.
+
+```{r}
+library(ggplot2)
+ggplot(data,
+       aes(x = reorder(file, love_score),
+           y = love_score)) +
+  geom_point() +
+  coord_flip() +
+  ylim(c(0, NA))
+```
+
+## Experiment with code!
 
 ## Other tools
 
