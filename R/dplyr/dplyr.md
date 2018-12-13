@@ -187,9 +187,19 @@ gap_small_97 <- filter(gap_small, year == 1997)
 
 We can make our code more readable and avoid creating useless intermediate objects by **piping** commands into each other. The pipe symbol `%>%` **strings commands together**, using the left-side output as the first argument of the right-side function.
 
+This command:
 
+```
+summary(gapminder)
+```
 
-For example, this command:
+Is equivalent to:
+
+```
+gapminder %>% summary()
+```
+
+Here's another example with the `filter()` verb:
 
 ```
 gapminder %>%
@@ -202,7 +212,7 @@ gapminder %>%
 filter(gapminder, country != "France")
 ```
 
-To do what we did previously in one single command:
+To do what we did previously in one single command, using the pipe:
 
 ```
 gap_small_97 <- gapminder %>%
@@ -210,11 +220,9 @@ gap_small_97 <- gapminder %>%
     filter(year == 1997)
 ```
 
-The pipe operator can be read as "then" and makes the code a lot more readable than when nesting functions into each other.
+The pipe operator can be read as "then" and makes the code a lot **more readable** than when nesting functions into each other, and avoids the creation of several intermediate objects.
 
 From now on, we'll use this syntax.
-
-> When in the console, use <kbd>Shift</kbd> + <kbd>Enter</kbd> to go to the next line without executing the command.
 
 Exercise 4 – Select the 2002 life expectancy observation for Eritrea (and remove the rest of the variables)
 
