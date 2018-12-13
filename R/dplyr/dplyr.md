@@ -174,7 +174,7 @@ arrange(gapminder, desc(gdpPercap))
 Select allows use to pick variable (i.e. columns) from the dataset. For example, to only keep the data about year, country and GDP per capita:
 
 ```
-(gapminder_small <- select(gapminder, year, country, gdpPercap))
+(gap_small <- select(gapminder, year, country, gdpPercap))
 ```
 
 We wrap it in parentheses so it also prints to screen.
@@ -182,10 +182,12 @@ We wrap it in parentheses so it also prints to screen.
 If we only want this data for 1997, we can associate `select()` to `filter()`:
 
 ```
-gapminder_small_1997 <- filter(gapminder_small, year == 1997)
+gap_small_97 <- filter(gap_small, year == 1997)
 ```
 
 We can make our code more readable and avoid creating useless intermediate objects by **piping** commands into each other. The pipe symbol `%>%` **strings commands together**, using the left-side output as the first argument of the right-side function.
+
+
 
 For example, this command:
 
@@ -203,7 +205,7 @@ filter(gapminder, country != "France")
 To do what we did previously in one single command:
 
 ```
-gapminder_small_1997 <- gapminder %>%
+gap_small_97 <- gapminder %>%
     select(year, country, gdpPercap) %>%
     filter(year == 1997)
 ```
@@ -240,7 +242,7 @@ Name your new dataset `gapminder_gdp`. When finished, `dim(gapminder_gdp)` shoul
 Hint: use the `*` operator within `mutate()`.
 
 ```
-gapminder_gdp <- gapminder %>%
+gap_gdp <- gapminder %>%
     mutate(gdp = gdpPercap * pop)
 dim(gapminder_gdp)
 head(gapminder_gdp)
@@ -249,7 +251,7 @@ head(gapminder_gdp)
 Reuse a variable computed by 'mutate()' straight away:
 
 ```
-(gapminder_gdp <- gapminder %>%
+(gap_gdp <- gapminder %>%
     mutate(gdp = gdpPercap * pop, gdpMil = gdp / 10^6))
 ```
 
