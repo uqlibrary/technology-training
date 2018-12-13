@@ -311,6 +311,19 @@ starwars %>%
   filter(n > 1)
 ```
 
+An example of data manipulation and data visualisation in the same command:
+
+```
+library(ggplot2)
+gapminder %>% 
+  filter(continent == "Europe") %>%
+  group_by(year) %>% 
+  summarise(sum = sum(pop)) %>% 
+  ggplot(aes(x = year,
+             y = sum)) +
+  geom_line()
+```
+
 ## Close Rproject
 
 If you want to close RStudio, you should save your project first.
