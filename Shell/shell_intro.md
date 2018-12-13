@@ -1,6 +1,6 @@
 # Unix Shell: an introduction
 
-Last updated: 2018-09-28
+Last updated: 2018-12-13
 
 ## Legal
 
@@ -121,7 +121,7 @@ Similarly, the shortcut to specify the current working directory is a single dot
 
 `cd` on its own will bring you back to your home directory.
 
-We have been using **relative paths** so far, always referring to where we currently are in the file system, but we can also specify **absolute paths** by using a leading `/`, which represents the root directory (i.e. the highest in your file system). For example, you can always use one of the following commands to go to the `data-shell`folder, wherever you are (replace "username" by your user name):
+We have been using **relative paths** so far, always referring to where we currently are in the file system, but we can also specify **absolute paths** by using a leading `/`, which represents the root directory (i.e. the highest in your file system). For example, you can always use one of the following commands to go to the `data-shell` folder, wherever you are (replace "username" by your user name):
 
 ```shell
 cd /Users/username/Desktop/data-shell
