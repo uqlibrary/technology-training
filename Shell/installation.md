@@ -1,6 +1,6 @@
 # Installation of software for Unix Shell session
 
-It is best to use your own laptop for this session. Here are the installation instructions to access Bash (the Unix Shell we use for this session) depending on your operating system.
+Here are the installation instructions to access Bash (the Unix Shell we use for this session) depending on your operating system.
 
 ## GNU/Linux
 
@@ -14,7 +14,7 @@ On macOS, the default shell is Bash, which you can use by opening the Terminal u
 
 ## Windows
 
-Here are the different options, **in order of preference**:
+Here are the different options:
 
 ### Ubuntu for Windows 10 on your laptop
 
@@ -37,7 +37,7 @@ If you don't have Windows 10, or if you can't install Ubuntu for Windows:
 
 ### Git for Windows on a library computer
 
-If you can't install software on your own laptop, you can still use the library computers:
+The software is also available on the library computers:
 
 1. Launch ZENworks;
 1. Search for "Git for Windows" and double-click on the icon to install it;
