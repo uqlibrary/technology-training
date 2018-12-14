@@ -327,10 +327,10 @@ The numbers look good, but the "Z" in there is not expected: everything should b
 ls *Z.txt
 ```
 
-Those two files do not match with any depth she recorded, and she therefore won't use them in her analysis. In case she still might need them later on, she won't delete them; in the future, she might instead select the files she wants with the following wildcard expression:
+Those two files do not match with any depth she recorded, and she therefore won't use them in her analysis. In case she still might need them later on, she won't delete them; in the future, she might instead select the files she wants with a wildcard expression, like in this example:
 
 ```shell
-<command> *[AB].txt
+ls *[AB].txt
 ```
 
 This will match all files ending in `A.txt` or `B.txt`.
