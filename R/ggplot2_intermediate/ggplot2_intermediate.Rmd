@@ -201,29 +201,23 @@ ggplot(data = gapminder,
   scale_colour_brewer(palette = "Set2")
 ```
 
+> **Saving some typing**: To reuse the constant base of our plot (the `ggplot()` call and the point geometry), we can create an object:
+
+```{r}
+p <- ggplot(data = gapminder,
+            mapping = aes(x = year,
+                          y = pop,
+                          colour = continent)) +
+  geom_point()
+```
+
 ### Scales and limits
 
 We could further modify our plot to use a different y axis scale to space out the data:
 
 ```{r}
-ggplot(data = gapminder,
-       mapping = aes(x = year,
-                     y = pop,
-                     colour = continent)) +
-  geom_point() +
+p +
   scale_y_log10()
-```
-
-> Being explicit about the **argument names** is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like `data =` and `mapping =` (as long as they are used in the right order!).
-
-To reuse the constant base of our plot (the `ggplot()` call and the point geometry), we can create an object:
-
-```{r}
-p <- ggplot(gapminder,
-            aes(x = year,
-                y = pop,
-                colour = continent)) +
-  geom_point()
 ```
 
 *Exercise 7 - Modify the axis breaks*
@@ -260,6 +254,8 @@ p +
 ```
       
 Let's talk about that warning message. We could use the `subset()` function to avoid that.
+
+> **Saving some typing:** Being explicit about the **argument names** is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like `data =` and `mapping =` (as long as they are used in the right order!).
 
 ### Histograms
 
