@@ -211,7 +211,7 @@ You can find out about R colour names with the function `colours()`, which print
 
 To pick colours more comfortably, we can use the `colourpicker` package, which adds a handy addin in RStudio. Install it and use the new "Addins > Colour Picker" window to create a vector of colours for your custom palette.
 
-### Scales and limits
+### Scale modifiers
 
 We could further modify our plot to use a different y axis scale to space out the data:
 
@@ -245,13 +245,13 @@ p +
 
 *Exercise 8 - Modify your y scale range*
 
-To zoom in, we might want to restrict the range by using `ylim()`.
+To zoom in, we might want to change our axis limits by using `ylim()`.
 
 ```{r}
 p +
   ylim(c(0, 360000000))
 ```
-      
+
 Let's talk about that warning message. We could use the `subset()` function to avoid that.
 
 > **Saving some typing:** Being explicit about the **argument names** is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like `data =` and `mapping =` (as long as they are used in the right order!).
