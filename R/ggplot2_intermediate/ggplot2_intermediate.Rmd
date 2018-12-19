@@ -231,7 +231,6 @@ We can create a list of all the years when data was collected with the `unique()
 unique_years <- unique(gapminder$year)
 # modify the x axis scale
 p +
-  scale_y_log10() +
   scale_x_continuous(breaks = unique_years)
 ```
 
