@@ -219,10 +219,10 @@ ggplot(data = gapminder,
 To reuse the constant base of our plot (the `ggplot()` call and the point geometry), we can create an object:
 
 ```{r}
-gg_scatter <- ggplot(gapminder,
-                     aes(x = year,
-                         y = pop,
-                         colour = continent)) +
+p <- ggplot(gapminder,
+            aes(x = year,
+                y = pop,
+                colour = continent)) +
   geom_point()
 ```
 
@@ -236,7 +236,7 @@ We can create a list of all the years when data was collected with the `unique()
 # list all the unique values for year
 unique_years <- unique(gapminder$year)
 # modify the x axis scale
-gg_scatter +
+p +
   scale_y_log10() +
   scale_x_continuous(breaks = unique_years)
 ```
@@ -244,7 +244,7 @@ gg_scatter +
 We can further customise a scale with breaks and labels:
 
 ```{r}
-gg_scatter +
+p +
   scale_x_continuous(breaks = unique_years) +
   scale_y_continuous(breaks = c(0, 100000000, 200000000, 500000000, 1000000000),
                      labels = c(0, "100 m", "200 m", "500 m", "1 b"))
@@ -255,7 +255,7 @@ gg_scatter +
 To zoom in, we might want to restrict the range by using `ylim()`.
 
 ```{r}
-gg_scatter +
+p +
   ylim(c(0, 360000000))
 ```
       
