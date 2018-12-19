@@ -153,21 +153,6 @@ Finally, if you want to change the size of the geometric object, you can use the
 
 #### More control over colours
 
-*Exercise 5 – Choosing colours*
-
-The `colourpicker` package is a handy addin for RStudio. Install it and use the new "Addins > Colour Picker" menu to pick a different colour for your geometry.
-
-For example, to colour all the points in my geometry (regardless of data):
-
-```{r}
-# install the package if you don't have it already:
-# install.packages("colourpicker")
-ggplot(data = gapminder,
-       mapping = aes(x = year,
-                     y = pop)) +
-  geom_point(colour = "chartreuse3") # change the default colour
-```
-
 *Exercise 6 – Colour according to continent*
 
 Modify your plot to colour the points according to the continent variable.
@@ -179,6 +164,8 @@ ggplot(data = gapminder,
                      colour = continent)) +
   geom_point()
 ```
+
+This plot uses the default discrete palette.
 
 We can also use different palettes. You can see the ones available in `ggplot2` by looking at the help page of, for example, `scale_colour_brewer()`.
 
@@ -210,6 +197,17 @@ p <- ggplot(data = gapminder,
                           colour = continent)) +
   geom_point()
 ```
+
+To use a custom palette, we can use the function `scale_colour_manual()` and provide a list of colour names.
+
+```{r}
+p +
+  scale_colour_manual(values = c("blue", "red", "purple", "green", "orange"))
+```
+
+You can find out about R colour names with the function `colours()`, which prints out a list of their names, but know that you can also use HEX values.
+
+To pick colours more comfortably, we can use the `colourpicker` package, which adds a handy addin in RStudio. Install it and use the new "Addins > Colour Picker" window to create a vector of colours for your custom palette.
 
 ### Scales and limits
 
