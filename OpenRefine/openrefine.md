@@ -31,11 +31,11 @@ OpenRefine is self-described as "a power tool for dealing with messy data". It c
 
 It can help you:
 
-* Get an overview of a data set
-* Resolve inconsistencies in a data set, for example standardizing date formatting
-* Help you split data up into more granular parts, for example splitting up cells with multiple authors into separate cells
-* Match local data up to other data sets, for example in matching local subjects against the Library of Congress Subject Headings
-* Enhance a data set with data from other sources
+* Get an **overview** of a data set
+* **Resolve inconsistencies** in a data set, for example standardizing date formatting
+* Help you **split data up** into more granular parts, for example splitting up cells with multiple authors into separate cells
+* **Match** local data up to other data sets, for example in matching local subjects against the Library of Congress Subject Headings
+* **Enhance** a data set with data from other sources
 
 Some common scenarios might be:
 
@@ -48,7 +48,7 @@ Some common scenarios might be:
 ## What you will learn today
 
 1. Importing and exporting data
-2. What "facets" are
+2. What "facets" and "filters" are
 3. Editing cells
 4. Editing columns
 5. Grouping and transforming data
@@ -98,7 +98,8 @@ How do we join data from several cells together, for example after cleaning the 
 1. Use the pipe character `|` as a delimiter and click `OK`.
 
 Split rows are now gone. `Rows` and `records` views are now back to the same numbers.
-Make sure you choose the right delimiter for the kind of data you deal with!
+
+> Make sure you choose the right delimiter for the kind of data you deal with!
 
 **Exercise 4** – Practice splitting and joining
 
@@ -111,7 +112,7 @@ How would you split and then join again the data in the `Subjects` column?
 
 #### Facets
 
-A **facet** groups all the values that appear in a column, and allows you to filter the data by these values and edit values across many records at the same time.
+A **facet** groups all the values that appear in a column, and allows you to subset the data and edit values across many records at the same time.
 
 The simplest type of Facet is called a ‘Text facet’. This simply groups all the text values in a column and lists each value with the number of records it appears in. The facet information always appears in the left hand panel in the OpenRefine interface.
 
@@ -125,7 +126,7 @@ Let's create a Text Facet for a column:
 
 **Exercise 5** – Explore licenses
 
-Which licenses are used for articles in this dataset? Which one is the most common? How many articles don't have a license?
+> Which licenses are used for articles in this dataset? Which one is the most common? How many articles don't have a license?
 
 1. In the `License` column drop-down menu, choose `Facet > Text facet`
 1. `CC BY` has the highest count
@@ -153,7 +154,6 @@ For example, try filtering the `Subjects` column with the term `physic`.
 
 Using a text facet, you can edit values for a whole subset in one action with the `edit` option. This is very useful for fixing small typos or variations in spelling.
 
-
 **Exercise 7** – Correct values
 
 Use a text facet on the `Language` column to replace `English` values with the language code `EN`.
@@ -166,7 +166,7 @@ Use a text facet on the `Language` column to replace `English` values with the l
 
 > What can I use to identify and replace varying forms of the same data?
 
-The `Cluster` function uses an algorithm to group together similar, but inconsistent values in a given column and lets you merge these inconsistent values into a single value you choose.
+The **Cluster** function uses an algorithm to group together similar, but inconsistent values in a given column and lets you merge these inconsistent values into a single value you choose.
 
 This is very effective where you have data with minor variations in data values, e.g. names of people, organisations, places, classification terms.
 
@@ -177,23 +177,23 @@ By default, OpenRefine uses the most common value to merge the data, but we can 
 1. Split out the author names into individual cells using `Edit cells > Split multi-valued cells`, using the pipe (`|`) character as the separator
 1. Choose `Edit cells > Cluster and edit` from the `Authors` column.
 1. Using the defaults (`key collision` Method and `fingerprint` Keying Function), work through the clusters of values, merging them to a single value where appropriate
-1. Try changing the clustering method being used - which ones work well? Do they identify extra clusters?
+1. Try changing the clustering method being used – which ones work well? Do they identify extra clusters?
 
 The best clustering algorithm will depend on the kind of data your are processing.
 
 ### Reorganising the data
 
-You can **re-order the columns** by clicking the drop-down menu at the top of the first column (labelled ‘All’), and choosing `Edit columns > Re-order / remove columns …`
+You can **reorder the columns** by clicking the drop-down menu at the top of the first column (labelled ‘All’), and choosing `Edit columns > Reorder / remove columns …`
 
-You can then drag and drop column names to re-order the columns, or remove columns completely if they are not required.
+You can then drag and drop column names to reorder the columns, or remove columns completely if they are not required.
 
 You can also **sort the rows** by clicking on the drop-down menu for the column you want to sort on, and choosing `Sort`.The sorting is not permanent, and a new `Sort` drop-down menu appears at the top, which allows you to modify the current sort, remove it, or make the sort permanent.
 
 ### Transformations
 
-Facets, filters and clusters already allow us to explore and clean up our data.
+Facets, filters and clustering already allow us to explore and clean up our data.
 
-To do more advanced operationgs, like splitting data into several columns, standardising a format without losing the original values, or extracting a data type from a string, we need **transformations**.
+To do more advanced operations, like splitting data into several columns, standardising a format without losing the original values, or extracting a data type from a string, we need **transformations**.
 
 Transformations are ways of manipulating data in columns. Transformations are normally written in a special language called **GREL** (General Refine Expression Language).
 
@@ -203,7 +203,7 @@ Some common transformations are accessible directly in the menus, for example to
 
 1. Create a text facet on the `Publisher` column
 2. Note that in the values there are two that look identical – why does this value appear twice?
-3. On the `Publisher` column, use the dropdown menu to select `Edit cells > Common transforms > Trim leading and trailing whitespace`
+3. On the `Publisher` column, use the drop-down menu to select `Edit cells > Common transforms > Trim leading and trailing whitespace`
 4. Look at the publisher facet now – has it changed? (if it hasn’t changed, try clicking the `Refresh` option to make sure it updates)
 
 #### Writing transformations
@@ -225,20 +225,20 @@ You can now see your history of transformations, and save your favourite ones by
 
 Use Facets and the GREL expression `value.toTitlecase()` to put the titles in Title Case:
 
-1. Facet by publisher
-1. Select “Akshantala Enterprises” and “Society of Pharmaceutical Technocrats” (To select multiple values in the facet, use the include link that appears to the right of the facet.)
+1. Facet by Publisher
+1. Select “Akshantala Enterprises” and “Society of Pharmaceutical Technocrats” (To select multiple values in the facet, use the "include" link that appears to the right of the facet.)
 1. See that the Titles for these are all in uppercase
-1. Click the dropdown menu on the Title column
+1. Click the drop-down menu on the Title column
 1. Choose `Edit cells > Transform...`
 1. In the Expression box type `value.toTitlecase()`
 1. In the `Review` tab, note that you can see what the effect of running this will be
-1. Click OK
+1. Click <kbd>OK</kbd>
 
 #### Undo and redo transformations
 
 In the left-hand panel, you can open the `Undo / Redo` tab to access all the steps taken so far, and **undo steps** by clicking the last step you want to preserve.
 
-The `Extract...` button allows you to **save a set of steps** as a JSON (JavaScript Object Notation) script, to re-apply them later on this or any other dataset. To executed an extracted set of steps, click the `Apply` button.
+The `Extract...` button allows you to **save a set of steps** as a JSON (JavaScript Object Notation) script, to re-apply them later on this or any other dataset. To execute an extracted set of steps, click the `Apply` button.
 
 #### Transforming strings, numbers, dates and boolean
 
@@ -254,16 +254,16 @@ All data in OpenRefine has a "type". The most common is "string", which is a pie
 * Boolean
 * Array
 
-**Date and numbers**: we currently have a `Date` column where the data is represented as a string. If we wanted to sort according to this data, it would not end up chronological. We therefore need to convert the values to a date or number for OpenRefine to interpret them properly.
+**Date and numbers**: we currently have a `Date` column where the data is represented as a string. If we wanted to sort according to this data, it would not end up chronological. We therefore need to convert the values to a date data type for OpenRefine to interpret them properly.
 
 **Exercise 11** – Reformat the date
 
 1. Make sure you remove all Facets and Filters
-1. On the Date column, use the dropdown menu to select `Edit cells > Common transforms > To date`
+1. On the Date column, use the drop-down menu to select `Edit cells > Common transforms > To date`
 1. Note how the values are now displayed in green and follow a standard convention for their display format (ISO8601) - this indicates they are now stored as date data types in OpenRefine. We can now carry out functions that are specific to Dates
-1. On the Date column dropdown select `Edit column > Add column based on this column`. Using this function you can create a new column, while preserving the old column
+1. In the Date column drop-down, select `Edit column > Add column based on this column`. Using this function you can create a new column, while preserving the old column.
 1. In the ‘New column name’ type “Formatted Date”
-1. In the ‘Expression’ box type the GREL expression `value.toString("dd MMMM yyyy")`
+1. In the ‘Expression’ box, type the GREL expression `value.toString("dd MMMM yyyy")`
 
 **Booleans**: a boolean is a binary value that can either be "true" or "false". They are often used in GREL expressions, for example:
 
@@ -287,10 +287,10 @@ In this exercise we are going to use the Boolean data type. If you look at the A
 
 We can do a crude test for reversed author names by looking for those that contain a comma:
 
-1. Make sure you have already split the author names into individual cells using `Edit cells > Split multi-valued cells` (you should have done this in a previous exercise)
-1. On the Authors column, use the dropdown menu and select `Facet > Custom text facet...`
+1. Make sure that you have already split the author names into individual cells
+1. On the Authors column, use the drop-down menu and select `Facet > Custom text facet...`
 1. The Custom text facet function allows you to write GREL functions to create a facet
-1. In the Expression box type `value.contains(",")`
+1. In the Expression box, type `value.contains(",")`
   1. Click OK
   1. Since the ‘contains’ function outputs a Boolean value, you should see a facet that contains ‘false’ and ‘true’. These represent the outcome of the expression, i.e. `true` = values containing a comma; `false` = values not containing a comma.
   1. Select the `true` facet
@@ -326,19 +326,19 @@ Combining the `split` function with a `sort` function like so:
 value.split(",").sort()
 ```
 
-... would resut in an array of days of the week sorted alphabetically:
+... would result in an array of days of the week sorted alphabetically:
 
 ```
 [“Friday”,”Monday”,”Saturday”,”Sunday”,”Thursday”,”Tuesday”,”Wednesday”]
 ```
 
-You can output a value from an array by specifying its position in the list. To extract the first value of the array created by the `split` funtion:
+You can output a value from an array by specifying its position in the list. To extract the first value of the array created by the `split` function:
 
 ```
 value.split(",")[0]
 ```
 
-If you want to go back to one single string, in order to store the resut in cells, you can use the `join` function:
+If you want to go back to one single string, in order to store the result in cells, you can use the `join` function:
 
 ```
 value.split(",").sort().join(",")
@@ -348,14 +348,14 @@ value.split(",").sort().join(",")
 
 Now that we have narrowed down to the lines with a comma in a name, we can use the `match` function. The match function allows you to use regular expressions, and output the capture groups as an array, which you can then manipulate.
 
-1. On the Authors column use the dropdown menu and select `Edit cells > Transform`
+1. On the Authors column use the drop-down menu and select `Edit cells > Transform`
 1. In the Expression box type `value.match(/(.*),(.*)/)`. The `/`, means you are using a regular expression inside a GREL expression. The parentheses indicate you are going to match a group of characters. The `.*` expression will match any character 0, 1 or more times. So here we are matching any number of characters, a comma, and another set of any number of characters.
-1. See how this creates an array with two members in each row in the `Preview` column
+1. See how this creates an array with two members in each row in the `Preview` section
 
 To get the author name in the natural order you can reverse the array and join it back together with a space to create the string you need:
 
 1. In the Expression box, add to the existing expression until it reads `value.match(/(.*),(.*)/).reverse().join(" ")`
-1. In the Preview view you should be able see this has reversed the array, and joined it back into a string, without any comma
+1. In the Preview section, you should be able see this has reversed the array, and joined it back into a string, without any comma
 1. Click OK to apply your transformation, and notice how the "true" group of your facet has 0 members
 
 #### Exporting the data and saving a project
