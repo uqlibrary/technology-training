@@ -12,11 +12,6 @@ If you want to review the installation instructions: https://gitlab.com/stragu/C
 RStudio is an open source IDE (Integrated Development Interface) for the R programming language.
 We can use R for calculations and visualisations.
 
-## Keep in mind
-
-* Case sensitive
-* No spaces in names
-
 ## Open RStudio
 
 * If you are using your own laptop please open RStudio
@@ -30,6 +25,8 @@ We can use R for calculations and visualisations.
   * Double click on RStudio which will install both R and RStudio 
 
 ## What are we going to learn?
+
+This session is designed to get straight into using R in a short amount of time, which is why we won't spend too much time on the smaller details that make the language.
 
 At the end of this session you will be able to:
 
@@ -68,11 +65,12 @@ R can be used like a calculator. Try the following commands:
 We can store data by creating objects, and assigning values to them with the assignement operator `<-`:
 
 ```
-x <- 42
-y <- x / 9
+num1 <- 42
+num2 <- num1 / 9
+sentence <- "Hello World!"
 ```
 
-You can use the shortcut Alt + - to type the assignement operator quicker.
+> You can use the shortcut <kbd>Alt</kbd> + <kbd>-</kbd> to type the assignement operator quicker.
 
 ### Using functions
 
@@ -87,7 +85,7 @@ In the console, we write a command and then evaluate it by pressing Enter.
 For example, try running the following command:
 
 ```
-log10(x)
+log10(x = num1)
 ```
 
 #### Help
@@ -136,7 +134,9 @@ For that, we use the function `dir.create()`:
 dir.create("scripts")
 dir.create("data")
 ```
-    
+
+> We don't need to specify the names of the arguments if we use them in order.
+
 **Exercise 3** - create a folder called "plots"
 
 To create a folder called "plots":
@@ -174,8 +174,6 @@ Comments start with `#`
 # Author:
 # Date:
 ```
-
-To add comments to many lines: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>
 
 While editing your script, you can run the active line (or the selected block of lines) by using <kbd>Ctrl</kbd>+<kbd>Enter.</kbd>
 
