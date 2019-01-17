@@ -260,10 +260,6 @@ for name in friends:
 	print(name + "is a perfectly fine name")
 ```
 
-### Comprehension
-
-...
-
 ## Custom functions
 
 We can create our own custom functions to reuse later on:
@@ -307,7 +303,10 @@ Some functions are useful to familiarise yourself with the data:
 data.shape
 data.head()
 data.tail()
+data.country
 ```
+
+Variables have **attributes** and **methods** attached to them, depending on the data type. Here, `shape` is a method, i.e. a static characteristic of the variable, whereas `head()` is a method, i.e. a function that can often take arguments.
 
 ### Analyse data
 
