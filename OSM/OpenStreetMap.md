@@ -65,7 +65,7 @@ We can then drag and drop this file into our layers.
 
 We can also use a QGIS plugin called "QuickOSM". After installing it, you can go to "Vector > Quick OSM" and create a query to pull in vector data.
 
-For examply, try querrying the `building` key on the current extent of the map.
+For example, try querrying the `building` key on the current extent of the map.
 
 
 
@@ -75,3 +75,5 @@ For examply, try querrying the `building` key on the current extent of the map.
 * Keep in touch with contributors around Brisbane: https://wiki.openstreetmap.org/wiki/Brisbane
 * OSM user diaries: https://www.openstreetmap.org/diary
 * Missing Maps: https://www.missingmaps.org/
+
+
