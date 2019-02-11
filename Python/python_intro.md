@@ -81,9 +81,9 @@ Some data types are mutable (like lists and dictionaries), others are immutable 
 Indexing in Python **starts at 0**, and does not include the upper bound. For example:
 
 ```python
-myList[0]
-myList[2]
-myList[0:2]
+sentence[0]
+sentence[6]
+myList[0:4]
 ```
 
 ## Functions
@@ -272,7 +272,7 @@ import pandas as pd
 data = pd.read_csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
 
-Some functions are useful to familiarise yourself with the data:
+Now that we have stored our dataset as a variable, we can use the "dot notation" to create commands that are useful to explore the data:
 
 ```python
 data.shape
