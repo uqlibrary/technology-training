@@ -8,7 +8,7 @@
 
 Most of the data has been contributed by **volunteers** over the years, surveying areas by hand, tracing features from aerial imagery, or merging compatible datasets into OSM. Some people call OSM the "Wikipedia of spatial data".
 
-Most the data on OSM is either a point, a line or a polygon. They are described keys and values. For example, to tag a polygon as a park, we can use the tag `leisure = park`, in which `leisure` is the key and `park` is the value.
+Most of the data on OSM is either a point, a line or a polygon. They are described with tags. For example, to tag a polygon as a park, we can use the tag `leisure = park`, in which `leisure` is the key and `park` is the value.
 
 ## Contributing to OSM
 
@@ -76,4 +76,6 @@ For example, try querrying the `building` key on the current extent of the map.
 * OSM user diaries: https://www.openstreetmap.org/diary
 * Missing Maps: https://www.missingmaps.org/
 
+## QGIS links
 
+* Official training manual: https://docs.qgis.org/testing/en/docs/training_manual/index.html
