@@ -249,31 +249,6 @@ plt.boxplot(x)
 
 > You can also use `subplot()` with three separate arguments, e.g. `subplot(3, 3, 7)`
 
-
-## Loops
-
-A "for loop" will execute something for each element of a list:
-
-```python
-friends = ["Mary", "Toya", "Fernand"]
-for name in friends:
-	print(name + "is a perfectly fine name")
-```
-
-## Custom functions
-
-We can create our own custom functions to reuse later on:
-
-```python
-def my_function(arg1, arg2):
-	prod = arg1 * arg2
-	sum = prod + 10
-	return sum
-my_function(3, 5)
-```
-
-We have to specify the function **name**, what **arguments** are available, what **operations** we do with them, and what the function **returns**.
-
 ## Example project
 
 ### Create a new project
@@ -337,3 +312,30 @@ You project can be reopened from the "Projects" menu in Spyder.
 
 By default, your variables are *not* saved, which is another reason why working with a script is important. You can however save your variables as a `.spydata` file if you want to.
 
+## Extras
+
+Here are some extras that usually don't fit in this session, but that you might be interested in to go further with Python.
+
+### Loops
+
+A "for loop" will execute something for each element of a list:
+
+```python
+friends = ["Mary", "Toya", "Fernand"]
+for name in friends:
+	print(name + "is a perfectly fine name")
+```
+
+### Custom functions
+
+We can create our own custom functions to reuse later on:
+
+```python
+def my_function(arg1, arg2):
+	prod = arg1 * arg2
+	sum = prod + 10
+	return sum
+my_function(3, 5)
+```
+
+We have to specify the function **name**, what **arguments** are available, what **operations** we do with them, and what the function **returns**.
