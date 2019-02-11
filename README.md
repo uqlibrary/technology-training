@@ -1,14 +1,14 @@
 ---
 Title: CDS resources
 Author: Stéphane Guillou
-Date: 2018-12-04
+Date: 2019-02-11
 ---
 
 Instructions and notes for sessions held at the [Centre for Digital Scholarship](https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship) (CDS).
 
 ## Description
 
-Here you will find resources related to R, Python, Shell, Git and OpenRefine sessions held at the Centre for Digital Scholarhip (part of the University of Queensland's Library).
+Here you will find resources related to R, Python, Shell, Git, OpenStreetMap, QGIS and OpenRefine sessions held at the Centre for Digital Scholarship (part of the University of Queensland's Library).
 
 ### Format
 
@@ -18,7 +18,7 @@ A collaborative online pad is used to list useful links, exercises and to intera
 Files available for each course, hosted in this repository:
 
 * Markdown notes that the instructor can use to teach, and that students can refer to after the course;
-* A HTML pad export that can be used to initialise a pad (https://etherpad.wikimedia.org or https://cryptpad.fr/code are recommended to publish);
+* A HTML pad export that can be used to initialise a pad (https://etherpad.wikimedia.org, https://cryptpad.fr/code and https://demo.codimd.org/ are recommended to publish);
 * A text file that describes the session, useful to create an event on StudenHub.
 
 ### Quick access to course resources
@@ -35,7 +35,7 @@ Files available for each course, hosted in this repository:
 | OpenRefine: an introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [txt](OpenRefine/openrefine_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-openrefine) |
 | Python with Spyder: an introduction to data science | [md](Python/python_intro.md) | [txt](Python/python_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-python) |
 | Introduction to scientific programming | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.Rmd)</sup> | [txt](intro_to_programming/intro_to_programming_description.txt) | [html](https://frama.link/intro_prog) |
-| OpenStreetMap: contribute and use the data | ... | ... | ... |
+| OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [txt](OSM/OpenStreetMap_description.txt) | [html](https://cryptpad.fr/pad/#/2/pad/edit/ZwpBgdie-YBBXvDE68N53u2s/) |
 | next: Open Source tools for your research | ... | ... | ... |
 
 ## License
@@ -47,8 +47,8 @@ Paula's ORCID is 0000-0002-8990-1985.
 
 ## Contributing
 
-If you have questions about contributing please contact me. You can also raise an issue or pull request. If you would like to develop on top of this, please cite the source as mentioned before.
+If you have questions about contributing to the material, please contact the CDS. You can also raise an issue or create a pull request if you spot something odd. If you would like to develop on top of this, please cite the source as mentioned above.
 
 ## Contact
  
-My name is Stéphane Guillou and I am happy to be contacted about anything related to this material, here on the repository or via any method listed on [my website](https://stragu.gitlab.io/contact/).
+If you want to contact the CDS for a 1-on-1 consultation, an enquiry about sessions, or any question about the programs supported by the library: cds@library.uq.edu.au.
