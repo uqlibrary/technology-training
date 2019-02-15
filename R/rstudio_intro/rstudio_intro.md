@@ -65,7 +65,7 @@ R can be used like a calculator. Try the following commands:
 11^6
 ```
 
-We can store data by creating **objects**, and assigning values to them with the **assignement operator** `<-`:
+We can store data by creating **objects**, and assigning values to them with the **assignment operator** `<-`:
 
 ``` r
 num1 <- 42
@@ -172,22 +172,22 @@ Scripts are simple text files that contain R code. They are useful for:
 Let's create a new R script with a command:
 
 ``` r
-file.create("scripts/cmds.R")
+file.create("scripts/process.R")
 ```
 
 > All the file paths are **relative** to our current working directory, i.e. the project directory. To use an **absolute** file path, we can start with `/`.
 
-To edit the new script, use the `file.edit()` function:
+To edit the new script, use the `file.edit()` function. Try using the <kbd>Tab</kbd> key to autocomplete your function name and your file path!
 
 ``` r
-file.edit("scripts/cmds.R")
+file.edit("scripts/process.R")
 ```
 
-This opens our fourth pannel in RStudio: the source pannel.
+This opens our fourth pannel in RStudio: the **source pannel**.
 
 ### Many ways to do one thing
 
-As in many apps, there are many ways to achieve one thing.
+As in many programs, there are many ways to achieve one thing.
 
 For example, we used commands to create and edit a script, but we could also:
 
@@ -198,7 +198,7 @@ Learning how to use functions rather than the graphical user interface (GUI) wil
 
 #### Edit the script
 
-We should start with a couple of comments, to document our script. Comments start with `#`, and will be ignored by R:
+We should start with a couple of **comments**, to document our script. Comments start with `#`, and will be ignored by R:
 
 ``` r
 # Description:
@@ -214,8 +214,7 @@ num1 <- log10(300)
 
 Notice the colours? This is called **syntax highlighting**. This is one of the many ways RStudio makes it more comfortable to work with R. The code is more readable when working in a script.
 
-> While editing your script, you can run the active line (or the selected block of lines) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>.
-> You can find more shortcuts with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu "Tools > Keyboard Shortcuts Help"
+> While editing your script, you can run the active line (or the selected block of lines) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>. Remember to save your script regularly with the shortcut <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu "Tools > Keyboard Shortcuts Help".
 
 ### Import data
 
@@ -245,7 +244,7 @@ That's a lot of lines. To have a look at the first few lines only, we can use th
 head(gapminder)
 ```
 
-Now find out more about the `str()` function, and learn more about our dataset:
+Now let's use a few functions to learn more about our dataset:
 
 ``` r
 class(gapminder) # what kind of object is it stored as?
@@ -253,12 +252,29 @@ nrow(gapminder) # how many rows?
 ncol(gapminder) # how many columns?
 dim(gapminder) # rows and columns
 names(gapminder) # variable names
+```
+
+All the information we just saw is available with one single function:
+
+``` r
 str(gapminder) # general structure
-summary(gapminder) # summary statistics
+```
+
+And to explore the data in the viewer, run the following:
+
+``` r
 View(gapminder) # spreadsheet-like view (Note how the case matters in R.)
 ```
 
-> Notice that RStudio's environment pannel already shows us some of that information (click on the blue arrow next to the object name).
+> Notice that RStudio's environment pannel already shows us some of that information (click on the blue arrow next to the object name). You can also click on the object to open the viewer.
+
+Finally, to see summary statistics for each of our variables:
+
+``` r
+summary(gapminder)
+```
+
+Notice how categorical and numerical variables are handled differently?
 
 ### Plotting
 
