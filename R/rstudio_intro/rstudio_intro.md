@@ -97,16 +97,16 @@ There are two main ways to find help about a function in RStudio:
 
 **Exercise 2** - Use the help pages to find out what these functions do:
 
+* `class()`
 * `citation()`
 * `c()`
-* `seq()`
 * `rm()`
+
+`class()` shows you what the class of an object is.
 
 `citation()` outputs the proper way to cite R, or a different package if we overwrite the default value for the `package` argument.
 
 `c()` concatenates the arguments into a vector.
-
-`seq()` creates a sequence of numbers from the parameters you give it.
 
 `rm()` removes an object from your environment.
 
