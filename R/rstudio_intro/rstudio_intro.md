@@ -1,9 +1,9 @@
 R with RStudio: getting started
 ===
 
-`version: 2018-09-28`
+`version: 2019-02-15`
 
-> These notes are available on GitHub: https://gitlab.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro.md
+> These notes are available on GitLab: https://gitlab.com/stragu/CDS/blob/master/R/rstudio_intro/rstudio_intro.md
 
 If you want to review the installation instructions: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
 
@@ -30,61 +30,62 @@ This session is designed to get straight into using R in a short amount of time,
 
 At the end of this session you will be able to:
 
-   * Create a project for data analysis
-   * Create a folder structure
-   * Know where to find help
-   * Import files/datasets
-   * Understand and move around layouts 
-   * Use a few shortcuts
-   * Know where packages are
+* Create a project for data analysis
+* Create a folder structure
+* Know where to find help
+* Use a script
+* Import files/datasets
+* Understand the different RStudio pannels
+* Use a few shortcuts
+* Know where packages are
 
 ## Material
 
 ### Rstudio Project
 
-**Exercise 1** - New RStudio Project
+Let's first create a new RStudio project:
 
 * Click the "File" menu button (top left corner), then "New Project"
 * Click "New Directory"
-* Click "New Project" ("New empty project" if you have an older version of RStudio)
-* In Directory name type the name of your project, e.g. "rstudio_intro" (Browse and select a folder where to locate your project, in our case the RProjects folder. If you don't have an RProjects folder, create it.)
+* Click "New Project"
+* In "Directory name", type the name of your project, e.g. "rstudio_intro" (Browse and select a folder where to locate your project, if you want to keep them all in one spot. For example, a folder called "r_projects".)
 * Click the "Create Project" button
 
-> Projects make managing multiple directories straightforward. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. The .Rproj file stores information about our folder structure and the objects in the project (hence, manages history and .RData).
+> R Projects make your work with R more straight forward, as they allow you to segregate your different projects in separate folders. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. The .Rproj file stores information about your project options, and allows you to go straight back to your work.
 
 ### Maths and objects
 
+In the **console**, we can use R interactively. We write a **command** and then **execute** it by pressing <kbd>Enter</kbd>.
+
 R can be used like a calculator. Try the following commands:
 
-```
+``` r
 3 * 4
 10 / 2
 11^6
 ```
 
-We can store data by creating objects, and assigning values to them with the assignement operator `<-`:
+We can store data by creating **objects**, and assigning values to them with the **assignement operator** `<-`:
 
-```
+``` r
 num1 <- 42
 num2 <- num1 / 9
 sentence <- "Hello World!"
 ```
 
-> You can use the shortcut <kbd>Alt</kbd> + <kbd>-</kbd> to type the assignement operator quicker.
+> You can use the shortcut <kbd>Alt</kbd>+<kbd>-</kbd> to type the assignement operator quicker.
 
 ### Using functions
 
-An R function looks like this:
+An R function usually looks like this:
 
 ```
 <functionname>(<argument(s)>)
 ```
 
-In the console, we write a command and then evaluate it by pressing Enter.
-
 For example, try running the following command:
 
-```
+``` r
 log10(x = num1)
 ```
 
@@ -95,20 +96,40 @@ There are two main ways to find help about a function in RStudio:
 1. the shortcut command: `?functionname`
 1. the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a function name
 
-**Exercise 2** - Use the help pages to find out what these functions do:
+**Challenge 1** - Use the help pages to find out what these functions do, and try executing commands with them:
 
-* `class()`
-* `citation()`
 * `c()`
+* `class()`
 * `rm()`
+* `citation()`
 
-`class()` shows you what the class of an object is.
+`c()` concatenates the arguments into a vector. For example:
 
-`citation()` outputs the proper way to cite R, or a different package if we overwrite the default value for the `package` argument.
+``` r
+vect1 <- c(4, 7, 2, 3)
+```
 
-`c()` concatenates the arguments into a vector.
+> The argument `...` means we can pass on any number of values.
 
-`rm()` removes an object from your environment.
+`class()` shows you what the class of an object is. For example:
+
+``` r
+class(vect1)
+```
+
+> We don't need to specify the names of the arguments if we use them in order.
+
+`rm()` removes an object from your environment. For example:
+
+``` r
+rm(num1)
+```
+
+`citation()` outputs the proper way to cite R, or a different package if we overwrite the default value for the `package` argument. For example:
+
+``` r
+citation("MASS")
+```
 
 Let's do some more complex operations by combining two functions:
 
@@ -117,69 +138,52 @@ For example, try running the `ls()` function after executing the command `a <- 4
 
 You can remove *all* the objects in the environment by using `ls()` as the value for the `list` argument:
 
-```
+``` r
 rm(list = ls())
 ```
 
 ### Creating a folder structure
 
-We are creating 2 folders:
+To keep it tidy, we are creating 3 folders in our project directory:
 
 * scripts
 * data
+* plots
 
 For that, we use the function `dir.create()`:
 
-```
+``` r
 dir.create("scripts")
 dir.create("data")
-```
-
-> We don't need to specify the names of the arguments if we use them in order.
-
-**Exercise 3** - create a folder called "plots"
-
-To create a folder called "plots":
-
-```
 dir.create("plots")
 ```
 
+> You can recall your recent commands with the up arrow, which is especially useful to correct typos or slightly modify a long command.
+
 ### Scripts
 
-Scripts are useful to save a set of useful commands and make research reproducible.
+Scripts are simple text files that contain R code. They are useful for:
 
-**Exercise 4** - Create a new R script file
+* saving a set of commands for later use (and executing it in one click)
+* making research reproducible
+* documenting some code, and
+* sharing your work with peers
 
-You can create a script with the following command:
+Let's create a new R script with a command:
 
-```
+``` r
 file.create("scripts/cmds.R")
 ```
 
 > All the file paths are **relative** to our current working directory, i.e. the project directory. To use an **absolute** file path, we can start with `/`.
 
-To edit a file, use the `file.edit()` function:
+To edit the new script, use the `file.edit()` function:
 
-```
+``` r
 file.edit("scripts/cmds.R")
 ```
 
-> You can recall your recent commands with the up arrow, which is especially useful to correct typos or slightly modify a long command.
-
-**Exercise 5** - Add comments to your new R script file
-
-Comments start with `#`
-
-```
-# Description:
-# Author:
-# Date:
-```
-
-While editing your script, you can run the active line (or the selected block of lines) by using <kbd>Ctrl</kbd>+<kbd>Enter.</kbd>
-
-You can open an R script and directly execute its content. This is helpful to re-run a whole set of data-processing commands in one go.
+This opens our fourth pannel in RStudio: the source pannel.
 
 ### Many ways to do one thing
 
@@ -190,119 +194,103 @@ For example, we used commands to create and edit a script, but we could also:
 * use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
 * use the top left drop-down menus
 
-Learning how to use functions rather than the GUI elements will allow you to integrate them in scripts, and will sometimes help you to do things faster.
+Learning how to use functions rather than the graphical user interface (GUI) will allow you to integrate them in scripts, and will sometimes help you to do things faster.
 
-### Import files
+#### Edit the script
 
-**Exercise 6** - Read the description of these functions:
+We should start with a couple of comments, to document our script. Comments start with `#`, and will be ignored by R:
 
+``` r
+# Description:
+# Author:
+# Date:
 ```
-?download.file
-?read.table
-?read.csv
+
+Now, add a command to your script:
+
+``` r
+num1 <- log10(300)
 ```
 
-**Exercise 7** – Import data
+Notice the colours? This is called **syntax highlighting**. This is one of the many ways RStudio makes it more comfortable to work with R. The code is more readable when working in a script.
 
-Copy, paste and execute the following two commands:
+> While editing your script, you can run the active line (or the selected block of lines) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>.
+> You can find more shortcuts with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu "Tools > Keyboard Shortcuts Help"
 
-```
+### Import data
+
+**Challenge 2** – Import data
+
+Copy and paste the following two commands into your script:
+
+``` r
 download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv",
   destfile = "data/gapminderdata.csv")
 gapminder <- read.csv("data/gapminderdata.csv")
 ```
 
-What do you think they do? Describe each one in detail.
+What do you think they do? Describe each one in detail, and try executing them.
+
+### Explore data
 
 You can type the name of your new object to print it to screen:
 
-```
+``` r
 gapminder
 ```
 
-Now find out more about the `str()` function, and have a look at the data:
+That's a lot of lines. To have a look at the first few lines only, we can use the `head()` function:
 
+``` r
+head(gapminder)
 ```
-?str
-str(gapminder) # structure
+
+Now find out more about the `str()` function, and learn more about our dataset:
+
+``` r
+class(gapminder) # what kind of object is it stored as?
+nrow(gapminder) # how many rows?
+ncol(gapminder) # how many columns?
+dim(gapminder) # rows and columns
+names(gapminder) # variable names
+str(gapminder) # general structure
 summary(gapminder) # summary statistics
-View(gapminder) # spreadsheet-like view. Not how the case matters in R
+View(gapminder) # spreadsheet-like view (Note how the case matters in R.)
 ```
 
-Remember that you can check what is in your environment with `ls()`, and remove objects with `rm()`.
-
-### Packages
-
-Packages add functionnalities to R and RStudio. There are more than 15000 available.
-
-You can see the list of installed packages in your "Packages" tab, or by using the `library()` function without any argument.
-
-We are going to install and load a new package that is useful for data visualisation: `ggplot2`.
-
-```
-?install.packages
-?ggplot
-??ggplot
-install.packages("ggplot2")
-?ggplot
-?ggplot2::ggplot
-library(ggplot2)
-?ggplot
-```
+> Notice that RStudio's environment pannel already shows us some of that information (click on the blue arrow next to the object name).
 
 ### Plotting
 
-R has a number of base plotting functions to visualise data in many different ways, but the package `ggplot2` introduces a logic that makes data visualisation more streamlined, called "Grammar of graphics".
+R has a number of base plotting functions to visualise data in many different ways.
 
-In its most basic form, a `ggplot2` plot needs a dataset, data mapped to aesthetics, and a geometry.
+For example, to visualise our data:
 
-```
-qplot(data = gapminder, x = year, y = pop, geom = "point")
-```
-
-We can then add layers, map more data to aesthetics, and further modify elements. For example, we can map the `colour` easthetic to the `continent` data.
-
-```
-qplot(data = gapminder, x = year, y = pop, colour = continent, geom = "point")
+``` r
+plot(x = gapminder$gdpPercap,
+     y = gapminder$lifeExp)
+hist(gapminder$pop)
+boxplot(gapminder$lifeExp~gapminder$continent)
 ```
 
-### More shortcuts
+### Packages
 
-* Run current line/selection: Ctrl + Enter (or Cmd + Enter)
-* Find: Ctrl + F (or Cmd + F)
-* Find in files: Ctrl + Shift + F (or Cmd + Shift + F)
-* Cut: Ctrl + X (or Cmd + X)
-* Copy: Ctrl + C (or Cmd + C)
-* Paste: Ctrl + V (or Cmd + V)
-* Select all: Ctrl + A (or Cmd + A)
-* Delete line: Ctrl + D (or Cmd + D)
-* Clear console: Ctrl + L (or Cmd  + L)
-* Indent: Tab (at start of line)
-* Outdent: Shift + Tab
-* Insert `<-`: Alt + - (or Option + -)
-* (Un)Comment lines: Ctrl + Shift + C (or Cmd + Shift + C)
-* See shortcuts: Alt + Shift + K
+Packages add functionnalities to R and RStudio. There are more than 16000 available.
 
-#### Layouts
+You can see the list of installed packages in your "Packages" tab, or by using the `library()` function without any argument.
 
-* Move focus to Source Editor Ctrl+1
-* Move focus to Console Ctrl+2
-* Move focus to Help Ctrl+3
-* Show History Ctrl+4
-* Show Files Ctrl+5
-* Show Plots Ctrl+6
-* Show Packages Ctrl+7
-* Show Environment Ctrl+8
-* Show Git/SVN or viewer Ctrl+9
+We are going to install and load a new package called `praise`. We can do that with the GUI: click the "Install" button in the "Packages" tab, and search for "praise".
 
-### Vignettes
+Notice how it runs an `install.packages()` command in the console? You can use that too.
 
-Vignettes are documentation files that offer some extra information about functions and packages.
+If I try running the command `praise()`, I get an error. That's because, even though the package is installed, I need to **load** it every time I start a new R session. The `library()` function can do that.
 
+``` r
+library(praise) # load the package
+praise() # use a function from the package
 ```
-vignette() # list available vignettes
-vignette("ggplot2-specs")
-```
+
+Even though you might need the motivation provided by this function, other packages are more useful for your work. For example, the package `ggplot2` introduces a logic that makes data visualisation more streamlined, called "Grammar of graphics". We present this package in other sessions.
 
 # Close Rproject
 
