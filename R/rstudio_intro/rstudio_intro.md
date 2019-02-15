@@ -157,6 +157,8 @@ You can create a script with the following command:
 file.create("scripts/cmds.R")
 ```
 
+> All the file paths are **relative** to our current working directory, i.e. the project directory. To use an **absolute** file path, we can start with `/`.
+
 To edit a file, use the `file.edit()` function:
 
 ```
