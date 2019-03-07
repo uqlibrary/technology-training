@@ -7,7 +7,7 @@
 ## Tutorials
 
 * _R for Data Science_, excellent free online book: http://r4ds.had.co.nz/
-* _R for Reproducible Scientific Analysis_, an extensive introduction to R by The Carpentries: https://swcarpentry.github.io/r-novice-gapminder/
+* _R for Reproducible Scientific Analysis_, two introduction materials to R by The Carpentries: https://swcarpentry.github.io/r-novice-gapminder/ and https://datacarpentry.org/R-ecology-lesson/
 * `swirl` is a package that allows you to learn R interactively in an R session: https://swirlstats.com/
 * RStudio's _Online Learning_ page lists useful resources: https://www.rstudio.com/online-learning/
 * CRAN's basic and advanced manuals: https://cran.r-project.org/manuals.html
