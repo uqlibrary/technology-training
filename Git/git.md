@@ -41,20 +41,20 @@ On a command line, Git commands are written as `git verb`, where `verb` is what 
 
 Before we use Git, we need to **configure** it with some defaults, like our credentials and our favourite text editor. For example:
 
-```bash
+```shell
 git config --global user.name "Vlad Dracula"
 git config --global user.email "vlad@tran.sylvan.ia"
 ```
 This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to GitLab, GitHub, BitBucket or another Git host server in the future will include this information. This has to match your GitLab credentials.
 
-```bash
+```shell
 git config --global core.editor "nano -w"
 git config --list
 ```
 
 You can always find help about git with the `--help` flag:
 
-```bash
+```shell
 git --help
 git config --help
 ```
@@ -239,31 +239,31 @@ As we saw in the previous lesson, we can refer to commits by their identifiers. 
 
 Let's add a line to our file:
 
-```bash
+```shell
 nano mars.txt
 ```
 
 We can now check the difference with the head:
 
-```bash
+```shell
 git diff HEAD mars.txt
 ```
 
 Which is the same as using `git diff mars.txt`. What is useful is that we can **refer to previous commits**, for example for the commit before `HEAD`:
 
-```bash
+```shell
 git diff HEAD~1 mars.txt
 ```
 
 Similarly, `git show` can help us find out what was changed in a specific commit:
 
-```bash
+```shell
 git show HEAD~2 mars.txt
 ```
 
 We can also use the unique 7-character identifiers that were attributed to each commit:
 
-```bash
+```shell
 git diff XXXXXXX mars.txt
 ```
 
@@ -271,21 +271,21 @@ git diff XXXXXXX mars.txt
 
 Overwrite your whole text with one single new line:
 
-```bash
+```shell
 nano mars.txt
 git diff
 ```
 
 We can put things back the way they were by using `git checkout`:
 
-```bash
+```shell
 git checkout HEAD mars.txt
 cat mars.txt
 ```
 
 `git checkout` checks out (i.e., restores) an old version of a file. In this case, we’re telling Git that we want to recover the version of the file recorded in `HEAD`, which is the last saved commit. If we want to go back even further, we can use a commit identifier instead:
 
-```bash
+```shell
 git log -3
 git checkout XXXXXXX mars.txt
 cat mars.txt
@@ -294,7 +294,7 @@ git status
 
 Notice that **the changes are on the staged area**. Again, we can put things back the way they were by using git checkout:
 
-```bash
+```shell
 git checkout HEAD mars.txt
 cat mars.txt
 ```
@@ -313,7 +313,7 @@ Luckily, she has been keeping track of her project’s versions using Git! Which
 
 `git revert` is used if the bad change has _already_ been commited (whereas `git checkout` is used if the changes have not yet been commited). If you want to **revert the last commited change**, you can use the following command:
 
-```bash
+```shell
 git revert HEAD
 ```
 
@@ -325,26 +325,26 @@ Sometimes, we don't want git to track files like automatic backup files or inter
 
 Say you create a bunch of `.dat` files like so:
 
-```bash
+```shell
 touch a.dat b.dat c.dat
 git status
 ```
 
 If you don't want to track them, create a `.gitignore` file:
 
-```bash
+```shell
 nano .gitignore
 ```
 
 ... and add the following line to it:
 
-```bash
+```shell
 *.dat
 ```
 
 That will make sure no file finishing with `.dat` will be tracked by git.
 
-```bash
+```shell
 git status
 git add .gitignore
 git commit -m "Ignore data files"
@@ -365,7 +365,7 @@ Our local repository (on our computer) contains our recent work, but the **remot
 
 We now need to connect the two: we do this by making the GitLab repository a **remote** for the local repository. The home page of the repository on GitLab includes the URL we need to identify it, under "HTTPS". Copy it to your clipboard, and in your local repository, run the following command:
 
-```bash
+```shell
 git remote add origin https://gitlab.com/<your_username>/planets.git
 ```
 
@@ -373,7 +373,7 @@ The name `origin` is a local nickname for your remote repository. We could use s
 
 Now, we can **push** our changes from our local repository to the remote on GitLab:
 
-```bash
+```shell
 git push origin master
 ```
 
@@ -383,7 +383,7 @@ You can edit files directly on GitLab if you want. Try adding a line on mars.txt
 
 If you do that, you will then need to **pull** changes from the remote repository to your local one before further editing:
 
-```bash
+```shell
 git pull origin master
 cat mars.txt
 ```
@@ -402,13 +402,13 @@ The Collaborator can then accept the invitation.
 
 Next, the Collaborator needs to download a copy of the Owner's repository to their machine, which is called "**cloning a repository**". To do that in your Desktop directory:
 
-```bash
+```shell
 git clone https://gitlab.com/<owner_username>/planets.git ~/Desktop/partner-planets
 ```
 
 The Collaborator can now make changes in their clone of the Owner's repository:
 
-```bash
+```shell
 cd ~/Desktop/partner-planets
 nano pluto.txt
 git commit -m "add notes about Pluto"
@@ -416,7 +416,7 @@ git commit -m "add notes about Pluto"
 
 Then push the change to the owner's repository on GitLab:
 
-```bash
+```shell
 git push origin master
 ```
 
@@ -426,7 +426,7 @@ You can see that the changes are now live on GitLab.
 
 The Owner can now download the Collaborator's changes from GitLab:
 
-```bash
+```shell
 git pull origin master
 ```
 
@@ -450,7 +450,7 @@ To see how we can **resolve conflicts**, we must first create one. The file mars
 
 The Collaborator can add a line to their partner's copy, and push to GitLab:
 
-```bash
+```shell
 nano mars.txt
 git add mars.txt
 git commit -m "Add a line in my friend's file"
@@ -459,32 +459,32 @@ git push origin master
 
 Now let’s have the Owner make a different change to their own copy _without pulling from GitLab beforehand_:
 
-```bash
+```shell
 nano mars.txt
 ```
 
 The Owner can commit the change locally:
 
-```bash
+```shell
 git add mars.txt
 git commit -m "Add a line in my own copy"
 ```
 
 But Git won't let us push to GitLab:
 
-```bash
+```shell
 git push origin master
 ```
 
 Git rejects the push because it detects that the remote repository has new updates that have not been incorporated into the local branch. What we have to do is (1) **pull** the changes from GitLab, (2) **merge** them into the copy we’re currently working in, and then (3) **push** that. Let’s start by pulling:
 
-```bash
+```shell
 git pull origin master
 ```
 
 Git detects that changes made to the local copy overlap with those made to the remote repository, and therefore refuses to merge the two versions to stop us from trampling on our previous work. The conflict is marked in the affected file:
 
-```bash
+```shell
 cat mars.txt
 ```
 
@@ -492,13 +492,13 @@ Our change is preceded by `<<<<<<< HEAD`. Git has then inserted `=======` as a s
 
 It is now up to the Owner to fix this conflict:
 
-```bash
+```shell
 nano mars.txt
 ```
 
 They can now add and commit to their local repo, and then push the changes to GitLab:
 
-```bash
+```shell
 git add mars.txt
 git commit -m "Merge changes from GitLab"
 git push origin master
@@ -506,7 +506,7 @@ git push origin master
 
 Git keeps track of merged files. The Collaborator can now pull the changes from GitLab:
 
-```bash
+```shell
 git pull origin master
 git log -3
 ```
