@@ -1,6 +1,6 @@
 # Unix Shell: an introduction
 
-Last updated: 2018-12-13
+Last updated: 2019-03-08
 
 ## Legal
 
@@ -41,7 +41,7 @@ We will learn doing some **live-coding**, which means we will all be using the s
 
 ### Our data: Nelle's research
 
-The main data we use as an example for this lesson is a collection of 1520 files that contain information about protein abundance in samples collected by a marine biologist, Nelle Nemo. They need to be run through a program called `goostats` but that would take too much time if each file was run manually.
+The data we use as an example for this lesson is a collection of 1520 files that contain information about protein abundance in samples collected by a marine biologist, Nelle Nemo. They need to be run through a program called `goostats` but that would take too much time if each file was run manually.
 
 The command shell might be helpful to automate this repetitive task.
 
@@ -130,8 +130,6 @@ cd /home/username/Desktop/data-shell
 
 Two more shortcuts are handy when it comes to changing or specifying directories: `~` is the home directory, and `-` is the previous directory we were in.
 
-> Another useful feature is "**tab completion**". To access folders with longer names, it is often possible to auto-complete the folder name by hitting the tab key after typing a few letters: typing `cd nor` and pressing the tab key will auto-complete to `cd north-pacific-gyre/`. Another press of the tab key will add `2012-07-03/` to the command as it is the only item in the folder. If there are several options, pressing the tab key twice will bring up a list.
-
 ## Working with files and directories
 
 We now know how to explore files and directories, but how do we create, modify and delete them?
@@ -191,13 +189,14 @@ To really get rid of `thesis` we must also delete the file `draft.txt`. We can d
 rm -r thesis
 ```
 
-> Removing the files in a directory recursively can be a very dangerous operation. If we’re concerned about what we might be deleting we can add the “interactive” flag `-i` to `rm` which will ask us for confirmation before each step
-```shell
-rm -r -i thesis
-```
-> This removes everything in the directory, then the directory itself, asking at each step for you to confirm the deletion.
+> Removing the files in a directory recursively can be a very dangerous operation. If we’re concerned about what we might be deleting we can add the “interactive” flag `-i` to `rm` which will ask us for confirmation before each step.
 
-Let's create the directory and file on more time:
+```shell
+rm -ri thesis
+```
+> This removes everything in the directory, then the directory itself, asking at each step for you to confirm the deletion. Type "y" and press <kbd>Enter</kbd> to confirm.
+
+Let's create the directory and file one more time:
 
 ```shell
 mkdir thesis
@@ -307,7 +306,11 @@ The pipeline could be read backwards as "we want the one-line head of the numeri
 
 ### Nelle's pipeline
 
-Nelle has run samples through the assay machines and created 17 files located in the `north-pacific-gyre/2012-07-03` directory (use `cd` to move into it). To check the consistency of her data, she types:
+Nelle has run samples through the assay machines and created 17 files located in the `north-pacific-gyre/2012-07-03` directory.
+
+> A useful feature in CLIs is "**tab completion**". To access folders with longer names, it is often possible to auto-complete the folder name by hitting the <kbd>Tab</kbd> key after typing a few letters: typing `cd nor` and pressing the <kbd>Tab</kbd> key will auto-complete to `cd north-pacific-gyre/`. Another press of the <kbd>Tab</kbd> key will add `2012-07-03/` to the command as it is the only item in the folder. If there are several options, pressing the <kbd>Tab</kbd> key twice will bring up a list.
+
+To check the consistency of her data, she types:
 
 ```shell
 wc -l *.txt | sort -n | head -5
