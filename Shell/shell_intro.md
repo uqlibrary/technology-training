@@ -67,13 +67,11 @@ ls
 
 `ls` stands for "listing". It lists the contents of the current working directory.
 
-Commands can often take extra parameters, called **flags** (also called "options"). We can add the flag `-F` (for "classi**F**y") to our `ls` command in order to make the output more informative:
+Commands can often take extra parameters, called **flags** (also called "options"). We can add the flag `-a` (for "**a**ll") to our `ls` command in order to also list hidden elements:
 
 ```shell
-ls -F
+ls -a
 ```
-
-This shows which items are directories, thanks to a trailing `/`.
 
 To find out more about on particular command, including what flags exist for it, use the `--help` flag after it, like so:
 
