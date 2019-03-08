@@ -81,6 +81,8 @@ To find out more about on particular command, including what flags exist for it,
 ls --help
 ```
 
+> You might have to use the command `man ls` (for **man**ual) on some systems
+
 To look at the contents of a different directory, we can specify it by adding the directory's name as an **argument**:
 
 ```shell
