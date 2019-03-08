@@ -333,20 +333,28 @@ git remote add origin https://gitlab.com/<your_username>/planets.git
 
 The name `origin` is a local nickname for your remote repository. We could use something else if we wanted to, but `origin` is by far the most common choice.
 
-Now, we can **push** our changes from our local repository to the remote on GitLab:
+Now, we can **push** our changes from our local repository to the remote on GitLab. Try this:
 
 ```shell
-git push origin master
+git push
 ```
 
-You can see on GitLab that you changes were pushed to the remote repository.
+Git does not know where it should push by default. See the suggested command in the error message? We can set the default remote with a shorter version of that:
+
+```shell
+git push -u origin master
+```
+
+We only need to do that once: from now one, Git will know that the default is the `origin` remote and the `master` branch.
+
+You can now see on GitLab that your changes were pushed to the remote repository.
 
 You can edit files directly on GitLab if you want. Try adding a line on mars.txt by clicking on "Edit".
 
 If you do that, you will then need to **pull** changes from the remote repository to your local one before further editing:
 
 ```shell
-git pull origin master
+git pull
 cat mars.txt
 ```
 
@@ -362,27 +370,33 @@ First, the Owner needs to give the collaborator editing access to the repository
 
 The Collaborator can then accept the invitation.
 
-Next, the Collaborator needs to download a copy of the Owner's repository to their machine, which is called "**cloning a repository**". To do that in your Desktop directory:
+Next, the Collaborator needs to download a copy of the Owner's repository to their machine, which is called "**cloning a repository**". To do that, first make sure you move out of your personal repository:
 
 ```shell
-git clone https://gitlab.com/<owner_username>/planets.git ~/Desktop/partner-planets
+cd ..
+```
+
+Now, you can clone the Owner's repository, giving it a recognisable name:
+
+```shell
+git clone https://gitlab.com/<owner_username>/planets.git partner-planets
 ```
 
 The Collaborator can now make changes in their clone of the Owner's repository:
 
 ```shell
-cd ~/Desktop/partner-planets
+cd partner-planets
 nano pluto.txt
 git commit -m "add notes about Pluto"
 ```
 
-Then push the change to the owner's repository on GitLab:
+Then push the change to the Owner's repository on GitLab:
 
 ```shell
-git push origin master
+git push
 ```
 
-We didn't have to create a remote called `origin`, that was done by default by Git when cloning the repository.
+We didn't have to create a remote called `origin`, or set the default upstream: that was done by default by Git when cloning the repository.
 
 You can see that the changes are now live on GitLab.
 
@@ -416,7 +430,7 @@ The Collaborator can add a line to their partner's copy, and push to GitLab:
 nano mars.txt
 git add mars.txt
 git commit -m "Add a line in my friend's file"
-git push origin master
+git push
 ```
 
 Now let’s have the Owner make a different change to their own copy _without pulling from GitLab beforehand_:
@@ -435,13 +449,13 @@ git commit -m "Add a line in my own copy"
 But Git won't let us push to GitLab:
 
 ```shell
-git push origin master
+git push
 ```
 
 Git rejects the push because it detects that the remote repository has new updates that have not been incorporated into the local branch. What we have to do is (1) **pull** the changes from GitLab, (2) **merge** them into the copy we’re currently working in, and then (3) **push** that. Let’s start by pulling:
 
 ```shell
-git pull origin master
+git pull
 ```
 
 Git detects that changes made to the local copy overlap with those made to the remote repository, and therefore refuses to merge the two versions to stop us from trampling on our previous work. The conflict is marked in the affected file:
@@ -463,13 +477,13 @@ They can now add and commit to their local repo, and then push the changes to Gi
 ```shell
 git add mars.txt
 git commit -m "Merge changes from GitLab"
-git push origin master
+git push
 ```
 
 Git keeps track of merged files. The Collaborator can now pull the changes from GitLab:
 
 ```shell
-git pull origin master
+git pull
 git log -3
 ```
 
