@@ -313,7 +313,7 @@ Nelle has run samples through the assay machines and created 17 files located in
 wc -l *.txt | sort -n | head -5
 ```
 
-On file seems to be 60 lines shorter than the others. Before re-running that sample, she checks if other files have _too much_ data:
+One file seems to be 60 lines shorter than the others. Before re-running that sample, she checks if other files have _too much_ data:
 
 ```shell
 wc -l *.txt | sort -n | tail -5
