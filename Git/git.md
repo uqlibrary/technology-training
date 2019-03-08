@@ -191,38 +191,6 @@ git commit -m "<your comment>"
 
 Using `git add` allows us to select which changes are going to make it into a commit, and which ones won't. It sends them to what is called the **staging area**. In a way, `git add` specifies _what_ will go in a snapshot (putting things in the staging area), and git commit then actually _takes_ the snapshot.
 
-We can watch a new edit move from our text editor to the staging area and into long-term storage as a commit:
-
-```
-nano mars.txt
-git diff
-```
-
-This shows the difference between the working directory and the staging area.
-
-Now, let's add our edited file to the staging area and check again the difference:
-
-```
-git add mars.txt
-git diff
-```
-
-There is no output: as far as Git can tell, there’s no difference between what it’s been asked to save permanently and what’s currently in the directory. However, we can do this:
-
-```
-git diff --staged
-```
-
-... it shows the difference between the last commited change and the staging area.
-
-Let's save our changes and check our status and history:
-
-```
-git commit -m "<your comment>"
-git status
-git log
-```
-
 **Challenge 1**
 
 The staging area can hold changes from any number of files that you want to commit as a single snapshot.
@@ -310,12 +278,6 @@ Luckily, she has been keeping track of her project’s versions using Git! Which
 1. `git checkout HEAD~1 data_cruncher.py`
 1. `git checkout <unique ID of last commit> data_cruncher.py`
 1. Both 2 and 4
-
-`git revert` is used if the bad change has _already_ been commited (whereas `git checkout` is used if the changes have not yet been commited). If you want to **revert the last commited change**, you can use the following command:
-
-```shell
-git revert HEAD
-```
 
 ### Ignoring things
 
