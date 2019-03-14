@@ -1,18 +1,20 @@
 # Python with Spyder: introduction to data science
 
-This hands-on course will get you started on using Python 3 and the Spyder IDE to import, explore, analyse and visualise data.
+This hands-on course – directed at beginners – will get you started on using Python 3 and the Spyder IDE to import, explore, analyse and visualise data.
 
 ## Setup
 
-The easiest way to use Python 3 and Spyder is to install the Anaconda distribution. Make sure you download the Python 3 version: https://www.anaconda.com/download
+The easiest way to use Python 3 and Spyder is to install the Anaconda Distribution, a data science platform for Windows, Linux and Mac OS X. Make sure you download the Python 3 version: https://www.anaconda.com/download
+
+Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a terminal on Linux), and launch Spyder.
 
 ## Introducing Python and Spyder
 
-Python is a programming language that can be used to build programs but it can also be used to analyse data by importing a number of useful libraries.
+Python is a **programming language** that can be used to build programs (i.e. a "general programming language"), but it can also be used to analyse data by importing a number of useful modules.
 
-We are using the Spyder IDE to interact with Python more comfortably.
+We are using the **Spyder IDE** to interact with Python more comfortably. If you have used the RStudio IDE to interact with R before, you should feel right at home.
 
-Python can be used interactively, or we can build scripts and programs with it.
+Python can be used **interactively** in a console, or we can build **scripts and programs** with it, making the most out of Spyder's code editor.
 
 We will start by using the IPython console to work interactively.
 
@@ -24,13 +26,18 @@ We can use Python like a calculator.
 1 + 1
 2 * 3
 4 / 10
+```
+
+Some binary operators might differ from other languages, like exponent and modulus:
+
+```python
 6**3
 9 % 2
 ```
 
 ## Variables
 
-Variables will store data.
+**Variables** will store data. We need to give them a name, and assign a value to them with the `=` operator.
 
 ```python
 favNumber = 42
@@ -45,10 +52,10 @@ Variables have different types. The most commons are `int` for integers, `float`
 
 > You can see the type of your existing variables in the "Variable explorer" pane.
 
-We can also create lists, which will store several variables (not necessary of the same type). We need to use square brackets for that:
+We can also create **lists**, which will store several variables (not necessarily of the same type). We need to use square brackets for that:
 
 ```python
-myList = [1, 6, 4]
+myList = [1, 6, 4, 3, 9]
 diverse = [3, "Hi!", 9.0]
 ```
 
@@ -60,7 +67,7 @@ myList + diverse
 3 * myList
 ```
 
-Another important data type is `bool`  for "boolean". Booleans are often are the result of checking for a condition. For example:
+Another important data type is `bool`, for "boolean". Booleans often are the result of checking for a condition, and can only be one of two values: `True` or `False`. For example:
 
 ```python
 1 == 1
@@ -72,13 +79,9 @@ bool1 = favNumber > otherNumber
 
 There are other data types like tuples, dictionaries and sets, but we won't get into details today.
 
-### Mutable vs immutable
-
-Some data types are mutable (like lists and dictionaries), others are immutable (like integers, floats, strings and tuples).
-
 ### Indexing
 
-Indexing in Python **starts at 0**, and does not include the upper bound. For example:
+**Indexing** in Python **starts at 0**, and does not include the upper bound. For example:
 
 ```python
 sentence[0]
@@ -88,7 +91,7 @@ myList[0:4]
 
 ## Functions
 
-Some functions are built in and ready to use:
+Some **functions** are built in and ready to use:
 
 ```python
 len(myList)
@@ -98,13 +101,15 @@ sum(myList)
 round(otherNumber)
 ```
 
-> Notice how Spyder gives you hints about the available arguments after typing the function name?
+Functions always have parentheses behind their name, and they can take one or several **arguments**, or none at all.
+
+Here, we use two arguments to modify the default behaviour of the `round()` function:
 
 ```python
 round(otherNumber, 2)
 ```
 
-Functions always have parentheses behind their name, and they can take one or several **arguments**, or none at all.
+> Notice how Spyder gives you hints about the available arguments after typing the function name?
 
 ## Finding help
 
@@ -117,7 +122,7 @@ print?
 
 In Spyder, you can use the <kbd>Ctrl</kbd> + <kbd>I</kbd> keyboard shortcut to open the help in a separate pane.
 
-For a comprehensive manual, go to the online documentation: https://docs.python.org/3/
+For a comprehensive manual, go to the official online documentation: https://docs.python.org/3/
 
 For questions and answers, typing the right question in a search engine will usually lead you to something helpful. If you can't find an answer, StackOverflow is a great Q&A community: https://stackoverflow.com/questions/tagged/python
 
@@ -127,8 +132,8 @@ To do more with Python, it is easier to import extra **modules**. For example, t
 
 ```python
 pi # throws an error
-import math
-math.pi
+import math # this module contains the pi constant
+math.pi # we have to specify where it comes from
 import math as m # give a shorter name
 m.pi
 from math import pi # only import what is necessary
@@ -137,7 +142,9 @@ pi
 
 `math` is part of the "Python standard library". You can see all the functions and constants available in the `math` module here: https://docs.python.org/3/library/math.html
 
-Python distributions like Anaconda already come with a number of useful modules for science.
+Python distributions like Anaconda already come with a number of useful extra modules for science.
+
+### Installing extra modules
 
 To install more modules, you might need to use `pip` (on most systems) or `conda` (if you use Anaconda or Miniconda) from the command line.
 
@@ -174,10 +181,11 @@ myArray * 2
 ```python
 import pandas as pd
 df = pd.DataFrame(columns = ("Name", "Age"))
+# populate the dataframe:
 df.loc[1] = "Josephine", 70
 df.loc[2] = "Dilsah", 38
 df
-df.Age
+df.Age # access a specific variable
 ```
 
 ### Matplotlib for visualisation
@@ -210,6 +218,121 @@ Extra arguments can be used to style further:
 # red, diamonds, line; change width of line and size of diamonds:
 plt.plot(x, y, "rd-", linewidth = 3, markersize = 10)
 ```
+
+## Example project
+
+A project is useful to keep everything related to one job all contained in one directory.
+
+### Create a new project
+
+Create a project with `Projects > New project...`. You can name this one "python_intro" for examples.
+
+### Create a script
+
+A script is a simple text file that contains code. It is useful to:
+
+* write code more comfortably
+* store clearly defined steps in a chronological order
+* share a process with peers easily
+* make your work reproducible
+
+Click on  the "New file" icon, and save it as "process.py" in your project directory.
+
+Remember to add comments (they start with the `#` symbol) to document your work: this will be useful if you share your work with others, or even for your future self!
+
+To execute something from the script (the current line, or a selected block), use the <kbd>F9</kbd> keyboard shortcut.
+
+### Import data
+
+It is possible to read a CSV file with a `pandas` function:
+
+```python
+import pandas as pd
+data = pd.read_csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
+```
+
+> `pandas` contains many functions for interpreting a variety of file formats. Start typing `pd.read_` to see what is available.
+
+Now that we have stored our dataset as a variable, we can use the "dot notation" to create commands that are useful to explore the data:
+
+```python
+data.shape
+data.head()
+data.tail()
+data.country
+```
+
+Variables have **attributes** and **methods** attached to them, depending on the data type. Here, `shape` is a method, i.e. a static characteristic of the variable, whereas `head()` is a method, i.e. a function that can often take arguments.
+
+### Analyse data
+
+Let's now learn a bit more about our data:
+
+```python
+data.describe()
+data.groupby(by = "year").mean()
+```
+
+### Visualise data
+
+We can visualise our data with `pyplot`. First, let's visualise the relationship between GDP per capita and life expectancy:
+
+```python
+import matplotlib.pyplot as plt
+plt.plot(data.gdpPercap, data.lifeExp, "go")
+```
+
+Now, let's reuse that processed data to visualise the mean life expectancy over the years:
+
+```python
+plt.plot(data.groupby(by = "year").mean().lifeExp)
+```
+
+You can save you plots as PNG by right-clicking on them. To save automatically with some code, you can add the following line:
+
+```python
+plt.savefig("myPlot.pdf")
+```
+
+> Make sure that you execute the code that generates the plot *together* with the code that saves the file. When you need to execute many lines together, you might want to start using **cells** in your script: you can start a new cell with a `#%%` line, and execute the current cell with the keyboard shortcut <kbd>Ctrl</kbd> + <kbd>Enter</kbd>.
+
+## Saving your work
+
+Your project can be reopened from the "Projects" menu in Spyder.
+
+By default, your variables are *not* saved, which is another reason why working with a script is important: you can execute the whole script in one go to get everything back. You can however save your variables as a `.spydata` file if you want to (for example, if it takes a lot of time to process your data).
+
+## Extras
+
+Here are some extras that usually don't fit in this session, but that you might be interested in to go further with Python.
+
+### Loops
+
+A "for loop" will execute something for each element of a list:
+
+```python
+friends = ["Mary", "Toya", "Fernand"]
+for name in friends:
+	print(name + "is a perfectly fine name")
+```
+
+This will allow you to automate the boring repetitive tasks!
+
+### Custom functions
+
+We can create our own custom functions to reuse later on:
+
+```python
+def my_function(arg1, arg2):
+	prod = arg1 * arg2
+	sum = prod + 10
+	return sum
+my_function(3, 5)
+```
+
+We have to specify the function **name**, what **arguments** are available, what **operations** we do with them, and what the function **returns**.
+
+### More visualisations
 
 Executing several lines together will render everything on the same visualisation. See for example this code that plots two lines together, modifies axis ranges, adds a legend and styles axis labels with LaTex, and saves to pdf:
 
@@ -248,94 +371,3 @@ plt.boxplot(x)
 ```
 
 > You can also use `subplot()` with three separate arguments, e.g. `subplot(3, 3, 7)`
-
-## Example project
-
-### Create a new project
-
-Create a project with `Projects > New project...`
-
-### Create a script
-
-Click on  the "New file" icon, and save it as "process.py" in your project directory.
-
-Remember to add comments (they start with the `#` symbol) to document your work.
-
-To execute something from the script (the current line, or a selected block), use the <kbd>F9</kbd> keyboard shortcut.
-
-### Import data
-
-It is possible to read a CSV file with a Pandas function:
-
-```python
-import pandas as pd
-data = pd.read_csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
-```
-
-Now that we have stored our dataset as a variable, we can use the "dot notation" to create commands that are useful to explore the data:
-
-```python
-data.shape
-data.head()
-data.tail()
-data.country
-```
-
-Variables have **attributes** and **methods** attached to them, depending on the data type. Here, `shape` is a method, i.e. a static characteristic of the variable, whereas `head()` is a method, i.e. a function that can often take arguments.
-
-### Analyse data
-
-```python
-data.describe()
-data.groupby(by = "year").mean()
-```
-
-### Visualise data
-
-```python
-import matplotlib.pyplot as plt
-plt.plot(data.gdpPercap, data.lifeExp, "go")
-plt.plot(data.groupby(by = "year").mean().lifeExp)
-```
-
-You can save you plots as PNG by right-clicking on them. To save automatically with some code, you add the following line:
-
-```python
-plt.savefig("myPlot.pdf")
-```
-
-> Make sure that you execute the code that generates the plot *together* with the code that saves the file.
-
-## Saving your work
-
-You project can be reopened from the "Projects" menu in Spyder.
-
-By default, your variables are *not* saved, which is another reason why working with a script is important. You can however save your variables as a `.spydata` file if you want to.
-
-## Extras
-
-Here are some extras that usually don't fit in this session, but that you might be interested in to go further with Python.
-
-### Loops
-
-A "for loop" will execute something for each element of a list:
-
-```python
-friends = ["Mary", "Toya", "Fernand"]
-for name in friends:
-	print(name + "is a perfectly fine name")
-```
-
-### Custom functions
-
-We can create our own custom functions to reuse later on:
-
-```python
-def my_function(arg1, arg2):
-	prod = arg1 * arg2
-	sum = prod + 10
-	return sum
-my_function(3, 5)
-```
-
-We have to specify the function **name**, what **arguments** are available, what **operations** we do with them, and what the function **returns**.
