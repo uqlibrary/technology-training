@@ -1,12 +1,12 @@
 ---
 Title: DSH resources
 Author: Stéphane Guillou
-Date: 2019-03-14
+Date: 2019-03-29
 ---
 
 ## Description
 
-Here you will find resources related to R, Python, Shell, Git, OpenStreetMap, QGIS and OpenRefine sessions held at the [Digital Scholars Hub](https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship) (DSH, part of the University of Queensland's Library).
+Here you will find resources related to R, Python, Shell, Git, OpenStreetMap, QGIS and OpenRefine sessions held at the Digital Scholars Hub (DSH, part of the University of Queensland's Library).
 
 ### Format
 
@@ -37,9 +37,9 @@ Files available for each course, hosted in this repository:
 | QGIS: introduction to mapping | [md](QGIS/QGIS_intro.md) | ... | [html](https://etherpad.wikimedia.org/p/cds-qgis) |
 | next: Open Source tools for your research | ... | ... | ... |
 
-## License
+## Licence
 
-All of the information on this repository (https://gitlab.com/stragu/CDS/) is freely available under the [Creative Commons - Attribution 4.0 International Licence](https://creativecommons.org/licenses/by/4.0/). You may re-use and re-mix the material in any way you wish, without asking permission, provided you cite the original source.
+All of the information on this repository (https://gitlab.com/stragu/CDS/) is freely available under the [Creative Commons - Attribution 4.0 International Licence](https://creativecommons.org/licenses/by/4.0/). You may re-use and re-mix the material in any way you wish, without asking permission, provided you cite the original source. However, we'd love to hear about what you do with it!
 
 Part of this repository is based on [Paul Andrea Martinez](https://orcid.org/0000-0002-8990-1985)'s work [available under the same CC-By-4.0 licence](https://github.com/orchid00/CDS).
 
@@ -49,4 +49,4 @@ If you have questions about contributing to the material, please contact the DSH
 
 ## Contact
  
-If you want to contact the DSH for a 1-on-1 consultation, an enquiry about sessions, or any question about the programs supported by the library: cds@library.uq.edu.au.
+If you want to contact the DSH for a 1-on-1 consultation, an enquiry about sessions, or any question about the programs supported by the library: training@library.uq.edu.au.
