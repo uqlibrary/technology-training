@@ -308,25 +308,16 @@ praise() # use a function from the package
 
 Even though you might need the motivation provided by this function, other packages are more useful for your work. For example, the package `ggplot2` introduces a logic that makes data visualisation more streamlined, called "Grammar of graphics". We present this package in other sessions.
 
-# Close Rproject
+### Close RStudio
 
-* File
-* close project (It asks if you want to save your data)
-* close RStudio
+You can close RStudio after making sure that you saved your script.
 
-When you create a **project** in RStudio, it create an .Rproj file that gathers information about your project, and it allows you to save your **workspace** inside an .Rdata file. The .Rdata file is by default used to reload your workspace when you open your Rproject again. That brings back quite a few things, including the objects loaded in your **environment**, whatever source file (e.g. script) you had open, and your command history. You will find your command history in the "History" tab (upper right panel): all the commands that we used should be in there.
+When you create a **project** in RStudio, it create an .Rproj file that gathers information about your project, and it allows you to save your **workspace** inside an .Rdata file. The .Rdata file is by default used to reload your workspace when you open your Rproject again (i.e. the objects in your **environment**). Rprojects also bring back whatever source file (e.g. script) you had open, and your command history. You will find your command history in the "History" tab (upper right panel): all the commands that we used should be in there.
 
-The console, on the other hand, only shows a brand new R **session**. Sessions are not persistent, and a new one is started when you open your project again, which is why you have to load any extra package your work requires again with the `library()` function.
+If you have a script that contains all your work, it is a good idea _not_ to save your workspace: it makes it less likely to run into errors because of accumulating objects. The script will allow you to get back to where you left it, by executing all the clearly laid-out steps.
 
-## Important links
+The console, on the other hand, only shows a brand new R **session** when you reopen RStudio. Sessions are not persistent, and a new one is started when you open your project again, which is why you have to load any extra package your work requires again with the `library()` function.
 
-* RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
-* RStudio online learning https://www.rstudio.com/online-learning/
-* Basic and advanced manuals https://cran.r-project.org/manuals.html
-* Ask about any function or package http://www.rdocumentation.org/
-* If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
-* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in with your organisational portal, https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses)
-* ANOVA in R http://homepages.inf.ed.ac.uk/bwebb/statistics/ANOVA_in_R.pdf or https://rcompanion.org/rcompanion/e_01.html
-* R gapminder csv https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv
-* If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. 
-https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
+## What next?
+
+We have a compilation of links for the rest of your R learning: https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md
