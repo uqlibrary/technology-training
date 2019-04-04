@@ -1,0 +1,238 @@
+---
+title: 'R and the Tidyverse: next steps'
+author: "Stéphane Guillou"
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+> This document is redacted in R Markdown; the source file is available here: https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/tidyverse_next_steps.Rmd
+> It is then knitted as a markdown file, which is the best version to view online and to print: https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/tidyverse_next_steps.md
+
+## Setting up
+
+> If you want to review the installation instructions: https://gitlab.com/stragu/DSH/blob/master/R/Installation.md
+
+* If you are using your own laptop please open RStudio
+    + Make sure you have a working Internet connection
+* On the Library's training computers:
+    + Log in with your UQ username and password
+    + Make sure you have a working Internet connection
+    + Open the ZENworks application
+    + Look for "RStudio"
+    + Double click on RStudio, which will install both R and RStudio 
+With RStudio open, let's make sure we have the necessary packages installed by running this command (this might take a few minutes):
+
+```{r eval=FALSE}
+install.packages("tidyverse")
+```
+
+This will install the 8 core Tidyverse packages (and their dependencies).
+
+## What are we going to learn?
+
+tidyr and purrr, just like dplyr and ggplot2, are core to the Tidyverse.
+
+* tidyr can be used to tidy your data
+* purrr is useful to apply functions iteratively on lists or vectors
+
+## Create a project and a script
+
+Use the project menu (top right) to create a "New project...". Let's name this one "tidyverse_inter".
+
+We also want to work more comfortably by typing our code in a script. You can use the new file dropdown menu, or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>, and save your script as "process.R" in the current working directory.
+
+## Load the necessary packages
+
+We can use one single command to load the core Tidyverse packages:
+
+```{r}
+library(tidyverse)
+```
+
+## Tidy data
+
+Tidy data makes it easy to transform and analyse data in R (and many other tools). Tidy data has observations in rows, and variables in columns. The whole Tidyverse is designed to work with tidy data.
+
+### Reshaping data
+
+Often, a dataset is organised in a way that makes it easy for humans to read and populate. This is called wide format. Tidy data is in long format.
+
+#### Gathering
+
+To go from wide format to long format, we can use the tidyr function `gather()`:
+
+```{r}
+# data originally from:
+# https://datacatalog.worldbank.org/dataset/climate-change-data
+# download data
+download.file(url = "https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/data_who_climate.csv",
+              destfile = "")
+climate_raw <- read_csv("data_who_climate.csv",
+                    na = "..")
+climate_long <- gather(climate_raw,
+                       key = "year",
+                       value = "value",
+                       `1990`:`2011`,
+                       convert = TRUE)
+```
+
+### Spreading
+
+To do the opposite, going from long to wide format, we can use the `spread()` function.
+
+We have single observations spread across several rows, so we can spread the data.
+
+First, let's keep a record of the correspondence between long descriptive variable names and their "code", for later reference:
+
+```{r}
+codes <- unique(climate_long[,c("Series code", "Series name")])
+codes
+```
+
+Now, let's spread the data:
+
+```{r}
+climate_tidy <- climate_long %>% 
+  select(-`Series name`, -SCALE, -Decimals) %>% 
+  spread(key = `Series code`,
+         value = value)
+```
+
+Now we can use the Tidyverse functions more easily:
+
+```{r}
+climate_tidy %>% 
+  ggplot(aes(x = year,
+             y = EN.ATM.CO2E.KT,
+             group = `Country name`)) +
+  geom_line()
+```
+
+Let's have  a look at the increase in lobal CO2 emission in KT:
+
+```{r}
+climate_tidy %>% 
+  group_by(year) %>% 
+  summarise(CO2 = sum(EN.ATM.CO2E.KT, na.rm = TRUE)) %>% 
+  ggplot(aes(x = year, y = CO2)) +
+  geom_point()
+```
+
+Looks like our data is incomplete from 2006, so let's remove that:
+
+```{r}
+climate_tidy %>% 
+  group_by(year) %>% 
+  summarise(CO2 = sum(EN.ATM.CO2E.KT, na.rm = TRUE)) %>%
+  filter(year < 2006) %>% 
+  ggplot(aes(x = year, y = CO2)) +
+  geom_point()
+```
+
+## Functional programming
+
+Functional programming (as opposed to "imperative programming") makes use of functions rather than loops to iterate over objects.
+The functions will allow to simplify our code, by abstracting common building blocks used in different cases of iteration. However, it means that there will usually be a different function for each different pattern.
+
+You can iterate over elements by using:
+
+1. the basic building blocks in R (for loops, while loops...), or
+2. the `apply` function family, or
+3. the purrr functions.
+
+Here is an example of a for loop:
+
+```{r}
+output <- vector("double", ncol(mtcars))
+for (i in seq_along(mtcars)) {
+  output[[i]] <- mean(mtcars[[i]])
+}
+output
+```
+
+Better than having the same code repeated 11 times!
+
+We allocate space in the expected **output** first (more efficient). We then specify the **sequence** for the loop, and put what we want to iterate in the **body**.
+
+The apply family in base R is handy, but the purrr functions are easiers to learn because they are more consistent.
+
+Here's our third option: purrr offers several functions to iterate functions over elements in a vector or a list.
+
+### The map family
+
+* `map()` makes a list.
+* `map_lgl()` makes a logical vector.
+* `map_int()` makes an integer vector.
+* `map_dbl()` makes a double vector.
+* `map_chr()` makes a character vector.
+
+For example, to do a similar operation to our previous for loop:
+
+```{r}
+car_means <- map_dbl(mtcars, mean)
+car_means
+typeof(car_means)
+```
+The map functions automatically name the resulting vectors, which is particularly handy.
+
+We can use extra arguments to pass to the function:
+
+```{r}
+map_dbl(mtcars, mean, trim = 0.2)
+map_lgl(starwars, is_character)
+```
+
+Just like most functions in the Tidyverse, the first argument is the data that we want to process (which means we can use the pipe). The second argument is the name of the function we want to apply, but it can also be a custom formula. For example:
+
+```{r}
+map_dbl(mtcars, ~ round(max(.x)))
+map_int(starwars, ~ length(unique(.x)))
+```
+We have to use the tilde `~` to introduce a custom function, and `.x` to use the vector being processed.
+
+To split a dataset an apply an operation to separate parts, we can use the `split()` function:
+
+```{r}
+unique(mtcars$cyl)
+mtcars %>% 
+  split(.$cyl) %>% # separate in three parts
+  map(summary) # applied to each data.frame
+```
+
+Using purrr functions with ggplot2 functions allows us to generate several plots in one function:
+
+```{r}
+mtcars %>% 
+  split(.$cyl) %>% 
+  map(~ggplot(., aes(mpg, wt)) + geom_point())
+```
+
+### Predicate functions
+
+Purrr also contains functions that return a boolean.
+
+```{r}
+str(iris)
+iris %>%
+  map_dbl(mean) # NA for Species
+iris %>%
+  discard(is.factor) %>% 
+  map_dbl(mean) # clean!
+starwars %>% 
+  keep(is.character) %>% 
+  map_int(~length(unique(.)))
+```
+
+To return everything, but apply a function only if a condition is met, we can use `map_if()`:
+
+```{r}
+str(iris)
+iris %>%
+  map_if(is.numeric, round) %>% 
+  str()
+```
+
