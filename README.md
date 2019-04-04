@@ -23,7 +23,7 @@ Files available for each course, hosted in this repository:
 
 | Title | Course notes | Event description | Live collaborative pad |
 |:-|:-:|:-:|:-:|
-| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) | [txt](R/rstudio_intro/rstudio_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-rstudio) |
+| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) | [txt](R/rstudio_intro/rstudio_intro_description.txt) | [html](https://demo.codimd.org/s/rkfyJemYE) |
 | R data manipulation with RStudio and dplyr: an introduction | [md](R/dplyr/dplyr.md) | [txt](R/dplyr/dplyr_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-dplyr) |
 | R data visualisation with RStudio and ggplot2: an introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [txt](R/ggplot2_intro/ggplot2_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-intro) |
 | R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [txt](R/ggplot2_intermediate/ggplot2_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-inter) |
