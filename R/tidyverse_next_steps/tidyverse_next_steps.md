@@ -17,9 +17,7 @@ Setting up
     -   Make sure you have a working Internet connection
     -   Open the ZENworks application
     -   Look for "RStudio"
-    -   Double click on RStudio, which will install both R and RStudio
-
-With RStudio open, let's make sure we have the necessary packages installed by running this command (this might take a few minutes):
+    -   Double click on RStudio, which will install both R and RStudio With RStudio open, let's make sure we have the necessary packages installed by running this command (this might take a few minutes):
 
 ``` r
 install.packages("tidyverse")
@@ -40,7 +38,7 @@ Create a project and a script
 
 Use the project menu (top right) to create a "New project...". Let's name this one "tidyverse\_inter".
 
-We also want to work more comfortably by typing our code in a script. You can use the new file dropdown menu, or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>.
+We also want to work more comfortably by typing our code in a script. You can use the new file dropdown menu, or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>, and save your script as "process.R" in the current working directory.
 
 Load the necessary packages
 ---------------------------
@@ -76,8 +74,11 @@ Often, a dataset is organised in a way that makes it easy for humans to read and
 To go from wide format to long format, we can use the tidyr function `gather()`:
 
 ``` r
-# data from:
+# data originally from:
 # https://datacatalog.worldbank.org/dataset/climate-change-data
+# download data
+download.file(url = "https://gitlab.com/stragu/DSH/raw/master/R/tidyverse_next_steps/data_who_climate.csv",
+              destfile = "data_who_climate.csv")
 climate_raw <- read_csv("data_who_climate.csv",
                     na = "..")
 ```
@@ -159,7 +160,11 @@ climate_tidy %>%
 
 ![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
-Looks like our data is incomplete from 2006, so let's remove that:
+#### Challenge 1
+
+Looks like our data is incomplete from 2006, so how can we remove that?
+
+We can add this extra step:
 
 ``` r
 climate_tidy %>% 
@@ -263,6 +268,12 @@ map_dbl(mtcars, ~ round(max(.x)))
     ##  mpg  cyl disp   hp drat   wt qsec   vs   am gear carb 
     ##   34    8  472  335    5    5   23    1    1    5    8
 
+We have to use the tilde `~` to introduce a custom function, and `.x` to use the vector being processed.
+
+#### Challenge 2
+
+How can we find out the number of unique values in each variable of the `starwars` data.frame?
+
 ``` r
 map_int(starwars, ~ length(unique(.x)))
 ```
@@ -273,8 +284,6 @@ map_int(starwars, ~ length(unique(.x)))
     ##         37          5         49         38         24         11 
     ##  starships 
     ##         17
-
-We have to use the tilde `~` to introduce a custom function, and `.x` to use the vector being processed.
 
 To split a dataset an apply an operation to separate parts, we can use the `split()` function:
 
@@ -369,17 +378,17 @@ mtcars %>%
 
     ## $`4`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-14-1.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
     ## 
     ## $`6`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-14-2.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-15-2.png)
 
     ## 
     ## $`8`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-14-3.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-15-3.png)
 
 ### Predicate functions
 

@@ -69,8 +69,8 @@ To go from wide format to long format, we can use the tidyr function `gather()`:
 # data originally from:
 # https://datacatalog.worldbank.org/dataset/climate-change-data
 # download data
-download.file(url = "https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/data_who_climate.csv",
-              destfile = "")
+download.file(url = "https://gitlab.com/stragu/DSH/raw/master/R/tidyverse_next_steps/data_who_climate.csv",
+              destfile = "data_who_climate.csv")
 climate_raw <- read_csv("data_who_climate.csv",
                     na = "..")
 climate_long <- gather(climate_raw,
@@ -122,7 +122,11 @@ climate_tidy %>%
   geom_point()
 ```
 
-Looks like our data is incomplete from 2006, so let's remove that:
+#### Challenge 1
+
+Looks like our data is incomplete from 2006, so how can we remove that?
+
+We can add this extra step:
 
 ```{r}
 climate_tidy %>% 
@@ -190,9 +194,17 @@ Just like most functions in the Tidyverse, the first argument is the data that w
 
 ```{r}
 map_dbl(mtcars, ~ round(max(.x)))
+```
+
+We have to use the tilde `~` to introduce a custom function, and `.x` to use the vector being processed.
+
+#### Challenge 2
+
+How can we find out the number of unique values in each variable of the `starwars` data.frame?
+
+```{r}
 map_int(starwars, ~ length(unique(.x)))
 ```
-We have to use the tilde `~` to introduce a custom function, and `.x` to use the vector being processed.
 
 To split a dataset an apply an operation to separate parts, we can use the `split()` function:
 
