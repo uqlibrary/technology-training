@@ -69,9 +69,9 @@ To go from wide format to long format, we can use the tidyr function `gather()`:
 # data originally from:
 # https://datacatalog.worldbank.org/dataset/climate-change-data
 # download data
-download.file(url = "https://gitlab.com/stragu/DSH/raw/master/R/tidyverse_next_steps/data_who_climate.csv",
-              destfile = "data_who_climate.csv")
-climate_raw <- read_csv("data_who_climate.csv",
+download.file(url = "https://gitlab.com/stragu/DSH/raw/master/R/tidyverse_next_steps/data_wb_climate.csv",
+              destfile = "data_wb_climate.csv")
+climate_raw <- read_csv("data_wb_climate.csv",
                     na = "..")
 climate_long <- gather(climate_raw,
                        key = "year",
