@@ -67,19 +67,31 @@ Tidy data makes it easy to transform and analyse data in R (and many other tools
 
 ### Reshaping data
 
-Often, a dataset is organised in a way that makes it easy for humans to read and populate. This is called wide format. Tidy data is in long format.
+Often, a dataset is organised in a way that makes it easy for humans to read and populate. This is called wide format. Tidy data is `usually` in "long" format.
 
-#### Gathering
+The ultimate rules of tidy data are:
 
-To go from wide format to long format, we can use the tidyr function `gather()`:
+-   Each row is an observation
+-   Each column is a variable
+-   Each cell contains one single value
+
+#### Download data
+
+We are using a dataset from the [World Bank](https://datacatalog.worldbank.org/dataset/climate-change-data).
+
+Let's download the file:
 
 ``` r
-# data originally from:
-# https://datacatalog.worldbank.org/dataset/climate-change-data
-# download data
-download.file(url = "https://gitlab.com/stragu/DSH/raw/master/R/tidyverse_next_steps/data_who_climate.csv",
-              destfile = "data_who_climate.csv")
-climate_raw <- read_csv("data_who_climate.csv",
+# download data, save locally
+download.file(url = "https://gitlab.com/stragu/DSH/raw/master/R/tidyverse_next_steps/data_wb_climate.csv",
+              destfile = "data_wb_climate.csv")
+```
+
+... and read the data into an object:
+
+``` r
+# read CSV into an object
+climate_raw <- read_csv("data_wb_climate.csv",
                     na = "..")
 ```
 
@@ -95,6 +107,12 @@ climate_raw <- read_csv("data_who_climate.csv",
 
     ## See spec(...) for full column specifications.
 
+You can use `View()` to explore your dataset. We can see that it doesn't respect the tidy data principles in a couple of ways, the most obvious one being that different years are spread out between different columns.
+
+#### Gathering
+
+To go from wide format to long format, we can use the tidyr function `gather()`:
+
 ``` r
 climate_long <- gather(climate_raw,
                        key = "year",
@@ -102,6 +120,8 @@ climate_long <- gather(climate_raw,
                        `1990`:`2011`,
                        convert = TRUE)
 ```
+
+This is better, but there is still an issue: our `value` variable contains many different indicators.
 
 ### Spreading
 
@@ -125,7 +145,9 @@ codes
     ## 4 EN.ATM.CO2E.PC      CO2 emissions per capita (metric tons)               
     ## 5 EN.ATM.CO2E.PP.GD.… CO2 emissions per units of GDP (kg/$1,000 of 2005 PP…
 
-Now, let's spread the data:
+This will be our key to variable details, for future reference.
+
+Now, let's spread the data (and remove some useless columns with `dplyr::select()`):
 
 ``` r
 climate_tidy <- climate_long %>% 
@@ -134,7 +156,7 @@ climate_tidy <- climate_long %>%
          value = value)
 ```
 
-Now we can use the Tidyverse functions more easily:
+Now we can use the Tidyverse functions more easily! For example, to visualise the increase in KT of CO<sup>2</sup> for each country:
 
 ``` r
 climate_tidy %>% 
@@ -146,9 +168,9 @@ climate_tidy %>%
 
     ## Warning: Removed 1139 rows containing missing values (geom_path).
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
-Let's have a look at the increase in lobal CO2 emission in KT:
+Let's have a look at the increase in *global* CO<sup>2</sup> emissions in KT:
 
 ``` r
 climate_tidy %>% 
@@ -158,7 +180,7 @@ climate_tidy %>%
   geom_point()
 ```
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 #### Challenge 1
 
@@ -175,7 +197,7 @@ climate_tidy %>%
   geom_point()
 ```
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 Functional programming
 ----------------------
@@ -185,7 +207,7 @@ Functional programming (as opposed to "imperative programming") makes use of fun
 You can iterate over elements by using:
 
 1.  the basic building blocks in R (for loops, while loops...), or
-2.  the `apply` function family, or
+2.  the `apply` function family from base R, or
 3.  the purrr functions.
 
 Here is an example of a for loop:
@@ -203,11 +225,11 @@ output
 
 Better than having the same code repeated 11 times!
 
-We allocate space in the expected **output** first (more efficient). We then specify the **sequence** for the loop, and put what we want to iterate in the **body**.
+We allocate space in the expected **output** first (more efficient). We then specify the **sequence** for the loop, and put what we want to iterate in the loop **body**.
 
 The apply family in base R is handy, but the purrr functions are easiers to learn because they are more consistent.
 
-Here's our third option: purrr offers several functions to iterate functions over elements in a vector or a list.
+Here's our third option: purrr offers several tools to iterate functions over elements in a vector or a list.
 
 ### The map family
 
@@ -235,9 +257,11 @@ typeof(car_means)
 
     ## [1] "double"
 
-The map functions automatically name the resulting vectors, which is particularly handy.
+A lot leaner, right?
 
-We can use extra arguments to pass to the function:
+The map functions automatically name the resulting vectors, which makes the result easier to read.
+
+We can use extra arguments to pass to the iterated function:
 
 ``` r
 map_dbl(mtcars, mean, trim = 0.2)
@@ -285,7 +309,7 @@ map_int(starwars, ~ length(unique(.x)))
     ##  starships 
     ##         17
 
-To split a dataset an apply an operation to separate parts, we can use the `split()` function:
+To split a dataset and apply an operation to separate parts, we can use the `split()` function:
 
 ``` r
 unique(mtcars$cyl)
@@ -368,7 +392,7 @@ mtcars %>%
     ##  3rd Qu.:0.0000   3rd Qu.:3.000   3rd Qu.:4.00  
     ##  Max.   :1.0000   Max.   :5.000   Max.   :8.00
 
-Using purrr functions with ggplot2 functions allows us to generate several plots in one function:
+Using purrr functions with ggplot2 functions allows us to generate several plots in one command:
 
 ``` r
 mtcars %>% 
@@ -378,21 +402,21 @@ mtcars %>%
 
     ## $`4`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-15-1.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-17-1.png)
 
     ## 
     ## $`6`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-15-2.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-17-2.png)
 
     ## 
     ## $`8`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-15-3.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-17-3.png)
 
 ### Predicate functions
 
-Purrr also contains functions that return a boolean.
+Purrr also contains functions that return a boolean, so we can set up conditions before iterating.
 
 ``` r
 str(iris)
@@ -461,3 +485,28 @@ iris %>%
     ##  $ Petal.Length: num [1:150] 1 1 1 2 1 2 1 2 1 2 ...
     ##  $ Petal.Width : num [1:150] 0 0 0 0 0 0 0 0 0 0 ...
     ##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+
+This results in a list in which the elements are rounded only if they store numeric data.
+
+Now, let's see another example with our climate dataset. In this one, we use functions from dplyr, purrr, tibble and ggplot2.
+
+``` r
+# cumulative CO2 emissions
+climate_cumul <- climate_tidy %>% 
+  group_by(`Country name`) %>%
+  arrange(year) %>% 
+  mutate(cumul.CO2 = cumsum(EN.ATM.CO2E.KT)) %>% 
+  map_if(is.numeric, round, digits = 1) %>% 
+  as_tibble() # from list to tibble
+# visualise it
+ggplot(climate_cumul) +
+  aes(x = year,
+      y = cumul.CO2,
+      colour = `Country name`) +
+  geom_line() +
+  theme(legend.position = "none")
+```
+
+    ## Warning: Removed 1606 rows containing missing values (geom_path).
+
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-20-1.png)
