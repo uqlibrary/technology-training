@@ -6,7 +6,7 @@
 
 ## Tutorials
 
-* _R for Data Science_, excellent free online book: http://r4ds.had.co.nz/
+* _R for Data Science_, excellent free online book by Garrett Grolemund and Hadley Wickham: http://r4ds.had.co.nz/
 * _R for Reproducible Scientific Analysis_, two introduction materials to R by The Carpentries: https://swcarpentry.github.io/r-novice-gapminder/ and https://datacarpentry.org/R-ecology-lesson/
 * `swirl` is a package that allows you to learn R interactively in an R session: https://swirlstats.com/
 * RStudio's _Online Learning_ page lists useful resources: https://www.rstudio.com/online-learning/
@@ -19,6 +19,7 @@
 ### Data visualisation
 
 * _The R Graph Gallery_ for categorised examples and code: https://www.r-graph-gallery.com/
+* _Interactive web-based data visualization with R, plotly, and shiny_, free online book by Carson Sievert: https://plotly-r.com/
 
 ## Questions and answers
 
