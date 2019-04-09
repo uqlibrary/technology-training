@@ -1,7 +1,7 @@
 R and the Tidyverse: next steps
 ================
 Stéphane Guillou
-2019-04-05
+2019-04-09
 
 > This document is redacted in R Markdown; the source file is available here: <https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/tidyverse_next_steps.Rmd> It is then knitted as a markdown file, which is the best version to view online and to print: <https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/tidyverse_next_steps.md>
 
@@ -65,9 +65,7 @@ Tidy data
 
 Tidy data makes it easy to transform and analyse data in R (and many other tools). Tidy data has observations in rows, and variables in columns. The whole Tidyverse is designed to work with tidy data.
 
-### Reshaping data
-
-Often, a dataset is organised in a way that makes it easy for humans to read and populate. This is called wide format. Tidy data is `usually` in "long" format.
+Often, a dataset is organised in a way that makes it easy for humans to read and populate. This is called wide format. Tidy data is *usually* in "long" format.
 
 The ultimate rules of tidy data are:
 
@@ -75,7 +73,7 @@ The ultimate rules of tidy data are:
 -   Each column is a variable
 -   Each cell contains one single value
 
-#### Download data
+### Import data
 
 We are using a dataset from the [World Bank](https://datacatalog.worldbank.org/dataset/climate-change-data).
 
@@ -109,6 +107,8 @@ climate_raw <- read_csv("data_wb_climate.csv",
 
 You can use `View()` to explore your dataset. We can see that it doesn't respect the tidy data principles in a couple of ways, the most obvious one being that different years are spread out between different columns.
 
+### Reshaping data
+
 #### Gathering
 
 To go from wide format to long format, we can use the tidyr function `gather()`:
@@ -123,7 +123,7 @@ climate_long <- gather(climate_raw,
 
 This is better, but there is still an issue: our `value` variable contains many different indicators.
 
-### Spreading
+#### Spreading
 
 To do the opposite, going from long to wide format, we can use the `spread()` function.
 
@@ -156,7 +156,39 @@ climate_tidy <- climate_long %>%
          value = value)
 ```
 
-Now we can use the Tidyverse functions more easily! For example, to visualise the increase in KT of CO<sup>2</sup> for each country:
+### Cleaning data
+
+Turns out this dataset contains grouped data as well as unique countries. We can have a look at the list with:
+
+``` r
+unique(climate_tidy$`Country name`)
+```
+
+We can create a list of grouped countries, and remove them from the data:
+
+``` r
+groups <- c("Europe & Central Asia",
+            "East Asia & Pacific",
+            "Euro area",
+            "High income",
+            "Lower middle income",
+            "Low income",
+            "Low & middle income",
+            "Middle income",
+            "Middle East & North Africa",
+            "Latin America & Caribbean",
+            "South Asia",
+            "Small island developing states",
+            "Sub-Saharan Africa",
+            "Upper middle income",
+            "World")
+climate_tidy <- climate_tidy %>% 
+  filter(!`Country name` %in% groups)
+```
+
+### Visualising
+
+Now that we have clean, tidy data, we can process and visualise our data more comfortably! For example, to visualise the increase in KT of CO<sup>2</sup> for each country:
 
 ``` r
 climate_tidy %>% 
@@ -166,9 +198,9 @@ climate_tidy %>%
   geom_line()
 ```
 
-    ## Warning: Removed 1139 rows containing missing values (geom_path).
+    ## Warning: Removed 1091 rows containing missing values (geom_path).
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 Let's have a look at the increase in *global* CO<sup>2</sup> emissions in KT:
 
@@ -180,11 +212,11 @@ climate_tidy %>%
   geom_point()
 ```
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
 #### Challenge 1
 
-Looks like our data is incomplete from 2006, so how can we remove that?
+Looks like our data is missing after 2008, so how can we remove that?
 
 We can add this extra step:
 
@@ -192,12 +224,12 @@ We can add this extra step:
 climate_tidy %>% 
   group_by(year) %>% 
   summarise(CO2 = sum(EN.ATM.CO2E.KT, na.rm = TRUE)) %>%
-  filter(year < 2006) %>% 
+  filter(year < 2009) %>% 
   ggplot(aes(x = year, y = CO2)) +
   geom_point()
 ```
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 Functional programming
 ----------------------
@@ -402,17 +434,17 @@ mtcars %>%
 
     ## $`4`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-17-1.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
     ## 
     ## $`6`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-17-2.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-19-2.png)
 
     ## 
     ## $`8`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-17-3.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-19-3.png)
 
 ### Predicate functions
 
@@ -507,6 +539,6 @@ ggplot(climate_cumul) +
   theme(legend.position = "none")
 ```
 
-    ## Warning: Removed 1606 rows containing missing values (geom_path).
+    ## Warning: Removed 1541 rows containing missing values (geom_path).
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-20-1.png)
+![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-22-1.png)
