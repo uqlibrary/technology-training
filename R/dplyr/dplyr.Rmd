@@ -107,10 +107,9 @@ nlevels(gapminder$country)
 class(gapminder$country)
 ```
 
-If we want nicer printing, we can convert our dataframe to a "tibble":
+If we want nicer printing, we can convert our dataframe to a "tibble". You can install the `tibble` package with `install.packages(tibble)` and then run:
 
-```{r eval=FALSE}
-install.packages(tibble)
+```{r}
 library(tibble)
 gapminder <- as_tibble(gapminder)
 ```
