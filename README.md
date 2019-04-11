@@ -1,7 +1,7 @@
 ---
 Title: DSH resources
 Author: Stéphane Guillou
-Date: 2019-03-29
+Date: 2019-04-12
 ---
 
 ## Description
@@ -24,10 +24,11 @@ Files available for each course, hosted in this repository:
 | Title | Course notes | Event description | Live collaborative pad |
 |:-|:-:|:-:|:-:|
 | R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) | [txt](R/rstudio_intro/rstudio_intro_description.txt) | [html](https://demo.codimd.org/s/rkfyJemYE) |
-| R data manipulation with RStudio and dplyr: an introduction | [md](R/dplyr/dplyr.md) | [txt](R/dplyr/dplyr_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-dplyr) |
+| R data manipulation with RStudio and dplyr: an introduction | [md](R/dplyr/dplyr.md) <sup>[source](R/dplyr/dplyr.Rmd)</sup> | [txt](R/dplyr/dplyr_description.txt) | [html](https://demo.codimd.org/s/HyyLCm3KN) |
 | R data visualisation with RStudio and ggplot2: an introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [txt](R/ggplot2_intro/ggplot2_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-intro) |
 | R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [txt](R/ggplot2_intermediate/ggplot2_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-inter) |
-| R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps_intermediate.Rmd)</sup> | [txt](R/heatmaps/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
+| R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps/heatmaps_intermediate.Rmd)</sup> | [txt](R/heatmaps/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
+| R and the Tidyverse: next steps | [md](R/tidyverse_next_steps/tidyverse_next_steps.md) <sup>[source](R/tidyverse_next_steps/tidyverse_next_steps.Rmd)</sup> | [txt](R/tidyverse_next_steps/tidyverse_next_steps_description.txt) | [html](https://demo.codimd.org/s/BkQCcmiOV) |
 | Unix Shell: an introduction | [md](Shell/shell_intro.md) | [txt](Shell/shell_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-shell) |
 | Git version control for collaboration | [md](Git/git.md) | [txt](Git/git_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-git) |
 | OpenRefine: an introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [txt](OpenRefine/openrefine_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-openrefine) |
@@ -36,10 +37,13 @@ Files available for each course, hosted in this repository:
 | OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [txt](OSM/OpenStreetMap_description.txt) | [html](https://cryptpad.fr/pad/#/2/pad/edit/ZwpBgdie-YBBXvDE68N53u2s/) |
 | QGIS: introduction to mapping | [md](QGIS/QGIS_intro.md) | ... | [html](https://etherpad.wikimedia.org/p/cds-qgis) |
 | next: Open Source tools for your research | ... | ... | ... |
+| next: Audacity | ... | ... | ... |
+| next: Python data manipulation | ... | ... | ... |
+| next: R programming essentials | ... | ... | ... |
 
 ## Licence
 
-All of the information on this repository (https://gitlab.com/stragu/CDS/) is freely available under the [Creative Commons - Attribution 4.0 International Licence](https://creativecommons.org/licenses/by/4.0/). You may re-use and re-mix the material in any way you wish, without asking permission, provided you cite the original source. However, we'd love to hear about what you do with it!
+All of the information on this repository (https://gitlab.com/stragu/DSH/) is freely available under the [Creative Commons - Attribution 4.0 International Licence](https://creativecommons.org/licenses/by/4.0/). You may re-use and re-mix the material in any way you wish, without asking permission, provided you cite the original source. However, we'd love to hear about what you do with it!
 
 Part of this repository is based on [Paul Andrea Martinez](https://orcid.org/0000-0002-8990-1985)'s work [available under the same CC-By-4.0 licence](https://github.com/orchid00/CDS).
 
