@@ -1,9 +1,7 @@
 R data manipulation with RStudio and dplyr: an introduction
 ================
 Stéphane Guillou
-2019-04-11
-
-If you want to review the installation instructions: <https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
+2019-04-12
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you are using Library computers.
 
@@ -41,6 +39,7 @@ Open RStudio
 ------------
 
 -   If you are using your own laptop please open RStudio
+-   If you want to review the installation instructions: <https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
 -   Make sure you have a working internet connection
 -   On Library computers (the first time takes about 10 min.):
     -   Log in with your UQ username (student if you have two) and password
@@ -50,12 +49,16 @@ Open RStudio
     -   Look for RStudio
     -   Double click on RStudio which will install both R and RStudio
 
-Material
---------
+Setting up
+----------
+
+### Install the dplyr package
+
+If you don't have it already, you can install dplyr with the command: `install.packages("dplyr")`
+
+> At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)", a meta-package useful for data science: `install.packages("tidyverse")`
 
 ### New project
-
-Exercise 1 - New RStudio project
 
 -   Click the "File" menu button (top left corner), then "New Project"
 -   Click "New Directory"
@@ -64,20 +67,15 @@ Exercise 1 - New RStudio project
 -   Select the folder where to locate your project: the `Documents/RProjects` folder, which you can create if it doesn't exist yet.
 -   Click the "Create Project" button
 
-### Setting up
+### Create a script
 
-Exercise 2 - create a script, install `dplyr`
+We will use a script to write code more comfortably.
 
 -   Menu: Top left corner, click the green "plus" symbol, or press the shortcut (for Windows/Linux) Ctrl+Shift+N or (for Mac) Cmd+Shift+N. This will open an "Untitled1" file.
 -   Go to "File &gt; Save" or press (for Windows/Linux) Ctrl+S or (for Mac) Cmd+S. This will ask where you want to save your file and the name of the new file.
--   Call your file "dplyr\_intro.R"
+-   Call your file "process.R"
 
-We can add a sequence of useful commands to our script as we go.
-
--   Install and load the `dplyr` package:
-    -   in the console, install the package: `install.packages("dplyr")`
-    -   While you wait for dplyr to be installed, check <https://www.rdocumentation.org> and type "dplyr" in the search
-    -   load the package:
+We can now load the package to access its functions (remember you can use <kbd>Ctrl</kbd>+<kbd>shift</kbd> to execute a command from the script):
 
 ``` r
 library(dplyr)
@@ -94,13 +92,13 @@ library(dplyr)
     ## 
     ##     intersect, setdiff, setequal, union
 
-> At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)", a meta-package of useful packages for data science:
-
-You only need to install a package once (with `install.packages()`), but you need to reload it every time you start a new R session (with `library()`).
+> You only need to install a package once (with `install.packages()`), but you need to reload it every time you start a new R session (with `library()`).
 
 ### Introducing our data
 
-Exercise 3 – import and explore data
+#### Challenge 1 – import data
+
+Let's import and explore our data.
 
 1.  read the data into an object called "gapminder", using `read.csv()`:
 
@@ -133,7 +131,8 @@ library(tibble)
 gapminder <- as_tibble(gapminder)
 ```
 
-### Basic dplyr verbs
+Basic dplyr verbs
+-----------------
 
 The R package `dplyr` was developed by Hadley Wickham for data manipulation.
 
@@ -151,7 +150,7 @@ The book *[R for Data Science](http://r4ds.had.co.nz)* introduces the package as
 
 To use the verbs to their full extent, we will need **pipes** and **logical operators**, which we will introduce as we go.
 
-#### Pick observations with `filter()`
+### Pick observations with `filter()`
 
 The `filter()` function allows use to pick observations depending on one ore several conditions.
 
@@ -196,7 +195,7 @@ dim(life80)
 
     ## [1] 21  6
 
-#### Reorder rows with `arrange()`
+### Reorder rows with `arrange()`
 
 If we want to have a look at the entries with highest GDP per capita:
 
@@ -219,7 +218,7 @@ arrange(gapminder, desc(gdpPercap))
     ## 10 Norway     2002 4535591 Europe       79.0    44684.
     ## # … with 1,694 more rows
 
-#### Pick variables with `select()`
+### Pick variables with `select()`
 
 Select allows use to pick variable (i.e. columns) from the dataset. For example, to only keep the data about year, country and GDP per capita:
 
@@ -353,7 +352,9 @@ The pipe operator can be read as "then" and makes the code a lot **more readable
 
 From now on, we'll use this syntax.
 
-Exercise 4 – Select the 2002 life expectancy observation for Eritrea (and remove the rest of the variables)
+#### Challenge 2 – a tiny dataset
+
+Select the 2002 life expectancy observation for Eritrea (and remove the rest of the variables).
 
 ``` r
 eritrea_2002 <- gapminder %>%
@@ -361,7 +362,7 @@ eritrea_2002 <- gapminder %>%
     filter(country == "Eritrea", year == 2002)
 ```
 
-#### Create new variables with `mutate()`
+### Create new variables with `mutate()`
 
 Have a look at what the verb `mutate()` can do with `?mutate`.
 
@@ -387,7 +388,9 @@ gapminder %>%
     ## 10      635. 22227415
     ## # … with 1,694 more rows
 
-Exercise 5 – use `mutate()` to create a `gdp` variable
+#### Challenge 3 – mutate the GDP
+
+Use `mutate()` to create a `gdp` variable.
 
 Name your new dataset `gap_gdp`. When finished, `dim(gap_gdp)` should result in `1704 7`.
 
@@ -437,7 +440,7 @@ Reuse a variable computed by 'mutate()' straight away:
     ## 10 Afghanistan  1997  2.22e7 Asia         41.8      635.     1.41e10 14122.
     ## # … with 1,694 more rows
 
-#### `group_by()` and `summarise()`
+### `group_by()` and `summarise()`
 
 `group_by()` changes the scope of each function from operating on the entire dataset to operating on it group-by-group. For example, to group by continents:
 
@@ -488,7 +491,9 @@ gapminder %>%
     ## 4 Europe      77.6
     ## 5 Oceania     80.7
 
-Exercise 6 – group by country, and find out the maximum life expectancy ever recorded
+#### Challenge 4 – max life expectancy
+
+Group by country, and find out the maximum life expectancy ever recorded
 
 Hint: `?max`
 
@@ -513,7 +518,8 @@ gapminder %>%
     ## 10 Belgium      79.4
     ## # … with 132 more rows
 
-#### More examples
+More examples
+-------------
 
 Another example of new variable with `mutate()`:
 
@@ -566,6 +572,7 @@ starwars %>%
 An example of data manipulation and data visualisation in the same command:
 
 ``` r
+# increase in population in Europe
 library(ggplot2)
 gapminder %>% 
   filter(continent == "Europe") %>%
@@ -578,14 +585,30 @@ gapminder %>%
 
 ![](dplyr_files/figure-markdown_github/unnamed-chunk-25-1.png)
 
-Close Rproject
---------------
+And another one, still using our gapminder dataset:
 
-If you want to close RStudio, you should save your project first.
+``` r
+# top and bottom variations in life expectancy
+gapminder %>% 
+  group_by(country) %>% 
+  summarise(maxLifeExp = max(lifeExp),
+            minLifeExp = min(lifeExp)) %>% 
+  mutate(dif = maxLifeExp - minLifeExp) %>% 
+  arrange(desc(dif)) %>% 
+  slice(1:10, (nrow(.)-10):nrow(.)) %>% 
+  ggplot(aes(x = reorder(country, dif), y = dif)) +
+  geom_col() +
+  coord_flip()
+```
 
--   File
--   close project (It will ask you if you want to save your history)
--   then, close RStudio
+![](dplyr_files/figure-markdown_github/unnamed-chunk-26-1.png)
+
+Close project
+-------------
+
+If you want to close RStudio, make sure you save your script first.
+
+You can then
 
 What next?
 ----------
