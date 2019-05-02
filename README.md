@@ -1,7 +1,6 @@
 ---
 Title: DSH resources
 Author: Stéphane Guillou
-Date: 2019-04-12
 ---
 
 ## Description
@@ -25,7 +24,7 @@ Files available for each course, hosted in this repository:
 |:-|:-:|:-:|:-:|
 | R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) | [txt](R/rstudio_intro/rstudio_intro_description.txt) | [html](https://demo.codimd.org/s/rkfyJemYE) |
 | R data manipulation with RStudio and dplyr: an introduction | [md](R/dplyr/dplyr.md) <sup>[source](R/dplyr/dplyr.Rmd)</sup> | [txt](R/dplyr/dplyr_description.txt) | [html](https://demo.codimd.org/s/HyyLCm3KN) |
-| R data visualisation with RStudio and ggplot2: an introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [txt](R/ggplot2_intro/ggplot2_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-intro) |
+| R data visualisation with RStudio and ggplot2: an introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [txt](R/ggplot2_intro/ggplot2_intro_description.txt) | [html](https://demo.codimd.org/s/rJIPr0vi4) |
 | R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [txt](R/ggplot2_intermediate/ggplot2_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-ggplot2-inter) |
 | R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps/heatmaps_intermediate.Rmd)</sup> | [txt](R/heatmaps/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
 | R and the Tidyverse: next steps | [md](R/tidyverse_next_steps/tidyverse_next_steps.md) <sup>[source](R/tidyverse_next_steps/tidyverse_next_steps.Rmd)</sup> | [txt](R/tidyverse_next_steps/tidyverse_next_steps_description.txt) | [html](https://demo.codimd.org/s/BkQCcmiOV) |
