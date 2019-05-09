@@ -60,23 +60,16 @@ We'll first create a new project to keep everything nicely contained in one dire
 * In "Directory name", type the name of your project, e.g. "ggplot2_inter"
 * Select the folder where to locate your project: e.g. `Documents/RProjects`, which you can create if it doesn't exist yet. You can use your H drive at UQ to make sure you can find it again.
 * Click the "Create Project" button
-* Create two folders: "scripts" and "plots".
+
+Let's also create a "plots" folders to store exports:
 
 ```{r eval=FALSE}
-dir.create("scripts")
 dir.create("plots")
 ```
 
 **Install ggplot2** if you don't already have it, with: `install.packages("ggplot2")`
 
-In the "scripts" folder create (and open) a new R **script** file called "gapminder_example.R":
-
-```{r eval=FALSE}
-file.create("scripts/gapminder_example.R")  # create
-file.edit("scripts/gapminder_example.R")    # open
-```
-
-Don't forget to add some comments to your header:
+Create a new script (File > New File > R Script) and add a few comments to give context:
 
 ```
 # Description : ggplot2 intermediate with gapminder data
@@ -84,7 +77,7 @@ Don't forget to add some comments to your header:
 # Date: <today's date>
 ```
 
-...and to **load ggplot2** so we can use the ggplot2 functions:
+Finally, make sure you **load ggplot2** so we can use its functions:
 
 ```{r}
 library(ggplot2)
@@ -109,22 +102,14 @@ gapminder <- read.csv(
   file = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
 
-You can use `dim()`, `str()`, `head()`, `tail()`, `View()` and `summary()` to explore your dataset.
+If you are not familiar with the dataset, `View()` and `summary()` can help you explore it.
 
 ```{r eval=FALSE}
-dim(gapminder)     # what size is the data frame?
-str(gapminder)     # how is it structured?
-head(gapminder)    # have a look at the first few observations
-tail(gapminder)    # have a look at the last few observations
 View(gapminder)    # view as a separate spreadsheet
 summary(gapminder) # summary statistics for each variable
 ```
 
-Familiarise yourself with the variable names:
-
-```{r}
-colnames(gapminder)
-```
+The Environment pane gives you an overview of the variables.
 
 ### Explore data visually
 
@@ -165,11 +150,11 @@ ggplot(data = gapminder,
 
 This plot uses the default discrete palette.
 
-We can also use different palettes. You can see the ones available in ggplot2 by looking at the help page of, for example, `scale_colour_brewer()`, under the header "Palettes".
+We can use other palettes. You can see the ones available in ggplot2 by looking at the help page of, for example, `scale_colour_brewer()`, under the header "Palettes".
 
 Those are the ColorBrewer palettes, which can be explored online: http://colorbrewer2.org/
 
-If you want a visual overview of the Brewer palettes inside RStudio, install the `RColorBrewer` package and try the following functions:
+If you want a visual overview of the Brewer palettes inside RStudio, install the RColorBrewer package and try the following functions:
 
 ```{r}
 library(RColorBrewer)
@@ -207,18 +192,18 @@ p +
 
 You can find out about R colour names with the function `colours()`, which prints out a list of their names, but know that you can also use HEX values.
 
-To pick colours more comfortably, we can use the `colourpicker` package, which adds a handy addin in RStudio. Install it and use the new "Addins > Colour Picker" window to create a vector of colours for your custom palette.
+You can find [visual lists](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) of all the R colours, but there is a way to pick colours more comfortably: we can use the colourpicker package, which adds a handy addin to RStudio. Install it and use the new "Addins > Colour Picker" window to create a vector of colours for your custom palette.
 
 ### Scale modifiers
 
-We could further modify our plot to use a different y axis scale to space out the data:
+We could further modify our plot to make it more readable. For example, we can use a different y axis scale to space out the data:
 
 ```{r}
 p +
   scale_y_log10()
 ```
 
-Our x axis is not detailed enough.
+Our x axis is not detailed enough: we want to show the actual years included in the dataset, rather than the automatic decades.
 
 We can create a list of all the years when data was collected with the `unique()` function, and modify our plot to add more breaks to our x axis with the `scale_x_continuous()` function. How would you use them?
 
@@ -238,8 +223,6 @@ p +
   scale_y_continuous(breaks = c(0, 100000000, 200000000, 500000000, 1000000000),
                      labels = c(0, "100 m", "200 m", "500 m", "1 b"))
 ```
-
-*Exercise 8 - Modify your y scale range*
 
 To zoom in, we might want to change our axis limits by using `ylim()`.
 
@@ -277,14 +260,14 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(bins = 10)
 ```
 
-And colour by continent:
+Now, let's colour the bins by continent. We have to use the `fill` aesthetic to colour the areas rather than the outlines:
 
 ```{r}
 ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
   geom_histogram(bins = 10)
 ```
 
-The histogram geometry uses the "stack" **position** by default. It might be more readable if we change it so it uses ratios instead, using `position = "fill"` argument:
+Colouring our bins allows us to experiment with the geometry's **position**. The histogram geometry uses the "stack" position by default. It might be more readable if we change it so it uses ratios instead, using the `position = "fill"` argument:
 
 ```{r}
 ggplot(gapminder,
@@ -294,7 +277,7 @@ ggplot(gapminder,
                  position = "fill")
 ```
 
-We can also make the bars "dodge"" each other:
+We can also make the bars "dodge" each other:
 
 ```{r}
 ggplot(gapminder,
@@ -341,7 +324,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-Try other pre-built themes, like `theme_bw()` and `theme_light()`. You can also start with an empty theme thanks to `theme_void()`, and even install extras with the package `ggthemes`.
+Try other pre-built themes, like `theme_bw()` and `theme_classic()`. You can also start with an empty theme thanks to `theme_void()`, and even install extras with the package `ggthemes`.
 
 ### Labels
 
@@ -467,22 +450,23 @@ ggplot(diamonds,
   + Let's see if you are able to move the legend to the bottom
   + Change the general look with a built-in theme
 
-Have a look at this [ggplot2 cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) and experiment customising your plots.
+Have a look at this [ggplot2 cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet) and experiment customising your plots.
 
-### Close RProject
+### Close project
 
 Closing RStudio will ask you if you want to save your workspace and scripts.
+Saving your workspace is usually not recommended if you have all the necessary commands in your script.
 
-## Important links
+## Useful links
 
 * For ggplot2:
-  + ggplot2 cheatsheet: https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
+  + ggplot2 cheatsheet: https://www.rstudio.org/links/data_visualization_cheat_sheet
   + Official ggplot2 documentation: http://docs.ggplot2.org/current/
   + Official ggplot2 website: http://ggplot2.tidyverse.org/
   + Chapter on data visualisation in the book _R for Data Science_: http://r4ds.had.co.nz/data-visualisation.html
+  + Selva Prabhakaran's _r-statistics.co_ section on ggplot2: http://r-statistics.co/ggplot2-Tutorial-With-R.html
   + Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
   + Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
   + STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
-  + R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
-  + Hadley Wickham's book _ggplot2: Elegant Graphics for Data Analysis_: https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
-* More ressources for R in general: https://gitlab.com/stragu/CDS/blob/master/R/usefullinks.md
+
+* More ressources for R in general: https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md

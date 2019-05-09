@@ -1,28 +1,28 @@
 ---
 title: "R data visualisation with RStudio and ggplot2: an introduction"
 output: github_document
-date: 2018-09-28
+date: "`r Sys.Date()`"
 ---
 
-> This document is redacted in Rmd; the source file is available here: https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd
-> It is then knitted as a GitHub document, which is the best version to view online and to print: https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intro/ggplot2_intro.md
+> This document is redacted in Rmd; the source file is available here: https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd
+> It is then knitted as a GitHub document, which is the best version to view online and to print: https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intro/ggplot2_intro.md
 
-If you want to review the installation instructions: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
+If you want to review the installation instructions: https://gitlab.com/stragu/DSH/blob/master/R/Installation.md
 
 Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you are using Library computers.
 
-## Keep in mind
+## Essential shortcuts
 
-* Case sensitive
-* No spaces in names
-* You can use <kbd>Ctrl</kbd>+<kbd>Shift</kbd> to space out your code and <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to run a command.
+* function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in a function name.
+* execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+* assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
 ## Open RStudio
 
 * If you are using your own laptop please open RStudio
     + Make sure you have a working Internet connection
-* On CDS computers (the first time takes about 10 min):
-    + Log in with your UQ username and password
+* On the Library computers (the first time takes about 10 min):
+    + Log in with your UQ username and password (use your student account if you have both a staff and student account)
     + Make sure you have a working Internet connection
     + Open the ZENworks application
     + Look for RStudio
@@ -32,7 +32,7 @@ Everything we write today will be saved in your R project. Please remember to sa
 
 During this session, you will:
 
-* Have a visualisation package installed (`ggplot2`)
+* Have a visualisation package installed (ggplot2)
 * Learn how to explore data
 * Learn about the basic ggplot2 components
 * Use different kinds of visualisations
@@ -112,7 +112,7 @@ qplot(data = msleep,
 
 We can see our three essential elements:
 
-1. the data comes from the `msleep` dataset included in `ggplot2`;
+1. the data comes from the `msleep` dataset included in ggplot2;
 1. the variable `conservation` is mapped to the aesthetic `x`;
 1. the geometry is `"bar"`, for "bar chart".
 
@@ -134,7 +134,7 @@ str(economics)
 
 Do you think that the rate of unemployment is stable over the years?
 
-Let's use the more advanced `ggplot2` syntax from now on, se we can build up our plots further:
+Let's use the more advanced ggplot2 syntax from now on, se we can build up our plots further:
 
 ```{r}
 ggplot(data = economics,
@@ -216,7 +216,7 @@ ggplot(data = mpg,
 ```
 
 Different geoms can also have their own mappings that overwrite the defaults.
-If you place mappings in a geom function, `ggplot2` will treat them as local mappings for the layer. It will use these mappings to extend or overwrite the global mappings for that layer only. This makes it possible to display different aesthetics in different layers.
+If you place mappings in a geom function, ggplot2 will treat them as local mappings for the layer. It will use these mappings to extend or overwrite the global mappings for that layer only. This makes it possible to display different aesthetics in different layers.
 
 ### The `colour` aesthetic
 
@@ -268,7 +268,7 @@ See how the legend changes depending on the type of data mapped to the `colour` 
 ### Bar charts
 
 Let's use the `diamonds` dataset now.
-The `diamonds` dataset comes with `ggplot2` and contains information about ~54,000 diamonds, including the price, carat, color, clarity, and cut of each diamond.
+The `diamonds` dataset comes with ggplot2 and contains information about ~54,000 diamonds, including the price, carat, color, clarity, and cut of each diamond.
 
 ```{r eval=FALSE}
 str(diamonds)
@@ -380,29 +380,21 @@ When creating a new layer, start typing `geom_` and see what suggestions pop up.
 
 Modify your plots, play around with different layers and functions, and ask questions!
 
-## Close Rproject
+## Close project
 
-If you want to close R Studio, you should save your project first.
-
-* File
-* close project (It will ask you if you want to save your history)
-* then, close RStudio
+Closing RStudio will ask you if you want to save your workspace and scripts.
+Saving your workspace is usually not recommended if you have all the necessary commands in your script.
 
 ## Useful links
 
 * For ggplot2:
-    * R ggplot2 Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
-    * Official ggplot2 documentation: http://docs.ggplot2.org/current/
-    * Official ggplot2 website: http://ggplot2.tidyverse.org/
-    * Chapter on data visualisation in the book _R for Data Science_: http://r4ds.had.co.nz/data-visualisation.html
-    * Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
-    * Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
-    * STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
+  + ggplot2 cheatsheet: https://www.rstudio.org/links/data_visualization_cheat_sheet
+  + Official ggplot2 documentation: http://docs.ggplot2.org/current/
+  + Official ggplot2 website: http://ggplot2.tidyverse.org/
+  + Chapter on data visualisation in the book _R for Data Science_: http://r4ds.had.co.nz/data-visualisation.html
+  + Selva Prabhakaran's _r-statistics.co_ section on ggplot2: http://r-statistics.co/ggplot2-Tutorial-With-R.html
+  + Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
+  + Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
+  + STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
 
-* R and RStudio in general:
-    * RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
-    * RStudio online learning https://www.rstudio.com/online-learning/
-    * Basic and advanced manuals https://cran.r-project.org/manuals.html
-    * Ask about any function or package http://www.rdocumentation.org/
-    * If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
-    * Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html (remember to sign in from UQ: https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses )
+* More ressources for R in general: https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md
