@@ -4,11 +4,13 @@
 
 This tutorial is designed for **QGIS 3.4** (the latest long-term release). If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
 
-Today's **data** can be downloaded here: 
+Today's **data** can be downloaded here: https://cloudstor.aarnet.edu.au/plus/s/V1wU3zXUa13QKDU
+
 Download the archive and extract it to your desktop.
 
 > Some of our data comes from Natural Earth: http://www.naturalearthdata.com/
 
+Open QGIS and create a new project with `Project > New`.
 Let's straight away **save** our project: `Project > Save`, and save it into the extracted folder.
 
 Let's set the **project home** too: `Project > Properties > General` and set `Project home` to the same folder. This is where we can also give the project a title.
@@ -39,19 +41,13 @@ You can also use the `Project Home` directory in the browser to add another laye
 
 All layers are visible in the "Layers" panel, with the most recently loaded by default at the top. Layers are rendered as they are listed, which means the top ones will cover the bottom ones. Make sure you optimise the order for your map!
 
-You can also turn the layer visibility on and off from this panel with the tick box.
+You can also turn the **layer visibility** on and off from this panel with the tick box.
 
-### More controls
+### Learn about the data
 
-You can use the `Identify Features` tool in the top toolbar. This allows you to learn about specific features included in the currently selected layer.
+You can open the **attribute table** to see tabular data contained in each layer.
 
-## Scale-based visibility
-
-Zoom to a scale in which it doesn't make sense to see features that are too small to distinguish.
-
-Double-click on layer: `Rendering > Scale Dependent Visibility`, and set the minimum scale to the current canvas scale, and the maximum scale to 1:1.
-
-Apply, and try zooming in and out. Notice how the layer name is greyed out when the data is not visible?
+You can also use the `Identify Features` tool in the top toolbar. This allows you to learn about specific features included in the currently selected layer.
 
 ## Change symbology
 
@@ -94,6 +90,14 @@ We can save styles with `right-click > Styles > Add`, which creates a new one an
 
 With a continuous numerical variable: we can change the size of the "populated places" symbols according to population. use the `Assistant` to define the scale, with the column `pop_max`.
 
+## Scale-dependent visibility
+
+Zoom to a scale in which it doesn't make sense to see features that are too small to distinguish.
+
+Double-click on layer: `Rendering > Scale Dependent Visibility`, and set the minimum scale to the current canvas scale, and the maximum scale to 1:1.
+
+Apply, and try zooming in and out. Notice how the layer name is greyed out when the data is not visible?
+
 ## Add a raster layer
 
 Try loading the `solaran.txt` file: data about average solar exposure. What is the difference with the other files? What kind of layer is it imported as? What can you do to make it easier to read?
@@ -104,7 +108,7 @@ A wealth of plugins is available: `Plugins > Manage and Install Plugins...`. Try
 
 ## Import tabular data
 
-
+QGIS can deal with plain tabular data. For example, try importing the file HDI.ods: it doesn't contain any coordinates, but we can still store it as a layer and use it in our project.
 
 ## Merge tabular data
 
