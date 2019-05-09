@@ -1,26 +1,26 @@
 ---
 title: "R data visualisation with RStudio and ggplot2: intermediate"
 output: github_document
-date: 2018-09-28
+date: "`r Sys.Date()`"
 ---
 
-> This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document. 
-> The source code is available at: https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd  
-> The published document is available at: https://gitlab.com/stragu/CDS/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md
+> This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document.
+> The source code is available at: https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd  
+> The published document is available at: https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md
 
-If you need to review the installation instructions: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
+If you need to review the installation instructions: https://gitlab.com/stragu/DSH/blob/master/R/Installation.md
 
-## Keep in mind
+## Essential shortcuts
 
-* Case sensitive
-* No spaces in names
-* You can use <kbd>Ctrl</kbd>+<kbd>Shift</kbd> to space out your code and <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to run a command.
+* function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in a function name.
+* execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+* assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
 ## Open RStudio
 
 On library computers:
 
-* Log in with your UQ username and password
+* Log in with your UQ username and password (use your student credentials if you are both staff and student)
 * Make sure you have a working internet connection
 * Go to search the magnifying glass (bottom left)
 * Open the ZENworks application
@@ -34,7 +34,7 @@ If you are using your own laptop:
 
 ## Disclaimer
 
-We will assume you are an R intermediate user and that you have used `ggplot2` before.
+We will assume you are an R intermediate user and that you have used ggplot2 before.
 
 ## What are we going to learn?
 
@@ -42,7 +42,7 @@ During this hands-on session, you will:
 
 * install a tool for picking colours
 * customise scales and ranges
-* divide a visualisation in facets
+* divide a visualisation into facets
 * explore new geometries
 * modify statistical transformations
 * adjust a geometry's position
@@ -52,13 +52,13 @@ During this hands-on session, you will:
 
 ### Setting up
 
-*Exercise 1 - New RStudio Project*
+We'll first create a new project to keep everything nicely contained in one directory:
 
 * Click the "Create a project" button (top left cube icon)
 * Click "New Directory"
 * Click "New Project" ("Empty project" if you have an older version of RStudio)
 * In "Directory name", type the name of your project, e.g. "ggplot2_inter"
-* Select the folder where to locate your project: the `Documents/RProjects` folder, which you can create if it doesn't exist yet
+* Select the folder where to locate your project: e.g. `Documents/RProjects`, which you can create if it doesn't exist yet. You can use your H drive at UQ to make sure you can find it again.
 * Click the "Create Project" button
 * Create two folders: "scripts" and "plots".
 
@@ -67,17 +67,9 @@ dir.create("scripts")
 dir.create("plots")
 ```
 
-*Exercise 2 - Setting up: packages and scripts*
+**Install ggplot2** if you don't already have it, with: `install.packages("ggplot2")`
 
-* Install and load the package `ggplot2`
-  + Install only if you haven't yet done so using: `install.packages("ggplot2")`
-  + Load the package using:
-
-```{r}
-library(ggplot2)
-```
-
-* In the "scripts" folder create (and open) a new R script file called "gapminder_example.R":
+In the "scripts" folder create (and open) a new R **script** file called "gapminder_example.R":
 
 ```{r eval=FALSE}
 file.create("scripts/gapminder_example.R")  # create
@@ -92,9 +84,17 @@ Don't forget to add some comments to your header:
 # Date: <today's date>
 ```
 
+...and to **load ggplot2** so we can use the ggplot2 functions:
+
+```{r}
+library(ggplot2)
+```
+
 ### Import data
 
-*Exercise 3 – Read the online data into an R object*
+#### Challenge 1 – import data
+
+Our data is located at https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv
 
 Using the following syntax, how can you read the online CSV data into an R object?
 
@@ -108,8 +108,6 @@ You have to use the `read.csv()` function, which can take a URL:
 gapminder <- read.csv(
   file = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
-
-*Exercise 4 - Explore the dataset*
 
 You can use `dim()`, `str()`, `head()`, `tail()`, `View()` and `summary()` to explore your dataset.
 
@@ -132,7 +130,7 @@ colnames(gapminder)
 
 Let's start with a question: Does population grow over the years?
 
-We can make a simple plot with the basics of `ggplot2`:
+We can make a simple plot with the basics of ggplot2:
 
 ```{r}
 ggplot(data = gapminder,
@@ -145,15 +143,15 @@ Remember that only the *data*, the *geometry* and the *aesthetic mappings* alway
 
 ### Aesthetics available
 
+So far we have been using the `x` and `y` easthetics. There are more available, depending on the geometry that you are using.
+
 To change the *shape* based on a variable, use `shape = <discrete variable>` inside the `aes()` call.
+
+If you want to change the size of the geometric object, you can use the `size = <continuous variable>` argument.
     
 Similarly, to change the *colour* based on a variable, use `colour = <variable>` and `fill = <variable>` inside the `aes()` call.
 
-Finally, if you want to change the size of the geometric object, you can use the `size = <variable>` argument.
-
-#### More control over colours
-
-*Exercise 6 – Colour according to continent*
+### More control over colours
 
 Modify your plot to colour the points according to the continent variable.
 
@@ -167,7 +165,7 @@ ggplot(data = gapminder,
 
 This plot uses the default discrete palette.
 
-We can also use different palettes. You can see the ones available in `ggplot2` by looking at the help page of, for example, `scale_colour_brewer()`, under the header "Palettes".
+We can also use different palettes. You can see the ones available in ggplot2 by looking at the help page of, for example, `scale_colour_brewer()`, under the header "Palettes".
 
 Those are the ColorBrewer palettes, which can be explored online: http://colorbrewer2.org/
 
@@ -220,8 +218,6 @@ p +
   scale_y_log10()
 ```
 
-*Exercise 7 - Modify the axis breaks*
-
 Our x axis is not detailed enough.
 
 We can create a list of all the years when data was collected with the `unique()` function, and modify our plot to add more breaks to our x axis with the `scale_x_continuous()` function. How would you use them?
@@ -258,7 +254,7 @@ Let's talk about that warning message. We could use the `subset()` function to a
 
 ### Histograms
 
-*Exercise 9 – Create a histogram of life expectancy*
+#### Challenge 2 – histogram of life expectancy
 
 Search for the histogram geometry function, and plot the life expectancy. How can we modify the bars?
 
@@ -310,7 +306,7 @@ ggplot(gapminder,
 
 ### Faceting
 
-An even more readable representation could use **facetting**:
+An even more readable representation could use **faceting**:
 
 ```{r}
 ggplot(gapminder,
@@ -341,7 +337,7 @@ ggplot(gapminder,
            fill = continent)) +
   geom_histogram(bins = 40) +
   facet_wrap(~ continent) +
-  theme_minimal() + # before customising the legend
+  theme_minimal() + # before customising the legend!
   theme(legend.position = "none")
 ```
 
@@ -359,8 +355,8 @@ ggplot(gapminder,
   facet_wrap(~ continent) +
   theme_minimal() + # before customising the legend
   theme(legend.position = "none") +
-  xlab("life expectancy") +
-  ylab("count")
+  xlab("Life expectancy") +
+  ylab("Count")
 ```
 
 ### Customise a scatterplot
@@ -396,7 +392,7 @@ ggplot(gapminder,
   theme_bw()
 ```
 
-### Save your plots
+### Save your plots with a command
 
 To Save your plots in different formats and resolutions, use 
 
@@ -429,7 +425,9 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_violin()
 ```
 
-If the categories get too cramped on the axis, you can rotate them:
+#### Challenge 3 – code comprehension
+
+What do you think this extra line might do to our violin plot?
 
 ```{r}
 ggplot(gapminder, aes(x = continent, y = lifeExp)) +
@@ -437,9 +435,11 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
+This is useful if the x labels get too cramped on the x axis: you can rotate them to whatever angle you want.
+
 ### Another example
 
-This extra example gives a an idea of how a complex `ggplot2` visualisation might be constructed:
+This extra example gives a an idea of how a complex ggplot2 visualisation might be constructed:
 
 ```{r}
 ggplot(diamonds,
@@ -462,11 +462,10 @@ ggplot(diamonds,
 ### Play time!
 
 * Create a a boxplot for each continent's population data
-  + Colour and fill by continent
+  + Colour the boxes by continent
   + Try to limit the y axis to see the boxes better
-  + Let's see if you are able to move the legend to the bottom 
-
-### Modify your plots
+  + Let's see if you are able to move the legend to the bottom
+  + Change the general look with a built-in theme
 
 Have a look at this [ggplot2 cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) and experiment customising your plots.
 
@@ -476,14 +475,14 @@ Closing RStudio will ask you if you want to save your workspace and scripts.
 
 ## Important links
 
-* For `ggplot2`:
-    + ggplot2 cheatsheet: https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
-    + Official ggplot2 documentation: http://docs.ggplot2.org/current/
-    + Official ggplot2 website: http://ggplot2.tidyverse.org/
-    + Chapter on data visualisation in the book _R for Data Science_: http://r4ds.had.co.nz/data-visualisation.html
-    + Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
-    + Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
-    + STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
-    + R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
-    + Hadley Wickham's book _ggplot2: Elegant Graphics for Data Analysis_: https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
+* For ggplot2:
+  + ggplot2 cheatsheet: https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
+  + Official ggplot2 documentation: http://docs.ggplot2.org/current/
+  + Official ggplot2 website: http://ggplot2.tidyverse.org/
+  + Chapter on data visualisation in the book _R for Data Science_: http://r4ds.had.co.nz/data-visualisation.html
+  + Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
+  + Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
+  + STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
+  + R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+  + Hadley Wickham's book _ggplot2: Elegant Graphics for Data Analysis_: https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
 * More ressources for R in general: https://gitlab.com/stragu/CDS/blob/master/R/usefullinks.md
