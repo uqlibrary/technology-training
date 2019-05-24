@@ -1,6 +1,6 @@
 R data visualisation with RStudio and ggplot2: an introduction
 ================
-2019-05-09
+2019-05-13
 
 > This document is redacted in Rmd; the source file is available here:
 > <https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd>
