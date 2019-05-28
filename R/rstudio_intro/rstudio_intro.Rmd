@@ -9,7 +9,7 @@ output: github_document
 
 If you want to review the installation instructions: https://gitlab.com/stragu/DSH/blob/master/R/Installation.md
 
-## RStudio
+## R + RStudio
 
 RStudio is an open source IDE (Integrated Development Interface) for the R programming language.
 
@@ -27,10 +27,10 @@ The learning curve will be steeper than point-and-click tools, but as far as pro
 ## Open RStudio
 
 * If you are using your own laptop please open RStudio
-  * Make sure you have a working internet connection
+  * Make sure you have a working Internet connection
 * On Library computers:
-  * Log in with your UQ username and password
-  * Make sure you have a working internet connection
+  * Log in with your UQ username and password (if you are both staff and student, use your student account)
+  * Make sure you have a working Internet connection
   * Go to search at bottom left corner (magnifiying glass) 
   * Open the ZENworks application
   * Search for "RStudio"
@@ -40,16 +40,18 @@ The learning curve will be steeper than point-and-click tools, but as far as pro
 
 This session is designed to get straight into using R in a short amount of time, which is why we won't spend too much time on the smaller details that make the language.
 
-At the end of this session you will be able to:
+During this session, you will:
 
 * Create a project for data analysis
 * Create a folder structure
 * Know where to find help
-* Use a script
-* Import files/datasets
+* Learn about a few useful functions
+* Create a script
+* Import a dataset
 * Understand the different RStudio pannels
 * Use a few shortcuts
-* Know where packages are
+* Know how to extend R with packages
+* Generate a data visualisation
 
 ## Material
 
@@ -69,28 +71,30 @@ Let's first create a new project:
 
 In the **console**, we can use R interactively. We write a **command** and then **execute** it by pressing <kbd>Enter</kbd>.
 
-R can be used like a calculator. Try the following commands:
+In its most basic use, R can be a calculator. Try executing the following commands:
 
 ```{r}
+10 - 2
 3 * 4
-```
-
-```{r}
-10 / 2
-```
-
-```{r}
+10 / 2 + 5
 11^6
 ```
 
+Those symbols are binary operators, which we can use to multiply, divide, add, substract and exponentiate. Once we execute the command (the "input"), we can see the result in the console (the "output").
 
-We can store data by creating **objects**, and assigning values to them with the **assignment operator** `<-`:
+What if we want to keep reusing the same value? We can store data by creating **objects**, and assigning values to them with the **assignment operator** `<-`:
 
-``` r
+```{r}
 num1 <- 42
 num2 <- num1 / 9
+num2
 sentence <- "Hello World!"
+sentence
 ```
+
+You should now see your objects listed in you **environment pane** (top right).
+
+As you can see, you can store different kinds of data as objects. If you want to store a string of characters, you have to use quotes around them.
 
 > You can use the shortcut <kbd>Alt</kbd>+<kbd>-</kbd> to type the assignement operator quicker.
 
@@ -102,64 +106,104 @@ An R function usually looks like this:
 <functionname>(<argument(s)>)
 ```
 
+Some functions don't need arguments, others need one or several, but they always need the parentheses after their name.
+
 For example, try running the following command:
 
-``` r
-log10(x = num1)
+```{r}
+class(x = num1)
 ```
 
+The `class()` function tells us what class of data we are dealing with. Here, we use the argument `x` and assign it the object `num1`.
+
 #### Help
+
+What if we want to learn more about a function?
 
 There are two main ways to find help about a function in RStudio:
 
 1. the shortcut command: `?functionname`
 1. the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a function name
 
-**Challenge 1** - Use the help pages to find out what these functions do, and try executing commands with them:
+Let's look through the help page for the `class()` function:
 
-* `c()`
-* `class()`
-* `rm()`
-* `citation()`
+```r
+?class
+```
 
-`c()` concatenates the arguments into a vector. For example:
+There is quite a lot of information in there, but the most important bits are:
 
-``` r
-vect1 <- c(4, 7, 2, 3)
+* **Description**: general description of the function(s)
+* **Usage**: overview of what syntax can be used
+* **Arguments**: description of what each argument is
+* **Examples**: some examples that demonstrate what is possible
+
+##### Challenge 1 – Finding help
+
+Use the help pages to find out what these functions do, and try executing commands with them:
+
+1. `c()`
+1. `rep()`
+1. `mean()`
+1. `rm()`
+
+1. `c()` concatenates the arguments into a vector. For example:
+
+```{r}
+ages <- c(4, 10, 2, NA, 3)
+2 * ages
 ```
 
 > The argument `...` means we can pass on any number of values.
 
-`class()` shows you what the class of an object is. For example:
+2. `rep()` replicates values. For example:
 
-``` r
-class(vect1)
+```{r}
+rep("Ha! ", 30)
 ```
 
 > We don't need to specify the names of the arguments if we use them in order.
 
-`rm()` removes an object from your environment. For example:
+3. `mean()` returns the mean of a vector of numbers:
 
-``` r
+```{r}
+mean(ages)
+```
+
+What happened there?
+
+We have an NA value in the vector, which means the function can't tell what the mean is. If we want to change this default behaviour, we can use an extra argument:
+
+```{r}
+mean(ages, na.rm = TRUE)
+```
+
+4. `rm()` removes an object from your environment (`remove()` and `rm()` point to the same function). For example:
+
+```{r}
 rm(num1)
 ```
 
-`citation()` outputs the proper way to cite R, or a different package if we overwrite the default value for the `package` argument. For example:
-
-``` r
-citation("MASS")
-```
+> R does not check if you are sure you want to remove something! As a programming language, it does what you ask it to do, which means you might have to be more careful. But you'll see later on that, when working with scripts, this is less of a problem.
 
 Let's do some more complex operations by combining two functions:
 
-`ls()` lists the objects in the current R environment.
-For example, try running the `ls()` function after executing the command `a <- 42`.
+`ls()` returns a character vector: it is a list of all the objects in the current environment (i.e. the objects we created in this R session). Is there a way we could combine it with `rm()`?
 
 You can remove *all* the objects in the environment by using `ls()` as the value for the `list` argument:
 
-``` r
+```{r}
 rm(list = ls())
 ```
+
+We are nesting a function inside an other one. More precisely, we are using the output of the `ls()` function as the value passed on to the `list` argument in the `rm()` function.
+
+##### More help
+
+We've practised how to find help about functions we know the name of.
+What if we don't know what the function is called? Or if we want general help about R?
+
+The function `help.start()` is a good starting point: it opens a browser of official R help. If you want to search for a word in all the documentation, you can use the `??` syntax. For example, try executing `??anova`. Finally, you will often go to your web browser and search for a particular question, or a specific error message: most times, there already is an answer somewhere on the Internet. The challenge is to ask the right question!
 
 ### Creating a folder structure
 
@@ -171,7 +215,7 @@ To keep it tidy, we are creating 3 folders in our project directory:
 
 For that, we use the function `dir.create()`:
 
-``` r
+```r
 dir.create("scripts")
 dir.create("data")
 dir.create("plots")
@@ -185,12 +229,13 @@ Scripts are simple text files that contain R code. They are useful for:
 
 * saving a set of commands for later use (and executing it in one click)
 * making research reproducible
-* documenting some code, and
+* making writing and reading code more comfortable
+* documenting the code with comments, and
 * sharing your work with peers
 
 Let's create a new R script with a command:
 
-``` r
+```r
 file.create("scripts/process.R")
 ```
 
@@ -198,7 +243,7 @@ file.create("scripts/process.R")
 
 To edit the new script, use the `file.edit()` function. Try using the <kbd>Tab</kbd> key to autocomplete your function name and your file path!
 
-``` r
+```r
 file.edit("scripts/process.R")
 ```
 
@@ -215,57 +260,64 @@ For example, we used commands to create and edit a script, but we could also:
 
 Learning how to use functions rather than the graphical user interface (GUI) will allow you to integrate them in scripts, and will sometimes help you to do things faster.
 
-#### Edit the script
+### Comments
 
 We should start with a couple of **comments**, to document our script. Comments start with `#`, and will be ignored by R:
 
-``` r
-# Description:
-# Author:
-# Date:
+```r
+# Description: Introduction to R and RStudio
+# Author: <your name>
+# Date: <today's date>
 ```
+
+### Syntax highlighting
 
 Now, add a command to your script:
 
-``` r
-num1 <- log10(300)
+```{r}
+vect <- c(3, "Hi!")
 ```
 
 Notice the colours? This is called **syntax highlighting**. This is one of the many ways RStudio makes it more comfortable to work with R. The code is more readable when working in a script.
 
-> While editing your script, you can run the active line (or the selected block of lines) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>. Remember to save your script regularly with the shortcut <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu "Tools > Keyboard Shortcuts Help".
+> While editing your script, you can run the active command (or the selected block of lines) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>. Remember to save your script regularly with the shortcut <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu "Tools > Keyboard Shortcuts Help".
 
 ### Import data
 
-**Challenge 2** – Import data
+#### Challenge 2 – Import data
 
 Copy and paste the following two commands into your script:
 
-``` r
+```r
 download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv",
   destfile = "data/gapminderdata.csv")
 gapminder <- read.csv("data/gapminderdata.csv")
+```
+```{r include=FALSE}
+gapminder <- read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
 
 What do you think they do? Describe each one in detail, and try executing them.
 
 ### Explore data
 
+We have downloaded a CSV file from the Internet, and read it into an object called `gapminder`.
+
 You can type the name of your new object to print it to screen:
 
-``` r
+```{r eval=FALSE}
 gapminder
 ```
 
-That's a lot of lines. To have a look at the first few lines only, we can use the `head()` function:
+That's a lot of lines printed to your console. To have a look at the first few lines only, we can use the `head()` function:
 
-``` r
+```{r}
 head(gapminder)
 ```
 
 Now let's use a few functions to learn more about our dataset:
 
-``` r
+```{r}
 class(gapminder) # what kind of object is it stored as?
 nrow(gapminder) # how many rows?
 ncol(gapminder) # how many columns?
@@ -273,59 +325,84 @@ dim(gapminder) # rows and columns
 names(gapminder) # variable names
 ```
 
-All the information we just saw is available with one single function:
+All the information we just saw (and more) is available with one single function:
 
-``` r
+```{r}
 str(gapminder) # general structure
 ```
 
-And to explore the data in the viewer, run the following:
+> The RStudio's environment pannel already shows us some of that information (click on the blue arrow next to the object name).
 
-``` r
-View(gapminder) # spreadsheet-like view (Note how the case matters in R.)
+And to explore the data in a viewer, run the following:
+
+```r
+View(gapminder) # spreadsheet-like view in new tab
 ```
 
-> Notice that RStudio's environment pannel already shows us some of that information (click on the blue arrow next to the object name). You can also click on the object to open the viewer.
+This viewer allows you to explore your data by scrolling through, searching terms, filtering rows and sorting the data. Remember that it is only a viewer: it will never modify your original object.
+
+Notice that in R, the case matters: trying to use `view()` (with a lowercase "V") will yield an error.
+
+> You can also click on the spreadsheet icon in your environment pane to open the viewer.
 
 Finally, to see summary statistics for each of our variables:
 
-``` r
+```{r}
 summary(gapminder)
 ```
 
 Notice how categorical and numerical variables are handled differently?
 
-### Plotting
-
-R has a number of base plotting functions to visualise data in many different ways.
-
-For example, to visualise our data:
-
-``` r
-plot(x = gapminder$gdpPercap,
-     y = gapminder$lifeExp)
-hist(gapminder$pop)
-boxplot(gapminder$lifeExp~gapminder$continent)
-```
-
 ### Packages
 
-Packages add functionnalities to R and RStudio. There are more than 16000 available.
+Packages add functionnalities to R and RStudio. There are more than 17000 available.
 
 You can see the list of installed packages in your "Packages" tab, or by using the `library()` function without any argument.
 
-We are going to install and load a new package called `praise`. We can do that with the GUI: click the "Install" button in the "Packages" tab, and search for "praise".
+We are going to install and load a new package called "praise". We can do that with the GUI: click the "Install" button in the "Packages" tab (bottom right pane), and search for "praise".
 
 Notice how it runs an `install.packages()` command in the console? You can use that too.
 
 If I try running the command `praise()`, I get an error. That's because, even though the package is installed, I need to **load** it every time I start a new R session. The `library()` function can do that.
 
-``` r
+```{r}
 library(praise) # load the package
 praise() # use a function from the package
 ```
 
-Even though you might need the motivation provided by this function, other packages are more useful for your work. For example, the package `ggplot2` introduces a logic that makes data visualisation more streamlined, called "Grammar of graphics". We present this package in other sessions.
+Even though you might need the motivation provided by this function, other packages are more useful for your work.
+
+### Plotting
+
+R already has a number of base plotting functions to visualise data in many different ways. However, many R users will use the package ggplot2 by default because it introduces a logic that makes data visualisation more streamlined, called "Grammar of graphics".
+
+Let's first install ggplot2 on our computer. In the console, execute the following command:
+
+```r
+install.packages("ggplot2")
+```
+
+We can now load the package, and use the `qplot()` function to visualise the population growth. In our script:
+
+```{r}
+library(ggplot2)
+qplot(data = gapminder,
+      x = year,
+      y = pop,
+      geom = "point")
+```
+
+If we want to add an extra variable, we can add an extra argument:
+
+```{r}
+qplot(data = gapminder,
+      x = year,
+      y = pop,
+      colour = continent,
+      geom = "point")
+```
+
+We can now use the "Export" dropdown menu to save our plot into our "plots" directory in a variety of formats.
 
 ### Close RStudio
 
