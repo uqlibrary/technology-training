@@ -1,27 +1,33 @@
 ---
 title: "R data visualisation with RStudio: heatmaps"
-date: 2018-11-02
+date: "`r Sys.Date()`"
 output:
   github_document: default
 ---
 
 > This document is edited as an R markdown file, and regularly exported as a GitHub document.
-> The source code is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps_intermediate.Rmd)
-> The published printer-friendly version is [here](https://gitlab.com/stragu/CDS/blob/master/R/heatmaps/heatmaps_intermediate.md)
+> The source code is [here](https://gitlab.com/stragu/DSH/blob/master/R/heatmaps_intermediate.Rmd)
+> The published printer-friendly version is [here](https://gitlab.com/stragu/DSH/blob/master/R/heatmaps/heatmaps_intermediate.md)
 
-If you want to review the installation instructions: https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
+## What are we going to learn?
 
-Everything we write today will be saved in your R Project. Please remember to save it in your H drive or USB if you use the University computers.
+A **heatmap** is a way of visualising a table of numbers, where you substitute the numbers with colored cells. It’s useful for finding highs and lows, and see patterns more clearly. There are many functions available in R to create this kind of visualisations, but we will focus in four options here.
 
-## Keep in mind
+During this session, you will:
 
-* Case sensitive
-* No spaces in names
-* Use <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to run a command, and <kbd>Ctrl</kbd>+<kbd>Shift</kbd> to make your code more readable.
+* Learn how to produce a simple heatmap with the base function `heatmap()`;
+* Learn about alternatives to produce more complex heatmaps, like `heatmap.2()` and `pheatmap()`;
+* Learn how to produce a rudimentary heatmap with the ggplot2 package.
+
+## Disclaimer
+
+We will assume you are an R intermediate user and that you have used RStudio before.
 
 ## Open RStudio
 
-* On your own laptop:
+> If you need the installation instructions: https://gitlab.com/stragu/DSH/blob/master/R/Installation.md
+
+* On your own computer:
     * Open RStudio
     * Make sure you have a working internet connection
 * On Library computers:
@@ -31,31 +37,24 @@ Everything we write today will be saved in your R Project. Please remember to sa
     * Look for the letter "R"
     * Double click on RStudio which will install both R and RStudio 
 
-## What are we going to learn?
+## Essential shortcuts
 
-During this session, you will:
-
-* Learn how to produce a simple heatmap with the base function `heatmap()`;
-* Learn about alternatives to produce more complex heatmaps, like `heatmap.2()` and `pheatmap()`;
-* Learn how to produce a rudimentary heatmap with the `ggplot2` package.
-
-A **heatmap** is a way of visualising a table of numbers, where you substitute the numbers with colored cells. It’s useful for finding highs and lows, and see patterns more clearly.
-
-## Disclaimer
-
-We will assume you are an R intermediate user and that you have used RStudio before.
+* function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in a function name.
+* execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+* assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
 ## Material
 
-### RStudio Project
+### R Project
 
-**Exercise 1 - Setting up a new RStudio Project**
+Everything we write today will be saved in your script, so please remember to create your project on your H drive (or USB stick) if you use the University computers, so you can go back to it after the session.
 
 * Create a new project:
     * Click the "New project" menu icon
     * Click "New Directory"
-    * Click "New Project" ("New empty project" if you have an older version of RStudio)
-    * In Directory name type the name of your project, e.g. "heatmaps" (Browse and select a folder where to locate your project, in our case the RProjects folder. If you don't have an RProjects folder, create it.)
+    * Click "New Project"
+    * In "Directory name", type the name of your project, e.g. "heatmaps"
+    * Browse and select a folder where to locate your project (for example, an "r_projects" directory where all your projects live)
     * Click the "Create Project" button
 * Create new folders with the following commands:
 
@@ -75,7 +74,7 @@ file.edit("scripts/heatmaps.R")
 
 As a first example, we will use a built-in dataset called `mtcars`.
 
-*Step 1: explore the data*
+#### Explore the data
 
 ```{r eval=FALSE}
 ?mtcars
@@ -85,11 +84,9 @@ head(mtcars)
 View(mtcars)
 ```
 
-*Step 2: prepare data*
+#### Prepare data
 
 The data is a dataframe, but it has to be a **numeric matrix** to make your heatmap. Dataframes can contain variables with different data classes, whereas matrices only contain one data class.
-
-**Exercise 2 – Convert the mtcars data into a matrix**
 
 ```{r}
 class(mtcars)
@@ -97,35 +94,37 @@ mtcars_matrix <- data.matrix(mtcars) # convert a DF to a numeric matrix
 class(mtcars_matrix)
 ```
 
-*Step 3: make a heatmap*
+#### Visualise
 
-We are going to use the `heatmap()` function.
-
-**Exercise 3 – look for the `heatmap()` help**
-
-Read the description of the `scale` argument in particular.
-
-```{r}
-?heatmap
-```
-
-Create a first heatmap:
+We are now going to use the `heatmap()` function to create our first heatmap:
 
 ```{r}
 heatmap(mtcars_matrix)
 ```
 
-**Scale** is important: the values should be centered and scaled in either rows or columns. In our case, the variables are contained in columns.
+Does it look like what you expected?
+
+Look at the function's help page, and read the description of the `scale` argument in particular:
+
+```{r}
+?heatmap
+```
+
+**Scale** is important: the values should be centered and scaled in either rows or columns. In our case, we want to visualise highs and lows in each variable, which are in columns.
 
 ```{r}
 heatmap(mtcars_matrix, scale = "column")
 ```
 
+We can now see the high (red) and low (white) values in each variable, and visualise groups of similar cars.
+
 #### Colours
 
-The default heatmap palette, `heat.colors()`, goes from red for low values to white for high values. You can however replace the default palette and use different colours, and different numbers of levels.
+With versions of R up to 3.5, the default heatmap palette was `heat.colors()`, which is not the most intuitive as it goes from red for low values to white for high values.
 
-For example, in the palette function `cm.colors(n)`, n is the number of levels (>= 1) contained in the cyan-to-magenta palette. It can be used in the `col` argument.
+Since R 3.6, the default palette is "YlOrRd", which stand for "Yellow, Orange, Red".
+
+You can however replace the default palette and use different colours, and different numbers of levels. For example, in the palette function `cm.colors(n)`, n is the number of levels (>= 1) contained in the cyan-to-magenta palette. This function can be used in the `col` argument:
 
 ```{r}
 heatmap(mtcars_matrix,
@@ -133,7 +132,7 @@ heatmap(mtcars_matrix,
         col = cm.colors(n = 15))
 ```
 
-You can try other functions, like `rainbow()` or `terrain.colors()`, and you can reverse them with `rev()`.
+You can try other functions, like `terrain.colors()` or `hcl.colors()` (in R > 3.6), and you can reverse them with the `rev = TRUE` argument.
 
 #### Remove dendrograms
 
@@ -142,7 +141,7 @@ The column dendrogram doesn't really make sense for this dataset. `Rowv` and `Co
 ```{r}
 heatmap(mtcars_matrix,
         scale = "column",
-        col = cm.colors(100),
+        col = cm.colors(15),
         Colv = NA)
 ```
 
@@ -156,26 +155,24 @@ rm(list = ls())
 
 ### Method 2: `gplots::heatmap.2()`
 
-If you don't have the `gplots` package yet, use `install.packages("gplots")`.
+If you don't have the gplots package yet, use `install.packages("gplots")`.
 
 ```{r results='hide'}
 library(gplots)
 ?heatmap.2
 ```
 
-This `gplots` heatmap function provides a number of extensions to the standard R heatmap function.
+This gplots heatmap function provides a number of extensions to the standard R heatmap function.
 
 #### Protein data example
 
-*Step 1: import data*
-
-The dataset contains observations for 63 proteins in three control experiments and three experiments where cells are treated with a growth factor. We need to import it from the Internet:
+This dataset contains observations for 63 proteins in three control experiments and three experiments where cells are treated with a growth factor. We need to import it from the web:
 
 ```{r}
 rawdata <- read.csv("https://raw.githubusercontent.com/ab604/heatmap/master/leanne_testdata.csv")
 ```
 
-*Step 2: explore the data*
+We can then explore the data:
 
 ```{r eval=FALSE}
 str(rawdata)
@@ -183,9 +180,9 @@ head(rawdata)
 View(rawdata)
 ```
 
-*Step 3: data munging*
-
 It’s important to note that a lot of visualisations involve gathering and preparing data. Rarely do you get data exactly how you need it, so you should expect to do some data munging before producing the visuals.
+
+Here, we need to remove useless columns, and we also want to rename them for clarity.
 
 ```{r}
 rawdata <- rawdata[ , 2:7] # remove superfluous columns
@@ -193,7 +190,7 @@ colnames(rawdata) <- c(paste("Control", 1:3, sep = "_"),
                        paste("Treatment", 1:3, sep = "_"))
 ```
 
-*Step 4: convert the dataframe into a matrix*
+We also need to convert the dataframe to a matrix, just like in our first example.
 
 ```{r}
 class(rawdata)
@@ -220,9 +217,7 @@ We can now see each protein's response to treatments.
 
 > Notice how the visualisation is more readable, but the clustering does not take into account the scaling? That's because the scaling is done *after* the clustering.
 
-*Step 5: pre-scale the dataset*
-
-If we want to cluster rows according to the scaled data, we have to scale it *prior* to generating the heatmap.
+With `heatmap.2()`, if we want to cluster rows according to the scaled data, we have to scale it *prior* to generating the heatmap.
 
 ```{r eval=FALSE}
 ?scale
@@ -244,7 +239,7 @@ data_scaled <- t(data_scaled_t)
 heatmap.2(data_scaled)
 ```
 
-We can now see clearer groups.
+We can now see clear groups.
 
 #### More control over colours
 
@@ -298,9 +293,9 @@ Clean up the environment with:
 rm(list = ls())
 ```
 
-### Method 3: `pheatmap()`
+### Method 3: `pheatmap::pheatmap()`
 
-If you don't have it already, install `pheatmap` with `install.packages("pheatmap")`.
+If you don't have it already, install pheatmap with `install.packages("pheatmap")`.
 
 Load the required package with:
 
@@ -308,7 +303,7 @@ Load the required package with:
 library(pheatmap)
 ```
 
-How does `pheatmap` (which stands for "pretty heatmap") differ from other functions?
+How does `pheatmap()` (which stands for "pretty heatmap") differ from other functions?
 
 ```{r eval=FALSE}
 ?pheatmap
@@ -363,11 +358,21 @@ Clean up your environment with:
 rm(list = ls())
 ```
 
-### Method 4: a dataframe in `ggplot2`
+### Summary of first three methods
 
-If you want to stick to the `ggplot2` package for all your data visualisation, there is a way to create a simple heatmap. So far, we have seen methods that make use of data matrices; however, `ggplot2` deals with dataframes.
+The first three methods differ in their default settings and in the order of the processing steps:
 
-If you don't have `ggplot2` installed on your system, you can do that with the command `install.packages("ggplot2")`.
+```
+stats::heatmap():     scale (row) -> cluster -> colour
+gplots::heatmap.2():  cluster -> scale (none) -> colour
+pheatmap::pheatmap(): scale (none) -> cluster -> colour
+```
+
+### Method 4: a dataframe in ggplot2
+
+If you want to stick to the ggplot2 package for all your data visualisation, there is a way to create a simple heatmap (without clustering). So far, we have seen methods that make use of data matrices; however, ggplot2 deals with dataframes.
+
+If you don't have ggplot2 installed on your system, you can do that with the command `install.packages("ggplot2")`.
 
 Load the necessary library:
 
@@ -412,15 +417,19 @@ rm(list = ls())
 
 ### (optional) Method 5: `ComplexHeatmap::Heatmap`
 
-URL: https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s2.single_heatmap.html
+This extra method come from a different repository than the official CRAN repositories: the [Bioconductor](https://www.bioconductor.org) project.
+
+The package we use is the ComplexHeatmap package, which is fully documented [here](https://jokergoo.github.io/ComplexHeatmap-reference/book/).
 
 *Step 1: install and load*
 
+BiocManager is used to install Bioconductor packages.
+
 ```{r}
-# source("https://bioconductor.org/biocLite.R")
-# biocLite("ComplexHeatmap") 
+# install.packages("BiocManager")
+# BiocManager::install("ComplexHeatmap")
 library(ComplexHeatmap)
-library(circlize)
+library(circlize) # for the colorRamp2() function
 ```
 
 How is the `Heatmap()` function different to the base `heatmap()`?
@@ -536,22 +545,13 @@ Clean my environment with:
 rm(list = ls())
 ```
 
-## Close Rproject
+## Close R project
 
-When closing RStudio, you should be prompted to save your workspace.
+When closing RStudio, you should be prompted to save your workspace. If your script contains all the steps required to generate your data and visualisations, it is best practice to not save your workspace: you can execute the whole script when you go back to your project.
 
 ## Important links
 
-* RStudio Cheatsheet https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
-* RStudio online learning https://www.rstudio.com/online-learning/
-* Basic and advanced manuals https://cran.r-project.org/manuals.html
-* Ask about any function or package http://www.rdocumentation.org/
-* If you are looking how-to's or how to fix an error http://stackoverflow.com/questions/tagged/r
-* Lynda.com R training and tutorials https://www.lynda.com/R-training-tutorials/1570-0.html remember to sign in with your organisational portal,https://web.library.uq.edu.au/library-services/training/lyndacom-online-courses
-* R colours http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
-* Book: Hadley Wickham. ggplot2 Elegant Graphics for Data Analysis Second  Edition. 2016 
-https://link-springer-com.ezproxy.library.uq.edu.au/content/pdf/10.1007%2F978-3-319-24277-4.pdf
-* Examples of heatmaps: https://flowingdata.com/2010/01/21/how-to-make-a-heatmap-a-quick-and-easy-solution/
- https://rpubs.com/ab604/98032  https://stackoverflow.com/questions/15505607/diagonal-labels-orientation-on-x-axis-in-heatmaps  https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s2.single_heatmap.html
-
-* If you need an R and/or RStudio workshop/session, please contact Centre for Digital Scholarship staff to organise one for you. https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
+* For heatmaps:
+    * a more in-depth example with pheatmap: http://slowkow.com/notes/pheatmap-tutorial/
+    * Leanne Wicken's dataset with heatmap.2 and an interactive heatmap with d3heatmap: https://rpubs.com/ab604/98032
+* Our compilation of R resources: https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md
