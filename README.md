@@ -1,11 +1,10 @@
 ---
-Title: DSH resources
-Author: Stéphane Guillou
+Digital Scholars Hub resources
 ---
 
 ## Description
 
-Here you will find resources related to R, Python, Shell, Git, OpenStreetMap, QGIS and OpenRefine sessions held at the Digital Scholars Hub (DSH, part of the University of Queensland's Library).
+Here you will find resources related to R, Python, Bash, Git, OpenStreetMap, QGIS and OpenRefine and Audacity sessions held at the UQ Library.
 
 ### Format
 
@@ -28,6 +27,7 @@ Files available for each course, hosted in this repository:
 | R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [txt](R/ggplot2_intermediate/ggplot2_intermediate_description.txt) | [html](https://demo.codimd.org/s/rJLdcW-24) |
 | R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps/heatmaps_intermediate.Rmd)</sup> | [txt](R/heatmaps/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
 | R and the Tidyverse: next steps | [md](R/tidyverse_next_steps/tidyverse_next_steps.md) <sup>[source](R/tidyverse_next_steps/tidyverse_next_steps.Rmd)</sup> | [txt](R/tidyverse_next_steps/tidyverse_next_steps_description.txt) | [html](https://demo.codimd.org/s/BkQCcmiOV) |
+| R advanced: programming and packaging | ... | ... | ... |
 | Unix Shell: an introduction | [md](Shell/shell_intro.md) | [txt](Shell/shell_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-shell) |
 | Git version control for collaboration | [md](Git/git.md) | [txt](Git/git_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-git) |
 | OpenRefine: an introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [txt](OpenRefine/openrefine_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-openrefine) |
@@ -35,10 +35,10 @@ Files available for each course, hosted in this repository:
 | Introduction to scientific programming | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.Rmd)</sup> | [txt](intro_to_programming/intro_to_programming_description.txt) | [html](https://frama.link/intro_prog) |
 | OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [txt](OSM/OpenStreetMap_description.txt) | [html](https://cryptpad.fr/pad/#/2/pad/edit/ZwpBgdie-YBBXvDE68N53u2s/) |
 | QGIS: introduction to mapping | [md](QGIS/QGIS_intro.md) | [txt](QGIS/QGIS_intro_description.txt) | [html](https://demo.codimd.org/s/B156o7z2V) |
+| Audacity: introduction to audio editing | ... | ... | ... |
 | next: Open Source tools for your research | ... | ... | ... |
-| next: Audacity | ... | ... | ... |
 | next: Python data manipulation | ... | ... | ... |
-| next: R programming essentials | ... | ... | ... |
+| next: QGIS intermediate | ... | ... | ... |
 
 ## Licence
 

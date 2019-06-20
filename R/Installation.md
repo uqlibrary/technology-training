@@ -1,13 +1,8 @@
----
-Title: R installation instructions
-Author: Stéphane Guillou
-Date: 2018-07-11
----
+# R & RStudio installation instructions
 
-The UQ Library Centre for Digital Scholarship (CDS) is offering free R sessions.
-The CDS provides software training and consultation sessions to students and staff. Our aim is to equip the UQ community with digital tools to perform data analysis and management in a clear and reproducible way.
+The UQ Library is offering free R sessions. Our aim is to equip the UQ community with digital tools to perform data analysis and management in a clear and reproducible way.
 
-Participants are encouraged to **bring and use their own laptops with the software already installed** and **working internet connection**, to ensure that you can continue using what you learn once you leave the workshop. However, if you need, you can use one of the University computers in the training room. 
+Participants are welcome to bring and use their own laptops with the software already installed (with a working Internet connection), to ensure that you can continue using what you learn once you leave the workshop. However, if you need, you can use one of the Library's training computers, as they all offer the necessary software.
 
 ## Install R and RStudio
 
