@@ -23,7 +23,8 @@ knitr::opts_chunk$set(echo = TRUE)
     + Make sure you have a working Internet connection
     + Open the ZENworks application
     + Look for "RStudio"
-    + Double click on RStudio, which will install both R and RStudio 
+    + Double click on RStudio, which will install both R and RStudio
+
 With RStudio open, let's make sure we have the necessary packages installed by running this command (this might take a few minutes):
 
 ```{r eval=FALSE}
@@ -41,7 +42,7 @@ tidyr and purrr, just like dplyr and ggplot2, are core to the Tidyverse.
 
 ## Create a project and a script
 
-Use the project menu (top right) to create a "New project...". Let's name this one "tidyverse_inter".
+Use the project menu (top right) to create a "New project...". Let's name this one "tidyverse".
 
 We also want to work more comfortably by typing our code in a script. You can use the new file dropdown menu, or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>, and save your script as "process.R" in the current working directory.
 
@@ -85,13 +86,15 @@ climate_raw <- read_csv("data_wb_climate.csv",
                     na = "..")
 ```
 
+We defined with the `na` argument that, in this dataset, missing data is recorded as "..".
+
 You can use `View()` to explore your dataset. We can see that it doesn't respect the tidy data principles in a couple of ways, the most obvious one being that different years are spread out between different columns.
 
 ### Reshaping data
 
 #### Gathering
 
-To go from wide format to long format, we can use the tidyr function `gather()`:
+To go from wide format to long format, we can use the tidyr function `gather()`. Here, we want to gather all the columns titled with a year: we store the data in a "value" variable, and the year in a "year" variable (the key).
 
 ```{r}
 climate_long <- gather(climate_raw,
@@ -100,6 +103,8 @@ climate_long <- gather(climate_raw,
                        `1990`:`2011`,
                        convert = TRUE)
 ```
+
+We set `convert` to TRUE because we want the function to change the key class from character to numeric.
 
 This is better, but there is still an issue: our `value` variable contains many different indicators.
 
@@ -127,15 +132,9 @@ climate_tidy <- climate_long %>%
          value = value)
 ```
 
-### Cleaning data
+### Challenge 1
 
-Turns out this dataset contains grouped data as well as unique countries. We can have a look at the list with:
-
-```{r eval=FALSE}
-unique(climate_tidy$`Country name`)
-```
-
-We can create a list of grouped countries, and remove them from the data:
+Have a look at this block of code. What do you think it does?
 
 ```{r}
 groups <- c("Europe & Central Asia",
@@ -155,6 +154,14 @@ groups <- c("Europe & Central Asia",
             "World")
 climate_tidy <- climate_tidy %>% 
   filter(!`Country name` %in% groups)
+```
+
+Turns out this dataset contains grouped data as well as unique countries. Here, we created a list of grouped countries, and removed them from the data by using dplyr's `filter()` function (inverting the filter with `!`).
+
+We can now check that we've only got single countries left:
+
+```{r eval=FALSE}
+unique(climate_tidy$`Country name`)
 ```
 
 ### Visualising
@@ -179,7 +186,7 @@ climate_tidy %>%
   geom_point()
 ```
 
-#### Challenge 1
+#### Challenge 2
 
 Looks like our data is missing after 2008, so how can we remove that?
 
@@ -205,12 +212,12 @@ You can iterate over elements by using:
 2. the `apply` function family from base R, or
 3. the purrr functions.
 
-Here is an example of a for loop:
+Imagine we want to find out the median value for each variable in the `mtcars` dataset. Here is an example of a for loop:
 
 ```{r}
 output <- vector("double", ncol(mtcars))
 for (i in seq_along(mtcars)) {
-  output[[i]] <- mean(mtcars[[i]])
+  output[[i]] <- median(mtcars[[i]])
 }
 output
 ```
@@ -219,46 +226,52 @@ Better than having the same code repeated 11 times!
 
 We allocate space in the expected **output** first (more efficient). We then specify the **sequence** for the loop, and put what we want to iterate in the loop **body**.
 
-The apply family in base R is handy, but the purrr functions are easiers to learn because they are more consistent.
-
-Here's our third option: purrr offers several tools to iterate functions over elements in a vector or a list.
+The apply family in base R is handy, but the purrr functions are easier to learn because they are more consistent. This package offers several tools to iterate functions over elements in a vector or a list.
 
 ### The map family
 
-* `map()` makes a list.
-* `map_lgl()` makes a logical vector.
-* `map_int()` makes an integer vector.
-* `map_dbl()` makes a double vector.
-* `map_chr()` makes a character vector.
+At purrr's core, there is the map family:
+
+* `map()` outputs a list.
+* `map_lgl()` outputs a logical vector.
+* `map_int()` outputs an integer vector.
+* `map_dbl()` outputs a double vector.
+* `map_chr()` outputs a character vector.
 
 For example, to do a similar operation to our previous for loop:
 
 ```{r}
-car_means <- map_dbl(mtcars, mean)
-car_means
-typeof(car_means)
+car_medians <- map_dbl(mtcars, median)
+car_medians
+typeof(car_medians)
 ```
 
 A lot leaner, right?
 
 The map functions automatically name the resulting vectors, which makes the result easier to read.
 
+Lets try a different type of output:
+
+```{r}
+map_lgl(starwars, is_character)
+```
+
 We can use extra arguments to pass to the iterated function:
 
 ```{r}
 map_dbl(mtcars, mean, trim = 0.2)
-map_lgl(starwars, is_character)
 ```
 
 Just like most functions in the Tidyverse, the first argument is the data that we want to process (which means we can use the pipe). The second argument is the name of the function we want to apply, but it can also be a custom formula. For example:
 
 ```{r}
-map_dbl(mtcars, ~ round(max(.x)))
+map_dbl(mtcars, ~ round(mean(.x)))
+map_lgl(mtcars, ~ max(.x) > 3 * min(.x))
 ```
 
 We have to use the tilde `~` to introduce a custom function, and `.x` to use the vector being processed.
 
-#### Challenge 2
+#### Challenge 3
 
 How can we find out the number of unique values in each variable of the `starwars` data.frame?
 
@@ -266,13 +279,15 @@ How can we find out the number of unique values in each variable of the `starwar
 map_int(starwars, ~ length(unique(.x)))
 ```
 
-To split a dataset and apply an operation to separate parts, we can use the `split()` function:
+### Splitting
+
+To split a dataset and apply an operation to separate parts, we can use the base `split()` function:
 
 ```{r}
 unique(mtcars$cyl)
 mtcars %>% 
   split(.$cyl) %>% # separate in three parts
-  map(summary) # applied to each data.frame
+  map(summary) # applied to each data frame
 ```
 
 Using purrr functions with ggplot2 functions allows us to generate several plots in one command:
@@ -280,17 +295,17 @@ Using purrr functions with ggplot2 functions allows us to generate several plots
 ```{r}
 mtcars %>% 
   split(.$cyl) %>% 
-  map(~ggplot(., aes(mpg, wt)) + geom_point())
+  map(~ggplot(., aes(mpg, wt)) + geom_point() + geom_smooth())
 ```
 
 ### Predicate functions
 
-Purrr also contains functions that return a boolean, so we can set up conditions before iterating.
+Purrr also contains functions that check for a condition, so we can set up conditions before iterating.
 
 ```{r}
 str(iris)
 iris %>%
-  map_dbl(mean) # NA for Species
+  map_dbl(mean) # warning, NA for Species
 iris %>%
   discard(is.factor) %>% 
   map_dbl(mean) # clean!
@@ -298,6 +313,8 @@ starwars %>%
   keep(is.character) %>% 
   map_int(~length(unique(.)))
 ```
+
+`is.factor()` and `is.character()` are examples of "predicate functions".
 
 To return everything, but apply a function only if a condition is met, we can use `map_if()`:
 
@@ -310,22 +327,34 @@ iris %>%
 
 This results in a list in which the elements are rounded only if they store numeric data.
 
-Now, let's see another example with our climate dataset. In this one, we use functions from dplyr, purrr, tibble and ggplot2.
+Now, let's see a more involved example with our climate dataset. In this one, we use functions from dplyr, purrr, stringr, tibble and ggplot2.
 
 ```{r}
-# cumulative CO2 emissions
+# cumulative and yearly change in CO2 emissions dataset
 climate_cumul <- climate_tidy %>% 
+  arrange(`Country name`, year) %>% 
   group_by(`Country name`) %>%
-  arrange(year) %>% 
-  mutate(cumul.CO2 = cumsum(EN.ATM.CO2E.KT)) %>% 
-  map_if(is.numeric, round, digits = 1) %>% 
-  as_tibble() # from list to tibble
+  mutate(cumul.CO2.KT = cumsum(EN.ATM.CO2E.KT),
+         dif.CO2.KT = EN.ATM.CO2E.KT - lag(EN.ATM.CO2E.KT)) %>% 
+  map_at(vars(ends_with("KT")), ~ .x / 10^6) %>% 
+  as_tibble() %>%  # from list to tibble
+  rename_at(vars(ends_with("KT")), ~ str_replace(.x, "KT", "PG"))
+
 # visualise it
-ggplot(climate_cumul) +
+p <- climate_cumul %>%
+  ggplot() +
   aes(x = year,
-      y = cumul.CO2,
+      y = cumul.CO2.PG,
       colour = `Country name`) +
   geom_line() +
   theme(legend.position = "none")
+p
+```
+
+If you want to create an interactive visualisation, you can use plotly:
+
+```{r eval=FALSE}
+library(plotly)
+ggplotly(p)
 ```
 

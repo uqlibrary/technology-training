@@ -1,47 +1,57 @@
 R and the Tidyverse: next steps
 ================
 Stéphane Guillou
-2019-04-09
+2019-06-21
 
-> This document is redacted in R Markdown; the source file is available here: <https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/tidyverse_next_steps.Rmd> It is then knitted as a markdown file, which is the best version to view online and to print: <https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/tidyverse_next_steps.md>
+> This document is redacted in R Markdown; the source file is available
+> here:
+> <https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/tidyverse_next_steps.Rmd>
+> It is then knitted as a markdown file, which is the best version to
+> view online and to print:
+> <https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/tidyverse_next_steps.md>
 
-Setting up
-----------
+## Setting up
 
-> If you want to review the installation instructions: <https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
+> If you want to review the installation instructions:
+> <https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
 
--   If you are using your own laptop please open RStudio
-    -   Make sure you have a working Internet connection
--   On the Library's training computers:
-    -   Log in with your UQ username and password
-    -   Make sure you have a working Internet connection
-    -   Open the ZENworks application
-    -   Look for "RStudio"
-    -   Double click on RStudio, which will install both R and RStudio With RStudio open, let's make sure we have the necessary packages installed by running this command (this might take a few minutes):
+  - If you are using your own laptop please open RStudio
+      - Make sure you have a working Internet connection
+  - On the Library’s training computers:
+      - Log in with your UQ username and password
+      - Make sure you have a working Internet connection
+      - Open the ZENworks application
+      - Look for “RStudio”
+      - Double click on RStudio, which will install both R and RStudio
+
+With RStudio open, let’s make sure we have the necessary packages
+installed by running this command (this might take a few minutes):
 
 ``` r
 install.packages("tidyverse")
 ```
 
-This will install the 8 core Tidyverse packages (and their dependencies).
+This will install the 8 core Tidyverse packages (and their
+dependencies).
 
-What are we going to learn?
----------------------------
+## What are we going to learn?
 
 tidyr and purrr, just like dplyr and ggplot2, are core to the Tidyverse.
 
--   tidyr can be used to tidy your data
--   purrr is useful to apply functions iteratively on lists or vectors
+  - tidyr can be used to tidy your data
+  - purrr is useful to apply functions iteratively on lists or vectors
 
-Create a project and a script
------------------------------
+## Create a project and a script
 
-Use the project menu (top right) to create a "New project...". Let's name this one "tidyverse\_inter".
+Use the project menu (top right) to create a “New project…”. Let’s name
+this one “tidyverse”.
 
-We also want to work more comfortably by typing our code in a script. You can use the new file dropdown menu, or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>, and save your script as "process.R" in the current working directory.
+We also want to work more comfortably by typing our code in a script.
+You can use the new file dropdown menu, or
+<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>, and save your script as
+“process.R” in the current working directory.
 
-Load the necessary packages
----------------------------
+## Load the necessary packages
 
 We can use one single command to load the core Tidyverse packages:
 
@@ -49,35 +59,45 @@ We can use one single command to load the core Tidyverse packages:
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ─────────────────────────────── tidyverse 1.2.1 ──
+    ## Registered S3 methods overwritten by 'ggplot2':
+    ##   method         from 
+    ##   [.quosures     rlang
+    ##   c.quosures     rlang
+    ##   print.quosures rlang
 
-    ## ✔ ggplot2 3.1.0       ✔ purrr   0.3.2  
-    ## ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
-    ## ✔ tidyr   0.8.3       ✔ stringr 1.4.0  
-    ## ✔ readr   1.3.1       ✔ forcats 0.4.0
+    ## ── Attaching packages ────────────────────────────────────────────────────── tidyverse 1.2.1 ──
 
-    ## ── Conflicts ────────────────────────────────── tidyverse_conflicts() ──
+    ## ✔ ggplot2 3.1.1     ✔ purrr   0.3.2
+    ## ✔ tibble  2.1.3     ✔ dplyr   0.8.1
+    ## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
+    ## ✔ readr   1.3.1     ✔ forcats 0.4.0
+
+    ## ── Conflicts ───────────────────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
 
-Tidy data
----------
+## Tidy data
 
-Tidy data makes it easy to transform and analyse data in R (and many other tools). Tidy data has observations in rows, and variables in columns. The whole Tidyverse is designed to work with tidy data.
+Tidy data makes it easy to transform and analyse data in R (and many
+other tools). Tidy data has observations in rows, and variables in
+columns. The whole Tidyverse is designed to work with tidy data.
 
-Often, a dataset is organised in a way that makes it easy for humans to read and populate. This is called wide format. Tidy data is *usually* in "long" format.
+Often, a dataset is organised in a way that makes it easy for humans to
+read and populate. This is called wide format. Tidy data is *usually* in
+“long” format.
 
 The ultimate rules of tidy data are:
 
--   Each row is an observation
--   Each column is a variable
--   Each cell contains one single value
+  - Each row is an observation
+  - Each column is a variable
+  - Each cell contains one single value
 
 ### Import data
 
-We are using a dataset from the [World Bank](https://datacatalog.worldbank.org/dataset/climate-change-data).
+We are using a dataset from the [World
+Bank](https://datacatalog.worldbank.org/dataset/climate-change-data).
 
-Let's download the file:
+Let’s download the file:
 
 ``` r
 # download data, save locally
@@ -85,7 +105,7 @@ download.file(url = "https://gitlab.com/stragu/DSH/raw/master/R/tidyverse_next_s
               destfile = "data_wb_climate.csv")
 ```
 
-... and read the data into an object:
+… and read the data into an object:
 
 ``` r
 # read CSV into an object
@@ -105,13 +125,21 @@ climate_raw <- read_csv("data_wb_climate.csv",
 
     ## See spec(...) for full column specifications.
 
-You can use `View()` to explore your dataset. We can see that it doesn't respect the tidy data principles in a couple of ways, the most obvious one being that different years are spread out between different columns.
+We defined with the `na` argument that, in this dataset, missing data is
+recorded as “..”.
+
+You can use `View()` to explore your dataset. We can see that it doesn’t
+respect the tidy data principles in a couple of ways, the most obvious
+one being that different years are spread out between different columns.
 
 ### Reshaping data
 
 #### Gathering
 
-To go from wide format to long format, we can use the tidyr function `gather()`:
+To go from wide format to long format, we can use the tidyr function
+`gather()`. Here, we want to gather all the columns titled with a year:
+we store the data in a “value” variable, and the year in a “year”
+variable (the key).
 
 ``` r
 climate_long <- gather(climate_raw,
@@ -121,15 +149,22 @@ climate_long <- gather(climate_raw,
                        convert = TRUE)
 ```
 
-This is better, but there is still an issue: our `value` variable contains many different indicators.
+We set `convert` to TRUE because we want the function to change the key
+class from character to numeric.
+
+This is better, but there is still an issue: our `value` variable
+contains many different indicators.
 
 #### Spreading
 
-To do the opposite, going from long to wide format, we can use the `spread()` function.
+To do the opposite, going from long to wide format, we can use the
+`spread()` function.
 
-We have single observations spread across several rows, so we can spread the data.
+We have single observations spread across several rows, so we can spread
+the data.
 
-First, let's keep a record of the correspondence between long descriptive variable names and their "code", for later reference:
+First, let’s keep a record of the correspondence between long
+descriptive variable names and their “code”, for later reference:
 
 ``` r
 codes <- unique(climate_long[,c("Series code", "Series name")])
@@ -147,7 +182,8 @@ codes
 
 This will be our key to variable details, for future reference.
 
-Now, let's spread the data (and remove some useless columns with `dplyr::select()`):
+Now, let’s spread the data (and remove some useless columns with
+`dplyr::select()`):
 
 ``` r
 climate_tidy <- climate_long %>% 
@@ -156,15 +192,9 @@ climate_tidy <- climate_long %>%
          value = value)
 ```
 
-### Cleaning data
+### Challenge 1
 
-Turns out this dataset contains grouped data as well as unique countries. We can have a look at the list with:
-
-``` r
-unique(climate_tidy$`Country name`)
-```
-
-We can create a list of grouped countries, and remove them from the data:
+Have a look at this block of code. What do you think it does?
 
 ``` r
 groups <- c("Europe & Central Asia",
@@ -186,9 +216,22 @@ climate_tidy <- climate_tidy %>%
   filter(!`Country name` %in% groups)
 ```
 
+Turns out this dataset contains grouped data as well as unique
+countries. Here, we created a list of grouped countries, and removed
+them from the data by using dplyr’s `filter()` function (inverting the
+filter with `!`).
+
+We can now check that we’ve only got single countries left:
+
+``` r
+unique(climate_tidy$`Country name`)
+```
+
 ### Visualising
 
-Now that we have clean, tidy data, we can process and visualise our data more comfortably! For example, to visualise the increase in KT of CO<sup>2</sup> for each country:
+Now that we have clean, tidy data, we can process and visualise our data
+more comfortably\! For example, to visualise the increase in KT of
+CO<sup>2</sup> for each country:
 
 ``` r
 climate_tidy %>% 
@@ -200,9 +243,10 @@ climate_tidy %>%
 
     ## Warning: Removed 1091 rows containing missing values (geom_path).
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
-Let's have a look at the increase in *global* CO<sup>2</sup> emissions in KT:
+Let’s have a look at the increase in *global* CO<sup>2</sup> emissions
+in KT:
 
 ``` r
 climate_tidy %>% 
@@ -212,9 +256,9 @@ climate_tidy %>%
   geom_point()
 ```
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
-#### Challenge 1
+#### Challenge 2
 
 Looks like our data is missing after 2008, so how can we remove that?
 
@@ -229,80 +273,82 @@ climate_tidy %>%
   geom_point()
 ```
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
-Functional programming
-----------------------
+## Functional programming
 
-Functional programming (as opposed to "imperative programming") makes use of functions rather than loops to iterate over objects. The functions will allow to simplify our code, by abstracting common building blocks used in different cases of iteration. However, it means that there will usually be a different function for each different pattern.
+Functional programming (as opposed to “imperative programming”) makes
+use of functions rather than loops to iterate over objects. The
+functions will allow to simplify our code, by abstracting common
+building blocks used in different cases of iteration. However, it means
+that there will usually be a different function for each different
+pattern.
 
 You can iterate over elements by using:
 
-1.  the basic building blocks in R (for loops, while loops...), or
+1.  the basic building blocks in R (for loops, while loops…), or
 2.  the `apply` function family from base R, or
 3.  the purrr functions.
 
-Here is an example of a for loop:
+Imagine we want to find out the median value for each variable in the
+`mtcars` dataset. Here is an example of a for loop:
 
 ``` r
 output <- vector("double", ncol(mtcars))
 for (i in seq_along(mtcars)) {
-  output[[i]] <- mean(mtcars[[i]])
+  output[[i]] <- median(mtcars[[i]])
 }
 output
 ```
 
-    ##  [1]  20.090625   6.187500 230.721875 146.687500   3.596563   3.217250
-    ##  [7]  17.848750   0.437500   0.406250   3.687500   2.812500
+    ##  [1]  19.200   6.000 196.300 123.000   3.695   3.325  17.710   0.000
+    ##  [9]   0.000   4.000   2.000
 
-Better than having the same code repeated 11 times!
+Better than having the same code repeated 11 times\!
 
-We allocate space in the expected **output** first (more efficient). We then specify the **sequence** for the loop, and put what we want to iterate in the loop **body**.
+We allocate space in the expected **output** first (more efficient). We
+then specify the **sequence** for the loop, and put what we want to
+iterate in the loop **body**.
 
-The apply family in base R is handy, but the purrr functions are easiers to learn because they are more consistent.
-
-Here's our third option: purrr offers several tools to iterate functions over elements in a vector or a list.
+The apply family in base R is handy, but the purrr functions are easier
+to learn because they are more consistent. This package offers several
+tools to iterate functions over elements in a vector or a list.
 
 ### The map family
 
--   `map()` makes a list.
--   `map_lgl()` makes a logical vector.
--   `map_int()` makes an integer vector.
--   `map_dbl()` makes a double vector.
--   `map_chr()` makes a character vector.
+At purrr’s core, there is the map family:
+
+  - `map()` outputs a list.
+  - `map_lgl()` outputs a logical vector.
+  - `map_int()` outputs an integer vector.
+  - `map_dbl()` outputs a double vector.
+  - `map_chr()` outputs a character vector.
 
 For example, to do a similar operation to our previous for loop:
 
 ``` r
-car_means <- map_dbl(mtcars, mean)
-car_means
+car_medians <- map_dbl(mtcars, median)
+car_medians
 ```
 
-    ##        mpg        cyl       disp         hp       drat         wt 
-    ##  20.090625   6.187500 230.721875 146.687500   3.596563   3.217250 
-    ##       qsec         vs         am       gear       carb 
-    ##  17.848750   0.437500   0.406250   3.687500   2.812500
+    ##     mpg     cyl    disp      hp    drat      wt    qsec      vs      am 
+    ##  19.200   6.000 196.300 123.000   3.695   3.325  17.710   0.000   0.000 
+    ##    gear    carb 
+    ##   4.000   2.000
 
 ``` r
-typeof(car_means)
+typeof(car_medians)
 ```
 
     ## [1] "double"
 
 A lot leaner, right?
 
-The map functions automatically name the resulting vectors, which makes the result easier to read.
+The map functions automatically name the resulting vectors, which makes
+the result easier to read.
 
-We can use extra arguments to pass to the iterated function:
-
-``` r
-map_dbl(mtcars, mean, trim = 0.2)
-```
-
-    ##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
-    ##  19.2200   6.3000 219.1750 137.9000   3.5755   3.1970  17.8175   0.4000 
-    ##       am     gear     carb 
-    ##   0.3500   3.5500   2.7000
+Lets try a different type of
+    output:
 
 ``` r
 map_lgl(starwars, is_character)
@@ -315,20 +361,45 @@ map_lgl(starwars, is_character)
     ##  starships 
     ##      FALSE
 
-Just like most functions in the Tidyverse, the first argument is the data that we want to process (which means we can use the pipe). The second argument is the name of the function we want to apply, but it can also be a custom formula. For example:
+We can use extra arguments to pass to the iterated
+    function:
 
 ``` r
-map_dbl(mtcars, ~ round(max(.x)))
+map_dbl(mtcars, mean, trim = 0.2)
+```
+
+    ##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
+    ##  19.2200   6.3000 219.1750 137.9000   3.5755   3.1970  17.8175   0.4000 
+    ##       am     gear     carb 
+    ##   0.3500   3.5500   2.7000
+
+Just like most functions in the Tidyverse, the first argument is the
+data that we want to process (which means we can use the pipe). The
+second argument is the name of the function we want to apply, but it can
+also be a custom formula. For example:
+
+``` r
+map_dbl(mtcars, ~ round(mean(.x)))
 ```
 
     ##  mpg  cyl disp   hp drat   wt qsec   vs   am gear carb 
-    ##   34    8  472  335    5    5   23    1    1    5    8
+    ##   20    6  231  147    4    3   18    0    0    4    3
 
-We have to use the tilde `~` to introduce a custom function, and `.x` to use the vector being processed.
+``` r
+map_lgl(mtcars, ~ max(.x) > 3 * min(.x))
+```
 
-#### Challenge 2
+    ##   mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb 
+    ##  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE
 
-How can we find out the number of unique values in each variable of the `starwars` data.frame?
+We have to use the tilde `~` to introduce a custom function, and `.x` to
+use the vector being processed.
+
+#### Challenge 3
+
+How can we find out the number of unique values in each variable of the
+`starwars`
+    data.frame?
 
 ``` r
 map_int(starwars, ~ length(unique(.x)))
@@ -341,7 +412,10 @@ map_int(starwars, ~ length(unique(.x)))
     ##  starships 
     ##         17
 
-To split a dataset and apply an operation to separate parts, we can use the `split()` function:
+### Splitting
+
+To split a dataset and apply an operation to separate parts, we can use
+the base `split()` function:
 
 ``` r
 unique(mtcars$cyl)
@@ -352,7 +426,7 @@ unique(mtcars$cyl)
 ``` r
 mtcars %>% 
   split(.$cyl) %>% # separate in three parts
-  map(summary) # applied to each data.frame
+  map(summary) # applied to each data frame
 ```
 
     ## $`4`
@@ -424,31 +498,39 @@ mtcars %>%
     ##  3rd Qu.:0.0000   3rd Qu.:3.000   3rd Qu.:4.00  
     ##  Max.   :1.0000   Max.   :5.000   Max.   :8.00
 
-Using purrr functions with ggplot2 functions allows us to generate several plots in one command:
+Using purrr functions with ggplot2 functions allows us to generate
+several plots in one command:
 
 ``` r
 mtcars %>% 
   split(.$cyl) %>% 
-  map(~ggplot(., aes(mpg, wt)) + geom_point())
+  map(~ggplot(., aes(mpg, wt)) + geom_point() + geom_smooth())
 ```
 
     ## $`4`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-19-1.png)
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
     ## 
     ## $`6`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-19-2.png)
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-20-2.png)<!-- -->
 
     ## 
     ## $`8`
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-19-3.png)
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-20-3.png)<!-- -->
 
 ### Predicate functions
 
-Purrr also contains functions that return a boolean, so we can set up conditions before iterating.
+Purrr also contains functions that check for a condition, so we can set
+up conditions before iterating.
 
 ``` r
 str(iris)
@@ -463,7 +545,7 @@ str(iris)
 
 ``` r
 iris %>%
-  map_dbl(mean) # NA for Species
+  map_dbl(mean) # warning, NA for Species
 ```
 
     ## Warning in mean.default(.x[[i]], ...): argument is not numeric or logical:
@@ -492,7 +574,11 @@ starwars %>%
     ##    species 
     ##         38
 
-To return everything, but apply a function only if a condition is met, we can use `map_if()`:
+`is.factor()` and `is.character()` are examples of “predicate
+functions”.
+
+To return everything, but apply a function only if a condition is met,
+we can use `map_if()`:
 
 ``` r
 str(iris)
@@ -518,27 +604,41 @@ iris %>%
     ##  $ Petal.Width : num [1:150] 0 0 0 0 0 0 0 0 0 0 ...
     ##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 
-This results in a list in which the elements are rounded only if they store numeric data.
+This results in a list in which the elements are rounded only if they
+store numeric data.
 
-Now, let's see another example with our climate dataset. In this one, we use functions from dplyr, purrr, tibble and ggplot2.
+Now, let’s see a more involved example with our climate dataset. In this
+one, we use functions from dplyr, purrr, stringr, tibble and ggplot2.
 
 ``` r
-# cumulative CO2 emissions
+# cumulative and yearly change in CO2 emissions dataset
 climate_cumul <- climate_tidy %>% 
+  arrange(`Country name`, year) %>% 
   group_by(`Country name`) %>%
-  arrange(year) %>% 
-  mutate(cumul.CO2 = cumsum(EN.ATM.CO2E.KT)) %>% 
-  map_if(is.numeric, round, digits = 1) %>% 
-  as_tibble() # from list to tibble
+  mutate(cumul.CO2.KT = cumsum(EN.ATM.CO2E.KT),
+         dif.CO2.KT = EN.ATM.CO2E.KT - lag(EN.ATM.CO2E.KT)) %>% 
+  map_at(vars(ends_with("KT")), ~ .x / 10^6) %>% 
+  as_tibble() %>%  # from list to tibble
+  rename_at(vars(ends_with("KT")), ~ str_replace(.x, "KT", "PG"))
+
 # visualise it
-ggplot(climate_cumul) +
+p <- climate_cumul %>%
+  ggplot() +
   aes(x = year,
-      y = cumul.CO2,
+      y = cumul.CO2.PG,
       colour = `Country name`) +
   geom_line() +
   theme(legend.position = "none")
+p
 ```
 
     ## Warning: Removed 1541 rows containing missing values (geom_path).
 
-![](tidyverse_next_steps_files/figure-markdown_github/unnamed-chunk-22-1.png)
+![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+
+If you want to create an interactive visualisation, you can use plotly:
+
+``` r
+library(plotly)
+ggplotly(p)
+```
