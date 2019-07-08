@@ -1,7 +1,7 @@
 R with RStudio: getting started
 ================
 Stéphane Guillou
-2019-05-28
+2019-07-08
 
 > These notes are available on GitLab:
 > <https://gitlab.com/stragu/DSH/blob/master/R/rstudio_intro/rstudio_intro.md>
@@ -531,8 +531,8 @@ Notice how categorical and numerical variables are handled differently?
 
 ### Packages
 
-Packages add functionnalities to R and RStudio. There are more than
-17000 available.
+Packages add functionalities to R and RStudio. There are more than 17000
+available.
 
 You can see the list of installed packages in your “Packages” tab, or by
 using the `library()` function without any argument.
@@ -553,7 +553,7 @@ library(praise) # load the package
 praise() # use a function from the package
 ```
 
-    ## [1] "You are first-class!"
+    ## [1] "You are fabulous!"
 
 Even though you might need the motivation provided by this function,
 other packages are more useful for your work.
@@ -577,15 +577,6 @@ the population growth. In our script:
 
 ``` r
 library(ggplot2)
-```
-
-    ## Registered S3 methods overwritten by 'ggplot2':
-    ##   method         from 
-    ##   [.quosures     rlang
-    ##   c.quosures     rlang
-    ##   print.quosures rlang
-
-``` r
 qplot(data = gapminder,
       x = year,
       y = pop,
@@ -609,18 +600,19 @@ qplot(data = gapminder,
 We can now use the “Export” dropdown menu to save our plot into our
 “plots” directory in a variety of formats.
 
-### Close RStudio
+### Closing RStudio
 
 You can close RStudio after making sure that you saved your script.
 
-When you create a **project** in RStudio, it create an .Rproj file that
-gathers information about your project, and it allows you to save your
-**workspace** inside an .Rdata file. The .Rdata file is by default used
-to reload your workspace when you open your Rproject again (i.e. the
-objects in your **environment**). Rprojects also bring back whatever
-source file (e.g. script) you had open, and your command history. You
-will find your command history in the “History” tab (upper right panel):
-all the commands that we used should be in there.
+When you create a **project** in RStudio, you create an .Rproj file that
+gathers information about the state of your project. When you close
+RStudio, you have the option to save your **workspace** (i.e. the
+objects in your **environment**) as an .Rdata file. The .Rdata file is
+used to reload your workspace when you open your project again. Projects
+also bring back whatever source file (e.g. script) you had open, and
+your command history. You will find your command history in the
+“History” tab (upper right panel): all the commands that we used
+should be in there.
 
 If you have a script that contains all your work, it is a good idea
 *not* to save your workspace: it makes it less likely to run into errors
@@ -628,7 +620,7 @@ because of accumulating objects. The script will allow you to get back
 to where you left it, by executing all the clearly laid-out steps.
 
 The console, on the other hand, only shows a brand new R **session**
-when you reopen RStudio. Sessions are not persistent, and a new one is
+when you reopen RStudio. Sessions are not persistent, and a clean one is
 started when you open your project again, which is why you have to load
 any extra package your work requires again with the `library()`
 function.
