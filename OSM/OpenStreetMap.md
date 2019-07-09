@@ -43,7 +43,7 @@ Let's try and add that to the database now!
 1. Add a point / a line / an area that corresponds to what you want to add
 1. Search for the feature you want to add after tracing it.
 
-iD also make it easy to find documentation about the feature on the OSM Wiki: 
+iD also makes it easy to find documentation about the feature on the OSM Wiki: there is an "i" button next to most tagging boxes, so we can quickly read a short description of the key-tag pair.
 
 ## Using the data in QGIS
 
@@ -53,20 +53,27 @@ We can straight away use an OpenStreetMap basemap in QGIS: Browser panel (on the
 
 **QuickMapServices** also offers alternative renderings of OSM data. Install the plugin and search for "openstreetmap".
 
-## Shapefiles
+## Vector data
 
-To get an actual shapefile, we can go to the OSM website and click "export".
+To get vector data into QGIS, we can go to the OSM website and click "export".
 
-We can then drag and drop this file into our layers.
+We can then drag and drop this file into our layers. The issues with this are:
 
-### Useful plugins
+- We get all the features at once
+- The attribute table of the features is very messy
 
-#### QuickOSM
+There is a better way to get exactly what we're looking for.
+
+
+### QuickOSM
 
 We can also use a QGIS plugin called "QuickOSM". After installing it, you can go to "Vector > Quick OSM" and create a query to pull in vector data.
 
 For example, try querrying the `building` key on the current extent of the map.
 
+### Finding libraries in Brisbane
+
+Let's try looking for libraries in Brisbane. How do different suburbs differ in access to libraries?
 
 
 ## OSM links
