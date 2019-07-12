@@ -1,81 +1,98 @@
 R data manipulation with RStudio and dplyr: an introduction
 ================
 Stéphane Guillou
-2019-04-12
+2019-07-12
 
-Everything we write today will be saved in your R project. Please remember to save it in your H drive or USB if you are using Library computers.
+## What are we going to learn?
 
-Useful links, exercises and more information on how to continue your R learning are provided in our community resource in this Etherpad: <https://frama.link/DSH-dplyr> During the session, it is the only document you need to have open.
+In this hands-on session, you will use RStudio and the `dplyr` package
+to manipulate your data.
 
-Keep in mind
-------------
+Specifically, you will learn how to **explore, filter, reorganise and
+process** your data with the following verbs:
 
--   R is case sensitive: it will tell the difference between uppercase and lowercase.
--   Respect the naming rules for objects (no spaces, does not start with a number...)
+  - `filter()`: pick observations
+  - `arrange()`: reorder rows
+  - `select()`: pick variables
+  - `mutate()`: create new variables
+  - `summarise()`: collapse to a single summary
+  - `group_by()`: change the scope of function
+
+## Keep in mind
+
+  - Everything we write today will be saved in your project. Please
+    remember to save it in your H drive or USB if you are using a
+    Library computer.
+  - R is case sensitive: it will tell the difference between uppercase
+    and lowercase.
+  - Respect the naming rules for objects (no spaces, does not start with
+    a number…)
 
 ### Help
 
-For any dataset or function doubts that you might have, don't forget the three ways of getting help in RStudio:
+For any dataset or function doubts that you might have, don’t forget the
+three ways of getting help in RStudio:
 
 1.  the shortcut command: `?functionname`
 2.  the help function: `help(functionname)`
 3.  the keyboard shortcut: press F1 after writing a function name
 
-What are we going to learn?
----------------------------
+## Open RStudio
 
-In this hands-on session, you will use RStudio and the `dplyr` package to manipulate your data.
+  - If you are using your own laptop please open RStudio
+      - If you want to review the installation instructions:
+        <https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
+  - Make sure you have a working internet connection
+  - On Library computers (the first time takes about 10 min.):
+      - Log in with your UQ credentials (student account if you have
+        two)
+      - Make sure you have a working internet connection
+      - Go to search at bottom left corner (magnifiying glass)
+      - Open the ZENworks application
+      - Look for RStudio
+      - Double click on RStudio which will install both R and RStudio
 
-Specifically, you will learn how to **explore, filter, reorganise and process** your data with the following verbs:
-
--   `filter()`: pick observations
--   `arrange()`: reorder rows
--   `select()`: pick variables
--   `mutate()`: create new variables
--   `summarise()`: collapse to a single summary
--   `group_by()`: change the scope of function
-
-Open RStudio
-------------
-
--   If you are using your own laptop please open RStudio
--   If you want to review the installation instructions: <https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
--   Make sure you have a working internet connection
--   On Library computers (the first time takes about 10 min.):
-    -   Log in with your UQ username (student if you have two) and password
-    -   Make sure you have a working internet connection
-    -   Go to search at bottom left corner (magnifiying glass)
-    -   Open the ZENworks application
-    -   Look for RStudio
-    -   Double click on RStudio which will install both R and RStudio
-
-Setting up
-----------
+## Setting up
 
 ### Install the dplyr package
 
-If you don't have it already, you can install dplyr with the command: `install.packages("dplyr")`
+If you don’t have it already, you can install dplyr with the command:
+`install.packages("dplyr")`
 
-> At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)", a meta-package useful for data science: `install.packages("tidyverse")`
+> At home, you can install the whole
+> “[tidyverse](https://www.tidyverse.org/)”, a meta-package useful for
+> data science: `install.packages("tidyverse")`
 
 ### New project
 
--   Click the "File" menu button (top left corner), then "New Project"
--   Click "New Directory"
--   Click "New Project" ("Empty project" if you have an older version of RStudio)
--   In "Directory name", type the name of your project, e.g. "dplyr\_intro"
--   Select the folder where to locate your project: the `Documents/RProjects` folder, which you can create if it doesn't exist yet.
--   Click the "Create Project" button
+  - Click the “File” menu button (top left corner), then “New Project”
+  - Click “New Directory”
+  - Click “New Project” (“Empty project” if you have an older version of
+    RStudio)
+  - In “Directory name”, type the name of your project, e.g.
+    “dplyr\_intro”
+  - Select the folder where to locate your project: for example, the
+    `Documents/RProjects` folder, which you can create if it doesn’t
+    exist yet.
+  - Click the “Create Project” button
 
 ### Create a script
 
 We will use a script to write code more comfortably.
 
--   Menu: Top left corner, click the green "plus" symbol, or press the shortcut (for Windows/Linux) Ctrl+Shift+N or (for Mac) Cmd+Shift+N. This will open an "Untitled1" file.
--   Go to "File &gt; Save" or press (for Windows/Linux) Ctrl+S or (for Mac) Cmd+S. This will ask where you want to save your file and the name of the new file.
--   Call your file "process.R"
+  - Menu: Top left corner, click the green “plus” symbol, or press the
+    shortcut (for Windows/Linux) <kbd>Ctrl</kbd>+Shift</kbd>+N</kbd> or
+    (for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will
+    open an “Untitled1” file.
+  - Go to “File \> Save” or press (for Windows/Linux)
+    <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac)
+    <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save
+    your file and the name of the new file.
+  - Call your file “process.R”
 
-We can now load the package to access its functions (remember you can use <kbd>Ctrl</kbd>+<kbd>shift</kbd> to execute a command from the script):
+We can now load the package to access its functions (remember you can
+use <kbd>Ctrl</kbd>+<kbd>shift</kbd> to execute a command from the
+script):
 
 ``` r
 library(dplyr)
@@ -92,25 +109,35 @@ library(dplyr)
     ## 
     ##     intersect, setdiff, setequal, union
 
-> You only need to install a package once (with `install.packages()`), but you need to reload it every time you start a new R session (with `library()`).
+> You only need to install a package once (with `install.packages()`),
+> but you need to reload it every time you start a new R session (with
+> `library()`).
 
 ### Introducing our data
 
 #### Challenge 1 – import data
 
-Let's import and explore our data.
+Let’s import and explore our data.
 
-1.  read the data into an object called "gapminder", using `read.csv()`:
+1.  read the data into an object called “gapminder”, using
+`read.csv()`:
+
+<!-- end list -->
 
 ``` r
 gapminder <- read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
 
-1.  Explore the gapminder dataset using `dim()` and `str()`
+2.  Explore the gapminder dataset using `dim()` and `str()`
 
-How can we get the dataframe's variable names? There are two ways: `names(gapminder)` returns the names regardless of the object type, such as list, vector, data.frame etc., whereas `colnames(gapminder)` returns the variable names for matrix-like objects, such as matrices, dataframes...
+How can we get the dataframe’s variable names? There are two ways:
+`names(gapminder)` returns the names regardless of the object type, such
+as list, vector, data.frame etc., whereas `colnames(gapminder)` returns
+the variable names for matrix-like objects, such as matrices,
+dataframes…
 
-To select one specific column in the dataframe, you can use the dollar sign in: `gapminder$year`. For example, try these:
+To return one specific column in the dataframe, you can use the dollar
+syntax: `gapminder$year`. For example, try these:
 
 ``` r
 nlevels(gapminder$country)
@@ -124,46 +151,73 @@ class(gapminder$country)
 
     ## [1] "factor"
 
-If we want nicer printing, we can convert our dataframe to a "tibble". You can install the `tibble` package with `install.packages(tibble)` and then run:
+If we want a nicer display in the console, we can convert our dataframe
+to a “tibble”. Try this:
 
 ``` r
-library(tibble)
 gapminder <- as_tibble(gapminder)
+gapminder
 ```
 
-Basic dplyr verbs
------------------
+    ## # A tibble: 1,704 x 6
+    ##    country      year      pop continent lifeExp gdpPercap
+    ##    <fct>       <int>    <dbl> <fct>       <dbl>     <dbl>
+    ##  1 Afghanistan  1952  8425333 Asia         28.8      779.
+    ##  2 Afghanistan  1957  9240934 Asia         30.3      821.
+    ##  3 Afghanistan  1962 10267083 Asia         32.0      853.
+    ##  4 Afghanistan  1967 11537966 Asia         34.0      836.
+    ##  5 Afghanistan  1972 13079460 Asia         36.1      740.
+    ##  6 Afghanistan  1977 14880372 Asia         38.4      786.
+    ##  7 Afghanistan  1982 12881816 Asia         39.9      978.
+    ##  8 Afghanistan  1987 13867957 Asia         40.8      852.
+    ##  9 Afghanistan  1992 16317921 Asia         41.7      649.
+    ## 10 Afghanistan  1997 22227415 Asia         41.8      635.
+    ## # … with 1,694 more rows
 
-The R package `dplyr` was developed by Hadley Wickham for data manipulation.
+## Basic dplyr verbs
 
-The book *[R for Data Science](http://r4ds.had.co.nz)* introduces the package as follows:
+The R package `dplyr` was developed by Hadley Wickham for data
+manipulation.
 
-> You are going to learn the five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:
->
-> -   Pick observations by their values with `filter()`.
-> -   Reorder the rows with `arrange()`.
-> -   Pick variables by their names with `select()`.
-> -   Create new variables with functions of existing variables with `mutate()`.
-> -   Collapse many values down to a single summary with `summarise()`.
->
-> These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the **verbs for a language of data manipulation**.
+The book *[R for Data Science](http://r4ds.had.co.nz)* introduces the
+package as follows:
 
-To use the verbs to their full extent, we will need **pipes** and **logical operators**, which we will introduce as we go.
+> You are going to learn the five key dplyr functions that allow you to
+> solve the vast majority of your data manipulation challenges:
+> 
+>   - Pick observations by their values with `filter()`.
+>   - Reorder the rows with `arrange()`.
+>   - Pick variables by their names with `select()`.
+>   - Create new variables with functions of existing variables with
+>     `mutate()`.
+>   - Collapse many values down to a single summary with `summarise()`.
+> 
+> These can all be used in conjunction with `group_by()` which changes
+> the scope of each function from operating on the entire dataset to
+> operating on it group-by-group. These six functions provide the
+> **verbs for a language of data manipulation**.
 
-### Pick observations with `filter()`
+To use the verbs to their full extent, we will need **pipes** and
+**logical operators**, which we will introduce as we go.
 
-The `filter()` function allows use to pick observations depending on one ore several conditions.
+### 1\. Pick observations with `filter()`
 
-**Logical operators** allow us to **check for a condition**. Remember: `=` is to assign a value to a variable, `==` is to check for a condition.
+The `filter()` function allows use to pick observations depending on one
+ore several conditions.
 
--   `==` equal
--   `!=` different
--   `>` greater than
--   `<` smaller than
--   `>=` greater or equal
--   `<=` smaller or equal
+**Logical operators** allow us to **check for a condition**. Remember:
+`=` is used to pass on a value to an argument, whereas `==` is used to
+check for a condition.
 
-Filter the observations for Australia, using `filter()` and a logical operator:
+  - `==`: equal
+  - `!=`: different
+  - `>`: greater than
+  - `<`: smaller than
+  - `>=`: greater or equal
+  - `<=`: smaller or equal
+
+For example, filter the observations for Australia, using `filter()` and
+a logical operator:
 
 ``` r
 australia <- filter(gapminder, country == "Australia")
@@ -186,41 +240,58 @@ australia
     ## 11 Australia  2002 19546792 Oceania      80.4    30688.
     ## 12 Australia  2007 20434176 Oceania      81.2    34435.
 
-Filter the rows that have a life expectancy `lifeExp` greater than 80 years:
+Now, filter the rows that have a life expectancy `lifeExp` greater than
+81 years:
 
 ``` r
-life80 <- filter(gapminder, lifeExp > 80)
-dim(life80)
+life81 <- filter(gapminder, lifeExp > 81)
+dim(life81)
 ```
 
-    ## [1] 21  6
+    ## [1] 7 6
 
-### Reorder rows with `arrange()`
+### 2\. Reorder observations with `arrange()`
 
-If we want to have a look at the entries with highest GDP per capita:
+Arrange will reorder our rows according to a variable, by default in
+ascending order:
 
 ``` r
-arrange(gapminder, desc(gdpPercap))
+arrange(life81, lifeExp)
 ```
 
-    ## # A tibble: 1,704 x 6
-    ##    country    year     pop continent lifeExp gdpPercap
-    ##    <fct>     <int>   <dbl> <fct>       <dbl>     <dbl>
-    ##  1 Kuwait     1957  212846 Asia         58.0   113523.
-    ##  2 Kuwait     1972  841934 Asia         67.7   109348.
-    ##  3 Kuwait     1952  160000 Asia         55.6   108382.
-    ##  4 Kuwait     1962  358266 Asia         60.5    95458.
-    ##  5 Kuwait     1967  575003 Asia         64.6    80895.
-    ##  6 Kuwait     1977 1140357 Asia         69.3    59265.
-    ##  7 Norway     2007 4627926 Europe       80.2    49357.
-    ##  8 Kuwait     2007 2505559 Asia         77.6    47307.
-    ##  9 Singapore  2007 4553009 Asia         80.0    47143.
-    ## 10 Norway     2002 4535591 Europe       79.0    44684.
-    ## # … with 1,694 more rows
+    ## # A tibble: 7 x 6
+    ##   country          year       pop continent lifeExp gdpPercap
+    ##   <fct>           <int>     <dbl> <fct>       <dbl>     <dbl>
+    ## 1 Australia        2007  20434176 Oceania      81.2    34435.
+    ## 2 Hong Kong China  2002   6762476 Asia         81.5    30209.
+    ## 3 Switzerland      2007   7554661 Europe       81.7    37506.
+    ## 4 Iceland          2007    301931 Europe       81.8    36181.
+    ## 5 Japan            2002 127065841 Asia         82      28605.
+    ## 6 Hong Kong China  2007   6980412 Asia         82.2    39725.
+    ## 7 Japan            2007 127467972 Asia         82.6    31656.
 
-### Pick variables with `select()`
+If we want to have a look at the entries with highest life expectancy
+first, we can use the `desc()` function:
 
-Select allows use to pick variable (i.e. columns) from the dataset. For example, to only keep the data about year, country and GDP per capita:
+``` r
+arrange(life81, desc(lifeExp))
+```
+
+    ## # A tibble: 7 x 6
+    ##   country          year       pop continent lifeExp gdpPercap
+    ##   <fct>           <int>     <dbl> <fct>       <dbl>     <dbl>
+    ## 1 Japan            2007 127467972 Asia         82.6    31656.
+    ## 2 Hong Kong China  2007   6980412 Asia         82.2    39725.
+    ## 3 Japan            2002 127065841 Asia         82      28605.
+    ## 4 Iceland          2007    301931 Europe       81.8    36181.
+    ## 5 Switzerland      2007   7554661 Europe       81.7    37506.
+    ## 6 Hong Kong China  2002   6762476 Asia         81.5    30209.
+    ## 7 Australia        2007  20434176 Oceania      81.2    34435.
+
+### 3\. Pick variables with `select()`
+
+Select allows us to pick variables (i.e. columns) from the dataset. For
+example, to only keep the data about year, country and GDP per capita:
 
 ``` r
 (gap_small <- select(gapminder, year, country, gdpPercap))
@@ -243,18 +314,39 @@ Select allows use to pick variable (i.e. columns) from the dataset. For example,
 
 We wrap it in parentheses so it also prints to screen.
 
-If we only want this data for 1997, we can associate `select()` to `filter()`:
+#### The pipe operator
+
+If we only want this data for 1997, we can add a second step with the
+`filter()` verb:
 
 ``` r
 gap_small_97 <- filter(gap_small, year == 1997)
 ```
 
-We can make our code more readable and avoid creating useless intermediate objects by **piping** commands into each other. The pipe symbol `%>%` **strings commands together**, using the left-side output as the first argument of the right-side function.
+This is not ideal, as we create an intermediate object we don’t
+necessarily want to keep.
 
-This command:
+We could do this in one single line by nesting the commands into each
+other:
 
 ``` r
-summary(gapminder)
+gap_small_97 <- filter(select(gapminder,
+                              year, country, gdpPercap),
+                       year == 1997)
+```
+
+… but this becomes very hard to read.
+
+We can make our code more readable and avoid creating useless
+intermediate objects by **piping** commands into each other. The pipe
+operator `%>%` **strings commands together**, using the left side output
+as the first argument of the right side function.
+
+For example, this
+    command:
+
+``` r
+summary(gapminder, maxsum = 10)
 ```
 
     ##         country          year           pop               continent  
@@ -264,7 +356,10 @@ summary(gapminder)
     ##  Angola     :  12   Mean   :1980   Mean   :2.960e+07   Europe  :360  
     ##  Argentina  :  12   3rd Qu.:1993   3rd Qu.:1.959e+07   Oceania : 24  
     ##  Australia  :  12   Max.   :2007   Max.   :1.319e+09                 
-    ##  (Other)    :1632                                                    
+    ##  Austria    :  12                                                    
+    ##  Bahrain    :  12                                                    
+    ##  Bangladesh :  12                                                    
+    ##  (Other)    :1596                                                    
     ##     lifeExp        gdpPercap       
     ##  Min.   :23.60   Min.   :   241.2  
     ##  1st Qu.:48.20   1st Qu.:  1202.1  
@@ -272,12 +367,16 @@ summary(gapminder)
     ##  Mean   :59.47   Mean   :  7215.3  
     ##  3rd Qu.:70.85   3rd Qu.:  9325.5  
     ##  Max.   :82.60   Max.   :113523.1  
+    ##                                    
+    ##                                    
+    ##                                    
     ## 
 
-Is equivalent to:
+… is equivalent
+    to:
 
 ``` r
-gapminder %>% summary()
+gapminder %>% summary(maxsum = 10)
 ```
 
     ##         country          year           pop               continent  
@@ -287,7 +386,10 @@ gapminder %>% summary()
     ##  Angola     :  12   Mean   :1980   Mean   :2.960e+07   Europe  :360  
     ##  Argentina  :  12   3rd Qu.:1993   3rd Qu.:1.959e+07   Oceania : 24  
     ##  Australia  :  12   Max.   :2007   Max.   :1.319e+09                 
-    ##  (Other)    :1632                                                    
+    ##  Austria    :  12                                                    
+    ##  Bahrain    :  12                                                    
+    ##  Bangladesh :  12                                                    
+    ##  (Other)    :1596                                                    
     ##     lifeExp        gdpPercap       
     ##  Min.   :23.60   Min.   :   241.2  
     ##  1st Qu.:48.20   1st Qu.:  1202.1  
@@ -295,9 +397,12 @@ gapminder %>% summary()
     ##  Mean   :59.47   Mean   :  7215.3  
     ##  3rd Qu.:70.85   3rd Qu.:  9325.5  
     ##  Max.   :82.60   Max.   :113523.1  
+    ##                                    
+    ##                                    
+    ##                                    
     ## 
 
-Here's another example with the `filter()` verb:
+Here’s another example with the `filter()` verb:
 
 ``` r
 gapminder %>%
@@ -319,7 +424,7 @@ gapminder %>%
     ## 10 Afghanistan  1997 22227415 Asia         41.8      635.
     ## # … with 1,682 more rows
 
-... becomes:
+… becomes:
 
 ``` r
 filter(gapminder, country != "France")
@@ -348,13 +453,16 @@ gap_small_97 <- gapminder %>%
     filter(year == 1997)
 ```
 
-The pipe operator can be read as "then" and makes the code a lot **more readable** than when nesting functions into each other, and avoids the creation of several intermediate objects.
+The pipe operator can be read as “then” and makes the code a lot **more
+readable** than when nesting functions into each other, and avoids the
+creation of several intermediate objects.
 
-From now on, we'll use this syntax.
+From now on, we’ll use this syntax.
 
 #### Challenge 2 – a tiny dataset
 
-Select the 2002 life expectancy observation for Eritrea (and remove the rest of the variables).
+Select the 2002 life expectancy observation for Eritrea (and remove the
+rest of the variables).
 
 ``` r
 eritrea_2002 <- gapminder %>%
@@ -362,11 +470,11 @@ eritrea_2002 <- gapminder %>%
     filter(country == "Eritrea", year == 2002)
 ```
 
-### Create new variables with `mutate()`
+### 4\. Create new variables with `mutate()`
 
 Have a look at what the verb `mutate()` can do with `?mutate`.
 
-Let's see what the two following variables can be used for:
+Let’s see what the two following variables can be used for:
 
 ``` r
 gapminder %>%
@@ -388,11 +496,15 @@ gapminder %>%
     ## 10      635. 22227415
     ## # … with 1,694 more rows
 
+How do you think we could combine them to add something new to our
+dataset?
+
 #### Challenge 3 – mutate the GDP
 
 Use `mutate()` to create a `gdp` variable.
 
-Name your new dataset `gap_gdp`. When finished, `dim(gap_gdp)` should result in `1704 7`.
+Name your new dataset `gap_gdp`. When finished, `dim(gap_gdp)` should
+result in `1704 7`.
 
 Hint: use the `*` operator within `mutate()`.
 
@@ -418,7 +530,9 @@ head(gap_gdp)
     ## 5 Afghanistan  1972 13079460 Asia         36.1      740.  9678553274.
     ## 6 Afghanistan  1977 14880372 Asia         38.4      786. 11697659231.
 
-Reuse a variable computed by 'mutate()' straight away:
+You can reuse a variable computed by ‘mutate()’ straight away. For
+example, we also want a more readable version of our new variable, in
+million dollars:
 
 ``` r
 (gap_gdp <- gapminder %>%
@@ -440,28 +554,10 @@ Reuse a variable computed by 'mutate()' straight away:
     ## 10 Afghanistan  1997  2.22e7 Asia         41.8      635.     1.41e10 14122.
     ## # … with 1,694 more rows
 
-### `group_by()` and `summarise()`
+### 5\. Collapse to a single value with `summarise()`
 
-`group_by()` changes the scope of each function from operating on the entire dataset to operating on it group-by-group. For example, to group by continents:
-
-``` r
-gap_continents <- gapminder %>%
-    group_by(continent)
-head(gap_continents)
-```
-
-    ## # A tibble: 6 x 6
-    ## # Groups:   continent [1]
-    ##   country      year      pop continent lifeExp gdpPercap
-    ##   <fct>       <int>    <dbl> <fct>       <dbl>     <dbl>
-    ## 1 Afghanistan  1952  8425333 Asia         28.8      779.
-    ## 2 Afghanistan  1957  9240934 Asia         30.3      821.
-    ## 3 Afghanistan  1962 10267083 Asia         32.0      853.
-    ## 4 Afghanistan  1967 11537966 Asia         34.0      836.
-    ## 5 Afghanistan  1972 13079460 Asia         36.1      740.
-    ## 6 Afghanistan  1977 14880372 Asia         38.4      786.
-
-`summarise()` collapses many values down to a single summary. For example, to find the mean life expectancy for the whole dataset:
+`summarise()` collapses many values down to a single summary. For
+example, to find the mean life expectancy for the whole dataset:
 
 ``` r
 gapminder %>%
@@ -473,23 +569,57 @@ gapminder %>%
     ##    <dbl>
     ## 1   59.5
 
-Associating the two functions makes it more interesting. To find out the mean life expectancy for each continent in 2007, we can do the following:
+### 6\. Change the scope with `group_by()`
+
+`group_by()` changes the scope of the following function(s) from
+operating on the entire dataset to operating on it group-by-group.
+
+See the effect of the grouping step:
+
+``` r
+gapminder %>%
+    group_by(continent)
+```
+
+    ## # A tibble: 1,704 x 6
+    ## # Groups:   continent [5]
+    ##    country      year      pop continent lifeExp gdpPercap
+    ##    <fct>       <int>    <dbl> <fct>       <dbl>     <dbl>
+    ##  1 Afghanistan  1952  8425333 Asia         28.8      779.
+    ##  2 Afghanistan  1957  9240934 Asia         30.3      821.
+    ##  3 Afghanistan  1962 10267083 Asia         32.0      853.
+    ##  4 Afghanistan  1967 11537966 Asia         34.0      836.
+    ##  5 Afghanistan  1972 13079460 Asia         36.1      740.
+    ##  6 Afghanistan  1977 14880372 Asia         38.4      786.
+    ##  7 Afghanistan  1982 12881816 Asia         39.9      978.
+    ##  8 Afghanistan  1987 13867957 Asia         40.8      852.
+    ##  9 Afghanistan  1992 16317921 Asia         41.7      649.
+    ## 10 Afghanistan  1997 22227415 Asia         41.8      635.
+    ## # … with 1,694 more rows
+
+The data in the cells is the same, the size of the object is the same.
+However, the dataframe was converted to a **tibble**, because a
+dataframe is not capable of storing grouping information.
+
+Using the `group_by()` function before summarising makes things more
+interesting. For example, to find out the total population per continent
+in 2007, we can do the following:
 
 ``` r
 gapminder %>% 
     filter(year == 2007) %>%
     group_by(continent) %>%
-    summarise(meanLE = mean(lifeExp))
+    summarise(pop = sum(pop))
 ```
 
     ## # A tibble: 5 x 2
-    ##   continent meanLE
-    ##   <fct>      <dbl>
-    ## 1 Africa      54.8
-    ## 2 Americas    73.6
-    ## 3 Asia        70.7
-    ## 4 Europe      77.6
-    ## 5 Oceania     80.7
+    ##   continent        pop
+    ##   <fct>          <dbl>
+    ## 1 Africa     929539692
+    ## 2 Americas   898871184
+    ## 3 Asia      3811953827
+    ## 4 Europe     586098529
+    ## 5 Oceania     24549947
 
 #### Challenge 4 – max life expectancy
 
@@ -518,15 +648,15 @@ gapminder %>%
     ## 10 Belgium      79.4
     ## # … with 132 more rows
 
-More examples
--------------
+## More examples
 
-Another example of new variable with `mutate()`:
+Another example of new variable with `mutate()`, with a different
+dataset that dplyr provides:
 
 ``` r
 starwars %>% 
-  mutate(name, bmi = mass / ((height / 100)  ^ 2)) %>%
-  select(name:mass, bmi)
+  mutate(bmi = mass / ((height / 100)  ^ 2)) %>%
+  select(name:mass, bmi) # we can select ranges
 ```
 
     ## # A tibble: 87 x 4
@@ -550,7 +680,7 @@ And a more complex processing of a dataset:
 starwars %>%
   group_by(species) %>%
   summarise(
-    n = n(),
+    n = n(), # this counts the number of rows in each group
     mass = mean(mass, na.rm = TRUE)
   ) %>%
   filter(n > 1)
@@ -559,17 +689,18 @@ starwars %>%
     ## # A tibble: 9 x 3
     ##   species      n  mass
     ##   <chr>    <int> <dbl>
-    ## 1 <NA>         5  48  
-    ## 2 Droid        5  69.8
-    ## 3 Gungan       3  74  
-    ## 4 Human       35  82.8
-    ## 5 Kaminoan     2  88  
-    ## 6 Mirialan     2  53.1
-    ## 7 Twi'lek      2  55  
-    ## 8 Wookiee      2 124  
-    ## 9 Zabrak       2  80
+    ## 1 Droid        5  69.8
+    ## 2 Gungan       3  74  
+    ## 3 Human       35  82.8
+    ## 4 Kaminoan     2  88  
+    ## 5 Mirialan     2  53.1
+    ## 6 Twi'lek      2  55  
+    ## 7 Wookiee      2 124  
+    ## 8 Zabrak       2  80  
+    ## 9 <NA>         5  48
 
-An example of data manipulation and data visualisation in the same command:
+An example of data manipulation and data visualisation in the same
+command:
 
 ``` r
 # increase in population in Europe
@@ -583,7 +714,7 @@ gapminder %>%
   geom_line()
 ```
 
-![](dplyr_files/figure-markdown_github/unnamed-chunk-25-1.png)
+![](dplyr_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 
 And another one, still using our gapminder dataset:
 
@@ -601,16 +732,18 @@ gapminder %>%
   coord_flip()
 ```
 
-![](dplyr_files/figure-markdown_github/unnamed-chunk-26-1.png)
+![](dplyr_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
-Close project
--------------
+## Close project
 
 If you want to close RStudio, make sure you save your script first.
 
-You can then
+You can then close the window, and if your script contains all the steps
+necessary for your data processing, it is safer to *not* save your
+workspace at the prompt. It should only take a second te execute all the
+commands stored in your script when you re-open your project.
 
-What next?
-----------
+## What next?
 
-Look at our compilation of resources: <https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md>
+Look at our compilation of resources:
+<https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md>
