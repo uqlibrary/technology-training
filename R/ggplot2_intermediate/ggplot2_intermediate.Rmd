@@ -4,7 +4,7 @@ output: github_document
 date: "`r Sys.Date()`"
 ---
 
-> This document is written as an .Rmd document, and then knitted into a GitHub-flavoured markdown document.
+> This document is written as an .Rmd document, and then knitted into a markdown document.
 > The source code is available at: https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd  
 > The published document is available at: https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md
 
@@ -154,7 +154,7 @@ We can use other palettes. You can see the ones available in ggplot2 by looking 
 
 Those are the ColorBrewer palettes, which can be explored online: http://colorbrewer2.org/
 
-If you want a visual overview of the Brewer palettes inside RStudio, install the RColorBrewer package and try the following functions:
+If you want a visual overview of the Brewer palettes inside RStudio, you can use a function from the RColorBrewer package (installed automatically with ggplot2):
 
 ```{r}
 library(RColorBrewer)
@@ -172,6 +172,8 @@ ggplot(data = gapminder,
   geom_point() +
   scale_colour_brewer(palette = "Set2")
 ```
+
+Note that the ColorBrewer palettes were designed for categorical data. If you are dealing with continuous data, you can still use the same sequential and diverging palette names, but you will have to use the function `scale_colour_distiller()` instead.
 
 > **Saving some typing**: To reuse the constant base of our plot (the `ggplot()` call and the point geometry), we can create an object:
 
@@ -464,6 +466,7 @@ Saving your workspace is usually not recommended if you have all the necessary c
   + Official ggplot2 documentation: http://docs.ggplot2.org/current/
   + Official ggplot2 website: http://ggplot2.tidyverse.org/
   + Chapter on data visualisation in the book _R for Data Science_: http://r4ds.had.co.nz/data-visualisation.html
+  + from Data to Viz: https://www.data-to-viz.com/
   + Selva Prabhakaran's _r-statistics.co_ section on ggplot2: http://r-statistics.co/ggplot2-Tutorial-With-R.html
   + Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
   + Cookbook for R graphs: http://www.cookbook-r.com/Graphs/

@@ -1,9 +1,9 @@
 R data visualisation with RStudio and ggplot2: intermediate
 ================
-2019-05-09
+2019-07-18
 
 > This document is written as an .Rmd document, and then knitted into a
-> GitHub-flavoured markdown document. The source code is available at:
+> markdown document. The source code is available at:
 > <https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd>  
 > The published document is available at:
 > <https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md>
@@ -92,12 +92,6 @@ Finally, make sure you **load ggplot2** so we can use its functions:
 library(ggplot2)
 ```
 
-    ## Registered S3 methods overwritten by 'ggplot2':
-    ##   method         from 
-    ##   [.quosures     rlang
-    ##   c.quosures     rlang
-    ##   print.quosures rlang
-
 ### Import data
 
 #### Challenge 1 – import data
@@ -183,8 +177,9 @@ the header “Palettes”.
 Those are the ColorBrewer palettes, which can be explored online:
 <http://colorbrewer2.org/>
 
-If you want a visual overview of the Brewer palettes inside RStudio,
-install the RColorBrewer package and try the following functions:
+If you want a visual overview of the Brewer palettes inside RStudio, you
+can use a function from the RColorBrewer package (installed
+automatically with ggplot2):
 
 ``` r
 library(RColorBrewer)
@@ -211,6 +206,11 @@ ggplot(data = gapminder,
 ```
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+Note that the ColorBrewer palettes were designed for categorical data.
+If you are dealing with continuous data, you can still use the same
+sequential and diverging palette names, but you will have to use the
+function `scale_colour_distiller()` instead.
 
 > **Saving some typing**: To reuse the constant base of our plot (the
 > `ggplot()` call and the point geometry), we can create an object:
@@ -593,6 +593,7 @@ all the necessary commands in your script.
       - Official ggplot2 website: <http://ggplot2.tidyverse.org/>
       - Chapter on data visualisation in the book *R for Data Science*:
         <http://r4ds.had.co.nz/data-visualisation.html>
+      - from Data to Viz: <https://www.data-to-viz.com/>
       - Selva Prabhakaran’s *r-statistics.co* section on ggplot2:
         <http://r-statistics.co/ggplot2-Tutorial-With-R.html>
       - Coding Club’s data visualisation tutorial:
