@@ -1,7 +1,7 @@
 R with RStudio: getting started
 ================
 Stéphane Guillou
-2019-07-08
+2019-07-22
 
 > These notes are available on GitLab:
 > <https://gitlab.com/stragu/DSH/blob/master/R/rstudio_intro/rstudio_intro.md>
@@ -159,13 +159,13 @@ they always need the parentheses after their name.
 For example, try running the following command:
 
 ``` r
-class(x = num1)
+class(num1)
 ```
 
     ## [1] "numeric"
 
 The `class()` function tells us what class of data we are dealing with.
-Here, we use the argument `x` and assign it the object `num1`.
+Here, we use provide the object `num1` as the first and only argument.
 
 #### Help
 
@@ -197,45 +197,40 @@ Use the help pages to find out what these functions do, and try
 executing commands with them:
 
 1.  `c()`
-
-2.  `rep()`
-
+2.  `rep.int()`
 3.  `mean()`
-
 4.  `rm()`
 
-5.  `c()` concatenates the arguments into a vector. For example:
-
-<!-- end list -->
+`c()` concatenates the arguments into a vector. In other words, it takes
+any number of arguments (hence the `...`), and stores all those values
+together. For example, let’s store the ages of our pet dogs in a new
+object:
 
 ``` r
 ages <- c(4, 10, 2, NA, 3)
-2 * ages
 ```
 
-    ## [1]  8 20  4 NA  6
-
-> The argument `...` means we can pass on any number of values.
-
-2.  `rep()` replicates values. For
-    example:
-
-<!-- end list -->
+We can now reuse this vector, and calculate their human age:
 
 ``` r
-rep("Ha! ", 30)
+ages * 7
 ```
 
-    ##  [1] "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! "
-    ## [11] "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! "
-    ## [21] "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! " "Ha! "
+    ## [1] 28 70 14 NA 21
 
-> We don’t need to specify the names of the arguments if we use them in
-> order.
+`rep.int()` also creates vectors, but it is designed to easily replicate
+values. For example, if you find something very
+    funny:
 
-3.  `mean()` returns the mean of a vector of numbers:
+``` r
+rep.int("Ha!", 30)
+```
 
-<!-- end list -->
+    ##  [1] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
+    ## [12] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
+    ## [23] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
+
+`mean()` returns the mean of a vector of numbers:
 
 ``` r
 mean(ages)
@@ -247,7 +242,7 @@ What happened there?
 
 We have an NA value in the vector, which means the function can’t tell
 what the mean is. If we want to change this default behaviour, we can
-use an extra argument:
+use an extra argument: `na.rm`, which stands for “remove NAs”.
 
 ``` r
 mean(ages, na.rm = TRUE)
@@ -255,10 +250,13 @@ mean(ages, na.rm = TRUE)
 
     ## [1] 4.75
 
-4.  `rm()` removes an object from your environment (`remove()` and
-    `rm()` point to the same function). For example:
+> We don’t need to specify the names of the arguments as long as we use
+> them in order. In our last command, if we hadn’t named the `na.rm`
+> argument, R would have understood `TRUE` to be the value for the
+> `trim` argument\!
 
-<!-- end list -->
+`rm()` removes an object from your environment (`remove()` and `rm()`
+point to the same function). For example:
 
 ``` r
 rm(num1)
@@ -271,9 +269,9 @@ rm(num1)
 
 Let’s do some more complex operations by combining two functions:
 
-`ls()` returns a character vector: it is a list of all the objects in
-the current environment (i.e. the objects we created in this R session).
-Is there a way we could combine it with `rm()`?
+`ls()` returns a character vector: it contains the names of all the
+objects in the current environment (i.e. the objects we created in this
+R session). Is there a way we could combine it with `rm()`?
 
 You can remove *all* the objects in the environment by using `ls()` as
 the value for the `list` argument:
@@ -282,7 +280,7 @@ the value for the `list` argument:
 rm(list = ls())
 ```
 
-We are nesting a function inside an other one. More precisely, we are
+We are nesting a function inside another one. More precisely, we are
 using the output of the `ls()` function as the value passed on to the
 `list` argument in the `rm()` function.
 
@@ -292,13 +290,14 @@ We’ve practised how to find help about functions we know the name of.
 What if we don’t know what the function is called? Or if we want general
 help about R?
 
-The function `help.start()` is a good starting point: it opens a browser
-of official R help. If you want to search for a word in all the
-documentation, you can use the `??` syntax. For example, try executing
-`??anova`. Finally, you will often go to your web browser and search for
-a particular question, or a specific error message: most times, there
-already is an answer somewhere on the Internet. The challenge is to ask
-the right question\!
+  - The function `help.start()` is a good starting point: it opens a
+    browser of official R help.
+  - If you want to search for a word in all the documentation, you can
+    use the `??` syntax. For example, try executing `??anova`.
+  - Finally, you will often go to your web browser and search for a
+    particular question, or a specific error message: most times, there
+    already is an answer somewhere on the Internet. The challenge is to
+    ask the right question\!
 
 ### Creating a folder structure
 
@@ -387,8 +386,8 @@ Notice the colours? This is called **syntax highlighting**. This is one
 of the many ways RStudio makes it more comfortable to work with R. The
 code is more readable when working in a script.
 
-> While editing your script, you can run the active command (or the
-> selected block of lines) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>.
+> While editing your script, you can run the current command (or the
+> selected block of code) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>.
 > Remember to save your script regularly with the shortcut
 > <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with
 > <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu “Tools \>
@@ -553,7 +552,7 @@ library(praise) # load the package
 praise() # use a function from the package
 ```
 
-    ## [1] "You are fabulous!"
+    ## [1] "You are awesome!"
 
 Even though you might need the motivation provided by this function,
 other packages are more useful for your work.
@@ -583,7 +582,7 @@ qplot(data = gapminder,
       geom = "point")
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](rstudio_intro_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 If we want to add an extra variable, we can add an extra argument:
 
@@ -595,7 +594,7 @@ qplot(data = gapminder,
       geom = "point")
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](rstudio_intro_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 We can now use the “Export” dropdown menu to save our plot into our
 “plots” directory in a variety of formats.

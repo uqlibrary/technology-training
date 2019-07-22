@@ -111,10 +111,10 @@ Some functions don't need arguments, others need one or several, but they always
 For example, try running the following command:
 
 ```{r}
-class(x = num1)
+class(num1)
 ```
 
-The `class()` function tells us what class of data we are dealing with. Here, we use the argument `x` and assign it the object `num1`.
+The `class()` function tells us what class of data we are dealing with. Here, we use provide the object `num1` as the first and only argument.
 
 #### Help
 
@@ -143,28 +143,29 @@ There is quite a lot of information in there, but the most important bits are:
 Use the help pages to find out what these functions do, and try executing commands with them:
 
 1. `c()`
-1. `rep()`
+1. `rep.int()`
 1. `mean()`
 1. `rm()`
 
-1. `c()` concatenates the arguments into a vector. For example:
+`c()` concatenates the arguments into a vector. In other words, it takes any number of arguments (hence the `...`), and stores all those values together. For example, let's store the ages of our pet dogs in a new object:
 
 ```{r}
 ages <- c(4, 10, 2, NA, 3)
-2 * ages
 ```
 
-> The argument `...` means we can pass on any number of values.
-
-2. `rep()` replicates values. For example:
+We can now reuse this vector, and calculate their human age:
 
 ```{r}
-rep("Ha! ", 30)
+ages * 7
 ```
 
-> We don't need to specify the names of the arguments if we use them in order.
+`rep.int()` also creates vectors, but it is designed to easily replicate values. For example, if you find something very funny:
 
-3. `mean()` returns the mean of a vector of numbers:
+```{r}
+rep.int("Ha!", 30)
+```
+
+`mean()` returns the mean of a vector of numbers:
 
 ```{r}
 mean(ages)
@@ -172,13 +173,15 @@ mean(ages)
 
 What happened there?
 
-We have an NA value in the vector, which means the function can't tell what the mean is. If we want to change this default behaviour, we can use an extra argument:
+We have an NA value in the vector, which means the function can't tell what the mean is. If we want to change this default behaviour, we can use an extra argument: `na.rm`, which stands for "remove NAs".
 
 ```{r}
 mean(ages, na.rm = TRUE)
 ```
 
-4. `rm()` removes an object from your environment (`remove()` and `rm()` point to the same function). For example:
+> We don't need to specify the names of the arguments as long as we use them in order. In our last command, if we hadn't named the `na.rm` argument, R would have understood `TRUE` to be the value for the `trim` argument!
+
+`rm()` removes an object from your environment (`remove()` and `rm()` point to the same function). For example:
 
 ```{r}
 rm(num1)
@@ -188,7 +191,7 @@ rm(num1)
 
 Let's do some more complex operations by combining two functions:
 
-`ls()` returns a character vector: it is a list of all the objects in the current environment (i.e. the objects we created in this R session). Is there a way we could combine it with `rm()`?
+`ls()` returns a character vector: it contains the names of all the objects in the current environment (i.e. the objects we created in this R session). Is there a way we could combine it with `rm()`?
 
 You can remove *all* the objects in the environment by using `ls()` as the value for the `list` argument:
 
@@ -196,14 +199,16 @@ You can remove *all* the objects in the environment by using `ls()` as the value
 rm(list = ls())
 ```
 
-We are nesting a function inside an other one. More precisely, we are using the output of the `ls()` function as the value passed on to the `list` argument in the `rm()` function.
+We are nesting a function inside another one. More precisely, we are using the output of the `ls()` function as the value passed on to the `list` argument in the `rm()` function.
 
 ##### More help
 
 We've practised how to find help about functions we know the name of.
 What if we don't know what the function is called? Or if we want general help about R?
 
-The function `help.start()` is a good starting point: it opens a browser of official R help. If you want to search for a word in all the documentation, you can use the `??` syntax. For example, try executing `??anova`. Finally, you will often go to your web browser and search for a particular question, or a specific error message: most times, there already is an answer somewhere on the Internet. The challenge is to ask the right question!
+* The function `help.start()` is a good starting point: it opens a browser of official R help.
+* If you want to search for a word in all the documentation, you can use the `??` syntax. For example, try executing `??anova`.
+* Finally, you will often go to your web browser and search for a particular question, or a specific error message: most times, there already is an answer somewhere on the Internet. The challenge is to ask the right question!
 
 ### Creating a folder structure
 
@@ -280,7 +285,7 @@ vect <- c(3, "Hi!")
 
 Notice the colours? This is called **syntax highlighting**. This is one of the many ways RStudio makes it more comfortable to work with R. The code is more readable when working in a script.
 
-> While editing your script, you can run the active command (or the selected block of lines) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>. Remember to save your script regularly with the shortcut <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu "Tools > Keyboard Shortcuts Help".
+> While editing your script, you can run the current command (or the selected block of code) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>. Remember to save your script regularly with the shortcut <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu "Tools > Keyboard Shortcuts Help".
 
 ### Import data
 
