@@ -4,7 +4,7 @@
 
 This tutorial is designed for **QGIS 3.4** (the latest long-term release). If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
 
-The **data** for this session can be downloaded here: https://cloudstor.aarnet.edu.au/plus/s/V1wU3zXUa13QKDU
+The **data** for this session can be downloaded here: https://cloudstor.aarnet.edu.au/plus/s/GjVmwTxN14OwmEc
 
 Download the archive and extract it to your desktop.
 
