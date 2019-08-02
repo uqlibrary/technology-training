@@ -9,7 +9,7 @@ Create a new project in RStudio. We can call this one “acorn\_analysis”.
 
 ## Our example ACORN data
 
-Our date comes from the Bureau of Meteorology website. You can get the
+Our data comes from the Bureau of Meteorology website. You can get the
 archive here: <https://cloudstor.aarnet.edu.au/plus/s/svECiZfnH5uUrWX>
 
 > Make sure you extract the archive into your project directory.
@@ -535,35 +535,37 @@ shinyApp(ui = ui, server = server)
 ```
 
 Now, let’s make sure we have the data ready to be used in our app. We
-don’t want to do the merging of our data every time we run the app, so
-let’s save the finished product into an RDS file:
+don’t want to do the merging and summarising of our data every time we
+run the app, so let’s save the finished product into an RDS file. In our
+process.R script:
 
 ``` r
 library(acornucopia)
 dat <- merge_acorn("acorn_sat_v2_daily_tmax")
-saveRDS(dat, "myApp/dat.RDS")
-```
-
-We can now read that data file into our app, process it, and present it
-in an interactive table:
-
-``` r
-# import data
-dat <- readRDS("dat.RDS")
 # process for monthly average
 library(lubridate)
 monthly <- dat %>% 
     group_by(month = month(date),
              year = year(date)) %>% 
     summarise(mean.max = mean(max.temp, na.rm = TRUE))
+# export into app directory
+saveRDS(monthly, "myApp/monthly.RDS")
+```
 
-# Define UI for application that draws a histogram
+We can now read that data file into our app, process it, and present it
+in an interactive table:
+
+``` r
+# Import data
+monthly <- readRDS("monthly.RDS")
+
+# Define UI
 ui <- fluidPage(
     titlePanel("ACORN data explorer"),
     dataTableOutput("dt")
 )
 
-# Define server logic required to draw a histogram
+# Define server logic
 server <- function(input, output) {
     output$dt <- renderDataTable({
         monthly
@@ -581,20 +583,105 @@ Notice that we had to define an output in the server section (with a
 Now, for a different kind of output, let’s add a plot:
 
 ``` r
+# Import data
+monthly <- readRDS("monthly.RDS")
+
+# Load necessary packages
+library(ggplot2)
+
+# Define UI
+ui <- fluidPage(
+    titlePanel("ACORN data explorer"),
+    plotOutput("plot"),
+    dataTableOutput("dt")
+)
+
+# Define server logic
+server <- function(input, output) {
+    output$dt <- renderDataTable({
+        monthly
+    })
+    
+    output$plot <- renderPlot({
+            ggplot(monthly,
+               aes(x = year, y = month, fill = mean.max)) +
+            geom_tile() +
+            scale_fill_distiller(palette = "RdYlBu")
+    })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+How can we add some interaction? We could give the user control over
+which month they want to visualise by adding a slider:
+
+``` r
+# Import data
+monthly <- readRDS("monthly.RDS")
+
+# Load necessary packages
+library(ggplot2)
+library(dplyr)
+
+# Define UI
+ui <- fluidPage(
+    titlePanel("ACORN data explorer"),
+    # input slider for months
+    sliderInput("month",
+                "Pick a month:",
+                min = 1,
+                max = 12,
+                value = 1),
+    plotOutput("plot"),
+    dataTableOutput("dt")
+)
+
+# Define server logic
+server <- function(input, output) {
+    output$dt <- renderDataTable({
+        monthly
+    })
+    
+    output$plot <- renderPlot({
+        monthly %>% 
+            filter(month == input$month) %>% 
+            ggplot(aes(x = year, y = month, fill = mean.max)) +
+            geom_tile() +
+            scale_fill_distiller(palette = "RdYlBu")
+    })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+## Challenge 2: restore an “all months” option?
+
+How could we give the option to go back to the full-year view?
+
+Hint: have a look at `?selectInput`, or find other ideas on this list:
+<https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/>
+
+One solution could be:
+
+``` r
 # import data
-dat <- readRDS("dat.RDS")
-# process for monthly average
-library(lubridate)
-monthly <- dat %>% 
-    group_by(month = month(date),
-             year = year(date)) %>% 
-    summarise(mean.max = mean(max.temp, na.rm = TRUE))
+monthly <- readRDS("monthly.RDS")
+
 # load necessary packages
 library(ggplot2)
+library(dplyr)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
     titlePanel("ACORN data explorer"),
+    # input slider for months
+    selectInput("month",
+                "Pick one or more months:",
+                1:12,
+                multiple = TRUE),
     plotOutput("plot"),
     dataTableOutput("dt")
 )
@@ -606,8 +693,9 @@ server <- function(input, output) {
     })
     
     output$plot <- renderPlot({
-            ggplot(monthly,
-               aes(x = year, y = month, fill = mean.max)) +
+        monthly %>% 
+            filter(month %in% input$month) %>% 
+            ggplot(aes(x = year, y = month, fill = mean.max)) +
             geom_tile() +
             scale_fill_distiller(palette = "RdYlBu")
     })
@@ -626,6 +714,20 @@ and Resources project), in which we can request a virtual machine and
 deploy a Shiny server: <https://nectar.org.au/>
 
 ## Useful links
+
+  - *R Packages*, by Hadley Wickham: <http://r-pkgs.had.co.nz/>
+  - Full official guide for packaging:
+    <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
+  - What to lookout for when publishing to CRAN:
+    <https://cran.r-project.org/web/packages/policies.html>
+  - Package development cheatsheet:
+    <https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf>
+  - Official Shiny tutorial: <https://shiny.rstudio.com/tutorial/>
+  - Shiny examples:
+      - <https://shiny.rstudio.com/gallery/>
+      - <https://www.showmeshiny.com/>
+  - Shiny cheatsheet:
+    <https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf>
 
 ## Extras
 
