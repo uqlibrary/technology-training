@@ -15,6 +15,7 @@
 ### General programming
 
 * Official Python 3 Tutorial: https://docs.python.org/3/tutorial/index.html
+* _Python for Everybody_ (PY4E), by Charles R. Severance: https://www.py4e.com/lessons
 * Video tutorials on Lynda.com (free with UQ credentials): https://www.lynda.com/learning-paths/Developer/become-a-python-developer
 * _Python Programming_ on WikiBooks: https://en.wikibooks.org/wiki/Python_Programming
 * _Dive Into Python 3_: http://getpython3.com/diveintopython3/
