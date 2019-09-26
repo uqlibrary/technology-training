@@ -1,7 +1,7 @@
 R and the Tidyverse: next steps
 ================
 Stéphane Guillou
-2019-06-21
+2019-09-26
 
 > This document is redacted in R Markdown; the source file is available
 > here:
@@ -53,26 +53,21 @@ You can use the new file dropdown menu, or
 
 ## Load the necessary packages
 
-We can use one single command to load the core Tidyverse packages:
+We can use one single command to load the core Tidyverse
+    packages:
 
 ``` r
 library(tidyverse)
 ```
 
-    ## Registered S3 methods overwritten by 'ggplot2':
-    ##   method         from 
-    ##   [.quosures     rlang
-    ##   c.quosures     rlang
-    ##   print.quosures rlang
+    ## ── Attaching packages ───────────────────────────────────────── tidyverse 1.2.1 ──
 
-    ## ── Attaching packages ────────────────────────────────────────────────────── tidyverse 1.2.1 ──
-
-    ## ✔ ggplot2 3.1.1     ✔ purrr   0.3.2
-    ## ✔ tibble  2.1.3     ✔ dplyr   0.8.1
-    ## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
+    ## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
+    ## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
+    ## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
     ## ✔ readr   1.3.1     ✔ forcats 0.4.0
 
-    ## ── Conflicts ───────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ──────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
 
@@ -134,34 +129,34 @@ one being that different years are spread out between different columns.
 
 ### Reshaping data
 
-#### Gathering
+#### Lengthening
 
 To go from wide format to long format, we can use the tidyr function
-`gather()`. Here, we want to gather all the columns titled with a year:
-we store the data in a “value” variable, and the year in a “year”
-variable (the key).
+`pivot_longer()`. Here, we want to gather all the columns titled with a
+year: we store the data in a “value” variable, and the years in a “year”
+variable.
 
 ``` r
-climate_long <- gather(climate_raw,
-                       key = "year",
-                       value = "value",
-                       `1990`:`2011`,
-                       convert = TRUE)
+climate_long <- pivot_longer(climate_raw,
+                             `1990`:`2011`,
+                             names_to = "year",
+                             values_to = "value") %>% 
+  mutate(year = as.integer(year))
 ```
 
-We set `convert` to TRUE because we want the function to change the key
-class from character to numeric.
+We add a `mutate()` step to convert the years from character to
+integers.
 
 This is better, but there is still an issue: our `value` variable
 contains many different indicators.
 
-#### Spreading
+#### Widening
 
 To do the opposite, going from long to wide format, we can use the
-`spread()` function.
+`pivot_wider()` function.
 
-We have single observations spread across several rows, so we can spread
-the data.
+We have single observations spread across several rows, so we should
+spread the “value” column.
 
 First, let’s keep a record of the correspondence between long
 descriptive variable names and their “code”, for later reference:
@@ -180,16 +175,17 @@ codes
     ## 4 EN.ATM.CO2E.PC      CO2 emissions per capita (metric tons)               
     ## 5 EN.ATM.CO2E.PP.GD.… CO2 emissions per units of GDP (kg/$1,000 of 2005 PP…
 
-This will be our key to variable details, for future reference.
+This will be our key to variable details, or “code book”, for future
+reference.
 
-Now, let’s spread the data (and remove some useless columns with
+Now, let’s widen the data (and remove some useless columns with
 `dplyr::select()`):
 
 ``` r
 climate_tidy <- climate_long %>% 
   select(-`Series name`, -SCALE, -Decimals) %>% 
-  spread(key = `Series code`,
-         value = value)
+  pivot_wider(names_from = `Series code`,
+              values_from = value)
 ```
 
 ### Challenge 1

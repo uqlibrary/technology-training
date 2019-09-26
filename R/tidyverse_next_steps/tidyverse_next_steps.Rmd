@@ -92,27 +92,27 @@ You can use `View()` to explore your dataset. We can see that it doesn't respect
 
 ### Reshaping data
 
-#### Gathering
+#### Lengthening
 
-To go from wide format to long format, we can use the tidyr function `gather()`. Here, we want to gather all the columns titled with a year: we store the data in a "value" variable, and the year in a "year" variable (the key).
+To go from wide format to long format, we can use the tidyr function `pivot_longer()`. Here, we want to gather all the columns titled with a year: we store the data in a "value" variable, and the years in a "year" variable.
 
 ```{r}
-climate_long <- gather(climate_raw,
-                       key = "year",
-                       value = "value",
-                       `1990`:`2011`,
-                       convert = TRUE)
+climate_long <- pivot_longer(climate_raw,
+                             `1990`:`2011`,
+                             names_to = "year",
+                             values_to = "value") %>% 
+  mutate(year = as.integer(year))
 ```
 
-We set `convert` to TRUE because we want the function to change the key class from character to numeric.
+We add a `mutate()` step to convert the years from character to integers.
 
 This is better, but there is still an issue: our `value` variable contains many different indicators.
 
-#### Spreading
+#### Widening
 
-To do the opposite, going from long to wide format, we can use the `spread()` function.
+To do the opposite, going from long to wide format, we can use the `pivot_wider()` function.
 
-We have single observations spread across several rows, so we can spread the data.
+We have single observations spread across several rows, so we should spread the "value" column.
 
 First, let's keep a record of the correspondence between long descriptive variable names and their "code", for later reference:
 
@@ -121,15 +121,15 @@ codes <- unique(climate_long[,c("Series code", "Series name")])
 codes
 ```
 
-This will be our key to variable details, for future reference.
+This will be our key to variable details, or "code book", for future reference.
 
-Now, let's spread the data (and remove some useless columns with `dplyr::select()`):
+Now, let's widen the data (and remove some useless columns with `dplyr::select()`):
 
 ```{r}
 climate_tidy <- climate_long %>% 
   select(-`Series name`, -SCALE, -Decimals) %>% 
-  spread(key = `Series code`,
-         value = value)
+  pivot_wider(names_from = `Series code`,
+              values_from = value)
 ```
 
 ### Challenge 1
