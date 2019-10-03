@@ -34,7 +34,8 @@ Files available for each course, hosted in this repository:
 | Python with Spyder: an introduction to data science | [md](Python/python_intro.md) | [txt](Python/python_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-python) |
 | Introduction to scientific programming | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.Rmd)</sup> | [txt](intro_to_programming/intro_to_programming_description.txt) | [html](https://frama.link/intro_prog) |
 | OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [txt](OSM/OpenStreetMap_description.txt) | [html](https://cryptpad.fr/pad/#/2/pad/edit/ZwpBgdie-YBBXvDE68N53u2s/) |
-| QGIS: introduction to mapping | [md](QGIS/QGIS_intro.md) | [txt](QGIS/QGIS_intro_description.txt) | [html](https://demo.codimd.org/s/B156o7z2V) |
+| QGIS: introduction to mapping | [md](QGIS/intro/QGIS_intro.md) | [txt](QGIS/intro/QGIS_intro_description.txt) | [html](https://demo.codimd.org/s/B156o7z2V) |
+| QGIS: raster analysis | [md](QGIS/raster/QGIS_raster.md) | [txt](QGIS/raster/QGIS_raster_description.txt) | ... |
 | Audacity: introduction to audio editing | ... | ... | ... |
 | next: Open Source tools for your research | ... | ... | ... |
 | next: Python data manipulation | ... | ... | ... |

@@ -2,7 +2,7 @@
 
 ## Setting up
 
-This tutorial is designed for **QGIS 3.4** (the latest QGIS long-term release) and above. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
+This tutorial is designed for **QGIS 3.8**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
 
 The **data** for this session can be downloaded here: https://cloudstor.aarnet.edu.au/plus/s/GjVmwTxN14OwmEc
 
@@ -58,7 +58,7 @@ To remove the useless regions, we can do the following:
 1. Select the "admin" layer
 1. Use the `Select Features` button, and draw a rectangle around Australia, so all the region appear in yellow
 1. Right-click on the layer and use `Export > Save Selected Features As...`
-1. Name the new file "australia_admin" and click OK.
+1. Name the new file "australia_admin" in your project directory, and click OK.
 
 The new layer is loaded to the map by default.
 
@@ -69,16 +69,17 @@ Now that we have we have a layer with only the administrative regions for Austra
 1. Use the "australia_admin" layer as the overlay.
 1. Click OK
 
+> If you get an error about invalid geometries, you might have to use the `Fix geometries` tool on the Australian shapefile first (found in the Processing Toolbox).
+
 Notice how the clipped layers don't have a descriptive name? Make sure you rename them.
 
-You can now hide the original layers and confirm that you have only Australian data visible in the by using the `Zoom Full` button.
-
+You can now hide the original layers and confirm that you have only Australian data visible in the canvas by using the `Zoom Full` button.
 
 ## Change the symbology
 
 Our vector layers are assigned a random colour when we load them. We now want to make them look better.
 
-Double-click on a layer and use `Symbology > Color` to change to a better colour. Click `Apply`.
+Double-click on the "admin" layer and use `Symbology > Color` to change to a better colour. Click `Apply`.
 We can also go into more details about the border (colour, width, type of line...) by clicking on `Simple fill`.
 
 We can make more complex fills by adding an extra "symbol layer", and layering different kinds of fill styles. Try this with both polygons and lines. For example, style the rivers so they look like water (the `topo hydrology` preset is a good start).
@@ -91,11 +92,11 @@ Now try to change the point symbology of our "populated places" layer: we don't 
 
 Have a look at the attribute table for our "populated places" layer. What could we use to **label** our points?
 
-Double-click on a layer: `Labels > Single labels`. You can also use the `Layer Labelling Options` button to open the sidebar, which allows you to "Live update" the map when you change a setting.
+Double-click on the "populated places" layer: `Labels > Single labels`. You can also use the `Layer Labelling Options` button to open the sidebar, which allows you to "Live update" the map when you change a setting.
 
 Choose `Label with > Name` to label with the city names. In the "Text" tab, we can change the look of our labels: amend the size, the colour, the font... We can also add a text buffer with the "Buffer tab" to make them more readable.
 
-The placement tab allows us to fine-tune the placement of the labels in reference to the points. If we want the label to cover the point, we can use `Offset from point` and use the middle quadrant. We might also want to replace the symbology with a 0-size ellipse marker.
+The placement tab allows us to fine-tune the placement of the labels in reference to the points. If we want the label to cover the point, we can use `Offset from point` and use the middle quadrant. We might also want to replace the layer symbology with a 0-size ellipse marker.
 
 What if you want to label lines? It's a good idea to change the default `Placement` from `Parallel` to `Curved` so the labels follow the shape of the lines. You can try it on the rivers.
 
@@ -103,15 +104,15 @@ What if you want to label lines? It's a good idea to change the default `Placeme
 
 ## Tabular data
 
-QGIS can deal with plain tabular data. For example, try importing the file HDI.ods: it doesn't contain any coordinates, but we can still store it as a layer and use it in our project.
+QGIS can deal with plain tabular data. For example, try importing the file HDI.ods: it doesn't contain any coordinates, but we can still store it as a layer and use it in our project. You can see the data it contains by opening its attribute table.
 
 How can we add the Human Development Index (HDI) data to our existing "admin" shapefile?
 
 ### Joining tabular data
 
-To add the HDI data to our region shapefile, we can go the the "region" layer's properties, use the `Joins` tab and click the green `+` to create a new join. We can then define what common field between the two tables we will merge on: the ISO_3166_2 code in our case.
+To add the HDI data to our region shapefile, we can go the the "admin" layer's properties, use the `Joins` tab and click the green `+` to create a new join. We can then choose the HDI data as the `Join layer`, and define what common field between the two tables we will merge on: the ISO_3166_2 code in our case.
 
-You can now see the joined data highlighted in green in the `Source fields`, and check the actual values in the attribute table.
+You can now see the joined data highlighted in green in the `Source fields`, click "OK", and check the actual values in the "admin" layer's attribute table.
 
 ### Classifying the symbology
 
@@ -128,9 +129,9 @@ We can now use the joined data to change the symbology of our regions according 
 
 Depending on the data that you deal with, different "Modes" will be more or less useful to create a good colour key. Try "Natural breaks (Jenks)" for example.
 
-We can save styles with `right-click > Styles > Add`, which creates a new one and saves the previous version.
+Still using a continuous numerical variable, we can change the size of the "populated places" symbols according to population. Use the `Data defined override` dropdown next to the Size box, and use the `Assistant...` to define the scale, with the column `pop_max`. If the smallest size is too small, we can amend it.
 
-With a continuous numerical variable: we can change the size of the "populated places" symbols according to population. use the `Assistant` to define the scale, with the column `pop_max`. If the smallest size is too small, we can amend it.
+We can save styles with `right-click > Styles > Add`, which creates a new one and saves the previous version.
 
 ## Add a raster layer
 
@@ -156,7 +157,7 @@ The plugin should automatically open a side panel in which you can search for te
 
 Click on `Show Layout Manager` in the toolbar. `Create` a new layout called "Default". We can now see the Layout window.
 
-We can now add elements to our layout: the map, a legend, a scale bar... In order to create a nice printout.
+We can now add elements to our layout: the map, a legend, a scale bar, a north arrow... In order to create a nice printout, or export in a variety of formats.
 
 The layout manager allows us to save several different layouts, one for each output we want to generate. Even if we change our map data, we can reuse the same layouts and export an updated map.
 
@@ -166,4 +167,4 @@ Notice the little icon next to some of your layers? We previously created "tempo
 
 You can click on the scratch layer icon to save the file. In the dialog, we can give the layers a `File name` (in our project's home directory) and click OK.
 
-You can save your project with the floppy disk icon, or using <kbd>Ctrl</kbd> + <kbd>S</kbd>, and the project should be visible in a list as soon as you open QGIS again.
+You can save your project with the floppy disk icon, or using <kbd>Ctrl</kbd> + <kbd>S</kbd>, and the project should be visible in a list when you re-open QGIS again.
