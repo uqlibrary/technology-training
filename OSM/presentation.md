@@ -1,11 +1,15 @@
-<!-- $theme: gaia -->
+---
+marp: true
+theme: gaia
+paginate: true
+---
 
 # OpenStreetMap
-![center](pics/logo.png)
+![h:200](pics/logo.png)
 
 ## Contribute, and use the data in QGIS
 
-Stéphane Guillou (UQ) – ResBaz 2019
+Stéphane Guillou (UQ Library)
 
 ---
 
@@ -28,19 +32,25 @@ See the front page: https://www.openstreetmap.org
 - 70+ million changesets
 - 5+ billion nodes
 
-![60%](pics/users.png)
+![h:200](pics/users.png)
 
 ---
 
 # Uses
 
-![65% center](pics/renders.png)
+![w:700](pics/renders.png)
 
 ---
 
 # Uses (2)
 
-![40%](pics/wheelmap.png) ![30%](pics/briscycle.png) ![30%](pics/osmand.png) ![45%](pics/beer.png)
+![h:400](pics/wheelmap.png) ![h:400](pics/briscycle.png)
+
+---
+
+# Uses (3)
+
+![h:450](pics/osmand.png) ![h:450](pics/beer.png)
 
 ---
 
@@ -64,7 +74,7 @@ Humanitarian project that maps parts of the world that are vulnerable to **natur
 
 Founders:
 
-![center](pics/founders.png)
+![w:1000](pics/founders.png)
 
 Emphasizes engagement of, and respect towards the local community. :handshake:
 
@@ -74,7 +84,7 @@ Emphasizes engagement of, and respect towards the local community. :handshake:
 
 Impact:
 
-![83%](pics/haiti.gif) ![90%](pics/nepal.gif)
+![h:320](pics/haiti.gif) ![h:320](pics/nepal.gif)
 
 2010 Haïti earthquake (left); 2017 South Asian floods (right)
 
@@ -90,4 +100,4 @@ https://osmlab.github.io/show-me-the-way/
 
 A lot: https://wiki.openstreetmap.org/wiki/Map_Features
 
-![80% center](pics/tags.png)
+![h:400](pics/tags.png)
