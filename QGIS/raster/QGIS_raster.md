@@ -9,6 +9,8 @@ Let's straight away **save** our project: `Project > Save`. We should create a n
 
 Let's set the **project home** too: `Project > Properties > General` and set `Project home` to the same folder. This is where we can also give the project a title.
 
+Let's also add an OpenStreetMap basemap to locate ourselves on the globe: `Browser panel > XYZ Tiles > OpenStreetMap`
+
 ## Get some data
 
 We are using a Digital Elevation Model (DEM) sourced from the USGS website.
@@ -17,13 +19,12 @@ We are using a Digital Elevation Model (DEM) sourced from the USGS website.
 * Search for "Brisbane" in the "Address/Place" search box and select the first result
 * Zoom onto an area of interest around Brisbane and click "Use Map"
 * Click `Data Sets > Digital Elevation > SRTM`, select "SRTM 1 Arc-Second Global" and click "Results"
-* 
 
 "SRTM" stands for "[Shuttle Radar Topography Mission](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)". It provides global elevation data collected in 2000 by the space shuttle Endeavour.
 
 Our area covers two separate raster files. We can click on the foot icon to see the footprint of each file, and the picture icon to see what the DEM looks like.
 
-Use the download button to download each file into your project directory. You will need a login for that, which is free but can take a bit of time. You can grab the two raster files as an archive [here]().
+Use the download button to download each file into your project directory. You will need a login for that, which is free but can take a bit of time. You can instead download the two raster files as an archive from [here](https://cloudstor.aarnet.edu.au/plus/s/US2uOtwTu78Gpxq).
 
 ## Build a virtual raster
 
@@ -37,8 +38,7 @@ To do that, we use the `Raster > Miscellaneous > Build Virtual Raster...` tool t
 
 * First, select both DEM layers for the "Input layers"
 * Make sure you untick the option "Place each input file into a separate band", as we want to end up with one single-band layer
-* We should override the original (geographic) projection to use the project projection (which should currently be EPSG:3857 - WGS 84)
-* We can save the output on disk instead of only creating a scratch layer (for example, name it `DEM_merged` and save it inside your project directory)
+* We can save the output on disk instead of only creating a temporary file (for example, name it `SRTM_DEM_merged` and save it inside your project directory)
 * Click "Run"
 
 > You will need to have Saga installed for this to work.
@@ -49,7 +49,7 @@ We can now remove the two original raster files, and rename our virtual layer.
 
 We now use `Raster > Extraction > Clip Raster by Extent` to focus on a smaller area of interest.
 
-Make sure the DEM is selected in the Input layer, and set the clip extent with `... > Select Extent on Canvas`.
+Make sure the DEM is selected in the Input layer, and set the clip extent with `... > Select Extent on Canvas`. We want to select an area that is inland, and contains both some of the D'Aguilar National Park, and a section of the Brisbane river (you can untick the DEM in the Layers panel to reveal the basemap).
 
 Remember to rename your clipped layer!
 
@@ -57,7 +57,7 @@ Remember to rename your clipped layer!
 
 We can style our DEM with a terrain colour palette:
 
-* double-clock on the DEM layer
+* double-click on the clipped DEM layer
 * go to the "Symbology" tab
 * change the Render type to "Singleband pseudocolor"
 * by default, it uses the min/max values, which is what we want
@@ -75,17 +75,18 @@ Adding a hillshade makes your visualisation of elevation more readable and visua
 *  Make sure you apply some transparency to the pseudocolour DEM, and place the hillshade layer underneath
 
 > If you are bothered by visible hillshade grids when zooming into the map, you can change the "Resampling" method to "Bilinear" or "Cubic" instead of "Nearest neighbour".
+> Another methods is to use the hillshade tool instead of the symbology: `Raster > Analysis > Hillshade...`.
 
 ## Create a watershed layer
 
 Using the Strahler tool, we can create a watershed raster that shows where water would flow according to the DEM.
 
-Try using the SAGA tool called "Strahler order".
+Open the Processing Toolbox (cog icon) and try using the SAGA tool called "Strahler order" (a temporary file is fine for now).
 
 Look at the result. It seems there is an issue with our data.
 A common problem with DEMs is that they have sinks and spikes that will make further analyses more difficult.
 
-We can use the "Fill sinks (Wang & Liu)" tool to fill the sinks in our clipped DEM.
+We can use the "Fill sinks (Wang & Liu)" tool to fill the sinks in our clipped DEM. We only need to load the "Filled DEM" output, which we can also save to file.
 
 If we re-run the Strahler order tool on the filled DEM, we will be able to see more useful data.
 
@@ -98,15 +99,18 @@ This will only keep the major streams in the network.
 
 Another analysis we can do is use the "Channel network and drainage basins" tool to calculate the flow direction, channels and drainage basins.
 
-We only want to keep (and save to file):
+Make sure you run this tool on the filled DEM.
+As an ouptut, we only want to load (and save to file):
 
 * Flow Direction (raster)
 * Channels (shapefile)
-* Drainage basins (shapefile)
+* Drainage basins (shapefile) (to differentiate the two "Drainage basins" options, you can check what format it saves the file as)
 
 We can now play with the symbology for those elements.
 
 ## 3D maps
+
+A 3D viewer are integrated in QGIS: `View > New 3D Map View`
 
 A useful plugin for 3D maps is qgis2threeJS.
 

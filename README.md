@@ -35,11 +35,11 @@ Files available for each course, hosted in this repository:
 | Introduction to scientific programming | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.Rmd)</sup> | [txt](intro_to_programming/intro_to_programming_description.txt) | [html](https://frama.link/intro_prog) |
 | OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [txt](OSM/OpenStreetMap_description.txt) | [html](https://cryptpad.fr/pad/#/2/pad/edit/ZwpBgdie-YBBXvDE68N53u2s/) |
 | QGIS: introduction to mapping | [md](QGIS/intro/QGIS_intro.md) | [txt](QGIS/intro/QGIS_intro_description.txt) | [html](https://demo.codimd.org/s/B156o7z2V) |
-| QGIS: raster analysis | [md](QGIS/raster/QGIS_raster.md) | [txt](QGIS/raster/QGIS_raster_description.txt) | ... |
-| Audacity: introduction to audio editing | ... | ... | ... |
+| QGIS: raster analysis | [md](QGIS/raster/QGIS_raster.md) | [txt](QGIS/raster/QGIS_raster_description.txt) | [html](https://demo.codimd.org/s/ryN5E-XuS) |
+| Audacity: introduction to audio editing | [md](Audacity/audacity.md) | [txt](Audacity/description.txt) | ... |
 | next: Open Source tools for your research | ... | ... | ... |
 | next: Python data manipulation | ... | ... | ... |
-| next: QGIS intermediate | ... | ... | ... |
+| next: R reproducible reports with R Markdown and knitr | ... | ... | ... |
 
 ## Licence
 
