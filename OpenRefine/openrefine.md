@@ -385,3 +385,4 @@ You can find examples on [this page](https://librarycarpentry.github.io/lc-open-
 * Data Munging Tools in Preparation for RDF: Catmandu and LODRefine by Christina Harlow: http://journal.code4lib.org/articles/11013
 * OpenRefine News (monthly round up of new blog posts, tutorials and other information): http://openrefine.org/blog.html
 * GREL documentation: https://github.com/OpenRefine/OpenRefine/wiki/General-Refine-Expression-Language
+* RegEx + GREL cheatsheet: https://code4libtoronto.github.io/2018-10-12-access/GoogleRefineCheatSheets.pdf
