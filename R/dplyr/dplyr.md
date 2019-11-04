@@ -1,7 +1,7 @@
 R data manipulation with RStudio and dplyr: an introduction
 ================
 Stéphane Guillou
-2019-07-12
+2019-11-05
 
 ## What are we going to learn?
 
@@ -703,14 +703,14 @@ An example of data manipulation and data visualisation in the same
 command:
 
 ``` r
-# increase in population in Europe
+# increase in population per continent
 library(ggplot2)
 gapminder %>% 
-  filter(continent == "Europe") %>%
-  group_by(year) %>% 
-  summarise(sum = sum(pop)) %>% 
+  group_by(continent, year) %>% 
+  summarise(pop = sum(pop)) %>% 
   ggplot(aes(x = year,
-             y = sum)) +
+             y = pop,
+             colour = continent)) +
   geom_line()
 ```
 

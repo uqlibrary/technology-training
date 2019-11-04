@@ -349,14 +349,14 @@ starwars %>%
 An example of data manipulation and data visualisation in the same command:
 
 ```{r}
-# increase in population in Europe
+# increase in population per continent
 library(ggplot2)
 gapminder %>% 
-  filter(continent == "Europe") %>%
-  group_by(year) %>% 
-  summarise(sum = sum(pop)) %>% 
+  group_by(continent, year) %>% 
+  summarise(pop = sum(pop)) %>% 
   ggplot(aes(x = year,
-             y = sum)) +
+             y = pop,
+             colour = continent)) +
   geom_line()
 ```
 
