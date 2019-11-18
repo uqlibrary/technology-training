@@ -38,8 +38,8 @@
 
 ## At UQ
 
-* See the next sessions at the CDS: https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
-* If you need an extra R/RStudio session or a 1-on-1 consultation, please contact the CDS staff to organise one for you: training@library.uq.edu.au
+* See the next sessions at the Library: https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship
+* If you need assistance via email, or would like to organise a 1-on-1 consultation, please contact our team: training@library.uq.edu.au
 * Ask questions to other researchers during the weekly _Hacky Hour_ (Tuesdays at 3 pm, Café Nano, St Lucia): https://rcc.uq.edu.au/meetups
 * Meet other R users at the monthly _R Peer Group_ (QIMR Berghofer, Herston). Contact Dwan Vilcins for RSVP and questions.
 * QFAB offers advanced paid workshops: https://qfab.org/training
