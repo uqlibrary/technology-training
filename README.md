@@ -45,12 +45,12 @@ Files available for each course, hosted in this repository:
 
 All of the information on this repository (https://gitlab.com/stragu/DSH/) is freely available under the [Creative Commons - Attribution 4.0 International Licence](https://creativecommons.org/licenses/by/4.0/). You may re-use and re-mix the material in any way you wish, without asking permission, provided you cite the original source. However, we'd love to hear about what you do with it!
 
-Part of this repository is based on [Paul Andrea Martinez](https://orcid.org/0000-0002-8990-1985)'s work [available under the same CC-By-4.0 licence](https://github.com/orchid00/CDS).
+Part of this repository is based on [Paula Andrea Martinez](https://orcid.org/0000-0002-8990-1985)'s work [available under the same CC-By-4.0 licence](https://github.com/orchid00/CDS).
 
 ## Contributing
 
 If you have questions about contributing to the material, please contact the DSH. You can also raise an issue or create a pull request if you spot something odd. If you would like to develop on top of this, please cite the source as mentioned above.
 
 ## Contact
- 
-If you want to contact the DSH for a 1-on-1 consultation, an enquiry about sessions, or any question about the programs supported by the library: training@library.uq.edu.au.
+
+If you want to contact the library trainers for a 1-on-1 consultation, an enquiry about sessions, or any question about the programs supported by the library: training@library.uq.edu.au.
