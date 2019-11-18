@@ -27,10 +27,10 @@ Files available for each course, hosted in this repository:
 | R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [txt](R/ggplot2_intermediate/ggplot2_intermediate_description.txt) | [html](https://demo.codimd.org/s/rJLdcW-24) |
 | R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps/heatmaps_intermediate.Rmd)</sup> | [txt](R/heatmaps/heatmaps_intermediate_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) |
 | R and the Tidyverse: next steps | [md](R/tidyverse_next_steps/tidyverse_next_steps.md) <sup>[source](R/tidyverse_next_steps/tidyverse_next_steps.Rmd)</sup> | [txt](R/tidyverse_next_steps/tidyverse_next_steps_description.txt) | [html](https://demo.codimd.org/s/BkQCcmiOV) |
-| R advanced: programming and packaging | ... | ... | ... |
+| R advanced: programming and packaging | [md](R/advanced/advanced.md) <sup>[source](R/advanced/advanced.Rmd)</sup> | [txt](R/advanced/advanced.txt) | [html](https://demo.codimd.org/s/ryCzbvgXB) |
 | Unix Shell: an introduction | [md](Shell/shell_intro.md) | [txt](Shell/shell_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-shell) |
 | Git version control for collaboration | [md](Git/git.md) | [txt](Git/git_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-git) |
-| OpenRefine: an introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [txt](OpenRefine/openrefine_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-openrefine) |
+| OpenRefine: introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [txt](OpenRefine/openrefine_description.txt) | [html](https://demo.codimd.org/s/rJCXmqviH) |
 | Python with Spyder: an introduction to data science | [md](Python/python_intro.md) | [txt](Python/python_intro_description.txt) | [html](https://etherpad.wikimedia.org/p/cds-python) |
 | Introduction to scientific programming | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.Rmd)</sup> | [txt](intro_to_programming/intro_to_programming_description.txt) | [html](https://frama.link/intro_prog) |
 | OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [txt](OSM/OpenStreetMap_description.txt) | [html](https://cryptpad.fr/pad/#/2/pad/edit/ZwpBgdie-YBBXvDE68N53u2s/) |
