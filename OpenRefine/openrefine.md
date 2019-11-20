@@ -1,29 +1,6 @@
 # OpenRefine: an introduction to dealing with messy data
 
-Last updated: 2018-09-28
-
-## Legal
-
-This lesson is based on a Library Carpentry lesson, available here: https://librarycarpentry.github.io/lc-open-refine/
-It is also released under a [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/). The following is a human-readable summary of
-(and not a substitute for) the [full legal text of the CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/legalcode).
-
-You are free:
-
-* to **Share** – copy and redistribute the material in any medium or format
-* to **Adapt** – remix, transform, and build upon the material
-
-for any purpose, even commercially.
-
-Under the following terms:
-
-* **Attribution** – You must give appropriate credit (mentioning that your work is derived from work that is Copyright © Stéphane Guillou and, where practical, linking to https://gitlab.com/stragu/CDS), provide a [link to the license](https://creativecommons.org/licenses/by/4.0/), and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
-
-## Installation
-
-To install the software, please follow the instruction on the OpenRefine website: http://openrefine.org/download.html
-This lesson was designed using OpenRefine 2.8 but should be compatible with other supported versions.
-OpenRefine requires to have a Java Runtime Environment (JRE) installed, so you might need to install one to be able to use it: http://java.com/
+Last updated: 2019-11-21
 
 ## OpenRefine?
 
@@ -32,7 +9,7 @@ OpenRefine is self-described as "a power tool for dealing with messy data". It c
 It can help you:
 
 * Get an **overview** of a data set
-* **Resolve inconsistencies** in a data set, for example standardizing date formatting
+* **Resolve inconsistencies** in a data set, for example standardising date formatting
 * Help you **split data up** into more granular parts, for example splitting up cells with multiple authors into separate cells
 * **Match** local data up to other data sets, for example in matching local subjects against the Library of Congress Subject Headings
 * **Enhance** a data set with data from other sources
@@ -43,7 +20,7 @@ Some common scenarios might be:
 * Where you want to know how values are distributed across your whole data set
 * Where you have a list of dates which are formatted in different ways, and want to change all the dates in the list to a single common date format
 * Where you have a list of names or terms that differ from each other but refer to the same people, places or concepts
-* Where you have several bits of data combined together in a single column, and you want to separate them out into individual bits of data with one column for each bit of the data.
+* Where you have several bits of data combined together in a single column, and you want to separate them out into new columns.
 
 ## What you will learn today
 
@@ -52,6 +29,13 @@ Some common scenarios might be:
 3. Editing cells
 4. Editing columns
 5. Grouping and transforming data
+6. Reconciling a column with Wikidata
+
+## Installation
+
+To install the software, please follow the instructions on the OpenRefine website: http://openrefine.org/download.html
+This lesson was designed using OpenRefine 3.1 but should be compatible with other supported versions.
+OpenRefine requires to have a Java Runtime Environment (JRE) installed, so you might need to install one to be able to use it: http://java.com/
 
 ## Material
 
@@ -67,6 +51,8 @@ OpenRefine can deal with formats like TSV, CSV, ODS, XLS and XLSX, JSON, RDF, XM
 4. Click in the `Character encoding` box and select `UTF-8`
 5. Click on `Create Project`
 
+You might not have to change the character encoding, but if you see inaccuracies in how special characters are displayed, you will have to try and find the right one for your data.
+
 ### Layout of OpenRefine
 
 > How is data organised? How do I navigate it?
@@ -77,8 +63,20 @@ You can decide how many rows you want to show at once.
 
 Drop-down menus next to the column headers allow you to do operations on the whole column.
 
-OpenRefine has two modes for viewing data: `Rows` and `Records`. In `Records` mode, OpenRefine can link together multiple rows as belonging to the same record.
+### Reorganising the data
+
+You can **reorder the columns** by clicking the drop-down menu at the top of the first column (labelled ‘All’), and choosing `Edit columns > Reorder / remove columns …`
+
+You can then drag and drop column names to reorder the columns, or remove columns completely if they are not required.
+
+You can also **sort the rows** by clicking on the drop-down menu for the column you want to sort on, and choosing `Sort`.The sorting is not permanent, and a new `Sort` drop-down menu appears at the top, which allows you to modify the current sort, remove it, or make the sort permanent.
+
+### View modes
+
+OpenRefine has two **view modes** for viewing data: `Rows` and `Records`. In `Records` mode, OpenRefine can link together multiple rows as belonging to the same record.
 To demonstrate what the `Records` mode does, we are going to split author names into separate cells.
+
+### Split multi-valued cells
 
 Author names are currently separated with the pipe symbol `|`. We can use the `Split multi-valued cells` function to put them in their own cells.
 
@@ -89,15 +87,9 @@ Author names are currently separated with the pipe symbol `|`. We can use the `S
 1. Use the pipe character `|` as a separator.
 1. Switch to the `records` mode. Note how the numbering has changed: several rows are related to the same record.
 
-How do we join data from several cells together, for example after cleaning the data up?
+How would we join data from several cells together, for example after cleaning the data up?
 
-**Exercise 3** – Join multi-valued cells
-
-1. Open the drop-down menu for the `Authors` column
-1. Select `Edit cells` > `Join multi-valued cells`. Note that the rows are still numbered sequentially.
-1. Use the pipe character `|` as a delimiter and click `OK`.
-
-Split rows are now gone. `Rows` and `records` views are now back to the same numbers.
+We can do the opposite operation, with `Edit cells` > `Join multi-valued cells`, and deciding which character we want to use to separate values.
 
 > Make sure you choose the right delimiter for the kind of data you deal with!
 
@@ -107,8 +99,18 @@ How would you split and then join again the data in the `Subjects` column?
 
 ### Facetting and filtering
 
-> What are facets and filters in OpenRefine? How can they help me navigate data?
+> What are filters and facets in OpenRefine? How can they help me navigate data?
 > How can I correct common data issues?
+
+#### Filters
+
+You can apply a **text filter** to your data to do a search a restrict the displayed items to it.
+
+In the column drop-down menu, you can use the `Text filter` item and specify any string you want to filter for.
+
+For example, try filtering the `Subjects` column with the term `physic`.
+
+If you search for an author name, notice how the "rows" and "records" view will change how much is displayed? We can stick to "records" to have all the associated information.
 
 #### Facets
 
@@ -142,12 +144,6 @@ Find all the publications without a DOI (digital object identifier) with the `Fa
 
 This is more efficient than a text facet, as it will only give two categories.
 
-#### Filters
-
-You can also apply a **text filter** to your data. In the column drop-down menu, you can use the `Text filter` item and specify any string you want to filter for.
-
-For example, try filtering the `Subjects` column with the term `physic`.
-
 > When you filter your data with facets or text filters, remember that any operation that you carry out will only apply to the filtered data.
 
 #### Amending data
@@ -174,20 +170,12 @@ By default, OpenRefine uses the most common value to merge the data, but we can 
 
 **Exercise 8** – clean up the author names
 
-1. Split out the author names into individual cells using `Edit cells > Split multi-valued cells`, using the pipe (`|`) character as the separator
+1. Make sure your authors are already split into different rows
 1. Choose `Edit cells > Cluster and edit` from the `Authors` column.
 1. Using the defaults (`key collision` Method and `fingerprint` Keying Function), work through the clusters of values, merging them to a single value where appropriate
 1. Try changing the clustering method being used – which ones work well? Do they identify extra clusters?
 
 The best clustering algorithm will depend on the kind of data your are processing.
-
-### Reorganising the data
-
-You can **reorder the columns** by clicking the drop-down menu at the top of the first column (labelled ‘All’), and choosing `Edit columns > Reorder / remove columns …`
-
-You can then drag and drop column names to reorder the columns, or remove columns completely if they are not required.
-
-You can also **sort the rows** by clicking on the drop-down menu for the column you want to sort on, and choosing `Sort`.The sorting is not permanent, and a new `Sort` drop-down menu appears at the top, which allows you to modify the current sort, remove it, or make the sort permanent.
 
 ### Transformations
 
@@ -208,7 +196,7 @@ Some common transformations are accessible directly in the menus, for example to
 
 #### Writing transformations
 
-The transformation screen is available through `Edit cells > Transform...`, in which you can write your GREL command and preview its effect.
+The transformation screen is available through `Edit cells > Transform...`, in which you can write your **custom GREL command** with various **functions** and preview its effect.
 
 GREL supports two types of syntax:
 
@@ -358,7 +346,7 @@ To get the author name in the natural order you can reverse the array and join i
 1. In the Preview section, you should be able see this has reversed the array, and joined it back into a string, without any comma
 1. Click OK to apply your transformation, and notice how the "true" group of your facet has 0 members
 
-#### Exporting the data and saving a project
+### Exporting the data and saving a project
 
 > How do I export transformed data?
 
@@ -366,7 +354,17 @@ OpenRefine can **export a transformed dataset** into a variety of formats. You c
 
 Your project is **automatically saved** and can be reopened with `Open Project` when you next start OpenRefine. However, if you need to share or save a snapshot of your project, you can use `Export > Export project` to download an archive.
 
-#### Extra: Advanced functions
+### Reconciliation
+
+We can associate one of our columns to an external database by using OpenRefine's reconciliation feature:
+
+On the "Publisher" column, select `Reconcile > Start reconciling...`. The default service listed is Wikidata.
+
+The tool will automatically try to match the column to a Wikidata type, but we can specify exactly the one we want to use.
+
+After checking and completing by hand the matches, we can add extra data to our project by using `Edit column > Add columns for reconciled values`.
+
+### Extras: Advanced functions
 
 > How do I fetch data from an API (Application Programming Interface)?
 > How do I reconcile my data by comparing it to authoritative datasets?
@@ -386,3 +384,20 @@ You can find examples on [this page](https://librarycarpentry.github.io/lc-open-
 * OpenRefine News (monthly round up of new blog posts, tutorials and other information): http://openrefine.org/blog.html
 * GREL documentation: https://github.com/OpenRefine/OpenRefine/wiki/General-Refine-Expression-Language
 * RegEx + GREL cheatsheet: https://code4libtoronto.github.io/2018-10-12-access/GoogleRefineCheatSheets.pdf
+
+## Legal
+
+This lesson is based on a Library Carpentry lesson, available here: https://librarycarpentry.github.io/lc-open-refine/
+It is also released under a [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/). The following is a human-readable summary of
+(and not a substitute for) the [full legal text of the CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/legalcode).
+
+You are free:
+
+* to **Share** – copy and redistribute the material in any medium or format
+* to **Adapt** – remix, transform, and build upon the material
+
+for any purpose, even commercially.
+
+Under the following terms:
+
+* **Attribution** – You must give appropriate credit (mentioning that your work is derived from work that is Copyright © Stéphane Guillou and, where practical, linking to https://gitlab.com/stragu/CDS), provide a [link to the license](https://creativecommons.org/licenses/by/4.0/), and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
