@@ -1,23 +1,53 @@
 R advanced: programming and packaging
 ================
 UQ Library
-2019-08-02
+2019-11-22
 
-## New project
+## Download the project
 
-Create a new project in RStudio. We can call this one “acorn\_analysis”.
+We have an R project that already contains the relevant custom
+functions. You can download it with this link:
+<https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R%2Fadvanced>
+
+Unzip this archive, and open the .Rproj file.
 
 ## Our example ACORN data
 
-Our data comes from the Bureau of Meteorology website. You can get the
-archive here: <https://cloudstor.aarnet.edu.au/plus/s/svECiZfnH5uUrWX>
+Our data comes from the Bureau of Meteorology website. You can find more
+information about it here:
+<http://www.bom.gov.au/climate/data/acorn-sat/#tabs=Data-and-networks>
 
-> Make sure you extract the archive into your project directory.
+We will use a custom function to download the data.
 
-The unzipped directory contains data for 112 Australian weather
-stations, in 112 separate CSV files.
+This project provides temperature data for 112 Australian weather
+stations. We are going to deal with the maximum daily temperature data,
+which means we will have to deal with 112 separate CSV files.
 
-How do we import and clean one single station’s data?
+First of all: how can we download the data?
+
+We know the URL to the archive of CSV files, so we can integrate it into
+a function to both download (with `download.file()`) and extract (with
+`untar()`) the files:
+
+``` r
+get_acorn <- function(dest) {
+  download.file(url = "ftp://ftp.bom.gov.au/anon/home/ncc/www/change/ACORN_SAT_daily/acorn_sat_v2_daily_tmax.tar.gz",
+                destfile = "acorn_sat_v2_daily_tmax.tar.gz")
+  if (!dir.exists(dest)) {
+    dir.create(dest)
+  }
+  untar(tarfile = "acorn_sat_v2_daily_tmax.tar.gz",
+        exdir = dest)
+}
+```
+
+We can now call our new function to get the data:
+
+``` r
+get_acorn(dest = "acorn_sat_v2_daily_tmax")
+```
+
+Now, how do we import and clean one single station’s data?
 
 > We will use several tidyverse packages, so we might as well load the
 > core Tidyverse
@@ -27,14 +57,14 @@ How do we import and clean one single station’s data?
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ───────────────────────────────────────────────────── tidyverse 1.2.1 ──
+    ## ── Attaching packages ────────────────────────────────────────────── tidyverse 1.2.1 ──
 
-    ## ✔ ggplot2 3.2.0     ✔ purrr   0.3.2
+    ## ✔ ggplot2 3.2.1     ✔ purrr   0.3.3
     ## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
-    ## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
+    ## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
     ## ✔ readr   1.3.1     ✔ forcats 0.4.0
 
-    ## ── Conflicts ──────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ───────────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
 
@@ -265,7 +295,8 @@ We now want to share our useful functions with the World\!
 
 To prepare for packaging our functions, we can create a different script
 for each function. The name of each script can be the name of the
-function it defines: “read\_station.R” and “merge\_acorn.R”.
+function it defines: “get\_acorn.R”, “read\_station.R” and
+“merge\_acorn.R”.
 
 > It is often useful to define functions in a separate script to the
 > data analysis script. Know that you can then “source” those custom
