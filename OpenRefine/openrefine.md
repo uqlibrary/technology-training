@@ -93,7 +93,7 @@ We can do the opposite operation, with `Edit cells` > `Join multi-valued cells`,
 
 > Make sure you choose the right delimiter for the kind of data you deal with!
 
-**Exercise 4** – Practice splitting and joining
+**Exercise 3** – Practice splitting and joining
 
 How would you split and then join again the data in the `Subjects` column?
 
@@ -120,13 +120,13 @@ The simplest type of Facet is called a ‘Text facet’. This simply groups all 
 
 Let's create a Text Facet for a column:
 
-1. Click on the drop down menu at the top of the `Publisher` column and choose `Facet > Text Facet`
+1. Click on the drop-down menu at the top of the `Publisher` column and choose `Facet > Text Facet`
 1. Filter the data by clicking on a value
 1. Add more values with `include`
 1. You can `invert` your selection
 1. Click `reset` to deselect all values, or remove the facet with the cross.
 
-**Exercise 5** – Explore licenses
+**Exercise 4** – Explore licenses
 
 > Which licenses are used for articles in this dataset? Which one is the most common? How many articles don't have a license?
 
@@ -136,7 +136,7 @@ Let's create a Text Facet for a column:
 
 There are more facets available, like numeric and timeline facets that produce graphs, or even custom facets for more advanced operations, like facets that return a logical value.
 
-**Exercise 6** – Facet by blank
+**Exercise 5** – Facet by blank
 
 Find all the publications without a DOI (digital object identifier) with the `Facet by blank`. How many are there?
 
@@ -150,7 +150,7 @@ This is more efficient than a text facet, as it will only give two categories.
 
 Using a text facet, you can edit values for a whole subset in one action with the `edit` option. This is very useful for fixing small typos or variations in spelling.
 
-**Exercise 7** – Correct values
+**Exercise 6** – Correct values
 
 Use a text facet on the `Language` column to replace `English` values with the language code `EN`.
 
@@ -168,7 +168,7 @@ This is very effective where you have data with minor variations in data values,
 
 By default, OpenRefine uses the most common value to merge the data, but we can choose which value we prefer.
 
-**Exercise 8** – clean up the author names
+**Exercise 7** – clean up the author names
 
 1. Make sure your authors are already split into different rows
 1. Choose `Edit cells > Cluster and edit` from the `Authors` column.
@@ -187,7 +187,7 @@ Transformations are ways of manipulating data in columns. Transformations are no
 
 Some common transformations are accessible directly in the menus, for example to change the case of the values, or to remove bounding whitespace characters.
 
-**Exercises 9** – Correct publisher data
+**Exercises 8** – Correct publisher data
 
 1. Create a text facet on the `Publisher` column
 2. Note that in the values there are two that look identical – why does this value appear twice?
@@ -209,7 +209,7 @@ The most simple "transformation" is `value`, which will keep the data as it is. 
 
 You can now see your history of transformations, and save your favourite ones by clicking on the star next to them. The `Help` tab is also a helpful reference.
 
-**Exercise 10** – Put titles into Title Case
+**Exercise 9** – Put titles into Title Case
 
 Use Facets and the GREL expression `value.toTitlecase()` to put the titles in Title Case:
 
@@ -219,7 +219,7 @@ Use Facets and the GREL expression `value.toTitlecase()` to put the titles in Ti
 1. Click the drop-down menu on the Title column
 1. Choose `Edit cells > Transform...`
 1. In the Expression box type `value.toTitlecase()`
-1. In the `Review` tab, note that you can see what the effect of running this will be
+1. In the `Preview` tab, note that you can see what the effect of running this will be
 1. Click <kbd>OK</kbd>
 
 #### Undo and redo transformations
@@ -244,7 +244,7 @@ All data in OpenRefine has a "type". The most common is "string", which is a pie
 
 **Date and numbers**: we currently have a `Date` column where the data is represented as a string. If we wanted to sort according to this data, it would not end up chronological. We therefore need to convert the values to a date data type for OpenRefine to interpret them properly.
 
-**Exercise 11** – Reformat the date
+**Exercise 10** – Reformat the date
 
 1. Make sure you remove all Facets and Filters
 1. On the Date column, use the drop-down menu to select `Edit cells > Common transforms > To date`
@@ -269,22 +269,9 @@ if(value.contains("test"),"Test data",value)
 
 ... replaces a cell value with the words "Test data" only if the value in the cell contains the string "test" anywhere.
 
-**Exercise 12a** – Find reversed author names
-
-In this exercise we are going to use the Boolean data type. If you look at the Authors column, you can see that most of the author names are written in the natural order. However, a few have been reversed to put the family name first.
-
-We can do a crude test for reversed author names by looking for those that contain a comma:
-
-1. Make sure that you have already split the author names into individual cells
-1. On the Authors column, use the drop-down menu and select `Facet > Custom text facet...`
-1. The Custom text facet function allows you to write GREL functions to create a facet
-1. In the Expression box, type `value.contains(",")`
-  1. Click OK
-  1. Since the ‘contains’ function outputs a Boolean value, you should see a facet that contains ‘false’ and ‘true’. These represent the outcome of the expression, i.e. `true` = values containing a comma; `false` = values not containing a comma.
-  1. Select the `true` facet
-  1. We will change the name order in the next exercise
-
 #### Handling arrays
+
+There is another inconsistency in our "Authors" column: some names are using the order `<last name>, <first name>`, and others use the natural order. We'd like to stick to natural order for all, but to do that, we need to talk about arrays.
 
 > How do I use arrays in a GREL expression?
 
@@ -332,19 +319,25 @@ If you want to go back to one single string, in order to store the result in cel
 value.split(",").sort().join(",")
 ```
 
-**Exercise 12b** – Reverse author names
+**Exercise 11** – Reverse author names
 
-Now that we have narrowed down to the lines with a comma in a name, we can use the `match` function. The match function allows you to use regular expressions, and output the capture groups as an array, which you can then manipulate.
+We can focus on the rows that have a comma in their author name:
+
+1. Using the "Authors" column drop-down menu, use a `Text filter`
+1. Filter for the comma character: ",".
+
+Now that we have narrowed down to the lines with a comma in the author name, we can use the `split()` function.
 
 1. On the Authors column use the drop-down menu and select `Edit cells > Transform`
-1. In the Expression box type `value.match(/(.*),(.*)/)`. The `/`, means you are using a regular expression inside a GREL expression. The parentheses indicate you are going to match a group of characters. The `.*` expression will match any character 0, 1 or more times. So here we are matching any number of characters, a comma, and another set of any number of characters.
-1. See how this creates an array with two members in each row in the `Preview` section
+1. In the Expression box type `value.split(", ")`.  This will create an array of separate last name and first name, removing the comma a space.
 
-To get the author name in the natural order you can reverse the array and join it back together with a space to create the string you need:
+To get the author name in the natural order, you can reverse the array and join it back together with a space to create the string you need:
 
-1. In the Expression box, add to the existing expression until it reads `value.match(/(.*),(.*)/).reverse().join(" ")`
+1. In the Expression box, add to the existing expression until it reads `value.split(", ").reverse().join(" ")`
 1. In the Preview section, you should be able see this has reversed the array, and joined it back into a string, without any comma
-1. Click OK to apply your transformation, and notice how the "true" group of your facet has 0 members
+1. Click `OK` to apply your transformation, and notice how your filter shows 0 results, because all commas have been removed in the "Authors" column.
+
+> For more elaborate array creation, we can use the `match()` function along with Regular Expressions. Regular Expressions, or "Regex", use a syntax to match pretty much any pattern of characters, for example if you wanted to extract an array of decimals in the string "1.2345; 2.34567".
 
 ### Exporting the data and saving a project
 
@@ -352,38 +345,59 @@ To get the author name in the natural order you can reverse the array and join i
 
 OpenRefine can **export a transformed dataset** into a variety of formats. You can access the menu with the top-right `Export` button. The `Custom Tabular Exporter` offers extra options, like selecting a subset of columns, reordering them, removing headers, selecting a format and uploading as a Google Spreadsheet.
 
-Your project is **automatically saved** and can be reopened with `Open Project` when you next start OpenRefine. However, if you need to share or save a snapshot of your project, you can use `Export > Export project` to download an archive.
+Your project is **automatically saved every 15 minutes** and can be reopened with `Open Project` when you next start OpenRefine. However, if you need to share or save a snapshot of your project, you can use `Export > Export project` to download an archive.
+
+> When you quit OpenRefine, make sure you interrupt the OpenRefine process properly with <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal before closing it, to guarantee that your project changes are saved. (This is true for both Windows and Linux.)
+> See the official wiki for more information: https://github.com/OpenRefine/OpenRefine/wiki/Installation-Instructions
 
 ### Reconciliation
 
 We can associate one of our columns to an external database by using OpenRefine's reconciliation feature:
 
-On the "Publisher" column, select `Reconcile > Start reconciling...`. The default service listed is Wikidata.
+**Exercise 12** – Reconcile publisher data against Wikidata
 
-The tool will automatically try to match the column to a Wikidata type, but we can specify exactly the one we want to use.
+* On the "Publisher" column, select `Reconcile > Start reconciling...`. The default service listed is Wikidata.
+* The tool will automatically try to match the column to a Wikidata type, but we can specify exactly the one we want to use.
+* After checking and completing by hand the matches, we can add extra data to our project by using `Edit column > Add columns for reconciled values`. For example, try adding the headquarters location of the publishers into a new column.
 
-After checking and completing by hand the matches, we can add extra data to our project by using `Edit column > Add columns for reconciled values`.
-
-### Extras: Advanced functions
-
-> How do I fetch data from an API (Application Programming Interface)?
-> How do I reconcile my data by comparing it to authoritative datasets?
-> How do I install extensions?
-
-You can find examples on [this page](https://librarycarpentry.github.io/lc-open-refine/13-looking-up-data/).
     
-## Links
+## Useful links
 
+OpenRefine learning:
+
+* Full lesson this one is based on: https://librarycarpentry.github.io/lc-open-refine/
+    * "Advanced functions" chapter: https://librarycarpentry.github.io/lc-open-refine/13-looking-up-data/index.html
 * Video walk throughs: http://openrefine.org/
+* Video tutorial on reconciliation and Wikidata contribution: https://www.youtube.com/watch?v=wfS1qTKFQoI
 * Getting started with OpenRefine by Thomas Padilla: http://thomaspadilla.org/dataprep/
 * Cleaning Data with OpenRefine by Seth van Hooland, Ruben Verborgh and Max De Wilde: http://programminghistorian.org/lessons/cleaning-data-with-openrefine
-* Blog posts on using OpenRefine from Owen Stephens: http://www.meanboyfriend.com/overdue_ideas/tag/openrefine/?orderby=date&order=ASC
-* Identifying potential headings for Authority work using III Sierra, MS Excel and OpenRefine: http://epublications.marquette.edu/lib_fac/81/
-* Free your metadata website: http://freeyourmetadata.org/
-* Data Munging Tools in Preparation for RDF: Catmandu and LODRefine by Christina Harlow: http://journal.code4lib.org/articles/11013
+* Free your Metadata website: http://freeyourmetadata.org/
 * OpenRefine News (monthly round up of new blog posts, tutorials and other information): http://openrefine.org/blog.html
+* Official OpenRefine documentation:
 * GREL documentation: https://github.com/OpenRefine/OpenRefine/wiki/General-Refine-Expression-Language
+* Clustering in Depth: https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth
+* A compilation of "OpenRefine recipes": https://github.com/OpenRefine/OpenRefine/wiki/Recipes
+
+Regular Expressions:
+
+* Understanding Regular Expressions: https://github.com/OpenRefine/OpenRefine/wiki/Understanding-Regular-Expressions
 * RegEx + GREL cheatsheet: https://code4libtoronto.github.io/2018-10-12-access/GoogleRefineCheatSheets.pdf
+
+Other data sources for reconciliation:
+
+* https://github.com/OpenRefine/OpenRefine/wiki/Reconcilable-Data-Sources
+* https://reconciliation-api.github.io/testbench/
+
+Examples of OpenRefine uses:
+
+* Identifying potential headings for Authority work using III Sierra, MS Excel and OpenRefine: http://epublications.marquette.edu/lib_fac/81/
+* Data Munging Tools in Preparation for RDF: Catmandu and LODRefine by Christina Harlow: http://journal.code4lib.org/articles/11013
+* Blog posts on using OpenRefine from Owen Stephens: http://www.meanboyfriend.com/overdue_ideas/tag/openrefine/?orderby=date&order=ASC
+
+Another dataset to play around with:
+
+* http://www.thomaspadilla.org/data/dataprep/authors-people.csv
+
 
 ## Legal
 
