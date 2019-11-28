@@ -12,8 +12,8 @@ If you want to review the installation instructions:
 <https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
 
 Everything we write today will be saved in your R project. Please
-remember to save it on your H drive or USB if you are using Library
-computers.
+remember to save it on your H drive or USB if you are using a Library
+computer.
 
 ## Essential shortcuts
 
@@ -70,12 +70,11 @@ Let’s create a new **R project** to keep everything tidy:
   - Click “New Project”
   - In “Directory name”, type the name of your project, e.g.
     “ggplot2\_intro”
-  - Select the folder where to locate your project: the
+  - Select the folder where to locate your project: e.g. a
     `Documents/RProjects` folder, which you can create if it doesn’t
     exist yet.
   - Click the “Create Project” button
-  - create two folders in your new project
-      - `dir.create("scripts")`
+  - Create a folder to store our plots:
       - `dir.create("plots")`
 
 We will write ggplot2 code more comfortably in a **script**:
@@ -89,9 +88,10 @@ We will write ggplot2 code more comfortably in a **script**:
     <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac)
     <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save
     your file and the name of the new file.
-  - Call your file “process.R”, in the “scripts” folder
+  - Call your file “process.R”
 
-We can straight away **load the package** with:
+We can straight away **load the package** by adding this command to our
+script and executing it:
 
 ``` r
 library(ggplot2)
@@ -183,7 +183,7 @@ str(economics)
     ##  $ uempmed : num  4.5 4.7 4.6 4.9 4.7 4.8 5.1 4.5 4.1 4.6 ...
     ##  $ unemploy: num  2944 2945 2958 3143 3066 ...
 
-Do you think that the rate of unemployment is stable over the years?
+Do you think that unemployment is stable over the years?
 
 Let’s use the full ggplot2 syntax from now on, se we can build up our
 plots further:
@@ -212,8 +212,8 @@ Let’s it with a new dataset: `mpg`, which stands for “miles per gallon”.
 str(mpg)
 ```
 
-Do you think that cars with big engines use fuel less efficiently than
-cars with small engines?
+Do you think that big engines use fuel more efficiently than small
+engines?
 
 We can focus on two variables:
 
@@ -348,7 +348,7 @@ ggplot(mpg,
 
 ![](ggplot2_intro_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
-**Exercise 1 – where should aesthetics be defined?**
+**Challenge 1 – where should aesthetics be defined?**
 
 Take the last plot we created:
 
@@ -386,7 +386,7 @@ Like your visualisation? You can export it with the “Export” menu in the
 
 Let’s use a similar approach with the `economics` data.
 
-**Exercise 2 – add a variable and a smooth line**
+**Challenge 2 – add a variable and a smooth line**
 
 Take our previous “economics” scatterplot:
 
@@ -479,27 +479,49 @@ What is the difference with the `colour` aesthetic? `colour` will colour
 the outline of an area, whereas `fill` will fill the whole area. Some
 aesthetics are more suited to specific geometries than others\!
 
-### Theming
+### Customising a plot
 
-Let’s modify our plot: we can pick our favourite colour in `geom_bar()`,
-and modify labels with the `labs()` function to make our plot more
-self-explanatory:
+Let’s see how we can customise our plot’s look.
+
+#### Change a geometry’s default colour
+
+First, we can pick our favourite colour in `geom_bar()`:
+
+``` r
+ggplot(diamonds,
+       aes(x = cut)) + 
+    geom_bar(fill = "tomato")
+```
+
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+
+**Challenge 3: where should `fill` go?**
+
+We assigned different values to the `fill` argument in previous plots.
+But why are they located inside or outside of the `aes()` call?
+
+That’s because we don’t associate an aesthetic element to a variable
+from our dataset. Here, we are merely changing the default colour of our
+geometry.
+
+If you are curious about what colour names exist in R, you can use the
+`colours()` function.
+
+#### Change labels
+
+We can also modify labels with the `labs()` function to make our plot
+more self-explanatory:
 
 ``` r
 ggplot(diamonds,
        aes(x = cut)) + 
     geom_bar(fill = "tomato") +
-    labs(title = "Where are the bad ones gone?",
+    labs(title = "Where are the bad ones?",
          x = "Quality of the cut",
          y = "Number of diamonds")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
-
-**Exercise 3: where should `fill` go?**
-
-We assigned different values to the `fill` argument in previous plots.
-But why are they located inside or outside of the `aes()` call?
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 Let’s have a look at what `labs()` can do:
 
@@ -511,9 +533,10 @@ It can edit the title, the subtitle, the x and y axes labels, and the
 caption.
 
 > Remember that captions and titles are better sorted out in the
-> publication itself (especially to help with screen readers).
+> publication itself, especially for accessibility reasons (e.g. to help
+> with screen readers).
 
-### Flip coordinates
+#### Flip coordinates
 
 `coord_flip()` can be used to quickly flip the axes around:
 
@@ -521,34 +544,35 @@ caption.
 ggplot(diamonds,
        aes(x = cut)) +
   geom_bar(fill = "tomato") +
-  labs(title = "Where are the bad ones gone?",
+  labs(title = "Where are the bad ones?",
        x = "Quality of the cut",
        y = "Number of diamonds") +
   coord_flip()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 This is particularly helpful when long category names overlap under the
 x axis.
 
-### Built-in themes
+#### Built-in themes
 
-Some functions allow to set a bunch of theme defaults easily, like
-`theme_bw()`:
+The `theme()` function allows us to really get into the details of our
+plot’s look, but some `theme_*()` functions make it easy to apply a
+built-in theme, like `theme_bw()`:
 
 ``` r
 ggplot(diamonds,
        aes(x = cut)) + 
   geom_bar(fill = "tomato") +
-  labs(title = "Where are the bad ones gone?",
+  labs(title = "Where are the bad ones?",
        x = "Quality of the cut",
        y = "Number of diamonds") +
   coord_flip() +
   theme_bw()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
 
 Try `theme_minimal()` as well, and if you want more options, install the
 `ggthemes` package\!
@@ -573,7 +597,7 @@ ggsave(filename = "plots/horiz_bar_pres.png", dpi = "screen")
 
 ## Play time\!
 
-**Exercise 4: explore geometries**
+**Challenge 4: explore geometries**
 
 When creating a new layer, start typing `geom_` and see what suggestions
 pop up. Are there any suggestions that sound useful or familiar to you?
