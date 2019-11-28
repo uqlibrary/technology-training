@@ -1,6 +1,6 @@
 R data visualisation with RStudio and ggplot2: intermediate
 ================
-2019-07-18
+2019-11-28
 
 > This document is written as an .Rmd document, and then knitted into a
 > markdown document. The source code is available at:
@@ -56,8 +56,11 @@ During this hands-on session, you will:
 
 ### Setting up
 
-We’ll first create a new project to keep everything nicely contained in
-one directory:
+**Install ggplot2** if you don’t already have it, with:
+`install.packages("ggplot2")`
+
+**Create a new project** to keep everything nicely contained in one
+directory:
 
   - Click the “Create a project” button (top left cube icon)
   - Click “New Directory”
@@ -76,10 +79,7 @@ Let’s also create a “plots” folders to store exports:
 dir.create("plots")
 ```
 
-**Install ggplot2** if you don’t already have it, with:
-`install.packages("ggplot2")`
-
-Create a new script (File \> New File \> R Script) and add a few
+Create a **new script** (File \> New File \> R Script) and add a few
 comments to give context:
 
     # Description : ggplot2 intermediate with gapminder data
@@ -298,12 +298,6 @@ p +
 Let’s talk about that warning message. We could use the `subset()`
 function to avoid that.
 
-> **Saving some typing:** Being explicit about the **argument names** is
-> useful when learning the ins and outs of a function, but as you get
-> more familiar with ggplot2, you can do away with the obvious ones,
-> like `data =` and `mapping =` (as long as they are used in the right
-> order\!).
-
 ### Histograms
 
 #### Challenge 2 – histogram of life expectancy
@@ -319,6 +313,13 @@ ggplot(gapminder, aes(x = lifeExp)) +
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+
+> **Saving some typing:** remember we can omit the names of the
+> arguments if we write use them in order? Being explicit about the
+> **argument names** is useful when learning the ins and outs of a
+> function, but as you get more familiar with ggplot2, you can do away
+> with the obvious ones, like `data =` and `mapping =` (as long as they
+> are used in the right order\!).
 
 Let’s change the bin width:
 
@@ -405,7 +406,8 @@ ggplot(gapminder,
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
-A pre-built theme function can overwrite some defaults:
+If you use a pre-built theme function, make sure you place it before
+customising the legend. Otherwise it will bring the legend back\!
 
 ``` r
 ggplot(gapminder,
@@ -419,32 +421,12 @@ ggplot(gapminder,
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
-Try other pre-built themes, like `theme_bw()` and `theme_classic()`. You
-can also start with an empty theme thanks to `theme_void()`, and even
-install extras with the package `ggthemes`.
-
-### Labels
-
-We can make our plot better with descriptive **labels**:
-
-``` r
-ggplot(gapminder,
-       aes(x = lifeExp,
-           fill = continent)) +
-  geom_histogram(bins = 40) +
-  facet_wrap(~ continent) +
-  theme_minimal() + # before customising the legend
-  theme(legend.position = "none") +
-  xlab("Life expectancy") +
-  ylab("Count")
-```
-
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
-
 ### Customise a scatterplot
 
 New research question: *How does life expectancy relate to GDP per
 capita?*
+
+This is our base plot:
 
 ``` r
 ggplot(gapminder,
@@ -452,14 +434,11 @@ ggplot(gapminder,
            y = lifeExp)) +
   geom_point() +
   labs(x = "GDP per capita",
-       y = "Life expectancy",
-       title = "How does GDP relate to life expectancy?") +
+       y = "Life expectancy") +
   theme_bw()
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
-
-The `labs()` function allows you to group all the labels in one call.
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 Now, let’s make it better: spread the data with a modified **scale**,
 add a **linear regression**, **colour** the continents and add some
@@ -474,36 +453,47 @@ ggplot(gapminder,
   geom_smooth(method = "lm") +
   scale_x_log10() +
   labs(x = "GDP per capita",
-       y = "Life expectancy",
-       title = "How does GDP relate to life expectancy?") +
+       y = "Life expectancy") +
   theme_bw()
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
 
-### Save your plots with a command
+### Make it interactive
 
-To Save your plots in different formats and resolutions, use
+The plotly package brings the power of the Plotly javascript library to
+R. Install it with `install.packages(plotly)`, and you’ll then be able
+to convert a ggplot2 visualisation in an interactive HTML visualisation
+with one function\!
+
+First, save the plot as an object:
 
 ``` r
-ggsave("myplot.png", width = 7, height = 5)
+scatter <- ggplot(gapminder,
+       aes(x = gdpPercap,
+           y = lifeExp,
+           label = country)) + # so it appears in the tooltips
+  geom_point(aes(colour = continent),
+             alpha = 0.5) +
+  geom_smooth(method = "lm") +
+  scale_x_log10() +
+  labs(x = "GDP per capita",
+       y = "Life expectancy") +
+  theme_bw()
 ```
 
-`ggsave()` allows you to specify more parameters than RStudio’s “Export”
-menu, and is very helpful to export visualisations that will be printed
-on a poster (`width` and `height` also resize the font, and `DPI` will
-allow a bigger resolution).
+And then, feed it to the `ggplotly()` function:
+
+``` r
+library(plotly)
+ggplotly(scatter)
+```
+
+You can now identify single points, zoom into your plot, and show/hide
+categories. You can even export the visualisation as a HTML page for
+sharing with others.
 
 ### Other geometries
-
-To count categorical data, use `geom_bar()`:
-
-``` r
-ggplot(gapminder, aes(x = continent)) +
-  geom_bar()
-```
-
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
 A simple boxplot to visualise distribution in categories:
 
@@ -512,7 +502,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
 Violin plots might be better at visualising densities:
 
@@ -521,7 +511,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_violin()
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 #### Challenge 3 – code comprehension
 
@@ -533,15 +523,15 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 
 This is useful if the x labels get too cramped on the x axis: you can
 rotate them to whatever angle you want.
 
 ### Another example
 
-This extra example gives a an idea of how a complex ggplot2
-visualisation might be constructed:
+This extra example gives an idea of how a complex ggplot2 visualisation
+might be constructed. It represents 4 different variables.
 
 ``` r
 ggplot(diamonds,
@@ -563,7 +553,7 @@ ggplot(diamonds,
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-32-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
 
 ### Play time\!
 
