@@ -399,12 +399,16 @@ font() # this lists the fonts available
 loadfonts() # automatically done when you load extrafont
 ```
 
-For `pheatmap`.... `FIXME`
+The `pheatmap` does not take into account what was set by the `par()` function, and it does not seem to currently support different fonts. Only the font size can be changed, with the `fontsize` arguments.
 
 ### Scale data according to different scaling method?
 
-The `scale()` function can already turn both the scaling and the centering on or off. For more custom "normalisation", the `sweep()` function can by default subtract the value passed on to the `STATS` argument, or can handle it accordingly to a custom formula replacing the default `FUN` argument's value.
+The `scale()` function can already turn both the scaling and the centring on or off. For more custom "normalisation", the `sweep()` function can by default subtract the value passed on to the `STATS` argument, or can handle it accordingly to a custom formula replacing the default `FUN` argument's value.
 
-### color palette / scaling method above / below zero
+### Colour palette / scaling method above / below zero
 
-The `sweep()` function can be used to scale the data differently. A custom color palette can then be designed so the "middle" colour corresponds to a specific value, for example with the ... `FIXME`
+The `sweep()` function can be used to scale the data differently.
+
+A custom colour palette can then be designed so the "middle" colour corresponds to a specific value, for example with the `scale_fill_gradient2()` function in ggplot2, in which the `midpoint` argument is the value where the palette diverges (i.e. 0).
+
+For base graphics, the solution might be more involved, for example joining two palettes together. See for example this solution: https://stackoverflow.com/questions/29262824/r-center-color-palette-on-0
