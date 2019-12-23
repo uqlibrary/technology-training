@@ -2,6 +2,8 @@
 
 Here you will find resources related to R, Python, Bash, Git, OpenStreetMap, QGIS and OpenRefine and Audacity sessions held at the UQ Library.
 
+Other training resources are also available [on the Library website](https://web.library.uq.edu.au/library-services/training/software-training-resources).
+
 ## Format
 
 Most sessions use the "live-coding" format in which the instructor and the attendees type and execute commands together. A collaborative online pad is used to list useful links, challenges, and to interact during the session.
