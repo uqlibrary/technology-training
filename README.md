@@ -1,6 +1,6 @@
 # Digital Scholars Hub resources
 
-Here you will find resources related to R, Python, Bash, Git, OpenStreetMap, QGIS and OpenRefine and Audacity sessions held at the UQ Library.
+Here you will find resources related to R, Python, Bash, Git, OpenStreetMap, QGIS, OpenRefine and Audacity sessions held at the UQ Library.
 
 Other training resources are also available [on the Library website](https://web.library.uq.edu.au/library-services/training/software-training-resources).
 
@@ -10,9 +10,11 @@ Most sessions use the "live-coding" format in which the instructor and the atten
 
 ## Quick access to course resources
 
-### R series
+### R sessions
 
-These R-related sessions are listed in the recommended order.
+These R sessions are listed in the recommended order.
+
+This is the Library's **regular R cycle**:
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
@@ -20,9 +22,16 @@ These R-related sessions are listed in the recommended order.
 | R data manipulation with RStudio and dplyr: introduction | [md](R/dplyr/dplyr.md) <sup>[source](R/dplyr/dplyr.Rmd)</sup> | [html](https://demo.codimd.org/s/HyyLCm3KN) | [YT](https://www.youtube.com/watch?v=vqvsyaaqJUk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2) |
 | R data visualisation with RStudio and ggplot2: introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [html](https://demo.codimd.org/s/rJIPr0vi4) | [YT](https://www.youtube.com/watch?v=LoeBgXSJWTw&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=3) |
 | R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [html](https://demo.codimd.org/s/rJLdcW-24) | [YT](https://www.youtube.com/watch?v=zzXCkYR84M0&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=4) |
-| R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps/heatmaps_intermediate.Rmd)</sup> | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) | [YT](https://www.youtube.com/watch?v=V-IRkO4NIHU&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=5) |
 | R and the Tidyverse: next steps | [md](R/tidyverse_next_steps/tidyverse_next_steps.md) <sup>[source](R/tidyverse_next_steps/tidyverse_next_steps.Rmd)</sup> | [html](https://demo.codimd.org/s/BkQCcmiOV) | [YT](https://www.youtube.com/watch?v=2TZYeFcJQIk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=6) |
-| R advanced: programming and packaging | [md](R/advanced/advanced.md) <sup>[source](R/advanced/advanced.Rmd)</sup> | [html](https://demo.codimd.org/s/ryCzbvgXB) | ... |
+| _next: R reproducible reports with R Markdown and knitr_ | ... | ... | ... |
+
+We also offer these more specialised specialised (run less regularly, but feel free to ask us to schedule one of them):
+
+| Title | Course notes | Live collaborative pad | Video |
+|:-|:-:|:-:|:-:|
+| R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps/heatmaps_intermediate.Rmd)</sup> | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) | [YT](https://www.youtube.com/watch?v=V-IRkO4NIHU&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=5) |
+| R advanced: packaging and sharing functions | [md](R/packaging/packaging.md) <sup>[source](R/packaging/packaging.Rmd)</sup> | [html](https://demo.codimd.org/s/ryCzbvgXB) | ... |
+| R advanced: webapps with Shiny | [md](R/shiny/shiny.md) <sup>[source](R/shiny/shiny.Rmd)</sup> | [html](https://demo.codimd.org/s/S19FIXxg8) | ... |
 
 ### Other tools
 
@@ -35,10 +44,10 @@ These R-related sessions are listed in the recommended order.
 | OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [html](https://cryptpad.fr/pad/#/2/pad/edit/ZwpBgdie-YBBXvDE68N53u2s/) | ... |
 | QGIS: introduction to mapping | [md](QGIS/intro/QGIS_intro.md) | [html](https://demo.codimd.org/s/B156o7z2V) | ... |
 | QGIS: raster analysis | [md](QGIS/raster/QGIS_raster.md) | [html](https://demo.codimd.org/s/ryN5E-XuS) | ... |
-| Audacity: introduction to audio editing | [md](Audacity/audacity.md) | ... | ... |
-| next: Open Source tools for your research | ... | ... | ... |
-| next: Python data transformation | ... | ... | ... |
-| next: R reproducible reports with R Markdown and knitr | ... | ... | ... |
+| Audacity: introduction to audio editing_ | [md](Audacity/audacity.md) | ... | ... |
+| _next: Open Source tools for your research_ | ... | ... | ... |
+| _next: Python data transformation_ | ... | ... | ... |
+| _next: Wikipedia: start contributing_ | ... | ... | ... |
 
 ### One-off sessions
 
@@ -46,7 +55,7 @@ Some sessions are not run regularly, but files can also be hosted here.
 
 | Title | Course notes | Live collaborative pad |
 |:-|:-:|:-:|
-| Introduction to scientific programming | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.Rmd)</sup> | [html](https://frama.link/intro_prog) |
+| Introduction to scientific programming | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.Rmd)</sup> | [html](https://cryptpad.fr/code/#/2/code/edit/Op8PvBdGbBxBO9efXUuEYGlB/) |
 
 ### Files hosted here
 

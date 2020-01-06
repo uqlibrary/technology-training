@@ -1,0 +1,245 @@
+---
+title: 'R advanced: webapps with Shiny'
+author: "UQ Library"
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+# default to not evaluating chunks!
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+## Shiny webapps
+
+Shiny is a package that allows to create a web application with R code.
+
+A Shiny app requires two main elements:
+
+* a user interface (UI)
+* a server
+
+Let's build an app from scratch, using our ACORN data and functions.
+
+What we want to create is a small webapp that visualises the ACORN data and gives the user a bit of control over the visualisation.
+
+### Setting up
+
+In our original project (that contains the ACORN data), let's create a new app with "File > New File > Shiny Web App...". We will stick to "single file", and the current project directory as the location.
+
+In our files, we can now see a "myApp" directory that contains an "app.R" script.
+
+The app is currently an example app. We can run it with the "Run App" button.
+
+#### Creating a minimal skeleton
+
+For our app to work, we need to:
+
+* define a UI
+* define a server
+* define how the app is run
+
+We can start with this empty skeleton:
+
+```{r}
+# UI
+ui <- fluidPage()
+
+# Server
+server <- function(input, output) {}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+Running it will show a blank page. Let's add a title:
+
+```{r}
+# UI
+ui <- fluidPage(
+  titlePanel("ACORN data explorer")
+)
+
+# Server
+server <- function(input, output) {}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+Now, let's make sure we have the data ready to be used in our app. We don't want to do the merging and summarising of our data every time we run the app, so let's save the finished product into an RDS file. In our process.R script:
+
+```{r}
+library(acornucopia)
+dat <- merge_acorn("acorn_sat_v2_daily_tmax")
+# process for monthly average
+library(lubridate)
+monthly <- dat %>% 
+    group_by(month = month(date),
+             year = year(date)) %>% 
+    summarise(mean.max = mean(max.temp, na.rm = TRUE))
+# export into app directory
+saveRDS(monthly, "myApp/monthly.RDS")
+```
+
+We can now read that data file into our app, process it, and present it in an interactive table:
+
+```{r}
+# Import data
+monthly <- readRDS("monthly.RDS")
+
+# Define UI
+ui <- fluidPage(
+    titlePanel("ACORN data explorer"),
+    dataTableOutput("dt")
+)
+
+# Define server logic
+server <- function(input, output) {
+    output$dt <- renderDataTable({
+        monthly
+    })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+Notice that we had to define an output in the server section (with a "render" function), and use that output in a UI function (with an "output" function).
+
+Now, for a different kind of output, let's add a plot:
+
+```{r}
+# Import data
+monthly <- readRDS("monthly.RDS")
+
+# Load necessary packages
+library(ggplot2)
+
+# Define UI
+ui <- fluidPage(
+    titlePanel("ACORN data explorer"),
+    plotOutput("plot"),
+    dataTableOutput("dt")
+)
+
+# Define server logic
+server <- function(input, output) {
+    output$dt <- renderDataTable({
+        monthly
+    })
+    
+    output$plot <- renderPlot({
+            ggplot(monthly,
+               aes(x = year, y = month, fill = mean.max)) +
+            geom_tile() +
+            scale_fill_distiller(palette = "RdYlBu")
+    })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+How can we add some interaction? We could give the user control over which month they want to visualise by adding a slider:
+
+```{r}
+# Import data
+monthly <- readRDS("monthly.RDS")
+
+# Load necessary packages
+library(ggplot2)
+library(dplyr)
+
+# Define UI
+ui <- fluidPage(
+    titlePanel("ACORN data explorer"),
+    # input slider for months
+    sliderInput("month",
+                "Pick a month:",
+                min = 1,
+                max = 12,
+                value = 1),
+    plotOutput("plot"),
+    dataTableOutput("dt")
+)
+
+# Define server logic
+server <- function(input, output) {
+    output$dt <- renderDataTable({
+        monthly
+    })
+    
+    output$plot <- renderPlot({
+        monthly %>% 
+            filter(month == input$month) %>% 
+            ggplot(aes(x = year, y = month, fill = mean.max)) +
+            geom_tile() +
+            scale_fill_distiller(palette = "RdYlBu")
+    })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+## Challenge 2: restore an "all months" option?
+
+How could we give the option to go back to the full-year view?
+
+Hint: have a look at `?selectInput`, or find other ideas on this list: https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/
+
+One solution could be:
+
+```{r}
+# import data
+monthly <- readRDS("monthly.RDS")
+
+# load necessary packages
+library(ggplot2)
+library(dplyr)
+
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+    titlePanel("ACORN data explorer"),
+    # input slider for months
+    selectInput("month",
+                "Pick one or more months:",
+                1:12,
+                multiple = TRUE),
+    plotOutput("plot"),
+    dataTableOutput("dt")
+)
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+    output$dt <- renderDataTable({
+        monthly
+    })
+    
+    output$plot <- renderPlot({
+        monthly %>% 
+            filter(month %in% input$month) %>% 
+            ggplot(aes(x = year, y = month, fill = mean.max)) +
+            geom_tile() +
+            scale_fill_distiller(palette = "RdYlBu")
+    })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+## Publishing a Shiny app
+
+You can use ShinyApps.io, which offers free or paid accounts.
+
+We also have access to Nectar (National eResearch Collaboration Tools and Resources project), in which we can request a virtual machine and deploy a Shiny server: https://nectar.org.au/
+
+## Useful links
+
+* Official Shiny tutorial: https://shiny.rstudio.com/tutorial/
+* Shiny examples:
+    * https://shiny.rstudio.com/gallery/
+    * https://www.showmeshiny.com/
+* Shiny cheatsheet: https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf

@@ -1,33 +1,111 @@
-R advanced: programming and packaging
+R advanced: packaging and sharing functions
 ================
 UQ Library
-2019-11-22
+2020-01-03
 
-## Download the project
+The strength of the R programming language lies in the endless
+possibilities custom functions can bring, and a community of users who
+happily share their contributions with peers.
 
-We have an R project that already contains the relevant custom
-functions. You can download it with this link:
-<https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R%2Fadvanced>
+This session is directed at intermediate to advanced R users wanting to
+learn about creating, packaging and sharing functions.
 
-Unzip this archive, and open the .Rproj file.
+In this session, you will learn about:
+
+  - creating new custom functions
+  - packaging your functions into a cohesive collection
+  - properly documenting your code
+  - versioning your code
+  - using online services to share your package
+  - using RStudio features that make life easier
+
+## Setting up
+
+### Download the project
+
+So we can get straight into the interesting stuff, we have an R project
+that already contains relevant custom functions. You can download it
+with this link:
+<https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R%2packaging>
+
+Unzip this archive, and open the .Rproj file to open the project in
+RStudio.
+
+### Install packages
+
+Let’s make sure we have the whole Tidyverse packages ready. If you don’t
+have them installed on your computer just yet, run this command in the
+Console:
+
+``` r
+install.packages("tidyverse")
+```
+
+### Create a script
+
+Create a new script by using the New File menu (first icon in the
+toolbar) and selecting “R Script”.
+
+## How to build a function
+
+In R, once we find we are limited by the functions available (in both R
+and in packages available online), there always is the possibility of
+designing our own functions.
+
+This is what a basic **function definition** looks like:
+
+``` r
+human_age <- function(dog_age) {
+  dog_age * 7
+}
+```
+
+Here, we create a custom function that will take the age of a dog, and
+convert it to human years.
+
+We need to:
+
+  - give the function a name (just like when we create an object)
+  - specify which arguments are available when the function is used
+  - define what happens when the function is called, in between the
+    curly braces `{}`
+
+After executing this block of code, we have defined our function, and we
+can see it listed in the Environment panel. We can now use it just like
+any other function:
+
+``` r
+human_age(12)
+```
+
+    ## [1] 84
+
+As you can see, functions will by default return the last evaluated
+element.
 
 ## Our example ACORN data
 
-Our data comes from the Bureau of Meteorology website. You can find more
-information about it here:
+Let’s have a look at our pre-defined functions now.
+
+The data that we want to deal with comes from the Bureau of Meteorology
+website. You can find more information about it here:
 <http://www.bom.gov.au/climate/data/acorn-sat/#tabs=Data-and-networks>
 
-We will use a custom function to download the data.
-
 This project provides temperature data for 112 Australian weather
-stations. We are going to deal with the maximum daily temperature data,
-which means we will have to deal with 112 separate CSV files.
+stations. We want to use the maximum daily temperature data, which means
+we will have to deal with 112 separate CSV files.
 
-First of all: how can we download the data?
+### Download the data
 
-We know the URL to the archive of CSV files, so we can integrate it into
-a function to both download (with `download.file()`) and extract (with
-`untar()`) the files:
+We will use a custom function that downloads the data. Because the data
+is provided as a zipped archive, we need to do two things in the body of
+our function:
+
+1.  download the archive from the relevant URL (with `download.file()`)
+2.  unzip it into a directory (with `untar()`)
+
+Open the “get\_acorn.R” file from the Files panel, and look at the code
+it contains:
 
 ``` r
 get_acorn <- function(dest) {
@@ -41,13 +119,29 @@ get_acorn <- function(dest) {
 }
 ```
 
-We can now call our new function to get the data:
+The only argument we make available in the function is the `dest`
+argument: the destination of the files, i.e. the name of the directory
+where we want to store the files.
+
+See the `if` statement? We are using `branching`: if the directory does
+not exist, it will be created. If it already exist, it will move on to
+the next step without executing the `dir.create(dest)` command.
+
+To have access to this new funtion, make sure you execute the whole
+block of code. Back in our script, we can now call our new function to
+get the data:
 
 ``` r
 get_acorn(dest = "acorn_sat_v2_daily_tmax")
 ```
 
-Now, how do we import and clean one single station’s data?
+We now have the 112 CSV files. How do we import and clean one single
+station’s data?
+
+### Read a single file
+
+The package readr provides a `read_csv()` function to import data from a
+CSV files.
 
 > We will use several tidyverse packages, so we might as well load the
 > core Tidyverse
@@ -57,16 +151,16 @@ Now, how do we import and clean one single station’s data?
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ────────────────────────────────────────────── tidyverse 1.2.1 ──
+    ## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
 
-    ## ✔ ggplot2 3.2.1     ✔ purrr   0.3.3
-    ## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
-    ## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
-    ## ✔ readr   1.3.1     ✔ forcats 0.4.0
+    ## ✓ ggplot2 3.2.1     ✓ purrr   0.3.3
+    ## ✓ tibble  2.1.3     ✓ dplyr   0.8.3
+    ## ✓ tidyr   1.0.0     ✓ stringr 1.4.0
+    ## ✓ readr   1.3.1     ✓ forcats 0.4.0
 
-    ## ── Conflicts ───────────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
+    ## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## x dplyr::filter() masks stats::filter()
+    ## x dplyr::lag()    masks stats::lag()
 
 ``` r
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv")
@@ -95,11 +189,12 @@ read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv")
     ## 10 1941-09-09                         32.7 <NA>          <NA>       
     ## # … with 28,388 more rows
 
-Looks like we need to remove the first row:
+Looks like we need to remove the first row, which we can do by piping an
+extra `slice()` step:
 
 ``` r
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
-  slice(-1)
+  slice(-1) # remove the first row
 ```
 
     ## Parsed with column specification:
@@ -126,12 +221,13 @@ read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
     ## # … with 28,387 more rows
 
 We also want to remove the useless columns, and rename the maximum
-temperature variable:
+temperature variable, which can be done in one go with the `select()`
+function:
 
 ``` r
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
   slice(-1) %>% 
-  select(date, max.temp = `maximum temperature (degC)`)
+  select(date, max.temp = `maximum temperature (degC)`) # only keep two variables
 ```
 
     ## Parsed with column specification:
@@ -157,28 +253,9 @@ read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
     ## 10 1941-09-10     33.4
     ## # … with 28,387 more rows
 
-This is probably what we want to end up with.
+This is probably the data we want to end up with when reading a file
 
-## Creating a new custom function
-
-Let’s make this import/clean pipeline into a function, so we can reuse
-it easily later on.
-
-We have to use `function()` to define it, and also provide which
-arguments can be used with this function (in our case, only the path to
-the file we want to process):
-
-``` r
-read_station <- function(file) {
-  read_csv(file) %>% 
-    slice(-1) %>% 
-    select(date, max.temp = `maximum temperature (degC)`)
-}
-```
-
-We also want to add an extra step to store the file name, so this
-information is available when we merge all the datasets. We can do that
-with the `mutate()` function:
+Have a look at the function defined in “read\_station.R”:
 
 ``` r
 read_station <- function(file) {
@@ -189,9 +266,18 @@ read_station <- function(file) {
 }
 ```
 
-Functions will by default return the last evaluated element.
+This is pretty much the steps we used before, made into a function. The
+only argument is `file`, to provide the name of the file we want to
+read.
 
-We can now test it on our first file:
+Notice the last step in the function body: we also wanted to store the
+file name, so this information is available when we merge all the
+datasets. We can do that with the `mutate()` function.
+
+Make sure you define this function by executing the code. You can also
+use the “Source” button at the top right of the source panel.
+
+Back in our script, we can now test it on our first file:
 
 ``` r
 read_station("acorn_sat_v2_daily_tmax/tmax.002012.daily.csv")
@@ -220,26 +306,35 @@ read_station("acorn_sat_v2_daily_tmax/tmax.002012.daily.csv")
     ## 10 1910-01-10     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
     ## # … with 39,801 more rows
 
+> It is often useful to define functions in a separate script to the
+> data analysis script. Know that you can then “source” those custom
+> functions at the beginning of the analysis script thanks to the
+> `source()` function.
+
+### Read and merge all the data
+
 We now want to iterate over all the files, and create a single merged
 dataframe.
 
-We can start with finding all the relevant files:
+We can start with finding all the relevant files in the data directory:
 
 ``` r
-files <- list.files(path = "acorn_sat_v2_daily_tmax",
-           pattern = "tmax*",
-           full.names = TRUE)
+files <- list.files(path = "acorn_sat_v2_daily_tmax", # where to look
+           pattern = "tmax*",                         # what to look for
+           full.names = TRUE)                         # store full path
 ```
+
+See that `files` is a character vector containing the name of 112 files?
 
 We can then apply our custom function iteratively to each file. For
 that, purrr’s `map_` function family is very useful. Because we want to
 end up with a dataframe, we will use `map_dfr()`:
 
-We now have close to 4 million rows in our final dataframe.
+We now have close to 4 million rows in our final dataframe `all_tmax`.
 
 We might also want to create a function from the two previous steps, so
-we only have to provide the name of the directory where the files are
-located:
+we only have to provide the name of the directory where the CSV files
+are located. That’s what we have in the “merge\_acorn.R” file:
 
 ``` r
 merge_acorn <- function(dir) {
@@ -250,7 +345,10 @@ merge_acorn <- function(dir) {
 }
 ```
 
-Let’s try our new function:
+Let’s source this function, and try it in our script:
+
+This does the same as before: we have a final merged dataset of all the
+max temperatures from ACORN.
 
 ## Making functions more resilient
 
@@ -264,7 +362,8 @@ valid path?
 merge_acorn("blah")
 ```
 
-We could improve our function with the following:
+We could improve our function with the an `if` statement and a `stop()`
+function:
 
 ``` r
 merge_acorn <- function(dir) {
@@ -287,28 +386,53 @@ merge_acorn("bleh")
 This will neatly stop our function and provide an error message if the
 path is not found.
 
+### Use the data
+
+Let’s have a look at a summary of our data:
+
+``` r
+summary(all_tmax)
+```
+
+Now that we have very usable data, why not create a visualisation? For
+example, let’s have a look at how the yearly mean of max temperatures
+evolved over the years:
+
+``` r
+library(lubridate)
+mean_max <- all_tmax %>% 
+  filter(!is.na(max.temp)) %>%               # remove NAs
+  group_by(filename) %>% 
+  filter(any(year(date) == 1910)) %>%        # only keep stations that have data since 1910
+  group_by(filename, year = year(date)) %>% 
+  filter(n() > 250) %>%                      # remove samples with too much missing data
+  summarise(max.temp = mean(max.temp)) %>%   # yearly mean max temperatures for each station
+  group_by(year) %>% 
+  summarise(max.temp = mean(max.temp))       # one yearly mean max temperature for all stations
+
+ggplot(mean_max, aes(x = year, y = max.temp)) +
+  geom_point() +
+  geom_smooth()
+```
+
 We now want to share our useful functions with the World\!
 
 ## Packaging functions
 
-> Useful packages for package development: devtools, usethis, roxygen2
+> Some useful packages for package development: devtools, usethis,
+> roxygen2
 
-To prepare for packaging our functions, we can create a different script
-for each function. The name of each script can be the name of the
-function it defines: “get\_acorn.R”, “read\_station.R” and
+To prepare for packaging our functions, we would ideally have them in
+separate scripts named after the function they define, which is already
+the case for our three functions: “get\_acorn.R”, “read\_station.R” and
 “merge\_acorn.R”.
-
-> It is often useful to define functions in a separate script to the
-> data analysis script. Know that you can then “source” those custom
-> functions at the beginning of the analysis script thanks to the
-> `source()` function.
 
 Now, let’s create a new project for our package, to keep things tidy:
 File \> New Project… \> New Directory \> R Package.
 
 Let’s name our package “acornucopia”.
 
-We can pick the two function scripts we created before as the base for
+We can pick the three function scripts we created before as the base for
 our package.
 
 We end up with a basic package structure:
@@ -361,18 +485,18 @@ name that starts with one or more letters (in the R directory).
 ### 3\. R
 
 This is where our function definitions go. If you haven’t imported the
-two scripts when creating the package project, copy and paste them in
+three scripts when creating the package project, copy and paste them in
 now.
 
 #### Documenting functions
 
 We are using the package roxygen2 to document each function.
 
-With a function’s R script open in the source pane, go to Code \> Insert
-Roxygen Skeleton. This will add a template before your function, which
-can be used to generate the function’s documentation. You can see that
-it is adapted to your code. For example, for the `read_station()`
-function:
+With a function’s R script open in the source pane, and your cursor
+inside the function’s code, go to Code \> Insert Roxygen Skeleton. This
+will add a template above your function, which can be used to generate
+the function’s documentation. You can see that it is adapted to your
+code. For example, for the `read_station()` function:
 
     #' Read a station's CSV file
     #'
@@ -400,8 +524,8 @@ function:
   - `\dontrun{}` can be used for examples that will not work, or that
     shouldn’t be executed for a variety of reasons.
 
-> Pressing return inside the Roxygen skeleton will automatically prepend
-> the necessary comment characters `#'`
+> Pressing <kbd>Return</kbd> inside the Roxygen skeleton will
+> automatically prepend the necessary comment characters `#'`
 
 We can then generate and view the help file with:
 
@@ -460,11 +584,6 @@ install.packages("../acornucopia_0.1.0.tar.gz", repos = NULL)
 We now have our package listed in our packages list, ready to be loaded
 whenever we want to use its functions.
 
-### Publishing
-
-We can then try to publish on CRAN, or other repositories, making sure
-that you follow the guidelines / requirements.
-
 ### Best practice
 
 As a general rule, it is best to stick to a minimum of dependencies, so
@@ -476,7 +595,12 @@ the package:
 For function names, try to avoid dots, and use underscores instead
 (tidystyle).
 
-In order to publish on CRAN, we have to follow more stringet policies:
+### Publishing
+
+We can then try to publish on CRAN, or other repositories, making sure
+that you follow the guidelines / requirements.
+
+In order to publish on CRAN, we have to follow more stringent policies:
 <https://cran.r-project.org/web/packages/policies.html>
 
 ### Using version control
@@ -506,247 +630,6 @@ devtools::install_github("username/myPackage")
 devtools::install_gitlab("username/myPackage")
 ```
 
-## Shiny webapps
-
-Shiny is a package that allows to create a web application with R code.
-
-A Shiny app requires two main elements:
-
-  - a user interface (UI)
-  - a server
-
-Let’s build an app from scratch, using our ACORN data and functions.
-
-What we want to create is a small webapp that visualises the ACORN data
-and gives the user a bit of control over the visualisation.
-
-### Setting up
-
-In our original project (that contains the ACORN data), let’s create a
-new app with “File \> New File \> Shiny Web App…”. We will stick to
-“single file”, and the current project directory as the location.
-
-In our files, we can now see a “myApp” directory that contains an
-“app.R” script.
-
-The app is currently an example app. We can run it with the “Run App”
-button.
-
-#### Creating a minimal skeleton
-
-For our app to work, we need to:
-
-  - define a UI
-  - define a server
-  - define how the app is run
-
-We can start with this empty skeleton:
-
-``` r
-# UI
-ui <- fluidPage()
-
-# Server
-server <- function(input, output) {}
-
-# Run the application 
-shinyApp(ui = ui, server = server)
-```
-
-Running it will show a blank page. Let’s add a title:
-
-``` r
-# UI
-ui <- fluidPage(
-  titlePanel("ACORN data explorer")
-)
-
-# Server
-server <- function(input, output) {}
-
-# Run the application 
-shinyApp(ui = ui, server = server)
-```
-
-Now, let’s make sure we have the data ready to be used in our app. We
-don’t want to do the merging and summarising of our data every time we
-run the app, so let’s save the finished product into an RDS file. In our
-process.R script:
-
-``` r
-library(acornucopia)
-dat <- merge_acorn("acorn_sat_v2_daily_tmax")
-# process for monthly average
-library(lubridate)
-monthly <- dat %>% 
-    group_by(month = month(date),
-             year = year(date)) %>% 
-    summarise(mean.max = mean(max.temp, na.rm = TRUE))
-# export into app directory
-saveRDS(monthly, "myApp/monthly.RDS")
-```
-
-We can now read that data file into our app, process it, and present it
-in an interactive table:
-
-``` r
-# Import data
-monthly <- readRDS("monthly.RDS")
-
-# Define UI
-ui <- fluidPage(
-    titlePanel("ACORN data explorer"),
-    dataTableOutput("dt")
-)
-
-# Define server logic
-server <- function(input, output) {
-    output$dt <- renderDataTable({
-        monthly
-    })
-}
-
-# Run the application 
-shinyApp(ui = ui, server = server)
-```
-
-Notice that we had to define an output in the server section (with a
-“render” function), and use that output in a UI function (with an
-“output” function).
-
-Now, for a different kind of output, let’s add a plot:
-
-``` r
-# Import data
-monthly <- readRDS("monthly.RDS")
-
-# Load necessary packages
-library(ggplot2)
-
-# Define UI
-ui <- fluidPage(
-    titlePanel("ACORN data explorer"),
-    plotOutput("plot"),
-    dataTableOutput("dt")
-)
-
-# Define server logic
-server <- function(input, output) {
-    output$dt <- renderDataTable({
-        monthly
-    })
-    
-    output$plot <- renderPlot({
-            ggplot(monthly,
-               aes(x = year, y = month, fill = mean.max)) +
-            geom_tile() +
-            scale_fill_distiller(palette = "RdYlBu")
-    })
-}
-
-# Run the application 
-shinyApp(ui = ui, server = server)
-```
-
-How can we add some interaction? We could give the user control over
-which month they want to visualise by adding a slider:
-
-``` r
-# Import data
-monthly <- readRDS("monthly.RDS")
-
-# Load necessary packages
-library(ggplot2)
-library(dplyr)
-
-# Define UI
-ui <- fluidPage(
-    titlePanel("ACORN data explorer"),
-    # input slider for months
-    sliderInput("month",
-                "Pick a month:",
-                min = 1,
-                max = 12,
-                value = 1),
-    plotOutput("plot"),
-    dataTableOutput("dt")
-)
-
-# Define server logic
-server <- function(input, output) {
-    output$dt <- renderDataTable({
-        monthly
-    })
-    
-    output$plot <- renderPlot({
-        monthly %>% 
-            filter(month == input$month) %>% 
-            ggplot(aes(x = year, y = month, fill = mean.max)) +
-            geom_tile() +
-            scale_fill_distiller(palette = "RdYlBu")
-    })
-}
-
-# Run the application 
-shinyApp(ui = ui, server = server)
-```
-
-## Challenge 2: restore an “all months” option?
-
-How could we give the option to go back to the full-year view?
-
-Hint: have a look at `?selectInput`, or find other ideas on this list:
-<https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/>
-
-One solution could be:
-
-``` r
-# import data
-monthly <- readRDS("monthly.RDS")
-
-# load necessary packages
-library(ggplot2)
-library(dplyr)
-
-# Define UI for application that draws a histogram
-ui <- fluidPage(
-    titlePanel("ACORN data explorer"),
-    # input slider for months
-    selectInput("month",
-                "Pick one or more months:",
-                1:12,
-                multiple = TRUE),
-    plotOutput("plot"),
-    dataTableOutput("dt")
-)
-
-# Define server logic required to draw a histogram
-server <- function(input, output) {
-    output$dt <- renderDataTable({
-        monthly
-    })
-    
-    output$plot <- renderPlot({
-        monthly %>% 
-            filter(month %in% input$month) %>% 
-            ggplot(aes(x = year, y = month, fill = mean.max)) +
-            geom_tile() +
-            scale_fill_distiller(palette = "RdYlBu")
-    })
-}
-
-# Run the application 
-shinyApp(ui = ui, server = server)
-```
-
-## Publishing a Shiny app
-
-You can use ShinyApps.io, which offers free or paid accounts.
-
-We also have access to Nectar (National eResearch Collaboration Tools
-and Resources project), in which we can request a virtual machine and
-deploy a Shiny server: <https://nectar.org.au/>
-
 ## Useful links
 
   - *R Packages*, by Hadley Wickham: <http://r-pkgs.had.co.nz/>
@@ -756,12 +639,6 @@ deploy a Shiny server: <https://nectar.org.au/>
     <https://cran.r-project.org/web/packages/policies.html>
   - Package development cheatsheet:
     <https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf>
-  - Official Shiny tutorial: <https://shiny.rstudio.com/tutorial/>
-  - Shiny examples:
-      - <https://shiny.rstudio.com/gallery/>
-      - <https://www.showmeshiny.com/>
-  - Shiny cheatsheet:
-    <https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf>
 
 ## Extras
 
