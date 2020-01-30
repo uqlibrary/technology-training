@@ -31,7 +31,7 @@ We can straight away load an OpenStreetMap basemap to have a background: in the 
 
 ### Controls
 
-The default mouse mode is `Pan Map`, which allows to drag the map around. We can use the mouse the zoom in and out, and press the <kbd>Ctrl</kbd> key to use more precision.
+The default mouse mode is `Pan Map`, which allows to drag the map around. We can use the mouse wheel to zoom in and out, and press the <kbd>Ctrl</kbd> key to use more precision.
 
 ### Vector data
 
