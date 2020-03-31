@@ -4,13 +4,13 @@ Last updated: 2019-11-21
 
 ## OpenRefine?
 
-OpenRefine is self-described as "a power tool for dealing with messy data". It can help you deal with inconsistencies in data stored in a tabular format (spreadsheets, CSV files, etc.).
+OpenRefine is an open source program self-described as "a power tool for dealing with messy data".
 
 It can help you:
 
-* Get an **overview** of a data set
+* Get an **overview** of a data set, and explore subsets of it
 * **Resolve inconsistencies** in a data set, for example standardising date formatting
-* Help you **split data up** into more granular parts, for example splitting up cells with multiple authors into separate cells
+* **Split data up** into more granular parts, for example splitting up cells with multiple authors into separate cells
 * **Match** local data up to other data sets, for example in matching local subjects against the Library of Congress Subject Headings
 * **Enhance** a data set with data from other sources
 
@@ -34,7 +34,7 @@ Some common scenarios might be:
 ## Installation
 
 To install the software, please follow the instructions on the OpenRefine website: http://openrefine.org/download.html
-This lesson was designed using OpenRefine 3.1 but should be compatible with other supported versions.
+This lesson was designed using OpenRefine 3.3 but should be compatible with other supported versions.
 OpenRefine requires to have a Java Runtime Environment (JRE) installed, so you might need to install one to be able to use it: http://java.com/
 
 ## Material
@@ -104,7 +104,7 @@ How would you split and then join again the data in the `Subjects` column?
 
 #### Filters
 
-You can apply a **text filter** to your data to do a search a restrict the displayed items to it.
+You can apply a **text filter** to your data to do a search and restrict the displayed items to it.
 
 In the column drop-down menu, you can use the `Text filter` item and specify any string you want to filter for.
 
@@ -166,16 +166,17 @@ The **Cluster** function uses an algorithm to group together similar, but incons
 
 This is very effective where you have data with minor variations in data values, e.g. names of people, organisations, places, classification terms.
 
-By default, OpenRefine uses the most common value to merge the data, but we can choose which value we prefer.
-
 **Exercise 7** – clean up the author names
 
 1. Make sure your authors are already split into different rows
 1. Choose `Edit cells > Cluster and edit` from the `Authors` column.
 1. Using the defaults (`key collision` Method and `fingerprint` Keying Function), work through the clusters of values, merging them to a single value where appropriate
-1. Try changing the clustering method being used – which ones work well? Do they identify extra clusters?
 
-The best clustering algorithm will depend on the kind of data your are processing.
+By default, OpenRefine uses the most common value to merge the data, but we can choose which value we prefer by clicking on it, or we can write our own replacement value.
+
+4. You can also try changing the clustering method being used – which ones work well? Do they identify extra clusters?
+
+> The best clustering algorithm will depend on the kind of data your are processing.
 
 ### Transformations
 
@@ -222,6 +223,8 @@ Use Facets and the GREL expression `value.toTitlecase()` to put the titles in Ti
 1. In the `Preview` tab, note that you can see what the effect of running this will be
 1. Click <kbd>OK</kbd>
 
+Note that this transformation is also available in the `Common transforms`.
+
 #### Undo and redo transformations
 
 In the left-hand panel, you can open the `Undo / Redo` tab to access all the steps taken so far, and **undo steps** by clicking the last step you want to preserve.
@@ -248,10 +251,12 @@ All data in OpenRefine has a "type". The most common is "string", which is a pie
 
 1. Make sure you remove all Facets and Filters
 1. On the Date column, use the drop-down menu to select `Edit cells > Common transforms > To date`
-1. Note how the values are now displayed in green and follow a standard convention for their display format (ISO8601) - this indicates they are now stored as date data types in OpenRefine. We can now carry out functions that are specific to Dates
+1. Note how the values are now displayed in green and follow a standard convention for their display format (ISO8601) - this indicates they are now stored as date data types in OpenRefine. We can now carry out functions that are specific to Dates.
 1. In the Date column drop-down, select `Edit column > Add column based on this column`. Using this function you can create a new column, while preserving the old column.
 1. In the ‘New column name’ type “Formatted Date”
 1. In the ‘Expression’ box, type the GREL expression `value.toString("dd MMMM yyyy")`
+
+Having a column with the proper data type will also allow us to use features like the timeline facet.
 
 **Booleans**: a boolean is a binary value that can either be "true" or "false". They are often used in GREL expressions, for example:
 
@@ -339,17 +344,6 @@ To get the author name in the natural order, you can reverse the array and join 
 
 > For more elaborate array creation, we can use the `match()` function along with Regular Expressions. Regular Expressions, or "Regex", use a syntax to match pretty much any pattern of characters, for example if you wanted to extract an array of decimals in the string "1.2345; 2.34567".
 
-### Exporting the data and saving a project
-
-> How do I export transformed data?
-
-OpenRefine can **export a transformed dataset** into a variety of formats. You can access the menu with the top-right `Export` button. The `Custom Tabular Exporter` offers extra options, like selecting a subset of columns, reordering them, removing headers, selecting a format and uploading as a Google Spreadsheet.
-
-Your project is **automatically saved every 15 minutes** and can be reopened with `Open Project` when you next start OpenRefine. However, if you need to share or save a snapshot of your project, you can use `Export > Export project` to download an archive.
-
-> When you quit OpenRefine, make sure you interrupt the OpenRefine process properly with <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal before closing it, to guarantee that your project changes are saved. (This is true for both Windows and Linux.)
-> See the official wiki for more information: https://github.com/OpenRefine/OpenRefine/wiki/Installation-Instructions
-
 ### Reconciliation
 
 We can associate one of our columns to an external database by using OpenRefine's reconciliation feature:
@@ -360,23 +354,34 @@ We can associate one of our columns to an external database by using OpenRefine'
 * The tool will automatically try to match the column to a Wikidata type, but we can specify exactly the one we want to use.
 * After checking and completing by hand the matches, we can add extra data to our project by using `Edit column > Add columns for reconciled values`. For example, try adding the headquarters location of the publishers into a new column.
 
-    
+### Exporting the data and saving a project
+
+> How do I export transformed data?
+
+OpenRefine can **export a transformed dataset** into a variety of formats. You can access the menu with the top-right `Export` button. The `Custom Tabular Exporter` offers extra options, like selecting a subset of columns, reordering them, removing headers, selecting a format and uploading as a Google Spreadsheet.
+
+Your project is **automatically saved every 15 minutes** and can be reopened with `Open Project` when you next start OpenRefine. However, if you need to share or save a snapshot of your project, you can use `Export > Export project` to download an archive.
+
+> When you quit OpenRefine, make sure you interrupt the OpenRefine process properly with <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal, to guarantee that your project changes are saved. (This is true for both Windows and Linux.)
+> See the official wiki for more information: https://github.com/OpenRefine/OpenRefine/wiki/Installation-Instructions
+
+
 ## Useful links
 
 OpenRefine learning:
 
 * Full lesson this one is based on: https://librarycarpentry.github.io/lc-open-refine/
-    * "Advanced functions" chapter: https://librarycarpentry.github.io/lc-open-refine/13-looking-up-data/index.html
+  * "Advanced functions" chapter: https://librarycarpentry.github.io/lc-open-refine/13-looking-up-data/index.html
 * Video walk throughs: http://openrefine.org/
 * Video tutorial on reconciliation and Wikidata contribution: https://www.youtube.com/watch?v=wfS1qTKFQoI
 * Getting started with OpenRefine by Thomas Padilla: http://thomaspadilla.org/dataprep/
 * Cleaning Data with OpenRefine by Seth van Hooland, Ruben Verborgh and Max De Wilde: http://programminghistorian.org/lessons/cleaning-data-with-openrefine
 * Free your Metadata website: http://freeyourmetadata.org/
-* OpenRefine News (monthly round up of new blog posts, tutorials and other information): http://openrefine.org/blog.html
+* OpenRefine Blog: http://openrefine.org/category/blog.html
 * Official OpenRefine documentation:
-* GREL documentation: https://github.com/OpenRefine/OpenRefine/wiki/General-Refine-Expression-Language
-* Clustering in Depth: https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth
-* A compilation of "OpenRefine recipes": https://github.com/OpenRefine/OpenRefine/wiki/Recipes
+  * GREL documentation: https://github.com/OpenRefine/OpenRefine/wiki/General-Refine-Expression-Language
+  * Clustering in Depth: https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth
+  * A compilation of "OpenRefine recipes": https://github.com/OpenRefine/OpenRefine/wiki/Recipes
 
 Regular Expressions:
 
@@ -386,7 +391,6 @@ Regular Expressions:
 Other data sources for reconciliation:
 
 * https://github.com/OpenRefine/OpenRefine/wiki/Reconcilable-Data-Sources
-* https://reconciliation-api.github.io/testbench/
 
 Examples of OpenRefine uses:
 
