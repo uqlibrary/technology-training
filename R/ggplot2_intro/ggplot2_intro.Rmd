@@ -307,6 +307,18 @@ ggplot(economics,
 
 > See how the legend changes depending on the type of data mapped to the `colour` aesthetic? (i.e. categorical vs continuous)
 
+This trend line is definitely not particularly useful. We could make it follow the data more closely by using the `span` argument. The closer to 0, the closer to the data the smoother will be:
+
+```{r}
+ggplot(economics,
+       aes(x = date,
+           y = unemploy)) + 
+    geom_point(aes(colour = uempmed)) +
+    geom_smooth(span = 0.15)
+```
+
+You can now see why this is called a "smoother": we can fit a smooth curve to data that varies a lot.
+
 ### Bar charts
 
 Let's use the `diamonds` dataset now.
