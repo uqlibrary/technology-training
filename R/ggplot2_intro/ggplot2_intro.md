@@ -1,8 +1,9 @@
 R data visualisation with RStudio and ggplot2: introduction
 ================
-2019-11-28
+2020-04-22
 
-> This document is redacted in Rmd; the source file is available here:
+> This document is redacted in R markdown; the source file is available
+> here:
 > <https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd>
 > It is then knitted as a Markdown document, which is the best version
 > to view online and to print:
@@ -32,7 +33,7 @@ computer.
       - Make sure you have a working Internet connection
       - Open the ZENworks application
       - Look for RStudio
-      - Double click on RStudio which will install both R and RStudio
+      - Double-click on RStudio which will install both R and RStudio
 
 ## What are we going to learn?
 
@@ -43,7 +44,7 @@ During this session, you will:
   - Learn about the 3 essential ggplot2 components
   - Use different kinds of visualisations
   - Layer several visualisations
-  - Learn how to amend colours, labels, themes and coordinates.
+  - Learn how to amend default colours, labels and themes.
 
 ## Disclaimer
 
@@ -175,13 +176,13 @@ Let’s have a look at another dataset:
 str(economics)
 ```
 
-    ## Classes 'spec_tbl_df', 'tbl_df', 'tbl' and 'data.frame': 574 obs. of  6 variables:
-    ##  $ date    : Date, format: "1967-07-01" "1967-08-01" ...
-    ##  $ pce     : num  507 510 516 512 517 ...
-    ##  $ pop     : num  198712 198911 199113 199311 199498 ...
-    ##  $ psavert : num  12.6 12.6 11.9 12.9 12.8 11.8 11.7 12.3 11.7 12.3 ...
-    ##  $ uempmed : num  4.5 4.7 4.6 4.9 4.7 4.8 5.1 4.5 4.1 4.6 ...
-    ##  $ unemploy: num  2944 2945 2958 3143 3066 ...
+    ## tibble [574 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+    ##  $ date    : Date[1:574], format: "1967-07-01" "1967-08-01" ...
+    ##  $ pce     : num [1:574] 507 510 516 512 517 ...
+    ##  $ pop     : num [1:574] 198712 198911 199113 199311 199498 ...
+    ##  $ psavert : num [1:574] 12.6 12.6 11.9 12.9 12.8 11.8 11.7 12.3 11.7 12.3 ...
+    ##  $ uempmed : num [1:574] 4.5 4.7 4.6 4.9 4.7 4.8 5.1 4.5 4.1 4.6 ...
+    ##  $ unemploy: num [1:574] 2944 2945 2958 3143 3066 ...
 
 Do you think that unemployment is stable over the years?
 
@@ -309,6 +310,8 @@ ggplot(mpg,
     geom_smooth(method = "lm")
 ```
 
+    ## `geom_smooth()` using formula 'y ~ x'
+
 ![](ggplot2_intro_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ### Layering
@@ -420,6 +423,25 @@ ggplot(economics,
 > See how the legend changes depending on the type of data mapped to the
 > `colour` aesthetic? (i.e. categorical vs continuous)
 
+This trend line is definitely not particularly useful. We could make it
+follow the data more closely by using the `span` argument. The closer to
+0, the closer to the data the smoother will be:
+
+``` r
+ggplot(economics,
+       aes(x = date,
+           y = unemploy)) + 
+    geom_point(aes(colour = uempmed)) +
+    geom_smooth(span = 0.15)
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+
+You can now see why this is called a “smoother”: we can fit a smooth
+curve to data that varies a lot.
+
 ### Bar charts
 
 Let’s use the `diamonds` dataset now. The `diamonds` dataset comes with
@@ -435,10 +457,9 @@ summary(diamonds)
 ?diamonds
 ```
 
-Back to bar charts. They seem simple, but they are interesting because
-they reveal something subtle about ggplot. Consider a basic bar chart,
-as drawn with `geom_bar()`. The following chart displays the total
-number of diamonds in the `diamonds` dataset, grouped by cut:
+Back to bar charts. Consider a basic bar chart, as drawn with
+`geom_bar()`. The following chart displays the total number of diamonds
+in the `diamonds` dataset, grouped by cut:
 
 ``` r
 ggplot(diamonds,
@@ -446,7 +467,7 @@ ggplot(diamonds,
     geom_bar()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 The chart shows that more diamonds are available with high quality cuts
 than with low quality cuts.
@@ -473,7 +494,7 @@ ggplot(diamonds,
     geom_bar()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 What is the difference with the `colour` aesthetic? `colour` will colour
 the outline of an area, whereas `fill` will fill the whole area. Some
@@ -493,7 +514,7 @@ ggplot(diamonds,
     geom_bar(fill = "tomato")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 **Challenge 3: where should `fill` go?**
 
@@ -521,7 +542,7 @@ ggplot(diamonds,
          y = "Number of diamonds")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 Let’s have a look at what `labs()` can do:
 
@@ -536,21 +557,21 @@ caption.
 > publication itself, especially for accessibility reasons (e.g. to help
 > with screen readers).
 
-#### Flip coordinates
+#### Horizontal bar charts
 
-`coord_flip()` can be used to quickly flip the axes around:
+For a horizontal bar chart, we can map the `cut` variable to the `y`
+aesthetic instead of `x`:
 
 ``` r
 ggplot(diamonds,
-       aes(x = cut)) +
+       aes(y = cut)) +
   geom_bar(fill = "tomato") +
   labs(title = "Where are the bad ones?",
        x = "Quality of the cut",
-       y = "Number of diamonds") +
-  coord_flip()
+       y = "Number of diamonds")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
 
 This is particularly helpful when long category names overlap under the
 x axis.
@@ -563,16 +584,15 @@ built-in theme, like `theme_bw()`:
 
 ``` r
 ggplot(diamonds,
-       aes(x = cut)) + 
+       aes(y = cut)) + 
   geom_bar(fill = "tomato") +
   labs(title = "Where are the bad ones?",
        x = "Quality of the cut",
        y = "Number of diamonds") +
-  coord_flip() +
   theme_bw()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 Try `theme_minimal()` as well, and if you want more options, install the
 `ggthemes` package\!

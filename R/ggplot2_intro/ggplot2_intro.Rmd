@@ -4,7 +4,7 @@ output: github_document
 date: "`r Sys.Date()`"
 ---
 
-> This document is redacted in Rmd; the source file is available here: https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd
+> This document is redacted in R markdown; the source file is available here: https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd
 > It is then knitted as a Markdown document, which is the best version to view online and to print: https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intro/ggplot2_intro.md
 
 If you want to review the installation instructions: https://gitlab.com/stragu/DSH/blob/master/R/Installation.md
@@ -26,7 +26,7 @@ Everything we write today will be saved in your R project. Please remember to sa
     + Make sure you have a working Internet connection
     + Open the ZENworks application
     + Look for RStudio
-    + Double click on RStudio which will install both R and RStudio 
+    + Double-click on RStudio which will install both R and RStudio 
 
 ## What are we going to learn?
 
@@ -37,7 +37,7 @@ During this session, you will:
 * Learn about the 3 essential ggplot2 components
 * Use different kinds of visualisations
 * Layer several visualisations
-* Learn how to amend colours, labels, themes and coordinates.
+* Learn how to amend default colours, labels and themes.
 
 ## Disclaimer
 
@@ -333,8 +333,7 @@ summary(diamonds)
 ?diamonds
 ```
 
-Back to bar charts. They seem simple, but they are interesting because they reveal something subtle about ggplot.
-Consider a basic bar chart, as drawn with `geom_bar()`. The following chart displays the total number of diamonds in the `diamonds` dataset, grouped by cut:
+Back to bar charts. Consider a basic bar chart, as drawn with `geom_bar()`. The following chart displays the total number of diamonds in the `diamonds` dataset, grouped by cut:
 
 ```{r}
 ggplot(diamonds,
@@ -408,18 +407,17 @@ It can edit the title, the subtitle, the x and y axes labels, and the caption.
 
 > Remember that captions and titles are better sorted out in the publication itself, especially for accessibility reasons (e.g. to help with screen readers).
 
-#### Flip coordinates
+#### Horizontal bar charts
 
-`coord_flip()` can be used to quickly flip the axes around:
+For a horizontal bar chart, we can map the `cut` variable to the `y` aesthetic instead of `x`:
 
 ```{r}
 ggplot(diamonds,
-       aes(x = cut)) +
+       aes(y = cut)) +
   geom_bar(fill = "tomato") +
   labs(title = "Where are the bad ones?",
        x = "Quality of the cut",
-       y = "Number of diamonds") +
-  coord_flip()
+       y = "Number of diamonds")
 ```
 
 This is particularly helpful when long category names overlap under the x axis.
@@ -430,12 +428,11 @@ The `theme()` function allows us to really get into the details of our plot's lo
 
 ```{r}
 ggplot(diamonds,
-       aes(x = cut)) + 
+       aes(y = cut)) + 
   geom_bar(fill = "tomato") +
   labs(title = "Where are the bad ones?",
        x = "Quality of the cut",
        y = "Number of diamonds") +
-  coord_flip() +
   theme_bw()
 ```
 
@@ -479,5 +476,4 @@ Saving your workspace is usually not recommended if you have all the necessary c
   + Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
   + Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
   + STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
-
 * More ressources for R in general: https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md
