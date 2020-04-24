@@ -1,8 +1,8 @@
 R data visualisation with RStudio and ggplot2: intermediate
 ================
-2019-11-28
+2020-04-25
 
-> This document is written as an .Rmd document, and then knitted into a
+> This document is written in R Markdown, and then knitted into a
 > markdown document. The source code is available at:
 > <https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd>  
 > The published document is available at:
@@ -170,9 +170,21 @@ ggplot(data = gapminder,
 
 This plot uses the default discrete palette.
 
-We can use other palettes. You can see the ones available in ggplot2 by
-looking at the help page of, for example, `scale_colour_brewer()`, under
-the header “Palettes”.
+> **Saving some typing**: We will keep modifying this plot. To reuse the
+> constant base of our plot (the `ggplot()` call and the point
+> geometry), we can create an object:
+
+``` r
+p <- ggplot(data = gapminder,
+            mapping = aes(x = year,
+                          y = pop,
+                          colour = continent)) +
+  geom_point()
+```
+
+We can use other palettes than the default one. You can see the ones
+available in ggplot2 by looking at the help page of, for example,
+`scale_colour_brewer()`, under the header “Palettes”.
 
 Those are the ColorBrewer palettes, which can be explored online:
 <http://colorbrewer2.org/>
@@ -186,42 +198,27 @@ library(RColorBrewer)
 display.brewer.all() # all palettes
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ``` r
 display.brewer.all(colorblindFriendly = TRUE) # only colourblind-friendly palettes
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
 
 Now, try a different palette for your continents:
 
 ``` r
-ggplot(data = gapminder,
-       mapping = aes(x = year,
-                     y = pop,
-                     colour = continent)) +
-  geom_point() +
+p +
   scale_colour_brewer(palette = "Set2")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 Note that the ColorBrewer palettes were designed for categorical data.
 If you are dealing with continuous data, you can still use the same
 sequential and diverging palette names, but you will have to use the
 function `scale_colour_distiller()` instead.
-
-> **Saving some typing**: To reuse the constant base of our plot (the
-> `ggplot()` call and the point geometry), we can create an object:
-
-``` r
-p <- ggplot(data = gapminder,
-            mapping = aes(x = year,
-                          y = pop,
-                          colour = continent)) +
-  geom_point()
-```
 
 To use a custom palette, we can use the function `scale_colour_manual()`
 and provide a list of colour names.
@@ -295,8 +292,10 @@ p +
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
-Let’s talk about that warning message. We could use the `subset()`
-function to avoid that.
+Notice the warning message? ggplot2 informs us that it couldn’t display
+the data related to China and India. Instead of using `ylim()`, we could
+use `subset()` (or `dplyr::filter()`) to remove the two countries from
+the data before feeding it to gglot2.
 
 ### Histograms
 
@@ -421,7 +420,121 @@ ggplot(gapminder,
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
-### Customise a scatterplot
+### A more complex facetted example
+
+This extra example gives an idea of how a complex ggplot2 visualisation
+might be constructed. It represents 4 different variables, using the
+larger diamonds dataset.
+
+``` r
+ggplot(diamonds,
+       aes(x = carat,
+           y = price)) +
+  geom_point(aes(colour = color),
+             alpha = 0.5,
+             size = 0.5) +
+  scale_color_brewer(palette = "Spectral") +
+  geom_smooth(se = FALSE,
+              linetype = "dashed",
+              colour = "black",
+              size = 0.5) +
+  facet_wrap(~cut) +
+  theme_minimal() +
+  labs(x = "price (USD)")
+```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+
+### Boxplots
+
+A simple boxplot can help visualise a distribution in categories:
+
+``` r
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot()
+```
+
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+
+#### Challenge 3 – code comprehension
+
+What do you think this extra line might do to our violin plot?
+
+``` r
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+
+This is useful if the x labels get too cramped on the x axis: you can
+rotate them to whatever angle you want.
+
+### Make it interactive
+
+The plotly package brings the power of the Plotly javascript library to
+R. Install it with `install.packages(plotly)`, and you’ll then be able
+to convert a ggplot2 visualisation in an interactive HTML visualisation
+with one function\!
+
+Let’s turn our static boxplots into an interactive visualisation. First,
+save our original plot as an object:
+
+``` r
+bp <- ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+And then, feed it to the `ggplotly()` function:
+
+``` r
+library(plotly)
+```
+
+    ## 
+    ## Attaching package: 'plotly'
+
+    ## The following object is masked from 'package:ggplot2':
+    ## 
+    ##     last_plot
+
+    ## The following object is masked from 'package:stats':
+    ## 
+    ##     filter
+
+    ## The following object is masked from 'package:graphics':
+    ## 
+    ##     layout
+
+``` r
+ggplotly(bp)
+```
+
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
+
+You can now hover over parts of your plot to reveal the corresponding
+values.
+
+### Play time\!
+
+  - Create a a boxplot for each continent’s population data
+      - Colour the boxes by continent
+      - Try to limit the y axis to see the boxes better
+      - Let’s see if you are able to move the legend to the bottom
+      - Change the general look with a built-in theme
+
+Have a look at this [ggplot2
+cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
+and experiment customising your plots.
+
+### Another example: customising a scatterplot
 
 New research question: *How does life expectancy relate to GDP per
 capita?*
@@ -438,7 +551,7 @@ ggplot(gapminder,
   theme_bw()
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 Now, let’s make it better: spread the data with a modified **scale**,
 add a **linear regression**, **colour** the continents and add some
@@ -457,14 +570,11 @@ ggplot(gapminder,
   theme_bw()
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+    ## `geom_smooth()` using formula 'y ~ x'
 
-### Make it interactive
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 
-The plotly package brings the power of the Plotly javascript library to
-R. Install it with `install.packages(plotly)`, and you’ll then be able
-to convert a ggplot2 visualisation in an interactive HTML visualisation
-with one function\!
+#### Make it interactive
 
 First, save the plot as an object:
 
@@ -492,80 +602,6 @@ ggplotly(scatter)
 You can now identify single points, zoom into your plot, and show/hide
 categories. You can even export the visualisation as a HTML page for
 sharing with others.
-
-### Other geometries
-
-A simple boxplot to visualise distribution in categories:
-
-``` r
-ggplot(gapminder, aes(x = continent, y = lifeExp)) +
-  geom_boxplot()
-```
-
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
-
-Violin plots might be better at visualising densities:
-
-``` r
-ggplot(gapminder, aes(x = continent, y = lifeExp)) +
-  geom_violin()
-```
-
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
-
-#### Challenge 3 – code comprehension
-
-What do you think this extra line might do to our violin plot?
-
-``` r
-ggplot(gapminder, aes(x = continent, y = lifeExp)) +
-  geom_violin() +
-  theme(axis.text.x = element_text(angle = 90))
-```
-
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
-
-This is useful if the x labels get too cramped on the x axis: you can
-rotate them to whatever angle you want.
-
-### Another example
-
-This extra example gives an idea of how a complex ggplot2 visualisation
-might be constructed. It represents 4 different variables.
-
-``` r
-ggplot(diamonds,
-       aes(x = price,
-           y = carat)) +
-  geom_point(aes(colour = color),
-             alpha = 0.5,
-             size = 0.5) +
-  scale_color_brewer(palette = "Spectral") +
-  geom_smooth(se = FALSE,
-              linetype = "dashed",
-              colour = "black",
-              size = 0.5) +
-  facet_wrap(~cut) +
-  theme_minimal() +
-  labs(x = "price (USD)") +
-  coord_flip()
-```
-
-    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
-
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
-
-### Play time\!
-
-  - Create a a boxplot for each continent’s population data
-      - Colour the boxes by continent
-      - Try to limit the y axis to see the boxes better
-      - Let’s see if you are able to move the legend to the bottom
-      - Change the general look with a built-in theme
-
-Have a look at this [ggplot2
-cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
-and experiment customising your plots.
 
 ### Close project
 
