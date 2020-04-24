@@ -15,6 +15,7 @@
 * Lots of quality tutorials on _Quick-R_: https://www.statmethods.net/index.html
 * Lots of quality tutorials on _Cookbook for R_: http://www.cookbook-r.com/
 * LinkedIn Learning R courses: https://www.linkedin.com/learning/topics/r (use your UQ credentials)
+* Many excellent books on _Bookdown.org_: https://bookdown.org/
 
 ## Practice
 
