@@ -87,27 +87,33 @@ Open the Processing Toolbox (cog icon) and try using the SAGA tool called "**Str
 
 Look at the result. It seems there is an issue with our data. A common problem with DEMs is that they have sinks and spikes that will make further analyses more difficult.
 
-We can use the "Fill sinks (Wang & Liu)" tool to **fill the sinks** in our clipped DEM. We only need to tick the "Filled DEM" output (first one in the list), which we can also save to file.
+We can use the "Fill sinks (Wang & Liu)" tool to **fill the sinks** in our clipped DEM.
+
+* When we do that, we might have to play with the "Minimum slope" value, to make sure that all streams feed into a bigger stream. Try 5 degrees, for example.
+* As an output, we only need to tick the "Filled DEM" (first one in the list), which we can also save to file. You can however keep the "Watershed Basins" output to check that your minimum slope is high enough.
 
 If we **re-run the Strahler order tool** on the filled DEM, we will be able to see more useful data.
 
 We can now colour the layer with "Singleband pseudocolor" to highlight the bigger streams.
 
-To filter out the noise of the smaller streams, we can use the `Raster > Raster Calculator` tool and use the formula: `"strahler_filtered@1" >= 8`
-This will only keep the major streams in the network.
+> To filter out the noise of the smaller streams and **highlight the major streams** in the network, we can use the `Raster > Raster Calculator` tool and use a formula like: `"name_of_layer@1" >= 6` (the value will depend on how many levels exist in the Strahler layer). We need to save to file to be able to do that (name it "strahler_filtered", for example). This will assign the value 1 to the cells matching the condition, and 0 to what is under the limit.
 
 ## Channel network and drainage basin
 
-Another analysis we can do is use the "Channel network and drainage basins" tool to calculate the flow direction, channels and drainage basins.
+Another analysis we can do is use the "Channel network and drainage basins" tool to calculate the **flow direction, channels and drainage basins**.
 
-Make sure you run this tool on the filled DEM.
-As an ouptut, we only want to load (and save to file):
+* Make sure you run this tool on the filled DEM.
+* We might have to change the threshold to a higher one if the output includes too many small basins and channels.
+
+As an output, we only want to load (and save to file):
 
 * Flow Direction (raster)
 * Channels (shapefile)
 * Drainage basins (shapefile) (to differentiate the two "Drainage basins" options, you can check what format it saves the file as)
 
-We can now play with the symbology for those elements.
+This is an example of **creating vector data from raster data**!
+
+We can now play with the symbology for those elements. For example, try using different colours for each basin, by classifying by ID.
 
 ## 3D maps
 
