@@ -119,7 +119,14 @@ We can now play with the symbology for those elements. For example, try using di
 
 A 3D viewer are integrated in QGIS: `View > New 3D Map View`
 
-A useful plugin for 3D maps is qgis2threeJS.
+In the 3D map window, make sure to first:
+
+* Click on the settings icon and set the "Type" to "DEM (Raster layer)", and set the "Elevation" to your clipped DEM.
+* Exaggerate the relief with the "Vertical scale" setting (try 3).
+
+To see the 3D effect, you will have to use your <kbd>Ctrl</kbd> on your keyboard to change the angle of view.
+
+> A useful plugin for 3D maps is qgis2threeJS, which might be handy to add a 3D map to a website.
 
 ## Saving your project
 
