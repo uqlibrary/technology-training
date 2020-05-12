@@ -1,0 +1,84 @@
+---
+title: "R reproducible reports with R Markdown and knitr"
+author: "Stéphane Guillou"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+> This document is redacted in R Markdown; the source file is available here: https://gitlab.com/stragu/DSH/blob/master/R/reports/reports.Rmd
+> It is then knitted as a markdown file, which is the best version to view online and to print: https://gitlab.com/stragu/DSH/blob/master/R/reports/reports.md
+
+## Setting up
+
+> If you want to review the installation instructions: https://gitlab.com/stragu/DSH/blob/master/R/Installation.md
+
+* If you are using your own laptop please open RStudio
+    + Make sure you have a working Internet connection
+* On the Library's training computers:
+    + Log in with your UQ username and password
+    + Make sure you have a working Internet connection
+    + Open the ZENworks application
+    + Look for "RStudio"
+    + Double click on RStudio, which will install both R and RStudio
+
+With RStudio open, let's make sure we have the necessary packages installed by running this command (this might take a few minutes):
+
+```{r eval=FALSE}
+install.packages("tidyverse")
+```
+
+This will install the 8 core Tidyverse packages (and their dependencies).
+
+## What are we going to learn?
+
+R is a great tool to go from importing to reporting. Today, we focus on the "reporting" part.
+
+Using R, RStudio, the R Markdown syntax and the knitr package, we can create **reproducible reports** that mix code and prose. If the underlying data changes, we only need to replace the original data file and "knit" the report once more, which updates all its contents in one click.
+
+## Create a project and an R Markdown file
+
+Use the project menu (top right) to create a "New project...". Let's name this one "reports".
+
+We also need to create a new R Markdown file: "File > New File > R Markdown...".
+
+## Load the necessary packages
+
+We can use one single command to load the core Tidyverse packages:
+
+```{r}
+library(tidyverse)
+```
+
+## Useful links
+
+Related to R Markdown and Shiny:
+
+* 
+
+Our list of recommended R resources:
+
+* 
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

@@ -25,12 +25,11 @@ This training covers how to:
 
 ## Download some audio
 
-Our two 1919 sample audio files come from the Internet Archive. You can download the two archived files [here](https://gitlab.com/stragu/DSH/raw/master/Audacity/audacity_project.zip), and extract them on you desktop.
+Our sample audio file comes from the Internet Archive. You can download the archived file [here](https://gitlab.com/stragu/DSH/raw/master/Audacity/audacity_project.zip), and extract it on you desktop.
 
 The pages that describe the recordings are here:
 
-* The comedy bit: https://archive.org/details/78_cohen-at-the-picnic-part-2_monroe-silver-silver_gbia0095538/
-* The song: https://archive.org/details/AgnesLynn
+* https://archive.org/details/78_a-peruvian-triste-b-pan-american-waltz_carlos-valderrama_gbia0001886a/(a)+Peruvian+Triste%3B+(b)+Pan-American+Waltz+-+Carlos+Valderrama.flac
 
 ## Import an audio file
 
