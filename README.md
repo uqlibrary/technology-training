@@ -44,7 +44,7 @@ We also offer these more specialised specialised (run less regularly, but feel f
 | OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [html](https://cryptpad.fr/pad/#/2/pad/edit/ZwpBgdie-YBBXvDE68N53u2s/) | ... |
 | QGIS: introduction to mapping | [md](QGIS/intro/QGIS_intro.md) | [html](https://demo.codimd.org/s/B156o7z2V) | ... |
 | QGIS: raster analysis | [md](QGIS/raster/QGIS_raster.md) | [html](https://demo.codimd.org/s/ryN5E-XuS) | ... |
-| Audacity: introduction to audio editing_ | [md](Audacity/audacity.md) | ... | ... |
+| Audacity: introduction to audio editing_ | [md](Audacity/audacity.md) | [html](https://demo.codimd.org/s/HkkITjw9L) | ... |
 | _next: Open Source tools for your research_ | ... | ... | ... |
 | _next: Python data transformation_ | ... | ... | ... |
 | _next: Wikipedia: start contributing_ | ... | ... | ... |
@@ -62,8 +62,7 @@ Some sessions are not run regularly, but files can also be hosted here.
 Files available for each course, hosted in this repository:
 
 * **Markdown notes** that the instructor can use to teach, and that students can refer to after the course;
-* A **HTML pad export** that can be used to initialise a collaborative pad (https://etherpad.wikimedia.org, https://cryptpad.fr/code and https://demo.codimd.org/ are recommended to publish);
-* A **description** of the session, useful to create an event on StudenHub (although it is more straight-forward to base it on a duplicate of a past event in the StudentHub admin interface).
+* A **HTML pad export** that can be used to initialise a collaborative pad (https://etherpad.wikimedia.org, https://cryptpad.fr/code and https://demo.codimd.org/ are recommended to publish).
 
 ## Licence
 
