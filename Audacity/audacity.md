@@ -21,15 +21,16 @@ This training covers how to:
 * switch between sound visualisation tools
 * use a few essential effects
 * export to a variety of formats
-* publish audio online
+* find and publish audio online
 
 ## Download some audio
 
-Our sample audio file comes from the Internet Archive. You can download the archived file [here](https://gitlab.com/stragu/DSH/raw/master/Audacity/audacity_project.zip), and extract it on you desktop.
+Our sample audio files come from the Internet Archive. You can download the archived file [here](https://gitlab.com/stragu/DSH/raw/master/Audacity/audacity_project.zip), and extract it wherever you would like to store your Audacity project.
 
 The pages that describe the recordings are here:
 
-* https://archive.org/details/78_a-peruvian-triste-b-pan-american-waltz_carlos-valderrama_gbia0001886a/(a)+Peruvian+Triste%3B+(b)+Pan-American+Waltz+-+Carlos+Valderrama.flac
+* [Carlos Valderrama Herrera](https://es.wikipedia.org/wiki/Carlos_Valderrama_Herrera) - Peruvian Triste / Pan-American Waltz (1920): https://archive.org/details/78_a-peruvian-triste-b-pan-american-waltz_carlos-valderrama_gbia0001886a
+* [Lucille Hegamin](https://en.wikipedia.org/wiki/Lucille_Hegamin) - Everybody's Blues (1920): https://archive.org/details/Lucille_Hegamin-Everybodys_Blues
 
 ## Import an audio file
 
@@ -44,13 +45,14 @@ You can also drag-and-drop an audio file into Audacity. Try that with the second
 We are dealing with two **stereo** clips here. The top half of a clip is the left channel, and the bottom half is the right channel.
 
 The louder the sound, the higher the **waveform**. The quieter, the closer to the middle point.
-The dark blue area show the waveform peak of grouped samples (the loudest part), whereas the light blue area shows the Root Mean Square value of grouped samples (an guide to how loud it sounds).
+
+The dark blue area shows the waveform peak of grouped samples (the loudest part), whereas the light blue area shows the Root Mean Square value of grouped samples (an guide to how loud it sounds).
 
 ## Controls
 
 We have two audio files. If we press **play** (green button, or spacebar), they will be played at the same time.
 
-We can focus on the speech by **muting** the song, with the "Mute" button. It is then obvious which track is muted, as it is displayed in grey.
+We can focus on the longer track by **muting** the song, with the "Mute" button. It is then obvious which track is muted, as it is displayed in grey.
 
 We can use the mouse wheel to scroll vertically through our audio clips. To **zoom and pan** the audio clips efficiently, we need to learn about the keyboard keys we can associate with the mouse wheel:
 
@@ -63,7 +65,7 @@ If you zoom close enough to a soundwave, you will see that sound can't be stored
 
 ## Clipping and normalising
 
-You might see red lines on the "Cohen at the Picnic" track (if not, use `View > Show Clipping`). This denotes **clipping**, which means the soundwave goes over an intensity limit, which might result in artefacts when exporting the project.
+You might see a red line on the Carlos Valderrama track (if not, use `View > Show Clipping`). This denotes **clipping**, which means the soundwave goes over an intensity limit, which might result in artefacts when exporting the project.
 
 To resolve clipping, we can **normalise** the track, which is equivalent to reducing the amplitude of the soundwave, for it to fit within a range. Click on the grey area next to the track to select it, and use:
 
@@ -81,13 +83,31 @@ We can use the default settings and see the effect.
 
 The compressor amplifies quiet parts differently to louder parts, according to the settings. This means that we can make quieter sections a lot louder, while only amplifying the peaks a tiny bit – or even lowering their level. It ends up evening out the volume of the whole recording, which can be particularly useful if the audio is to be played in a noisy environment.
 
-As you can expect, the compressor has to be used carefully as it reduces the **dynamic range** of a recording, i.e. it can render a sound less interesting because of less variability in the amplitude.
+As you can expect, the compressor has to be used carefully as it reduces the **dynamic range** of a recording, i.e. it can render a sound less interesting because of less variability in the amplitude. Some music genres, like classical music, need a lot of dynamic range, so classical recordings does not make much sense.
 
 You might have to normalise again after compressing – and keep an eye on clipping!
 
+## Recording audio
+
+If you have a microphone, make sure the device used is the right one in the microphone dropdown, and click the red dot to start **recording**.
+
+We can introduce the first song by talking about the artist.
+
+## Envelope tool
+
+When we want to change the amplitude of one small part of a recording, we are better off using the **envelope tool**. You can add points on the light blue bar that appears around your tracks, and drag them to change the amplitude more smoothly than when using the `Amplify` effect on a section of audio.
+
+Try it on the speech we recorded, on a section where the audio is way louder than the rest (useful when someone laughs, or coughs, or hits the microphone...).
+
+## Splitting audio
+
+The Carlos Valderrama track is actually two songs. We can use the select tool to highlight the second song, use <kbd>Ctrl</kbd> + <kbd>X</kbd> to cut it, click out of the track, and use <kbd>Ctrl</kbd> + <kbd>V</kbd> to paste it into its own separate track.
+
+Let's mute it for now.
+
 ## Noise reduction
 
-As you can hear, there is quite a lot of noise in this first track. Luckily, the recording starts with a few seconds of only noise before the clock and the narrator come in.
+As you can hear, there is quite a lot of noise in the first music track. Luckily, the recording starts with a few seconds of only noise before the piano comes in.
 
 We can use this section to create a noise profile, and then use the **noise reduction** effect to try and clean part of the noise.
 
@@ -98,13 +118,13 @@ We can use this section to create a noise profile, and then use the **noise redu
 1. Use "Effect > Noise Reduction..." again
 1. Click OK
 
-You can play with the effect's settings to optimise the noise reduction.
+You can play with the effect's settings to optimise the noise reduction. As you can expect, you have to find the right balance between removing lots of noise and not degrading the interesting part of the audio.
 
 ## Removing audio
 
 Now that we have cleaned up some of the noise, we can remove the first few seconds of the clip so we get straight away to the interesting bit.
 
-With the selection tool, we can select the (roughly) 4 first seconds, and remove them with <kbd>Del</kbd>. We can do the same thing with the end of the recording.
+With the selection tool, we can select the (roughly) 2 first seconds, and remove them with <kbd>Del</kbd>. We can do the same thing with the end of the recording.
 
 ## Fading in and out
 
@@ -118,20 +138,24 @@ We can do the same with the end of the recording, but using the "Fade Out" effec
 
 ## Moving audio
 
-Let's unmute the second track. We want the song to start at the end of the spoken recording. We can do that by changing to the **Time Shift Tool** and sliding the clip to the right.
+Let's unmute the jingle and the speech recording. We want our podcast to start with the jingle, then introduce the first song, and have the first song start at the end of the speech recording. We can do that by changing to the **Time Shift Tool** and sliding the clip to the right position.
 
-Let's make sure the two clips fade into each other by fading the song in. We also want to normalise this track so the sound level is similar to the first one.
+Let's make sure the clips fade into each other by using the fading effects. We also want to normalise the tracks and use the volume sliders so the sound level is more uniform.
 
 ## Using the spectrogram
 
 You can switch between visualisation tools by using the clip title dropdown menu.
 
-The **spectrogram** view makes it possible to visualise **frequencies** rather than the level, and can help finding specific sounds in the recording.
+The **spectrogram** view makes it possible to visualise **frequencies** rather than the level, and can help finding specific sounds in the recording, and removing particular frequencies.
 
-For example, if there is a constant high-pitched hissing noise throughout a recording, the spectral selection tool will allow the selection of the precise frequency, and the Spectra edit mutlitool effect will remove it:
+For example, if there is a constant high-pitched hissing noise throughout a recording, the spectral selection option will allow the selection of the range of frequencies, and the Spectral edit multitool effect will remove it.
 
-* `Select > Spectral > Toggle spectral selection`
-* `Effect > Spectral edit multitool`
+Try changing the view of the jingle from waveform to spectrogram, and then:
+
+* `Select > Spectral > Toggle spectral selection` will allow you to select a frequency range by drawing a rectangle in the spectrogram (see how it turns green?). There is a beeping throughout the recording, at 5 kHz.
+* `Effect > Spectral edit multitool` will then edit that frequency range out of the recording.
+
+Other use cases include finding tongue clicks or saliva sounds in speech, to then remove them.
 
 ## Saving and exporting
 
@@ -142,6 +166,8 @@ If you are finished with your project and you want to **export** a finished prod
 Try exporting you project and giving it relevant **tags** so information can be displayed by audio players. By default, Audacity will use the tags from the first clip imported into the project.
 
 The resulting file is a single stereo audio file. You can also `Mix and Render` tracks inside a project, which is the equivalent.
+
+Remember that if a track is muted, it won't be exported!
 
 ## Where to find audio files?
 
