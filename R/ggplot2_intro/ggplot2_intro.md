@@ -1,6 +1,6 @@
 R data visualisation with RStudio and ggplot2: introduction
 ================
-2020-04-22
+2020-05-20
 
 > This document is redacted in R markdown; the source file is available
 > here:
@@ -44,7 +44,7 @@ During this session, you will:
   - Learn about the 3 essential ggplot2 components
   - Use different kinds of visualisations
   - Layer several visualisations
-  - Learn how to amend default colours, labels and themes.
+  - Learn how to customise a plot with colours, labels and themes.
 
 ## Disclaimer
 
@@ -432,7 +432,7 @@ ggplot(economics,
        aes(x = date,
            y = unemploy)) + 
     geom_point(aes(colour = uempmed)) +
-    geom_smooth(span = 0.15)
+    geom_smooth(span = 0.1)
 ```
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
@@ -442,7 +442,30 @@ ggplot(economics,
 You can now see why this is called a “smoother”: we can fit a smooth
 curve to data that varies a lot.
 
-### Bar charts
+To further refine our visualisation , we could visualise the
+unemployment rate rather than the number of unemployed people, by
+caclulating is straight into our code:
+
+``` r
+ggplot(economics,
+       aes(x = date,
+           y = unemploy / pop)) + 
+    geom_point(aes(colour = uempmed)) +
+    geom_smooth(span = 0.1)
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+
+The [early 1980s
+recession](https://en.wikipedia.org/wiki/Early_1980s_recession) now seem
+to have had a more significant impact on unemployment than the [Global
+Financial
+Crisis](https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%9308)
+of 2007-2008.
+
+### Bar charts and ordered factors
 
 Let’s use the `diamonds` dataset now. The `diamonds` dataset comes with
 ggplot2 and contains information about ~54,000 diamonds, including the
@@ -451,7 +474,6 @@ price, carat, color, clarity, and cut of each diamond.
 Let’s have a look at the data:
 
 ``` r
-str(diamonds)
 diamonds
 summary(diamonds)
 ?diamonds
@@ -467,7 +489,7 @@ ggplot(diamonds,
     geom_bar()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 The chart shows that more diamonds are available with high quality cuts
 than with low quality cuts.
@@ -482,27 +504,11 @@ head(diamonds$cut)
     ## [1] Ideal     Premium   Good      Premium   Good      Very Good
     ## Levels: Fair < Good < Very Good < Premium < Ideal
 
-ggplot2 respects that order in the bar chart.
-
-We can use the previous plot and add information about the diamonds’
-`clarity` with the `fill` aesthetic:
-
-``` r
-ggplot(diamonds,
-       aes(x = cut,
-           fill = clarity)) + 
-    geom_bar()
-```
-
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
-
-What is the difference with the `colour` aesthetic? `colour` will colour
-the outline of an area, whereas `fill` will fill the whole area. Some
-aesthetics are more suited to specific geometries than others\!
+See how ggplot2 respects that order in the bar chart?
 
 ### Customising a plot
 
-Let’s see how we can customise our plot’s look.
+Let’s see how we can customise our bar chart’s look.
 
 #### Change a geometry’s default colour
 
@@ -515,15 +521,6 @@ ggplot(diamonds,
 ```
 
 ![](ggplot2_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
-
-**Challenge 3: where should `fill` go?**
-
-We assigned different values to the `fill` argument in previous plots.
-But why are they located inside or outside of the `aes()` call?
-
-That’s because we don’t associate an aesthetic element to a variable
-from our dataset. Here, we are merely changing the default colour of our
-geometry.
 
 If you are curious about what colour names exist in R, you can use the
 `colours()` function.
@@ -560,15 +557,16 @@ caption.
 #### Horizontal bar charts
 
 For a horizontal bar chart, we can map the `cut` variable to the `y`
-aesthetic instead of `x`:
+aesthetic instead of `x`. But remember to also change your labels
+around\!
 
 ``` r
 ggplot(diamonds,
-       aes(y = cut)) +
+       aes(y = cut)) + # switch here...
   geom_bar(fill = "tomato") +
   labs(title = "Where are the bad ones?",
-       x = "Quality of the cut",
-       y = "Number of diamonds")
+       y = "Quality of the cut", # ...but also here!
+       x = "Number of diamonds") # ...and here!
 ```
 
 ![](ggplot2_intro_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
