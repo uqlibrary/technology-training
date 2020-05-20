@@ -2,6 +2,7 @@
 title: "R data visualisation with RStudio and ggplot2: intermediate"
 output: github_document
 date: "`r Sys.Date()`"
+always_allow_html: true
 ---
 
 > This document is written in R Markdown, and then knitted into a markdown document.
@@ -47,6 +48,7 @@ During this hands-on session, you will:
 * modify statistical transformations
 * adjust a geometry's position
 * further modify themes
+* make a plot interactive
 
 ## Material
 
@@ -258,7 +260,16 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(bins = 10)
 ```
 
-Now, let's colour the bins by continent. We have to use the `fill` aesthetic to colour the areas rather than the outlines:
+Now, let's colour the bins by continent. Instinctively, you could try the `colour` aesthetic:
+
+```{r}
+ggplot(gapminder, aes(x = lifeExp, colour = continent)) +
+  geom_histogram(bins = 10)
+```
+
+...but it only colour the outline of the rectangles!
+
+Some aesthetics will work better with some geometries than others. We have to use the `fill` aesthetic to colour the areas instead:
 
 ```{r}
 ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
@@ -389,7 +400,7 @@ You can now hover over parts of your plot to reveal the corresponding values.
 
 ### Play time!
 
-* Create a a boxplot for each continent's population data
+* Create a boxplot for each continent's population data
   + Colour the boxes by continent
   + Try to limit the y axis to see the boxes better
   + Let's see if you are able to move the legend to the bottom
