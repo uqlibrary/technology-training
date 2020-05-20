@@ -615,7 +615,7 @@ ggsave(filename = "plots/horiz_bar_pres.png", dpi = "screen")
 
 ## Play time\!
 
-**Challenge 4: explore geometries**
+**Challenge 3: explore geometries**
 
 When creating a new layer, start typing `geom_` and see what suggestions
 pop up. Are there any suggestions that sound useful or familiar to you?
