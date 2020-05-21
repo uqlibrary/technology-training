@@ -112,7 +112,7 @@ How can we add the Human Development Index (HDI) data to our existing "admin" sh
 
 To add the HDI data to our region shapefile, we can go the the "admin" layer's properties, use the `Joins` tab and click the green `+` to create a new join. We can then choose the HDI data as the `Join layer`, and define what common field between the two tables we will merge on: the ISO_3166_2 code in our case.
 
-You can now see the joined data highlighted in green in the `Source fields`, click "OK", and check the actual values in the "admin" layer's attribute table.
+You can now see the joined data highlighted in green in the `Fields` tab, click "OK", and check the actual values in the "admin" layer's attribute table.
 
 ### Classifying the symbology
 
