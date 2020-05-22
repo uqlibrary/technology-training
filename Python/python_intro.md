@@ -1,10 +1,10 @@
 # Python with Spyder: introduction to data science
 
-This hands-on course – directed at beginners – will get you started on using Python 3 and the Spyder IDE to import, explore, analyse and visualise data.
+This hands-on course – directed at beginners – will get you started on using **Python 3** and the program **Spyder** to import, explore, analyse and visualise data.
 
 ## Setup
 
-The easiest way to use Python 3 and Spyder is to install the Anaconda Distribution, a data science platform for Windows, Linux and Mac OS X. Make sure you download the Python 3 version: https://www.anaconda.com/download
+The easiest way to use Python 3 and Spyder is to install the Anaconda Distribution, a data science platform for Windows, Linux and Mac OS X. Make sure you download the Individual Edition with Python 3: https://www.anaconda.com/products/individual
 
 Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a terminal on Linux), and launch Spyder.
 
@@ -12,7 +12,7 @@ Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a t
 
 Python is a **programming language** that can be used to build programs (i.e. a "general programming language"), but it can also be used to analyse data by importing a number of useful modules.
 
-We are using the **Spyder IDE** to interact with Python more comfortably. If you have used the RStudio IDE to interact with R before, you should feel right at home.
+We are using **Spyder** to interact with Python more comfortably. If you have used the RStudio IDE to interact with R before, you should feel right at home: Spyder is a program designed for doing data science with Python.
 
 Python can be used **interactively** in a console, or we can build **scripts and programs** with it, making the most out of Spyder's code editor.
 
@@ -244,7 +244,7 @@ To execute something from the script (the current line, or a selected block), us
 
 ### Import data
 
-It is possible to read a CSV file with a `pandas` function:
+It is possible to **read a CSV file with a `pandas` function**:
 
 ```python
 import pandas as pd
@@ -253,7 +253,15 @@ data = pd.read_csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-
 
 > `pandas` contains many functions for interpreting a variety of file formats. Start typing `pd.read_` to see what is available.
 
-Now that we have stored our dataset as a variable, we can use the "dot notation" to create commands that are useful to explore the data:
+Now that we have stored our dataset as a variable, we can print the dataset to the console:
+
+```python
+data
+```
+
+The console conveniently shows us only the beginning and end of the dataframe.
+
+We can also use the "dot notation" to create commands that are useful to explore the data:
 
 ```python
 data.shape
@@ -275,7 +283,7 @@ data.groupby(by = "year").mean()
 
 ### Visualise data
 
-We can visualise our data with `pyplot`. First, let's visualise the relationship between GDP per capita and life expectancy:
+We can visualise our data with `pyplot`. First, let's visualise the relationship between GDP per capita and life expectancy with a scatterplot:
 
 ```python
 import matplotlib.pyplot as plt
