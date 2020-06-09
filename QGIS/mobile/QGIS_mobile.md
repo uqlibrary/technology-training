@@ -23,3 +23,5 @@ https://qldglobe.information.qld.gov.au/
 
 http://qldspatial.information.qld.gov.au/
 
+https://maps.eatlas.org.au/index.html?intro=false&z=16&ll=146.78311,-19.30655&l0=ea_ea%3AQLD_DNRM_Property-boundaries-DCDB_Aug-2016,ea_World_NE2-coast-cities-reefs_Baselayer,google_HYBRID,google_TERRAIN,google_SATELLITE,google_ROADMAP,ea_ea%3AQLD_DNRM_Property-boundaries-DCDB-July-2012&v0=,f,f,f,,f,f&intro=false
+
