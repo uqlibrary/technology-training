@@ -23,7 +23,7 @@ This is the Library's **regular R cycle**:
 | R data visualisation with RStudio and ggplot2: introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [html](https://demo.codimd.org/s/rJIPr0vi4) | [YT](https://www.youtube.com/watch?v=LoeBgXSJWTw&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=3) |
 | R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [html](https://demo.codimd.org/s/rJLdcW-24) | [YT](https://www.youtube.com/watch?v=zzXCkYR84M0&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=4) |
 | R and the Tidyverse: next steps | [md](R/tidyverse_next_steps/tidyverse_next_steps.md) <sup>[source](R/tidyverse_next_steps/tidyverse_next_steps.Rmd)</sup> | [html](https://demo.codimd.org/s/BkQCcmiOV) | [YT](https://www.youtube.com/watch?v=2TZYeFcJQIk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=6) |
-| _next: R reproducible reports with R Markdown and knitr_ | ... | ... | ... |
+| R reproducible reports with R Markdown and knitr | [md](R/reports/reports.md) <sup>[source](R/reports/reports.Rmd)</sup> | [html](https://demo.codimd.org/s/S1Aka1waI) | ... |
 
 We also offer these more specialised specialised (run less regularly, but feel free to ask us to schedule one of them):
 
