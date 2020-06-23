@@ -76,4 +76,4 @@ If you have questions about contributing to the material, please contact the DSH
 
 ## Contact
 
-If you want to contact the library trainers for a 1-on-1 consultation, an enquiry about sessions, or any question about the programs supported by the library: training<sub><[commercial at](https://en.wikipedia.org/wiki/At_sign)></sub>library.uq.edu.au
+If you are part of the UQ community, you can contact the library trainers for a 1-on-1 consultation, an enquiry about sessions, or any question about the programs supported by the UQ Library: training<sub><[commercial at](https://en.wikipedia.org/wiki/At_sign)></sub>library.uq.edu.au
