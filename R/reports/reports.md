@@ -1,7 +1,7 @@
 R reproducible reports with R Markdown and knitr
 ================
 Stéphane Guillou
-2020-06-17
+2020-06-23
 
 > This document is redacted in R Markdown; the source file is available
 > here:
@@ -28,11 +28,16 @@ With RStudio open, let’s make sure we have the necessary packages
 installed by running this command (this might take a few minutes):
 
 ``` r
-install.packages(c("tidyverse", "knitr", "ggplotly"))
+install.packages(c("tidyverse", "knitr", "plotly", "htmltools"))
 ```
 
-This will install the Tidyverse packages, and the knitr package to
-render reproducible reports.
+This will install the Tidyverse packages, the knitr package to render
+reproducible reports, the plotly packages for interactive
+visualisations, and the htmltools for having all bases covered regarding
+rendering HTML documents.
+
+> If R asks about installing a binary or building from source, **pick
+> the binary option**: it will be faster\!
 
 ## What are we going to learn?
 
@@ -47,10 +52,10 @@ click.
 
 ## Create a project and an R Markdown file
 
-Use the project menu (top right) to create a “New project…”. Let’s name
-this one “reports”.
+Use the project menu (top right) to **create a “New project…”**. Let’s
+name this one “reports”.
 
-We also need to create a new R Markdown file: “File \> New File \> R
+We also need to create a **new R Markdown file**: “File \> New File \> R
 Markdown…”. We can change the title of the report, and the author as
 well. Let’s stick to “HTML document” as an output for now.
 
@@ -65,10 +70,11 @@ are:
     headers;
   - and **code chunks**, in between ` ``` ` where we can write R code.
 
-But before we edit this document, let’s go straight to the “knit” button
-at the top of the source panel. Clicking that button will compile a
-document from the R Markdown file. You should see the process unfolding
-in the R Markdown tab, and the HTML document pop up when it is finished.
+But before we edit this document, let’s go straight to the **“knit”
+button** at the top of the source panel. Clicking that button will
+**compile** a document from the R Markdown file. You should see the
+process unfolding in the R Markdown tab, and the HTML document pop up in
+a separate window when it is finished.
 
 See how the document contains a title, headers, code input and output,
 and explanations?
@@ -117,43 +123,21 @@ Let’s import the Tidyverse, by including this code in the chunk:
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ─────────────────────────────────────────────────────── tidyverse 1.3.0 ──
-
-    ## ✓ ggplot2 3.3.1     ✓ purrr   0.3.4
-    ## ✓ tibble  3.0.1     ✓ dplyr   1.0.0
-    ## ✓ tidyr   1.1.0     ✓ stringr 1.4.0
-    ## ✓ readr   1.3.1     ✓ forcats 0.5.0
-
-    ## ── Conflicts ────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-    ## x dplyr::filter() masks stats::filter()
-    ## x dplyr::lag()    masks stats::lag()
-
-Notice that you can test your chunks of code one by one by clicking the
-“play” button at the right of the chunk: you don’t have to knit the
-whole document every time you want to test your code.
+Notice that you can **run your chunks of code** one by one by clicking
+the green “play” button at the right of the chunk: you don’t have to
+knit the whole document every time you want to test your code.
 
 Now, try to knit the document and see what it looks like.
 
 #### Challenge 2
 
-Inside a new chunk, add some code to import the dataset located [here]()
+Inside a new chunk, add some code to import the dataset located
+[here](https://gitlab.com/stragu/DSH/-/raw/master/R/reports/aus_ghg_2017.csv)
 into an object called `ghg`.
 
 ``` r
-ghg <- read_csv("aus_ghg_2018.csv")
+ghg <- read_csv("https://gitlab.com/stragu/DSH/-/raw/master/R/reports/aus_ghg_2017.csv")
 ```
-
-    ## Parsed with column specification:
-    ## cols(
-    ##   year = col_double(),
-    ##   `Agriculture, Forestry and Fishing` = col_double(),
-    ##   `Forestry - Changes in Inventories` = col_double(),
-    ##   Mining = col_double(),
-    ##   Manufacturing = col_double(),
-    ##   `Electricity, Gas, Water and Waste Services` = col_double(),
-    ##   `Services, Construction and Transport` = col_double(),
-    ##   Residential = col_double()
-    ## )
 
 > Clicking “Knit” will automatically save your .Rmd file as well as the
 > HTML output.
@@ -164,7 +148,7 @@ Now, we can add a chunk to show the data, by including this code in it:
 ghg
 ```
 
-    ## # A tibble: 29 x 8
+    ## # A tibble: 28 x 8
     ##     year `Agriculture, F… `Forestry - Cha… Mining Manufacturing `Electricity, G…
     ##    <dbl>            <dbl>            <dbl>  <dbl>         <dbl>            <dbl>
     ##  1  1990             286.            -19.1   44.6          68.0             148.
@@ -177,19 +161,22 @@ ghg
     ##  8  1997             156.            -22.6   54.4          66.9             166.
     ##  9  1998             140.            -22.5   55.4          67.5             178.
     ## 10  1999             151.            -22.0   53.0          68.8             184.
-    ## # … with 19 more rows, and 2 more variables: `Services, Construction and
+    ## # … with 18 more rows, and 2 more variables: `Services, Construction and
     ## #   Transport` <dbl>, Residential <dbl>
 
 ### Working directory
 
 Note that the **working directory** for an R Markdown document will be
-the .Rmd file’s location (and not necessarily the working directory of
-the R project your are in). That is why it is a good idea to save your R
-Markdown file at the top of your R Project directory if you want
-consistency between your scripts and your R Markdown file.
+the .Rmd file’s location by default (and not necessarily the working
+directory of the R project your are in). That is why it is a good idea
+to save your R Markdown file at the top of your R Project directory if
+you want consistency between your scripts and your R Markdown file.
 
 In our example, we load a CSV file from the Internet, but if we had a
 data file stored locally, it is important to keep that in mind.
+
+> You can change the default behaviour by using the Knit dropdown menu
+> and choosing an option in “Knit directory”.
 
 ### Chunk options
 
@@ -198,7 +185,7 @@ might want to remove that if it is not important and we don’t want to
 include it in the report. At the top of your chunk, you can **modify the
 options** like so:
 
-    {r  message=FALSE}
+    {r message=FALSE}
 
 The code will be executed and the output (if there is any) will be
 shown, but the messages won’t\!
@@ -208,7 +195,7 @@ and show with your chunk of code. For example, to hide both messages and
 warnings, and only show the output of the code (without showing the
 underlying code), you can use these options, separated by commas:
 
-    {r  message=FALSE, warning=FALSE, echo=FALSE}
+    {r message=FALSE, warning=FALSE, echo=FALSE}
 
 It also is a good idea to **label your chunks**, especially in longer
 documents, so you can spot issues more easily. It won’t be shown in the
@@ -222,6 +209,17 @@ It is also possible to include a chunk at the top of your document, that
 will detail the default options you want to use for all you chunks. That
 is particularly useful if you want to define a default size for all your
 figures, for example.
+
+Here is an example of a chunk you might use to change default options:
+
+    ```{r setup, include=FALSE}
+    knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+    ```
+
+That would make sure that, by default:
+
+  - The code is shown, but
+  - the messages and warnings are hidden.
 
 ## Errors when knitting
 
@@ -250,15 +248,15 @@ ghg_tidy <- pivot_longer(ghg,
 
 ## Inline code
 
-We can also include code that will be executed *inside* Markdown text.
-For example, you can write the following sentence:
+We can also **include code that will be executed *inside* Markdown
+text**. For example, you can write the following sentence:
 
-> The dataset contains GHG emissions for the period `r
-> min(ghg_tidy$year)` to `r max(ghg_tidy$year)`. The maximum GHG
-> emissions recorded for the mining sector is `r
-> max(ghg_tidy[ghg_tidy$sector == "Mining",]$emissions)`
+> The dataset contains GHG emissions for the period `` `r
+> min(ghg_tidy$year)` `` to `` `r max(ghg_tidy$year)` ``. The maximum
+> GHG emissions recorded for the mining sector is `` `r
+> max(ghg_tidy[ghg_tidy$sector == "Mining",]$emissions)` ``.
 
-We can also use this feature to auto-update the date of your report
+We can also use this feature to **auto-update the date** of your report
 every time it is knitted. Replace the `date` line in the YAML header
 with this one:
 
@@ -268,7 +266,7 @@ Now, try knitting the report again.
 
 ## Visualisation
 
-We can also include a visualisation using ggplot2:
+We can also include a visualisation using, for example, ggplot2:
 
 ``` r
 ggplot(ghg_tidy, aes(x = year, y = emissions, colour = sector)) +
@@ -276,9 +274,6 @@ ggplot(ghg_tidy, aes(x = year, y = emissions, colour = sector)) +
 ```
 
 ![](reports_files/figure-gfm/viz-1.png)<!-- -->
-
-Make sure you keep adding Markdown text around your chunks to document
-your work.
 
 > If you want to hide the code that created an output, like for this
 > plot, you can add the option `echo=FALSE` to it.
@@ -292,10 +287,8 @@ p <- ggplot(ghg_tidy, aes(x = year, y = emissions, colour = sector)) +
 ggplotly(p)
 ```
 
-    ## TypeError: Attempting to change the setter of an unconfigurable property.
-    ## TypeError: Attempting to change the setter of an unconfigurable property.
-
-![](reports_files/figure-gfm/interactive-1.png)<!-- -->
+This will work in a HTML document, but will most likely fail in other
+output formats.
 
 To change the width of all our figures, we can use this is the setup
 chunk, that contains the `{r setup, include=FALSE}` header:
@@ -327,7 +320,7 @@ However, other output formats are available. Here are some examples:
 
 In some cases, you might be required to share your report as a PDF.
 Knitting your document to PDF can generate very professional-looking
-documents, but it will require having extra software on your computer.
+reports, but it will require having extra software on your computer.
 
 You can install the necessary LaTeX packages with an R package called
 TinyTeX, which is a great alternative to very big LaTeX distributions
@@ -345,38 +338,14 @@ After this, try to change your YAML header’s `output` value to
 
 Related to R Markdown and knitr:
 
-  - 
+  - *R Markdown Cookbook*, by Yihui Xie and Christophe Dervieux:
+    <https://bookdown.org/yihui/rmarkdown-cookbook/>
+  - Official website by RStudio: <https://rmarkdown.rstudio.com/>
+      - Tutorial: <https://rmarkdown.rstudio.com/lesson-1.html>
+      - Documentation: <https://rmarkdown.rstudio.com/docs/>
+  - R Markdown cheatsheet:
+    <https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf>
+
 Our list of recommended R resources:
 
   - <https://gitlab.com/stragu/DSH/-/blob/master/R/usefullinks.md>
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax
-for authoring HTML, PDF, and MS Word documents. For more details on
-using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that
-includes both content as well as the output of any embedded R code
-chunks within the document. You can embed an R code chunk like this:
-
-``` r
-summary(cars)
-```
-
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
-
-## Including Plots
-
-You can also embed plots, for example:
-
-![](reports_files/figure-gfm/pressure-1.png)<!-- -->
-
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
