@@ -1,4 +1,4 @@
-# QGIS: Introduction to mapping
+# QGIS: Mobile Mapping
 
 ## Setting up
 
