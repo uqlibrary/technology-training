@@ -27,6 +27,7 @@ However, we will be using Avenza today for its simplicity.
 We're going to explore a number of different online spatial data repositories.
 
 **DEM**
+
 A Digital Elevation Model (DEM) is a common example of **raster data**, i.e. grid data that contains a value in each cell (a bit like the pixels in a coloured picture).
 
 For this tutorial, we are using a DEM sourced from **ELVIS** - Geoscience Australia's ELeVation Information System.
@@ -43,7 +44,8 @@ For this tutorial, we are using a DEM sourced from **ELVIS** - Geoscience Austra
 * You should receive an email within 5 minutes, download the files from the link in the email, and extract the folder to your project folder.
 
 **Aerial Imagery**
-There are a few places you can aquire aerial photography, for today we will be using **QImagery**.
+
+There are a few places you can aquire aerial photography, today we will look at two sources, on is freely available Government Data from **QImagery**, the other is accessible from NearMap using your UQ credentials.
 
 * Go to https://qimagery.information.qld.gov.au/
 * Click the Search button, and search for "St Lucia" in the "Enter search term" search box and select the first result
@@ -71,13 +73,39 @@ As a UQ student, you also have access to very high resoltuion imagery from **Nea
 * Click "Save"
 * Move the downloaded zip file to your project folder
 
+**Lot Plans and Remnant Vegetation**
 
-Remnant vegetation data, etc.
 
-* Go to http://qldspatial.information.qld.gov.au/
+You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial http://qldspatial.information.qld.gov.au/
+I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from cloudstor.
+
+* Go to 
+
+## Create a buffer to clip our data
+
+Go to `Vector > Geoprocessing Tools > Buffer`
+* Choose "UQ_Boundaries" as the Input Layer.
+* There are many settings we can change to edit the shape of the buffer, but let's leave most of these as the defaults for now.
+* We can choose the distance that we want to create a buffer away from our vector. You'll note that the distance is currently in degrees, as the layer projection is EPSG:4283 GDA94, a geographic coordinate system. This might cause issues.
+* If you click Run. Your buffer won't look very good. We need to convert our layer to a local projected coordinate system.
+
+Go to `Vector > Data Management Tools > Reproject Layer`
+* Choose "UQ_Boundaries" as the Input Layer.
+* We want to choose a local projected coordinate system such as GDA94 / MGA zone 56 or GDA2020 / MGA zone 56. This will convert our measurements to metres instead of degrees, and by choosing an Australian projection, it reduces distortion.
+* Click "Run"
+* The new scratch layer will look the same, but it now has a different projection. Let's create that buffer again.
+
+Go to `Vector > Geoprocessing Tools > Buffer`
+* This time choose "Reprojected" as the Input Layer.
+* You'll notice the distance is now in metres. For this instance, I want a larger buffer of 50m.
+* If you click Run. Your buffer 
+
+
 
 
 ## Government Data Symbology
+
+
 
 ## Create a buffer
 
