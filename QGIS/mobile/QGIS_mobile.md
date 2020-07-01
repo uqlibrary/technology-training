@@ -192,6 +192,16 @@ You can repeat this process with the DEM and Hillshade to export out another kin
 
 Now you simply need to export the file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.
 
-## Exporting to QField
+When you first open Avenza Maps it will ask you to create an account, but you can import up to three maps without doing so, you can avoid creating an account by selecting the 'x' in the top right corner.
+* Allow Avenza Maps to access your device location
+* Select the orange '+' in the bottom right and select 'Download or import a map'
+* Choose 'From Storage Locations' (if requested, give Avenza Maps the permissions to access your files)
+* Do the same for the other map, if you created one.
+* Once it has been imported, tap on the map.
+* You can now move the map around with your finger, and pinching to zoom.
+* Tapping the placemark icon in the bottom left will add a placemark in the middle of the crosshairs.
+* Tapping the 3 dots in the bottom right will allow you to add gps tracking and draw and measure distances.
 
+## Exporting to QField
+If we have time I'll talk briefly about QField as well.
 
