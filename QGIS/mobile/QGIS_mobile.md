@@ -41,7 +41,7 @@ For this tutorial, we are using a DEM sourced from **ELVIS** - Geoscience Austra
 * As you hover over the different options, they will highlight a red box on the map, select all that overlap the area you're interested in
 * When you have the data you want, click Download Selected Datasets
 * Enter your industry, email, tick the reCAPTCHA, and click "Start extract of datasets"
-* You should receive an email within 5 minutes, download the files from the link in the email, and extract the folder to your project folder.
+* You should receive an email within 5 minutes, download the files from the link in the email, extract the folder to your project folder, and add them to your map.
 
 **Aerial Imagery**
 
@@ -53,7 +53,7 @@ There are a few places you can aquire aerial photography, today we will look at 
 * From here you can select from a wide array of images of QLD over many years.
 * Click one of the drop-downs and hover over the options to see where those images are location. Preview the image by clicking View.
 * You can then download your desired images by clicking "Download" and selecting TIFF (georeferenced)
-* Move the TIFF file(s) to your project folder
+* Move the TIFF file(s) to your project folder, and open them in QGIS
 
 If you want even higher resolution maps, there restricted options available. Your particular study area may have maps available such as the Sunshine Coast MyMaps service, or CSIRO's Norfolk Island Data Portal.
 As a UQ student, you also have access to very high resoltuion imagery from **NearMap**. You can even access an array of imagery going back in time.
@@ -71,15 +71,17 @@ As a UQ student, you also have access to very high resoltuion imagery from **Nea
 * You can increase and decrease the size of the bounding box by adjusting its corners, a smalle rbox means you can have a finer resolution, down to 0.075m. If we select all of St Lucia in one go, the highest resolution we can have is 0.597m.
 * Tick the "Include georeference file" box
 * Click "Save"
-* Move the downloaded zip file to your project folder
+* Move the downloaded zip file to your project folder, and open them in QGIS
 
-**Lot Plans and Remnant Vegetation**
+**Lot Plans**
 
 
-You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial http://qldspatial.information.qld.gov.au/
+You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial 
 I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from cloudstor.
 
-* Go to 
+* To access data from QLD Spatial go to http://qldspatial.information.qld.gov.au/
+* Search for "property boundaries and select the "property boundaries Queensland" option.
+* You could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop here: https://cloudstor.aarnet.edu.au/plus/s/Mg7M6xYbtNYw3dd
 
 ## Create a buffer to clip our data
 
@@ -98,30 +100,97 @@ Go to `Vector > Data Management Tools > Reproject Layer`
 Go to `Vector > Geoprocessing Tools > Buffer`
 * This time choose "Reprojected" as the Input Layer.
 * You'll notice the distance is now in metres. For this instance, I want a larger buffer of 50m.
-* If you click Run. Your buffer 
+* If you click Run. Your buffer should be a good distance away from the orignal boundary.
+* Now we can Dissolve those layers together
+Go to `Vector > Geoprocessing Tools > Dissolve
+* Choose "Buffered" as the Input Layer.
+* Let's save this one to file, rather than a temporary file. Click "..." next to "[Create Temporary Layer]", then "Save to file", and save it as something like **UQ Boundary** to your project folder.
+* **Note** the Buffer tool has a dissolve option, but it's important to know that there are many tools available.
+
+## Build a virtual raster
+
+See the visible line between the raster tiles? That is because the separate raster files have different maximum and minimum values, so use different shades for different elevations. We have to **merge** them to make sure they use the same colour scale.
+
+To do that, we use the `Raster > Miscellaneous > Build Virtual Raster...` tool to create one single layer from them.
+
+* First, select all  DEM layers for the "Input layers"
+* Make sure you untick the option "Place each input file into a separate band", as we want to end up with one single-band layer
+* We can save the output on disk instead of only creating a temporary file (for example, name it `StLucia_DEM_merged` and save it inside your project directory)
+* Click "Run"
+
+> You will need to have Saga installed for this to work.
+
+We can now remove the original DEM raster files.
+
+## Clip the DEM
+
+We now use `Raster > Extraction > Clip Raster by Mask Layer` to **focus on our area of interest**.
+
+Make sure the virtual raster output DEM is selected in the Input layer, and set the Mask Layer to "UQ_Boundary"
+Scroll down to "Clipped (mask)" and click "..." next to [Create Temporary Layer]", then "Save to file", and save it as **St_Lucia_DEM** to your project folder.
+
+If you don't save to file directly, remember two things:
+
+* **rename** your clipped layer so it is more descriptive than the generic "Clipped (extent)"
+* you are currently using a temporary, **scratch layer**. It will be discarded if you exit QGIS. It is very useful for temporary intermediate files, but it can be safer to save copies of your intermediate data while you work, just in case! You can right-click on the layer and use `Export > Save As..`
+
+## Clip the Aerial Imagery
+
+We can repeat the same process as above to clip the Aerial Imagery, however due to the nature of the image from NearMaps, we need to convert it to a tif file before we can clip it.
+`Right Click the image layer > Export > Save as...`
+Ensure the Format is GeoTIFF
+Click '...' next to File name and name your layer "St_Lucia_Aerial"
 
 
+## Change the symbology
 
+We can style our DEM with a **terrain colour palette**:
 
-## Government Data Symbology
+* double-click on the clipped DEM layer
+* go to the "Symbology" tab
+* change the Render type to "Singleband pseudocolor"
+* by default, it uses the min/max values, which is what we want
+* we can change the "Color ramp" to something more suitable with the drop-down menu and `Create new color ramp... > Catalog: cpt-city > Topography > Elevation`, for example.
 
+## Add a hillshade
 
+Adding a **hillshade** makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.
 
-## Create a buffer
-
-access government spatial data
-utilise aerial photography
-clip your data to a region of interest
-combine different data sets
-use your map offline on your phone
-
-## Clip the DEM and Aerial Photography and other layers
-
-## Add Hillshade
+* Go to  `Raster > Analysis > Hillshade...`.
+* Ensure the Input Layer is your clipped DEM "St_Lucia_DEM"
+* Scroll down to "Hillshade" and click "..." next to [Create Temporary Layer]", then "Save to file", and save it as **St_Lucia_DEM_Hillshade** to your project folder.
+* Click Run
 
 ## Create Contours
 
+Adding a **contour** makes your elevation even more evident and can also be used to quickly show elevation on other layers
+
+* Go to  `Raster > Extraction > Contour...`.
+* Ensure the Input Layer is your clipped DEM "St_Lucia_DEM"
+* For **Interval between contour lines**, the default is 10m, which won't be greatly noticable at UQ where the highest point is 25m. However, the finer the contour lines, the longer it will take to process. I will choose 5m.
+* Scroll down to "Contours" and click "..." next to [Create Temporary Layer]", then "Save to file", and save it as **St_Lucia_Contours_5m** to your project folder.
+* Click Run
+
 ## Exporting to Anveza Maps
+
+Click on `Show Layout Manager` in the toolbar. `Create` a new layout called "Avenza". We can now see the Layout window.
+
+Normally we would add many elements to our layout if we were exporting it for print such as the map, a legend, a scale bar, a north arrow... 
+
+In this case however, we are simply interested in our map. Add the map to the canvas.
+* Go to the Layout tab, scroll down to 'Resize Layour to Content', click 'Resize layout'
+* Before we export, let's turn off any layers we aren't using in QGIS to save space
+* Click the Refresh View button up the top
+* Now we are ready to export.
+* Go to 'Layout > Export as PDF...' and save your map.
+* The 'PDF Export Options' window will open
+* Tick the 'Create Geospatial PDF (GeoPDF)' box
+* Untick the 'Include vector feature information' box
+* Click 'Save'
+
+You can repeat this process with the DEM and Hillshade to export out another kind of map.
+
+Now you simply need to export the file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.
 
 ## Exporting to QField
 
