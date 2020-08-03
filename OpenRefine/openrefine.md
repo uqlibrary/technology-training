@@ -1,6 +1,6 @@
 # OpenRefine: an introduction to dealing with messy data
 
-Last updated: 2019-11-21
+Last updated: 2020-08-03
 
 ## OpenRefine?
 
@@ -33,9 +33,12 @@ Some common scenarios might be:
 
 ## Installation
 
-To install the software, please follow the instructions on the OpenRefine website: http://openrefine.org/download.html
 This lesson was designed using OpenRefine 3.3 but should be compatible with other supported versions.
+
 OpenRefine requires to have a Java Runtime Environment (JRE) installed, so you might need to install one to be able to use it: http://java.com/
+
+To install and run OpenRefine on your operating system, please follow the instructions on the official website: http://openrefine.org/download.html
+
 
 ## Material
 
@@ -74,6 +77,7 @@ You can also **sort the rows** by clicking on the drop-down menu for the column 
 ### View modes
 
 OpenRefine has two **view modes** for viewing data: `Rows` and `Records`. In `Records` mode, OpenRefine can link together multiple rows as belonging to the same record.
+
 To demonstrate what the `Records` mode does, we are going to split author names into separate cells.
 
 ### Split multi-valued cells
@@ -93,7 +97,7 @@ We can do the opposite operation, with `Edit cells` > `Join multi-valued cells`,
 
 > Make sure you choose the right delimiter for the kind of data you deal with!
 
-**Exercise 3** – Practice splitting and joining
+**Exercise 3** – Practise splitting and joining
 
 How would you split and then join again the data in the `Subjects` column?
 
@@ -101,6 +105,8 @@ How would you split and then join again the data in the `Subjects` column?
 
 > What are filters and facets in OpenRefine? How can they help me navigate data?
 > How can I correct common data issues?
+
+Facets and filters will allow you to gain insights on your data, zero-in onto issues you want to fix by hand, or only apply automated edits to one subset of your dataset.
 
 #### Filters
 
@@ -128,7 +134,7 @@ Let's create a Text Facet for a column:
 
 **Exercise 4** – Explore licenses
 
-> Which licenses are used for articles in this dataset? Which one is the most common? How many articles don't have a license?
+> Which licences are used for articles in this dataset? Which one is the most common? How many articles don't have a licence?
 
 1. In the `License` column drop-down menu, choose `Facet > Text facet`
 1. `CC BY` has the highest count
@@ -164,13 +170,13 @@ Use a text facet on the `Language` column to replace `English` values with the l
 
 The **Cluster** function uses an algorithm to group together similar, but inconsistent values in a given column and lets you merge these inconsistent values into a single value you choose.
 
-This is very effective where you have data with minor variations in data values, e.g. names of people, organisations, places, classification terms.
+This is very effective where you have data with minor variations in values, e.g. names of people, organisations, places, classification terms...
 
 **Exercise 7** – clean up the author names
 
 1. Make sure your authors are already split into different rows
 1. Choose `Edit cells > Cluster and edit` from the `Authors` column.
-1. Using the defaults (`key collision` Method and `fingerprint` Keying Function), work through the clusters of values, merging them to a single value where appropriate
+1. Using the defaults (`key collision` Method and `fingerprint` Keying Function), work through the clusters of values, merging them into a single value where appropriate
 
 By default, OpenRefine uses the most common value to merge the data, but we can choose which value we prefer by clicking on it, or we can write our own replacement value.
 
@@ -318,6 +324,8 @@ You can output a value from an array by specifying its position in the list. To 
 value.split(",")[0]
 ```
 
+> Many programming languages, like GREL, start indexing at 0, which is why we have to use the 0th position to return the first element of the array.
+
 If you want to go back to one single string, in order to store the result in cells, you can use the `join` function:
 
 ```
@@ -334,7 +342,7 @@ We can focus on the rows that have a comma in their author name:
 Now that we have narrowed down to the lines with a comma in the author name, we can use the `split()` function.
 
 1. On the Authors column use the drop-down menu and select `Edit cells > Transform`
-1. In the Expression box type `value.split(", ")`.  This will create an array of separate last name and first name, removing the comma a space.
+1. In the Expression box type `value.split(", ")`.  This will create an array of separate last name and first name, removing the comma and space.
 
 To get the author name in the natural order, you can reverse the array and join it back together with a space to create the string you need:
 
@@ -418,4 +426,4 @@ for any purpose, even commercially.
 
 Under the following terms:
 
-* **Attribution** – You must give appropriate credit (mentioning that your work is derived from work that is Copyright © Stéphane Guillou and, where practical, linking to https://gitlab.com/stragu/CDS), provide a [link to the license](https://creativecommons.org/licenses/by/4.0/), and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+* **Attribution** – You must give appropriate credit (mentioning that your work is derived from work that is Copyright © Stéphane Guillou and, where practical, linking to https://gitlab.com/stragu/DSH), provide a [link to the license](https://creativecommons.org/licenses/by/4.0/), and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
