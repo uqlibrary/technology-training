@@ -1,6 +1,6 @@
 R data visualisation with RStudio and ggplot2: introduction
 ================
-2020-05-20
+2020-08-17
 
 > This document is redacted in R markdown; the source file is available
 > here:
@@ -69,8 +69,8 @@ Let’s create a new **R project** to keep everything tidy:
   - Click the “File” menu button (top left corner), then “New Project”
   - Click “New Directory”
   - Click “New Project”
-  - In “Directory name”, type the name of your project, e.g.
-    “ggplot2\_intro”
+  - In “Directory name”, type the name of your project,
+    e.g. “ggplot2\_intro”
   - Select the folder where to locate your project: e.g. a
     `Documents/RProjects` folder, which you can create if it doesn’t
     exist yet.
@@ -116,56 +116,91 @@ forget the two main ways to bring up a help page:
 The R package ggplot2 was developed by Hadley Wickham with the objective
 of creating a grammar of graphics for categorical data (in 2007). It is
 based on the book *The Grammar of Graphics* Developed by Leland
-Wilkinson (1999/2005).
+Wilkinson (first edition published in 1999).
 
 It is now part of the group of data science packages called Tidyverse.
 
-### ggplot2 components and layers
+### The components of the Grammar of Graphics
 
-ggplot2 is based on the idea that you can build every graph from the
-same few components.
+The Grammar of Graphics is based on the idea that you can build every
+graph from the same few components.
 
-The main components that compose a plot are the **data**, the
-**aesthetic mappings**, and **geometric objects**. Extra elements can be
-specified, like:
+The components are:
 
-  - scales,
-  - facetting,
-  - position,
-  - statistical transformations,
-  - a coordinate system, and
-  - a theme.
+  - Data
+  - Mapping
+  - Statistics
+  - Scales
+  - Geometries
+  - Facets
+  - Coordinates
+  - Theme
 
-Together, the data, mappings, stats and geoms form a **layer**.
+In this introductory session, we will mainly focus on the **data**, the
+**mapping**, the **statistics**, the **geometries** and the **theme**.
 
-In its most basic form, a ggplot2 plot can be written with the`qplot()`
-function:
+### ggplot2’s three essential components
+
+In ggplot2, the 3 main components that we usually have to provide are:
+
+1.  Where the **data** comes from,
+2.  the **aesthetic mappings**, and
+3.  a **geometry**.
+
+For our first example, let’s use the `msleep` dataset (from the ggplot2
+packages), which contains data about mammals’ sleeping patterns.
+
+> You can find out about the dataset with `?msleep`.
+
+Let’s start with specifying where the **data** comes from in the
+`ggplot()` function:
 
 ``` r
-qplot(data = msleep,
-      x = conservation,
-      geom = "bar")
+ggplot(data = msleep)
 ```
 
 ![](ggplot2_intro_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-We can see our three essential elements:
+This is not very interesting. We need to tell ggplot2 *what* we want to
+visualise, by **mapping** *aesthetic elements* (like our axes) to
+*variables* from the data. We want to visualise how common different
+conservations statuses are, so let’s associate the right variable to the
+x axis:
 
-1.  the data comes from the `msleep` dataset included in ggplot2;
-2.  the variable `conservation` is mapped to the aesthetic `x` (i.e. the
-    x axis);
-3.  the geometry is `"bar"`, for “bar chart”.
+``` r
+ggplot(data = msleep,
+       mapping = aes(x = conservation))
+```
+
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+ggplot2 has done what we asked it to do: the conservation variable is on
+the x axis. But nothing is shown on the plot area, because we haven’t
+defined *how* to represent the data, with a `geometry_*` function:
+
+``` r
+ggplot(data = msleep,
+       mapping = aes(x = conservation)) +
+  geom_bar()
+```
+
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+Now we have a useful plot: we can see that a lot of animals in this
+dataset don’t have a conservation status, and that “least concern” is
+the next most common value.
+
+We can see our three essential elements in the code:
+
+1.  the **data** comes from the `msleep` object;
+2.  the variable `conservation` is **mapped to the aesthetic** `x`
+    (i.e. the x axis);
+3.  the **geometry** is `"bar"`, for “bar chart”.
 
 Here, we don’t need to specify what variable is associated to the y
 axis, as the “bar” geometry automatically does a count of the different
-values in the `conservation` variable.
-
-Find out more about the package and the “quick plot” function:
-
-``` r
-?ggplot2
-?qplot
-```
+values in the `conservation` variable. That is what **statistics** are
+applied automatically to the data.
 
 ### Scatterplots
 
@@ -196,7 +231,7 @@ ggplot(data = economics,
     geom_point()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
   - The `ggplot()` function initialises a ggplot object. It can be used
     to declare the input data frame and to specify the set of plot
@@ -228,7 +263,7 @@ ggplot(data = mpg,
     geom_point()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 Notice how the points seem to be aligned on a grid? That’s because the
 data was rounded. If we want to better visualise the distribution of the
@@ -242,7 +277,7 @@ ggplot(data = mpg,
     geom_jitter()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 The plot shows a negative relationship between engine size (`displ`) and
 fuel efficiency (`hwy`). In other words, cars with big engines use more
@@ -264,7 +299,7 @@ ggplot(data = mpg,
     geom_jitter()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 It seems that two-seaters are more fuel efficient than other cars with a
 similar engine size, which can be explained by the lower weight of the
@@ -286,7 +321,7 @@ ggplot(mpg,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 > We stopped using the argument names because we know in which order
 > they appear: first the data, then the mapping of aesthetics. Let’s
@@ -312,7 +347,7 @@ ggplot(mpg,
 
     ## `geom_smooth()` using formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 ### Layering
 
@@ -329,7 +364,7 @@ ggplot(mpg,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 > The order of the functions matters: the points will be drawn before
 > the trend line, which is probably what you’re after.
@@ -349,7 +384,7 @@ ggplot(mpg,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 **Challenge 1 – where should aesthetics be defined?**
 
@@ -418,7 +453,7 @@ ggplot(economics,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 > See how the legend changes depending on the type of data mapped to the
 > `colour` aesthetic? (i.e. categorical vs continuous)
@@ -437,7 +472,7 @@ ggplot(economics,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 You can now see why this is called a “smoother”: we can fit a smooth
 curve to data that varies a lot.
@@ -456,7 +491,7 @@ ggplot(economics,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 The [early 1980s
 recession](https://en.wikipedia.org/wiki/Early_1980s_recession) now seem
@@ -468,7 +503,7 @@ of 2007-2008.
 ### Bar charts and ordered factors
 
 Let’s use the `diamonds` dataset now. The `diamonds` dataset comes with
-ggplot2 and contains information about ~54,000 diamonds, including the
+ggplot2 and contains information about \~54,000 diamonds, including the
 price, carat, color, clarity, and cut of each diamond.
 
 Let’s have a look at the data:
@@ -489,7 +524,7 @@ ggplot(diamonds,
     geom_bar()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 The chart shows that more diamonds are available with high quality cuts
 than with low quality cuts.
@@ -520,7 +555,7 @@ ggplot(diamonds,
     geom_bar(fill = "tomato")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 If you are curious about what colour names exist in R, you can use the
 `colours()` function.
@@ -539,7 +574,7 @@ ggplot(diamonds,
          y = "Number of diamonds")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 Let’s have a look at what `labs()` can do:
 
@@ -569,7 +604,7 @@ ggplot(diamonds,
        x = "Number of diamonds") # ...and here!
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 This is particularly helpful when long category names overlap under the
 x axis.
@@ -590,7 +625,7 @@ ggplot(diamonds,
   theme_bw()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 
 Try `theme_minimal()` as well, and if you want more options, install the
 `ggthemes` package\!

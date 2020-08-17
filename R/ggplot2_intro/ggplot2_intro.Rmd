@@ -87,48 +87,69 @@ We are going to work with different datasets that come with the ggplot2 package.
 
 ### Introducing ggplot2
 
-The R package ggplot2 was developed by Hadley Wickham with the objective of creating a grammar of graphics for categorical data (in 2007). It is based on the book _The Grammar of Graphics_ Developed by Leland Wilkinson (1999/2005).
+The R package ggplot2 was developed by Hadley Wickham with the objective of creating a grammar of graphics for categorical data (in 2007). It is based on the book _The Grammar of Graphics_ Developed by Leland Wilkinson (first edition published in 1999).
 
 It is now part of the group of data science packages called Tidyverse.
 
-### ggplot2 components and layers
+### The components of the Grammar of Graphics
 
-ggplot2 is based on the idea that you can build every graph from the same few components.
+The Grammar of Graphics is based on the idea that you can build every graph from the same few components.
 
-The main components that compose a plot are the **data**, the **aesthetic mappings**, and **geometric objects**.
-Extra elements can be specified, like:
+The components are:
 
-* scales,
-* facetting,
-* position,
-* statistical transformations,
-* a coordinate system, and
-* a theme.
+* Data
+* Mapping
+* Statistics
+* Scales
+* Geometries
+* Facets
+* Coordinates
+* Theme
 
-Together, the data, mappings, stats and geoms form a **layer**.
+In this introductory session, we will mainly focus on the **data**, the **mapping**, the **statistics**, the **geometries** and the **theme**.
 
-In its most basic form, a ggplot2 plot can be written with the`qplot()` function:
+### ggplot2's three essential components
+
+In ggplot2, the 3 main components that we usually have to provide are:
+
+1. Where the **data** comes from,
+2. the **aesthetic mappings**, and
+3. a **geometry**.
+
+For our first example, let's use the `msleep` dataset (from the ggplot2 packages), which contains data about mammals' sleeping patterns.
+
+> You can find out about the dataset with `?msleep`.
+
+Let's start with specifying where the **data** comes from in the `ggplot()` function:
 
 ```{r}
-qplot(data = msleep,
-      x = conservation,
-      geom = "bar")
+ggplot(data = msleep)
 ```
 
-We can see our three essential elements:
+This is not very interesting. We need to tell ggplot2 *what* we want to visualise, by **mapping** *aesthetic elements* (like our axes) to *variables* from the data. We want to visualise how common different conservations statuses are, so let's associate the right variable to the x axis:
 
-1. the data comes from the `msleep` dataset included in ggplot2;
-1. the variable `conservation` is mapped to the aesthetic `x` (i.e. the x axis);
-1. the geometry is `"bar"`, for "bar chart".
-
-Here, we don't need to specify what variable is associated to the y axis, as the "bar" geometry automatically does a count of the different values in the `conservation` variable.
-
-Find out more about the package and the "quick plot" function:
-
-```{r eval=FALSE}
-?ggplot2
-?qplot
+```{r}
+ggplot(data = msleep,
+       mapping = aes(x = conservation))
 ```
+
+ggplot2 has done what we asked it to do: the conservation variable is on the x axis. But nothing is shown on the plot area, because we haven't defined *how* to represent the data, with a `geometry_*` function:
+
+```{r}
+ggplot(data = msleep,
+       mapping = aes(x = conservation)) +
+  geom_bar()
+```
+
+Now we have a useful plot: we can see that a lot of animals in this dataset don't have a conservation status, and that "least concern" is the next most common value.
+
+We can see our three essential elements in the code:
+
+1. the **data** comes from the `msleep` object;
+1. the variable `conservation` is **mapped to the aesthetic** `x` (i.e. the x axis);
+1. the **geometry** is `"bar"`, for "bar chart".
+
+Here, we don't need to specify what variable is associated to the y axis, as the "bar" geometry automatically does a count of the different values in the `conservation` variable. That is what **statistics** are applied automatically to the data.
 
 ### Scatterplots 
 
