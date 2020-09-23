@@ -55,27 +55,25 @@ More information about the dataset is included on [this page](https://github.com
 We can import it directly with pandas, without:
 
 ```python
-df = pd.read_csv("https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv")
+df_raw = pd.read_csv("https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv")
 ```
 
 Using the `type()` function confirms what type of variable the data is stored as:
 
 ```python
-type(df)
+type(df_raw)
 ```
-
-## Exploring data
 
 This dataset is a fairly big one. We can investigate its size thanks to the `shape` attribute attached to all pandas dataframes:
 
 ```python
-df.shape
+df_raw.shape
 ```
 
 38 columns is too much to look at. What are the column names?
 
 ```python
-df.columns
+df_raw.columns
 ```
 
 Let's subset our data to focus on a handful of variables.
@@ -100,10 +98,81 @@ To only keep these columns, we can index the dataframes with a list of names:
 
 ```python
 keep = ['iso_code', 'country', 'year', 'population', 'gdp', 'co2', 'methane', 'nitrous_oxide']
-df_small = df.columns[keep]
+df = df_raw[keep]
 ```
 
+The other issue with the data is that it starts in the 18th century, but we might want to ignore early patchy data:
 
+```python
+df = df[df.year >= 1900]
+```
+
+We can check that it has worked:
+
+```python
+min(df.year)
+```
+
+## Exploring data
+
+To check what kind of data each column is stored as, we can use the `dtypes` attribute:
+
+```python
+df.dtypes
+```
+
+The `describe()` method is useful for descriptive statistics about our numerical columns:
+
+```python
+df.describe()
+```
+
+However, it will only show the two first ones and two last ones. We can focus on a specific column instead, for example a categorical column:
+
+```python
+df.country.describe()
+```
+
+Or one that was hidden previously:
+
+```python
+df.co2.describe()
+```
+
+Which country does this maximum value belong to? Let's investigate:
+
+```python
+df[df.co2 == max(df.co2)]
+```
+
+What is this "OWID_WRL" country? It is the whole world. Many datasets have aggregate regions on top of single countries, which is something to keep in mind!
+
+We can also find out that many rows do not have an ISO code at all, by using Spyder's data explorer, or by using two methods stringed together:
+
+```python
+df.iso_code.isna().sum()
+```
+
+`isna()` returns the boolean values `True` or `False` depending on if the data is missing, and the `sum()` method can give a total of `True`s (because it converts `True` to 1, and `False` to 0).
+
+Alternatively, pandas dataframes have a `count()` method to give a count of non-NA values for each column:
+
+```python
+df.count()
+```
+
+We can see that quite a few rows have missing ISO codes, which for the most part indicates an aggregate region. So how do we remove all that superfluous data? Again, by using a logical test:
+
+```python
+df = df[(df.iso_code != "OWID_WRL") & (df.iso_code.notna())]
+```
+
+We use two conditions at once:
+
+1. we want the ISO code to be _different_ to "OWID_WRL";
+1. we want the ISO code to not be a missing value, thanks to the `notna()` method (which does the opposite to `isna()`.
+
+By joining these two conditions with `&`, we only keep the rows that match _both conditions_.
 
 ## Visualising data
 
