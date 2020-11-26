@@ -26,7 +26,7 @@ However, we will be using Avenza today for its simplicity.
 
 We're going to explore a number of different online spatial data repositories.
 
-**DEM**
+### DEM
 
 A Digital Elevation Model (DEM) is a common example of **raster data**, i.e. grid data that contains a value in each cell (a bit like the pixels in a coloured picture).
 
@@ -43,7 +43,7 @@ For this tutorial, we are using a DEM sourced from **ELVIS** - Geoscience Austra
 * Enter your industry, email, tick the reCAPTCHA, and click "Start extract of datasets"
 * You should receive an email within 5 minutes, download the files from the link in the email, extract the folder to your project folder, and add them to your map.
 
-**Aerial Imagery**
+### Aerial Imagery
 
 There are a few places you can aquire aerial photography, today we will look at two sources, on is freely available Government Data from **QImagery**, the other is accessible from NearMap using your UQ credentials.
 
@@ -73,8 +73,7 @@ As a UQ student, you also have access to very high resoltuion imagery from **Nea
 * Click "Save"
 * Move the downloaded zip file to your project folder, and open them in QGIS
 
-**Lot Plans**
-
+### Lot Plans
 
 You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial 
 I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from cloudstor.
@@ -82,30 +81,45 @@ I will show you how to download the files, but the data is often quite large in 
 * To access data from QLD Spatial go to http://qldspatial.information.qld.gov.au/
 * Search for "property boundaries and select the "property boundaries Queensland" option.
 * You could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop here: https://cloudstor.aarnet.edu.au/plus/s/Mg7M6xYbtNYw3dd
+* Move the downloaded zip file to your project folder, and open the shapefile in QGIS
 
 ## Create a buffer to clip our data
 
-Go to `Vector > Geoprocessing Tools > Buffer`
-* Choose "UQ_Boundaries" as the Input Layer.
+We now want to only keep data that is relevant to the St Lucia campus. To achieve that, we need a mask to clip data.
+
+We first need to select the lots that are relevant by using the "Select Feature by area or single click" (in the toolbar), clicking on the lots one by one (or drawing a rectangle around them) with the Shift key pressed.
+
+We can now create a buffer:
+
+* Go to `Vector > Geoprocessing Tools > Buffer`
+* Choose "Brisbane_lot_plans" as the Input Layer, and tick the 
 * There are many settings we can change to edit the shape of the buffer, but let's leave most of these as the defaults for now.
 * We can choose the distance that we want to create a buffer away from our vector. You'll note that the distance is currently in degrees, as the layer projection is EPSG:4283 GDA94, a geographic coordinate system. This might cause issues.
 * If you click Run. Your buffer won't look very good. We need to convert our layer to a local projected coordinate system.
 
-Go to `Vector > Data Management Tools > Reproject Layer`
-* Choose "UQ_Boundaries" as the Input Layer.
+Let's reproject the layer for better results:
+
+* Go to `Vector > Data Management Tools > Reproject Layer`
+* Choose "Brisbane_lot_plans" as the Input Layer.
 * We want to choose a local projected coordinate system such as GDA94 / MGA zone 56 or GDA2020 / MGA zone 56. This will convert our measurements to metres instead of degrees, and by choosing an Australian projection, it reduces distortion.
 * Click "Run"
-* The new scratch layer will look the same, but it now has a different projection. Let's create that buffer again.
+* The new scratch layer will look the same, but it now has a different projection.
 
-Go to `Vector > Geoprocessing Tools > Buffer`
-* This time choose "Reprojected" as the Input Layer.
-* You'll notice the distance is now in metres. For this instance, I want a larger buffer of 50m.
-* If you click Run. Your buffer should be a good distance away from the orignal boundary.
-* Now we can Dissolve those layers together
-Go to `Vector > Geoprocessing Tools > Dissolve
+Let's create that buffer again.
+
+* Select the relevant lots
+* Go to `Vector > Geoprocessing Tools > Buffer`
+* This time choose "Reprojected" as the Input Layer, and tick "Selected features only"
+* You'll notice the distance is now in metres. For this instance, I want a larger buffer of 50 m.
+* When you click "Run", your buffer should be a good distance away from the original boundary.
+
+Now we can Dissolve those layers together:
+
+* Go to `Vector > Geoprocessing Tools > Dissolve
 * Choose "Buffered" as the Input Layer.
 * Let's save this one to file, rather than a temporary file. Click "..." next to "[Create Temporary Layer]", then "Save to file", and save it as something like **UQ Boundary** to your project folder.
-* **Note** the Buffer tool has a dissolve option, but it's important to know that there are many tools available.
+
+> **Note** the Buffer tool has a "dissolve" option, but it's important to know that there are many tools available.
 
 ## Build a virtual raster
 
@@ -115,7 +129,7 @@ To do that, we use the `Raster > Miscellaneous > Build Virtual Raster...` tool t
 
 * First, select all  DEM layers for the "Input layers"
 * Make sure you untick the option "Place each input file into a separate band", as we want to end up with one single-band layer
-* We can save the output on disk instead of only creating a temporary file (for example, name it `StLucia_DEM_merged` and save it inside your project directory)
+* We can save the output on disk instead of only creating a temporary file (for example, name it `St_Lucia_DEM_merged` and save it inside your project directory)
 * Click "Run"
 
 > You will need to have Saga installed for this to work.
@@ -126,8 +140,9 @@ We can now remove the original DEM raster files.
 
 We now use `Raster > Extraction > Clip Raster by Mask Layer` to **focus on our area of interest**.
 
-Make sure the virtual raster output DEM is selected in the Input layer, and set the Mask Layer to "UQ_Boundary"
-Scroll down to "Clipped (mask)" and click "..." next to [Create Temporary Layer]", then "Save to file", and save it as **St_Lucia_DEM** to your project folder.
+* Make sure the virtual raster output DEM is selected in the Input layer
+* Set the Mask Layer to "UQ_Boundary"
+* Scroll down to "Clipped (mask)" and click "..." next to [Create Temporary Layer]", then "Save to file", and save it as **St_Lucia_DEM** to your project folder.
 
 If you don't save to file directly, remember two things:
 
@@ -136,11 +151,20 @@ If you don't save to file directly, remember two things:
 
 ## Clip the Aerial Imagery
 
-We can repeat the same process as above to clip the Aerial Imagery, however due to the nature of the image from NearMaps, we need to convert it to a tif file before we can clip it.
-`Right Click the image layer > Export > Save as...`
-Ensure the Format is GeoTIFF
-Click '...' next to File name and name your layer "St_Lucia_Aerial"
+We can repeat the same process as above to clip the Aerial Imagery, however due to the nature of the image from NearMaps, we need to first convert it to a GeoTIFF file format before we can clip it:
 
+* `Right Click the image layer > Export > Save as...`
+* Ensure the Format is GeoTIFF
+* Click '...' next to File name and name your layer "St_Lucia_Aerial"
+
+Now, clip the converted aerial imagery:
+
+* Go to `Raster > Extraction > Clip Raster by Mask Layer`
+* Make sure St_Lucia_Aerial is selected in the Input layer
+* Set the Mask Layer to "UQ_Boundary"
+* Scroll down to "Clipped (mask)" and click "..." next to [Create Temporary Layer]", then "Save to file", and save it as **St_Lucia_Aerial_clipped** to your project folder.
+
+We can now clean up our project by removing the original and intermediate layers we won't need.
 
 ## Change the symbology
 
@@ -167,17 +191,18 @@ Adding a **contour** makes your elevation even more evident and can also be used
 
 * Go to  `Raster > Extraction > Contour...`.
 * Ensure the Input Layer is your clipped DEM "St_Lucia_DEM"
-* For **Interval between contour lines**, the default is 10m, which won't be greatly noticable at UQ where the highest point is 25m. However, the finer the contour lines, the longer it will take to process. I will choose 5m.
+* For **Interval between contour lines**, the default is 10 m, which won't be greatly noticeable at UQ where the highest point is 25 m. However, the finer the contour lines, the longer it will take to process. I will choose 5 m.
 * Scroll down to "Contours" and click "..." next to [Create Temporary Layer]", then "Save to file", and save it as **St_Lucia_Contours_5m** to your project folder.
 * Click Run
 
-## Exporting to Anveza Maps
+## Exporting to Avenza Maps
 
 Click on `Show Layout Manager` in the toolbar. `Create` a new layout called "Avenza". We can now see the Layout window.
 
-Normally we would add many elements to our layout if we were exporting it for print such as the map, a legend, a scale bar, a north arrow... 
+Normally we would add many elements to our layout if we were exporting it for print such as the map, a legend, a scale bar, a north arrow...
 
-In this case however, we are simply interested in our map. Add the map to the canvas.
+In this case however, we are simply interested in our map. Let's add the map to the canvas:
+
 * Go to the Layout tab, scroll down to 'Resize Layour to Content', click 'Resize layout'
 * Before we export, let's turn off any layers we aren't using in QGIS to save space
 * Click the Refresh View button up the top
@@ -200,7 +225,7 @@ When you first open Avenza Maps it will ask you to create an account, but you ca
 * Once it has been imported, tap on the map.
 * You can now move the map around with your finger, and pinching to zoom.
 * Tapping the placemark icon in the bottom left will add a placemark in the middle of the crosshairs.
-* Tapping the 3 dots in the bottom right will allow you to add gps tracking and draw and measure distances.
+* Tapping the 3 dots in the bottom right will allow you to add GPS tracking and draw and measure distances.
 
 ## Exporting to QField
 If we have time I'll talk briefly about QField as well.
