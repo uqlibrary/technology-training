@@ -1,7 +1,7 @@
 R reproducible reports with R Markdown and knitr
 ================
 Stéphane Guillou
-2020-06-23
+2020-11-30
 
 > This document is redacted in R Markdown; the source file is available
 > here:
@@ -149,7 +149,7 @@ ghg
 ```
 
     ## # A tibble: 28 x 8
-    ##     year `Agriculture, F… `Forestry - Cha… Mining Manufacturing `Electricity, G…
+    ##     year `Agriculture, F~ `Forestry - Cha~ Mining Manufacturing `Electricity, G~
     ##    <dbl>            <dbl>            <dbl>  <dbl>         <dbl>            <dbl>
     ##  1  1990             286.            -19.1   44.6          68.0             148.
     ##  2  1991             266.            -14.8   46.1          67.9             150.
@@ -161,7 +161,7 @@ ghg
     ##  8  1997             156.            -22.6   54.4          66.9             166.
     ##  9  1998             140.            -22.5   55.4          67.5             178.
     ## 10  1999             151.            -22.0   53.0          68.8             184.
-    ## # … with 18 more rows, and 2 more variables: `Services, Construction and
+    ## # ... with 18 more rows, and 2 more variables: `Services, Construction and
     ## #   Transport` <dbl>, Residential <dbl>
 
 ### Working directory
@@ -290,10 +290,31 @@ ggplotly(p)
 This will work in a HTML document, but will most likely fail in other
 output formats.
 
-To change the width of all our figures, we can use this is the setup
-chunk, that contains the `{r setup, include=FALSE}` header:
+If you want to change the size of your visualisations, you can tweak the
+width and height with chunk options. However, you make that consistent
+for all your figures, by using an extra default option in the setup
+chunk (the one that contains the `{r setup, include=FALSE}` header, at
+the top of the document). For example:
 
-    knitr::opts_chunk$set(fig.width = 5)
+    knitr::opts_chunk$set(fig.width = 8)
+
+## Update the report
+
+We have an updated version of the dataset. The only thing we need to do
+to update the whole report is point the data import code to the new
+file, at the top of our document, changing the year to “2018”:
+
+``` r
+ghg <- read_csv("https://gitlab.com/stragu/DSH/-/raw/master/R/reports/aus_ghg_2018.csv")
+```
+
+Knitting again will update all the objects and visualisations for us\!
+This is the power of reproducible reports in R.
+
+With reporducible reports, you can potentially structure and write (most
+of) a report even before you have your research project’s final dataset.
+(Well, at least the data analysis part, maybe not so much the
+conclusions\!)
 
 ## Output formats
 

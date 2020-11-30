@@ -107,6 +107,7 @@ Inside a new chunk, add some code to import the dataset located [here](https://g
 ```{r import, message=FALSE, warning=FALSE}
 ghg <- read_csv("https://gitlab.com/stragu/DSH/-/raw/master/R/reports/aus_ghg_2017.csv")
 ```
+
 > Clicking "Knit" will automatically save your .Rmd file as well as the HTML output.
 
 Now, we can add a chunk to show the data, by including this code in it:
@@ -217,11 +218,23 @@ ggplotly(p)
 
 This will work in a HTML document, but will most likely fail in other output formats.
 
-To change the width of all our figures, we can use this is the setup chunk, that contains the `{r setup, include=FALSE}` header:
+If you want to change the size of your visualisations, you can tweak the width and height with chunk options. However, you make that consistent for all your figures, by using an extra default option in the setup chunk (the one that contains the `{r setup, include=FALSE}` header, at the top of the document). For example:
 
 ```
-knitr::opts_chunk$set(fig.width = 5)
+knitr::opts_chunk$set(fig.width = 8)
 ```
+
+## Update the report
+
+We have an updated version of the dataset. The only thing we need to do to update the whole report is point the data import code to the new file, at the top of our document, changing the year to "2018":
+
+```{r import_new, echo=TRUE, eval=FALSE}
+ghg <- read_csv("https://gitlab.com/stragu/DSH/-/raw/master/R/reports/aus_ghg_2018.csv")
+```
+
+Knitting again will update all the objects and visualisations for us! This is the power of reproducible reports in R.
+
+With reporducible reports, you can potentially structure and write (most of) a report even before you have your research project's final dataset. (Well, at least the data analysis part, maybe not so much the conclusions!)
 
 ## Output formats
 
