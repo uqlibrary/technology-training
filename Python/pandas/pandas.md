@@ -52,7 +52,7 @@ It is available under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) li
 
 More information about the dataset is included on [this page](https://github.com/owid/co2-data), and the codebook, which is important to understand what exactly are the variables in the dataset, is available here: https://github.com/owid/co2-data/blob/master/owid-co2-codebook.csv
 
-We can import it directly with pandas, without:
+We can import it directly with pandas, with:
 
 ```python
 df_raw = pd.read_csv("https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv")
@@ -227,7 +227,7 @@ The SPI dataset also has a three-letter code for the countries, which we can mat
 
 ```python
 # read the data
-spi = pd.read_csv("https://gitlab.com/stragu/DSH/-/raw/master/Python/pandas/spi.csv")
+spi = pd.read_csv("https://gist.githubusercontent.com/stragu/57b0a0750678bada09625d429a0f806b/raw/a18a454d7d225bd24074399a7ab79a4189e53501/spi.csv")
 # merge on two columns
 df_all = pd.merge(df, spi,
                   left_on = ["iso_code", "year"],
