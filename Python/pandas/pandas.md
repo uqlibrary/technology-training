@@ -1,10 +1,10 @@
-# Python data transformation with pandas
+# Python data transformation and visualisation with pandas
 
 This hands-on course – directed at intermediate users – looks at using the **pandas** module to transform and visualise tabular data.
 
 ## Setup
 
-The easiest way to use Python 3, pandas and Spyder is to install the Anaconda Distribution, a data science platform for Windows, Linux and Mac OS X. Make sure you download the Individual Edition with Python 3: https://www.anaconda.com/products/individual
+The easiest way to use Python 3, pandas and Spyder is to install the Anaconda Distribution, a data science platform for Windows, Linux and macOS. Make sure you download the Individual Edition with Python 3: https://www.anaconda.com/products/individual
 
 Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a terminal on Linux), and launch Spyder.
 
@@ -46,7 +46,7 @@ import pandas as pd
 
 ## Importing data
 
-Our data is a CO2 emission dataset from Our World in Data: https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv
+Our data is a CO<sub>2</sub> emission dataset from Our World in Data: https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv
 
 It is available under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) licence, an open licence that requires that any sharing or derivative of it needs to attribute the original source and authors.
 
@@ -89,7 +89,7 @@ We want to keep 8 columns:
 * `year`
 * `population`
 * `gdp`
-* The three main greenhouse gases, which according to the codebook are all in million tonnes of CO2-equivalent:
+* The three main greenhouse gases, which according to the codebook are all in million tonnes of CO<sub>2</sub>-equivalent:
     * `co2`
     * `methane`
     * `nitrous_oxide`
@@ -113,10 +113,19 @@ We can check that it has worked:
 min(df.year)
 ```
 
-It looks like the dataset is also consistently missing values for nitrous oxide and methane for the two last years, so let's remove those:
+It looks like the dataset is also consistently missing values for nitrous oxide and methane for the two last years.
+
+### Challenge 1: remove recent patchy years
+
+How can you remove the patchy years 2017 and 2018? Design an operation that is similar to removing the pre-1900 data.
+
+Can you add a second command to check it has done the right thing?
+
+Solution:
 
 ```python
 df = df[df.year < 2017]
+max(df.year)
 ```
 
 ## Exploring data
@@ -133,19 +142,21 @@ The `describe()` method is useful for descriptive statistics about our numerical
 df.describe()
 ```
 
-However, it will only show the two first ones and two last ones. We can focus on a specific column instead, for example a categorical column:
-
-```python
-df.country.describe()
-```
-
-Or one that was hidden previously:
+However, it will only show the two first ones and two last ones. We can focus on a specific column instead, for example one that was hidden previously:
 
 ```python
 df.co2.describe()
 ```
 
-## Subsetting
+Or a categorical column:
+
+```python
+df.country.describe()
+```
+
+> For a categorical column, the information shown is different: for example, how many unique values there are, and what the most common value is.
+
+## More cleaning up
 
 Which country does this maximum value belong to? Let's investigate by subsetting the data:
 
@@ -165,6 +176,12 @@ df.iso_code.isna().sum()
 
 `isna()` returns the boolean values `True` or `False` depending on if the data is missing, and the `sum()` method can give a total of `True`s (because it converts `True` to 1, and `False` to 0).
 
+Similarly, we can average boolean values to find the fraction of missing data:
+
+```python
+df.iso_code.isna().mean()
+```
+
 Alternatively, pandas dataframes have a `count()` method to give a count of non-NA values for each column:
 
 ```python
@@ -182,31 +199,42 @@ df = df[(df.iso_code != "OWID_WRL") & (df.iso_code.notna())]
 We use two conditions at once:
 
 1. we want the ISO code to be _different_ to "OWID_WRL";
-1. we want the ISO code to not be a missing value, thanks to the `notna()` method (which does the opposite to `isna()`.
+1. we want the ISO code to _not_ be a missing value, thanks to the `notna()` method (which does the opposite to `isna()`).
 
 By joining these two conditions with `&`, we only keep the rows that match _both conditions_.
+
+We can now check what actual countries are left in the dataset, with the `unique()` method:
+
+```python
+df.country.unique()
+```
 
 ## Adding columns
 
 Now that we have a clean dataset, we can expand it by calculating new interesting variables.
 
-For example, we can first sum the three greenhouse gases (as they use the same unit), and finally calculate how much CO2e is emitted per capita.
+For example, we can first sum the three greenhouse gases (as they use the same unit), and finally calculate how much CO<sub>2</sub>-equivalent is emitted per capita.
 
-For the total greenhouse gaz emissions in CO2e:
+For the total greenhouse gaz emissions in CO<sub>2</sub>e:
 
 ```python
 df["co2e"] = df[["co2", "methane", "nitrous_oxide"]].sum(axis=1)
 ```
 
-The operation is done row-wise. We use `axis=1` to specify that we apply the function in the column axis.
+The operation is done row-wise: we use `axis=1` to specify that we apply the function in the column axis.
 
-You can confirm by looking at the data that the NA values are skipped. The help page for this method mentions the `skipna` argument, which is set to `True` by default:
+You can confirm by looking at the data that the NA values are skipped when calculating the sum. The help page for this method mentions the `skipna` argument, which is set to `True` by default:
 
 ```python
-pd.DataFrame.sum?
+df.sum?
 ```
 
-And then, for the CO2e per capita and the GDP per capita:
+```
+skipna : bool, default True
+    Exclude NA/null values when computing the result.
+```
+
+And then, for the CO<sub>2</sub>e per capita and the GDP per capita:
 
 ```python
 df["co2e_pc"] = df.co2e / df.population
@@ -240,7 +268,7 @@ We specified the two data frames, and which columns we wanted to merge on. Howev
 pd.merge?
 ```
 
-The `how` argument defines which kind of merge we want to do. Be cause we want to keep all of the data from `df`, we want to do a "left merge":
+The `how` argument defines which kind of merge we want to do. Because we want to keep all of the data from `df`, we want to do a "left merge":
 
 ```python
 df_all = pd.merge(df, spi,
@@ -259,24 +287,34 @@ df_all.pop("country_code")
 
 ## Summaries
 
-The `aggregate()` method, which has a shorter alis `agg()`, allows creating summaries by applying a function to a column. In combination with the `groupby()` method, we can create summary tables. For example, to find the average SPI for each country, and then sort the values in descending order:
+The `aggregate()` method, which has a shorter alias `agg()`, allows creating summaries by applying a function to a column. In combination with the `groupby()` method, we can create summary tables. For example, to find the average SPI for each country, and then sort the values in descending order:
 
 ```python
 df_all.groupby("country").spi.agg("mean").sort_values(ascending = False)
 ```
+
+If you want to export that summary table and use it outside Spyder, you can first save it as a variable, and then write it to a CSV file:
+
+```python
+spi_sum = df_all.groupby("country").spi.agg("mean").sort_values(ascending = False)
+# write to file
+spi_sum.to_csv("spi_summary.csv")
+```
+
+> The CSV file should be found in your project directory, as it became the default working directory when we created the project.
 
 
 ## Visualising data
 
 pandas integrates visualisation tools, thanks to the `plot()` method and its many arguments.
 
-For example, to visualise the relationship between CO2e per capita and SPI:
+For example, to visualise the relationship between CO<sub>2</sub>e per capita and SPI:
 
 ```python
 df_all.plot(x = "co2e_pc", y = "spi")
 ```
 
-The default kind of plot is a line plot, so let's change that:
+The default kind of plot is a line plot, so let's change that to a scatterplot:
 
 ```python
 df_all.plot(x = "co2e_pc", y = "spi", kind = "scatter")
@@ -290,7 +328,7 @@ df_all[df_all.year == 2016].plot(x = "co2e_pc",
                                  kind = "scatter")
 ```
 
-To add a third variable, mapped to the colour:
+To visualise a third variable, GDP per capite, let's map it to the colour of the points, thanks to the `c` argument:
 
 ```python
 df_all[df_all.year == 2016].plot(x = "co2e_pc",
