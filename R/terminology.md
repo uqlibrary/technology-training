@@ -30,6 +30,7 @@ This resource was created because an equivalent could not be found online (to th
 * **Script**: a text file that contains R code. Useful to store a series of command, document the code with comments, and share it with others. An essential part of making you work reproducible.
 * **Session**: every time you open R or RStudio, you start a fresh R session, i.e. there is no inputs and outputs in your console (and your environment is empty, unless you make use of an RData file).
 * **Source** panel: in RStudio, the panel where we edit scripts, but also where the viewer lets us explore data frames. "Sourcing" a script means importing all the objects and functions defined inside it.
+* **Tidyverse**: if R is a _language_, the [Tidyverse](https://www.tidyverse.org/) is the most popular of its _dialects_. It is a cohesive group of data science packages that share a data structure, a design philosophy and a grammar. Many people will directly load the Tidyverse as soon as they start writing an R script (but you can pick and choose which packages you need too).
 * **Vector**: most often used to refer to an object that contains several values (i.e an object of one dimension, as it has a length greater than 1).
 * **Variable**: in R, "variable" most often means "a column in a data frame" (but some people might use it to mean "object").
 * **Warning**: not as bad as an error. Usually something important to take note of, but that doesn't mean running the code failed.
