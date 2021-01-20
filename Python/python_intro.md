@@ -180,7 +180,7 @@ myArray * 2
 
 ```python
 import pandas as pd
-df = pd.DataFrame(columns = ("Name", "Age"))
+df = pd.DataFrame(columns = ["Name", "Age"])
 # populate the dataframe:
 df.loc[1] = "Josephine", 70
 df.loc[2] = "Dilsah", 38
@@ -244,10 +244,26 @@ To execute something from the script (the current line, or a selected block), us
 
 ### Import data
 
-It is possible to **read a CSV file with a `pandas` function**:
+It is possible to **read a CSV file with a `pandas` function**.
+
+#### Challenge 1: Import data
+
+Have a look at the documentation for the `read_csv()` function:
 
 ```python
 import pandas as pd
+pd.read_csv?
+```
+
+How could you use it to store the following dataset into a variable?
+
+https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv
+
+#### Solution
+
+We have to create a variable, and store the output of the function inside it. No need to download the file first: `read_csv()` can read from a URL!
+
+```python
 data = pd.read_csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
 
@@ -290,11 +306,26 @@ import matplotlib.pyplot as plt
 plt.plot(data.gdpPercap, data.lifeExp, "go")
 ```
 
-Now, let's reuse that processed data to visualise the mean life expectancy over the years:
+The default circles are quite big, so let's reduce their size:
 
 ```python
-plt.plot(data.groupby(by = "year").mean().lifeExp)
+plt.plot(data.gdpPercap, data.lifeExp, "go", markersize = 1)
 ```
+
+#### Challenge 2: Visualise mean life expectancy over the years
+
+1. How can we reuse previous code to visualise how mean life expectancy evolved over the years?
+1. Try changing the look of the plot to a magenta dotted line.
+
+#### Solution
+
+We can reuse the same summary as before, but adding the attribute of the right column we are interested in:
+
+```python
+plt.plot(data.groupby(by = "year").mean().lifeExp, "m:")
+```
+
+#### Saving plots
 
 You can save you plots as PNG by right-clicking on them. To save automatically with some code, you can add the following line:
 
