@@ -34,14 +34,14 @@ If you downloaded the archive, make sure you place it into the project directory
 
 See the visible line between the two raster tiles? That is because the two separate raster files have different maximum and minimum values, so use different shades for different elevations. We have to **merge** them to make sure they use the same colour scale.
 
-To do that, we use the `Raster > Miscellaneous > Build Virtual Raster...` tool to create one single layer from them.
+To do that, we use the `Raster > Miscellaneous > Merge...` tool to create one single layer from them.
 
 * First, select both DEM layers for the "Input layers"
-* Make sure you untick the option "Place each input file into a separate band", as we want to end up with one single-band layer
+* Make sure the option "Place each input file into a separate band" is off, as we want to end up with one single-band layer
 * We can save the output on disk instead of only creating a temporary file (for example, name it `SRTM_DEM_merged` and save it inside your project directory)
 * Click "Run"
 
-> You will need to have Saga installed for this to work.
+> You will need to have GDAL installed for this to work.
 
 We can now remove the two original raster files.
 
