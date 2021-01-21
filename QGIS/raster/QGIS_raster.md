@@ -28,7 +28,7 @@ Our area covers two separate raster files. We can click on the foot icon to see 
 
 Use the download button to download each file into your project directory. You will need a login for that, which is free but can take a bit of time. You can instead **download the two raster files** as an archive from [here](https://cloudstor.aarnet.edu.au/plus/s/US2uOtwTu78Gpxq).
 
-## Build a virtual raster
+## Merge the two DEM layers
 
 If you downloaded the archive, make sure you place it into the project directory so you can find it in "Project Home" and easily **load the raster files**: from the Browser panel, we can go into the data archive and drag and drop each `.tif` file into the Layers panel.
 
@@ -89,7 +89,7 @@ Look at the result. It seems there is an issue with our data. A common problem w
 
 We can use the "Fill sinks (Wang & Liu)" tool to **fill the sinks** in our clipped DEM.
 
-* When we do that, we might have to play with the "Minimum slope" value, to make sure that all streams feed into a bigger stream. Try 5 degrees, for example.
+* When we do that, we have to play with the "Minimum slope" value, to make sure that all streams feed into a bigger stream. Try 5 degrees, for example.
 * As an output, we only need to tick the "Filled DEM" (first one in the list), which we can also save to file. You can however keep the "Watershed Basins" output to check that your minimum slope is high enough.
 
 If we **re-run the Strahler order tool** on the filled DEM, we will be able to see more useful data.
@@ -107,17 +107,16 @@ Another analysis we can do is use the "Channel network and drainage basins" tool
 
 As an output, we only want to load (and save to file):
 
-* Flow Direction (raster)
 * Channels (shapefile)
 * Drainage basins (shapefile) (to differentiate the two "Drainage basins" options, you can check what format it saves the file as)
 
 This is an example of **creating vector data from raster data**!
 
-We can now play with the symbology for those elements. For example, try using different colours for each basin, by classifying by ID.
+We can now play with the symbology for those elements. For example, try using different colours for each basin, by classifying by ID, or make the fill transparent so you can see the colours of the layer underneath. You can also make the borders more obvious, and change the colour and thickness of the channels.
 
 ## 3D maps
 
-A 3D viewer are integrated in QGIS: `View > New 3D Map View`
+A 3D viewer is integrated in QGIS: `View > New 3D Map View`
 
 In the 3D map window, make sure to first:
 
@@ -127,6 +126,12 @@ In the 3D map window, make sure to first:
 To see the 3D effect, you will have to use your <kbd>Ctrl</kbd> on your keyboard to change the angle of view.
 
 > A useful plugin for 3D maps is qgis2threeJS, which might be handy to add a 3D map to a website.
+
+## Exporting
+
+Use the Layout Manager to create a new layout, and insert both a 2D map and a 3D map.
+
+When inserting the 3D map, it will tell you that the "scene is not set". You will have to import the 3D scene settings from your view: Item Properties > Scene Settings > Copy Scene Settings from a 3D View...
 
 ## Saving your project
 
