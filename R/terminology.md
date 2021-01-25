@@ -17,6 +17,7 @@ This resource was created because an equivalent could not be found online (to th
 * **Error**: something went terribly wrong, and R can't finish running the code. The code most likely needs fixing.
 * **Executing**: executing (or "evaluating" or "running") a command means asking R to follow the instructions (i.e. the code) we wrote (and potentially give us an output if one is expected). In RStudio, you can execute commands from the script with <kbd>Ctrl</kbd> + <kbd>Enter</kbd>, but <kbd>Enter</kbd> is enough in the console.
 * **Function**: a small program that has a name directly followed by parentheses, e.g. `mean()` or `read.csv()`. Between the parentheses, we can specify arguments to tell the function what to do.
+* **GitHub** (and Gitlab): an online platform used to share and collaborate on code. It relies on a tool called "git", used for versioning of the code. Many packages are on GitHub but not on CRAN.
 * **Indexing**: a way to pick parts of an object that has several elements. Usually done between square brackets, and with numbers that specify the position of the elements, e.g. `my_object[5]`.
 * **Library**: _see "Package"_
 * **List**: a kind of object that is very flexible. It can contain different kinds of data, of different sizes, as nested as you wish.
@@ -27,6 +28,7 @@ This resource was created because an equivalent could not be found online (to th
 * **Pipe**: an operator useful to use the output of a command as the input of another. Often makes code more readable. Introduced to R with the magrittr package, in the form `%>%`, but will soon be part of base R in the form `|>`. Replace it by the word "then" if you want to read your code like a sentence!
 * **Project** (or "R Project"): when using RStudio, a way to specify a default location where your work will happen. Ideal to keep a data analysis project nicely contained, without having to deal with telling R where things are. Makes your life easier, and your computer tidy!
 * **RData**: a file format to save your functions and objects in between sessions (which is _not_ something you should do, unless you have a strong reason to! You are better off running your script every time you open your project.)
+* **RStudio**: a program that makes it easier to use R, and adds many helpful tools on top of it. The most popular of its kind for writing R code. (Also the company that provides it and other tools.)
 * **Running**: _see "Executing"_
 * **Script**: a text file that contains R code. Useful to store a series of commands, document the code with comments, and share it with others. An essential part of making you work reproducible.
 * **Session**: every time you open R or RStudio, you start a fresh R session, i.e. there is no inputs and outputs in your console (and your environment is empty, unless you make use of an RData file).
@@ -34,4 +36,5 @@ This resource was created because an equivalent could not be found online (to th
 * **Tidyverse**: if R is a _language_, the [Tidyverse](https://www.tidyverse.org/) is the most popular of its _dialects_. It is a cohesive group of data science packages that share a data structure, a design philosophy and a grammar. Many people will directly load the Tidyverse as soon as they start writing an R script (but you can also pick and choose which packages you need).
 * **Vector**: most often used to refer to an object that contains several values (i.e an object of one dimension, as it has a length greater than 1).
 * **Variable**: in R, "variable" most often means "a column in a data frame" (but some people might use it to mean "object").
+* **Vignette**: an extra piece of documentation that reads more like a story, and describes a process. Great to learn how to use a package!
 * **Warning**: not as bad as an error. Usually something important to take note of, but that doesn't mean running the code failed.
