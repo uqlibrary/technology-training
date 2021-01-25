@@ -1,6 +1,6 @@
 # Main terms and concepts in R
 
-This is a list of main terms and concepts used when introducing the R programming language. It is not meant to be a comprehensive and precise language definition, far from it. The idea is to provide a quick reference card of short definitions useful when being introduced to the world of R, without the unnecessary details that might scare people off.
+This is a list of main terms and concepts used when introducing the R programming language. It is _not_ meant to be a comprehensive and precise language definition, far from it. The idea is to provide a **quick reference card of short definitions useful when being introduced to the world of R**, without the unnecessary details that might scare people off.
 
 This resource was created because an equivalent could not be found online (to the surprise of the author).
 
@@ -24,13 +24,14 @@ This resource was created because an equivalent could not be found online (to th
 * **Object**: also called a "variable" in other languages, this is what you create to store information (and what you see in your Environment tab).
 * **Operator**: a special (sequence of) characters that means something special to R (e.g `+` for adding up, or `<-` for assigning).
 * **Package**: an extension that you can install to give your R installation extra functionalities; a way to share functions (and datasets) with others. You need to load them with `library()` in order to use their functions. Packages usually introduce new functions to do specific jobs, like deal with particular datasets, provide extra statistical methods, make a task easier, or introduce a new kind of visualisation... Some people call them "libraries".
+* **Pipe**: an operator useful to use the output of a command as the input of another. Often makes code more readable. Introduced to R with the magrittr package, in the form `%>%`, but will soon be part of base R in the form `|>`. Replace it by the word "then" if you want to read your code like a sentence!
 * **Project** (or "R Project"): when using RStudio, a way to specify a default location where your work will happen. Ideal to keep a data analysis project nicely contained, without having to deal with telling R where things are. Makes your life easier, and your computer tidy!
-* **RData**: a file format to save your functions and objects in between sessions.
+* **RData**: a file format to save your functions and objects in between sessions (which is _not_ something you should do, unless you have a strong reason to! You are better off running your script every time you open your project.)
 * **Running**: _see "Executing"_
-* **Script**: a text file that contains R code. Useful to store a series of command, document the code with comments, and share it with others. An essential part of making you work reproducible.
+* **Script**: a text file that contains R code. Useful to store a series of commands, document the code with comments, and share it with others. An essential part of making you work reproducible.
 * **Session**: every time you open R or RStudio, you start a fresh R session, i.e. there is no inputs and outputs in your console (and your environment is empty, unless you make use of an RData file).
 * **Source** panel: in RStudio, the panel where we edit scripts, but also where the viewer lets us explore data frames. "Sourcing" a script means importing all the objects and functions defined inside it.
-* **Tidyverse**: if R is a _language_, the [Tidyverse](https://www.tidyverse.org/) is the most popular of its _dialects_. It is a cohesive group of data science packages that share a data structure, a design philosophy and a grammar. Many people will directly load the Tidyverse as soon as they start writing an R script (but you can pick and choose which packages you need too).
+* **Tidyverse**: if R is a _language_, the [Tidyverse](https://www.tidyverse.org/) is the most popular of its _dialects_. It is a cohesive group of data science packages that share a data structure, a design philosophy and a grammar. Many people will directly load the Tidyverse as soon as they start writing an R script (but you can also pick and choose which packages you need).
 * **Vector**: most often used to refer to an object that contains several values (i.e an object of one dimension, as it has a length greater than 1).
 * **Variable**: in R, "variable" most often means "a column in a data frame" (but some people might use it to mean "object").
 * **Warning**: not as bad as an error. Usually something important to take note of, but that doesn't mean running the code failed.
