@@ -11,9 +11,9 @@ If you want to review the installation instructions: https://gitlab.com/stragu/D
 
 ## R + RStudio
 
-RStudio is an open source IDE (Integrated Development Interface) for the R programming language.
+The [R programming language](https://cran.r-project.org/) is a language used for calculations, statistics, visualisations and many more data science tasks.
 
-We can use R for calculations, statistics and visualisations.
+[RStudio](https://rstudio.com/products/rstudio/) is an open source Integrated Development Environment (IDE) for R, which means it provides many features on top of R to make it easier to write and run code.
 
 R's main strong points are:
 
@@ -62,25 +62,26 @@ Let's first create a new project:
 * Click the "File" menu button (top left corner), then "New Project"
 * Click "New Directory"
 * Click "New Project"
-* In "Directory name", type the name of your project, e.g. "rstudio_intro" (Browse and select a folder where to locate your project, if you want to keep them all in one spot. For example, a folder called "r_projects".)
+* In "Directory name", type the name of your project, for example "YYYY-MM-DD_rstudio-intro"
+* Browse and select a folder where to locate your project (`~` is your home directory). For example, a folder called "r-projects".
 * Click the "Create Project" button
 
 > R Projects make your work with R more straight forward, as they allow you to segregate your different projects in separate folders. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. Everything then happens by default in this directory. The .Rproj file stores information about your project options, and allows you to go straight back to your work.
 
 ### Maths and objects
 
-In the **console**, we can use R interactively. We write a **command** and then **execute** it by pressing <kbd>Enter</kbd>.
+The **console** (usually at the bottom right in RStudio) is where most of the action happens. In the console, we can use R interactively. We write a **command** and then **execute** it by pressing <kbd>Enter</kbd>.
 
 In its most basic use, R can be a calculator. Try executing the following commands:
 
 ```{r}
 10 - 2
 3 * 4
-10 / 2 + 5
+2 + 10 / 5
 11^6
 ```
 
-Those symbols are binary operators, which we can use to multiply, divide, add, substract and exponentiate. Once we execute the command (the "input"), we can see the result in the console (the "output").
+Those symbols are called "binary operators": we can use them to multiply, divide, add, subtract and exponentiate. Once we execute the command (the "input"), we can see the result in the console (the "output").
 
 What if we want to keep reusing the same value? We can store data by creating **objects**, and assigning values to them with the **assignment operator** `<-`:
 
@@ -88,25 +89,30 @@ What if we want to keep reusing the same value? We can store data by creating **
 num1 <- 42
 num2 <- num1 / 9
 num2
+```
+
+We can also store text data:
+
+```{r}
 sentence <- "Hello World!"
 sentence
 ```
 
 You should now see your objects listed in you **environment pane** (top right).
 
-As you can see, you can store different kinds of data as objects. If you want to store a string of characters, you have to use quotes around them.
+As you can see, you can store different kinds of data as objects. If you want to store text data (a "string of characters"), you have to use quotes around them.
 
 > You can use the shortcut <kbd>Alt</kbd>+<kbd>-</kbd> to type the assignement operator quicker.
 
 ### Using functions
 
-An R function usually looks like this:
+An R **function** usually looks like this:
 
 ```
 <functionname>(<argument(s)>)
 ```
 
-Some functions don't need arguments, others need one or several, but they always need the parentheses after their name.
+**Arguments** tell the function what to do. Some functions don't need arguments, others need one or several, but they always need the parentheses after their name.
 
 For example, try running the following command:
 
@@ -114,18 +120,20 @@ For example, try running the following command:
 class(num1)
 ```
 
-The `class()` function tells us what class of data we are dealing with. Here, we use provide the object `num1` as the first and only argument.
+The `class()` function tells us what class of data we are dealing with. Here, we use the object `num1` as the first and only argument.
+
+> If you scroll back to the top of your console, you will now be able to spot functions in the text.
 
 #### Help
 
 What if we want to learn more about a function?
 
-There are two main ways to find help about a function in RStudio:
+There are two main ways to find **help** about a specific function in RStudio:
 
 1. the shortcut command: `?functionname`
 1. the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a function name
 
-Let's look through the help page for the `class()` function:
+Let's look through the documentation for the `class()` function:
 
 ```r
 ?class
