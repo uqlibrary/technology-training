@@ -1,7 +1,7 @@
 R with RStudio: getting started
 ================
 Stéphane Guillou
-2019-07-22
+2021-01-28
 
 > These notes are available on GitLab:
 > <https://gitlab.com/stragu/DSH/blob/master/R/rstudio_intro/rstudio_intro.md>
@@ -11,10 +11,13 @@ If you want to review the installation instructions:
 
 ## R + RStudio
 
-RStudio is an open source IDE (Integrated Development Interface) for the
-R programming language.
+The [R programming language](https://cran.r-project.org/) is a language
+used for calculations, statistics, visualisations and many more data
+science tasks.
 
-We can use R for calculations, statistics and visualisations.
+[RStudio](https://rstudio.com/products/rstudio/) is an open source
+Integrated Development Environment (IDE) for R, which means it provides
+many features on top of R to make it easier to write and run code.
 
 R’s main strong points are:
 
@@ -69,10 +72,10 @@ Let’s first create a new project:
   - Click the “File” menu button (top left corner), then “New Project”
   - Click “New Directory”
   - Click “New Project”
-  - In “Directory name”, type the name of your project, e.g.
-    “rstudio\_intro” (Browse and select a folder where to locate your
-    project, if you want to keep them all in one spot. For example, a
-    folder called “r\_projects”.)
+  - In “Directory name”, type the name of your project, for example
+    “YYYY-MM-DD\_rstudio-intro”
+  - Browse and select a folder where to locate your project (`~` is your
+    home directory). For example, a folder called “r-projects”.
   - Click the “Create Project” button
 
 > R Projects make your work with R more straight forward, as they allow
@@ -84,8 +87,10 @@ Let’s first create a new project:
 
 ### Maths and objects
 
-In the **console**, we can use R interactively. We write a **command**
-and then **execute** it by pressing <kbd>Enter</kbd>.
+The **console** (usually at the bottom right in RStudio) is where most
+of the action happens. In the console, we can use R interactively. We
+write a **command** and then **execute** it by pressing
+<kbd>Enter</kbd>.
 
 In its most basic use, R can be a calculator. Try executing the
 following commands:
@@ -103,10 +108,10 @@ following commands:
     ## [1] 12
 
 ``` r
-10 / 2 + 5
+2 + 10 / 5
 ```
 
-    ## [1] 10
+    ## [1] 4
 
 ``` r
 11^6
@@ -114,9 +119,10 @@ following commands:
 
     ## [1] 1771561
 
-Those symbols are binary operators, which we can use to multiply,
-divide, add, substract and exponentiate. Once we execute the command
-(the “input”), we can see the result in the console (the “output”).
+Those symbols are called “binary operators”: we can use them to
+multiply, divide, add, subtract and exponentiate. Once we execute the
+command (the “input”), we can see the result in the console (the
+“output”).
 
 What if we want to keep reusing the same value? We can store data by
 creating **objects**, and assigning values to them with the **assignment
@@ -130,6 +136,8 @@ num2
 
     ## [1] 4.666667
 
+We can also store text data:
+
 ``` r
 sentence <- "Hello World!"
 sentence
@@ -141,20 +149,21 @@ You should now see your objects listed in you **environment pane** (top
 right).
 
 As you can see, you can store different kinds of data as objects. If you
-want to store a string of characters, you have to use quotes around
-them.
+want to store text data (a “string of characters”), you have to use
+quotes around them.
 
 > You can use the shortcut <kbd>Alt</kbd>+<kbd>-</kbd> to type the
 > assignement operator quicker.
 
 ### Using functions
 
-An R function usually looks like this:
+An R **function** usually looks like this:
 
     <functionname>(<argument(s)>)
 
-Some functions don’t need arguments, others need one or several, but
-they always need the parentheses after their name.
+**Arguments** tell the function what to do. Some functions don’t need
+arguments, others need one or several, but they always need the
+parentheses after their name.
 
 For example, try running the following command:
 
@@ -165,19 +174,23 @@ class(num1)
     ## [1] "numeric"
 
 The `class()` function tells us what class of data we are dealing with.
-Here, we use provide the object `num1` as the first and only argument.
+Here, we use the object `num1` as the first and only argument.
+
+> If you scroll back to the top of your console, you will now be able to
+> spot functions in the text.
 
 #### Help
 
 What if we want to learn more about a function?
 
-There are two main ways to find help about a function in RStudio:
+There are two main ways to find **help** about a specific function in
+RStudio:
 
 1.  the shortcut command: `?functionname`
 2.  the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a
     function name
 
-Let’s look through the help page for the `class()` function:
+Let’s look through the documentation for the `class()` function:
 
 ``` r
 ?class
@@ -219,16 +232,15 @@ ages * 7
     ## [1] 28 70 14 NA 21
 
 `rep.int()` also creates vectors, but it is designed to easily replicate
-values. For example, if you find something very
-    funny:
+values. For example, if you find something very funny:
 
 ``` r
 rep.int("Ha!", 30)
 ```
 
-    ##  [1] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
-    ## [12] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
-    ## [23] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
+    ##  [1] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
+    ## [13] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
+    ## [25] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
 
 `mean()` returns the mean of a vector of numbers:
 
@@ -397,8 +409,7 @@ code is more readable when working in a script.
 
 #### Challenge 2 – Import data
 
-Copy and paste the following two commands into your
-script:
+Copy and paste the following two commands into your script:
 
 ``` r
 download.file(url = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv",
@@ -435,8 +446,7 @@ head(gapminder)
     ## 5 Afghanistan 1972 13079460      Asia  36.088  739.9811
     ## 6 Afghanistan 1977 14880372      Asia  38.438  786.1134
 
-Now let’s use a few functions to learn more about our
-    dataset:
+Now let’s use a few functions to learn more about our dataset:
 
 ``` r
 class(gapminder) # what kind of object is it stored as?
@@ -476,10 +486,10 @@ str(gapminder) # general structure
 ```
 
     ## 'data.frame':    1704 obs. of  6 variables:
-    ##  $ country  : Factor w/ 142 levels "Afghanistan",..: 1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
     ##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
     ##  $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...
-    ##  $ continent: Factor w/ 5 levels "Africa","Americas",..: 3 3 3 3 3 3 3 3 3 3 ...
+    ##  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
     ##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
     ##  $ gdpPercap: num  779 821 853 836 740 ...
 
@@ -502,29 +512,26 @@ lowercase “V”) will yield an error.
 > You can also click on the spreadsheet icon in your environment pane to
 > open the viewer.
 
-Finally, to see summary statistics for each of our
-    variables:
+Finally, to see summary statistics for each of our variables:
 
 ``` r
 summary(gapminder)
 ```
 
-    ##         country          year           pop               continent  
-    ##  Afghanistan:  12   Min.   :1952   Min.   :6.001e+04   Africa  :624  
-    ##  Albania    :  12   1st Qu.:1966   1st Qu.:2.794e+06   Americas:300  
-    ##  Algeria    :  12   Median :1980   Median :7.024e+06   Asia    :396  
-    ##  Angola     :  12   Mean   :1980   Mean   :2.960e+07   Europe  :360  
-    ##  Argentina  :  12   3rd Qu.:1993   3rd Qu.:1.959e+07   Oceania : 24  
-    ##  Australia  :  12   Max.   :2007   Max.   :1.319e+09                 
-    ##  (Other)    :1632                                                    
+    ##    country               year           pop             continent        
+    ##  Length:1704        Min.   :1952   Min.   :6.001e+04   Length:1704       
+    ##  Class :character   1st Qu.:1966   1st Qu.:2.794e+06   Class :character  
+    ##  Mode  :character   Median :1980   Median :7.024e+06   Mode  :character  
+    ##                     Mean   :1980   Mean   :2.960e+07                     
+    ##                     3rd Qu.:1993   3rd Qu.:1.959e+07                     
+    ##                     Max.   :2007   Max.   :1.319e+09                     
     ##     lifeExp        gdpPercap       
     ##  Min.   :23.60   Min.   :   241.2  
     ##  1st Qu.:48.20   1st Qu.:  1202.1  
     ##  Median :60.71   Median :  3531.8  
     ##  Mean   :59.47   Mean   :  7215.3  
     ##  3rd Qu.:70.85   3rd Qu.:  9325.5  
-    ##  Max.   :82.60   Max.   :113523.1  
-    ## 
+    ##  Max.   :82.60   Max.   :113523.1
 
 Notice how categorical and numerical variables are handled differently?
 
@@ -552,7 +559,7 @@ library(praise) # load the package
 praise() # use a function from the package
 ```
 
-    ## [1] "You are awesome!"
+    ## [1] "You are lovely!"
 
 Even though you might need the motivation provided by this function,
 other packages are more useful for your work.
@@ -582,7 +589,7 @@ qplot(data = gapminder,
       geom = "point")
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](rstudio_intro_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 If we want to add an extra variable, we can add an extra argument:
 
@@ -594,7 +601,7 @@ qplot(data = gapminder,
       geom = "point")
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](rstudio_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 We can now use the “Export” dropdown menu to save our plot into our
 “plots” directory in a variety of formats.
