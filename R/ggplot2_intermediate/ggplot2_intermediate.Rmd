@@ -126,21 +126,23 @@ ggplot(data = gapminder,
   geom_point()
 ```
 
-Remember that only the *data*, the *geometry* and the *aesthetic mappings* always need to be specified.
+Remember that the 3 main elements of a ggplot2 visualisation are:
+
+* the *data*
+* the *mapping of aesthatics to variables*
+* the *geometry*
 
 ### Aesthetics available
 
-So far we have been using the `x` and `y` easthetics. There are more available, depending on the geometry that you are using.
+So far we have been using the `x` and `y` aesthetics. There are more available, depending on the geometry that you are using.
 
-To change the *shape* based on a variable, use `shape = <discrete variable>` inside the `aes()` call.
+Here are some common examples:
 
-If you want to change the size of the geometric object, you can use the `size = <continuous variable>` argument.
-    
-Similarly, to change the *colour* based on a variable, use `colour = <variable>` and `fill = <variable>` inside the `aes()` call.
+* To change the *shape* based on a variable, use `shape = <discrete variable>` inside the `aes()` call.
+* If you want to change the size of the geometric object, you can use the `size = <continuous variable>` argument.
+* Similarly, to change the *colour* based on a variable, use `colour = <variable>` and `fill = <variable>` inside the `aes()` call.
 
-### More control over colours
-
-Modify your plot to colour the points according to the continent variable.
+Let's modify our plot to colour the points according to the continent variable.
 
 ```{r}
 ggplot(data = gapminder,
@@ -149,6 +151,10 @@ ggplot(data = gapminder,
                      colour = continent)) +
   geom_point()
 ```
+
+### Modifying scales
+
+#### More control over colours
 
 This plot uses the default discrete palette.
 
@@ -162,39 +168,63 @@ p <- ggplot(data = gapminder,
   geom_point()
 ```
 
-We can use other palettes than the default one. You can see the ones available in ggplot2 by looking at the help page of, for example, `scale_colour_brewer()`, under the header "Palettes".
-
-Those are the ColorBrewer palettes, which can be explored online: http://colorbrewer2.org/
-
-If you want a visual overview of the Brewer palettes inside RStudio, you can use a function from the RColorBrewer package (installed automatically with ggplot2):
-
-```{r}
-library(RColorBrewer)
-display.brewer.all() # all palettes
-display.brewer.all(colorblindFriendly = TRUE) # only colourblind-friendly palettes
-```
-
-Now, try a different palette for your continents:
+We can use other palettes than the default one. ggplot2 provides extra functions to modify colour scales. For example:
 
 ```{r}
 p +
-  scale_colour_brewer(palette = "Set2")
+  scale_colour_viridis_d()
 ```
+Viridis is a collection of palettes that are designed to be accessible (i.e. perceptually uniform in colour or black and white, and perceivable for various forms of colour blindness). The structure of the function name is `scale_<aesthetic>_viridis_<datatype>()`, the different data types being **d**iscrete, **c**ontinuous or **b**inned.
 
-Note that the ColorBrewer palettes were designed for categorical data. If you are dealing with continuous data, you can still use the same sequential and diverging palette names, but you will have to use the function `scale_colour_distiller()` instead.
-
-To use a custom palette, we can use the function `scale_colour_manual()` and provide a list of colour names.
+Another collection of palettes is the ColorBrewer collection:
 
 ```{r}
 p +
-  scale_colour_manual(values = c("blue", "red", "purple", "green", "orange"))
+  scale_colour_brewer(palette = "Set1")
 ```
 
-You can find out about R colour names with the function `colours()`, which prints out a list of their names, but know that you can also use HEX values.
+You can see the palettes available by looking at the help page of `scale_colour_brewer()`, under the header "Palettes". However, the names alone might not be enough to picture them, so head to http://colorbrewer2.org/ to find the one that you like. Importantly, the website allows you to tick the options "colorblind safe" and "print friendly"... which would rule out all the qualitative palettes for our 5 continents!
 
-You can find [visual lists](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) of all the R colours, but there is a way to pick colours more comfortably: we can use the colourpicker package, which adds a handy addin to RStudio. Install it and use the new "Addins > Colour Picker" window to create a vector of colours for your custom palette.
+A useful package that introduces many palettes for ggplot2 is the colorspace package, which promotes the [Hue-Chroma-Luminance (HCL) colour space](http://colorspace.r-forge.r-project.org/articles/color_spaces.html#human-color-vision-and-the-hcl-color-model-1). This colour space is perceptually-based, which means it is particularly suited for human perception of colours.
 
-### Scale modifiers
+Let's first use an alternative qualitative palette:
+
+```{r}
+library(colorspace)
+p +
+  scale_colour_discrete_qualitative()
+```
+
+This is the default ggplot2 palette! Which means ggplot2 already use a HCL palette. But having the colorspace package loaded, we can now see all the palettes available:
+
+```{r}
+hcl_palettes(plot = TRUE)
+```
+
+Let's try a different one:
+
+```{r}
+library(colorspace)
+p +
+  scale_colour_discrete_sequential("Batlow")
+```
+
+For colorspace, the function names are structured as follows: `scale_<aesthetic>_<datatype>_<colorscale>()`
+
+Finally, to use a custom palette, we can use the ggplot2 function `scale_colour_manual()` and provide a list of colour names.
+
+```{r}
+p +
+  scale_colour_manual(values = c("lightblue", "pink", "purple", "black", "red"))
+```
+
+You can list all the R colour names with the function `colours()`, which prints out a list of their names, but know that you are not limited to these 657 values: you can also use HEX values, which is particularly useful if you have to respect a colour scheme you were given.
+
+You can find [visual lists](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) of all the R colours, but there is a way to pick colours more comfortably: we can use the colourpicker package, which adds a handy addin to RStudio. Install it and use the new "Addins > Colour Picker" tool to create a vector of colours for your custom palette.
+
+> That was a lot of options about colours, but know that in some cases, the most straight-forward way to make your visualisations readable by most is to use symbols instead of colours. In ggplot2, you would use the `shape` aesthetic.
+
+#### Axis scale modifiers
 
 We could further modify our plot to make it more readable. For example, we can use a different y axis scale to space out the data:
 
@@ -224,14 +254,25 @@ p +
                      labels = c(0, "100 m", "200 m", "500 m", "1 b"))
 ```
 
+### Zooming in
+
 To zoom in, we might want to change our axis limits by using `ylim()`.
 
 ```{r}
 p +
-  ylim(c(0, 360000000))
+  ylim(c(0, 35e7))
 ```
 
-Notice the warning message? ggplot2 informs us that it couldn't display the data related to China and India. Instead of using `ylim()`, we could use `subset()` (or `dplyr::filter()`) to remove the two countries from the data before feeding it to gglot2.
+Notice the warning message? ggplot2 informs us that it couldn't display the data related to China and India. Instead of using `ylim()`, we could use `subset()` (or `dplyr::filter()`) to remove the two countries from the data before feeding it to ggplot2.
+
+The method we use works for our point geometry, but would be problematic for other geometries that would get cut off when zooming in. A better way to focus on one part of the plot would be to modify the **coordinate system**:
+
+```{r}
+p +
+  coord_cartesian(ylim = c(0, 35e7))
+```
+
+The cartesion coordinate system is the default one in ggplot2. You could change the coordinate system to `coord_polar()` for circular visualisations, or to `coord_map()` to visualise spatial data.
 
 ### Histograms
 
@@ -366,7 +407,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
 
 #### Challenge 3 – code comprehension
 
-What do you think this extra line might do to our violin plot?
+What do you think this extra line might do to our boxplots?
 
 ```{r}
 ggplot(gapminder, aes(x = continent, y = lifeExp)) +
@@ -390,7 +431,7 @@ bp <- ggplot(gapminder, aes(x = continent, y = lifeExp)) +
 
 And then, feed it to the `ggplotly()` function:
 
-```{r}
+```{r eval=FALSE}
 library(plotly)
 ggplotly(bp)
 ```
@@ -401,7 +442,7 @@ You can now hover over parts of your plot to reveal the corresponding values.
 
 * Create a boxplot for each continent's population data
   + Colour the boxes by continent
-  + Try to limit the y axis to see the boxes better
+  + Would a violin plot do a better job at showing densities?
   + Let's see if you are able to move the legend to the bottom
   + Change the general look with a built-in theme
 
@@ -483,4 +524,4 @@ Saving your workspace is usually not recommended if you have all the necessary c
   + Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
   + STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
 
-* More ressources for R in general: https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md
+* More resources for R in general: https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md
