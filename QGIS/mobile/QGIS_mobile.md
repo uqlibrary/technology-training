@@ -89,7 +89,7 @@ I will show you how to download the files, but the data is often quite large in 
 * Accept the T&Cs.
 * Click **Search**, Select **Locality**, and search for the location you want an select it from the list.
 * Click **Layers**, click **Add Layers** here you can scroll through and filter different layer types
-* We want to tick the box next to Planning Cadastre -> Land Parcels -> Land Parcel (you may need to zoom in to see certain layers)
+* We want to tick the box next to `Planning Cadastre > Land Parcels > Land Parcel` (you may need to zoom in to see certain layers)
 * To export data click the Wrench Icon in the top right, and then click the Identify Marker icon
 * Use the triangular Identify Polygon tool to select and area of interest. Double click when you've finished selecting your area.
 * The Layers menu will now show your selection. You can download all, or sections, of your selection.
