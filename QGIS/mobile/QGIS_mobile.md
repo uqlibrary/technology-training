@@ -78,10 +78,23 @@ As a UQ student, you also have access to very high resoltuion imagery from **Nea
 You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial 
 I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from cloudstor.
 
-* To access data from QLD Spatial go to http://qldspatial.information.qld.gov.au/
+* To access data from QLD Spatial go to https://qldspatial.information.qld.gov.au/
 * Search for "property boundaries and select the "property boundaries Queensland" option.
 * You could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop here: https://cloudstor.aarnet.edu.au/plus/s/Mg7M6xYbtNYw3dd
 * Move the downloaded zip file to your project folder, and open the shapefile in QGIS
+
+### Queensland Globe
+
+* To access data from Queensland Globe go to https://qldglobe.information.qld.gov.au
+* Accept the T&Cs.
+* Click **Search**, Select **Locality**, and search for the location you want an select it from the list.
+* Click **Layers**, click **Add Layers** here you can scroll through and filter different layer types
+* We want to tick the box next to Planning Cadastre -> Land Parcels -> Land Parcel (you may need to zoom in to see certain layers)
+* To export data click the Wrench Icon in the top right, and then click the Identify Marker icon
+* Use the triangular Identify Polygon tool to select and area of interest. Double click when you've finished selecting your area.
+* The Layers menu will now show your selection. You can download all, or sections, of your selection.
+* I will choose **Land Parcel** and then **Download** as a **shp** file.
+
 
 ## Create a buffer to clip our data
 
