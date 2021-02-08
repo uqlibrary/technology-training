@@ -1,6 +1,6 @@
 R data visualisation with RStudio and ggplot2: intermediate
 ================
-2021-01-31
+2021-02-08
 
 > This document is written in R Markdown, and then knitted into a
 > markdown document. The source code is available at:
@@ -68,14 +68,14 @@ directory:
 -   Click “New Project” (“Empty project” if you have an older version of
     RStudio)
 -   In “Directory name”, type the name of your project,
-    e.g. “ggplot2\_inter”
+    e.g. “ggplot2\_intermediate”
 -   Select the folder where to locate your project:
     e.g. `Documents/RProjects`, which you can create if it doesn’t exist
     yet. You can use your H drive at UQ to make sure you can find it
     again.
 -   Click the “Create Project” button
 
-Let’s also create a “plots” folders to store exports:
+Let’s also create a “plots” folder to store exports:
 
 ``` r
 dir.create("plots")
@@ -199,6 +199,7 @@ p +
 ```
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
 Viridis is a collection of palettes that are designed to be accessible
 (i.e. perceptually uniform in colour or black and white, and perceivable
 for various forms of colour blindness). The structure of the function
@@ -229,6 +230,9 @@ space](http://colorspace.r-forge.r-project.org/articles/color_spaces.html#human-
 This colour space is perceptually-based, which means it is particularly
 suited for human perception of colours.
 
+For colorspace, the function names are structured as follows:
+`scale_<aesthetic>_<datatype>_<colorscale>()`
+
 Let’s first use an alternative qualitative palette:
 
 ``` r
@@ -252,15 +256,11 @@ hcl_palettes(plot = TRUE)
 Let’s try a different one:
 
 ``` r
-library(colorspace)
 p +
   scale_colour_discrete_sequential("Batlow")
 ```
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
-
-For colorspace, the function names are structured as follows:
-`scale_<aesthetic>_<datatype>_<colorscale>()`
 
 Finally, to use a custom palette, we can use the ggplot2 function
 `scale_colour_manual()` and provide a list of colour names.
@@ -323,11 +323,14 @@ We can further customise a scale with breaks and labels:
 ``` r
 p +
   scale_x_continuous(breaks = unique_years) +
-  scale_y_continuous(breaks = c(0, 100000000, 200000000, 500000000, 1000000000),
+  scale_y_continuous(breaks = c(0, 1e8, 2e8, 5e8, 1e9),
                      labels = c(0, "100 m", "200 m", "500 m", "1 b"))
 ```
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+> You can use the scientific notation `1e8` to mean “a 1 followed by 8
+> zeros”.
 
 ### Zooming in
 
@@ -348,9 +351,11 @@ use `subset()` (or `dplyr::filter()`) to remove the two countries from
 the data before feeding it to ggplot2.
 
 The method we use works for our point geometry, but would be problematic
-for other geometries that would get cut off when zooming in. A better
-way to focus on one part of the plot would be to modify the **coordinate
-system**:
+for other shapes that could disappear entirely if cut off when zooming
+in: we are actually **clipping** our visualisation.
+
+A better way to focus on one part of the plot would be to modify the
+**coordinate system**:
 
 ``` r
 p +
@@ -359,7 +364,7 @@ p +
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
-The cartesion coordinate system is the default one in ggplot2. You could
+The cartesian coordinate system is the default one in ggplot2. You could
 change the coordinate system to `coord_polar()` for circular
 visualisations, or to `coord_map()` to visualise spatial data.
 
@@ -380,20 +385,22 @@ ggplot(gapminder, aes(x = lifeExp)) +
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 > **Saving some typing:** remember we can omit the names of the
-> arguments if we write use them in order? Being explicit about the
-> **argument names** is useful when learning the ins and outs of a
-> function, but as you get more familiar with ggplot2, you can do away
-> with the obvious ones, like `data =` and `mapping =` (as long as they
-> are used in the right order!).
+> arguments if we use them in order? Being explicit about the **argument
+> names** is useful when learning the ins and outs of a function, but as
+> you get more familiar with ggplot2, you can do away with the obvious
+> ones, like `data =` and `mapping =` (as long as they are used in the
+> right order!).
 
 Let’s change the bin width:
 
 ``` r
 ggplot(gapminder, aes(x = lifeExp)) +
-  geom_histogram(binwidth = 15)
+  geom_histogram(binwidth = 1)
 ```
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+
+Here, each bar contains one year of life expectancy.
 
 We can also change the number of bins:
 
@@ -414,7 +421,7 @@ ggplot(gapminder, aes(x = lifeExp, colour = continent)) +
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
-…but it only colour the outline of the rectangles!
+…but it only colours the outline of the rectangles!
 
 Some aesthetics will work better with some geometries than others. We
 have to use the `fill` aesthetic to colour the areas instead:
@@ -428,7 +435,7 @@ ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
 
 Colouring our bins allows us to experiment with the geometry’s
 **position**. The histogram geometry uses the “stack” position by
-default. It might be more readable if we change it so it uses ratios
+default. It might convey different information if we make it use ratios
 instead, using the `position = "fill"` argument:
 
 ``` r
@@ -462,15 +469,22 @@ ggplot(gapminder,
        aes(x = lifeExp,
            fill = continent)) +
   geom_histogram(bins = 40) +
-  facet_wrap(~ continent) 
+  facet_wrap(vars(continent))
 ```
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
+We have to wrap the variable(s) we want to facet by into the `vars()`
+function.
+
+> Faceting is a great way to add yet another variable to your
+> visualisation, instead of using another aesthetic.
+
 ### Theming
 
 The legend is probably superfluous. We want to keep the colours, but we
-use the `theme()` function to customise the look of our plot:
+use the `theme()` function to customise the look of our plot and remove
+the legend:
 
 ``` r
 ggplot(gapminder,
@@ -498,9 +512,9 @@ ggplot(gapminder,
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
-### A more complex facetted example
+### A more refined facetted example
 
-This extra example gives an idea of how a complex ggplot2 visualisation
+This extra example gives an idea of how a refined ggplot2 visualisation
 might be constructed. It represents 4 different variables, using the
 larger diamonds dataset.
 
@@ -516,7 +530,7 @@ ggplot(diamonds,
               linetype = "dashed",
               colour = "black",
               size = 0.5) +
-  facet_wrap(~cut) +
+  facet_wrap(vars(cut)) +
   theme_minimal() +
   labs(y = "price (USD)")
 ```
@@ -524,6 +538,18 @@ ggplot(diamonds,
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+
+In this visualisation:
+
+-   4 different variables are represented, thanks to both aesthetics and
+    facets
+-   two geometries are layered on top of each other to repersent a
+    relationship
+-   both geometries are customised to make the plot readable (important
+    here, since there are close to 54000 rows of data)
+-   the default the colour scale is replaced
+-   a built-in theme is used
+-   a label clarifies the unit of measurement
 
 ### Boxplots
 
@@ -580,6 +606,7 @@ values.
 ### Play time!
 
 -   Create a boxplot for each continent’s population data
+
     -   Colour the boxes by continent
     -   Would a violin plot do a better job at showing densities?
     -   Let’s see if you are able to move the legend to the bottom
@@ -667,6 +694,7 @@ all the necessary commands in your script.
 ## Useful links
 
 -   For ggplot2:
+
     -   ggplot2 cheatsheet:
         <https://www.rstudio.org/links/data_visualization_cheat_sheet>
     -   Official ggplot2 documentation:
@@ -682,5 +710,6 @@ all the necessary commands in your script.
     -   Cookbook for R graphs: <http://www.cookbook-r.com/Graphs/>
     -   STHDA’s ggplot2 essentials:
         <http://www.sthda.com/english/wiki/ggplot2-essentials>
+
 -   More resources for R in general:
     <https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md>
