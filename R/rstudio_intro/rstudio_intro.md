@@ -45,7 +45,7 @@ instructions](https://gitlab.com/stragu/DSH/blob/master/R/Installation.md).
     -   Log in with your UQ username and password (if you are both staff
         and student, use your student account)
     -   Make sure you have a working Internet connection
-    -   Go to search at bottom left corner (magnifiying glass)
+    -   Go to search at bottom left corner (magnifying glass)
     -   Open the ZENworks application
     -   Search for “RStudio”
     -   Double-click on RStudio which will install both R and RStudio
@@ -387,7 +387,7 @@ path!
 file.edit("scripts/process.R")
 ```
 
-This opens our fourth pannel in RStudio: the **source pannel**.
+This opens our fourth panel in RStudio: the **source panel**.
 
 ### Many ways to do one thing
 
@@ -399,9 +399,9 @@ also:
 -   use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
 -   use the top left drop-down menus
 
-Learning how to use functions rather than the graphical user interface
-(GUI) will allow you to integrate them in scripts, and will sometimes
-help you to do things faster.
+Learning how to use functions rather than the graphical interface will
+allow you to integrate them in scripts, and will sometimes help you to
+do things faster.
 
 ### Comments
 
@@ -521,7 +521,7 @@ str(gapminder) # general structure
     ##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
     ##  $ gdpPercap: num  779 821 853 836 740 ...
 
-> The RStudio’s environment pannel already shows us some of that
+> The RStudio’s environment panel already shows us some of that
 > information (click on the blue arrow next to the object name).
 
 And to explore the data in a viewer, run the following:
@@ -587,7 +587,7 @@ library(praise) # load the package
 praise() # use a function from the package
 ```
 
-    ## [1] "You are amazing!"
+    ## [1] "You are priceless!"
 
 Even though you might need the motivation provided by this function,
 other packages are more useful for your work.
@@ -661,5 +661,9 @@ function.
 
 ## What next?
 
-We have a compilation of links for the rest of your R learning:
-<https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md>
+-   You can see what is next in our [cycle of R
+    lessons](README.md#r-sessions)
+-   We have a [compilation of resources](R/usefullinks.md) for the rest
+    of your R learning
+-   And a cheatsheet of [main terms and concepts for
+    R](R/terminology.md)
