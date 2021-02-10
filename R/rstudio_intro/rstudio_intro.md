@@ -1,13 +1,10 @@
 R with RStudio: getting started
 ================
 Stéphane Guillou
-2021-01-28
+2021-02-10
 
 > These notes are available on GitLab:
 > <https://gitlab.com/stragu/DSH/blob/master/R/rstudio_intro/rstudio_intro.md>
-
-If you want to review the installation instructions:
-<https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
 
 ## R + RStudio
 
@@ -21,28 +18,37 @@ many features on top of R to make it easier to write and run code.
 
 R’s main strong points are:
 
-  - **Open Source**: you can install it anywhere and adapt it to your
+-   **Open Source**: you can install it anywhere and adapt it to your
     needs;
-  - Makes research **reproducible** by working with scripts;
-  - **Customisable**: you can code nearly anything you want;
-  - **Large ecosystem**: packages allow you to extend R for thousands of
+-   **Reproducibility**: makes an analysis repeatable by detailing the
+    process in a script;
+-   **Customisable**: being a programming language, you can create your
+    own custom tools;
+-   **Big data**: it can handle very large datasets;
+-   **Large ecosystem**: packages allow you to extend R for thousands of
     different analyses.
 
 The learning curve will be steeper than point-and-click tools, but as
 far as programming languages go, R is more user-friendly than others.
 
+## Installation
+
+For this course, you need to have both R and RStudio installed
+([installation
+instructions](https://gitlab.com/stragu/DSH/blob/master/R/Installation.md).
+
 ## Open RStudio
 
-  - If you are using your own laptop please open RStudio
-      - Make sure you have a working Internet connection
-  - On Library computers:
-      - Log in with your UQ username and password (if you are both staff
+-   If you are using your own laptop please open RStudio
+    -   Make sure you have a working Internet connection
+-   On Library computers:
+    -   Log in with your UQ username and password (if you are both staff
         and student, use your student account)
-      - Make sure you have a working Internet connection
-      - Go to search at bottom left corner (magnifiying glass)
-      - Open the ZENworks application
-      - Search for “RStudio”
-      - Double-click on RStudio which will install both R and RStudio
+    -   Make sure you have a working Internet connection
+    -   Go to search at bottom left corner (magnifiying glass)
+    -   Open the ZENworks application
+    -   Search for “RStudio”
+    -   Double-click on RStudio which will install both R and RStudio
 
 ## What are we going to learn?
 
@@ -52,31 +58,29 @@ details that make the language.
 
 During this session, you will:
 
-  - Create a project for data analysis
-  - Create a folder structure
-  - Know where to find help
-  - Learn about a few useful functions
-  - Create a script
-  - Import a dataset
-  - Understand the different RStudio pannels
-  - Use a few shortcuts
-  - Know how to extend R with packages
-  - Generate a data visualisation
+-   Create a project for data analysis
+-   Create a folder structure
+-   Know where to find help
+-   Learn about a few useful functions
+-   Create a script
+-   Import a dataset
+-   Understand the different RStudio panels
+-   Use a few shortcuts
+-   Know how to extend R with packages
+-   Generate a data visualisation
 
-## Material
-
-### RStudio Project
+## R Projects
 
 Let’s first create a new project:
 
-  - Click the “File” menu button (top left corner), then “New Project”
-  - Click “New Directory”
-  - Click “New Project”
-  - In “Directory name”, type the name of your project, for example
+-   Click the “File” menu button (top left corner), then “New Project”
+-   Click “New Directory”
+-   Click “New Project”
+-   In “Directory name”, type the name of your project, for example
     “YYYY-MM-DD\_rstudio-intro”
-  - Browse and select a folder where to locate your project (`~` is your
+-   Browse and select a folder where to locate your project (`~` is your
     home directory). For example, a folder called “r-projects”.
-  - Click the “Create Project” button
+-   Click the “Create Project” button
 
 > R Projects make your work with R more straight forward, as they allow
 > you to segregate your different projects in separate folders. You can
@@ -85,7 +89,7 @@ Let’s first create a new project:
 > this directory. The .Rproj file stores information about your project
 > options, and allows you to go straight back to your work.
 
-### Maths and objects
+## Maths and objects
 
 The **console** (usually at the bottom right in RStudio) is where most
 of the action happens. In the console, we can use R interactively. We
@@ -155,9 +159,10 @@ quotes around them.
 > You can use the shortcut <kbd>Alt</kbd>+<kbd>-</kbd> to type the
 > assignement operator quicker.
 
-### Using functions
+## Functions
 
-An R **function** usually looks like this:
+An R **function** is a little program that does a particular job. It
+usually looks like this:
 
     <functionname>(<argument(s)>)
 
@@ -168,18 +173,18 @@ parentheses after their name.
 For example, try running the following command:
 
 ``` r
-class(num1)
+round(num2)
 ```
 
-    ## [1] "numeric"
+    ## [1] 5
 
-The `class()` function tells us what class of data we are dealing with.
-Here, we use the object `num1` as the first and only argument.
+The `round()` function rounds a number to the closest integer. The only
+argument we give it is `num2`, the number we want to round.
 
 > If you scroll back to the top of your console, you will now be able to
 > spot functions in the text.
 
-#### Help
+### Help
 
 What if we want to learn more about a function?
 
@@ -190,21 +195,44 @@ RStudio:
 2.  the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a
     function name
 
-Let’s look through the documentation for the `class()` function:
+Let’s look through the documentation for the `round()` function:
 
 ``` r
-?class
+?round
 ```
 
-There is quite a lot of information in there, but the most important
-bits are:
+As you can see, different functions might share the same documentation
+page.
 
-  - **Description**: general description of the function(s)
-  - **Usage**: overview of what syntax can be used
-  - **Arguments**: description of what each argument is
-  - **Examples**: some examples that demonstrate what is possible
+There is quite a lot of information in a function’s documentation, but
+the most important bits are:
 
-##### Challenge 1 – Finding help
+-   **Description**: general description of the function(s)
+-   **Usage**: overview of what syntax can be used
+-   **Arguments**: description of what each argument is
+-   **Examples**: some examples that demonstrate what is possible
+
+See how the `round()` function has a second argument available? Try this
+now:
+
+``` r
+round(num2, digits = 2)
+```
+
+    ## [1] 4.67
+
+We can change the default behaviour of the function by telling it how
+many digits we want after the decimal point, using the argument
+`digits`. And if we use the arguments in order, we don’t need to name
+them:
+
+``` r
+round(num2, 2)
+```
+
+    ## [1] 4.67
+
+#### Challenge 1 – Finding help
 
 Use the help pages to find out what these functions do, and try
 executing commands with them:
@@ -214,14 +242,16 @@ executing commands with them:
 3.  `mean()`
 4.  `rm()`
 
-`c()` concatenates the arguments into a vector. In other words, it takes
-any number of arguments (hence the `...`), and stores all those values
-together. For example, let’s store the ages of our pet dogs in a new
-object:
+`c()` combines the arguments into a vector. In other words, it takes any
+number of arguments (hence the `...`), and stores all those values
+together, as one single object. For example, let’s store the ages of our
+pet dogs in a new object:
 
 ``` r
 ages <- c(4, 10, 2, NA, 3)
 ```
+
+> You can store missing data as `NA`.
 
 We can now reuse this vector, and calculate their human age:
 
@@ -262,19 +292,17 @@ mean(ages, na.rm = TRUE)
 
     ## [1] 4.75
 
-> We don’t need to specify the names of the arguments as long as we use
-> them in order. In our last command, if we hadn’t named the `na.rm`
-> argument, R would have understood `TRUE` to be the value for the
-> `trim` argument\!
+> In our last command, if we hadn’t named the `na.rm` argument, R would
+> have understood `TRUE` to be the value for the `trim` argument!
 
-`rm()` removes an object from your environment (`remove()` and `rm()`
-point to the same function). For example:
+Finally, `rm()` removes an object from your environment (`remove()` and
+`rm()` point to the same function). For example:
 
 ``` r
 rm(num1)
 ```
 
-> R does not check if you are sure you want to remove something\! As a
+> R does not check if you are sure you want to remove something! As a
 > programming language, it does what you ask it to do, which means you
 > might have to be more careful. But you’ll see later on that, when
 > working with scripts, this is less of a problem.
@@ -296,28 +324,28 @@ We are nesting a function inside another one. More precisely, we are
 using the output of the `ls()` function as the value passed on to the
 `list` argument in the `rm()` function.
 
-##### More help
+### More help
 
 We’ve practised how to find help about functions we know the name of.
 What if we don’t know what the function is called? Or if we want general
 help about R?
 
-  - The function `help.start()` is a good starting point: it opens a
+-   The function `help.start()` is a good starting point: it opens a
     browser of official R help.
-  - If you want to search for a word in all the documentation, you can
+-   If you want to search for a word in all the documentation, you can
     use the `??` syntax. For example, try executing `??anova`.
-  - Finally, you will often go to your web browser and search for a
+-   Finally, you will often go to your web browser and search for a
     particular question, or a specific error message: most times, there
     already is an answer somewhere on the Internet. The challenge is to
-    ask the right question\!
+    ask the right question!
 
-### Creating a folder structure
+## Create a folder structure
 
 To keep it tidy, we are creating 3 folders in our project directory:
 
-  - scripts
-  - data
-  - plots
+-   scripts
+-   data
+-   plots
 
 For that, we use the function `dir.create()`:
 
@@ -330,16 +358,16 @@ dir.create("plots")
 > You can recall your recent commands with the up arrow, which is
 > especially useful to correct typos or slightly modify a long command.
 
-### Scripts
+## Scripts
 
 Scripts are simple text files that contain R code. They are useful for:
 
-  - saving a set of commands for later use (and executing it in one
+-   saving a set of commands for later use (and executing it in one
     click)
-  - making research reproducible
-  - making writing and reading code more comfortable
-  - documenting the code with comments, and
-  - sharing your work with peers
+-   making research reproducible
+-   making writing and reading code more comfortable
+-   documenting the code with comments, and
+-   sharing your work with peers
 
 Let’s create a new R script with a command:
 
@@ -353,7 +381,7 @@ file.create("scripts/process.R")
 
 To edit the new script, use the `file.edit()` function. Try using the
 <kbd>Tab</kbd> key to autocomplete your function name and your file
-path\!
+path!
 
 ``` r
 file.edit("scripts/process.R")
@@ -368,8 +396,8 @@ As in many programs, there are many ways to achieve one thing.
 For example, we used commands to create and edit a script, but we could
 also:
 
-  - use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
-  - use the top left drop-down menus
+-   use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
+-   use the top left drop-down menus
 
 Learning how to use functions rather than the graphical user interface
 (GUI) will allow you to integrate them in scripts, and will sometimes
@@ -402,12 +430,12 @@ code is more readable when working in a script.
 > selected block of code) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>.
 > Remember to save your script regularly with the shortcut
 > <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with
-> <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu “Tools \>
+> <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu “Tools &gt;
 > Keyboard Shortcuts Help”.
 
-### Import data
+## Import data
 
-#### Challenge 2 – Import data
+### Challenge 2 – Import data
 
 Copy and paste the following two commands into your script:
 
@@ -420,7 +448,7 @@ gapminder <- read.csv("data/gapminderdata.csv")
 What do you think they do? Describe each one in detail, and try
 executing them.
 
-### Explore data
+## Explore data
 
 We have downloaded a CSV file from the Internet, and read it into an
 object called `gapminder`.
@@ -535,7 +563,7 @@ summary(gapminder)
 
 Notice how categorical and numerical variables are handled differently?
 
-### Packages
+## Packages
 
 Packages add functionalities to R and RStudio. There are more than 17000
 available.
@@ -559,12 +587,12 @@ library(praise) # load the package
 praise() # use a function from the package
 ```
 
-    ## [1] "You are lovely!"
+    ## [1] "You are amazing!"
 
 Even though you might need the motivation provided by this function,
 other packages are more useful for your work.
 
-### Plotting
+## Plotting
 
 R already has a number of base plotting functions to visualise data in
 many different ways. However, many R users will use the package ggplot2
@@ -589,7 +617,7 @@ qplot(data = gapminder,
       geom = "point")
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](rstudio_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 If we want to add an extra variable, we can add an extra argument:
 
@@ -601,12 +629,12 @@ qplot(data = gapminder,
       geom = "point")
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](rstudio_intro_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 We can now use the “Export” dropdown menu to save our plot into our
 “plots” directory in a variety of formats.
 
-### Closing RStudio
+## Closing RStudio
 
 You can close RStudio after making sure that you saved your script.
 
@@ -617,8 +645,8 @@ objects in your **environment**) as an .Rdata file. The .Rdata file is
 used to reload your workspace when you open your project again. Projects
 also bring back whatever source file (e.g. script) you had open, and
 your command history. You will find your command history in the
-“History” tab (upper right panel): all the commands that we used
-should be in there.
+“History” tab (upper right panel): all the commands that we used should
+be in there.
 
 If you have a script that contains all your work, it is a good idea
 *not* to save your workspace: it makes it less likely to run into errors

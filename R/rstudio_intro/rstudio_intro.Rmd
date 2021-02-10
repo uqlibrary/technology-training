@@ -118,10 +118,10 @@ An R **function** is a little program that does a particular job. It usually loo
 For example, try running the following command:
 
 ```{r}
-class(num1)
+round(num2)
 ```
 
-The `class()` function tells us what class of data we are dealing with. Here, we use the object `num1` as the first and only argument.
+The `round()` function rounds a number to the closest integer. The only argument we give it is `num2`, the number we want to round.
 
 > If you scroll back to the top of your console, you will now be able to spot functions in the text.
 
@@ -134,18 +134,32 @@ There are two main ways to find **help** about a specific function in RStudio:
 1. the shortcut command: `?functionname`
 1. the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a function name
 
-Let's look through the documentation for the `class()` function:
+Let's look through the documentation for the `round()` function:
 
 ```r
-?class
+?round
 ```
 
-There is quite a lot of information in there, but the most important bits are:
+As you can see, different functions might share the same documentation page.
+
+There is quite a lot of information in a function's documentation, but the most important bits are:
 
 * **Description**: general description of the function(s)
 * **Usage**: overview of what syntax can be used
 * **Arguments**: description of what each argument is
 * **Examples**: some examples that demonstrate what is possible
+
+See how the `round()` function has a second argument available? Try this now:
+
+```{r}
+round(num2, digits = 2)
+```
+
+We can change the default behaviour of the function by telling it how many digits we want after the decimal point, using the argument `digits`. And if we use the arguments in order, we don't need to name them:
+
+```{r}
+round(num2, 2)
+```
 
 #### Challenge 1 – Finding help
 
@@ -156,11 +170,13 @@ Use the help pages to find out what these functions do, and try executing comman
 1. `mean()`
 1. `rm()`
 
-`c()` concatenates the arguments into a vector. In other words, it takes any number of arguments (hence the `...`), and stores all those values together. For example, let's store the ages of our pet dogs in a new object:
+`c()` combines the arguments into a vector. In other words, it takes any number of arguments (hence the `...`), and stores all those values together, as one single object. For example, let's store the ages of our pet dogs in a new object:
 
 ```{r}
 ages <- c(4, 10, 2, NA, 3)
 ```
+
+> You can store missing data as `NA`.
 
 We can now reuse this vector, and calculate their human age:
 
@@ -188,9 +204,9 @@ We have an NA value in the vector, which means the function can't tell what the 
 mean(ages, na.rm = TRUE)
 ```
 
-> We don't need to specify the names of the arguments as long as we use them in order. In our last command, if we hadn't named the `na.rm` argument, R would have understood `TRUE` to be the value for the `trim` argument!
+> In our last command, if we hadn't named the `na.rm` argument, R would have understood `TRUE` to be the value for the `trim` argument!
 
-`rm()` removes an object from your environment (`remove()` and `rm()` point to the same function). For example:
+Finally, `rm()` removes an object from your environment (`remove()` and `rm()` point to the same function). For example:
 
 ```{r}
 rm(num1)
