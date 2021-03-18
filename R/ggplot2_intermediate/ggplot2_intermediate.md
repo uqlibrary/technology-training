@@ -1,6 +1,6 @@
 R data visualisation with RStudio and ggplot2: intermediate
 ================
-2021-02-08
+2021-03-19
 
 > This document is written in R Markdown, and then knitted into a
 > markdown document. The source code is available at:
@@ -125,14 +125,15 @@ The Environment pane gives you an overview of the variables.
 
 ### Explore data visually
 
-Let’s start with a question: Does population grow over the years?
+Let’s start with a question: how do Gross Domestic Product (GDP) and
+life expectancy relate?
 
 We can make a simple plot with the basics of ggplot2:
 
 ``` r
 ggplot(data = gapminder,
-       mapping = aes(x = year,
-                     y = pop)) +
+       mapping = aes(x = gdpPercap,
+                     y = lifeExp)) +
   geom_point()
 ```
 
@@ -164,11 +165,13 @@ variable.
 
 ``` r
 ggplot(data = gapminder,
-       mapping = aes(x = year,
-                     y = pop,
-                     colour = continent)) +
-  geom_point()
+       mapping = aes(x = gdpPercap,
+                     y = lifeExp)) +
+  geom_point(aes(colour = continent)) +
+  geom_smooth()
 ```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
@@ -184,10 +187,10 @@ This plot uses the default discrete palette.
 
 ``` r
 p <- ggplot(data = gapminder,
-            mapping = aes(x = year,
-                          y = pop,
-                          colour = continent)) +
-  geom_point()
+       mapping = aes(x = gdpPercap,
+                     y = lifeExp)) +
+  geom_point(aes(colour = continent)) +
+  geom_smooth()
 ```
 
 We can use other palettes than the default one. ggplot2 provides extra
@@ -197,6 +200,8 @@ functions to modify colour scales. For example:
 p +
   scale_colour_viridis_d()
 ```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
@@ -212,6 +217,8 @@ Another collection of palettes is the ColorBrewer collection:
 p +
   scale_colour_brewer(palette = "Set1")
 ```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
@@ -241,6 +248,8 @@ p +
   scale_colour_discrete_qualitative()
 ```
 
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 This is the default ggplot2 palette! Which means ggplot2 already use a
@@ -260,6 +269,8 @@ p +
   scale_colour_discrete_sequential("Batlow")
 ```
 
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 Finally, to use a custom palette, we can use the ggplot2 function
@@ -269,6 +280,8 @@ Finally, to use a custom palette, we can use the ggplot2 function
 p +
   scale_colour_manual(values = c("lightblue", "pink", "purple", "black", "red"))
 ```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
@@ -280,7 +293,7 @@ useful if you have to respect a colour scheme you were given.
 You can find [visual
 lists](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) of all the
 R colours, but there is a way to pick colours more comfortably: we can
-use the colourpicker package, which adds a handy addin to RStudio.
+use the colourpicker package, which adds a handy add-in to RStudio.
 Install it and use the new “Addins &gt; Colour Picker” tool to create a
 vector of colours for your custom palette.
 
@@ -292,81 +305,121 @@ vector of colours for your custom palette.
 #### Axis scale modifiers
 
 We could further modify our plot to make it more readable. For example,
-we can use a different y axis scale to space out the data:
+we can use a different x axis scale to distribute the data differently:
 
 ``` r
 p +
-  scale_y_log10()
+  scale_x_log10()
 ```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
-Our x axis is not detailed enough: we want to show the actual years
-included in the dataset, rather than the automatic decades.
-
-We can create a list of all the years when data was collected with the
-`unique()` function, and modify our plot to add more breaks to our x
-axis with the `scale_x_continuous()` function. How would you use them?
+We can also further customise a scale with breaks and labels:
 
 ``` r
-# list all the unique values for year
-unique_years <- unique(gapminder$year)
-# modify the x axis scale
 p +
-  scale_x_continuous(breaks = unique_years)
+  scale_x_log10(breaks = c(5e2, 1e3, 1e4, 1e5),
+                labels = c("500", "1 k", "10 k", "100 k"))
 ```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
-We can further customise a scale with breaks and labels:
-
-``` r
-p +
-  scale_x_continuous(breaks = unique_years) +
-  scale_y_continuous(breaks = c(0, 1e8, 2e8, 5e8, 1e9),
-                     labels = c(0, "100 m", "200 m", "500 m", "1 b"))
-```
-
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
-
-> You can use the scientific notation `1e8` to mean “a 1 followed by 8
+> You can use the scientific notation `1e5` to mean “a 1 followed by 5
 > zeros”.
 
 ### Zooming in
+
+We might want to focus on the left hand side part of our original plot:
+
+``` r
+p
+```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 To zoom in, we might want to change our axis limits by using `ylim()`.
 
 ``` r
 p +
-  ylim(c(0, 35e7))
+  xlim(c(0, 6e4))
 ```
 
-    ## Warning: Removed 24 rows containing missing values (geom_point).
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+    ## Warning: Removed 5 rows containing non-finite values (stat_smooth).
+
+    ## Warning: Removed 5 rows containing missing values (geom_point).
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
-Notice the warning message? ggplot2 informs us that it couldn’t display
-the data related to China and India. Instead of using `ylim()`, we could
-use `subset()` (or `dplyr::filter()`) to remove the two countries from
-the data before feeding it to ggplot2.
+Notice the warning message? ggplot2 informs us that it couldn’t
+represent part of the data because of the axis limits.
 
-The method we use works for our point geometry, but would be problematic
-for other shapes that could disappear entirely if cut off when zooming
-in: we are actually **clipping** our visualisation.
+The method we use works for our point geometry, but is problematic for
+other shapes that could disappear entirely or change their appearance
+because they are based on different data: we are actually **clipping**
+our visualisation! Notice how the trend line now looks different?
 
 A better way to focus on one part of the plot would be to modify the
 **coordinate system**:
 
 ``` r
 p +
-  coord_cartesian(ylim = c(0, 35e7))
+  coord_cartesian(xlim = c(0, 6e4))
 ```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 The cartesian coordinate system is the default one in ggplot2. You could
 change the coordinate system to `coord_polar()` for circular
 visualisations, or to `coord_map()` to visualise spatial data.
+
+### Interactive plots
+
+The plotly package brings the power of the Plotly javascript library to
+R. Install it with `install.packages(plotly)`, and you’ll then be able
+to convert a ggplot2 visualisation into an interactive HTML
+visualisation with one single function!
+
+Let’s reuse our original plot object, and feed it to `ggplotly()`:
+
+``` r
+library(plotly)
+ggplotly(p)
+```
+
+You can now identify single points, zoom into your plot, and show/hide
+categories. However, the popup does not tell us which country the point
+corresponds to. That’s because we don’t mention the `country` variable
+in our code. Let’s reveal that information by slightly modifying the `p`
+object:
+
+``` r
+p <- ggplot(data = gapminder,
+       mapping = aes(x = gdpPercap,
+                     y = lifeExp,
+                     label = country)) + # one extra aesthetic for an extra variable
+  geom_point(aes(colour = continent)) +
+  geom_smooth()
+```
+
+The interactive version now tells us which country each point correspond
+to:
+
+``` r
+ggplotly(p)
+```
+
+> You can export the visualisation as a HTML page for sharing with
+> others.
 
 ### Histograms
 
@@ -382,7 +435,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 > **Saving some typing:** remember we can omit the names of the
 > arguments if we use them in order? Being explicit about the **argument
@@ -398,7 +451,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(binwidth = 1)
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 Here, each bar contains one year of life expectancy.
 
@@ -409,7 +462,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 Now, let’s colour the bins by continent. Instinctively, you could try
 the `colour` aesthetic:
@@ -419,7 +472,7 @@ ggplot(gapminder, aes(x = lifeExp, colour = continent)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
 
 …but it only colours the outline of the rectangles!
 
@@ -431,7 +484,7 @@ ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 Colouring our bins allows us to experiment with the geometry’s
 **position**. The histogram geometry uses the “stack” position by
@@ -446,7 +499,7 @@ ggplot(gapminder,
                  position = "fill")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 
 We can also make the bars “dodge” each other:
 
@@ -458,7 +511,7 @@ ggplot(gapminder,
                  position = "dodge")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
 ### Faceting
 
@@ -472,7 +525,7 @@ ggplot(gapminder,
   facet_wrap(vars(continent))
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 We have to wrap the variable(s) we want to facet by into the `vars()`
 function.
@@ -495,7 +548,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 
 If you use a pre-built theme function, make sure you place it before
 customising the legend. Otherwise it will bring the legend back!
@@ -510,7 +563,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
 
 ### A more refined facetted example
 
@@ -537,7 +590,7 @@ ggplot(diamonds,
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-32-1.png)<!-- -->
 
 In this visualisation:
 
@@ -560,7 +613,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
 
 #### Challenge 3 – code comprehension
 
@@ -572,118 +625,13 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
 
 This is useful if the x labels get too cramped on the x axis: you can
 rotate them to whatever angle you want.
 
-### Make it interactive
-
-The plotly package brings the power of the Plotly javascript library to
-R. Install it with `install.packages(plotly)`, and you’ll then be able
-to convert a ggplot2 visualisation in an interactive HTML visualisation
-with one function!
-
-Let’s turn our static boxplots into an interactive visualisation. First,
-save our original plot as an object:
-
-``` r
-bp <- ggplot(gapminder, aes(x = continent, y = lifeExp)) +
-  geom_boxplot() +
-  theme(axis.text.x = element_text(angle = 90))
-```
-
-And then, feed it to the `ggplotly()` function:
-
-``` r
-library(plotly)
-ggplotly(bp)
-```
-
-You can now hover over parts of your plot to reveal the corresponding
-values.
-
-### Play time!
-
--   Create a boxplot for each continent’s population data
-
-    -   Colour the boxes by continent
-    -   Would a violin plot do a better job at showing densities?
-    -   Let’s see if you are able to move the legend to the bottom
-    -   Change the general look with a built-in theme
-
-Have a look at this [ggplot2
-cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
-and experiment customising your plots.
-
-### Another example: customising a scatterplot
-
-New research question: *How does life expectancy relate to GDP per
-capita?*
-
-This is our base plot:
-
-``` r
-ggplot(gapminder,
-       aes(x = gdpPercap,
-           y = lifeExp)) +
-  geom_point() +
-  labs(x = "GDP per capita",
-       y = "Life expectancy") +
-  theme_bw()
-```
-
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
-
-Now, let’s make it better: spread the data with a modified **scale**,
-add a **linear regression**, **colour** the continents and add some
-**transparency**.
-
-``` r
-ggplot(gapminder,
-       aes(x = gdpPercap,
-           y = lifeExp)) +
-  geom_point(aes(colour = continent),
-             alpha = 0.5) +
-  geom_smooth(method = "lm") +
-  scale_x_log10() +
-  labs(x = "GDP per capita",
-       y = "Life expectancy") +
-  theme_bw()
-```
-
-    ## `geom_smooth()` using formula 'y ~ x'
-
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-35-1.png)<!-- -->
-
-#### Make it interactive
-
-First, save the plot as an object:
-
-``` r
-scatter <- ggplot(gapminder,
-       aes(x = gdpPercap,
-           y = lifeExp,
-           label = country)) + # so it appears in the tooltips
-  geom_point(aes(colour = continent),
-             alpha = 0.5) +
-  geom_smooth(method = "lm") +
-  scale_x_log10() +
-  labs(x = "GDP per capita",
-       y = "Life expectancy") +
-  theme_bw()
-```
-
-And then, feed it to the `ggplotly()` function:
-
-``` r
-library(plotly)
-ggplotly(scatter)
-```
-
-You can now identify single points, zoom into your plot, and show/hide
-categories. You can even export the visualisation as a HTML page for
-sharing with others.
+> Try turning this plot into an interactive visualisation to see stats
+> easily!
 
 ### Close project
 

@@ -110,14 +110,14 @@ The Environment pane gives you an overview of the variables.
 
 ### Explore data visually
 
-Let's start with a question: Does population grow over the years?
+Let's start with a question: how do Gross Domestic Product (GDP) and life expectancy relate?
 
 We can make a simple plot with the basics of ggplot2:
 
 ```{r}
 ggplot(data = gapminder,
-       mapping = aes(x = year,
-                     y = pop)) +
+       mapping = aes(x = gdpPercap,
+                     y = lifeExp)) +
   geom_point()
 ```
 
@@ -141,10 +141,10 @@ Let's modify our plot to colour the points according to the continent variable.
 
 ```{r}
 ggplot(data = gapminder,
-       mapping = aes(x = year,
-                     y = pop,
-                     colour = continent)) +
-  geom_point()
+       mapping = aes(x = gdpPercap,
+                     y = lifeExp)) +
+  geom_point(aes(colour = continent)) +
+  geom_smooth()
 ```
 
 ### Modifying scales
@@ -157,10 +157,10 @@ This plot uses the default discrete palette.
 
 ```{r}
 p <- ggplot(data = gapminder,
-            mapping = aes(x = year,
-                          y = pop,
-                          colour = continent)) +
-  geom_point()
+       mapping = aes(x = gdpPercap,
+                     y = lifeExp)) +
+  geom_point(aes(colour = continent)) +
+  geom_smooth()
 ```
 
 We can use other palettes than the default one. ggplot2 provides extra functions to modify colour scales. For example:
@@ -215,63 +215,87 @@ p +
 
 You can list all the R colour names with the function `colours()`, which prints out a list of their names, but know that you are not limited to these 657 values: you can also use HEX values, which is particularly useful if you have to respect a colour scheme you were given.
 
-You can find [visual lists](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) of all the R colours, but there is a way to pick colours more comfortably: we can use the colourpicker package, which adds a handy addin to RStudio. Install it and use the new "Addins \> Colour Picker" tool to create a vector of colours for your custom palette.
+You can find [visual lists](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) of all the R colours, but there is a way to pick colours more comfortably: we can use the colourpicker package, which adds a handy add-in to RStudio. Install it and use the new "Addins \> Colour Picker" tool to create a vector of colours for your custom palette.
 
 > That was a lot of options about colours, but know that in some cases, the most straight-forward way to make your visualisations readable by most is to use symbols instead of colours. In ggplot2, you would use the `shape` aesthetic.
 
 #### Axis scale modifiers
 
-We could further modify our plot to make it more readable. For example, we can use a different y axis scale to space out the data:
+We could further modify our plot to make it more readable. For example, we can use a different x axis scale to distribute the data differently:
 
 ```{r}
 p +
-  scale_y_log10()
+  scale_x_log10()
 ```
 
-Our x axis is not detailed enough: we want to show the actual years included in the dataset, rather than the automatic decades.
 
-We can create a list of all the years when data was collected with the `unique()` function, and modify our plot to add more breaks to our x axis with the `scale_x_continuous()` function. How would you use them?
-
-```{r}
-# list all the unique values for year
-unique_years <- unique(gapminder$year)
-# modify the x axis scale
-p +
-  scale_x_continuous(breaks = unique_years)
-```
-
-We can further customise a scale with breaks and labels:
+We can also further customise a scale with breaks and labels:
 
 ```{r}
 p +
-  scale_x_continuous(breaks = unique_years) +
-  scale_y_continuous(breaks = c(0, 1e8, 2e8, 5e8, 1e9),
-                     labels = c(0, "100 m", "200 m", "500 m", "1 b"))
+  scale_x_log10(breaks = c(5e2, 1e3, 1e4, 1e5),
+                labels = c("500", "1 k", "10 k", "100 k"))
 ```
 
-> You can use the scientific notation `1e8` to mean "a 1 followed by 8 zeros".
+> You can use the scientific notation `1e5` to mean "a 1 followed by 5 zeros".
 
 ### Zooming in
+
+We might want to focus on the left hand side part of our original plot:
+
+```{r}
+p
+```
 
 To zoom in, we might want to change our axis limits by using `ylim()`.
 
 ```{r}
 p +
-  ylim(c(0, 35e7))
+  xlim(c(0, 6e4))
 ```
 
-Notice the warning message? ggplot2 informs us that it couldn't display the data related to China and India. Instead of using `ylim()`, we could use `subset()` (or `dplyr::filter()`) to remove the two countries from the data before feeding it to ggplot2.
+Notice the warning message? ggplot2 informs us that it couldn't represent part of the data because of the axis limits.
 
-The method we use works for our point geometry, but would be problematic for other shapes that could disappear entirely if cut off when zooming in: we are actually **clipping** our visualisation.
+The method we use works for our point geometry, but is problematic for other shapes that could disappear entirely or change their appearance because they are based on different data: we are actually **clipping** our visualisation! Notice how the trend line now looks different?
 
 A better way to focus on one part of the plot would be to modify the **coordinate system**:
 
 ```{r}
 p +
-  coord_cartesian(ylim = c(0, 35e7))
+  coord_cartesian(xlim = c(0, 6e4))
 ```
 
 The cartesian coordinate system is the default one in ggplot2. You could change the coordinate system to `coord_polar()` for circular visualisations, or to `coord_map()` to visualise spatial data.
+
+### Interactive plots
+
+The plotly package brings the power of the Plotly javascript library to R. Install it with `install.packages(plotly)`, and you'll then be able to convert a ggplot2 visualisation into an interactive HTML visualisation with one single function!
+
+Let's reuse our original plot object, and feed it to `ggplotly()`:
+
+```{r eval=FALSE}
+library(plotly)
+ggplotly(p)
+```
+
+You can now identify single points, zoom into your plot, and show/hide categories. However, the popup does not tell us which country the point corresponds to. That's because we don't mention the `country` variable in our code. Let's reveal that information by slightly modifying the `p` object:
+
+```{r}
+p <- ggplot(data = gapminder,
+       mapping = aes(x = gdpPercap,
+                     y = lifeExp,
+                     label = country)) + # one extra aesthetic for an extra variable
+  geom_point(aes(colour = continent)) +
+  geom_smooth()
+```
+
+The interactive version now tells us which country each point correspond to:
+
+```{r eval=FALSE}
+ggplotly(p)
+```
+
+> You can export the visualisation as a HTML page for sharing with others.
 
 ### Histograms
 
@@ -430,95 +454,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
 
 This is useful if the x labels get too cramped on the x axis: you can rotate them to whatever angle you want.
 
-### Make it interactive
-
-The plotly package brings the power of the Plotly javascript library to R. Install it with `install.packages(plotly)`, and you'll then be able to convert a ggplot2 visualisation in an interactive HTML visualisation with one function!
-
-Let's turn our static boxplots into an interactive visualisation. First, save our original plot as an object:
-
-```{r}
-bp <- ggplot(gapminder, aes(x = continent, y = lifeExp)) +
-  geom_boxplot() +
-  theme(axis.text.x = element_text(angle = 90))
-```
-
-And then, feed it to the `ggplotly()` function:
-
-```{r eval=FALSE}
-library(plotly)
-ggplotly(bp)
-```
-
-You can now hover over parts of your plot to reveal the corresponding values.
-
-### Play time!
-
--   Create a boxplot for each continent's population data
-
-    -   Colour the boxes by continent
-    -   Would a violin plot do a better job at showing densities?
-    -   Let's see if you are able to move the legend to the bottom
-    -   Change the general look with a built-in theme
-
-Have a look at this [ggplot2 cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet) and experiment customising your plots.
-
-### Another example: customising a scatterplot
-
-New research question: *How does life expectancy relate to GDP per capita?*
-
-This is our base plot:
-
-```{r}
-ggplot(gapminder,
-       aes(x = gdpPercap,
-           y = lifeExp)) +
-  geom_point() +
-  labs(x = "GDP per capita",
-       y = "Life expectancy") +
-  theme_bw()
-```
-
-Now, let's make it better: spread the data with a modified **scale**, add a **linear regression**, **colour** the continents and add some **transparency**.
-
-```{r}
-ggplot(gapminder,
-       aes(x = gdpPercap,
-           y = lifeExp)) +
-  geom_point(aes(colour = continent),
-             alpha = 0.5) +
-  geom_smooth(method = "lm") +
-  scale_x_log10() +
-  labs(x = "GDP per capita",
-       y = "Life expectancy") +
-  theme_bw()
-```
-
-#### Make it interactive
-
-First, save the plot as an object:
-
-```{r}
-scatter <- ggplot(gapminder,
-       aes(x = gdpPercap,
-           y = lifeExp,
-           label = country)) + # so it appears in the tooltips
-  geom_point(aes(colour = continent),
-             alpha = 0.5) +
-  geom_smooth(method = "lm") +
-  scale_x_log10() +
-  labs(x = "GDP per capita",
-       y = "Life expectancy") +
-  theme_bw()
-```
-
-And then, feed it to the `ggplotly()` function:
-
-```{r eval=FALSE}
-library(plotly)
-ggplotly(scatter)
-```
-
-You can now identify single points, zoom into your plot, and show/hide categories. You can even export the visualisation as a HTML page for sharing with others.
+> Try turning this plot into an interactive visualisation to see stats easily!
 
 ### Close project
 
