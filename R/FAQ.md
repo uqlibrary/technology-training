@@ -1,6 +1,6 @@
 # R Frequently Asked Questions
 
-This is a compilation of questions and answers that have been asked during R sessions at the CDS.
+This is a compilation of questions and answers that have been asked during R sessions at the Library.
 
 ## General
 
@@ -69,6 +69,39 @@ From the great answers on this page: https://stackoverflow.com/questions/5595512
 
 So, in short: `require()` is more used programmatically, whereas `library()` is better for interactive use.
 
+
+### Distinction between global and local environments?
+
+When we start a new R session, we are in the "global environment". Creating a function will create it's own local environment, a objects from the function's local environment won't be shared with the global environment (unless they are _returned_ by the function).
+
+In R, we can create new environments, and there is a hierarchy that can be used (i.e. some environments enclose others).
+
+To learn more about this topic, here is a nice exploration of it (even if it is a few years old): https://www.r-bloggers.com/environments-in-r/
+
+### Why does RStudio ask to save RData if no objects?
+
+For some reason, R will still ask you if you want to save an .RData file even if you have removed everything in your environment.
+
+You can confirm that it contains nothing by using the following command:
+
+`print(load(file = ".RData"))`
+
+If it returns "character(0)", there is nothing in there!
+
+So why does it ask you if you want to save it? Not 100% sure... But it makes sense if you go from having an .Rdata file that contains objects, to one that does not.
+
+### Arrays vs vectors in R?
+
+"Array" is not a term that is used very often in R. People most often use the following object types:
+
+* (atomic) **vectors** for one-dimensional objects of one single data type (like created with `c()`). For example, our vector of dog `ages`;
+* **matrices** for two-dimensional objects of one single data type;
+* **lists** for a more flexible object that contains elements of different classes (for example, a mix of vectors, matrices and more nested lists...);
+* **dataframes** for a _specific_ case of a list in which each element is a vector (i.e. a column, or variable) and all elements have the same length. That's our `gapminder` object.
+
+**Arrays** are objects that contain values of *one type*, organised in *rectangles*. You can construct arrays of 1, 2, 3 or more dimensions. Atomic vectors and matrices could therefore be considered specific cases of arrays, one- and two-dimensional respectively (matrices actually inherit the `array` class since R 4.0). See `?array` for more information.
+
+
 ## dplyr
 
 ### Excel's VLOOKUP equivalent
@@ -95,7 +128,7 @@ Find the `dplyr` cheatsheet on the RStudio website to have a handy reference to 
 
 In the example, cadastral records are repeated in a dataset because of multiple dwellings on one single property.
 You can use the `dplyr` function `distinct()` to output a dataset that only has one record of each level of a variable, like so:
-    
+
 ```
 distinct(mpg, manufacturer, .keep_all = TRUE)
 ```
@@ -339,6 +372,117 @@ For a secondary axis that shows completely different data, there are more involv
 * https://rpubs.com/kohske/dual_axis_in_ggplot2
 
 However, there are other packages that make it easy to do that. For example, the function `twoord.plot()` in the package `plotrix`.
+
+### Save plots from notebook / Rmarkdown?
+
+It doesn't look like there are more options than right-click and "save as" at the moment. The alternatives are to:
+
+* copy-paste and run the same code in the console so it appears in the "plot" pane, or
+* add a `ggsave()` or `dev.print()` command in the same chunk, or
+* add a `ggsave()` or `dev.print()` command in a separate chunk (so you can evaluate but hide if you want a clean knitted document), or
+* switch the Notebook output setting to "Chunk Output in Console" and use the RStudio "Export" menu.
+
+### Venn diagrams in R?
+
+`ggplot2` does not directly support Venn diagrams. There are still ways to do it, using the "circle", geom, but it is quite involved. See for example: https://scriptsandstatistics.wordpress.com/2018/04/26/how-to-plot-venn-diagrams-using-r-ggplot2-and-ggforce/
+
+
+Other packages were designed specifically for Venn diagrams: `VennDiagram`, `nVennR`. The package `gplots` has a dedicated `venn()` function.
+
+
+An alternative to Venn diagrams, i.e. to visualise intersections between sets (and present extra intersting information), is provided with the package `UpSetR`: https://academic.oup.com/bioinformatics/article/33/18/2938/3884387
+
+
+### Save all plots form the session in one go
+
+It is a feature that has been mentioned on the RStudio support pages, and it looks like it is "on their radar" but hasn't been implemented yet.
+
+If you want to save all your script's plots in one single pdf, you can open a pdf device with `pdf()` at the beginning and close it at the end with `dev.off()`:
+
+```r
+pdf("fileName.pdf")
+plot(something)
+plot(someotherthing)
+ggplot(something...) + geom_point(...else)
+dev.off()
+```
+
+That will paginate your plots nicely in the resulting pdf. Using a `png()` device won't work as it will keep overwriting the previous plot.
+
+The issue with that method is that it will send the plots to your device and won't show them in your "Plots" pane.
+
+Related QA on StackExchange: https://stackoverflow.com/questions/35321775/save-all-plots-already-present-in-the-panel-of-rstudio
+
+
+### Revert colour scale? (continuous)
+
+We can swap the default high and low colours manually: 
+
+```r
+scale_colour_continuous(high = "#132B43", low = "#56B1F7")
+```
+
+### Change the spacing between breaks
+
+I didn't realise that, in our example (the `economics` dataset), we need to use the function `scale_x_date()` rather than `scale_x_continuous()` as we are dealing with date data. That is why we were getting errors, and the solution looked more involved than it should be.
+
+We can use this to quickly overwrite the default decade spacing:
+
+```r
+ggplot(data = economics,
+       mapping = aes(x = date,
+                     y = unemploy)) +
+  geom_point() +
+  scale_x_date(date_breaks = "6 years")
+```
+
+### Where can you find a list of all the types of plots ggplot2 can make?
+
+All the geometry functions start with `geom_`, so if you type that in RStudio, you'll see suggestions of the geoms supported by ggplot2
+
+the cheatsheet has a nice overview: https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
+
+the reference has the same little visuals that help you identify them, but they link to each function's documentation too: https://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms
+
+### Change which colour goes to which level
+
+You can define your custom discrete palette from the start, and then reuse the corresponding colour. If you name your vector of colours, you will be able to reuse the exact same palette.
+
+```r
+scale_fill_manual(values = c(level1 = "black", level2 = "grey"))
+```
+
+### Rule-based styling of geometry
+
+For example: how can we highlight counts that are higher than 10000?
+
+R being a programming language, we can write code to check if a condition is verified, and feed that into the visualisation.
+
+As always, there are a few options available:
+
+```r
+# 1. using dplyr to add info to the dataset
+library(dplyr)
+diamonds %>% 
+  group_by(cut) %>% 
+  # count how many rows in each group
+  summarise(count = n()) %>% 
+  # add contitional to extra column
+  mutate(highlight = count > 10000) %>% 
+  ggplot(aes(x = cut,
+             y = count,
+             fill = highlight)) +
+  geom_col() # col instead of bar, because we provide data for y
+
+# 2. shorter option: use the computed stat directly
+ggplot(diamonds,
+       aes(x = cut,
+           # ggplot2 gives us access to internally computed stats
+           fill = ..count.. > 10000)) +
+  geom_bar()
+```
+
+A third option could be to use the package gghighlight: https://cran.r-project.org/web/packages/gghighlight/vignettes/gghighlight.html
 
 ## Heatmaps
 
