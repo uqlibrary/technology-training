@@ -6,9 +6,10 @@ The University of Queensland Library (_Last update: 2021-03-24_)
 
 This introductory session focused on:
 
-* the basic functions of Voyant Tools
-* a selction of tools
+* importing a corpus in Voyant Tools
+* a selection of useful text analysis tools and visualisations
 * some text analysis concepts relevant to the academic setting
+* how to share your insights
 
 You can use your own files to analyse, or rely on the example corpus provided.
 
@@ -148,8 +149,17 @@ You can upload several files at once, by either doing a multiple selection or ar
 * "Upload" it in Voyant Tools
 * Explore!
 
+## Sharing
+
+You can decide to share:
+
+* A link to a single view (i.e. one tool)
+* A link to the whole dashboard
+* A static image (PNG or SVG)
+
 ## Resources
 
 * [Official Voyant Tools documentation](https://voyant-tools.org/docs/#!/guide/start), including guides and tool descriptions
 * _[Hermeneutica: Computer-Assisted Interpretation in the Humanities](https://search.library.uq.edu.au/permalink/f/tbms52/TN_cdi_askewsholts_vlebooks_9780262332071)_ (Rockwell and Sinclair, 2016), a book using Voyant Tools extensively
+* Many tutorials on analysing language and text with R on [LADAL](https://slcladal.github.io/)
 * Discover hundreds of other text analysis tools with [TAPoR](http://tapor.ca/home)
