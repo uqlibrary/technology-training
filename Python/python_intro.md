@@ -12,15 +12,15 @@ Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a t
 
 Python is a **programming language** that can be used to build programs (i.e. a "general programming language"), but it can also be used to analyse data by importing a number of useful modules.
 
-We are using **Spyder** to interact with Python more comfortably. If you have used the RStudio IDE to interact with R before, you should feel right at home: Spyder is a program designed for doing data science with Python.
+We are using **Spyder** to interact with Python more comfortably. If you have used RStudio to interact with R before, you should feel right at home: Spyder is a program designed for doing data science with Python.
 
 Python can be used **interactively** in a console, or we can build **scripts and programs** with it, making the most out of Spyder's code editor.
 
-We will start by using the IPython console to work interactively.
+We will start by using the "Console" to work interactively.
 
 ## Maths
 
-We can use Python like a calculator.
+To start with, we can use Python like a calculator. Type the following **commands** in the console, and press <kbd>Enter</kbd> to **execute** them:
 
 ```python
 1 + 1
@@ -28,12 +28,7 @@ We can use Python like a calculator.
 4 / 10
 ```
 
-Some binary operators might differ from other languages, like exponent and modulus:
-
-```python
-6**3
-9 % 2
-```
+After running each command, you should see the result as an output.
 
 ## Variables
 
@@ -81,17 +76,24 @@ There are other data types like tuples, dictionaries and sets, but we won't get 
 
 ### Indexing
 
-**Indexing** in Python **starts at 0**, and does not include the upper bound. For example:
+**Indexing** is useful to get only a part of a variable. In Python, indexing **starts at 0**. For example, see what these commands return:
 
 ```python
 sentence[0]
 sentence[6]
+```
+
+You can use a range to index, but note that it will not include the upper bound in the returned values. For example:
+
+```python
 myList[0:4]
 ```
 
+That command returns "elements from position 0 up to - but not including! - position 4."
+
 ## Functions
 
-Some **functions** are built in and ready to use:
+**Functions** are little programs that do specific jobs. Here are a few example of built-in functions:
 
 ```python
 len(myList)
@@ -101,7 +103,7 @@ sum(myList)
 round(otherNumber)
 ```
 
-Functions always have parentheses behind their name, and they can take one or several **arguments**, or none at all.
+Functions always have parentheses behind their name, and they can take one or several **arguments**, or none at all, depending on what they can do, and how the user wants to use them.
 
 Here, we use two arguments to modify the default behaviour of the `round()` function:
 
@@ -128,10 +130,10 @@ For questions and answers, typing the right question in a search engine will usu
 
 ## Modules
 
-To do more with Python, it is easier to import extra **modules**. For example, to access the `pi` constant:
+To do more with Python, you could write new functions from scratch, but it is easier to import extra **modules** to extend its capabilities. For example, to access the `pi` constant:
 
 ```python
-pi # throws an error
+pi # throws an error: it does not exist!
 import math # this module contains the pi constant
 math.pi # we have to specify where it comes from
 import math as m # give a shorter name
@@ -166,17 +168,21 @@ Here, we present a few libraries that are very central to data manipulation and 
 
 ### NumPy for arrays
 
-Arrays are a data type introduced by `numpy`. They can be very useful in many cases.
+Arrays are a data type introduced by `numpy`, a module with many functions useful for numerical computing.
+
+For example, you can convert the list we created before to then do mathematical operations on each one of its elements:
 
 ```python
 import numpy as np
-myArray = np.array([[1, 2], [3, 4]])
+myArray = np.array(myList)
 myArray * 2
 ```
 
 ### Pandas for dataframes
 
-`pandas` introduces dataframes, which are often used to store two-dimensional data with different kinds of variables in each column.
+`pandas` introduces dataframes, which are often used to store two-dimensional datasets with different kinds of variables in each column. If your data is stored as a spreadsheet, you probably want to import it with a pandas function.
+
+Here is an example of creating a pandas dataframe from scratch, populating it by hand:
 
 ```python
 import pandas as pd
@@ -194,29 +200,33 @@ df.Age # access a specific variable
 
 ```python
 import matplotlib.pyplot as plt
-plt.plot([0,1,4,9,16])
+plt.plot(myList)
 ```
 
-This shows a plot in the IPython console.
+This shows a plot in the Plots panel of Spyder.
 
 > In a Python shell, you might have to use the `plt.show()` command to show the plot.
 
-We can style a plot with only a few characters:
+The default look is a line plot that joins all the points, but we can style a plot with only a few characters:
 
 ```python
-x = np.linspace(0, 15, 8)
-y = x**2
-# only blue circles
-plt.plot(x, y, "bo")
-# green, squares, dashes:
-plt.plot(x, y, "gs--")
+# blue circles
+plt.plot(myList, "bo")
+# green squares, dashed line:
+plt.plot(myList, "gs--")
 ```
 
 Extra arguments can be used to style further:
 
 ```python
-# red, diamonds, line; change width of line and size of diamonds:
-plt.plot(x, y, "rd-", linewidth = 3, markersize = 10)
+# red, diamonds, solid line; change width of line and size of diamonds:
+plt.plot(myList, "rd-", linewidth = 3, markersize = 10)
+```
+
+To find out about the styling shorthand and all other arguments, look at the documentation:
+
+```python
+plt.plot?
 ```
 
 ## Example project
@@ -240,7 +250,7 @@ Click on  the "New file" icon, and save it as "process.py" in your project direc
 
 Remember to add comments (they start with the `#` symbol) to document your work: this will be useful if you share your work with others, or even for your future self!
 
-To execute something from the script (the current line, or a selected block), use the <kbd>F9</kbd> keyboard shortcut.
+To execute something from the script (the current line, or a selected block), use the <kbd>F9</kbd> keyboard shortcut (or the white "Run" button).
 
 ### Import data
 
@@ -280,20 +290,25 @@ The console conveniently shows us only the beginning and end of the dataframe.
 We can also use the "dot notation" to create commands that are useful to explore the data:
 
 ```python
-data.shape
-data.head()
-data.tail()
-data.country
+data.shape # size of the dataframe
+data.head() # first few rows
+data.tail() # last few rows
+data.country # single variable
 ```
 
 Variables have **attributes** and **methods** attached to them, depending on the data type. Here, `shape` is a method, i.e. a static characteristic of the variable, whereas `head()` is a method, i.e. a function that can often take arguments.
 
 ### Analyse data
 
-Let's now learn a bit more about our data:
+Let's now learn a bit more about our data. The `describe()` method gives us summary statistics for our numerical data:
 
 ```python
 data.describe()
+```
+
+To create a customised summary, we can string different methods one after the other. Here, we first group by year to then get the yearly mean of the numerical columns:
+
+```python
 data.groupby(by = "year").mean()
 ```
 
@@ -305,6 +320,8 @@ We can visualise our data with `pyplot`. First, let's visualise the relationship
 import matplotlib.pyplot as plt
 plt.plot(data.gdpPercap, data.lifeExp, "go")
 ```
+
+We are the data as two arguments, which are understood as what we put on the x and y axes respectively.
 
 The default circles are quite big, so let's reduce their size:
 
@@ -362,10 +379,12 @@ This will allow you to automate the boring repetitive tasks!
 We can create our own custom functions to reuse later on:
 
 ```python
+# define the function
 def my_function(arg1, arg2):
 	prod = arg1 * arg2
 	sum = prod + 10
 	return sum
+# use the custom function
 my_function(3, 5)
 ```
 
@@ -376,6 +395,8 @@ We have to specify the function **name**, what **arguments** are available, what
 Executing several lines together will render everything on the same visualisation. See for example this code that plots two lines together, modifies axis ranges, adds a legend and styles axis labels with LaTex, and saves to pdf:
 
 ```python
+x = np.linspace(0, 15, 8)
+y = x**2
 plt.plot(x, y, "bo-", label = "High")
 plt.plot(x, x**1.5, "gs--", label = "Low")
 # we can use LaTex
