@@ -1,6 +1,6 @@
 R data visualisation with RStudio and ggplot2: introduction
 ================
-2020-08-17
+2021-04-08
 
 > This document is redacted in R markdown; the source file is available
 > here:
@@ -16,12 +16,19 @@ Everything we write today will be saved in your R project. Please
 remember to save it on your H drive or USB if you are using a Library
 computer.
 
-## Essential shortcuts
+## What are we going to learn?
 
-  - function or dataset help: press <kbd>F1</kbd> with your cursor
-    anywhere in a function name.
-  - execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
-  - assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
+This session is directed at R users (a beginner level is sufficient) who
+are new to the ggplot2 package.
+
+During this session, you will:
+
+  - Have a visualisation package installed (ggplot2)
+  - Learn how to explore data visually
+  - Learn about the 3 essential ggplot2 components
+  - Use different kinds of visualisations
+  - Layer several visualisations
+  - Learn how to customise a plot with colours, labels and themes.
 
 ## Open RStudio
 
@@ -35,20 +42,14 @@ computer.
       - Look for RStudio
       - Double-click on RStudio which will install both R and RStudio
 
-## What are we going to learn?
+## Essential shortcuts
 
-During this session, you will:
+Remember some of the most commonly used RStudio shortcuts:
 
-  - Have a visualisation package installed (ggplot2)
-  - Learn how to explore data visually
-  - Learn about the 3 essential ggplot2 components
-  - Use different kinds of visualisations
-  - Layer several visualisations
-  - Learn how to customise a plot with colours, labels and themes.
-
-## Disclaimer
-
-We will assume you are an R beginner, who has used R before.
+  - function or dataset help: press <kbd>F1</kbd> with your cursor
+    anywhere in a function name.
+  - execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+  - assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
 ## Material
 
@@ -202,16 +203,27 @@ axis, as the “bar” geometry automatically does a count of the different
 values in the `conservation` variable. That is what **statistics** are
 applied automatically to the data.
 
+> In ggplot2, each geometry has default statistics, so we often don’t
+> need to specify which stats we want to use. We could use a `stat_*()`
+> function instead of a `geom_*()` function, but most people start with
+> the geometry (and let ggplot2 pick the default statistics that are
+> applied).
+
 ### Scatterplots
 
 Let’s have a look at another dataset:
 
 ``` r
 ?economics
+```
+
+    ## starting httpd help server ... done
+
+``` r
 str(economics)
 ```
 
-    ## tibble [574 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+    ## spec_tbl_df[,6] [574 x 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
     ##  $ date    : Date[1:574], format: "1967-07-01" "1967-08-01" ...
     ##  $ pce     : num [1:574] 507 510 516 512 517 ...
     ##  $ pop     : num [1:574] 198712 198911 199113 199311 199498 ...
@@ -219,10 +231,8 @@ str(economics)
     ##  $ uempmed : num [1:574] 4.5 4.7 4.6 4.9 4.7 4.8 5.1 4.5 4.1 4.6 ...
     ##  $ unemploy: num [1:574] 2944 2945 2958 3143 3066 ...
 
-Do you think that unemployment is stable over the years?
-
-Let’s use the full ggplot2 syntax from now on, se we can build up our
-plots further:
+Do you think that unemployment is stable over the years? Let’s have a
+look with a scatterplot:
 
 ``` r
 ggplot(data = economics,
@@ -233,15 +243,20 @@ ggplot(data = economics,
 
 ![](ggplot2_intro_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-  - The `ggplot()` function initialises a ggplot object. It can be used
-    to declare the input data frame and to specify the set of plot
-    aesthetics intended to be common throughout all subsequent layers
-    (unless specifically overridden).
-  - The `aes()` function groups our mappings of aesthetics to variables.
-  - The `geom_<...>()` functions specify what geometric element we want
-    to use.
+Let’s go through our essential elements once more:
 
-Let’s it with a new dataset: `mpg`, which stands for “miles per gallon”.
+  - The `ggplot()` function initialises a ggplot object. In it, we
+    declare the **input data frame** and specify the set of plot
+    aesthetics used throughout all layers of our plot;
+  - The `aes()` function groups our **mappings of aesthetics to
+    variables**;
+  - The `geom_<...>()` function specifies what **geometric element** we
+    want to use.
+
+Scatterplots are often used to look at the relationship between two
+variables. Let’s try it with a new dataset: `mpg` (which stands for
+“miles per gallon”), a dataset about fuel efficiency of different
+models of cars.
 
 ``` r
 ?mpg
@@ -306,7 +321,7 @@ similar engine size, which can be explained by the lower weight of the
 car. The general trend starts to make more sense\!
 
 We now know how to create a simple scatterplot, and how to visualise
-extra variables.
+extra variables. But how can we better represent a correlation?
 
 ### Trend lines
 
@@ -331,9 +346,8 @@ The console shows you what function / formula was used to draw the trend
 line. This is important information, as there are countless ways to do
 that. To better understand what happens in the background, open the
 function’s help page and notice that the default value for the `method`
-argument is “auto”. Read up on how it automatically picks a more
-suitable method depending on the sample size, in the “Arguments”
-section.
+argument is “NULL”. Read up on how it automatically picks a suitable
+method depending on the sample size, in the “Arguments” section.
 
 Want a linear trend line instead? Add the argument `method = "lm"` to
 you function:
@@ -351,8 +365,8 @@ ggplot(mpg,
 
 ### Layering
 
-How can we combine several layers? We can string them with the `+`
-operator:
+A trend line is usually displayed on top of the scatterplot. How can we
+combine several layers? We can string them with the `+` operator:
 
 ``` r
 ggplot(mpg,
@@ -420,11 +434,28 @@ Like your visualisation? You can export it with the “Export” menu in the
   - More options are available in the “Save as image…” option. PNG is a
     good compressed format for graphics, but if you want to further
     customise your visualisation in a different program, use SVG or EPS,
-    which are vector formats.
+    which are vector formats. (Try to open an SVG file in
+    [Inkscape](https://inkscape.org/) for example.)
 
-Let’s use a similar approach with the `economics` data.
+To save the last plot with a command, you can use the `ggsave()`
+function:
+
+``` r
+ggsave(filename = "plots/horiz_bar.png")
+```
+
+This is great to automate the export process for each plot in your
+script, but `ggsave()` also has extra options, like setting the DPI,
+which is useful for getting the right resolution for a specific use. For
+example, to export a plot for your presentation:
+
+``` r
+ggsave(filename = "plots/horiz_bar_pres.png", dpi = "screen")
+```
 
 **Challenge 2 – add a variable and a smooth line**
+
+Let’s use a similar approach to what we did with the `mpg` dataset.
 
 Take our previous “economics” scatterplot:
 
@@ -453,14 +484,14 @@ ggplot(economics,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 > See how the legend changes depending on the type of data mapped to the
 > `colour` aesthetic? (i.e. categorical vs continuous)
 
-This trend line is definitely not particularly useful. We could make it
-follow the data more closely by using the `span` argument. The closer to
-0, the closer to the data the smoother will be:
+This “trend line” is not particularly useful. We could make it follow
+the data more closely by using the `span` argument. The closer to 0, the
+closer to the data the smoother will be:
 
 ``` r
 ggplot(economics,
@@ -472,7 +503,7 @@ ggplot(economics,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 You can now see why this is called a “smoother”: we can fit a smooth
 curve to data that varies a lot.
@@ -491,7 +522,7 @@ ggplot(economics,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 The [early 1980s
 recession](https://en.wikipedia.org/wiki/Early_1980s_recession) now seem
@@ -524,7 +555,7 @@ ggplot(diamonds,
     geom_bar()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 The chart shows that more diamonds are available with high quality cuts
 than with low quality cuts.
@@ -555,7 +586,7 @@ ggplot(diamonds,
     geom_bar(fill = "tomato")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
 
 If you are curious about what colour names exist in R, you can use the
 `colours()` function.
@@ -574,7 +605,7 @@ ggplot(diamonds,
          y = "Number of diamonds")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 Let’s have a look at what `labs()` can do:
 
@@ -604,7 +635,7 @@ ggplot(diamonds,
        x = "Number of diamonds") # ...and here!
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
 This is particularly helpful when long category names overlap under the
 x axis.
@@ -620,33 +651,15 @@ ggplot(diamonds,
        aes(y = cut)) + 
   geom_bar(fill = "tomato") +
   labs(title = "Where are the bad ones?",
-       x = "Quality of the cut",
-       y = "Number of diamonds") +
+       y = "Quality of the cut",
+       x = "Number of diamonds") +
   theme_bw()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 Try `theme_minimal()` as well, and if you want more options, install the
 `ggthemes` package\!
-
-### Automate the export
-
-To save the last plot with a command, you can use the `ggsave()`
-function:
-
-``` r
-ggsave(filename = "plots/horiz_bar.png")
-```
-
-This is great to automate the export process for each plot in your
-script, but `ggsave()` also has extra options, like setting the DPI,
-which is useful for getting the right resolution for a specific use. For
-example, to export a plot for your presentation:
-
-``` r
-ggsave(filename = "plots/horiz_bar_pres.png", dpi = "screen")
-```
 
 ## Play time\!
 
