@@ -1,6 +1,6 @@
-# Digital Scholars Hub resources
+# UQ Library training resources
 
-Here you will find resources related to R, Python, Bash, Git, OpenStreetMap, QGIS, OpenRefine, Audacity and Voyant Tools sessions held at the UQ Library.
+Here you will find resources related to R, Python, Bash, Git, OpenStreetMap, QGIS, OpenRefine, Audacity and Voyant Tools training sessions held at the UQ Library.
 
 Other training resources are also available [on the Library website](https://web.library.uq.edu.au/library-services/training/software-training-resources).
 
@@ -39,7 +39,7 @@ These sessions focus on dealing with geospatial data, using QGIS, the OpenStreet
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
-| OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [html](https://cryptpad.fr/pad/#/2/pad/edit/ZwpBgdie-YBBXvDE68N53u2s/) | ... |
+| OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [html](https://demo.hedgedoc.org/s/PsREGQ2zQ) | ... |
 | QGIS: introduction to mapping | [md](QGIS/intro/QGIS_intro.md) | [html](https://demo.codimd.org/s/B156o7z2V) | ... |
 | QGIS: raster analysis | [md](QGIS/raster/QGIS_raster.md) | [html](https://demo.codimd.org/s/ryN5E-XuS) | ... |
 | QGIS: mobile mapping | [md](QGIS/mobile/QGIS_mobile.md) | [html](https://demo.hedgedoc.org/s/Bki4rlOAU) | ... |

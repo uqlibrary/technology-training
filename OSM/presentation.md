@@ -26,11 +26,11 @@ See the front page: https://www.openstreetmap.org
 
 # Statistics
 
-2004 -> 2019 :chart_with_upwards_trend: :
+2004 -> 2021 :chart_with_upwards_trend: :
 
-- 5+ million users
-- 70+ million changesets
-- 5+ billion nodes
+- 7+ million users
+- 100+ million changesets
+- 6+ billion nodes
 
 ![h:200](pics/users.png)
 

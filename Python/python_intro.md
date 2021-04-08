@@ -62,17 +62,13 @@ myList + diverse
 3 * myList
 ```
 
-Another important data type is `bool`, for "boolean". Booleans often are the result of checking for a condition, and can only be one of two values: `True` or `False`. For example:
+However, depending on the variable, some operations won't work:
 
 ```python
-1 == 1
-1 == 2
-1 != 2
-5 > 7
-bool1 = favNumber > otherNumber
+sentence + favNumber
 ```
 
-There are other data types like tuples, dictionaries and sets, but we won't get into details today.
+There are other data types like booleans, tuples, dictionaries and sets, but we won't get into details today.
 
 ### Indexing
 
@@ -81,6 +77,7 @@ There are other data types like tuples, dictionaries and sets, but we won't get 
 ```python
 sentence[0]
 sentence[6]
+mylist[4]
 ```
 
 You can use a range to index, but note that it will not include the upper bound in the returned values. For example:
@@ -186,7 +183,7 @@ Here is an example of creating a pandas dataframe from scratch, populating it by
 
 ```python
 import pandas as pd
-df = pd.DataFrame(columns = ["Name", "Age"])
+df = pd.DataFrame(columns=["Name", "Age"])
 # populate the dataframe:
 df.loc[1] = "Josephine", 70
 df.loc[2] = "Dilsah", 38
@@ -220,7 +217,7 @@ Extra arguments can be used to style further:
 
 ```python
 # red, diamonds, solid line; change width of line and size of diamonds:
-plt.plot(myList, "rd-", linewidth = 3, markersize = 10)
+plt.plot(myList, "rd-", linewidth=3, markersize=10)
 ```
 
 To find out about the styling shorthand and all other arguments, look at the documentation:
@@ -290,13 +287,14 @@ The console conveniently shows us only the beginning and end of the dataframe.
 We can also use the "dot notation" to create commands that are useful to explore the data:
 
 ```python
-data.shape # size of the dataframe
-data.head() # first few rows
+data.shape # size of the dataframe (an attribute)
+data.head() # first few rows (a method)
+data.head(10) # change the behaviour of the method
 data.tail() # last few rows
 data.country # single variable
 ```
 
-Variables have **attributes** and **methods** attached to them, depending on the data type. Here, `shape` is a method, i.e. a static characteristic of the variable, whereas `head()` is a method, i.e. a function that can often take arguments.
+Variables have **attributes** and **methods** attached to them, depending on the data type. Here, `shape` is an attribute, i.e. a static characteristic of the variable, whereas `head()` is a method, i.e. a function that can often take arguments.
 
 ### Analyse data
 
@@ -309,24 +307,50 @@ data.describe()
 To create a customised summary, we can string different methods one after the other. Here, we first group by year to then get the yearly mean of the numerical columns:
 
 ```python
-data.groupby(by = "year").mean()
+data.groupby("year").mean()
 ```
 
 ### Visualise data
 
-We can visualise our data with `pyplot`. First, let's visualise the relationship between GDP per capita and life expectancy with a scatterplot:
+We can visualise our data with `matplotlib`. First, let's visualise the relationship between GDP per capita and life expectancy with a scatterplot:
 
 ```python
 import matplotlib.pyplot as plt
 plt.plot(data.gdpPercap, data.lifeExp, "go")
 ```
 
-We are the data as two arguments, which are understood as what we put on the x and y axes respectively.
+We add the data as two arguments, which are understood as what we put on the x and y axes respectively.
 
 The default circles are quite big, so let's reduce their size:
 
 ```python
-plt.plot(data.gdpPercap, data.lifeExp, "go", markersize = 1)
+plt.plot(data.gdpPercap, data.lifeExp, "go", markersize=1.5)
+```
+
+And we can add labels with extra functions:
+
+```python
+plt.plot(data.gdpPercap, data.lifeExp, "go", markersize=1.5)
+plt.xlabel("GDP per capita (USD)")
+plt.ylabel("Live expectancy (years)")
+```
+
+> Make sure that you execute all the lines of code that relate to one plot *together*. When you need to execute many lines together, you might want to start using **cells** in your script: you can start a new cell with a `#%%` line, and execute the current cell with the keyboard shortcut <kbd>Ctrl</kbd> + <kbd>Enter</kbd>.
+
+#### Saving plots
+
+You can save you plots as PNG by right-clicking on them. To save automatically with some code, you can add the following line to the visualisation block:
+
+```python
+plt.savefig("gdp_vs_life_exp.pdf")
+```
+
+A PDF is a great format of a simple file containing a visualisation in vector format.
+
+You can change the extension in the filename to save in a different format. For example, for a PNG file with a higher definition than the default:
+
+```python
+plt.savefig("gdp_vs_life_exp.png", dpi=600)
 ```
 
 #### Challenge 2: Visualise mean life expectancy over the years
@@ -339,95 +363,11 @@ plt.plot(data.gdpPercap, data.lifeExp, "go", markersize = 1)
 We can reuse the same summary as before, but adding the attribute of the right column we are interested in:
 
 ```python
-plt.plot(data.groupby(by = "year").mean().lifeExp, "m:")
+plt.plot(data.groupby("year").mean().lifeExp, "m:")
 ```
-
-#### Saving plots
-
-You can save you plots as PNG by right-clicking on them. To save automatically with some code, you can add the following line:
-
-```python
-plt.savefig("myPlot.pdf")
-```
-
-> Make sure that you execute the code that generates the plot *together* with the code that saves the file. When you need to execute many lines together, you might want to start using **cells** in your script: you can start a new cell with a `#%%` line, and execute the current cell with the keyboard shortcut <kbd>Ctrl</kbd> + <kbd>Enter</kbd>.
 
 ## Saving your work
 
 Your project can be reopened from the "Projects" menu in Spyder.
 
 By default, your variables are *not* saved, which is another reason why working with a script is important: you can execute the whole script in one go to get everything back. You can however save your variables as a `.spydata` file if you want to (for example, if it takes a lot of time to process your data).
-
-## Extras
-
-Here are some extras that usually don't fit in this session, but that you might be interested in to go further with Python.
-
-### Loops
-
-A "for loop" will execute something for each element of a list:
-
-```python
-friends = ["Mary", "Toya", "Fernand"]
-for name in friends:
-	print(name + "is a perfectly fine name")
-```
-
-This will allow you to automate the boring repetitive tasks!
-
-### Custom functions
-
-We can create our own custom functions to reuse later on:
-
-```python
-# define the function
-def my_function(arg1, arg2):
-	prod = arg1 * arg2
-	sum = prod + 10
-	return sum
-# use the custom function
-my_function(3, 5)
-```
-
-We have to specify the function **name**, what **arguments** are available, what **operations** we do with them, and what the function **returns**.
-
-### More visualisations
-
-Executing several lines together will render everything on the same visualisation. See for example this code that plots two lines together, modifies axis ranges, adds a legend and styles axis labels with LaTex, and saves to pdf:
-
-```python
-x = np.linspace(0, 15, 8)
-y = x**2
-plt.plot(x, y, "bo-", label = "High")
-plt.plot(x, x**1.5, "gs--", label = "Low")
-# we can use LaTex
-plt.xlabel("$X$")
-plt.ylabel("$Y$")
-plt.legend(loc = "upper left")
-# save plot
-plt.savefig("hi-lo.pdf")
-```
-
-To create a histogram:
-
-```python
-x = np.random.normal(size = 1000)
-plt.hist(x)
-plt.hist(x, bins = 20)
-```
-
-We can join several plots on the same image with the `subplot()` function, which takes three numbers: the number of rows, number of columns, and position of the subplot.
-
-```python
-x = np.random.gamma(2, 3, 100000) # create data
-plt.figure() # initialise
-plt.subplot(221)
-plt.hist(x, bins = 30)
-plt.subplot(222)
-plt.hist(x, bins = 30, cumulative = True)
-plt.subplot(223)
-plt.hist(x, bins = 30, density = True)
-plt.subplot(224)
-plt.boxplot(x)
-```
-
-> You can also use `subplot()` with three separate arguments, e.g. `subplot(3, 3, 7)`

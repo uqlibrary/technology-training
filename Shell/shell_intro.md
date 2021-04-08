@@ -1,6 +1,6 @@
 # Unix Shell: an introduction
 
-Last updated: 2019-03-08
+Last updated: 2021-04-01
 
 ## Legal
 
@@ -37,15 +37,15 @@ The Unix shell has been around longer than most of its users have been alive. It
 
 ### Format
 
-We will learn doing some **live-coding**, which means we will all be using the shell and typing the same things – agreat way to learn. No need to take notes as they are available online for later reference.
+We will learn doing some **live-coding**, which means we will all be using the shell and typing the same things – a great way to learn. No need to take notes as they are available online for later reference.
 
 ### Our data: Nelle's research
 
 The data we use as an example for this lesson is a collection of 1520 files that contain information about protein abundance in samples collected by a marine biologist, Nelle Nemo. They need to be run through a program called `goostats` but that would take too much time if each file was run manually.
 
-The command shell might be helpful to automate this repetitive task.
+The shell might be helpful to automate this repetitive task.
 
-First, we'll need to understand how to navigate through our file system inside the shell.
+First, we'll need to understand how to navigate our file system using the shell.
 
 ## Navigating the file system
 
@@ -73,7 +73,7 @@ Commands can often take extra parameters, called **flags** (also called "options
 ls -a
 ```
 
-To find out more about on particular command, including what flags exist for it, use the `--help` flag after it, like so:
+To find out more about a particular command, including what flags exist for it, use the `--help` flag after it, like so:
 
 ```shell
 ls --help
@@ -93,9 +93,9 @@ As you can see, a command can take both flags and arguments. For example, the co
 ls -lh Documents
 ```
 
-... associates the two flags `-l` (for "long listing") and `-h` (for "human-readable") to output extra information and make file sizes more user-friendly, and specifies that we want to list what the `Documents` directory contains.
+... associates the two flags `-l` (for "**l**ong listing") and `-h` (for "**h**uman-readable") to output extra information and make file sizes more user-friendly, and specifies that we want to list what the `Documents` directory contains.
 
-To navigate into our data directory, we'll use a new command called `cd` for "change directory".
+To navigate into our data directory, we'll use a new command called `cd` for "**c**hange **d**irectory".
 
 ```shell
 cd Desktop
@@ -134,7 +134,7 @@ Two more shortcuts are handy when it comes to changing or specifying directories
 
 We now know how to explore files and directories, but how do we create, modify and delete them?
 
-In the `data-shell` directory, let's create a new directory called `thesis` thanks to the `mkdir` command (for "make directory"):
+In the `data-shell` directory, let's create a new directory called `thesis` thanks to the `mkdir` command (for "**m**a**k**e **dir**ectory"):
 
 ```shell
 cd ../..
@@ -160,13 +160,18 @@ nano draft.txt
 
 Type a few lines of text, and save with <kbd>Ctrl</kbd>+<kbd>O</kbd>. (Nano uses the symbol `^` for the control key.) Nano also checks that you are happy with the file name: press enter at the prompt, and exit the editor with <kbd>Ctrl</kbd>+<kbd>X</kbd>.
 
-Nano does not leave any ouptut, but you can check that the file exists with `ls`.
+Nano does not leave any ouptut, but you can check that the file exists with `ls`. You can also see the contents of a text file with the `cat` command (it stands for "con**cat**enate"):
+
+```
+cat
+```
 
 If you are not happy with your work, you can remove the file with the `rm` command, but beware: in the shell, **deleting is forever**! There is no rubbish bin.
 
 ```shell
 rm draft.txt
 ```
+
 Let’s re-create that file and then move up one directory to `/Users/username/Desktop/data-shell` using `cd ..`:
 
 ```shell
@@ -227,7 +232,7 @@ ls thesis
 ls quotes.txt
 ```
 
-The `cp` command copies a file. Let's copy the file into the `thesis` directory, with a new name, and check that the original file and the copy both exist:
+The `cp` command **c**o**p**ies a file. Let's copy the file into the `thesis` directory, with a new name, and check that the original file and the copy both exist:
 
 ```shell
 cp quotes.txt thesis/quotations.txt
@@ -241,11 +246,11 @@ rm quotes.txt
 ls quotes.txt
 ```
 
-## Pipes and filters
+## Filters and pipes
 
-> Pipes and filters are the two building blocks for more complex commands. **Pipes** send the output of a command as an input of another one, whereas **filters** are commands that allow the transformation of a stream of input into a stream of output. Many commands fit this definition of filters and constitute "small pieces" that can be "loosely joined", i.e. stringed in new ways. The "pipes and filters" programming model is permitted by the Unix focus on creating small single-purpose tools that work well together.
+> Filters and pipes are the two building blocks for more complex commands. **Filters** are commands that allow the transformation of a stream of input into a stream of output, whereas **pipes** send the output of a command as the input of another one. Many commands fit the definition of filters and constitute "small pieces" that can be "loosely joined", i.e. stringed in new ways. The "pipes and filters" programming model is permitted by the Unix focus on creating small single-purpose tools that work well together.
 
-In the `molecules` directory, let's use the `wc` command (for "word count"):
+In the `molecules` directory, let's use the `wc` command (for "**w**ord **c**ount"):
 
 ```shell
 cd molecules
@@ -254,9 +259,9 @@ wc *.pdb
 
 The `*` **wildcard** is used to match zero of more characters. Other wildcards include `?` to match one single character.
 
-Flags for `wc` include `-l` for restricting the output to line numbers, `-w` for words, and `-c` for characters.
+Notice how the output has three numbers for each file? They are the number of lines, words and characters. Flags for `wc` include `-l` for restricting the output to line numbers, `-w` for words, and `-c` for characters.
 
-To figure out which file is the shortest, we can first **redirect** the number of lines into a new file thanks to `>`:
+To figure out which file is the shortest, we can first **redirect** the number of lines into a new file thanks to `>`, so we can reuse it later on:
 
 ```shell
 wc -l *.pdb > lengths.txt
@@ -264,45 +269,29 @@ wc -l *.pdb > lengths.txt
 
 This creates the file, or overwrites it if it already exists. `>>` on the other hand will _append_ to an existing file.
 
-The command `cat` (for "concatenate") will print the contents of a file to screen:
-
-```shell
-cat lengths.txt
-```
-
-On the other hand, `head` and `tail` will respectively show the beginning and the end of the file. It is possile to overwrite the default of 10 lines with a flag:
-
-```shell
-head -2 lengths.txt
-tail -3 lengths.txt
-```
-
 The `sort` command will print the alphabetically sorted data to screen. Using the `-n` flag will sort it numerically instead:
 
 ```shell
 sort -n lengths.txt
 ```
 
-Now, to find out which data file is the shortest, we can run the following:
+We now know that the top line is the shortest file. However, intermediate files make a long process complicated to follow, and clutter your hard drive. We can instead run two commands together:
 
 ```shell
-sort -n lengths.txt > sorted-lengths.txt
-head -1 sorted-lengths.txt
+wc -l *.pdb | sort -n
 ```
 
-However, intermediate files make it complicated to follow, and clutter your hard drive. We can instead run the two command together:
+The vertical bar, `|`, is called a **pipe**. It tells the shell we want to use the output of the command on the left as the input for the command on the right.
 
-```shell
-sort -n lengths.txt | head -1
-```
-
-The vertical bar, `|`, is called a **pipe**. It tells the shell we want to use the output of the command on the left as the input for the command on the right. We can string as many pipes as we want, which makes it possible to do the whole task in one **pipeline**:
+`head` and `tail` will respectively show the beginning and the end of some text. It is possile to overwrite the default of 10 lines with a flag that specifies how many lines we want returned. Let's use `head` in our process to only show the first line of the sorted text:
 
 ```shell
 wc -l *.pdb | sort -n | head -1
 ```
 
-The pipeline could be read backwards as "we want the one-line head of the numerically sorted line-count of all PDB files".
+We can string as many pipes and filters as we want, which makes it possible to do the whole task in one **pipeline**.
+
+The pipeline can be read as a sentence: "Count the number of lines in all the PDB files, then sort them numerically, then return only the first line."
 
 ### Nelle's pipeline
 
@@ -347,48 +336,29 @@ This will match all files ending in `A.txt` or `B.txt`.
 In the `creatures` directory (reached with `cd ../../creatures`), using the following command to create backups of our data files will throw an error:
 
 ```shell
-cp *.dat original-*.dat
+cp *.dat backup-*.dat
 ```
 
 The issue is that it expands to giving `cp` more than two inputs, and therefore expects the last one to be a directory where the copies can go.
 
-The way around that is to use a loop, to do some operation _once for each element in a list_. For example, to display the first three lines of each file in turn:
-
-```shell
-for filename in basilisk.dat unicorn.dat
-do
-    head -3 $filename
-done
-```
-
-In this loop, `filename` is a variable which is assigned a different file name in each run. The variable can be named whatever we want, but a descriptive name is better.
-
-Here is a slightly more complicated loop:
-
-```shell
-for filename in *.dat
-do
-    echo $filename
-    head -100 $filename | tail -20
-done
-```
-
-When running this loop, the shell does the following:
-* expand `*.dat` to create a list of files
-* execute the **loop body** for each of those files:
-    * `echo` prints the file name to screen
-    * the pipeline selects lines 81-100
-
-> If your file names contain spaces, you will have to use quotation marks around the filenames and the variable calls. But it is simpler to always avoid using whitespaces when naming files and directories!
+The way around that is to use a loop, to do some operation _once for each element in a list_.
 
 To solve our file copying problem we can use this loop:
 
 ```shell
 for filename in *.dat
 do
-    cp $filename original-$filename
+    cp $filename backup-$filename
 done
 ```
+
+In this loop, `filename` is a variable which is assigned a different file name in each run. The variable can be named whatever we want, but a descriptive name is better.
+
+When running this loop, the shell does the following:
+* expand `*.dat` to create a list of files
+* execute the **loop body** for each of those files:
+    * copy the currently processed file and prepend "original-" to its name.
+* close the loop with "done"
 
 You can check that your loop will do what you expect it to do beforehand, by prefixing the command in the loop body with `echo`:
 
@@ -399,9 +369,14 @@ do
 done
 ```
 
+`echo` is also useful to give extra information while the loop executes, as we'll see later on.
+
+> If your file names contain spaces, you will have to use quotation marks around the filenames and the variable calls. But it is simpler to always avoid using whitespaces when naming files and directories!
+
+
 ### Nelle's pipeline
 
-Nelle now wants to calculate stats on her data files with her lab's shell script called `goostats`. The script takes two arguments: an input file (the raw data) and an output file (to store the stats).
+Nelle now wants to calculate stats on her data files with her lab's program called `goostats`. The program takes two arguments: an input file (the raw data) and an output file (to store the stats).
 
 Located in the `north-pacific-gyre/2012-07-03`, she designs the following loop:
 
@@ -411,19 +386,17 @@ for datafile in NENE*[AB].txt
 done
 ```
 
-When she runs it, the shell seems stalled and nothing gets printed to the screen. She kills the running command with `ctrl + C`, uses the up arrow to edit the command and add an `echo` line to the loop body in order to know which file is being processed:
+> `bash` is a program that executes the contents of a script (here, the "goostats" script). More about scripts in a little bit!
+
+When she runs it, the shell seems stalled and nothing gets printed to the screen. She kills the running command with <kbd>Ctrl</kbd> + <kbd>C</kbd>`, uses the up arrow to edit the command and adds an `echo` line to the loop body in order to know which file is being processed:
 
 ```shell
 for datafile in NENE*[AB].txt; do echo $datafile; bash goostats $datafile stats-$datafile; done
 ```
 
-It looks like processing her whole dataset (1518 files) will take about two hours. She checks that a sample output file looks good with:
+> Notice how you have to separate distinct parts of your code with a `;` when it is written in one single line.
 
-```shell
-cat stats-NENE01729A.txt
-```
-
-... runs her loops and lets the computer process it all.
+It looks like processing her whole dataset (1518 files) will take about two hours. She checks that a sample output file looks good, runs her loop and lets the computer process it all.
 
 Here is another example of how useful a loop can be: to create a logical directory structure. Say a researcher wants to organise experiments measuring reaction rate constants with different compounds and different temperatures. They could use a **nested loop** like this one:
 
@@ -437,7 +410,7 @@ do
 done
 ```
 
-This nested loop would create 24 directories in a few seconds. How much time would that take with a graphical file browser?
+This nested loop would create 24 directories in less than a second. How much time would that take with a graphical file browser?
 
 ## Shell scripts
 
@@ -445,104 +418,35 @@ This nested loop would create 24 directories in a few seconds. How much time wou
 
 We are finally ready to see what makes the shell such a powerful programming environment. We are going to take the commands we repeat frequently and save them in files so that we can re-run all those operations again later by typing a single command. For historical reasons, a bunch of commands saved in a file is usually called a **shell script**, but make no mistake: these are actually small programs.
 
-Let's start by going back the the `molecules/` folder and creating a new file called `middle.sh`:
+To store her analytics and make them reproducible, Nelle creates a script. She create a new file with Nano:
 
 ```shell
-cd molecules
-nano middle.sh
+nano do-stats.sh
 ```
 
-In the document, type the following line and save (i.e. write out and exit):
+... and write the following inside it:
 
 ```shell
-head -n 15 octane.pdb | tail -n 5
-```
-
-This is a variation on a previous pipeline: it selects lines 11-15 of the file `octane.pdb`.
-
-Once we save the file, we can ask the shell to execute the commands it contains with the following command:
-
-```shell
-bash middle.sh
-```
-
-In order to apply this script to other files – without re-writing the script every time! –, we need to make it more versatile. Open the script in Nano once more:
-
-```shell
-nano middle.sh
-```
-
-... and replace `octane.pdb` with the special variable `$1`, so the command looks like this:
-
-```shell
-head -n 15 "$1" | tail -n 5
-```
-
-Inside a shell script, `$1` means "the first argument used when calling the script". We can now run our script with, for example:
-
-```shell
-bash middle.sh pentane.pdb
-```
-
-We can now add more special variables to pass on to `head` and `tail`, in order to customise the line range. Modify the script like so:
-
-```shell
-head -n "$2" "$1" | tail -n "$3"
-```
-
-To select lines 16-20, we can now run:
-
-```shell
-bash middle.sh pentane.pdb 20 5
-```
-
-It works, but the counter-intuitive range setting could benefit from some **comments**, using the `#` character at the beginning of a script line:
-
-```shell
-# Select lines from the middle of a file.
-# Usage: bash middle.sh filename end_line num_lines
-head -n "$2" "$1" | tail -n "$3"
-```
-
-The computer ignore comments when it executes the script, but they are very useful to people reading your code, including your future self!
-
-If you want to accept an undefined number of arguments, you can use the special variable `$@`, which means "all of the command-line arguments to the shell script". Consider this `sorted.sh` script:
-
-```shell
-# Sort filenames by their length.
-# Usage: bash sorted.sh one_or_more_filenames
-wc -l "$@" | sort -n
-```
-
-It could be used to order (by number of lines) different kinds of files from different folders:
-
-```shell
-bash sorted.sh *.pdb ../creatures/*.dat
-```
-
-Here is another example of a script that would take any number of CSV files as arguments, and would use a loop as well as the `cut`, `sort` and `uniq`:
-
-```shell
-# Script to find unique species in csv files where species is the second data field
-# This script accepts any number of file names as command line arguments
-
-# Loop over all files
-for file in $@ 
+for datafile in NENE*[AB].txt
 do
-	echo "Unique species in $file:"
-	# Extract species names
-	cut -d , -f 2 $file | sort | uniq
+    echo $datafile
+    bash goostats $datafile stats-$datafile
 done
 ```
 
-> If you are unsure about what a command does, remember you can run `<command> --help`.
+> Writing Nelle's loop in the command line wasn't very comfortable. When you start writing blocks of code that do more complex things, you want to use a code editor like Nano. Notice how it highlights parts of your code differently? This is called "**syntax highlighting**".
 
-### Nelle's pipeline
-
-To store her analytics and make them reproducible, Nelle creates the following script:
+Nelle can now run her script with:
 
 ```shell
-# calculate stats for data files
+bash do-stats.sh
+```
+
+This works well, but what if she wants to make her script more versatile, so the user can decide what the data files are? She modifies the script:
+
+```shell
+# Calculate stats for data files.
+# Usage: bash do-stats.sh file(s)_to_process
 for datafile in "$@"
 do
     echo $datafile
@@ -550,13 +454,13 @@ do
 done
 ```
 
-She saves it as `do-stats.sh` so she can re-do her first analysis by running:
+In this new version, she added **comments**, with lines starting with `#`. These comments will be ignored by the shell, but will help others understand what the script does, and how to use it.
 
-```shell
-bash do-stats.sh NENE*[AB].txt
-```
+She also used the special variable `$@`, which means "any number of arguments". The user can now provide one or several file names when using the script.
 
-The good thing about her script is that she lets the user decide what files to process. However, she has to remember to exclude the "Z" files.
+> If you prefer to use a specific number of arguments, and use them according to their position, use the variable `$1`, `$2`, `$3`, etc.
+
+Her script now lets her decide what files to process, but she has to remember to exclude the "Z" files.
 
 > Designing a script always involves tradeoffs between flexibility and complexity.
 
@@ -691,3 +595,10 @@ grep "FE" $(find .. -name '*.pdb')
 
 This command will list all the PDB files that contain iron atoms.
 
+## Further resources
+
+To learn more about the Unix Shell:
+
+* See the [full Carpentries course](https://swcarpentry.github.io/shell-novice/) and practise with challenges.
+* [A shell cheatsheet](https://www.cheatsheet.wtf/bash/)
+* Practise your shell skills and learn from others on [Exercism](https://exercism.io/my/tracks/bash)
