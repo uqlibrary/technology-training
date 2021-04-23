@@ -1,7 +1,7 @@
 R advanced: packaging and sharing functions
 ================
 UQ Library
-2020-01-03
+2021-04-23
 
 The strength of the R programming language lies in the endless
 possibilities custom functions can bring, and a community of users who
@@ -144,35 +144,12 @@ The package readr provides a `read_csv()` function to import data from a
 CSV files.
 
 > We will use several tidyverse packages, so we might as well load the
-> core Tidyverse
-    packages.
+> core Tidyverse packages.
 
 ``` r
 library(tidyverse)
-```
-
-    ## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
-
-    ## ✓ ggplot2 3.2.1     ✓ purrr   0.3.3
-    ## ✓ tibble  2.1.3     ✓ dplyr   0.8.3
-    ## ✓ tidyr   1.0.0     ✓ stringr 1.4.0
-    ## ✓ readr   1.3.1     ✓ forcats 0.4.0
-
-    ## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-    ## x dplyr::filter() masks stats::filter()
-    ## x dplyr::lag()    masks stats::lag()
-
-``` r
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv")
 ```
-
-    ## Parsed with column specification:
-    ## cols(
-    ##   date = col_date(format = ""),
-    ##   `maximum temperature (degC)` = col_double(),
-    ##   `site number` = col_character(),
-    ##   `site name` = col_character()
-    ## )
 
     ## # A tibble: 28,398 x 4
     ##    date       `maximum temperature (degC)` `site number` `site name`
@@ -187,7 +164,7 @@ read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv")
     ##  8 1941-09-07                         NA   <NA>          <NA>       
     ##  9 1941-09-08                         32   <NA>          <NA>       
     ## 10 1941-09-09                         32.7 <NA>          <NA>       
-    ## # … with 28,388 more rows
+    ## # ... with 28,388 more rows
 
 Looks like we need to remove the first row, which we can do by piping an
 extra `slice()` step:
@@ -196,14 +173,6 @@ extra `slice()` step:
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
   slice(-1) # remove the first row
 ```
-
-    ## Parsed with column specification:
-    ## cols(
-    ##   date = col_date(format = ""),
-    ##   `maximum temperature (degC)` = col_double(),
-    ##   `site number` = col_character(),
-    ##   `site name` = col_character()
-    ## )
 
     ## # A tibble: 28,397 x 4
     ##    date       `maximum temperature (degC)` `site number` `site name`
@@ -218,7 +187,7 @@ read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
     ##  8 1941-09-08                         32   <NA>          <NA>       
     ##  9 1941-09-09                         32.7 <NA>          <NA>       
     ## 10 1941-09-10                         33.4 <NA>          <NA>       
-    ## # … with 28,387 more rows
+    ## # ... with 28,387 more rows
 
 We also want to remove the useless columns, and rename the maximum
 temperature variable, which can be done in one go with the `select()`
@@ -227,16 +196,8 @@ function:
 ``` r
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
   slice(-1) %>% 
-  select(date, max.temp = `maximum temperature (degC)`) # only keep two variables
+  select(date, max.temp = 2) # only keep two variables
 ```
-
-    ## Parsed with column specification:
-    ## cols(
-    ##   date = col_date(format = ""),
-    ##   `maximum temperature (degC)` = col_double(),
-    ##   `site number` = col_character(),
-    ##   `site name` = col_character()
-    ## )
 
     ## # A tibble: 28,397 x 2
     ##    date       max.temp
@@ -251,7 +212,7 @@ read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
     ##  8 1941-09-08     32  
     ##  9 1941-09-09     32.7
     ## 10 1941-09-10     33.4
-    ## # … with 28,387 more rows
+    ## # ... with 28,387 more rows
 
 This is probably the data we want to end up with when reading a file
 
@@ -261,7 +222,7 @@ Have a look at the function defined in “read\_station.R”:
 read_station <- function(file) {
   read_csv(file) %>% 
     slice(-1) %>% 
-    select(date, max.temp = `maximum temperature (degC)`) %>% 
+    select(date, max.temp = 2) %>% 
     mutate(filename = file)
 }
 ```
@@ -283,14 +244,6 @@ Back in our script, we can now test it on our first file:
 read_station("acorn_sat_v2_daily_tmax/tmax.002012.daily.csv")
 ```
 
-    ## Parsed with column specification:
-    ## cols(
-    ##   date = col_date(format = ""),
-    ##   `maximum temperature (degC)` = col_double(),
-    ##   `site number` = col_character(),
-    ##   `site name` = col_character()
-    ## )
-
     ## # A tibble: 39,811 x 3
     ##    date       max.temp filename                                     
     ##    <date>        <dbl> <chr>                                        
@@ -304,7 +257,7 @@ read_station("acorn_sat_v2_daily_tmax/tmax.002012.daily.csv")
     ##  8 1910-01-08     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
     ##  9 1910-01-09     37.6 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
     ## 10 1910-01-10     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    ## # … with 39,801 more rows
+    ## # ... with 39,801 more rows
 
 > It is often useful to define functions in a separate script to the
 > data analysis script. Know that you can then “source” those custom
@@ -347,6 +300,10 @@ merge_acorn <- function(dir) {
 
 Let’s source this function, and try it in our script:
 
+``` r
+all_tmax <- merge_acorn("acorn_sat_v2_daily_tmax")
+```
+
 This does the same as before: we have a final merged dataset of all the
 max temperatures from ACORN.
 
@@ -362,7 +319,7 @@ valid path?
 merge_acorn("blah")
 ```
 
-We could improve our function with the an `if` statement and a `stop()`
+We could improve our function with an `if` statement and a `stop()`
 function:
 
 ``` r
@@ -412,8 +369,11 @@ mean_max <- all_tmax %>%
 
 ggplot(mean_max, aes(x = year, y = max.temp)) +
   geom_point() +
-  geom_smooth()
+  geom_smooth() +
+  labs(y = "Yearly max temp average (°C)")
 ```
+
+![](packaging_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 We now want to share our useful functions with the World\!
 
@@ -460,13 +420,13 @@ the fields with relevant information, in particular for `Title`,
     Version: 0.1.0
     Author: Your Name
     Maintainer: Your Name <yourself@somewhere.net>
-    Depends: readr, dplyr, purrr
+    Imports: readr, dplyr, purrr
     Description: Functions to import, cleanup and merge temperature data from ACORN stations
     License: GPL-3
     Encoding: UTF-8
     LazyData: true
 
-Notice that we added the `Depends:` field. This allows us to specify
+Notice that we added the `Imports:` field. This allows us to specify
 what extra packages are needed for our package to work.
 
 #### Which licence?
@@ -552,7 +512,8 @@ At any time, we can load the package to test its functions:
 
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
 
-To check our package for issues:
+And to check our package for issues, we can use the “Check” button in
+the Build tab, or the following command:
 
 ``` r
 devtools::check()
@@ -561,18 +522,29 @@ devtools::check()
 This function does a very thorough check, and will take some time to go
 through all the steps.
 
+Notice any error, warning or note?
+
 ### Building and installing
 
-We can also install our package on our system. First, we need to build
-the package:
+We can also install our package on our system.
+
+The easiest way is with the “Install and Restart” button. This will list
+the package in your Packages tab, which means you will be able to load
+it whenever you need the functions when you work on another project.
+
+However, if you want to save a copy and share it with others, you can
+build the package:
 
   - On Windows: Build \> Build Binary Package
   - On Linux or macOS: Build \> Build Source Package
 
-This is what you can share with colleagues and friends who want to try
-your package on their computer.
+The resulting archive is what you can share with colleagues and friends
+who want to try your package on their computer.
 
-To install it (the name of the archive will depend on your system):
+To install it (the name of the archive will depend on your system),
+either use the “Install” menu in the Packages tab (using “Install from
+Package Archive File” instead of the CRAN repositories), or use this
+command:
 
 ``` r
 install.packages("../acornucopia_0.1.0.tar.gz", repos = NULL)
@@ -581,8 +553,8 @@ install.packages("../acornucopia_0.1.0.tar.gz", repos = NULL)
 > We have to set `repos` to `NULL` so R doesn’t look for the package on
 > CRAN.
 
-We now have our package listed in our packages list, ready to be loaded
-whenever we want to use its functions.
+Others can now have our package listed in their packages list, ready to
+be loaded whenever they want to use its functions.
 
 ### Best practice
 
@@ -632,7 +604,8 @@ devtools::install_gitlab("username/myPackage")
 
 ## Useful links
 
-  - *R Packages*, by Hadley Wickham: <http://r-pkgs.had.co.nz/>
+  - *R Packages*, by Jenny Bryan and Hadley Wickham:
+    <http://r-pkgs.had.co.nz/>
   - Full official guide for packaging:
     <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
   - What to lookout for when publishing to CRAN:

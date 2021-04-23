@@ -7,7 +7,7 @@ output: github_document
 
 ```{r setup, include=FALSE}
 # default to not evaluating chunks!
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, message = FALSE)
 source("get_acorn.R")
 source("read_station.R")
 source("merge_acorn.R")
@@ -138,7 +138,7 @@ We also want to remove the useless columns, and rename the maximum temperature v
 ```{r eval=TRUE}
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
   slice(-1) %>% 
-  select(date, max.temp = `maximum temperature (degC)`) # only keep two variables
+  select(date, max.temp = 2) # only keep two variables
 ```
 
 This is probably the data we want to end up with when reading a file
@@ -149,7 +149,7 @@ Have a look at the function defined in "read_station.R":
 read_station <- function(file) {
   read_csv(file) %>% 
     slice(-1) %>% 
-    select(date, max.temp = `maximum temperature (degC)`) %>% 
+    select(date, max.temp = 2) %>% 
     mutate(filename = file)
 }
 ```
@@ -203,7 +203,7 @@ merge_acorn <- function(dir) {
 
 Let's source this function, and try it in our script:
 
-```{r eval=TRUE, include=FALSE}
+```{r eval=TRUE, message=FALSE}
 all_tmax <- merge_acorn("acorn_sat_v2_daily_tmax")
 ```
 
@@ -219,7 +219,7 @@ For example, what if our `merge_acorn()` function is not provided with a valid p
 merge_acorn("blah")
 ```
 
-We could improve our function with the an `if` statement and a `stop()` function:
+We could improve our function with an `if` statement and a `stop()` function:
 
 ```{r eval=TRUE}
 merge_acorn <- function(dir) {
@@ -251,7 +251,7 @@ summary(all_tmax)
 
 Now that we have very usable data, why not create a visualisation? For example, let's have a look at how the yearly mean of max temperatures evolved over the years:
 
-```{r}
+```{r eval=TRUE}
 library(lubridate)
 mean_max <- all_tmax %>% 
   filter(!is.na(max.temp)) %>%               # remove NAs
@@ -305,14 +305,14 @@ Title: Process ACORN data
 Version: 0.1.0
 Author: Your Name
 Maintainer: Your Name <yourself@somewhere.net>
-Depends: readr, dplyr, purrr
+Imports: readr, dplyr, purrr
 Description: Functions to import, cleanup and merge temperature data from ACORN stations
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 ```
 
-Notice that we added the `Depends:` field. This allows us to specify what extra packages are needed for our package to work.
+Notice that we added the `Imports:` field. This allows us to specify what extra packages are needed for our package to work.
 
 #### Which licence?
 
@@ -379,7 +379,7 @@ At any time, we can load the package to test its functions:
 
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
 
-To check our package for issues:
+And to check our package for issues, we can use the "Check" button in the Build tab, or the following command:
 
 ```{r}
 devtools::check()
@@ -387,16 +387,22 @@ devtools::check()
 
 This function does a very thorough check, and will take some time to go through all the steps.
 
+Notice any error, warning or note?
+
 ### Building and installing
 
-We can also install our package on our system. First, we need to build the package:
+We can also install our package on our system.
+
+The easiest way is with the "Install and Restart" button. This will list the package in your Packages tab, which means you will be able to load it whenever you need the functions when you work on another project.
+
+However, if you want to save a copy and share it with others, you can build the package:
 
 * On Windows: Build > Build Binary Package
 * On Linux or macOS: Build > Build Source Package
 
-This is what you can share with colleagues and friends who want to try your package on their computer.
+The resulting archive is what you can share with colleagues and friends who want to try your package on their computer.
 
-To install it (the name of the archive will depend on your system):
+To install it (the name of the archive will depend on your system), either use the "Install" menu in the Packages tab (using "Install from Package Archive File" instead of the CRAN repositories), or use this command:
 
 ```{r}
 install.packages("../acornucopia_0.1.0.tar.gz", repos = NULL)
@@ -404,7 +410,7 @@ install.packages("../acornucopia_0.1.0.tar.gz", repos = NULL)
 
 > We have to set `repos` to `NULL` so R doesn't look for the package on CRAN.
 
-We now have our package listed in our packages list, ready to be loaded whenever we want to use its functions.
+Others can now have our package listed in their packages list, ready to be loaded whenever they want to use its functions.
 
 ### Best practice
 
@@ -442,7 +448,7 @@ devtools::install_gitlab("username/myPackage")
 
 ## Useful links
 
-* _R Packages_, by Hadley Wickham: http://r-pkgs.had.co.nz/
+* _R Packages_, by Jenny Bryan and Hadley Wickham: http://r-pkgs.had.co.nz/
 * Full official guide for packaging: https://cran.r-project.org/doc/manuals/r-release/R-exts.html
 * What to lookout for when publishing to CRAN: https://cran.r-project.org/web/packages/policies.html
 * Package development cheatsheet: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf
