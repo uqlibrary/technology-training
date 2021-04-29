@@ -1,14 +1,7 @@
----
-title: 'R advanced: webapps with Shiny'
-author: "UQ Library"
-date: "`r Sys.Date()`"
-output: github_document
----
-
-```{r setup, include=FALSE}
-# default to not evaluating chunks!
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
-```
+R advanced: webapps with Shiny
+================
+UQ Library
+2021-04-30
 
 ## Shiny webapps
 
@@ -16,28 +9,34 @@ Shiny is a package that allows to create a web application with R code.
 
 A Shiny app requires two main elements:
 
-* a user interface (UI)
-* a server
+  - a user interface (UI)
+  - a server
 
-Let's build an app from scratch, using our ACORN data and functions.
+Let’s build an app from scratch, using our ACORN data and functions.
 
-What we want to create is a small webapp that visualises Australian temperature data and gives the user a bit of control over the visualisation.
+What we want to create is a small webapp that visualises Australian
+temperature data and gives the user a bit of control over the
+visualisation.
 
 ### Setting up
 
 #### Base project
 
-We will first download our base project that contains custom functions to get our data ready.
+We will first download our base project that contains custom functions
+to get our data ready.
 
-* Download the [project archive](https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R/packaging), and extract it wherever you'd like to store your project.
-* Open the .Rproj file
-* Create a new script: "New File > R Script"
+  - Download the [project
+    archive](https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R/packaging),
+    and extract it wherever you’d like to store your project.
+  - Open the .Rproj file
+  - Create a new script: “New File \> R Script”
 
 #### Get the data
 
-We can source our custom functions that make it easier for us to download the ACORN data and merge all the datasets into one big file:
+We can source our custom functions that make it easier for us to
+download the ACORN data and merge all the datasets into one big file:
 
-```{r}
+``` r
 source("get_acorn.R")
 source("read_station.R")
 source("merge_acorn.R")
@@ -46,27 +45,34 @@ library(tidyverse)
 all_stations <- merge_acorn("acorn_data")
 ```
 
-We now have a single object that contains data from 112 weather stations around Australia.
+We now have a single object that contains data from 112 weather stations
+around Australia.
 
 ### Create a new app
 
-In our project, let's create a new app with "File > New File > Shiny Web App...". We will stick to "single file", and the current project directory as the location.
+In our project, let’s create a new app with “File \> New File \> Shiny
+Web App…”. We will stick to “single file”, and the current project
+directory as the location.
 
-In our files, we can now see a "myApp" directory that contains an "app.R" script.
+In our files, we can now see a “myApp” directory that contains an
+“app.R” script.
 
-The app is currently an example app. We can run it with the "Run App" button, and you can see what kind of interaction a basic Shiny app can offer: a slider to change the number of bins in a histogram, for example.
+The app is currently an example app. We can run it with the “Run App”
+button, and you can see what kind of interaction a basic Shiny app can
+offer: a slider to change the number of bins in a histogram, for
+example.
 
 ### Creating a minimal skeleton
 
 For our app to work, we need three sections:
 
-* define a UI: what users see
-* define a server: what happens in the background
-* define how the app is run
+  - define a UI: what users see
+  - define a server: what happens in the background
+  - define how the app is run
 
 Back in the app.R file, we can start with this empty skeleton:
 
-```{r}
+``` r
 # UI
 ui <- fluidPage()
 
@@ -77,9 +83,9 @@ server <- function(input, output) {}
 shinyApp(ui = ui, server = server)
 ```
 
-Running it will show a blank page. Let's add a title:
+Running it will show a blank page. Let’s add a title:
 
-```{r}
+``` r
 # UI
 ui <- fluidPage(
   titlePanel("ACORN data explorer")
@@ -92,12 +98,14 @@ server <- function(input, output) {}
 shinyApp(ui = ui, server = server)
 ```
 
-
 ### Prepare the data
 
-Now, let's make sure we have the data ready to be used in our app. We don't want to do the summarising of our data every time we run the app, so let's save the finished product into an RDS file. Back in our first script, let's write:
+Now, let’s make sure we have the data ready to be used in our app. We
+don’t want to do the summarising of our data every time we run the app,
+so let’s save the finished product into an RDS file. Back in our first
+script, let’s write:
 
-```{r}
+``` r
 # process for monthly average
 library(lubridate)
 monthly <- all_stations %>% 
@@ -106,20 +114,20 @@ monthly <- all_stations %>%
     summarise(mean.max = mean(max.temp, na.rm = TRUE))
 ```
 
-Let's save that object our app directory, so the app can find it:
+Let’s save that object our app directory, so the app can find it:
 
-```{r}
+``` r
 saveRDS(monthly, "myApp/monthly.rds")
 ```
 
 This dataset will be the base of our Shiny app.
 
-
 ### Interactive tables
 
-We can now read that data file into our app, process it, and present it in an interactive table:
+We can now read that data file into our app, process it, and present it
+in an interactive table:
 
-```{r}
+``` r
 # Import data
 monthly <- readRDS("monthly.rds")
 
@@ -140,13 +148,15 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-Notice that we had to define an output in the server section (with a "render" function), and use that output in a UI function (with an "output" function).
+Notice that we had to define an output in the server section (with a
+“render” function), and use that output in a UI function (with an
+“output” function).
 
 #### Plots
 
-Now, for a different kind of output, let's add a plot:
+Now, for a different kind of output, let’s add a plot:
 
-```{r}
+``` r
 # Import data
 monthly <- readRDS("monthly.rds")
 
@@ -180,15 +190,16 @@ shinyApp(ui = ui, server = server)
 
 Again, we have to:
 
-* Define how the plot is generated on the server
-* Save the plot as an output, using the right `render*` function
-* Show the plot in the UI with the right `*Output` function
+  - Define how the plot is generated on the server
+  - Save the plot as an output, using the right `render*` function
+  - Show the plot in the UI with the right `*Output` function
 
 #### User input
 
-How can we add some interaction? We could give the user control over which month they want to visualise by adding a slider:
+How can we add some interaction? We could give the user control over
+which month they want to visualise by adding a slider:
 
-```{r}
+``` r
 # Import data
 monthly <- readRDS("monthly.rds")
 
@@ -228,15 +239,16 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-### Challenge 1: restore an "all months" option?
+### Challenge 1: restore an “all months” option?
 
 How could we give the option to go back to the full-year view?
 
-Hint: have a look at `?selectInput`, or find other ideas on this list: https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/
+Hint: have a look at `?selectInput`, or find other ideas on this list:
+<https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/>
 
 One solution could be:
 
-```{r}
+``` r
 # import data
 monthly <- readRDS("monthly.rds")
 
@@ -277,9 +289,10 @@ shinyApp(ui = ui, server = server)
 
 ### Theming
 
-To change the theme of the app, we can use the bslib package, and change the `theme` argument in `fluidPage()`:
+To change the theme of the app, we can use the bslib package, and change
+the `theme` argument in `fluidPage()`:
 
-```{r}
+``` r
 # import data
 monthly <- readRDS("monthly.rds")
 
@@ -320,11 +333,14 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-You can see the different themes available with the `bootswatch_themes()` function.
+You can see the different themes available with the
+`bootswatch_themes()` function.
 
-This is great to quickly change the general look of our app, but our visualisation looks out of place: how can we also change the theme for ggplot2? Let's use the convenient thematic package:
+This is great to quickly change the general look of our app, but our
+visualisation looks out of place: how can we also change the theme for
+ggplot2? Let’s use the convenient thematic package:
 
-```{r}
+``` r
 # import data
 monthly <- readRDS("monthly.rds")
 
@@ -373,9 +389,10 @@ Now, the theme propagates to ggplot2 visualisations.
 
 Using the plotly package, how could you make the plot interactive?
 
-Remember to change the code that generates the plot _as well as_ the render and output functions.
+Remember to change the code that generates the plot *as well as* the
+render and output functions.
 
-```{r}
+``` r
 # import data
 monthly <- readRDS("monthly.rds")
 
@@ -420,18 +437,22 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-The user can now hover over parts of the plot to see the corresponding data.
+The user can now hover over parts of the plot to see the corresponding
+data.
 
 ## Publishing a Shiny app
 
 You can use ShinyApps.io, which offers free or paid accounts.
 
-We also have access to Nectar (National eResearch Collaboration Tools and Resources project), in which we can request a virtual machine and deploy a Shiny server: https://nectar.org.au/
+We also have access to Nectar (National eResearch Collaboration Tools
+and Resources project), in which we can request a virtual machine and
+deploy a Shiny server: <https://nectar.org.au/>
 
 ## Useful links
 
-* Official Shiny tutorial: https://shiny.rstudio.com/tutorial/
-* Shiny examples:
-    * https://shiny.rstudio.com/gallery/
-    * https://www.showmeshiny.com/
-* Shiny cheatsheet: https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf
+  - Official Shiny tutorial: <https://shiny.rstudio.com/tutorial/>
+  - Shiny examples:
+      - <https://shiny.rstudio.com/gallery/>
+      - <https://www.showmeshiny.com/>
+  - Shiny cheatsheet:
+    <https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf>
