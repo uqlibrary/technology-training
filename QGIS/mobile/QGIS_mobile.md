@@ -5,9 +5,10 @@
 This tutorial is designed for **QGIS 3.10**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
 
 Open QGIS and create a **new project** with `Project > New`.
-Let's straight away **save** our project: `Project > Save`. We should create a new folder, where our project and all the saved data will live, named "qgis_mobile_map" for example.
+Let's straight away **save** our project: `Project > Save`. We should create a new folder, let's call it "qgis_mobile". This where our project and all the saved data will live. Folder structure is very important for keeping you data tidy, but also for ease of sharing your project with others. You simply need to zip the project folder if you need to share it. We can save our .qgz project file here, named "qgis_mobile_map" for example.
+I also recommend creating a Data folder, for all of your downloaded data. And creating a Products folder, for all the things we create today. Your .qgz file should always be in the highest level folder, so it's only looking down into folders for data, not back out.
 
-Let's set the **project home** too: `Project > Properties > General` and set `Project home` to the same folder. This is where we can also give the project a title.
+In QGIS 3.10 and above this will automatically set the **project home** too. To do this manually, you can go to `Project > Properties > General` and set `Project home` to the same folder. This is where we can also give the project a title.
 
 Let's also add an OpenStreetMap basemap to locate ourselves on the globe: `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
 
@@ -94,6 +95,11 @@ I will show you how to download the files, but the data is often quite large in 
 * Use the triangular Identify Polygon tool to select and area of interest. Double click when you've finished selecting your area.
 * The Layers menu will now show your selection. You can download all, or sections, of your selection.
 * I will choose **Land Parcel** and then **Download** as a **shp** file.
+
+## Import our data
+
+If you have saved your data into your **Data** folder within your project folder **qgis_mobile**, it should appear in Project Home. 
+You can import it into your project's layers by double-clicking on the data there.
 
 
 ## Create a buffer to clip our data
@@ -216,7 +222,7 @@ Normally we would add many elements to our layout if we were exporting it for pr
 
 In this case however, we are simply interested in our map. Let's add the map to the canvas:
 
-* Go to the Layout tab, scroll down to 'Resize Layour to Content', click 'Resize layout'
+* Go to the Layout tab, scroll down to 'Resize Layout to Content', click 'Resize layout'
 * Before we export, let's turn off any layers we aren't using in QGIS to save space
 * Click the Refresh View button up the top
 * Now we are ready to export.
@@ -228,7 +234,7 @@ In this case however, we are simply interested in our map. Let's add the map to 
 
 You can repeat this process with the DEM and Hillshade to export out another kind of map.
 
-Now you simply need to export the file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.
+Now you simply need to export the pdf file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.
 
 When you first open Avenza Maps it will ask you to create an account, but you can import up to three maps without doing so, you can avoid creating an account by selecting the 'x' in the top right corner.
 * Allow Avenza Maps to access your device location
@@ -240,6 +246,6 @@ When you first open Avenza Maps it will ask you to create an account, but you ca
 * Tapping the placemark icon in the bottom left will add a placemark in the middle of the crosshairs.
 * Tapping the 3 dots in the bottom right will allow you to add GPS tracking and draw and measure distances.
 
-## Exporting to QField
-If we have time I'll talk briefly about QField as well.
 
+## QField
+QField is another Android based GIS app.
