@@ -2,7 +2,7 @@
 
 ## Setting up
 
-This tutorial is designed for **QGIS 3.10**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
+This tutorial is designed for **QGIS 3.16**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
 
 Open QGIS and create a **new project** with `Project > New`.
 Let's straight away **save** our project: `Project > Save`. We should create a new folder, let's call it "qgis_mobile". This where our project and all the saved data will live. Folder structure is very important for keeping you data tidy, but also for ease of sharing your project with others. You simply need to zip the project folder if you need to share it. We can save our .qgz project file here, named "qgis_mobile_map" for example.
