@@ -168,6 +168,10 @@ If you don't save to file directly, remember two things:
 * **rename** your clipped layer so it is more descriptive than the generic "Clipped (extent)"
 * you are currently using a temporary, **scratch layer**. It will be discarded if you exit QGIS. It is very useful for temporary intermediate files, but it can be safer to save copies of your intermediate data while you work, just in case! You can right-click on the layer and use `Export > Save As..`
 
+## Save your project
+
+It's not essential at this stage, it's just a good reminder to save your work regularly so you don't lose things when things go wrong.
+
 ## Clip the Aerial Imagery
 
 We can repeat the same process as above to clip the Aerial Imagery, however due to the nature of the image from NearMaps, we need to first convert it to a GeoTIFF file format before we can clip it:
