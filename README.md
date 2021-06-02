@@ -18,20 +18,20 @@ This is the Library's **regular R cycle**:
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
-| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) <sup>[source](R/rstudio_intro/rstudio_intro.Rmd) | [html](https://demo.codimd.org/s/rkfyJemYE) | [YT](https://www.youtube.com/watch?v=BoDTNbP7_OQ&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2&t=0s), [LBRY](lbry://RwithRStudiogettingstarted#5) |
-| R data manipulation with RStudio and dplyr: introduction | [md](R/dplyr/dplyr.md) <sup>[source](R/dplyr/dplyr.Rmd)</sup> | [html](https://demo.codimd.org/s/HyyLCm3KN) | [YT](https://www.youtube.com/watch?v=vqvsyaaqJUk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2) |
-| R data visualisation with RStudio and ggplot2: introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [html](https://demo.codimd.org/s/rJIPr0vi4) | [YT](https://www.youtube.com/watch?v=LoeBgXSJWTw&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=3) |
-| R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [html](https://demo.codimd.org/s/rJLdcW-24) | [YT](https://www.youtube.com/watch?v=zzXCkYR84M0&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=4) |
-| R and the Tidyverse: next steps | [md](R/tidyverse_next_steps/tidyverse_next_steps.md) <sup>[source](R/tidyverse_next_steps/tidyverse_next_steps.Rmd)</sup> | [html](https://demo.codimd.org/s/BkQCcmiOV) | [YT](https://www.youtube.com/watch?v=2TZYeFcJQIk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=6) |
-| R reproducible reports with R Markdown and knitr | [md](R/reports/reports.md) <sup>[source](R/reports/reports.Rmd)</sup> | [html](https://demo.codimd.org/s/S1Aka1waI) | ... |
+| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) <sup>[source](R/rstudio_intro/rstudio_intro.Rmd) | [html](https://demo.hedgedoc.org/s/rkfyJemYE) | [YT](https://www.youtube.com/watch?v=BoDTNbP7_OQ&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2&t=0s), [LBRY](lbry://RwithRStudiogettingstarted#5) |
+| R data manipulation with RStudio and dplyr | [md](R/dplyr/dplyr.md) <sup>[source](R/dplyr/dplyr.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/HyyLCm3KN) | [YT](https://www.youtube.com/watch?v=vqvsyaaqJUk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2) |
+| R data visualisation with RStudio and ggplot2: introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rJIPr0vi4) | [YT](https://www.youtube.com/watch?v=LoeBgXSJWTw&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=3) |
+| R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rJLdcW-24) | [YT](https://www.youtube.com/watch?v=zzXCkYR84M0&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=4) |
+| R and the Tidyverse: next steps | [md](R/tidyverse_next_steps/tidyverse_next_steps.md) <sup>[source](R/tidyverse_next_steps/tidyverse_next_steps.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/BkQCcmiOV) | [YT](https://www.youtube.com/watch?v=2TZYeFcJQIk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=6) |
+| R reproducible reports with R Markdown and knitr | [md](R/reports/reports.md) <sup>[source](R/reports/reports.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/S1Aka1waI) | ... |
 
 We also offer these more specialised session (run less regularly, but feel free to ask us to schedule one of them):
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
 | R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps/heatmaps_intermediate.Rmd)</sup> | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) | [YT](https://www.youtube.com/watch?v=V-IRkO4NIHU&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=5) |
-| R advanced: packaging and sharing functions | [md](R/packaging/packaging.md) <sup>[source](R/packaging/packaging.Rmd)</sup> | [html](https://demo.codimd.org/s/ryCzbvgXB) | ... |
-| R advanced: webapps with Shiny | [md](R/shiny/shiny.md) <sup>[source](R/shiny/shiny.Rmd)</sup> | [html](https://demo.codimd.org/s/S19FIXxg8) | ... |
+| R advanced: packaging and sharing functions | [md](R/packaging/packaging.md) <sup>[source](R/packaging/packaging.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/ryCzbvgXB) | ... |
+| R advanced: webapps with Shiny | [md](R/shiny/shiny.md) <sup>[source](R/shiny/shiny.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/S19FIXxg8) | ... |
 
 ### GIS sessions
 
@@ -40,8 +40,8 @@ These sessions focus on dealing with geospatial data, using QGIS, the OpenStreet
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
 | OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [html](https://demo.hedgedoc.org/s/PsREGQ2zQ) | ... |
-| QGIS: introduction to mapping | [md](QGIS/intro/QGIS_intro.md) | [html](https://demo.codimd.org/s/B156o7z2V) | ... |
-| QGIS: raster analysis | [md](QGIS/raster/QGIS_raster.md) | [html](https://demo.codimd.org/s/ryN5E-XuS) | ... |
+| QGIS: introduction to mapping | [md](QGIS/intro/QGIS_intro.md) | [html](https://demo.hedgedoc.org/s/B156o7z2V) | ... |
+| QGIS: raster analysis | [md](QGIS/raster/QGIS_raster.md) | [html](https://demo.hedgedoc.org/s/ryN5E-XuS) | ... |
 | QGIS: mobile mapping | [md](QGIS/mobile/QGIS_mobile.md) | [html](https://demo.hedgedoc.org/s/Bki4rlOAU) | ... |
 
 ### Other tools
@@ -50,10 +50,10 @@ These sessions focus on dealing with geospatial data, using QGIS, the OpenStreet
 |:-|:-:|:-:|:-:|
 | Unix Shell: an introduction | [md](Shell/shell_intro.md) | [html](https://etherpad.wikimedia.org/p/cds-shell) | ... |
 | Git version control for collaboration | [md](Git/git.md) | [html](https://etherpad.wikimedia.org/p/cds-git) | ... |
-| OpenRefine: introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [html](https://demo.codimd.org/s/rJCXmqviH) | ... |
-| Python with Spyder: an introduction to data science | [md](Python/python_intro.md) | [html](https://demo.hedgedoc.org/s/B1DWolwgB) | ... |
+| OpenRefine: introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [html](https://demo.hedgedoc.org/s/rJCXmqviH) | ... |
+| Python with Spyder: introduction to data science | [md](Python/python_intro/python_intro.md) | [html](https://demo.hedgedoc.org/s/B1DWolwgB) | ... |
 | Python data transformation and visualisation with pandas | [md](Python/pandas/pandas.md) | [html](https://demo.hedgedoc.org/s/SJVpdtm_v) | ... |
-| Audacity: introduction to audio editing | [md](Audacity/audacity.md) | [html](https://demo.codimd.org/s/HkkITjw9L) | ... |
+| Audacity: introduction to audio editing | [md](Audacity/audacity.md) | [html](https://demo.hedgedoc.org/s/HkkITjw9L) | ... |
 | Voyant Tools: zero to hero | [md](Voyant/voyant.md) | ... | ... |
 | _next: Open Source tools for your research_ | ... | ... | ... |
 | _next: Wikipedia: start contributing_ | ... | ... | ... |
@@ -72,8 +72,8 @@ Some sessions are not run regularly, but files can also be hosted here.
 
 Files available for each course, hosted in this repository:
 
-* **Markdown notes** that the instructor can use to teach, and that students can refer to after the course;
-* A **HTML pad export** that can be used to initialise a collaborative pad (https://etherpad.wikimedia.org, https://cryptpad.fr/code and https://demo.codimd.org/ are recommended to publish).
+* **Markdown material** that the instructor can use to teach, and that students can refer to after the course;
+* A **HTML pad export** that can be used to initialise a collaborative pad to use during sessions ([https://etherpad.wikimedia.org](Etherpad), [https://cryptpad.fr/code](Cryptpad) and [https://demo.hedgedoc.org](HedgeDoc) are recommended to publish).
 
 ## Licence
 
