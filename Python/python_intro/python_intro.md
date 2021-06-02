@@ -4,7 +4,7 @@ This hands-on course – directed at beginners – will get you started on using
 
 ## Setup
 
-The easiest way to use Python 3 and Spyder is to install the Anaconda Distribution, a data science platform for Windows, Linux and Mac OS X. Make sure you download the Individual Edition with Python 3: https://www.anaconda.com/products/individual
+The easiest way to use Python 3 and Spyder is to install the Anaconda Distribution, a data science platform for Windows, Linux and macOS. Make sure you download the Individual Edition with Python 3: https://www.anaconda.com/products/individual
 
 Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a terminal on Linux), and launch Spyder.
 
