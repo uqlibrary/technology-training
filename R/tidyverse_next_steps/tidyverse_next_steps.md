@@ -1,28 +1,21 @@
 R and the Tidyverse: next steps
 ================
 Stéphane Guillou
-2019-09-26
-
-> This document is redacted in R Markdown; the source file is available
-> here:
-> <https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/tidyverse_next_steps.Rmd>
-> It is then knitted as a markdown file, which is the best version to
-> view online and to print:
-> <https://gitlab.com/stragu/DSH/blob/master/R/tidyverse_next_steps/tidyverse_next_steps.md>
+2021-06-03
 
 ## Setting up
 
-> If you want to review the installation instructions:
-> <https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
+> If needed, review the [installation
+> instructions](https://gitlab.com/stragu/DSH/blob/master/R/Installation.md).
 
-  - If you are using your own laptop please open RStudio
-      - Make sure you have a working Internet connection
-  - On the Library’s training computers:
-      - Log in with your UQ username and password
-      - Make sure you have a working Internet connection
-      - Open the ZENworks application
-      - Look for “RStudio”
-      - Double click on RStudio, which will install both R and RStudio
+-   If you are using your own laptop please open RStudio
+    -   Make sure you have a working Internet connection
+-   On the Library’s training computers:
+    -   Log in with your UQ username and password
+    -   Make sure you have a working Internet connection
+    -   Open the ZENworks application
+    -   Look for “RStudio”
+    -   Double click on RStudio, which will install both R and RStudio
 
 With RStudio open, let’s make sure we have the necessary packages
 installed by running this command (this might take a few minutes):
@@ -31,15 +24,14 @@ installed by running this command (this might take a few minutes):
 install.packages("tidyverse")
 ```
 
-This will install the 8 core Tidyverse packages (and their
-dependencies).
+This will install all the Tidyverse packages (and their dependencies).
 
 ## What are we going to learn?
 
 tidyr and purrr, just like dplyr and ggplot2, are core to the Tidyverse.
 
-  - tidyr can be used to tidy your data
-  - purrr is useful to apply functions iteratively on lists or vectors
+-   tidyr can be used to tidy your data
+-   purrr is useful to apply functions iteratively on lists or vectors
 
 ## Create a project and a script
 
@@ -53,23 +45,22 @@ You can use the new file dropdown menu, or
 
 ## Load the necessary packages
 
-We can use one single command to load the core Tidyverse
-    packages:
+We can use one single command to load the 8 core Tidyverse packages:
 
 ``` r
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ───────────────────────────────────────── tidyverse 1.2.1 ──
+    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
 
-    ## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
-    ## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
-    ## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
-    ## ✔ readr   1.3.1     ✔ forcats 0.4.0
+    ## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+    ## ✓ tibble  3.1.2     ✓ dplyr   1.0.6
+    ## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+    ## ✓ readr   1.4.0     ✓ forcats 0.5.1
 
-    ## ── Conflicts ──────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## x dplyr::filter() masks stats::filter()
+    ## x dplyr::lag()    masks stats::lag()
 
 ## Tidy data
 
@@ -78,19 +69,25 @@ other tools). Tidy data has observations in rows, and variables in
 columns. The whole Tidyverse is designed to work with tidy data.
 
 Often, a dataset is organised in a way that makes it easy for humans to
-read and populate. This is called wide format. Tidy data is *usually* in
-“long” format.
+read and populate. This is usually called “wide format”. Tidy data is
+*usually* in “long” format.
 
 The ultimate rules of tidy data are:
 
-  - Each row is an observation
-  - Each column is a variable
-  - Each cell contains one single value
+-   Each row is an observation
+-   Each column is a variable
+-   Each cell contains one single value
+
+> To learn more about Tidy Data, you can read [Hadley Wickham’s 2014
+> article on the
+> topic](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf).
 
 ### Import data
 
-We are using a dataset from the [World
-Bank](https://datacatalog.worldbank.org/dataset/climate-change-data).
+We are using a [dataset from the World
+Bank](https://datacatalog.worldbank.org/dataset/climate-change-data),
+which contains data about energy consumption and greenhouse gas
+emissions.
 
 Let’s download the file:
 
@@ -108,7 +105,8 @@ climate_raw <- read_csv("data_wb_climate.csv",
                     na = "..")
 ```
 
-    ## Parsed with column specification:
+    ## 
+    ## ── Column specification ────────────────────────────────────────────────────────
     ## cols(
     ##   .default = col_double(),
     ##   `Country code` = col_character(),
@@ -117,8 +115,7 @@ climate_raw <- read_csv("data_wb_climate.csv",
     ##   `Series name` = col_character(),
     ##   `2011` = col_logical()
     ## )
-
-    ## See spec(...) for full column specifications.
+    ## ℹ Use `spec()` for the full column specifications.
 
 We defined with the `na` argument that, in this dataset, missing data is
 recorded as “..”.
@@ -144,11 +141,11 @@ climate_long <- pivot_longer(climate_raw,
   mutate(year = as.integer(year))
 ```
 
-We add a `mutate()` step to convert the years from character to
-integers.
+We add a `mutate()` step to convert the type fo the year column from
+character to integer.
 
 This is better, but there is still an issue: our `value` variable
-contains many different indicators.
+contains many different indicators (i.e. entirely different units).
 
 #### Widening
 
@@ -167,13 +164,13 @@ codes
 ```
 
     ## # A tibble: 5 x 2
-    ##   `Series code`       `Series name`                                        
-    ##   <chr>               <chr>                                                
-    ## 1 EG.USE.COMM.GD.PP.… Energy use per units of GDP (kg oil eq./$1,000 of 20…
-    ## 2 EG.USE.PCAP.KG.OE   Energy use per capita (kilograms of oil equivalent)  
-    ## 3 EN.ATM.CO2E.KT      CO2 emissions, total (KtCO2)                         
-    ## 4 EN.ATM.CO2E.PC      CO2 emissions per capita (metric tons)               
-    ## 5 EN.ATM.CO2E.PP.GD.… CO2 emissions per units of GDP (kg/$1,000 of 2005 PP…
+    ##   `Series code`        `Series name`                                            
+    ##   <chr>                <chr>                                                    
+    ## 1 EG.USE.COMM.GD.PP.KD Energy use per units of GDP (kg oil eq./$1,000 of 2005 P…
+    ## 2 EG.USE.PCAP.KG.OE    Energy use per capita (kilograms of oil equivalent)      
+    ## 3 EN.ATM.CO2E.KT       CO2 emissions, total (KtCO2)                             
+    ## 4 EN.ATM.CO2E.PC       CO2 emissions per capita (metric tons)                   
+    ## 5 EN.ATM.CO2E.PP.GD.KD CO2 emissions per units of GDP (kg/$1,000 of 2005 PPP $)
 
 This will be our key to variable details, or “code book”, for future
 reference.
@@ -188,7 +185,9 @@ climate_tidy <- climate_long %>%
               values_from = value)
 ```
 
-### Challenge 1
+### Challenge 1: Code comprehension
+
+There’s one more cleaning step we need to apply.
 
 Have a look at this block of code. What do you think it does?
 
@@ -213,9 +212,9 @@ climate_tidy <- climate_tidy %>%
 ```
 
 Turns out this dataset contains grouped data as well as unique
-countries. Here, we created a list of grouped countries, and removed
-them from the data by using dplyr’s `filter()` function (inverting the
-filter with `!`).
+countries. Here, we created a vector of group names, and removed them
+from the data by using dplyr’s `filter()` function (inverting the filter
+with `!`).
 
 We can now check that we’ve only got single countries left:
 
@@ -225,9 +224,9 @@ unique(climate_tidy$`Country name`)
 
 ### Visualising
 
-Now that we have clean, tidy data, we can process and visualise our data
-more comfortably\! For example, to visualise the increase in KT of
-CO<sup>2</sup> for each country:
+Now that we have clean, tidy data, we can process and visualise it more
+comfortably! For example, to visualise the increase in KT of
+CO<sup>2</sup>-equivalent for each country:
 
 ``` r
 climate_tidy %>% 
@@ -237,18 +236,18 @@ climate_tidy %>%
   geom_line()
 ```
 
-    ## Warning: Removed 1091 rows containing missing values (geom_path).
+    ## Warning: Removed 1091 row(s) containing missing values (geom_path).
 
 ![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
-Let’s have a look at the increase in *global* CO<sup>2</sup> emissions
+Let’s have a look at the increase in *global* greenhouse gas emissions
 in KT:
 
 ``` r
 climate_tidy %>% 
   group_by(year) %>% 
-  summarise(CO2 = sum(EN.ATM.CO2E.KT, na.rm = TRUE)) %>% 
-  ggplot(aes(x = year, y = CO2)) +
+  summarise(CO2e = sum(EN.ATM.CO2E.KT, na.rm = TRUE)) %>% 
+  ggplot(aes(x = year, y = CO2e)) +
   geom_point()
 ```
 
@@ -263,9 +262,9 @@ We can add this extra step:
 ``` r
 climate_tidy %>% 
   group_by(year) %>% 
-  summarise(CO2 = sum(EN.ATM.CO2E.KT, na.rm = TRUE)) %>%
+  summarise(CO2e = sum(EN.ATM.CO2E.KT, na.rm = TRUE)) %>%
   filter(year < 2009) %>% 
-  ggplot(aes(x = year, y = CO2)) +
+  ggplot(aes(x = year, y = CO2e)) +
   geom_point()
 ```
 
@@ -297,68 +296,60 @@ for (i in seq_along(mtcars)) {
 output
 ```
 
-    ##  [1]  19.200   6.000 196.300 123.000   3.695   3.325  17.710   0.000
-    ##  [9]   0.000   4.000   2.000
+    ##  [1]  19.200   6.000 196.300 123.000   3.695   3.325  17.710   0.000   0.000
+    ## [10]   4.000   2.000
 
-Better than having the same code repeated 11 times\!
+Better than having the same code repeated 11 times!
 
 We allocate space in the expected **output** first (more efficient). We
 then specify the **sequence** for the loop, and put what we want to
 iterate in the loop **body**.
 
-The apply family in base R is handy, but the purrr functions are easier
-to learn because they are more consistent. This package offers several
-tools to iterate functions over elements in a vector or a list.
+The apply family in base R is useful to replace for loops, but the purrr
+functions are easier to learn because they are more consistent. This
+package offers several tools to iterate functions over elements in a
+vector or a list (e.g. a dataframe).
 
 ### The map family
 
 At purrr’s core, there is the map family:
 
-  - `map()` outputs a list.
-  - `map_lgl()` outputs a logical vector.
-  - `map_int()` outputs an integer vector.
-  - `map_dbl()` outputs a double vector.
-  - `map_chr()` outputs a character vector.
+-   `map()` outputs a list.
+-   `map_lgl()` outputs a logical vector.
+-   `map_int()` outputs an integer vector.
+-   `map_dbl()` outputs a double vector.
+-   `map_chr()` outputs a character vector.
 
 For example, to do a similar operation to our previous for loop:
 
 ``` r
-car_medians <- map_dbl(mtcars, median)
-car_medians
+map_dbl(mtcars, median)
 ```
 
-    ##     mpg     cyl    disp      hp    drat      wt    qsec      vs      am 
-    ##  19.200   6.000 196.300 123.000   3.695   3.325  17.710   0.000   0.000 
-    ##    gear    carb 
-    ##   4.000   2.000
-
-``` r
-typeof(car_medians)
-```
-
-    ## [1] "double"
+    ##     mpg     cyl    disp      hp    drat      wt    qsec      vs      am    gear 
+    ##  19.200   6.000 196.300 123.000   3.695   3.325  17.710   0.000   0.000   4.000 
+    ##    carb 
+    ##   2.000
 
 A lot leaner, right?
 
-The map functions automatically name the resulting vectors, which makes
-the result easier to read.
+The map functions automatically name the values in the resulting vector,
+which makes the result easier to read.
 
-Lets try a different type of
-    output:
+Lets try a different type of output. Here, we want to find out which
+columns in the starwards dataset are of type “character”:
 
 ``` r
 map_lgl(starwars, is_character)
 ```
 
-    ##       name     height       mass hair_color skin_color  eye_color 
-    ##       TRUE      FALSE      FALSE       TRUE       TRUE       TRUE 
-    ## birth_year     gender  homeworld    species      films   vehicles 
-    ##      FALSE       TRUE       TRUE       TRUE      FALSE      FALSE 
-    ##  starships 
-    ##      FALSE
+    ##       name     height       mass hair_color skin_color  eye_color birth_year 
+    ##       TRUE      FALSE      FALSE       TRUE       TRUE       TRUE      FALSE 
+    ##        sex     gender  homeworld    species      films   vehicles  starships 
+    ##       TRUE       TRUE       TRUE       TRUE      FALSE      FALSE      FALSE
 
-We can use extra arguments to pass to the iterated
-    function:
+If we don’t want to use the default behaviour of the mapped function, we
+can use extra arguments to pass to it. For example, for a trimmed mean:
 
 ``` r
 map_dbl(mtcars, mean, trim = 0.2)
@@ -388,30 +379,27 @@ map_lgl(mtcars, ~ max(.x) > 3 * min(.x))
     ##   mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb 
     ##  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE
 
-We have to use the tilde `~` to introduce a custom function, and `.x` to
-use the vector being processed.
+We have to use the tilde `~` to introduce a custom formula, and `.x` to
+place the element being processed.
 
-#### Challenge 3
+#### Challenge 3: custom formula
 
 How can we find out the number of unique values in each variable of the
-`starwars`
-    data.frame?
+`starwars` data.frame?
 
 ``` r
 map_int(starwars, ~ length(unique(.x)))
 ```
 
-    ##       name     height       mass hair_color skin_color  eye_color 
-    ##         87         46         39         13         31         15 
-    ## birth_year     gender  homeworld    species      films   vehicles 
-    ##         37          5         49         38         24         11 
-    ##  starships 
-    ##         17
+    ##       name     height       mass hair_color skin_color  eye_color birth_year 
+    ##         87         46         39         13         31         15         37 
+    ##        sex     gender  homeworld    species      films   vehicles  starships 
+    ##          5          3         49         38         24         11         17
 
 ### Splitting
 
 To split a dataset and apply an operation to separate parts, we can use
-the base `split()` function:
+the `group_split()` function:
 
 ``` r
 unique(mtcars$cyl)
@@ -421,103 +409,106 @@ unique(mtcars$cyl)
 
 ``` r
 mtcars %>% 
-  split(.$cyl) %>% # separate in three parts
-  map(summary) # applied to each data frame
+  group_split(cyl) %>% # split into three dataframes
+  map(summary) # applied to each dataframe
 ```
 
-    ## $`4`
-    ##       mpg             cyl         disp              hp        
-    ##  Min.   :21.40   Min.   :4   Min.   : 71.10   Min.   : 52.00  
-    ##  1st Qu.:22.80   1st Qu.:4   1st Qu.: 78.85   1st Qu.: 65.50  
-    ##  Median :26.00   Median :4   Median :108.00   Median : 91.00  
-    ##  Mean   :26.66   Mean   :4   Mean   :105.14   Mean   : 82.64  
-    ##  3rd Qu.:30.40   3rd Qu.:4   3rd Qu.:120.65   3rd Qu.: 96.00  
-    ##  Max.   :33.90   Max.   :4   Max.   :146.70   Max.   :113.00  
-    ##       drat             wt             qsec             vs        
-    ##  Min.   :3.690   Min.   :1.513   Min.   :16.70   Min.   :0.0000  
-    ##  1st Qu.:3.810   1st Qu.:1.885   1st Qu.:18.56   1st Qu.:1.0000  
-    ##  Median :4.080   Median :2.200   Median :18.90   Median :1.0000  
-    ##  Mean   :4.071   Mean   :2.286   Mean   :19.14   Mean   :0.9091  
-    ##  3rd Qu.:4.165   3rd Qu.:2.623   3rd Qu.:19.95   3rd Qu.:1.0000  
-    ##  Max.   :4.930   Max.   :3.190   Max.   :22.90   Max.   :1.0000  
-    ##        am              gear            carb      
-    ##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
-    ##  1st Qu.:0.5000   1st Qu.:4.000   1st Qu.:1.000  
-    ##  Median :1.0000   Median :4.000   Median :2.000  
-    ##  Mean   :0.7273   Mean   :4.091   Mean   :1.545  
-    ##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:2.000  
-    ##  Max.   :1.0000   Max.   :5.000   Max.   :2.000  
+    ## [[1]]
+    ##       mpg             cyl         disp              hp              drat      
+    ##  Min.   :21.40   Min.   :4   Min.   : 71.10   Min.   : 52.00   Min.   :3.690  
+    ##  1st Qu.:22.80   1st Qu.:4   1st Qu.: 78.85   1st Qu.: 65.50   1st Qu.:3.810  
+    ##  Median :26.00   Median :4   Median :108.00   Median : 91.00   Median :4.080  
+    ##  Mean   :26.66   Mean   :4   Mean   :105.14   Mean   : 82.64   Mean   :4.071  
+    ##  3rd Qu.:30.40   3rd Qu.:4   3rd Qu.:120.65   3rd Qu.: 96.00   3rd Qu.:4.165  
+    ##  Max.   :33.90   Max.   :4   Max.   :146.70   Max.   :113.00   Max.   :4.930  
+    ##        wt             qsec             vs               am        
+    ##  Min.   :1.513   Min.   :16.70   Min.   :0.0000   Min.   :0.0000  
+    ##  1st Qu.:1.885   1st Qu.:18.56   1st Qu.:1.0000   1st Qu.:0.5000  
+    ##  Median :2.200   Median :18.90   Median :1.0000   Median :1.0000  
+    ##  Mean   :2.286   Mean   :19.14   Mean   :0.9091   Mean   :0.7273  
+    ##  3rd Qu.:2.623   3rd Qu.:19.95   3rd Qu.:1.0000   3rd Qu.:1.0000  
+    ##  Max.   :3.190   Max.   :22.90   Max.   :1.0000   Max.   :1.0000  
+    ##       gear            carb      
+    ##  Min.   :3.000   Min.   :1.000  
+    ##  1st Qu.:4.000   1st Qu.:1.000  
+    ##  Median :4.000   Median :2.000  
+    ##  Mean   :4.091   Mean   :1.545  
+    ##  3rd Qu.:4.000   3rd Qu.:2.000  
+    ##  Max.   :5.000   Max.   :2.000  
     ## 
-    ## $`6`
-    ##       mpg             cyl         disp             hp       
-    ##  Min.   :17.80   Min.   :6   Min.   :145.0   Min.   :105.0  
-    ##  1st Qu.:18.65   1st Qu.:6   1st Qu.:160.0   1st Qu.:110.0  
-    ##  Median :19.70   Median :6   Median :167.6   Median :110.0  
-    ##  Mean   :19.74   Mean   :6   Mean   :183.3   Mean   :122.3  
-    ##  3rd Qu.:21.00   3rd Qu.:6   3rd Qu.:196.3   3rd Qu.:123.0  
-    ##  Max.   :21.40   Max.   :6   Max.   :258.0   Max.   :175.0  
-    ##       drat             wt             qsec             vs        
-    ##  Min.   :2.760   Min.   :2.620   Min.   :15.50   Min.   :0.0000  
-    ##  1st Qu.:3.350   1st Qu.:2.822   1st Qu.:16.74   1st Qu.:0.0000  
-    ##  Median :3.900   Median :3.215   Median :18.30   Median :1.0000  
-    ##  Mean   :3.586   Mean   :3.117   Mean   :17.98   Mean   :0.5714  
-    ##  3rd Qu.:3.910   3rd Qu.:3.440   3rd Qu.:19.17   3rd Qu.:1.0000  
-    ##  Max.   :3.920   Max.   :3.460   Max.   :20.22   Max.   :1.0000  
-    ##        am              gear            carb      
-    ##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
-    ##  1st Qu.:0.0000   1st Qu.:3.500   1st Qu.:2.500  
-    ##  Median :0.0000   Median :4.000   Median :4.000  
-    ##  Mean   :0.4286   Mean   :3.857   Mean   :3.429  
-    ##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
-    ##  Max.   :1.0000   Max.   :5.000   Max.   :6.000  
+    ## [[2]]
+    ##       mpg             cyl         disp             hp             drat      
+    ##  Min.   :17.80   Min.   :6   Min.   :145.0   Min.   :105.0   Min.   :2.760  
+    ##  1st Qu.:18.65   1st Qu.:6   1st Qu.:160.0   1st Qu.:110.0   1st Qu.:3.350  
+    ##  Median :19.70   Median :6   Median :167.6   Median :110.0   Median :3.900  
+    ##  Mean   :19.74   Mean   :6   Mean   :183.3   Mean   :122.3   Mean   :3.586  
+    ##  3rd Qu.:21.00   3rd Qu.:6   3rd Qu.:196.3   3rd Qu.:123.0   3rd Qu.:3.910  
+    ##  Max.   :21.40   Max.   :6   Max.   :258.0   Max.   :175.0   Max.   :3.920  
+    ##        wt             qsec             vs               am        
+    ##  Min.   :2.620   Min.   :15.50   Min.   :0.0000   Min.   :0.0000  
+    ##  1st Qu.:2.822   1st Qu.:16.74   1st Qu.:0.0000   1st Qu.:0.0000  
+    ##  Median :3.215   Median :18.30   Median :1.0000   Median :0.0000  
+    ##  Mean   :3.117   Mean   :17.98   Mean   :0.5714   Mean   :0.4286  
+    ##  3rd Qu.:3.440   3rd Qu.:19.17   3rd Qu.:1.0000   3rd Qu.:1.0000  
+    ##  Max.   :3.460   Max.   :20.22   Max.   :1.0000   Max.   :1.0000  
+    ##       gear            carb      
+    ##  Min.   :3.000   Min.   :1.000  
+    ##  1st Qu.:3.500   1st Qu.:2.500  
+    ##  Median :4.000   Median :4.000  
+    ##  Mean   :3.857   Mean   :3.429  
+    ##  3rd Qu.:4.000   3rd Qu.:4.000  
+    ##  Max.   :5.000   Max.   :6.000  
     ## 
-    ## $`8`
-    ##       mpg             cyl         disp             hp       
-    ##  Min.   :10.40   Min.   :8   Min.   :275.8   Min.   :150.0  
-    ##  1st Qu.:14.40   1st Qu.:8   1st Qu.:301.8   1st Qu.:176.2  
-    ##  Median :15.20   Median :8   Median :350.5   Median :192.5  
-    ##  Mean   :15.10   Mean   :8   Mean   :353.1   Mean   :209.2  
-    ##  3rd Qu.:16.25   3rd Qu.:8   3rd Qu.:390.0   3rd Qu.:241.2  
-    ##  Max.   :19.20   Max.   :8   Max.   :472.0   Max.   :335.0  
-    ##       drat             wt             qsec             vs   
-    ##  Min.   :2.760   Min.   :3.170   Min.   :14.50   Min.   :0  
-    ##  1st Qu.:3.070   1st Qu.:3.533   1st Qu.:16.10   1st Qu.:0  
-    ##  Median :3.115   Median :3.755   Median :17.18   Median :0  
-    ##  Mean   :3.229   Mean   :3.999   Mean   :16.77   Mean   :0  
-    ##  3rd Qu.:3.225   3rd Qu.:4.014   3rd Qu.:17.55   3rd Qu.:0  
-    ##  Max.   :4.220   Max.   :5.424   Max.   :18.00   Max.   :0  
-    ##        am              gear            carb     
-    ##  Min.   :0.0000   Min.   :3.000   Min.   :2.00  
-    ##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.25  
-    ##  Median :0.0000   Median :3.000   Median :3.50  
-    ##  Mean   :0.1429   Mean   :3.286   Mean   :3.50  
-    ##  3rd Qu.:0.0000   3rd Qu.:3.000   3rd Qu.:4.00  
-    ##  Max.   :1.0000   Max.   :5.000   Max.   :8.00
+    ## [[3]]
+    ##       mpg             cyl         disp             hp             drat      
+    ##  Min.   :10.40   Min.   :8   Min.   :275.8   Min.   :150.0   Min.   :2.760  
+    ##  1st Qu.:14.40   1st Qu.:8   1st Qu.:301.8   1st Qu.:176.2   1st Qu.:3.070  
+    ##  Median :15.20   Median :8   Median :350.5   Median :192.5   Median :3.115  
+    ##  Mean   :15.10   Mean   :8   Mean   :353.1   Mean   :209.2   Mean   :3.229  
+    ##  3rd Qu.:16.25   3rd Qu.:8   3rd Qu.:390.0   3rd Qu.:241.2   3rd Qu.:3.225  
+    ##  Max.   :19.20   Max.   :8   Max.   :472.0   Max.   :335.0   Max.   :4.220  
+    ##        wt             qsec             vs          am              gear      
+    ##  Min.   :3.170   Min.   :14.50   Min.   :0   Min.   :0.0000   Min.   :3.000  
+    ##  1st Qu.:3.533   1st Qu.:16.10   1st Qu.:0   1st Qu.:0.0000   1st Qu.:3.000  
+    ##  Median :3.755   Median :17.18   Median :0   Median :0.0000   Median :3.000  
+    ##  Mean   :3.999   Mean   :16.77   Mean   :0   Mean   :0.1429   Mean   :3.286  
+    ##  3rd Qu.:4.014   3rd Qu.:17.55   3rd Qu.:0   3rd Qu.:0.0000   3rd Qu.:3.000  
+    ##  Max.   :5.424   Max.   :18.00   Max.   :0   Max.   :1.0000   Max.   :5.000  
+    ##       carb     
+    ##  Min.   :2.00  
+    ##  1st Qu.:2.25  
+    ##  Median :3.50  
+    ##  Mean   :3.50  
+    ##  3rd Qu.:4.00  
+    ##  Max.   :8.00
 
 Using purrr functions with ggplot2 functions allows us to generate
 several plots in one command:
 
 ``` r
 mtcars %>% 
-  split(.$cyl) %>% 
-  map(~ggplot(., aes(mpg, wt)) + geom_point() + geom_smooth())
+  group_split(cyl) %>% 
+  map(~ ggplot(.x, aes(wt, mpg)) +
+        geom_point() +
+        geom_smooth() +
+        labs(title = paste(.x$cyl, "cylinders"))) # give a title
 ```
 
-    ## $`4`
+    ## [[1]]
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
 ![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
     ## 
-    ## $`6`
+    ## [[2]]
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
 ![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-20-2.png)<!-- -->
 
     ## 
-    ## $`8`
+    ## [[3]]
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
@@ -565,8 +556,8 @@ starwars %>%
   map_int(~length(unique(.)))
 ```
 
-    ##       name hair_color skin_color  eye_color     gender  homeworld 
-    ##         87         13         31         15          5         49 
+    ##       name hair_color skin_color  eye_color        sex     gender  homeworld 
+    ##         87         13         31         15          5          3         49 
     ##    species 
     ##         38
 
@@ -612,10 +603,10 @@ climate_cumul <- climate_tidy %>%
   arrange(`Country name`, year) %>% 
   group_by(`Country name`) %>%
   mutate(cumul.CO2.KT = cumsum(EN.ATM.CO2E.KT),
-         dif.CO2.KT = EN.ATM.CO2E.KT - lag(EN.ATM.CO2E.KT)) %>% 
+         dif.CO2.KT = EN.ATM.CO2E.KT - lag(EN.ATM.CO2E.KT)) %>%
   map_at(vars(ends_with("KT")), ~ .x / 10^6) %>% 
   as_tibble() %>%  # from list to tibble
-  rename_at(vars(ends_with("KT")), ~ str_replace(.x, "KT", "PG"))
+  rename_with(~ str_replace(.x, "KT", "PG"))
 
 # visualise it
 p <- climate_cumul %>%
@@ -628,7 +619,7 @@ p <- climate_cumul %>%
 p
 ```
 
-    ## Warning: Removed 1541 rows containing missing values (geom_path).
+    ## Warning: Removed 1541 row(s) containing missing values (geom_path).
 
 ![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
