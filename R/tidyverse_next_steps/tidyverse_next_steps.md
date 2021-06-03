@@ -159,7 +159,9 @@ First, let’s keep a record of the correspondence between long
 descriptive variable names and their “code”, for later reference:
 
 ``` r
-codes <- unique(climate_long[,c("Series code", "Series name")])
+codes <- climate_long %>% 
+  select(`Series code`, `Series name`) %>% 
+  unique()
 codes
 ```
 
