@@ -49,7 +49,7 @@ These sessions focus on dealing with geospatial data, using QGIS, the OpenStreet
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
 | Unix Shell: an introduction | [md](Shell/shell_intro.md) | [html](https://etherpad.wikimedia.org/p/cds-shell) | ... |
-| Git version control for collaboration | [md](Git/git.md) | [html](https://etherpad.wikimedia.org/p/cds-git) | ... |
+| Git version control for collaboration | [md](Git/git.md) | [html](https://demo.hedgedoc.org/s/HkJnjT9DH) | ... |
 | OpenRefine: introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [html](https://demo.hedgedoc.org/s/rJCXmqviH) | ... |
 | Python with Spyder: introduction to data science | [md](Python/python_intro/python_intro.md) | [html](https://demo.hedgedoc.org/s/B1DWolwgB) | ... |
 | Python data transformation and visualisation with pandas | [md](Python/pandas/pandas.md) | [html](https://demo.hedgedoc.org/s/SJVpdtm_v) | ... |
