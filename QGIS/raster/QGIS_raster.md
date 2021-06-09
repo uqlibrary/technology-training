@@ -7,9 +7,9 @@ This tutorial is designed for **QGIS 3.16**. If you need to install it on your c
 Open QGIS and create a **new project** with `Project > New`.
 Let's straight away **save** our project: `Project > Save`. We should create a new folder, where our project and all the saved data will live, named "qgis_raster_intro" for example.
 
-Let's set the **project home** too: `Project > Properties > General` and set `Project home` to the same folder. This is where we can also give the project a title.
+Saving the project should automatically set the **project home** to the same location: you should see a gree Project Home icon in the Browser panel. If that's not the case, go to `Project > Properties > General` and set `Project home` to the same folder. This dialogue is where we can also give the project a title.
 
-Let's also add an OpenStreetMap basemap to locate ourselves on the globe: `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
+Let's now add an OpenStreetMap basemap to locate ourselves on the globe: `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
 
 ## Get some elevation data
 
@@ -44,6 +44,14 @@ To do that, we use the `Raster > Miscellaneous > Merge...` tool to create one si
 > You will need to have GDAL installed for this to work.
 
 We can now remove the two original raster files.
+
+## Reproject the DEM
+
+In the merged layer's Properties (`Right click > Properties... > Source`), we can see that the Coordinate Reference System (CRS) in use is [EPSG:4326 - WGS 84](https://epsg.io/4326). It is the one that QGIS detected when opening the file (you can see this information in the associated XML file in the archive we downloaded). This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). A good PRS for around Brisbane/Meanjin is "[GDA94 / BCSG02](https://georepository.com/crs_3113/GDA94-BCSG02.html)".
+
+Use the tool `Raster > Projections > Warp (Reproject)`, use the merged layer as an input, and pick "GDA94 / BCSG02" as the Target CRS.
+
+
 
 ## Clip the DEM
 
