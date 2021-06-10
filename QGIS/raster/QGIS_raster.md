@@ -47,11 +47,11 @@ We can now remove the two original raster files.
 
 ## Reproject the DEM
 
-In the merged layer's Properties (`Right click > Properties... > Source`), we can see that the Coordinate Reference System (CRS) in use is [EPSG:4326 - WGS 84](https://epsg.io/4326). It is the one that QGIS detected when opening the file (you can see this information in the associated XML file in the archive we downloaded). This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). A good PRS for around Brisbane/Meanjin is "[GDA94 / BCSG02](https://georepository.com/crs_3113/GDA94-BCSG02.html)".
+In the merged layer's Properties (`Right click > Properties... > Source`), we can see that the Coordinate Reference System (CRS) in use is [EPSG:4326 - WGS 84](https://epsg.io/4326). It is the one that QGIS detected when opening the file (you can see this information in the associated XML file in the archive we downloaded). This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). A good PRS for around Brisbane/Meanjin is "[EPSG:7856 - GDA2020 / MGA zone 56](https://epsg.io/7856)".
 
-Use the tool `Raster > Projections > Warp (Reproject)`, use the merged layer as an input, and pick "GDA94 / BCSG02" as the Target CRS.
+Use the tool `Raster > Projections > Warp (Reproject)`, use the merged layer as an input, and pick "EPSG:7856 - GDA2020 / MGA zone 56" as the Target CRS.
 
-
+> If you want to learn more about the static datum GDA2020 (for "Geocentric Datum of Australia 2020"), an upgrade from the previous, less precise GDA94, head to the [ICSM website](https://www.icsm.gov.au/gda2020).
 
 ## Clip the DEM
 
@@ -85,19 +85,19 @@ Adding a **hillshade** makes your visualisation of elevation more readable and v
 *  The defaults should work well, but you can play with the settings, like the Altitude and the Azimuth
 *  Make sure you apply some transparency to the pseudocolour DEM, and place the hillshade layer underneath (in `Properties > Symbology > Transparency`)
 
-> Another methods is to use the hillshade tool instead of the symbology: `Raster > Analysis > Hillshade...`.
+> Another method is to use the hillshade tool instead of the symbology: `Raster > Analysis > Hillshade...`.
 
 ## Create a watershed layer
 
 Using the Strahler tool, we can create a **watershed** raster that shows where water would flow according to the DEM.
 
-Open the Processing Toolbox (cog icon) and try using the SAGA tool called "**Strahler order**" using the clipped DEM as an input(a temporary file is fine for now).
+Open the Processing Toolbox (cog icon) and try using the SAGA tool called "**Strahler order**" using the clipped DEM as an input (a temporary file is fine for now).
 
 Look at the result. It seems there is an issue with our data. A common problem with DEMs is that they have sinks and spikes that will make further analyses more difficult.
 
 We can use the "Fill sinks (Wang & Liu)" tool to **fill the sinks** in our clipped DEM.
 
-* When we do that, we have to play with the "Minimum slope" value, to make sure that all streams feed into a bigger stream. Try 5 degrees, for example.
+* When we do that, we might have to play with the "Minimum slope" value, but the default of 0.01 degrees should work well if the layer was reprojected to a suitable Projected Reference System.
 * As an output, we only need to tick the "Filled DEM" (first one in the list), which we can also save to file. You can however keep the "Watershed Basins" output to check that your minimum slope is high enough.
 
 If we **re-run the Strahler order tool** on the filled DEM, we will be able to see more useful data.
@@ -111,16 +111,25 @@ We can now colour the layer with "Singleband pseudocolor" to highlight the bigge
 Another analysis we can do is use the "Channel network and drainage basins" tool to calculate the **flow direction, channels and drainage basins**.
 
 * Make sure you run this tool on the filled DEM.
-* We might have to change the threshold to a higher one if the output includes too many small basins and channels.
+* We might have to change the threshold to a higher one if the output includes too many small basins and channels. The middle point of your previous Strahler order values is a usually a good default.
 
 As an output, we only want to load (and save to file):
 
-* Channels (shapefile)
+* Channels (as a shapefile. You can identify which one of the two it is when choosing a filename.)
 * Drainage basins (shapefile) (to differentiate the two "Drainage basins" options, you can check what format it saves the file as)
 
 This is an example of **creating vector data from raster data**!
 
-We can now play with the symbology for those elements. For example, try using different colours for each basin, by classifying by ID, or make the fill transparent so you can see the colours of the layer underneath. You can also make the borders more obvious, and change the colour and thickness of the channels.
+We can now play with the **symbology** for those elements. For example:
+
+* Try using different colours for each basin, by classifying by ID, or remove the fill (`Simple fill > Fill Style > No Brush`) so you can see the colours of the elevation colours underneath. You can also make the borders more obvious by changing the width of the stroke.
+* Change the colour and thickness of the channels. You can also differentiate minor channels from minor ones by using a "Data defined override" for the Width value:
+    * Click on the "Data defined override" icon next to the Width field
+    * Use the "Assistant"
+    * "Source" needs to be the column "ORDER" (which corresponds to the Strahler order)
+    * Click the double-arrow icon to "Fetch value range from layer"
+    * Change the "Size from" and "to" values to suitable values
+
 
 ## 3D maps
 
@@ -131,7 +140,7 @@ In the 3D map window, make sure to first:
 * Click on the settings icon and set the "Type" to "DEM (Raster layer)", and set the "Elevation" to your clipped DEM.
 * Exaggerate the relief with the "Vertical scale" setting (try 3).
 
-To see the 3D effect, you will have to use your <kbd>Ctrl</kbd> on your keyboard to change the angle of view.
+To see the 3D effect, you will have to use your <kbd>Ctrl</kbd> or <kbd>Shift</kbd> keys on your keyboard while panning with the mouse to change the angle of view.
 
 > A useful plugin for 3D maps is qgis2threeJS, which might be handy to add a 3D map to a website.
 
