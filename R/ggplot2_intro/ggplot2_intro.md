@@ -1,20 +1,13 @@
 R data visualisation with RStudio and ggplot2: introduction
 ================
-2021-04-08
+UQ Library
+2021-06-11
 
-> This document is redacted in R markdown; the source file is available
-> here:
-> <https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd>
-> It is then knitted as a Markdown document, which is the best version
-> to view online and to print:
-> <https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intro/ggplot2_intro.md>
+## Before we start
 
-If you want to review the installation instructions:
-<https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
-
-Everything we write today will be saved in your R project. Please
-remember to save it on your H drive or USB if you are using a Library
-computer.
+> If you don’t have both R and RStudio installed, you can use our
+> [installation
+> instructions](https://gitlab.com/stragu/DSH/blob/master/R/Installation.md).
 
 ## What are we going to learn?
 
@@ -23,33 +16,33 @@ are new to the ggplot2 package.
 
 During this session, you will:
 
-  - Have a visualisation package installed (ggplot2)
-  - Learn how to explore data visually
-  - Learn about the 3 essential ggplot2 components
-  - Use different kinds of visualisations
-  - Layer several visualisations
-  - Learn how to customise a plot with colours, labels and themes.
+-   Have a visualisation package installed (ggplot2)
+-   Learn how to explore data visually
+-   Learn about the 3 essential ggplot2 components
+-   Use different kinds of visualisations
+-   Layer several visualisations
+-   Learn how to customise a plot with colours, labels and themes.
 
 ## Open RStudio
 
-  - If you are using your own laptop please open RStudio
-      - Make sure you have a working Internet connection
-  - On the Library computers (the first time takes about 10 min):
-      - Log in with your UQ username and password (use your student
+-   If you are using your own laptop please open RStudio
+    -   Make sure you have a working Internet connection
+-   On the Library computers (the first time takes about 10 min):
+    -   Log in with your UQ username and password (use your student
         account if you have both a staff and student account)
-      - Make sure you have a working Internet connection
-      - Open the ZENworks application
-      - Look for RStudio
-      - Double-click on RStudio which will install both R and RStudio
+    -   Make sure you have a working Internet connection
+    -   Open the ZENworks application
+    -   Look for RStudio
+    -   Double-click on RStudio which will install both R and RStudio
 
 ## Essential shortcuts
 
 Remember some of the most commonly used RStudio shortcuts:
 
-  - function or dataset help: press <kbd>F1</kbd> with your cursor
+-   function or dataset help: press <kbd>F1</kbd> with your cursor
     anywhere in a function name.
-  - execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
-  - assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
+-   execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+-   assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
 ## Material
 
@@ -65,32 +58,36 @@ time you start a new R session.
 
 ### Setting up a project
 
+> Everything we write today will be saved in your R project. Please
+> remember to save it on your H drive or USB if you are using a Library
+> computer.
+
 Let’s create a new **R project** to keep everything tidy:
 
-  - Click the “File” menu button (top left corner), then “New Project”
-  - Click “New Directory”
-  - Click “New Project”
-  - In “Directory name”, type the name of your project,
+-   Click the “File” menu button (top left corner), then “New Project”
+-   Click “New Directory”
+-   Click “New Project”
+-   In “Directory name”, type the name of your project,
     e.g. “ggplot2\_intro”
-  - Select the folder where to locate your project: e.g. a
+-   Select the folder where to locate your project: e.g. a
     `Documents/RProjects` folder, which you can create if it doesn’t
     exist yet.
-  - Click the “Create Project” button
-  - Create a folder to store our plots:
-      - `dir.create("plots")`
+-   Click the “Create Project” button
+-   Create a folder to store our plots:
+    -   `dir.create("plots")`
 
 We will write ggplot2 code more comfortably in a **script**:
 
-  - Menu: Top left corner, click the green “plus” symbol, or press the
+-   Menu: Top left corner, click the green “plus” symbol, or press the
     shortcut (for Windows/Linux)
     <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> or (for Mac)
     <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an
     “Untitled1” file.
-  - Go to “File \> Save” or press (for Windows/Linux)
+-   Go to “File &gt; Save” or press (for Windows/Linux)
     <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac)
     <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save
     your file and the name of the new file.
-  - Call your file “process.R”
+-   Call your file “process.R”
 
 We can straight away **load the package** by adding this command to our
 script and executing it:
@@ -128,14 +125,14 @@ graph from the same few components.
 
 The components are:
 
-  - Data
-  - Mapping
-  - Statistics
-  - Scales
-  - Geometries
-  - Facets
-  - Coordinates
-  - Theme
+-   Data
+-   Mapping
+-   Statistics
+-   Scales
+-   Geometries
+-   Facets
+-   Coordinates
+-   Theme
 
 In this introductory session, we will mainly focus on the **data**, the
 **mapping**, the **statistics**, the **geometries** and the **theme**.
@@ -149,7 +146,7 @@ In ggplot2, the 3 main components that we usually have to provide are:
 3.  a **geometry**.
 
 For our first example, let’s use the `msleep` dataset (from the ggplot2
-packages), which contains data about mammals’ sleeping patterns.
+package), which contains data about mammals’ sleeping patterns.
 
 > You can find out about the dataset with `?msleep`.
 
@@ -211,19 +208,15 @@ applied automatically to the data.
 
 ### Scatterplots
 
-Let’s have a look at another dataset:
-
-``` r
-?economics
-```
-
-    ## starting httpd help server ... done
+Let’s have a look at another dataset: the `economics` dataset from the
+US. Learn more about it with `?economics`, and have a peak at its
+structure with:
 
 ``` r
 str(economics)
 ```
 
-    ## spec_tbl_df[,6] [574 x 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+    ## spec_tbl_df [574 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
     ##  $ date    : Date[1:574], format: "1967-07-01" "1967-08-01" ...
     ##  $ pce     : num [1:574] 507 510 516 512 517 ...
     ##  $ pop     : num [1:574] 198712 198911 199113 199311 199498 ...
@@ -245,18 +238,18 @@ ggplot(data = economics,
 
 Let’s go through our essential elements once more:
 
-  - The `ggplot()` function initialises a ggplot object. In it, we
+-   The `ggplot()` function initialises a ggplot object. In it, we
     declare the **input data frame** and specify the set of plot
     aesthetics used throughout all layers of our plot;
-  - The `aes()` function groups our **mappings of aesthetics to
+-   The `aes()` function groups our **mappings of aesthetics to
     variables**;
-  - The `geom_<...>()` function specifies what **geometric element** we
+-   The `geom_<...>()` function specifies what **geometric element** we
     want to use.
 
 Scatterplots are often used to look at the relationship between two
 variables. Let’s try it with a new dataset: `mpg` (which stands for
-“miles per gallon”), a dataset about fuel efficiency of different
-models of cars.
+“miles per gallon”), a dataset about fuel efficiency of different models
+of cars.
 
 ``` r
 ?mpg
@@ -268,8 +261,8 @@ engines?
 
 We can focus on two variables:
 
-> `displ`: a car’s engine size, in litres. `hwy`: a car’s fuel
-> efficiency on the highway, in miles per gallon.
+-   `displ`: a car’s engine size, in litres.
+-   `hwy`: a car’s fuel efficiency on the highway, in miles per gallon.
 
 ``` r
 ggplot(data = mpg,
@@ -318,7 +311,7 @@ ggplot(data = mpg,
 
 It seems that two-seaters are more fuel efficient than other cars with a
 similar engine size, which can be explained by the lower weight of the
-car. The general trend starts to make more sense\!
+car. The general trend starts to make more sense!
 
 We now know how to create a simple scatterplot, and how to visualise
 extra variables. But how can we better represent a correlation?
@@ -340,7 +333,7 @@ ggplot(mpg,
 
 > We stopped using the argument names because we know in which order
 > they appear: first the data, then the mapping of aesthetics. Let’s
-> save ourselves some typing from now on\!
+> save ourselves some typing from now on!
 
 The console shows you what function / formula was used to draw the trend
 line. This is important information, as there are countless ways to do
@@ -350,7 +343,7 @@ argument is “NULL”. Read up on how it automatically picks a suitable
 method depending on the sample size, in the “Arguments” section.
 
 Want a linear trend line instead? Add the argument `method = "lm"` to
-you function:
+your function:
 
 ``` r
 ggplot(mpg,
@@ -426,12 +419,12 @@ it possible to display different aesthetics in different layers.
 Like your visualisation? You can export it with the “Export” menu in the
 “Plots” pane.
 
-  - Building a document or a slideshow? You can copy it straight to your
+-   Building a document or a slideshow? You can copy it straight to your
     clipboard, and paste it into it.
-  - A PDF is a good, quick option to export an easily shareable file
+-   A PDF is a good, quick option to export an easily shareable file
     with vector graphics. Try for example the “A5” size, the “Landscape”
     orientation, and save it into your “plots” directory.
-  - More options are available in the “Save as image…” option. PNG is a
+-   More options are available in the “Save as image…” option. PNG is a
     good compressed format for graphics, but if you want to further
     customise your visualisation in a different program, use SVG or EPS,
     which are vector formats. (Try to open an SVG file in
@@ -472,8 +465,6 @@ How could we:
 2.  Colour the points according to the median duration of unemployment
     (see `?economics`)
 
-<!-- end list -->
-
 ``` r
 ggplot(economics,
        aes(x = date,
@@ -510,7 +501,7 @@ curve to data that varies a lot.
 
 To further refine our visualisation , we could visualise the
 unemployment rate rather than the number of unemployed people, by
-caclulating is straight into our code:
+calculating it straight into our code:
 
 ``` r
 ggplot(economics,
@@ -624,7 +615,7 @@ caption.
 
 For a horizontal bar chart, we can map the `cut` variable to the `y`
 aesthetic instead of `x`. But remember to also change your labels
-around\!
+around!
 
 ``` r
 ggplot(diamonds,
@@ -659,9 +650,9 @@ ggplot(diamonds,
 ![](ggplot2_intro_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 Try `theme_minimal()` as well, and if you want more options, install the
-`ggthemes` package\!
+`ggthemes` package!
 
-## Play time\!
+## Play time!
 
 **Challenge 3: explore geometries**
 
@@ -669,7 +660,7 @@ When creating a new layer, start typing `geom_` and see what suggestions
 pop up. Are there any suggestions that sound useful or familiar to you?
 
 Modify your plots, play around with different layers and functions, and
-ask questions\!
+ask questions!
 
 ## Close project
 
@@ -679,20 +670,21 @@ all the necessary commands in your script.
 
 ## Useful links
 
-  - For ggplot2:
-      - ggplot2 cheatsheet:
-        <https://www.rstudio.org/links/data_visualization_cheat_sheet>
-      - Official ggplot2 documentation:
-        <http://docs.ggplot2.org/current/>
-      - Official ggplot2 website: <http://ggplot2.tidyverse.org/>
-      - Chapter on data visualisation in the book *R for Data Science*:
-        <http://r4ds.had.co.nz/data-visualisation.html>
-      - Selva Prabhakaran’s *r-statistics.co* section on ggplot2:
-        <http://r-statistics.co/ggplot2-Tutorial-With-R.html>
-      - Coding Club’s data visualisation tutorial:
-        <https://ourcodingclub.github.io/2017/01/29/datavis.html>
-      - Cookbook for R graphs: <http://www.cookbook-r.com/Graphs/>
-      - STHDA’s ggplot2 essentials:
-        <http://www.sthda.com/english/wiki/ggplot2-essentials>
-  - More ressources for R in general:
-    <https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md>
+-   For ggplot2:
+    -   [ggplot2
+        cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
+    -   Official [ggplot2
+        documentation](http://docs.ggplot2.org/current/)
+    -   Official [ggplot2 website](http://ggplot2.tidyverse.org/)
+    -   [Chapter on data
+        visualisation](http://r4ds.had.co.nz/data-visualisation.html) in
+        the book *R for Data Science*
+    -   Selva Prabhakaran’s [*r-statistics.co* section on
+        ggplot2](http://r-statistics.co/ggplot2-Tutorial-With-R.html)
+    -   [Coding Club’s data visualisation
+        tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html)
+    -   [Cookbook for R graphs](http://www.cookbook-r.com/Graphs/)
+    -   [STHDA’s ggplot2
+        essentials](http://www.sthda.com/english/wiki/ggplot2-essentials)
+-   Our compilation of [general R
+    resources](https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md)

@@ -1,15 +1,13 @@
 ---
 title: "R data visualisation with RStudio and ggplot2: introduction"
 output: github_document
+author: "UQ Library"
 date: "`r Sys.Date()`"
 ---
 
-> This document is redacted in R markdown; the source file is available here: https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intro/ggplot2_intro.Rmd
-> It is then knitted as a Markdown document, which is the best version to view online and to print: https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intro/ggplot2_intro.md
+## Before we start
 
-If you want to review the installation instructions: https://gitlab.com/stragu/DSH/blob/master/R/Installation.md
-
-Everything we write today will be saved in your R project. Please remember to save it on your H drive or USB if you are using a Library computer.
+> If you don't have both R and RStudio installed, you can use our [installation instructions](https://gitlab.com/stragu/DSH/blob/master/R/Installation.md).
 
 ## What are we going to learn?
 
@@ -52,6 +50,8 @@ We first need to make sure we have the **ggplot2 package** available on our comp
 You only need to install a package once, but you need to load it every time you start a new R session.
 
 ### Setting up a project
+
+> Everything we write today will be saved in your R project. Please remember to save it on your H drive or USB if you are using a Library computer.
 
 Let's create a new **R project** to keep everything tidy:
 
@@ -116,7 +116,7 @@ In ggplot2, the 3 main components that we usually have to provide are:
 2. the **aesthetic mappings**, and
 3. a **geometry**.
 
-For our first example, let's use the `msleep` dataset (from the ggplot2 packages), which contains data about mammals' sleeping patterns.
+For our first example, let's use the `msleep` dataset (from the ggplot2 package), which contains data about mammals' sleeping patterns.
 
 > You can find out about the dataset with `?msleep`.
 
@@ -155,10 +155,9 @@ Here, we don't need to specify what variable is associated to the y axis, as the
 
 ### Scatterplots 
 
-Let's have a look at another dataset:
+Let's have a look at another dataset: the `economics` dataset from the US. Learn more about it with `?economics`, and have a peak at its structure with:
 
 ```{r}
-?economics
 str(economics)
 ```
 
@@ -188,8 +187,8 @@ Do you think that big engines use fuel more efficiently than small engines?
 
 We can focus on two variables:
 
-> `displ`: a car’s engine size, in litres.
-> `hwy`: a car’s fuel efficiency on the highway, in miles per gallon.
+* `displ`: a car’s engine size, in litres.
+* `hwy`: a car’s fuel efficiency on the highway, in miles per gallon.
 
 ```{r}
 ggplot(data = mpg,
@@ -242,7 +241,7 @@ ggplot(mpg,
 
 The console shows you what function / formula was used to draw the trend line. This is important information, as there are countless ways to do that. To better understand what happens in the background, open the function's help page and notice that the default value for the `method` argument is "NULL". Read up on how it automatically picks a suitable method depending on the sample size, in the "Arguments" section.
 
-Want a linear trend line instead? Add the argument `method = "lm"` to you function:
+Want a linear trend line instead? Add the argument `method = "lm"` to your function:
 
 ```{r}
 ggplot(mpg,
@@ -355,7 +354,7 @@ ggplot(economics,
 
 You can now see why this is called a "smoother": we can fit a smooth curve to data that varies a lot.
 
-To further refine our visualisation , we could visualise the unemployment rate rather than the number of unemployed people, by caclulating is straight into our code:
+To further refine our visualisation , we could visualise the unemployment rate rather than the number of unemployed people, by calculating it straight into our code:
 
 ```{r}
 ggplot(economics,
@@ -484,12 +483,12 @@ Saving your workspace is usually not recommended if you have all the necessary c
 ## Useful links
 
 * For ggplot2:
-  + ggplot2 cheatsheet: https://www.rstudio.org/links/data_visualization_cheat_sheet
-  + Official ggplot2 documentation: http://docs.ggplot2.org/current/
-  + Official ggplot2 website: http://ggplot2.tidyverse.org/
-  + Chapter on data visualisation in the book _R for Data Science_: http://r4ds.had.co.nz/data-visualisation.html
-  + Selva Prabhakaran's _r-statistics.co_ section on ggplot2: http://r-statistics.co/ggplot2-Tutorial-With-R.html
-  + Coding Club's data visualisation tutorial: https://ourcodingclub.github.io/2017/01/29/datavis.html
-  + Cookbook for R graphs: http://www.cookbook-r.com/Graphs/
-  + STHDA's ggplot2 essentials: http://www.sthda.com/english/wiki/ggplot2-essentials
-* More ressources for R in general: https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md
+  + [ggplot2 cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
+  + Official [ggplot2 documentation](http://docs.ggplot2.org/current/)
+  + Official [ggplot2 website](http://ggplot2.tidyverse.org/)
+  + [Chapter on data visualisation](http://r4ds.had.co.nz/data-visualisation.html) in the book _R for Data Science_
+  + Selva Prabhakaran's [_r-statistics.co_ section on ggplot2](http://r-statistics.co/ggplot2-Tutorial-With-R.html)
+  + [Coding Club's data visualisation tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html)
+  + [Cookbook for R graphs](http://www.cookbook-r.com/Graphs/)
+  + [STHDA's ggplot2 essentials](http://www.sthda.com/english/wiki/ggplot2-essentials)
+* Our compilation of [general R resources](https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md)
