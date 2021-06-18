@@ -1,6 +1,6 @@
 R data visualisation with RStudio and ggplot2: intermediate
 ================
-2021-03-19
+2021-06-18
 
 > This document is written in R Markdown, and then knitted into a
 > markdown document. The source code is available at:
@@ -13,27 +13,27 @@ If you need to review the installation instructions:
 
 ## Essential shortcuts
 
--   function or dataset help: press <kbd>F1</kbd> with your cursor
+  - function or dataset help: press <kbd>F1</kbd> with your cursor
     anywhere in a function name.
--   execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
--   assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
+  - execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+  - assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
 ## Open RStudio
 
 On library computers:
 
--   Log in with your UQ username and password (use your student
+  - Log in with your UQ username and password (use your student
     credentials if you are both staff and student)
--   Make sure you have a working internet connection
--   Go to search the magnifying glass (bottom left)
--   Open the ZENworks application
--   Look for the letter R
--   Double click on RStudio which will install both R and RStudio
+  - Make sure you have a working internet connection
+  - Go to search the magnifying glass (bottom left)
+  - Open the ZENworks application
+  - Look for the letter R
+  - Double click on RStudio which will install both R and RStudio
 
 If you are using your own laptop:
 
--   Make sure you have a working internet connection
--   Open RStudio
+  - Make sure you have a working internet connection
+  - Open RStudio
 
 ## Disclaimer
 
@@ -44,14 +44,14 @@ ggplot2 before.
 
 During this hands-on session, you will:
 
--   install a tool for picking colours
--   customise scales and ranges
--   divide a visualisation into facets
--   explore new geometries
--   modify statistical transformations
--   adjust a geometry’s position
--   further modify themes
--   make a plot interactive
+  - install a tool for picking colours
+  - customise scales and ranges
+  - divide a visualisation into facets
+  - explore new geometries
+  - modify statistical transformations
+  - adjust a geometry’s position
+  - further modify themes
+  - make a plot interactive
 
 ## Material
 
@@ -63,17 +63,17 @@ During this hands-on session, you will:
 **Create a new project** to keep everything nicely contained in one
 directory:
 
--   Click the “Create a project” button (top left cube icon)
--   Click “New Directory”
--   Click “New Project” (“Empty project” if you have an older version of
+  - Click the “Create a project” button (top left cube icon)
+  - Click “New Directory”
+  - Click “New Project” (“Empty project” if you have an older version of
     RStudio)
--   In “Directory name”, type the name of your project,
+  - In “Directory name”, type the name of your project,
     e.g. “ggplot2\_intermediate”
--   Select the folder where to locate your project:
-    e.g. `Documents/RProjects`, which you can create if it doesn’t exist
-    yet. You can use your H drive at UQ to make sure you can find it
-    again.
--   Click the “Create Project” button
+  - Select the folder where to locate your project:
+    e.g. `Documents/RProjects`, which you can create if it doesn’t
+    exist yet. You can use your H drive at UQ to make sure you can find
+    it again.
+  - Click the “Create Project” button
 
 Let’s also create a “plots” folder to store exports:
 
@@ -81,7 +81,7 @@ Let’s also create a “plots” folder to store exports:
 dir.create("plots")
 ```
 
-Create a **new script** (File &gt; New File &gt; R Script) and add a few
+Create a **new script** (File \> New File \> R Script) and add a few
 comments to give context:
 
     # Description : ggplot2 intermediate with gapminder data
@@ -93,6 +93,8 @@ Finally, make sure you **load ggplot2** so we can use its functions:
 ``` r
 library(ggplot2)
 ```
+
+    ## Warning: package 'ggplot2' was built under R version 4.0.5
 
 ### Import data
 
@@ -141,9 +143,9 @@ ggplot(data = gapminder,
 
 Remember that the 3 main elements of a ggplot2 visualisation are:
 
--   the *data*
--   the *mapping of aesthatics to variables*
--   the *geometry*
+  - the *data*
+  - the *mapping of aesthatics to variables*
+  - the *geometry*
 
 ### Aesthetics available
 
@@ -152,13 +154,12 @@ available, depending on the geometry that you are using.
 
 Here are some common examples:
 
--   To change the *shape* based on a variable, use
-    `shape = <discrete variable>` inside the `aes()` call.
--   If you want to change the size of the geometric object, you can use
+  - To change the *shape* based on a variable, use `shape = <discrete
+    variable>` inside the `aes()` call.
+  - If you want to change the size of the geometric object, you can use
     the `size = <continuous variable>` argument.
--   Similarly, to change the *colour* based on a variable, use
-    `colour = <variable>` and `fill = <variable>` inside the `aes()`
-    call.
+  - Similarly, to change the *colour* based on a variable, use `colour =
+    <variable>` and `fill = <variable>` inside the `aes()` call.
 
 Let’s modify our plot to colour the points according to the continent
 variable.
@@ -228,7 +229,7 @@ alone might not be enough to picture them, so head to
 <http://colorbrewer2.org/> to find the one that you like. Importantly,
 the website allows you to tick the options “colorblind safe” and “print
 friendly”… which would rule out all the qualitative palettes for our 5
-continents!
+continents\!
 
 A useful package that introduces many palettes for ggplot2 is the
 colorspace package, which promotes the [Hue-Chroma-Luminance (HCL)
@@ -244,6 +245,11 @@ Let’s first use an alternative qualitative palette:
 
 ``` r
 library(colorspace)
+```
+
+    ## Warning: package 'colorspace' was built under R version 4.0.5
+
+``` r
 p +
   scale_colour_discrete_qualitative()
 ```
@@ -252,7 +258,7 @@ p +
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
-This is the default ggplot2 palette! Which means ggplot2 already use a
+This is the default ggplot2 palette\! Which means ggplot2 already use a
 HCL palette. But having the colorspace package loaded, we can now see
 all the palettes available:
 
@@ -294,7 +300,7 @@ You can find [visual
 lists](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) of all the
 R colours, but there is a way to pick colours more comfortably: we can
 use the colourpicker package, which adds a handy add-in to RStudio.
-Install it and use the new “Addins &gt; Colour Picker” tool to create a
+Install it and use the new “Addins \> Colour Picker” tool to create a
 vector of colours for your custom palette.
 
 > That was a lot of options about colours, but know that in some cases,
@@ -364,7 +370,7 @@ represent part of the data because of the axis limits.
 The method we use works for our point geometry, but is problematic for
 other shapes that could disappear entirely or change their appearance
 because they are based on different data: we are actually **clipping**
-our visualisation! Notice how the trend line now looks different?
+our visualisation\! Notice how the trend line now looks different?
 
 A better way to focus on one part of the plot would be to modify the
 **coordinate system**:
@@ -387,7 +393,7 @@ visualisations, or to `coord_map()` to visualise spatial data.
 The plotly package brings the power of the Plotly javascript library to
 R. Install it with `install.packages(plotly)`, and you’ll then be able
 to convert a ggplot2 visualisation into an interactive HTML
-visualisation with one single function!
+visualisation with one single function\!
 
 Let’s reuse our original plot object, and feed it to `ggplotly()`:
 
@@ -397,7 +403,7 @@ ggplotly(p)
 ```
 
 You can now identify single points, zoom into your plot, and show/hide
-categories. However, the popup does not tell us which country the point
+categories. However, the pop-up does not tell us which country the point
 corresponds to. That’s because we don’t mention the `country` variable
 in our code. Let’s reveal that information by slightly modifying the `p`
 object:
@@ -442,7 +448,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
 > names** is useful when learning the ins and outs of a function, but as
 > you get more familiar with ggplot2, you can do away with the obvious
 > ones, like `data =` and `mapping =` (as long as they are used in the
-> right order!).
+> right order\!).
 
 Let’s change the bin width:
 
@@ -474,7 +480,7 @@ ggplot(gapminder, aes(x = lifeExp, colour = continent)) +
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
 
-…but it only colours the outline of the rectangles!
+…but it only colours the outline of the rectangles\!
 
 Some aesthetics will work better with some geometries than others. We
 have to use the `fill` aesthetic to colour the areas instead:
@@ -501,6 +507,29 @@ ggplot(gapminder,
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 
+You might have noticed that the y-axis is still labeled ‘count’ when it
+has changed to a proportion. We can modify the y-axis labels to percent
+using the scales package which is loaded with the ggplot2 package.
+
+We can also modify the y-axis labels with the `labs()` function.
+
+``` r
+library(scales)
+```
+
+    ## Warning: package 'scales' was built under R version 4.0.5
+
+``` r
+ggplot(gapminder,
+       aes(x = lifeExp,
+           fill = continent)) +
+  geom_histogram(bins = 10,
+                 position = "fill") +
+  scale_y_continuous(labels = scales::percent)
+```
+
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
+
 We can also make the bars “dodge” each other:
 
 ``` r
@@ -511,7 +540,7 @@ ggplot(gapminder,
                  position = "dodge")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 ### Faceting
 
@@ -525,7 +554,7 @@ ggplot(gapminder,
   facet_wrap(vars(continent))
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 
 We have to wrap the variable(s) we want to facet by into the `vars()`
 function.
@@ -548,10 +577,10 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
 
 If you use a pre-built theme function, make sure you place it before
-customising the legend. Otherwise it will bring the legend back!
+customising the legend. Otherwise it will bring the legend back\!
 
 ``` r
 ggplot(gapminder,
@@ -563,7 +592,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-32-1.png)<!-- -->
 
 ### A more refined facetted example
 
@@ -590,19 +619,19 @@ ggplot(diamonds,
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-32-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
 
 In this visualisation:
 
--   4 different variables are represented, thanks to both aesthetics and
+  - 4 different variables are represented, thanks to both aesthetics and
     facets
--   two geometries are layered on top of each other to repersent a
+  - two geometries are layered on top of each other to repersent a
     relationship
--   both geometries are customised to make the plot readable (important
+  - both geometries are customised to make the plot readable (important
     here, since there are close to 54000 rows of data)
--   the default the colour scale is replaced
--   a built-in theme is used
--   a label clarifies the unit of measurement
+  - the default the colour scale is replaced
+  - a built-in theme is used
+  - a label clarifies the unit of measurement
 
 ### Boxplots
 
@@ -613,7 +642,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
 
 #### Challenge 3 – code comprehension
 
@@ -625,13 +654,13 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-35-1.png)<!-- -->
 
 This is useful if the x labels get too cramped on the x axis: you can
 rotate them to whatever angle you want.
 
 > Try turning this plot into an interactive visualisation to see stats
-> easily!
+> easily\!
 
 ### Close project
 
@@ -641,23 +670,23 @@ all the necessary commands in your script.
 
 ## Useful links
 
--   For ggplot2:
-
-    -   ggplot2 cheatsheet:
+  - For ggplot2:
+    
+      - ggplot2 cheatsheet:
         <https://www.rstudio.org/links/data_visualization_cheat_sheet>
-    -   Official ggplot2 documentation:
+      - Official ggplot2 documentation:
         <http://docs.ggplot2.org/current/>
-    -   Official ggplot2 website: <http://ggplot2.tidyverse.org/>
-    -   Chapter on data visualisation in the book *R for Data Science*:
+      - Official ggplot2 website: <http://ggplot2.tidyverse.org/>
+      - Chapter on data visualisation in the book *R for Data Science*:
         <http://r4ds.had.co.nz/data-visualisation.html>
-    -   from Data to Viz: <https://www.data-to-viz.com/>
-    -   Selva Prabhakaran’s *r-statistics.co* section on ggplot2:
+      - from Data to Viz: <https://www.data-to-viz.com/>
+      - Selva Prabhakaran’s *r-statistics.co* section on ggplot2:
         <http://r-statistics.co/ggplot2-Tutorial-With-R.html>
-    -   Coding Club’s data visualisation tutorial:
+      - Coding Club’s data visualisation tutorial:
         <https://ourcodingclub.github.io/2017/01/29/datavis.html>
-    -   Cookbook for R graphs: <http://www.cookbook-r.com/Graphs/>
-    -   STHDA’s ggplot2 essentials:
+      - Cookbook for R graphs: <http://www.cookbook-r.com/Graphs/>
+      - STHDA’s ggplot2 essentials:
         <http://www.sthda.com/english/wiki/ggplot2-essentials>
 
--   More resources for R in general:
+  - More resources for R in general:
     <https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md>

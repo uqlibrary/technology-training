@@ -278,7 +278,7 @@ library(plotly)
 ggplotly(p)
 ```
 
-You can now identify single points, zoom into your plot, and show/hide categories. However, the popup does not tell us which country the point corresponds to. That's because we don't mention the `country` variable in our code. Let's reveal that information by slightly modifying the `p` object:
+You can now identify single points, zoom into your plot, and show/hide categories. However, the pop-up does not tell us which country the point corresponds to. That's because we don't mention the `country` variable in our code. Let's reveal that information by slightly modifying the `p` object:
 
 ```{r}
 p <- ggplot(data = gapminder,
@@ -350,6 +350,21 @@ ggplot(gapminder,
            fill = continent)) +
   geom_histogram(bins = 10,
                  position = "fill")
+```
+
+You might have noticed that the y-axis is still labeled 'count' when it has changed to a proportion. We can modify the y-axis labels to percent using the scales package which is loaded with the ggplot2 package. 
+
+We can also modify the y-axis labels with the `labs()` function.
+
+```{r}
+library(scales)
+
+ggplot(gapminder,
+       aes(x = lifeExp,
+           fill = continent)) +
+  geom_histogram(bins = 10,
+                 position = "fill") +
+  scale_y_continuous(labels = scales::percent)
 ```
 
 We can also make the bars "dodge" each other:
