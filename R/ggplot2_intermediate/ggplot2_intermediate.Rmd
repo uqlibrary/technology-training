@@ -147,6 +147,16 @@ ggplot(data = gapminder,
   geom_smooth()
 ```
 
+#### Challenge 2 - save our plot
+
+How can we save our scatterplot to the 'plots' directory we created using a function?
+
+```{r}
+ggsave(filename = "plots/gdpPercap_v_lifeExp.png", width = 7, height = 4)
+```
+
+> Remember that the `ggsave` function saves the last plot.
+
 ### Modifying scales
 
 #### More control over colours
@@ -299,7 +309,7 @@ ggplotly(p)
 
 ### Histograms
 
-#### Challenge 2 – histogram of life expectancy
+#### Challenge 3 – histogram of life expectancy
 
 Search for the histogram geometry function, and plot the life expectancy. How can we modify the bars?
 
@@ -458,7 +468,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
 
-#### Challenge 3 – code comprehension
+#### Challenge 4 – code comprehension
 
 What do you think this extra line might do to our boxplots?
 

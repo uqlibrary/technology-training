@@ -176,6 +176,19 @@ ggplot(data = gapminder,
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
+#### Challenge 2 - save our plot
+
+How can we save our scatterplot to the ‘plots’ directory we created
+using a function?
+
+``` r
+ggsave(filename = "plots/gdpPercap_v_lifeExp.png", width = 7, height = 4)
+```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+> Remember that the `ggsave` function saves the last plot.
+
 ### Modifying scales
 
 #### More control over colours
@@ -204,7 +217,7 @@ p +
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 Viridis is a collection of palettes that are designed to be accessible
 (i.e. perceptually uniform in colour or black and white, and perceivable
@@ -221,7 +234,7 @@ p +
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 You can see the palettes available by looking at the help page of
 `scale_colour_brewer()`, under the header “Palettes”. However, the names
@@ -256,7 +269,7 @@ p +
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 This is the default ggplot2 palette\! Which means ggplot2 already use a
 HCL palette. But having the colorspace package loaded, we can now see
@@ -266,7 +279,7 @@ all the palettes available:
 hcl_palettes(plot = TRUE)
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 Let’s try a different one:
 
@@ -277,7 +290,7 @@ p +
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 Finally, to use a custom palette, we can use the ggplot2 function
 `scale_colour_manual()` and provide a list of colour names.
@@ -289,7 +302,7 @@ p +
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 You can list all the R colour names with the function `colours()`, which
 prints out a list of their names, but know that you are not limited to
@@ -320,7 +333,7 @@ p +
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 We can also further customise a scale with breaks and labels:
 
@@ -332,7 +345,7 @@ p +
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 > You can use the scientific notation `1e5` to mean “a 1 followed by 5
 > zeros”.
@@ -347,7 +360,7 @@ p
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 To zoom in, we might want to change our axis limits by using `ylim()`.
 
@@ -362,7 +375,7 @@ p +
 
     ## Warning: Removed 5 rows containing missing values (geom_point).
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 Notice the warning message? ggplot2 informs us that it couldn’t
 represent part of the data because of the axis limits.
@@ -382,7 +395,7 @@ p +
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 The cartesian coordinate system is the default one in ggplot2. You could
 change the coordinate system to `coord_polar()` for circular
@@ -429,7 +442,7 @@ ggplotly(p)
 
 ### Histograms
 
-#### Challenge 2 – histogram of life expectancy
+#### Challenge 3 – histogram of life expectancy
 
 Search for the histogram geometry function, and plot the life
 expectancy. How can we modify the bars?
@@ -441,7 +454,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 > **Saving some typing:** remember we can omit the names of the
 > arguments if we use them in order? Being explicit about the **argument
@@ -457,7 +470,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(binwidth = 1)
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 Here, each bar contains one year of life expectancy.
 
@@ -468,7 +481,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
 
 Now, let’s colour the bins by continent. Instinctively, you could try
 the `colour` aesthetic:
@@ -478,7 +491,7 @@ ggplot(gapminder, aes(x = lifeExp, colour = continent)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 …but it only colours the outline of the rectangles\!
 
@@ -490,7 +503,7 @@ ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 
 Colouring our bins allows us to experiment with the geometry’s
 **position**. The histogram geometry uses the “stack” position by
@@ -505,7 +518,7 @@ ggplot(gapminder,
                  position = "fill")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
 You might have noticed that the y-axis is still labeled ‘count’ when it
 has changed to a proportion. We can modify the y-axis labels to percent
@@ -529,7 +542,7 @@ ggplot(gapminder,
   labs(y = "Percent")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 We can also make the bars “dodge” each other:
 
@@ -541,7 +554,7 @@ ggplot(gapminder,
                  position = "dodge")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 
 ### Faceting
 
@@ -555,7 +568,7 @@ ggplot(gapminder,
   facet_wrap(vars(continent))
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
 
 We have to wrap the variable(s) we want to facet by into the `vars()`
 function.
@@ -578,7 +591,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-32-1.png)<!-- -->
 
 If you use a pre-built theme function, make sure you place it before
 customising the legend. Otherwise it will bring the legend back\!
@@ -593,7 +606,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-32-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
 
 ### A more refined facetted example
 
@@ -620,7 +633,7 @@ ggplot(diamonds,
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
 
 In this visualisation:
 
@@ -643,9 +656,9 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-35-1.png)<!-- -->
 
-#### Challenge 3 – code comprehension
+#### Challenge 4 – code comprehension
 
 What do you think this extra line might do to our boxplots?
 
@@ -655,7 +668,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-35-1.png)<!-- -->
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-36-1.png)<!-- -->
 
 This is useful if the x labels get too cramped on the x axis: you can
 rotate them to whatever angle you want.
