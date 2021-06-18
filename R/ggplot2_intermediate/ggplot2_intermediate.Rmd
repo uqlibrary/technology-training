@@ -364,7 +364,8 @@ ggplot(gapminder,
            fill = continent)) +
   geom_histogram(bins = 10,
                  position = "fill") +
-  scale_y_continuous(labels = scales::percent)
+  scale_y_continuous(labels = scales::percent) +
+  labs(y = "Percent")
 ```
 
 We can also make the bars "dodge" each other:

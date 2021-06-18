@@ -525,7 +525,8 @@ ggplot(gapminder,
            fill = continent)) +
   geom_histogram(bins = 10,
                  position = "fill") +
-  scale_y_continuous(labels = scales::percent)
+  scale_y_continuous(labels = scales::percent) +
+  labs(y = "Percent")
 ```
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
