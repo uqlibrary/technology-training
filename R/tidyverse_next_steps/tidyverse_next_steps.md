@@ -1,21 +1,21 @@
 R and the Tidyverse: next steps
 ================
 Stéphane Guillou
-2021-06-03
+2021-07-14
 
 ## Setting up
 
 > If needed, review the [installation
 > instructions](https://gitlab.com/stragu/DSH/blob/master/R/Installation.md).
 
--   If you are using your own laptop please open RStudio
-    -   Make sure you have a working Internet connection
--   On the Library’s training computers:
-    -   Log in with your UQ username and password
-    -   Make sure you have a working Internet connection
-    -   Open the ZENworks application
-    -   Look for “RStudio”
-    -   Double click on RStudio, which will install both R and RStudio
+  - If you are using your own laptop please open RStudio
+      - Make sure you have a working Internet connection
+  - On the Library’s training computers:
+      - Log in with your UQ username and password
+      - Make sure you have a working Internet connection
+      - Open the ZENworks application
+      - Look for “RStudio”
+      - Double click on RStudio, which will install both R and RStudio
 
 With RStudio open, let’s make sure we have the necessary packages
 installed by running this command (this might take a few minutes):
@@ -30,8 +30,8 @@ This will install all the Tidyverse packages (and their dependencies).
 
 tidyr and purrr, just like dplyr and ggplot2, are core to the Tidyverse.
 
--   tidyr can be used to tidy your data
--   purrr is useful to apply functions iteratively on lists or vectors
+  - tidyr can be used to tidy your data
+  - purrr is useful to apply functions iteratively on lists or vectors
 
 ## Create a project and a script
 
@@ -51,14 +51,32 @@ We can use one single command to load the 8 core Tidyverse packages:
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+    ## Warning: package 'tidyverse' was built under R version 4.0.5
 
-    ## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
-    ## ✓ tibble  3.1.2     ✓ dplyr   1.0.6
-    ## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-    ## ✓ readr   1.4.0     ✓ forcats 0.5.1
+    ## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
 
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## v ggplot2 3.3.3     v purrr   0.3.4
+    ## v tibble  3.1.1     v dplyr   1.0.5
+    ## v tidyr   1.1.3     v stringr 1.4.0
+    ## v readr   1.4.0     v forcats 0.5.1
+
+    ## Warning: package 'ggplot2' was built under R version 4.0.5
+
+    ## Warning: package 'tibble' was built under R version 4.0.5
+
+    ## Warning: package 'tidyr' was built under R version 4.0.5
+
+    ## Warning: package 'readr' was built under R version 4.0.5
+
+    ## Warning: package 'purrr' was built under R version 4.0.5
+
+    ## Warning: package 'dplyr' was built under R version 4.0.5
+
+    ## Warning: package 'stringr' was built under R version 4.0.5
+
+    ## Warning: package 'forcats' was built under R version 4.0.5
+
+    ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -74,9 +92,9 @@ read and populate. This is usually called “wide format”. Tidy data is
 
 The ultimate rules of tidy data are:
 
--   Each row is an observation
--   Each column is a variable
--   Each cell contains one single value
+  - Each row is an observation
+  - Each column is a variable
+  - Each cell contains one single value
 
 > To learn more about Tidy Data, you can read [Hadley Wickham’s 2014
 > article on the
@@ -106,7 +124,7 @@ climate_raw <- read_csv("data_wb_climate.csv",
 ```
 
     ## 
-    ## ── Column specification ────────────────────────────────────────────────────────
+    ## -- Column specification --------------------------------------------------------
     ## cols(
     ##   .default = col_double(),
     ##   `Country code` = col_character(),
@@ -115,7 +133,7 @@ climate_raw <- read_csv("data_wb_climate.csv",
     ##   `Series name` = col_character(),
     ##   `2011` = col_logical()
     ## )
-    ## ℹ Use `spec()` for the full column specifications.
+    ## i Use `spec()` for the full column specifications.
 
 We defined with the `na` argument that, in this dataset, missing data is
 recorded as “..”.
@@ -168,7 +186,7 @@ codes
     ## # A tibble: 5 x 2
     ##   `Series code`        `Series name`                                            
     ##   <chr>                <chr>                                                    
-    ## 1 EG.USE.COMM.GD.PP.KD Energy use per units of GDP (kg oil eq./$1,000 of 2005 P…
+    ## 1 EG.USE.COMM.GD.PP.KD Energy use per units of GDP (kg oil eq./$1,000 of 2005 P~
     ## 2 EG.USE.PCAP.KG.OE    Energy use per capita (kilograms of oil equivalent)      
     ## 3 EN.ATM.CO2E.KT       CO2 emissions, total (KtCO2)                             
     ## 4 EN.ATM.CO2E.PC       CO2 emissions per capita (metric tons)                   
@@ -227,7 +245,7 @@ unique(climate_tidy$`Country name`)
 ### Visualising
 
 Now that we have clean, tidy data, we can process and visualise it more
-comfortably! For example, to visualise the increase in KT of
+comfortably\! For example, to visualise the increase in KT of
 CO<sup>2</sup>-equivalent for each country:
 
 ``` r
@@ -301,7 +319,7 @@ output
     ##  [1]  19.200   6.000 196.300 123.000   3.695   3.325  17.710   0.000   0.000
     ## [10]   4.000   2.000
 
-Better than having the same code repeated 11 times!
+Better than having the same code repeated 11 times\!
 
 We allocate space in the expected **output** first (more efficient). We
 then specify the **sequence** for the loop, and put what we want to
@@ -316,11 +334,11 @@ vector or a list (e.g. a dataframe).
 
 At purrr’s core, there is the map family:
 
--   `map()` outputs a list.
--   `map_lgl()` outputs a logical vector.
--   `map_int()` outputs an integer vector.
--   `map_dbl()` outputs a double vector.
--   `map_chr()` outputs a character vector.
+  - `map()` outputs a list.
+  - `map_lgl()` outputs a logical vector.
+  - `map_int()` outputs an integer vector.
+  - `map_dbl()` outputs a double vector.
+  - `map_chr()` outputs a character vector.
 
 For example, to do a similar operation to our previous for loop:
 
@@ -339,7 +357,7 @@ The map functions automatically name the values in the resulting vector,
 which makes the result easier to read.
 
 Lets try a different type of output. Here, we want to find out which
-columns in the starwards dataset are of type “character”:
+columns in the starwars dataset are of type “character”:
 
 ``` r
 map_lgl(starwars, is_character)
