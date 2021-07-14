@@ -25,11 +25,11 @@ This is the Library's **regular R cycle**:
 | R and the Tidyverse: next steps | [md](R/tidyverse_next_steps/tidyverse_next_steps.md) <sup>[source](R/tidyverse_next_steps/tidyverse_next_steps.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/BkQCcmiOV) | [YT](https://www.youtube.com/watch?v=2TZYeFcJQIk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=6) |
 | R reproducible reports with R Markdown and knitr | [md](R/reports/reports.md) <sup>[source](R/reports/reports.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/S1Aka1waI) | ... |
 
-We also offer these more specialised session (run less regularly, but feel free to ask us to schedule one of them):
+We also offer these more specialised sessions (run less regularly, but feel free to ask us to schedule one of them):
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
-| R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps/heatmaps_intermediate.Rmd)</sup> | [html](https://etherpad.wikimedia.org/p/cds-heatmaps) | [YT](https://www.youtube.com/watch?v=V-IRkO4NIHU&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=5) |
+| R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps/heatmaps_intermediate.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/Hk6tO-kyS#) | [YT](https://www.youtube.com/watch?v=V-IRkO4NIHU&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=5) |
 | R advanced: packaging and sharing functions | [md](R/packaging/packaging.md) <sup>[source](R/packaging/packaging.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/ryCzbvgXB) | ... |
 | R advanced: webapps with Shiny | [md](R/shiny/shiny.md) <sup>[source](R/shiny/shiny.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/S19FIXxg8) | ... |
 
@@ -72,7 +72,7 @@ Some sessions are not run regularly, but files can also be hosted here.
 
 Files available for each course, hosted in this repository:
 
-* **Markdown material** that the instructor can use to teach, and that students can refer to after the course;
+* **Markdown material** that the instructor can use to teach, and that attendees can refer to after the course;
 * A **HTML pad export** that can be used to initialise a collaborative pad to use during sessions ([https://etherpad.wikimedia.org](Etherpad), [https://cryptpad.fr/code](Cryptpad) and [https://demo.hedgedoc.org](HedgeDoc) are recommended to publish).
 
 ## Licence
@@ -83,7 +83,7 @@ Part of this repository is based on [Paula Andrea Martinez](https://orcid.org/00
 
 ## Contributing
 
-If you have questions about contributing to the material, please contact the UQ Library. You can also raise an issue or create a pull request if you spot something that needs fixing. If you would like to develop on top of this, please cite the source as mentioned above.
+If you have questions about contributing to the material, please contact the UQ Library. You can also raise an issue or submit a change in this repository if you spot something that needs fixing. If you would like to develop on top of this, please cite the source as mentioned above, and conserve the git history if possible (so authors are credited).
 
 ## Contact
 

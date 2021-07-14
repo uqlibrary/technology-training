@@ -32,27 +32,42 @@ After running each command, you should see the result as an output.
 
 ## Variables
 
-**Variables** will store data. We need to give them a name, and assign a value to them with the `=` operator.
+**Variables** will store data. We need to give them a name, and assign a value to them with the `=` operator. For example:
 
 ```python
 favNumber = 42
+```
+
+You can then retrieve the value by running the variable name on its own:
+
+```python
+favNumber
+```
+
+Let's create more variable, and reuse them:
+
+```python
 otherNumber = 5.678
 prod1 = favNumber * otherNumber
-sentence = "Hello world!"
+sentence = 'Hello world!'
 ```
+
+> Spyder helps us with extra panels and features apart from the Console. To see what variables you have created, look at the "Variable explorer" tab in the top right.
 
 ## Data types
 
-Variables have different types. The most commons are `int` for integers, `float` for decimals and `string` for strings of characters.
+Variables have different types. The most common are `int` for integers, `float` for decimals and `string` for strings of characters.
 
-> You can see the type of your existing variables in the "Variable explorer" pane.
+> You can see the type of your existing variables in the Variable explorer.
 
 We can also create **lists**, which will store several variables (not necessarily of the same type). We need to use square brackets for that:
 
 ```python
 myList = [1, 6, 4, 3, 9]
-diverse = [3, "Hi!", 9.0]
+diverse = [3, 'Hi!', 9.0]
 ```
+
+Lists are very flexible as they can contain any number of items, and any type of data. You can even nest lists inside a list, which makes for a very flexible data type.
 
 Operators give different results depending on types. For example, we can use the `*` and `+` operators to repeat and append strings and lists:
 
@@ -90,7 +105,7 @@ That command returns "elements from position 0 up to - but not including! - posi
 
 ## Functions
 
-**Functions** are little programs that do specific jobs. Here are a few example of built-in functions:
+**Functions** are little programs that do specific jobs. Here are a few examples of built-in functions:
 
 ```python
 len(myList)
@@ -121,9 +136,9 @@ print?
 
 In Spyder, you can use the <kbd>Ctrl</kbd> + <kbd>I</kbd> keyboard shortcut to open the help in a separate pane.
 
-For a comprehensive manual, go to the official online documentation: https://docs.python.org/3/
+For a comprehensive manual, go to the [official online documentation](https://docs.python.org/).
 
-For questions and answers, typing the right question in a search engine will usually lead you to something helpful. If you can't find an answer, StackOverflow is a great Q&A community: https://stackoverflow.com/questions/tagged/python
+For questions and answers, typing the right question in a search engine will usually lead you to something helpful. If you can't find an answer, [StackOverflow is a great Q&A community](https://stackoverflow.com/questions/tagged/python).
 
 ## Modules
 
@@ -161,7 +176,7 @@ conda install some-module
 
 Refer to the module's website to find what is recommended.
 
-Here, we present a few libraries that are very central to data manipulation and analysis with Python.
+Here, we present a few modules that are very important for data science with Python, and which are already available in the Anaconda distribution.
 
 ### NumPy for arrays
 
@@ -183,13 +198,15 @@ Here is an example of creating a pandas dataframe from scratch, populating it by
 
 ```python
 import pandas as pd
-df = pd.DataFrame(columns=["Name", "Age"])
+df = pd.DataFrame(columns=['Name', 'Age'])
 # populate the dataframe:
-df.loc[1] = "Josephine", 70
-df.loc[2] = "Dilsah", 38
+df.loc[1] = 'Josephine', 70
+df.loc[2] = 'Dilsah', 38
 df
 df.Age # access a specific variable
 ```
+
+> You can double-click on a dataframe in the Variable explorer to explore it in a separate window.
 
 ### Matplotlib for visualisation
 
@@ -200,7 +217,7 @@ import matplotlib.pyplot as plt
 plt.plot(myList)
 ```
 
-This shows a plot in the Plots panel of Spyder.
+This shows a plot in the Plots tab of Spyder.
 
 > In a Python shell, you might have to use the `plt.show()` command to show the plot.
 
@@ -208,16 +225,16 @@ The default look is a line plot that joins all the points, but we can style a pl
 
 ```python
 # blue circles
-plt.plot(myList, "bo")
+plt.plot(myList, 'bo')
 # green squares, dashed line:
-plt.plot(myList, "gs--")
+plt.plot(myList, 'gs--')
 ```
 
 Extra arguments can be used to style further:
 
 ```python
 # red, diamonds, solid line; change width of line and size of diamonds:
-plt.plot(myList, "rd-", linewidth=3, markersize=10)
+plt.plot(myList, 'rd-', linewidth=3, markersize=10)
 ```
 
 To find out about the styling shorthand and all other arguments, look at the documentation:
@@ -232,7 +249,7 @@ A project is useful to keep everything related to one job all contained in one d
 
 ### Create a new project
 
-Create a project with `Projects > New project...`. You can name this one "python_intro" for examples.
+Create a project with `Projects > New project...`. You can name this one "python_intro" for example.
 
 ### Create a script
 
@@ -271,7 +288,7 @@ https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/ga
 We have to create a variable, and store the output of the function inside it. No need to download the file first: `read_csv()` can read from a URL!
 
 ```python
-data = pd.read_csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
+data = pd.read_csv('https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv')
 ```
 
 > `pandas` contains many functions for interpreting a variety of file formats. Start typing `pd.read_` to see what is available.
@@ -307,32 +324,26 @@ data.describe()
 To create a customised summary, we can string different methods one after the other. Here, we first group by year to then get the yearly mean of the numerical columns:
 
 ```python
-data.groupby("year").mean()
+data.groupby('year').mean()
 ```
 
 ### Visualise data
 
-We can visualise our data with `matplotlib`. First, let's visualise the relationship between GDP per capita and life expectancy with a scatterplot:
+We can visualise our data with `matplotlib`. First, let's visualise the relationship between gross domestic product per capita (`gdpPercap`) and life expectancy (`lifeExp`) with a scatterplot:
 
 ```python
 import matplotlib.pyplot as plt
-plt.plot(data.gdpPercap, data.lifeExp, "go")
+plt.plot(data.gdpPercap, data.lifeExp, 'g.')
 ```
 
 We add the data as two arguments, which are understood as what we put on the x and y axes respectively.
 
-The default circles are quite big, so let's reduce their size:
+We can now add labels with extra functions:
 
 ```python
-plt.plot(data.gdpPercap, data.lifeExp, "go", markersize=1.5)
-```
-
-And we can add labels with extra functions:
-
-```python
-plt.plot(data.gdpPercap, data.lifeExp, "go", markersize=1.5)
-plt.xlabel("GDP per capita (USD)")
-plt.ylabel("Live expectancy (years)")
+plt.plot(data.gdpPercap, data.lifeExp, 'g.')
+plt.xlabel('GDP per capita (USD)')
+plt.ylabel('Live expectancy (years)')
 ```
 
 > Make sure that you execute all the lines of code that relate to one plot *together*. When you need to execute many lines together, you might want to start using **cells** in your script: you can start a new cell with a `#%%` line, and execute the current cell with the keyboard shortcut <kbd>Ctrl</kbd> + <kbd>Enter</kbd>.
@@ -342,15 +353,15 @@ plt.ylabel("Live expectancy (years)")
 You can save you plots as PNG by right-clicking on them. To save automatically with some code, you can add the following line to the visualisation block:
 
 ```python
-plt.savefig("gdp_vs_life_exp.pdf")
+plt.savefig('gdp_vs_life_exp.pdf')
 ```
 
-A PDF is a great format of a simple file containing a visualisation in vector format.
+A PDF is a great option for a visualisation in vector format.
 
 You can change the extension in the filename to save in a different format. For example, for a PNG file with a higher definition than the default:
 
 ```python
-plt.savefig("gdp_vs_life_exp.png", dpi=600)
+plt.savefig('gdp_vs_life_exp.png', dpi=600)
 ```
 
 #### Challenge 2: Visualise mean life expectancy over the years
@@ -363,7 +374,7 @@ plt.savefig("gdp_vs_life_exp.png", dpi=600)
 We can reuse the same summary as before, but adding the attribute of the right column we are interested in:
 
 ```python
-plt.plot(data.groupby("year").mean().lifeExp, "m:")
+plt.plot(data.groupby('year').mean().lifeExp, 'm:')
 ```
 
 ## Saving your work
