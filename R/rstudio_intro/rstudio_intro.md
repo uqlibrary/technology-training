@@ -1,7 +1,7 @@
 R with RStudio: getting started
 ================
-Stéphane Guillou
-2021-02-10
+UQ Library
+2021-07-20
 
 > These notes are available on GitLab:
 > <https://gitlab.com/stragu/DSH/blob/master/R/rstudio_intro/rstudio_intro.md>
@@ -35,7 +35,7 @@ far as programming languages go, R is more user-friendly than others.
 
 For this course, you need to have both R and RStudio installed
 ([installation
-instructions](https://gitlab.com/stragu/DSH/blob/master/R/Installation.md).
+instructions](https://gitlab.com/stragu/DSH/blob/master/R/Installation.md)).
 
 ## Open RStudio
 
@@ -261,8 +261,18 @@ ages * 7
 
     ## [1] 28 70 14 NA 21
 
-`rep.int()` also creates vectors, but it is designed to easily replicate
-values. For example, if you find something very funny:
+R can create visualisations with functions too. Try a bar plot of your
+dogs’ ages with the `barplot()` function:
+
+``` r
+barplot(ages)
+```
+
+![](rstudio_intro_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+Moving on to our second function: `rep.int()` also creates vectors, but
+it is designed to easily replicate values. For example, if you find
+something very funny:
 
 ``` r
 rep.int("Ha!", 30)
@@ -272,7 +282,7 @@ rep.int("Ha!", 30)
     ## [13] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
     ## [25] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
 
-`mean()` returns the mean of a vector of numbers:
+The next function, `mean()`, returns the mean of a vector of numbers:
 
 ``` r
 mean(ages)
@@ -540,7 +550,8 @@ lowercase “V”) will yield an error.
 > You can also click on the spreadsheet icon in your environment pane to
 > open the viewer.
 
-Finally, to see summary statistics for each of our variables:
+To see summary statistics for each of our variables, you can use the
+`summary()` function:
 
 ``` r
 summary(gapminder)
@@ -562,6 +573,20 @@ summary(gapminder)
     ##  Max.   :82.60   Max.   :113523.1
 
 Notice how categorical and numerical variables are handled differently?
+
+Finally, let’s plot the relationship between GDP per capita and life
+expectancy:
+
+``` r
+plot(gapminder$gdpPercap, gapminder$lifeExp,
+     xlab = "GDP per capita (USD)",
+     ylab = "Life expectancy (years)")
+```
+
+![](rstudio_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+
+> For more on visualisations, we will dive into the ggplot2 package
+> during two of our other R sessions.
 
 ## Packages
 
@@ -587,52 +612,62 @@ library(praise) # load the package
 praise() # use a function from the package
 ```
 
-    ## [1] "You are priceless!"
+    ## [1] "You are primo!"
 
 Even though you might need the motivation provided by this function,
 other packages are more useful for your work.
 
-## Plotting
+Let’s take the skimr package: it is a package that contains a `skim()`
+function, which you might find more powerful than the `summary()`
+function we tried before.
 
-R already has a number of base plotting functions to visualise data in
-many different ways. However, many R users will use the package ggplot2
-by default because it introduces a logic that makes data visualisation
-more streamlined, called “Grammar of graphics”.
-
-Let’s first install ggplot2 on our computer. In the console, execute the
+Let’s first install skimr on our computer. In the console, execute the
 following command:
 
 ``` r
-install.packages("ggplot2")
+install.packages("skimr")
 ```
 
-We can now load the package, and use the `qplot()` function to visualise
-the population growth. In our script:
+We can now load the package, and use the `skim()` function to get an
+augmented summary of our `gapminder` dataset:
 
 ``` r
-library(ggplot2)
-qplot(data = gapminder,
-      x = year,
-      y = pop,
-      geom = "point")
+library(skimr)
+skim(gapminder)
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+|                                                  |           |
+|:-------------------------------------------------|:----------|
+| Name                                             | gapminder |
+| Number of rows                                   | 1704      |
+| Number of columns                                | 6         |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   |           |
+| Column type frequency:                           |           |
+| character                                        | 2         |
+| numeric                                          | 4         |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |           |
+| Group variables                                  | None      |
 
-If we want to add an extra variable, we can add an extra argument:
+Data summary
 
-``` r
-qplot(data = gapminder,
-      x = year,
-      y = pop,
-      colour = continent,
-      geom = "point")
-```
+**Variable type: character**
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+| skim\_variable | n\_missing | complete\_rate | min | max | empty | n\_unique | whitespace |
+|:---------------|-----------:|---------------:|----:|----:|------:|----------:|-----------:|
+| country        |          0 |              1 |   4 |  24 |     0 |       142 |          0 |
+| continent      |          0 |              1 |   4 |   8 |     0 |         5 |          0 |
 
-We can now use the “Export” dropdown menu to save our plot into our
-“plots” directory in a variety of formats.
+**Variable type: numeric**
+
+| skim\_variable | n\_missing | complete\_rate |        mean |            sd |       p0 |        p25 |        p50 |         p75 |         p100 | hist  |
+|:---------------|-----------:|---------------:|------------:|--------------:|---------:|-----------:|-----------:|------------:|-------------:|:------|
+| year           |          0 |              1 |     1979.50 |         17.27 |  1952.00 |    1965.75 |    1979.50 |     1993.25 |       2007.0 | ▇▅▅▅▇ |
+| pop            |          0 |              1 | 29601212.33 | 106157896\.75 | 60011.00 | 2793664.00 | 7023595.50 | 19585221.75 | 1318683096.0 | ▇▁▁▁▁ |
+| lifeExp        |          0 |              1 |       59.47 |         12.92 |    23.60 |      48.20 |      60.71 |       70.85 |         82.6 | ▁▆▇▇▇ |
+| gdpPercap      |          0 |              1 |     7215.33 |       9857.45 |   241.17 |    1202.06 |    3531.85 |     9325.46 |     113523.1 | ▇▁▁▁▁ |
+
+This function provides further summary statistics, and even displays a
+small histogram for each numeric variable.
 
 ## Closing RStudio
 
