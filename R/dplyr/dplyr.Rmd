@@ -1,19 +1,22 @@
 ---
-title: "R data manipulation with RStudio and dplyr: an introduction"
-author: "Stéphane Guillou"
-date: "`r Sys.Date()`"
-output: github_document
+title: "R data manipulation with RStudio and dplyr"
+author: "UQ Library"
+date: "(`r Sys.Date()`)"
+output:
+  github_document:
+    df_print: tibble
+    toc: true
 ---
 
 ## What are we going to learn?
 
-In this hands-on session, you will use RStudio and the `dplyr` package to manipulate your data.
+In this hands-on session, you will use R, RStudio and the `dplyr` package to transform your data.
 
-Specifically, you will learn how to **explore, filter, reorganise and process** your data with the following verbs:
+Specifically, you will learn how to **explore, filter, reorganise and process** a table of data with the following verbs:
 
-* `filter()`: pick observations
-* `arrange()`: reorder rows
 * `select()`: pick variables
+* `filter()`: pick observations
+* `arrange()`: reorder observations
 * `mutate()`: create new variables
 * `summarise()`: collapse to a single summary
 * `group_by()`: change the scope of function
@@ -70,14 +73,6 @@ We will use a script to write code more comfortably.
 * Go to "File > Save" or press (for Windows/Linux) <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save your file and the name of the new file.
 * Call your file "process.R"
 
-We can now load the package to access its functions (remember you can use <kbd>Ctrl</kbd>+<kbd>shift</kbd> to execute a command from the script):
-
-```{r}
-library(dplyr)
-```
-
-> You only need to install a package once (with `install.packages()`), but you need to reload it every time you start a new R session (with `library()`).
-
 ### Introducing our data
 
 #### Challenge 1 – import data
@@ -90,6 +85,8 @@ Let's import and explore our data.
 gapminder <- read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
 
+> Remember you can use <kbd>Ctrl</kbd>+<kbd>shift</kbd> to execute a command from the script.
+
 2. Explore the gapminder dataset using `dim()` and `str()`
 
 How can we get the dataframe's variable names? There are two ways: `names(gapminder)` returns the names regardless of the object type, such as list, vector, data.frame etc., whereas `colnames(gapminder)` returns the variable names for matrix-like objects, such as matrices, dataframes...
@@ -97,40 +94,63 @@ How can we get the dataframe's variable names? There are two ways: `names(gapmin
 To return one specific column in the dataframe, you can use the dollar syntax: `gapminder$year`. For example, try these:
 
 ```{r}
-nlevels(gapminder$country)
-class(gapminder$country)
-```
-
-If we want a nicer display in the console, we can convert our dataframe to a "tibble". Try this:
-
-```{r}
-gapminder <- as_tibble(gapminder)
-gapminder
+class(gapminder$country) # what kind of data?
+range(gapminder$year) # what is the time range?
 ```
 
 ## Basic dplyr verbs
 
 The R package `dplyr` was developed by Hadley Wickham for data manipulation.
 
-The book _[R for Data Science](http://r4ds.had.co.nz)_ introduces the package as follows:
+The book _[R for Data Science](https://r4ds.had.co.nz/)_ introduces the package as follows:
 
 > You are going to learn the five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:
 > 
-> * Pick observations by their values with `filter()`.
-> * Reorder the rows with `arrange()`.
-> * Pick variables by their names with `select()`.
-> * Create new variables with functions of existing variables with `mutate()`.
-> * Collapse many values down to a single summary with `summarise()`.
+> * Pick variables by their names with `select()`
+> * Pick observations by their values with `filter()`
+> * Reorder the rows with `arrange()`
+> * Create new variables with functions of existing variables with `mutate()`
+> * Collapse many values down to a single summary with `summarise()`
 > 
-> These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the **verbs for a language of data manipulation**.
+> These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the main **verbs for a language of data manipulation**.
 
 To use the verbs to their full extent, we will need **pipes** and **logical operators**, which we will introduce as we go.
 
-### 1. Pick observations with `filter()`
+Let's load the `dplyr` package to access its functions:
 
-The `filter()` function allows use to pick observations depending on one ore several conditions.
+```{r}
+library(dplyr)
+```
 
-**Logical operators** allow us to **check for a condition**. Remember: `=` is used to pass on a value to an argument, whereas `==` is used to check for a condition.
+> You only need to install a package once (with `install.packages()`), but you need to reload it every time you start a new R session (with `library()`).
+
+### 1. Pick variables with `select()`
+
+`select()` allows us to pick variables (i.e. columns) from the dataset. For example, to only keep the data about year, country and GDP per capita:
+
+```{r}
+gap_small <- select(gapminder, year, country, gdpPercap)
+```
+
+The first argument refers to the dataframe that is being transformed, and the following arguments are the columns you want to keep. Notice that it keeps the order you specified?
+
+You can also rename columns in the same command:
+
+```{r}
+gap_small <- select(gapminder, year, country, gdpPerPerson = gdpPercap)
+```
+
+Finally, if you have many variables but only want to remove a small number, it might be better to deselect instead of selecting. You can do that by using the `-` character in front of a variable name:
+
+```{r}
+names(select(gapminder, -continent))
+```
+
+### 2. Pick observations with `filter()`
+
+The `filter()` function allows use to pick observations depending on one or several conditions. But to be able to define these conditions, we need to learn about logical operators.
+
+**Logical operators** allow us to **compare things**. Here are some of the most important ones:
 
 * `==`: equal
 * `!=`: different 
@@ -139,76 +159,87 @@ The `filter()` function allows use to pick observations depending on one ore sev
 * `>=`: greater or equal
 * `<=`: smaller or equal
 
-For example, filter the observations for Australia, using `filter()` and a logical operator:
+> Remember: `=` is used to pass on a value to an argument, whereas `==` is used to check for equality.
+
+You can compare any kind of data For example:
+
+```{r}
+1 == 1
+1 == 2
+1 > 0
+"money" == "happiness"
+```
+
+When R executes these commands, it answers `TRUE` of `FALSE`, as if asked a yes/no question. These `TRUE` and `FALSE` values are called **logical values**.
+
+Note that we can compare a single value to many. For example, compare one value to three others:
+
+```{r}
+1 == c(1, 2, 3, 1, 3)
+```
+
+This kind of operation results in a logical vector with a logical value for each element. This is exactly what we will use to filter our rows.
+
+For example, to filter the observations for Australia, we can use the following condition:
 
 ```{r}
 australia <- filter(gapminder, country == "Australia")
 australia
 ```
 
-Now, filter the rows that have a life expectancy `lifeExp` greater than 81 years:
+The function compares the value "Australia" to all the values in the `country` variable, and only keeps the rows that have `TRUE` as an answer.
+
+Now, let's filter the rows that have a life expectancy `lifeExp` greater than 81 years:
 
 ```{r}
 life81 <- filter(gapminder, lifeExp > 81)
 dim(life81)
 ```
 
-### 2. Reorder observations with `arrange()`
+### 3. Reorder observations with `arrange()`
 
-Arrange will reorder our rows according to a variable, by default in ascending order:
+`arrange()` will reorder our rows according to a variable, by default in ascending order:
 
 ```{r}
 arrange(life81, lifeExp)
 ```
 
-If we want to have a look at the entries with highest life expectancy first, we can use the `desc()` function:
+If we want to have a look at the entries with highest life expectancy first, we can use the `desc()` function (for "descending"):
 
 ```{r}
 arrange(life81, desc(lifeExp))
 ```
 
-### 3. Pick variables with `select()`
+We could also use the `-` shortcut, which only works for numerical data:
 
-Select allows us to pick variables (i.e. columns) from the dataset. For example, to only keep the data about year, country and GDP per capita:
-
-```{r}
-(gap_small <- select(gapminder, year, country, gdpPercap))
+```{r eval=FALSE}
+arrange(life81, -lifeExp)
 ```
-
-We wrap it in parentheses so it also prints to screen.
 
 #### The pipe operator
 
-If we only want this data for 1997, we can add a second step with the `filter()` verb:
+What if we wanted to get that result in one single command, without an intermediate `life81` object?
 
-```{r}
-gap_small_97 <- filter(gap_small, year == 1997)
+We could nest the commands into each other, the first step as the first argument of the second step:
+
+```{r eval=FALSE}
+arrange(filter(gapminder, lifeExp > 81), -lifeExp)
 ```
 
-This is not ideal, as we create an intermediate object we don't necessarily want to keep.
+... but this becomes very hard to read, very quickly. (Imagine with 3 steps or more!)
 
-We could do this in one single line by nesting the commands into each other:
-
-```{r}
-gap_small_97 <- filter(select(gapminder,
-                              year, country, gdpPercap),
-                       year == 1997)
-```
-
-... but this becomes very hard to read.
-
-We can make our code more readable and avoid creating useless intermediate objects by **piping** commands into each other. The pipe operator `%>%` **strings commands together**, using the left side output as the first argument of the right side function.
+We can make our code more readable and avoid creating useless intermediate objects by **piping** commands into each other. The pipe operator `%>%` **strings commands together**, using the left side's output as the first argument of the right side function.
 
 For example, this command:
 
 ```{r}
-summary(gapminder, maxsum = 10)
+round(1.23, digits = 1)
 ```
 
 ... is equivalent to:
 
 ```{r}
-gapminder %>% summary(maxsum = 10)
+1.23 %>% round(digits = 1)
 ```
 
 Here's another example with the `filter()` verb:
@@ -227,14 +258,17 @@ filter(gapminder, country != "France")
 To do what we did previously in one single command, using the pipe:
 
 ```{r}
-gap_small_97 <- gapminder %>%
-    select(year, country, gdpPercap) %>%
-    filter(year == 1997)
+gapminder %>% 
+  filter(lifeExp > 81) %>% 
+  arrange(-lifeExp)
+
 ```
 
-The pipe operator can be read as "then" and makes the code a lot **more readable** than when nesting functions into each other, and avoids the creation of several intermediate objects.
+The pipe operator can be read as "then" and makes the code a lot **more readable** than when nesting functions into each other, and avoids the creation of several intermediate objects. It is also easier to trouble shoot as it makes it easy to execute the pipeline step by step.
 
-From now on, we'll use this syntax.
+From now on, we'll use the pipe syntax as a default.
+
+> Note that this material uses the `magrittr` pipe. The `magrittr` package is the one that introduced the pipe operator to the R world, and `dplyr` automatically imports this useful operator when it is loaded. However, the pipe being such a widespread and popular concept in programming and data science, it ended up making it into Base R (the "native" pipe) in 2021 with the release of R 4.1, using a different operator: `|>`. You can switch your pipe shortcut to the native pipe in `Tools |> Global options |> Code |> Use native pipe operator`.
 
 #### Challenge 2 – a tiny dataset
 
@@ -274,11 +308,12 @@ dim(gap_gdp)
 head(gap_gdp)
 ```
 
-You can reuse a variable computed by 'mutate()' straight away. For example, we also want a more readable version of our new variable, in million dollars:
+You can reuse a variable computed by 'mutate()' straight away. For example, we also want a more readable version of our new variable, in billion dollars:
 
 ```{r}
-(gap_gdp <- gapminder %>%
-    mutate(gdp = gdpPercap * pop, gdpMil = gdp / 10^6))
+gap_gdp <- gapminder %>%
+    mutate(gdp = gdpPercap * pop,
+           gdpBil = gdp / 1e9)
 ```
 
 ###  5. Collapse to a single value with `summarise()`
@@ -289,6 +324,8 @@ You can reuse a variable computed by 'mutate()' straight away. For example, we a
 gapminder %>%
   summarise(meanLE = mean(lifeExp))
 ```
+
+However, a single-value summary is not particularly interesting. `summarise()` becomes more powerful when used with `group_by()`.
 
 ### 6. Change the scope with `group_by()`
 
@@ -312,9 +349,9 @@ gapminder %>%
     summarise(pop = sum(pop))
 ```
 
-#### Challenge 4 – max life expectancy
+#### Challenge 4 – max life expectancy per country
 
-Group by country, and find out the maximum life expectancy ever recorded
+Group by country, and find out the maximum life expectancy ever recorded for each one.
 
 Hint: `?max`
 
@@ -326,15 +363,7 @@ gapminder %>%
 
 ## More examples
 
-Another example of new variable with `mutate()`, with a different dataset that dplyr provides:
-
-```{r}
-starwars %>% 
-  mutate(bmi = mass / ((height / 100)  ^ 2)) %>%
-  select(name:mass, bmi) # we can select ranges
-```
-
-And a more complex processing of a dataset:
+Another example of a summary, with a different dataset that dplyr provides:
 
 ```{r}
 starwars %>%
@@ -343,7 +372,7 @@ starwars %>%
     n = n(), # this counts the number of rows in each group
     mass = mean(mass, na.rm = TRUE)
   ) %>%
-  filter(n > 1)
+  filter(n > 1) # the mean of a single value is not worth reporting
 ```
 
 An example of data manipulation and data visualisation in the same command:
@@ -384,4 +413,9 @@ You can then close the window, and if your script contains all the steps necessa
 
 ## What next?
 
-Look at our compilation of resources: https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md
+More on dplyr:
+
+* [dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
+* _R for Data Science_, [chapter about dplyr](http://r4ds.had.co.nz/transform.html)
+
+For further R resources, look at [our compilation of resources](https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md).
