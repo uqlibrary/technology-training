@@ -72,7 +72,7 @@ Lists are very flexible as they can contain any number of items, and any type of
 Operators give different results depending on types. For example, we can use the `*` and `+` operators to repeat and append strings and lists:
 
 ```python
-sentence + " How are you?"
+sentence + ' How are you?'
 myList + diverse
 3 * myList
 ```
@@ -288,7 +288,7 @@ https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/ga
 We have to create a variable, and store the output of the function inside it. No need to download the file first: `read_csv()` can read from a URL!
 
 ```python
-data = pd.read_csv('https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv')
+gap = pd.read_csv('https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv')
 ```
 
 > `pandas` contains many functions for interpreting a variety of file formats. Start typing `pd.read_` to see what is available.
@@ -296,7 +296,7 @@ data = pd.read_csv('https://raw.githubusercontent.com/resbaz/r-novice-gapminder-
 Now that we have stored our dataset as a variable, we can print the dataset to the console:
 
 ```python
-data
+gap
 ```
 
 The console conveniently shows us only the beginning and end of the dataframe.
@@ -304,11 +304,11 @@ The console conveniently shows us only the beginning and end of the dataframe.
 We can also use the "dot notation" to create commands that are useful to explore the data:
 
 ```python
-data.shape # size of the dataframe (an attribute)
-data.head() # first few rows (a method)
-data.head(10) # change the behaviour of the method
-data.tail() # last few rows
-data.country # single variable
+gap.shape # size of the dataframe (an attribute)
+gap.head() # first few rows (a method)
+gap.head(10) # change the behaviour of the method
+gap.tail() # last few rows
+gap.country # single variable
 ```
 
 Variables have **attributes** and **methods** attached to them, depending on the data type. Here, `shape` is an attribute, i.e. a static characteristic of the variable, whereas `head()` is a method, i.e. a function that can often take arguments.
@@ -318,13 +318,13 @@ Variables have **attributes** and **methods** attached to them, depending on the
 Let's now learn a bit more about our data. The `describe()` method gives us summary statistics for our numerical data:
 
 ```python
-data.describe()
+gap.describe()
 ```
 
 To create a customised summary, we can string different methods one after the other. Here, we first group by year to then get the yearly mean of the numerical columns:
 
 ```python
-data.groupby('year').mean()
+gap.groupby('year').mean()
 ```
 
 ### Visualise data
@@ -333,7 +333,7 @@ We can visualise our data with `matplotlib`. First, let's visualise the relation
 
 ```python
 import matplotlib.pyplot as plt
-plt.plot(data.gdpPercap, data.lifeExp, 'g.')
+plt.plot(gap.gdpPercap, gap.lifeExp, 'g.')
 ```
 
 We add the data as two arguments, which are understood as what we put on the x and y axes respectively.
@@ -341,9 +341,9 @@ We add the data as two arguments, which are understood as what we put on the x a
 We can now add labels with extra functions:
 
 ```python
-plt.plot(data.gdpPercap, data.lifeExp, 'g.')
+plt.plot(gap.gdpPercap, gap.lifeExp, 'g.')
 plt.xlabel('GDP per capita (USD)')
-plt.ylabel('Live expectancy (years)')
+plt.ylabel('Life expectancy (years)')
 ```
 
 > Make sure that you execute all the lines of code that relate to one plot *together*. When you need to execute many lines together, you might want to start using **cells** in your script: you can start a new cell with a `#%%` line, and execute the current cell with the keyboard shortcut <kbd>Ctrl</kbd> + <kbd>Enter</kbd>.
@@ -374,7 +374,7 @@ plt.savefig('gdp_vs_life_exp.png', dpi=600)
 We can reuse the same summary as before, but adding the attribute of the right column we are interested in:
 
 ```python
-plt.plot(data.groupby('year').mean().lifeExp, 'm:')
+plt.plot(gap.groupby('year').mean().lifeExp, 'm:')
 ```
 
 ## Saving your work
