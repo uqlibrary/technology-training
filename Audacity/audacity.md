@@ -57,7 +57,7 @@ We can focus on the longer track by **muting** the song, with the "Mute" button.
 We can use the mouse wheel to scroll vertically through our audio clips. To **zoom and pan** the audio clips efficiently, we need to learn about the keyboard keys we can associate with the mouse wheel:
 
 *  <kbd>Ctrl</kbd> + Scroll: zoom in and out
-*  <kbd>Ctrl</kbd> + Scroll: navigate up and down the timeline
+*  <kbd>Shift</kbd> + Scroll: navigate the timeline horizontally
 
 These controls allow us to quickly navigate the clips and find the precise spots we want to work on. Make sure you practise them! You will notice that it is a lot more comfortable to work with Audacity when using a mouse.
 
