@@ -1,7 +1,7 @@
 R data manipulation with RStudio and dplyr
 ================
 UQ Library
-(2021-08-02)
+(2021-08-05)
 
 -   [What are we going to learn?](#what-are-we-going-to-learn)
 -   [Keep in mind](#keep-in-mind)
@@ -487,7 +487,7 @@ From now on, we’ll use the pipe syntax as a default.
 > (the “native” pipe) in 2021 with the release of R 4.1, using a
 > different operator: `|>`. You can switch your pipe shortcut to the
 > native pipe in
-> `Tools |> Global options |> Code |> Use native pipe operator`.
+> `Tools > Global options > Code > Use native pipe operator`.
 
 #### Challenge 2 – a tiny dataset
 
