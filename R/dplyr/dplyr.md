@@ -250,7 +250,9 @@ the most important ones:
 -   `<=`: smaller or equal
 
 > Remember: `=` is used to pass on a value to an argument, whereas `==`
-> is used to check for equality.
+> is used to check for equality. Using `=` instead of `==` for a logical
+> statment is one of the most common errors and R will give you a
+> reminder in the console when this happens.
 
 You can compare any kind of data For example:
 
