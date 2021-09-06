@@ -182,11 +182,14 @@ heatmap(mtcars_matrix,
 You can try other functions, like `terrain.colors()` or `hcl.colors()`
 (in R \> 3.6), and you can reverse them with the `rev = TRUE` argument.
 
-#### Remove dendrograms
+##### Challenge 1: Remove dendrograms
 
-The column dendrogram doesn’t really make sense for this dataset. `Rowv`
-and `Colv` can be set to `NA` to remove dendrograms, which also means
-the data won’t be reorganised according to the clustering method.
+Does it make sense to have both columns and rows for this dataset?
+
+Look at the help documentation for `heatmap` to see if the dendrograms
+can be removed for rows and/or columns.
+
+> Hint: see the `Rowv` and `Colv` arguments.
 
 ``` r
 heatmap(mtcars_matrix,
@@ -196,6 +199,9 @@ heatmap(mtcars_matrix,
 ```
 
 ![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+> If dendrograms are removed, the data won’t be reorganised according to
+> the clustering method.
 
 #### Clean the environment
 
