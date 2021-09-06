@@ -320,6 +320,7 @@ rownames(d) <- paste0("Gene", 1:5)
 ```
 
 Try it out:
+
 ```{r}
 pheatmap(d, 
          main = "Pretty heatmap",
@@ -442,6 +443,8 @@ How is the `Heatmap()` function different to the base `heatmap()`?
 
 Create a data matrix:
 
+> See this [StackOverflow article](https://stackoverflow.com/questions/13605271/reasons-for-using-the-set-seed-function) on the importance of setting a seed.
+
 ```{r}
 set.seed(123)
 mat <- cbind(rbind(matrix(rnorm(16, -1), 4),
@@ -450,7 +453,8 @@ mat <- cbind(rbind(matrix(rnorm(16, -1), 4),
                    matrix(rnorm(48, -1), 8)))
 ```
 
-Permute the rows and columns
+Permute the rows and columns:
+
 ```{r}
 mat <- mat[sample(nrow(mat),
                   nrow(mat)),
@@ -480,7 +484,6 @@ Heatmap(mat,
 The `cluster_` arguments can take external clustering information, which means you can use any type of clustering method.
 
 Now, let's see how this function deals with missing values:
-
 
 ```{r}
 mat_with_na <- mat
@@ -554,4 +557,9 @@ When closing RStudio, you should be prompted to save your workspace. If your scr
 * For heatmaps:
     * a more in-depth example with pheatmap: http://slowkow.com/notes/pheatmap-tutorial/
     * Leanne Wicken's dataset with heatmap.2 and an interactive heatmap with d3heatmap: https://rpubs.com/ab604/98032
+    * a heatmap gallery: https://www.r-graph-gallery.com/heatmap
+* More heatmap packages:
+    * Full reference on **ComplexHeatmap**: https://jokergoo.github.io/ComplexHeatmap-reference/book/
+    * **tidyHeatmap**, built on ComplexHeatmap but for tidy data: https://github.com/stemangiola/tidyHeatmap#tidyheatmap
+    * **iheatmapr**, for richer interactive heatmaps: https://docs.ropensci.org/iheatmapr/
 * Our compilation of R resources: https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md

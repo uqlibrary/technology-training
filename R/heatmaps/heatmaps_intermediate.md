@@ -1,6 +1,6 @@
 R data visualisation with RStudio: heatmaps
 ================
-2019-06-13
+2021-09-06
 
 > This document is edited as an R markdown file, and regularly exported
 > as a GitHub document. The source code is
@@ -64,8 +64,8 @@ session.
       - Click the “New project” menu icon
       - Click “New Directory”
       - Click “New Project”
-      - In “Directory name”, type the name of your project, e.g.
-        “heatmaps”
+      - In “Directory name”, type the name of your project,
+        e.g. “heatmaps”
       - Browse and select a folder where to locate your project (for
         example, an “r\_projects” directory where all your projects
         live)
@@ -119,7 +119,7 @@ mtcars_matrix <- data.matrix(mtcars) # convert a DF to a numeric matrix
 class(mtcars_matrix)
 ```
 
-    ## [1] "matrix"
+    ## [1] "matrix" "array"
 
 #### Visualise
 
@@ -141,10 +141,11 @@ Look at the function’s help page, and read the description of the
 ?heatmap
 ```
 
+    ## starting httpd help server ... done
+
 **Scale** is important: the values should be centered and scaled in
 either rows or columns. In our case, we want to visualise highs and lows
-in each variable, which are in
-columns.
+in each variable, which are in columns.
 
 ``` r
 heatmap(mtcars_matrix, scale = "column")
@@ -213,6 +214,8 @@ If you don’t have the gplots package yet, use
 library(gplots)
 ```
 
+    ## Warning: package 'gplots' was built under R version 4.0.5
+
     ## 
     ## Attaching package: 'gplots'
 
@@ -231,8 +234,7 @@ standard R heatmap function.
 
 This dataset contains observations for 63 proteins in three control
 experiments and three experiments where cells are treated with a growth
-factor. We need to import it from the
-web:
+factor. We need to import it from the web:
 
 ``` r
 rawdata <- read.csv("https://raw.githubusercontent.com/ab604/heatmap/master/leanne_testdata.csv")
@@ -273,10 +275,9 @@ data_matrix <- data.matrix(rawdata)
 class(data_matrix)
 ```
 
-    ## [1] "matrix"
+    ## [1] "matrix" "array"
 
-We can now visualise the data with
-`heatmap.2()`:
+We can now visualise the data with `heatmap.2()`:
 
 ``` r
 heatmap.2(data_matrix)
@@ -322,8 +323,7 @@ data_scaled_t <- scale(t(data_matrix))
 data_scaled <- t(data_scaled_t)
 ```
 
-*Step 6: create
-heatmaps*
+*Step 6: create heatmaps*
 
 ``` r
 heatmap.2(data_scaled)
@@ -405,6 +405,8 @@ Load the required package with:
 ``` r
 library(pheatmap)
 ```
+
+    ## Warning: package 'pheatmap' was built under R version 4.0.5
 
 How does `pheatmap()` (which stands for “pretty heatmap”) differ from
 other functions?
@@ -495,11 +497,7 @@ Load the necessary library:
 library(ggplot2)
 ```
 
-    ## Registered S3 methods overwritten by 'ggplot2':
-    ##   method         from 
-    ##   [.quosures     rlang
-    ##   c.quosures     rlang
-    ##   print.quosures rlang
+    ## Warning: package 'ggplot2' was built under R version 4.0.5
 
 We are using a built-in dataset about oesophageal cancer occurence:
 `esoph`.
@@ -562,7 +560,7 @@ library(ComplexHeatmap)
     ## Loading required package: grid
 
     ## ========================================
-    ## ComplexHeatmap version 2.0.0
+    ## ComplexHeatmap version 2.9.3
     ## Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
     ## Github page: https://github.com/jokergoo/ComplexHeatmap
     ## Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
@@ -570,21 +568,42 @@ library(ComplexHeatmap)
     ## If you use it in published research, please cite:
     ## Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional 
     ##   genomic data. Bioinformatics 2016.
+    ## 
+    ## The new InteractiveComplexHeatmap package can directly export static 
+    ## complex heatmaps into an interactive Shiny app with zero effort. Have a try!
+    ## 
+    ## This message can be suppressed by:
+    ##   suppressPackageStartupMessages(library(ComplexHeatmap))
     ## ========================================
+    ## ! pheatmap() has been masked by ComplexHeatmap::pheatmap(). Most of the arguments
+    ##    in the original pheatmap() are identically supported in the new function. You 
+    ##    can still use the original function by explicitly calling pheatmap::pheatmap().
+
+    ## 
+    ## Attaching package: 'ComplexHeatmap'
+
+    ## The following object is masked from 'package:pheatmap':
+    ## 
+    ##     pheatmap
 
 ``` r
 library(circlize) # for the colorRamp2() function
 ```
 
+    ## Warning: package 'circlize' was built under R version 4.0.5
+
     ## ========================================
-    ## circlize version 0.4.6
+    ## circlize version 0.4.13
     ## CRAN page: https://cran.r-project.org/package=circlize
     ## Github page: https://github.com/jokergoo/circlize
-    ## Documentation: http://jokergoo.github.io/circlize_book/book/
+    ## Documentation: https://jokergoo.github.io/circlize_book/book/
     ## 
     ## If you use it in published research, please cite:
-    ## Gu, Z. circlize implements and enhances circular visualization 
+    ## Gu, Z. circlize implements and enhances circular visualization
     ##   in R. Bioinformatics 2014.
+    ## 
+    ## This message can be suppressed by:
+    ##   suppressPackageStartupMessages(library(circlize))
     ## ========================================
 
 How is the `Heatmap()` function different to the base `heatmap()`?
@@ -597,6 +616,10 @@ How is the `Heatmap()` function different to the base `heatmap()`?
 
 Create a data matrix:
 
+> See this [StackOverflow
+> article](https://stackoverflow.com/questions/13605271/reasons-for-using-the-set-seed-function)
+> on the importance of setting a seed.
+
 ``` r
 set.seed(123)
 mat <- cbind(rbind(matrix(rnorm(16, -1), 4),
@@ -605,7 +628,7 @@ mat <- cbind(rbind(matrix(rnorm(16, -1), 4),
                    matrix(rnorm(48, -1), 8)))
 ```
 
-Permute the rows and columns
+Permute the rows and columns:
 
 ``` r
 mat <- mat[sample(nrow(mat),
@@ -616,8 +639,7 @@ rownames(mat) <- paste0("R", 1:12)
 colnames(mat) <- paste0("C", 1:10)
 ```
 
-*Step 3: make a
-heatmap*
+*Step 3: make a heatmap*
 
 ``` r
 Heatmap(mat)
@@ -657,8 +679,7 @@ Heatmap(mat_with_na,
         heatmap_legend_param = list(title = "Values"))
 ```
 
-    ## Warning: NA exists in the matrix, calculating distance by removing NA
-    ## values.
+    ## Warning: NA exists in the matrix, calculating distance by removing NA values.
 
 ![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-44-1.png)<!-- -->
 
@@ -734,5 +755,13 @@ execute the whole script when you go back to your project.
         <http://slowkow.com/notes/pheatmap-tutorial/>
       - Leanne Wicken’s dataset with heatmap.2 and an interactive
         heatmap with d3heatmap: <https://rpubs.com/ab604/98032>
+      - a heatmap gallery: <https://www.r-graph-gallery.com/heatmap>
+  - More heatmap packages:
+      - Full reference on **ComplexHeatmap**:
+        <https://jokergoo.github.io/ComplexHeatmap-reference/book/>
+      - **tidyHeatmap**, built on ComplexHeatmap but for tidy data:
+        <https://github.com/stemangiola/tidyHeatmap#tidyheatmap>
+      - **iheatmapr**, for richer interactive heatmaps:
+        <https://docs.ropensci.org/iheatmapr/>
   - Our compilation of R resources:
     <https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md>
