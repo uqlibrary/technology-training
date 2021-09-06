@@ -182,7 +182,7 @@ heatmap(mtcars_matrix,
 You can try other functions, like `terrain.colors()` or `hcl.colors()`
 (in R \> 3.6), and you can reverse them with the `rev = TRUE` argument.
 
-##### Challenge 1: Remove dendrograms
+#### Challenge 1: Remove dendrograms
 
 Does it make sense to have both columns and rows for this dataset?
 
