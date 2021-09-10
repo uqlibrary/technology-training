@@ -92,7 +92,7 @@ There are other data types like booleans, tuples, dictionaries and sets, but we 
 ```python
 sentence[0]
 sentence[6]
-mylist[4]
+myList[4]
 ```
 
 You can use a range to index, but note that it will not include the upper bound in the returned values. For example:
