@@ -1,7 +1,7 @@
 R and the Tidyverse: next steps
 ================
 Stéphane Guillou
-2021-07-14
+2021-09-10
 
 ## Setting up
 
@@ -55,10 +55,10 @@ library(tidyverse)
 
     ## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
 
-    ## v ggplot2 3.3.3     v purrr   0.3.4
-    ## v tibble  3.1.1     v dplyr   1.0.5
+    ## v ggplot2 3.3.5     v purrr   0.3.4
+    ## v tibble  3.1.4     v dplyr   1.0.7
     ## v tidyr   1.1.3     v stringr 1.4.0
-    ## v readr   1.4.0     v forcats 0.5.1
+    ## v readr   2.0.1     v forcats 0.5.1
 
     ## Warning: package 'ggplot2' was built under R version 4.0.5
 
@@ -123,17 +123,17 @@ climate_raw <- read_csv("data_wb_climate.csv",
                     na = "..")
 ```
 
-    ## 
+    ## Rows: 1165 Columns: 28
+
     ## -- Column specification --------------------------------------------------------
-    ## cols(
-    ##   .default = col_double(),
-    ##   `Country code` = col_character(),
-    ##   `Country name` = col_character(),
-    ##   `Series code` = col_character(),
-    ##   `Series name` = col_character(),
-    ##   `2011` = col_logical()
-    ## )
-    ## i Use `spec()` for the full column specifications.
+    ## Delimiter: ","
+    ## chr  (4): Country code, Country name, Series code, Series name
+    ## dbl (23): SCALE, Decimals, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1...
+    ## lgl  (1): 2011
+
+    ## 
+    ## i Use `spec()` to retrieve the full column specification for this data.
+    ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 We defined with the `na` argument that, in this dataset, missing data is
 recorded as “..”.
@@ -573,7 +573,7 @@ iris %>%
 ``` r
 starwars %>% 
   keep(is.character) %>% 
-  map_int(~length(unique(.)))
+  map_int(~length(unique(.x)))
 ```
 
     ##       name hair_color skin_color  eye_color        sex     gender  homeworld 
@@ -628,7 +628,7 @@ climate_cumul <- climate_tidy %>%
   as_tibble() %>%  # from list to tibble
   rename_with(~ str_replace(.x, "KT", "PG"))
 
-# visualise it
+# visualise cumulative change
 p <- climate_cumul %>%
   ggplot() +
   aes(x = year,
@@ -648,4 +648,26 @@ If you want to create an interactive visualisation, you can use plotly:
 ``` r
 library(plotly)
 ggplotly(p)
+```
+
+Plot the annual change in PG CO2 by country:
+
+``` r
+pdif <- climate_cumul %>%
+  ggplot() +
+  aes(x = year,
+      y = dif.CO2.PG,
+      colour = `Country name`) +
+  geom_line() +
+  theme(legend.position = "none")
+pdif
+```
+
+    ## Warning: Removed 1292 row(s) containing missing values (geom_path).
+
+![](tidyverse_next_steps_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+
+``` r
+# interactive plot
+ggplotly(pdif)
 ```

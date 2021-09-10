@@ -315,7 +315,7 @@ iris %>%
   map_dbl(mean) # clean!
 starwars %>% 
   keep(is.character) %>% 
-  map_int(~length(unique(.)))
+  map_int(~length(unique(.x)))
 ```
 
 `is.factor()` and `is.character()` are examples of "predicate functions".
@@ -344,7 +344,7 @@ climate_cumul <- climate_tidy %>%
   as_tibble() %>%  # from list to tibble
   rename_with(~ str_replace(.x, "KT", "PG"))
 
-# visualise it
+# visualise cumulative change
 p <- climate_cumul %>%
   ggplot() +
   aes(x = year,
@@ -357,8 +357,25 @@ p
 
 If you want to create an interactive visualisation, you can use plotly:
 
-```{r eval=FALSE}
+```{r eval=F}
 library(plotly)
 ggplotly(p)
+```
+
+Plot the annual change in PG CO2 by country:
+
+```{r}
+pdif <- climate_cumul %>%
+  ggplot() +
+  aes(x = year,
+      y = dif.CO2.PG,
+      colour = `Country name`) +
+  geom_line() +
+  theme(legend.position = "none")
+pdif
+```
+```{r eval=F}
+# interactive plot
+ggplotly(pdif)
 ```
 
