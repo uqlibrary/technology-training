@@ -4,13 +4,13 @@ This hands-on course – directed at intermediate users – looks at using the *
 
 ## Setup
 
-The easiest way to use Python 3, pandas and Spyder is to install the Anaconda Distribution, a data science platform for Windows, Linux and macOS. Make sure you download the Individual Edition with Python 3: https://www.anaconda.com/products/individual
+The easiest way to use Python 3, pandas and Spyder is to install the Anaconda Distribution, a data science platform for Windows, Linux and macOS. Make sure you [download the Individual Edition with Python 3](https://www.anaconda.com/products/individual).
 
-Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a terminal on Linux), and launch Spyder.
+Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a terminal on Linux), and launch Spyder. On some operating systems, you might be able to find Spyder directly in your appications.
 
 ### Create a project
 
-In order to keep everything nicely contained into one directory, and to find files more easily, we need to create a project.
+In order to keep everything nicely contained in one directory, and to find files more easily, we need to create a project.
 
 * Projects -> New project...
 * New directory
@@ -18,7 +18,7 @@ In order to keep everything nicely contained into one directory, and to find fil
 * Choose a location that suits you on your computer
 * Click "Create"
 
-This will move our working directory to the directory we just created, and
+This will move our working directory to the directory we just created, and Python will look for files (and save files) in this same directory by default.
 
 ### Create a script
 
@@ -50,7 +50,7 @@ Our data is a CO<sub>2</sub> emission dataset from Our World in Data: https://ra
 
 It is available under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) licence, an open licence that requires that any sharing or derivative of it needs to attribute the original source and authors.
 
-More information about the dataset is included on [this page](https://github.com/owid/co2-data), and the codebook, which is important to understand what exactly are the variables in the dataset, is available here: https://github.com/owid/co2-data/blob/master/owid-co2-codebook.csv
+[More information about the dataset](https://github.com/owid/co2-data) is included online, and the [codebook](https://github.com/owid/co2-data/blob/master/owid-co2-codebook.csv), which is important to understand what exactly are the variables in the dataset, is also available online.
 
 We can import it directly with pandas, with:
 
@@ -70,7 +70,7 @@ This dataset is a fairly big one. We can investigate its size thanks to the `sha
 df_raw.shape
 ```
 
-38 columns is too much to look at. What are the column names?
+The dataset contains dozens of columns. What are their names?
 
 ```python
 df_raw.columns
@@ -94,7 +94,7 @@ We want to keep 8 columns:
     * `methane`
     * `nitrous_oxide`
 
-To only keep these columns, we can index the dataframes with a list of names:
+To only keep these columns, we can index the dataframe with a list of names:
 
 ```python
 keep = ['iso_code', 'country', 'year', 'population', 'gdp', 'co2', 'methane', 'nitrous_oxide']
@@ -113,11 +113,11 @@ We can check that it has worked:
 min(df.year)
 ```
 
-It looks like the dataset is also consistently missing values for nitrous oxide and methane for the two last years.
+It looks like the dataset is also consistently missing values for nitrous oxide and methane for the last few years.
 
 ### Challenge 1: remove recent patchy years
 
-How can you remove the patchy years 2017 and 2018? Design an operation that is similar to removing the pre-1900 data.
+How can you remove the patchy years after 2016? Design an operation that is similar to removing the pre-1900 data.
 
 Can you add a second command to check it has done the right thing?
 
@@ -213,12 +213,12 @@ df.country.unique()
 
 Now that we have a clean dataset, we can expand it by calculating new interesting variables.
 
-For example, we can first sum the three greenhouse gases (as they use the same unit), and finally calculate how much CO<sub>2</sub>-equivalent is emitted per capita.
+For example, we can first sum the three greenhouse gases (as they use the same unit), and then calculate how much CO<sub>2</sub>-equivalent is emitted per person. We can also add GDP per capita to the dataset.
 
 For the total greenhouse gaz emissions in CO<sub>2</sub>e:
 
 ```python
-df["co2e"] = df[["co2", "methane", "nitrous_oxide"]].sum(axis=1)
+df['co2e'] = df[['co2', 'methane', 'nitrous_oxide']].sum(axis=1)
 ```
 
 The operation is done row-wise: we use `axis=1` to specify that we apply the function in the column axis.
@@ -237,8 +237,8 @@ skipna : bool, default True
 And then, for the CO<sub>2</sub>e per capita and the GDP per capita:
 
 ```python
-df["co2e_pc"] = df.co2e / df.population
-df["gdp_pc"] = df.gdp / df.population
+df['co2e_pc'] = df.co2e / df.population
+df['gdp_pc'] = df.gdp / df.population
 ```
 
 We now have three extra columns in our dataset.
@@ -255,11 +255,11 @@ The SPI dataset also has a three-letter code for the countries, which we can mat
 
 ```python
 # read the data
-spi = pd.read_csv("https://gist.githubusercontent.com/stragu/57b0a0750678bada09625d429a0f806b/raw/a18a454d7d225bd24074399a7ab79a4189e53501/spi.csv")
+spi = pd.read_csv('https://gist.githubusercontent.com/stragu/57b0a0750678bada09625d429a0f806b/raw/a18a454d7d225bd24074399a7ab79a4189e53501/spi.csv')
 # merge on two columns
 df_all = pd.merge(df, spi,
-                  left_on = ["iso_code", "year"],
-                  right_on = ["country_code", "year"])
+                  left_on = ['iso_code', 'year'],
+                  right_on = ['country_code', 'year'])
 ```
 
 We specified the two data frames, and which columns we wanted to merge on. However, we end up losing a lot of data. Looking at the documentation for the `merge()` function, we can see that there are many ways to merge tables, depending on what we want to keep:
@@ -272,15 +272,15 @@ The `how` argument defines which kind of merge we want to do. Because we want to
 
 ```python
 df_all = pd.merge(df, spi,
-                  how = "left",
-                  left_on = ["iso_code", "year"],
-                  right_on = ["country_code", "year"])
+                  how = 'left',
+                  left_on = ['iso_code', 'year'],
+                  right_on = ['country_code', 'year'])
 ```
 
 We can now "drop" the useless country_code column:
 
 ```python
-df_all.pop("country_code")
+df_all.pop('country_code')
 ```
 
 > Notice that the `pop` method is an "in-place" method: you don't need to reassign the variable.
@@ -290,15 +290,15 @@ df_all.pop("country_code")
 The `aggregate()` method, which has a shorter alias `agg()`, allows creating summaries by applying a function to a column. In combination with the `groupby()` method, we can create summary tables. For example, to find the average SPI for each country, and then sort the values in descending order:
 
 ```python
-df_all.groupby("country").spi.agg("mean").sort_values(ascending = False)
+df_all.groupby('country').spi.agg('mean').sort_values(ascending = False)
 ```
 
 If you want to export that summary table and use it outside Spyder, you can first save it as a variable, and then write it to a CSV file:
 
 ```python
-spi_sum = df_all.groupby("country").spi.agg("mean").sort_values(ascending = False)
+spi_sum = df_all.groupby('country').spi.agg('mean').sort_values(ascending = False)
 # write to file
-spi_sum.to_csv("spi_summary.csv")
+spi_sum.to_csv('spi_summary.csv')
 ```
 
 > The CSV file should be found in your project directory, as it became the default working directory when we created the project.
@@ -311,52 +311,57 @@ pandas integrates visualisation tools, thanks to the `plot()` method and its man
 For example, to visualise the relationship between CO<sub>2</sub>e per capita and SPI:
 
 ```python
-df_all.plot(x = "co2e_pc", y = "spi")
+df_all.plot(x = 'co2e_pc', y = 'spi')
 ```
 
 The default kind of plot is a line plot, so let's change that to a scatterplot:
 
 ```python
-df_all.plot(x = "co2e_pc", y = "spi", kind = "scatter")
+df_all.plot(x = 'co2e_pc', y = 'spi', kind = 'scatter')
 ```
 
 Focusing on the latest year will guarantee that there only is one point per country:
 
 ```python
-df_all[df_all.year == 2016].plot(x = "co2e_pc",
-                                 y = "spi",
-                                 kind = "scatter")
+df_all[df_all.year == 2016].plot(x = 'co2e_pc',
+                                 y = 'spi',
+                                 kind = 'scatter')
 ```
 
 To visualise a third variable, GDP per capite, let's map it to the colour of the points, thanks to the `c` argument:
 
 ```python
-df_all[df_all.year == 2016].plot(x = "co2e_pc",
-                                 y = "spi",
-                                 c = "gdp_pc",
-                                 colormap = "viridis",
-                                 kind = "scatter")
+df_all[df_all.year == 2016].plot(x = 'co2e_pc',
+                                 y = 'spi',
+                                 c = 'gdp_pc',
+                                 colormap = 'viridis',
+                                 kind = 'scatter')
 ```
 
 We can change the labels too:
 
 ```python
-df_all[df_all.year == 2016].plot(x = "co2e_pc",
-                                 y = "spi",
-                                 c = "gdp_pc",
-                                 colormap = "viridis",
-                                 kind = "scatter",
-                                 xlabel = "GHG per capita (MT CO2e/yr)",
-                                 ylabel = "Social Progress Index")
+df_all[df_all.year == 2016].plot(x = 'co2e_pc',
+                                 y = 'spi',
+                                 c = 'gdp_pc',
+                                 colormap = 'viridis',
+                                 kind = 'scatter',
+                                 xlabel = 'GHG per capita (MT CO2e/yr)',
+                                 ylabel = 'Social Progress Index')
 ```
 
-Let's now visualise global GHG emissions over the years. We can subset the columns that matter to us, create a summary, and plot it:
+### Challenge 2: GHG timeline
+
+How would you visualise global GHG emissions over the years, with one line per type of GHG?
+
+We can subset the columns that matter to us, create a summary, and plot it:
 
 ```python
-sub = df_all[["year", "co2", "methane", "nitrous_oxide"]]
-sub.groupby("year").agg("sum").plot(ylabel = "MT CO2e")
+sub = df_all[['year', 'co2', 'methane', 'nitrous_oxide']]
+sub.groupby('year').agg('sum').plot(ylabel = 'MT CO2e')
 ```
 
+Remember that the default `kind` of plot in this function is `'line'`, which works for this visualisation. And as we fed it a series variable with several columns, it automatically assigned a different colour to each one.
 
 ## Saving your work
 
@@ -366,4 +371,16 @@ By default, your variables are *not* saved, which is another reason why working 
 
 ## Resources
 
-* Official pandas website: https://pandas.pydata.org/
+* [Official pandas documentation](https://pandas.pydata.org/)
+    * [Getting started](https://pandas.pydata.org/docs/getting_started/index.html)
+    * [10 Minutes to pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
+    * [User guide](https://pandas.pydata.org/docs/user_guide/index.html)
+* More visualisation modules:
+    * [Altair](https://altair-viz.github.io/)
+    * [Bokeh](https://docs.bokeh.org/en/latest/)
+    * [Vega](https://vega.github.io/vega/)
+    * [Matplotlib](https://matplotlib.org/)
+* About our datasets:
+    * [Our World in Data](https://ourworldindata.org)
+    * [Social Progress Index](https://www.socialprogress.org)
+* Our [compilation of useful Python links](https://gitlab.com/stragu/DSH/blob/master/Python/useful_links.md)
