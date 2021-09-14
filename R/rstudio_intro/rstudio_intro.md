@@ -1,7 +1,7 @@
 R with RStudio: getting started
 ================
 UQ Library
-2021-07-20
+2021-09-14
 
 > These notes are available on GitLab:
 > <https://gitlab.com/stragu/DSH/blob/master/R/rstudio_intro/rstudio_intro.md>
@@ -18,14 +18,14 @@ many features on top of R to make it easier to write and run code.
 
 R’s main strong points are:
 
--   **Open Source**: you can install it anywhere and adapt it to your
+  - **Open Source**: you can install it anywhere and adapt it to your
     needs;
--   **Reproducibility**: makes an analysis repeatable by detailing the
+  - **Reproducibility**: makes an analysis repeatable by detailing the
     process in a script;
--   **Customisable**: being a programming language, you can create your
+  - **Customisable**: being a programming language, you can create your
     own custom tools;
--   **Big data**: it can handle very large datasets;
--   **Large ecosystem**: packages allow you to extend R for thousands of
+  - **Big data**: it can handle very large datasets;
+  - **Large ecosystem**: packages allow you to extend R for thousands of
     different analyses.
 
 The learning curve will be steeper than point-and-click tools, but as
@@ -39,16 +39,16 @@ instructions](https://gitlab.com/stragu/DSH/blob/master/R/Installation.md)).
 
 ## Open RStudio
 
--   If you are using your own laptop please open RStudio
-    -   Make sure you have a working Internet connection
--   On Library computers:
-    -   Log in with your UQ username and password (if you are both staff
+  - If you are using your own laptop please open RStudio
+      - Make sure you have a working Internet connection
+  - On Library computers:
+      - Log in with your UQ username and password (if you are both staff
         and student, use your student account)
-    -   Make sure you have a working Internet connection
-    -   Go to search at bottom left corner (magnifying glass)
-    -   Open the ZENworks application
-    -   Search for “RStudio”
-    -   Double-click on RStudio which will install both R and RStudio
+      - Make sure you have a working Internet connection
+      - Go to search at bottom left corner (magnifying glass)
+      - Open the ZENworks application
+      - Search for “RStudio”
+      - Double-click on RStudio which will install both R and RStudio
 
 ## What are we going to learn?
 
@@ -58,29 +58,29 @@ details that make the language.
 
 During this session, you will:
 
--   Create a project for data analysis
--   Create a folder structure
--   Know where to find help
--   Learn about a few useful functions
--   Create a script
--   Import a dataset
--   Understand the different RStudio panels
--   Use a few shortcuts
--   Know how to extend R with packages
--   Generate a data visualisation
+  - Create a project for data analysis
+  - Create a folder structure
+  - Know where to find help
+  - Learn about a few useful functions
+  - Create a script
+  - Import a dataset
+  - Understand the different RStudio panels
+  - Use a few shortcuts
+  - Know how to extend R with packages
+  - Generate a data visualisation
 
 ## R Projects
 
 Let’s first create a new project:
 
--   Click the “File” menu button (top left corner), then “New Project”
--   Click “New Directory”
--   Click “New Project”
--   In “Directory name”, type the name of your project, for example
+  - Click the “File” menu button (top left corner), then “New Project”
+  - Click “New Directory”
+  - Click “New Project”
+  - In “Directory name”, type the name of your project, for example
     “YYYY-MM-DD\_rstudio-intro”
--   Browse and select a folder where to locate your project (`~` is your
+  - Browse and select a folder where to locate your project (`~` is your
     home directory). For example, a folder called “r-projects”.
--   Click the “Create Project” button
+  - Click the “Create Project” button
 
 > R Projects make your work with R more straight forward, as they allow
 > you to segregate your different projects in separate folders. You can
@@ -207,10 +207,10 @@ page.
 There is quite a lot of information in a function’s documentation, but
 the most important bits are:
 
--   **Description**: general description of the function(s)
--   **Usage**: overview of what syntax can be used
--   **Arguments**: description of what each argument is
--   **Examples**: some examples that demonstrate what is possible
+  - **Description**: general description of the function(s)
+  - **Usage**: overview of what syntax can be used
+  - **Arguments**: description of what each argument is
+  - **Examples**: some examples that demonstrate what is possible
 
 See how the `round()` function has a second argument available? Try this
 now:
@@ -303,7 +303,7 @@ mean(ages, na.rm = TRUE)
     ## [1] 4.75
 
 > In our last command, if we hadn’t named the `na.rm` argument, R would
-> have understood `TRUE` to be the value for the `trim` argument!
+> have understood `TRUE` to be the value for the `trim` argument\!
 
 Finally, `rm()` removes an object from your environment (`remove()` and
 `rm()` point to the same function). For example:
@@ -312,7 +312,7 @@ Finally, `rm()` removes an object from your environment (`remove()` and
 rm(num1)
 ```
 
-> R does not check if you are sure you want to remove something! As a
+> R does not check if you are sure you want to remove something\! As a
 > programming language, it does what you ask it to do, which means you
 > might have to be more careful. But you’ll see later on that, when
 > working with scripts, this is less of a problem.
@@ -340,22 +340,22 @@ We’ve practised how to find help about functions we know the name of.
 What if we don’t know what the function is called? Or if we want general
 help about R?
 
--   The function `help.start()` is a good starting point: it opens a
+  - The function `help.start()` is a good starting point: it opens a
     browser of official R help.
--   If you want to search for a word in all the documentation, you can
+  - If you want to search for a word in all the documentation, you can
     use the `??` syntax. For example, try executing `??anova`.
--   Finally, you will often go to your web browser and search for a
+  - Finally, you will often go to your web browser and search for a
     particular question, or a specific error message: most times, there
     already is an answer somewhere on the Internet. The challenge is to
-    ask the right question!
+    ask the right question\!
 
 ## Create a folder structure
 
 To keep it tidy, we are creating 3 folders in our project directory:
 
--   scripts
--   data
--   plots
+  - scripts
+  - data
+  - plots
 
 For that, we use the function `dir.create()`:
 
@@ -372,12 +372,12 @@ dir.create("plots")
 
 Scripts are simple text files that contain R code. They are useful for:
 
--   saving a set of commands for later use (and executing it in one
+  - saving a set of commands for later use (and executing it in one
     click)
--   making research reproducible
--   making writing and reading code more comfortable
--   documenting the code with comments, and
--   sharing your work with peers
+  - making research reproducible
+  - making writing and reading code more comfortable
+  - documenting the code with comments, and
+  - sharing your work with peers
 
 Let’s create a new R script with a command:
 
@@ -391,7 +391,7 @@ file.create("scripts/process.R")
 
 To edit the new script, use the `file.edit()` function. Try using the
 <kbd>Tab</kbd> key to autocomplete your function name and your file
-path!
+path\!
 
 ``` r
 file.edit("scripts/process.R")
@@ -406,8 +406,8 @@ As in many programs, there are many ways to achieve one thing.
 For example, we used commands to create and edit a script, but we could
 also:
 
--   use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
--   use the top left drop-down menus
+  - use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
+  - use the top left drop-down menus
 
 Learning how to use functions rather than the graphical interface will
 allow you to integrate them in scripts, and will sometimes help you to
@@ -440,7 +440,7 @@ code is more readable when working in a script.
 > selected block of code) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>.
 > Remember to save your script regularly with the shortcut
 > <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with
-> <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu “Tools &gt;
+> <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu “Tools \>
 > Keyboard Shortcuts Help”.
 
 ## Import data
@@ -590,7 +590,7 @@ plot(gapminder$gdpPercap, gapminder$lifeExp,
 
 ## Packages
 
-Packages add functionalities to R and RStudio. There are more than 17000
+Packages add functionalities to R and RStudio. There are more than 18000
 available.
 
 You can see the list of installed packages in your “Packages” tab, or by
@@ -609,10 +609,15 @@ start a new R session. The `library()` function can do that.
 
 ``` r
 library(praise) # load the package
+```
+
+    ## Warning: package 'praise' was built under R version 4.0.5
+
+``` r
 praise() # use a function from the package
 ```
 
-    ## [1] "You are primo!"
+    ## [1] "You are funkadelic!"
 
 Even though you might need the motivation provided by this function,
 other packages are more useful for your work.
@@ -633,11 +638,16 @@ augmented summary of our `gapminder` dataset:
 
 ``` r
 library(skimr)
+```
+
+    ## Warning: package 'skimr' was built under R version 4.0.5
+
+``` r
 skim(gapminder)
 ```
 
 |                                                  |           |
-|:-------------------------------------------------|:----------|
+| :----------------------------------------------- | :-------- |
 | Name                                             | gapminder |
 | Number of rows                                   | 1704      |
 | Number of columns                                | 6         |
@@ -653,18 +663,18 @@ Data summary
 **Variable type: character**
 
 | skim\_variable | n\_missing | complete\_rate | min | max | empty | n\_unique | whitespace |
-|:---------------|-----------:|---------------:|----:|----:|------:|----------:|-----------:|
+| :------------- | ---------: | -------------: | --: | --: | ----: | --------: | ---------: |
 | country        |          0 |              1 |   4 |  24 |     0 |       142 |          0 |
 | continent      |          0 |              1 |   4 |   8 |     0 |         5 |          0 |
 
 **Variable type: numeric**
 
-| skim\_variable | n\_missing | complete\_rate |        mean |            sd |       p0 |        p25 |        p50 |         p75 |         p100 | hist  |
-|:---------------|-----------:|---------------:|------------:|--------------:|---------:|-----------:|-----------:|------------:|-------------:|:------|
-| year           |          0 |              1 |     1979.50 |         17.27 |  1952.00 |    1965.75 |    1979.50 |     1993.25 |       2007.0 | ▇▅▅▅▇ |
-| pop            |          0 |              1 | 29601212.33 | 106157896\.75 | 60011.00 | 2793664.00 | 7023595.50 | 19585221.75 | 1318683096.0 | ▇▁▁▁▁ |
-| lifeExp        |          0 |              1 |       59.47 |         12.92 |    23.60 |      48.20 |      60.71 |       70.85 |         82.6 | ▁▆▇▇▇ |
-| gdpPercap      |          0 |              1 |     7215.33 |       9857.45 |   241.17 |    1202.06 |    3531.85 |     9325.46 |     113523.1 | ▇▁▁▁▁ |
+| skim\_variable | n\_missing | complete\_rate |        mean |           sd |       p0 |        p25 |        p50 |         p75 |         p100 | hist  |
+| :------------- | ---------: | -------------: | ----------: | -----------: | -------: | ---------: | ---------: | ----------: | -----------: | :---- |
+| year           |          0 |              1 |     1979.50 |        17.27 |  1952.00 |    1965.75 |    1979.50 |     1993.25 |       2007.0 | ▇▅▅▅▇ |
+| pop            |          0 |              1 | 29601212.33 | 106157896.75 | 60011.00 | 2793664.00 | 7023595.50 | 19585221.75 | 1318683096.0 | ▇▁▁▁▁ |
+| lifeExp        |          0 |              1 |       59.47 |        12.92 |    23.60 |      48.20 |      60.71 |       70.85 |         82.6 | ▁▆▇▇▇ |
+| gdpPercap      |          0 |              1 |     7215.33 |      9857.45 |   241.17 |    1202.06 |    3531.85 |     9325.46 |     113523.1 | ▇▁▁▁▁ |
 
 This function provides further summary statistics, and even displays a
 small histogram for each numeric variable.
@@ -680,8 +690,8 @@ objects in your **environment**) as an .Rdata file. The .Rdata file is
 used to reload your workspace when you open your project again. Projects
 also bring back whatever source file (e.g. script) you had open, and
 your command history. You will find your command history in the
-“History” tab (upper right panel): all the commands that we used should
-be in there.
+“History” tab (upper right panel): all the commands that we used
+should be in there.
 
 If you have a script that contains all your work, it is a good idea
 *not* to save your workspace: it makes it less likely to run into errors
@@ -696,9 +706,9 @@ function.
 
 ## What next?
 
--   You can see what is next in our [cycle of R
-    lessons](README.md#r-sessions)
--   We have a [compilation of resources](R/usefullinks.md) for the rest
+  - You can see what is next in our [cycle of R
+    lessons](https://gitlab.com/stragu/DSH#r-sessions)
+  - We have a [compilation of resources](R/usefullinks.md) for the rest
     of your R learning
--   And a cheatsheet of [main terms and concepts for
+  - And a cheatsheet of [main terms and concepts for
     R](R/terminology.md)
