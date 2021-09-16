@@ -1,33 +1,33 @@
 R data manipulation with RStudio and dplyr
 ================
 UQ Library
-(2021-08-26)
+(2021-09-16)
 
--   [What are we going to learn?](#what-are-we-going-to-learn)
--   [Keep in mind](#keep-in-mind)
-    -   [Help](#help)
--   [Open RStudio](#open-rstudio)
--   [Setting up](#setting-up)
-    -   [Install the dplyr package](#install-the-dplyr-package)
-    -   [New project](#new-project)
-    -   [Create a script](#create-a-script)
-    -   [Introducing our data](#introducing-our-data)
--   [Basic dplyr verbs](#basic-dplyr-verbs)
-    -   [1. Pick variables with
+  - [What are we going to learn?](#what-are-we-going-to-learn)
+  - [Keep in mind](#keep-in-mind)
+      - [Help](#help)
+  - [Open RStudio](#open-rstudio)
+  - [Setting up](#setting-up)
+      - [Install the dplyr package](#install-the-dplyr-package)
+      - [New project](#new-project)
+      - [Create a script](#create-a-script)
+      - [Introducing our data](#introducing-our-data)
+  - [Basic dplyr verbs](#basic-dplyr-verbs)
+      - [1. Pick variables with
         `select()`](#1-pick-variables-with-select)
-    -   [2. Pick observations with
+      - [2. Pick observations with
         `filter()`](#2-pick-observations-with-filter)
-    -   [3. Reorder observations with
+      - [3. Reorder observations with
         `arrange()`](#3-reorder-observations-with-arrange)
-    -   [4. Create new variables with
+      - [4. Create new variables with
         `mutate()`](#4-create-new-variables-with-mutate)
-    -   [5. Collapse to a single value with
+      - [5. Collapse to a single value with
         `summarise()`](#5-collapse-to-a-single-value-with-summarise)
-    -   [6. Change the scope with
+      - [6. Change the scope with
         `group_by()`](#6-change-the-scope-with-group_by)
--   [More examples](#more-examples)
--   [Close project](#close-project)
--   [What next?](#what-next)
+  - [More examples](#more-examples)
+  - [Close project](#close-project)
+  - [What next?](#what-next)
 
 ## What are we going to learn?
 
@@ -37,21 +37,21 @@ package to transform your data.
 Specifically, you will learn how to **explore, filter, reorganise and
 process** a table of data with the following verbs:
 
--   `select()`: pick variables
--   `filter()`: pick observations
--   `arrange()`: reorder observations
--   `mutate()`: create new variables
--   `summarise()`: collapse to a single summary
--   `group_by()`: change the scope of function
+  - `select()`: pick variables
+  - `filter()`: pick observations
+  - `arrange()`: reorder observations
+  - `mutate()`: create new variables
+  - `summarise()`: collapse to a single summary
+  - `group_by()`: change the scope of function
 
 ## Keep in mind
 
--   Everything we write today will be saved in your project. Please
+  - Everything we write today will be saved in your project. Please
     remember to save it in your H drive or USB if you are using a
     Library computer.
--   R is case sensitive: it will tell the difference between uppercase
+  - R is case sensitive: it will tell the difference between uppercase
     and lowercase.
--   Respect the naming rules for objects (no spaces, does not start with
+  - Respect the naming rules for objects (no spaces, does not start with
     a number…)
 
 ### Help
@@ -65,18 +65,18 @@ three ways of getting help in RStudio:
 
 ## Open RStudio
 
--   If you are using your own laptop please open RStudio
-    -   If you want to review the installation instructions:
-        <a href="https://gitlab.com/stragu/DSH/blob/master/R/Installation.md" class="uri">https://gitlab.com/stragu/DSH/blob/master/R/Installation.md</a>
--   Make sure you have a working internet connection
--   On Library computers (the first time takes about 10 min.):
-    -   Log in with your UQ credentials (student account if you have
+  - If you are using your own laptop please open RStudio
+      - If you want to review the installation instructions:
+        <https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
+  - Make sure you have a working internet connection
+  - On Library computers (the first time takes about 10 min.):
+      - Log in with your UQ credentials (student account if you have
         two)
-    -   Make sure you have a working internet connection
-    -   Go to search at bottom left corner (magnifiying glass)
-    -   Open the ZENworks application
-    -   Look for RStudio
-    -   Double click on RStudio which will install both R and RStudio
+      - Make sure you have a working internet connection
+      - Go to search at bottom left corner (magnifiying glass)
+      - Open the ZENworks application
+      - Look for RStudio
+      - Double click on RStudio which will install both R and RStudio
 
 ## Setting up
 
@@ -91,30 +91,30 @@ If you don’t have it already, you can install dplyr with the command:
 
 ### New project
 
--   Click the “File” menu button (top left corner), then “New Project”
--   Click “New Directory”
--   Click “New Project” (“Empty project” if you have an older version of
+  - Click the “File” menu button (top left corner), then “New Project”
+  - Click “New Directory”
+  - Click “New Project” (“Empty project” if you have an older version of
     RStudio)
--   In “Directory name”, type the name of your project,
+  - In “Directory name”, type the name of your project,
     e.g. “dplyr\_intro”
--   Select the folder where to locate your project: for example, the
+  - Select the folder where to locate your project: for example, the
     `Documents/RProjects` folder, which you can create if it doesn’t
     exist yet.
--   Click the “Create Project” button
+  - Click the “Create Project” button
 
 ### Create a script
 
 We will use a script to write code more comfortably.
 
--   Menu: Top left corner, click the green “plus” symbol, or press the
+  - Menu: Top left corner, click the green “plus” symbol, or press the
     shortcut (for Windows/Linux) <kbd>Ctrl</kbd>+Shift</kbd>+N</kbd> or
     (for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will
     open an “Untitled1” file.
--   Go to “File &gt; Save” or press (for Windows/Linux)
+  - Go to “File \> Save” or press (for Windows/Linux)
     <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac)
     <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save
     your file and the name of the new file.
--   Call your file “process.R”
+  - Call your file “process.R”
 
 ### Introducing our data
 
@@ -124,6 +124,8 @@ Let’s import and explore our data.
 
 1.  read the data into an object called “gapminder”, using `read.csv()`:
 
+<!-- end list -->
+
 ``` r
 gapminder <- read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
@@ -131,7 +133,7 @@ gapminder <- read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapmind
 > Remember you can use <kbd>Ctrl</kbd>+<kbd>shift</kbd> to execute a
 > command from the script.
 
-1.  Explore the gapminder dataset using `dim()` and `str()`
+2.  Explore the gapminder dataset using `dim()` and `str()`
 
 How can we get the dataframe’s variable names? There are two ways:
 `names(gapminder)` returns the names regardless of the object type, such
@@ -164,14 +166,14 @@ package as follows:
 
 > You are going to learn the five key dplyr functions that allow you to
 > solve the vast majority of your data manipulation challenges:
->
-> -   Pick variables by their names with `select()`
-> -   Pick observations by their values with `filter()`
-> -   Reorder the rows with `arrange()`
-> -   Create new variables with functions of existing variables with
+> 
+>   - Pick variables by their names with `select()`
+>   - Pick observations by their values with `filter()`
+>   - Reorder the rows with `arrange()`
+>   - Create new variables with functions of existing variables with
 >     `mutate()`
-> -   Collapse many values down to a single summary with `summarise()`
->
+>   - Collapse many values down to a single summary with `summarise()`
+> 
 > These can all be used in conjunction with `group_by()` which changes
 > the scope of each function from operating on the entire dataset to
 > operating on it group-by-group. These six functions provide the main
@@ -203,7 +205,7 @@ library(dplyr)
 > but you need to reload it every time you start a new R session (with
 > `library()`).
 
-### 1. Pick variables with `select()`
+### 1\. Pick variables with `select()`
 
 `select()` allows us to pick variables (i.e. columns) from the dataset.
 For example, to only keep the data about year, country and GDP per
@@ -233,7 +235,7 @@ names(select(gapminder, -continent))
 
     ## [1] "country"   "year"      "pop"       "lifeExp"   "gdpPercap"
 
-### 2. Pick observations with `filter()`
+### 2\. Pick observations with `filter()`
 
 The `filter()` function allows use to pick observations depending on one
 or several conditions. But to be able to define these conditions, we
@@ -242,12 +244,12 @@ need to learn about logical operators.
 **Logical operators** allow us to **compare things**. Here are some of
 the most important ones:
 
--   `==`: equal
--   `!=`: different or not equal
--   `>`: greater than
--   `<`: smaller than
--   `>=`: greater or equal
--   `<=`: smaller or equal
+  - `==`: equal
+  - `!=`: different or not equal
+  - `>`: greater than
+  - `<`: smaller than
+  - `>=`: greater or equal
+  - `<=`: smaller or equal
 
 > Remember: `=` is used to pass on a value to an argument, whereas `==`
 > is used to check for equality. Using `=` instead of `==` for a logical
@@ -340,7 +342,7 @@ dim(life81)
 
     ## [1] 7 6
 
-### 3. Reorder observations with `arrange()`
+### 3\. Reorder observations with `arrange()`
 
 `arrange()` will reorder our rows according to a variable, by default in
 ascending order:
@@ -397,7 +399,7 @@ arrange(filter(gapminder, lifeExp > 81), -lifeExp)
 ```
 
 … but this becomes very hard to read, very quickly. (Imagine with 3
-steps or more!)
+steps or more\!)
 
 We can make our code more readable and avoid creating useless
 intermediate objects by **piping** commands into each other. The pipe
@@ -496,8 +498,8 @@ From now on, we’ll use the pipe syntax as a default.
 > in programming and data science, it ended up making it into Base R
 > (the “native” pipe) in 2021 with the release of R 4.1, using a
 > different operator: `|>`. You can switch your pipe shortcut to the
-> native pipe in
-> `Tools > Global options > Code > Use native pipe operator`.
+> native pipe in `Tools > Global options > Code > Use native pipe
+> operator`.
 
 #### Challenge 2 – a tiny dataset
 
@@ -510,7 +512,7 @@ eritrea_2002 <- gapminder %>%
     filter(country == "Eritrea", year == 2002)
 ```
 
-### 4. Create new variables with `mutate()`
+### 4\. Create new variables with `mutate()`
 
 Have a look at what the verb `mutate()` can do with `?mutate`.
 
@@ -580,7 +582,7 @@ gap_gdp <- gapminder %>%
            gdpBil = gdp / 1e9)
 ```
 
-### 5. Collapse to a single value with `summarise()`
+### 5\. Collapse to a single value with `summarise()`
 
 `summarise()` collapses many values down to a single summary. For
 example, to find the mean life expectancy for the whole dataset:
@@ -598,7 +600,7 @@ gapminder %>%
 However, a single-value summary is not particularly interesting.
 `summarise()` becomes more powerful when used with `group_by()`.
 
-### 6. Change the scope with `group_by()`
+### 6\. Change the scope with `group_by()`
 
 `group_by()` changes the scope of the following function(s) from
 operating on the entire dataset to operating on it group-by-group.
@@ -679,8 +681,11 @@ gapminder %>%
 
 ## More examples
 
-Another example of a summary, with a different dataset that dplyr
+Another example of a summary, with a the starwars data set that dplyr
 provides:
+
+Grouping by species, summarise the number of characters per species and
+find the mean mass. Only for species groups with more than 1 character.
 
 ``` r
 starwars %>%
@@ -706,7 +711,10 @@ starwars %>%
     ## 9 <NA>         4  48
 
 An example of data manipulation and data visualisation in the same
-command:
+command with gapminder:
+
+Summarise the gapminder population data into total population per
+continent per year and plot coloured by continent.
 
 ``` r
 # increase in population per continent
@@ -729,7 +737,10 @@ gapminder %>%
 
 ![](dplyr_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
-And another one, still using our gapminder dataset:
+And another example, using using our gapminder dataset:
+
+Let’s say we want to calulate the variation (range) in life expectancy
+per country and plot the top and bottom 10 countries?
 
 ``` r
 # top and bottom variations in life expectancy
@@ -760,9 +771,9 @@ commands stored in your script when you re-open your project.
 
 More on dplyr:
 
--   [dplyr
+  - [dplyr
     cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
--   *R for Data Science*, [chapter about
+  - *R for Data Science*, [chapter about
     dplyr](http://r4ds.had.co.nz/transform.html)
 
 For further R resources, look at [our compilation of

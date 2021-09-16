@@ -6,6 +6,7 @@ output:
   github_document:
     df_print: tibble
     toc: true
+    toc_float: true
 ---
 
 ## What are we going to learn?
@@ -364,7 +365,9 @@ gapminder %>%
 
 ## More examples
 
-Another example of a summary, with a different dataset that dplyr provides:
+Another example of a summary, with a the starwars data set that dplyr provides:
+
+Grouping by species, summarise the number of characters per species and find the mean mass. Only for species groups with more than 1 character.
 
 ```{r}
 starwars %>%
@@ -376,7 +379,9 @@ starwars %>%
   filter(n > 1) # the mean of a single value is not worth reporting
 ```
 
-An example of data manipulation and data visualisation in the same command:
+An example of data manipulation and data visualisation in the same command with gapminder:
+
+Summarise the gapminder population data into total population per continent per year and plot coloured by continent. 
 
 ```{r}
 # increase in population per continent
@@ -390,7 +395,9 @@ gapminder %>%
   geom_line()
 ```
 
-And another one, still using our gapminder dataset:
+And another example, using using our gapminder dataset:
+
+Let's say we want to calulate the variation (range) in life expectancy per country and plot the top and bottom 10 countries?
 
 ```{r}
 # top and bottom variations in life expectancy
