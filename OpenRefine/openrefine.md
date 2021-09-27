@@ -1,6 +1,6 @@
 # OpenRefine: an introduction to dealing with messy data
 
-Last updated: 2020-08-03
+Last updated: 2021-09-27
 
 ## OpenRefine?
 
@@ -9,10 +9,10 @@ OpenRefine is an open source program self-described as "a power tool for dealing
 It can help you:
 
 * Get an **overview** of a data set, and explore subsets of it
-* **Resolve inconsistencies** in a data set, for example standardising date formatting
+* **Resolve inconsistencies** in a data set, for example standardising date formatting or fixing typos
 * **Split data up** into more granular parts, for example splitting up cells with multiple authors into separate cells
 * **Match** local data up to other data sets, for example in matching local subjects against the Library of Congress Subject Headings
-* **Enhance** a data set with data from other sources
+* **Enhance** a data set populating it with data from other sources
 
 Some common scenarios might be:
 
@@ -24,20 +24,20 @@ Some common scenarios might be:
 
 ## What you will learn today
 
-1. Importing and exporting data
+1. Import and export data
 2. What "facets" and "filters" are
-3. Editing cells
-4. Editing columns
-5. Grouping and transforming data
-6. Reconciling a column with Wikidata
+3. Edit cells
+4. Edit columns
+5. Group and transform data
+6. Reconcile a column with Wikidata
 
 ## Installation
 
-This lesson was designed using OpenRefine 3.3 but should be compatible with other supported versions.
+This lesson was designed using OpenRefine 3.4 but should be compatible with other supported versions.
 
-OpenRefine requires to have a Java Runtime Environment (JRE) installed, so you might need to install one to be able to use it: http://java.com/
+OpenRefine requires to have a Java Runtime Environment (JRE) installed. Depending on your operating system, you might need to install one from the [Java website](https://java.com/en/), or use the Windows kit with embedded Java.
 
-To install and run OpenRefine on your operating system, please follow the instructions on the official website: http://openrefine.org/download.html
+To install and run OpenRefine on your operating system, please follow the [instructions on the official website](https://openrefine.org/download.html).
 
 
 ## Material
@@ -68,9 +68,9 @@ Drop-down menus next to the column headers allow you to do operations on the who
 
 ### Reorganising the data
 
-You can **reorder the columns** by clicking the drop-down menu at the top of the first column (labelled ‘All’), and choosing `Edit columns > Reorder / remove columns …`
+You can **reorder and remove columns** by clicking the drop-down menu at the top of the first column (labelled ‘All’), and choosing `Edit columns > Reorder / remove columns…`.
 
-You can then drag and drop column names to reorder the columns, or remove columns completely if they are not required.
+You can then drag and drop column names to reorder the columns, or remove columns completely if they are not required. For example, move the `Publisher` column closer to the beginning, and remove the `ISSNs` column.
 
 You can also **sort the rows** by clicking on the drop-down menu for the column you want to sort on, and choosing `Sort`.The sorting is not permanent, and a new `Sort` drop-down menu appears at the top, which allows you to modify the current sort, remove it, or make the sort permanent.
 
@@ -130,7 +130,7 @@ Let's create a Text Facet for a column:
 1. Filter the data by clicking on a value
 1. Add more values with `include`
 1. You can `invert` your selection
-1. Click `reset` to deselect all values, or remove the facet with the cross.
+1. Click `reset` to deselect all values.
 
 **Exercise 4** – Explore licenses
 
@@ -139,8 +139,10 @@ Let's create a Text Facet for a column:
 1. In the `License` column drop-down menu, choose `Facet > Text facet`
 1. `CC BY` has the highest count
 1. 6 articles don't have a `License` value, marked `(blank)`
+1. Notice that filtering the data with this facet will update the values in the `Publisher` facet. This makes it easy to see which publishers use which licences.
+1. Close both facets with the "Remove All" button
 
-There are more facets available, like numeric and timeline facets that produce graphs, or even custom facets for more advanced operations, like facets that return a logical value.
+There are more facets available, like numeric and timeline facets that produce graphs, or even custom facets for more advanced operations, like facets that return a logical value ("true" or "false").
 
 **Exercise 5** – Facet by blank
 
@@ -148,7 +150,7 @@ Find all the publications without a DOI (digital object identifier) with the `Fa
 
 1. `Facet > Customized facet > Facet by blank`
 
-This is more efficient than a text facet, as it will only give two categories.
+This is more efficient than a text facet, as it will only give two categories: "true" for blank cells, "false" for cells with a value. You could then focus on the blank cells to populate the missing data by hand (an "Edit" button appears when you hover over a cell).
 
 > When you filter your data with facets or text filters, remember that any operation that you carry out will only apply to the filtered data.
 
@@ -164,9 +166,11 @@ Use a text facet on the `Language` column to replace `English` values with the l
 1. Hover over the term `English` and click `edit`
 1. Replace it with `EN` and click `Apply`
 
+All the occurences of `English` are replaced by `EN`, and the facet auto-updates to only show the remaining values.
+
 ### Clustering
 
-> What can I use to identify and replace varying forms of the same data?
+> What can I use to identify and replace varying forms of the same data? Fixing variations by hand like we did for the languages works fine for small numbers of values, but if there are hundreds or more, it becomes very impractical.
 
 The **Cluster** function uses an algorithm to group together similar, but inconsistent values in a given column and lets you merge these inconsistent values into a single value you choose.
 
@@ -182,7 +186,7 @@ By default, OpenRefine uses the most common value to merge the data, but we can 
 
 4. You can also try changing the clustering method being used – which ones work well? Do they identify extra clusters?
 
-> The best clustering algorithm will depend on the kind of data your are processing.
+> The best clustering algorithm will depend on the kind of data your are processing. For more information of available algorithms, see the [documentation page on clustering methods](https://docs.openrefine.org/manual/cellediting#clustering-methods).
 
 ### Transformations
 
@@ -190,7 +194,7 @@ Facets, filters and clustering already allow us to explore and clean up our data
 
 To do more advanced operations, like splitting data into several columns, standardising a format without losing the original values, or extracting a data type from a string, we need **transformations**.
 
-Transformations are ways of manipulating data in columns. Transformations are normally written in a special language called **GREL** (General Refine Expression Language).
+Transformations are ways of manipulating data in columns. They are normally written in a special language called **GREL** (General Refine Expression Language).
 
 Some common transformations are accessible directly in the menus, for example to change the case of the values, or to remove bounding whitespace characters.
 
@@ -198,7 +202,7 @@ Some common transformations are accessible directly in the menus, for example to
 
 1. Create a text facet on the `Publisher` column
 2. Note that in the values there are two that look identical – why does this value appear twice?
-3. On the `Publisher` column, use the drop-down menu to select `Edit cells > Common transforms > Trim leading and trailing whitespace`
+3. On the `Publisher` column, use the drop-down menu to select `Edit cells > Common transforms > Collapse consecutive whitespace`
 4. Look at the publisher facet now – has it changed? (if it hasn’t changed, try clicking the `Refresh` option to make sure it updates)
 
 #### Writing transformations
@@ -210,20 +214,18 @@ GREL supports two types of syntax:
 * `value.function(options)`
 * `function(value, options)`
 
-Either is valid, and which is used is completely down to personal preference. In these notes the first syntax is used.
+Either is valid, and which is used is completely down to personal preference. In these notes the first syntax is used, as it is easier to read when writing long commands.
 
-The most simple "transformation" is `value`, which will keep the data as it is. Press `OK` to execute it, and go back to the transformation screen.
-
-You can now see your history of transformations, and save your favourite ones by clicking on the star next to them. The `Help` tab is also a helpful reference.
+The most simple "transformation" is `value`, which will keep the data as it is. We need to add extra functions to the command to actually modify the original value.
 
 **Exercise 9** – Put titles into Title Case
 
-Use Facets and the GREL expression `value.toTitlecase()` to put the titles in Title Case:
+Use Facets and the GREL function `toTitlecase()` to put some titles in Title Case:
 
-1. Facet by Publisher
+1. Facet by `Publisher`
 1. Select “Akshantala Enterprises” and “Society of Pharmaceutical Technocrats” (To select multiple values in the facet, use the "include" link that appears to the right of the facet.)
 1. See that the Titles for these are all in uppercase
-1. Click the drop-down menu on the Title column
+1. Click the drop-down menu on the `Title column`
 1. Choose `Edit cells > Transform...`
 1. In the Expression box type `value.toTitlecase()`
 1. In the `Preview` tab, note that you can see what the effect of running this will be
@@ -231,7 +233,9 @@ Use Facets and the GREL expression `value.toTitlecase()` to put the titles in Ti
 
 Note that this transformation is also available in the `Common transforms`.
 
-#### Undo and redo transformations
+> Back in the Transform dialog, you can now see a history of transformations, and save your favourite ones by clicking on the star next to them. The `Help` tab is also a helpful reference.
+
+#### Undo and redo actions
 
 In the left-hand panel, you can open the `Undo / Redo` tab to access all the steps taken so far, and **undo steps** by clicking the last step you want to preserve.
 
@@ -247,8 +251,8 @@ All data in OpenRefine has a "type". The most common is "string", which is a pie
 
 * String
 * Number
-* Date
-* Boolean
+* Date-time
+* Boolean (logical)
 * Array
 
 **Date and numbers**: we currently have a `Date` column where the data is represented as a string. If we wanted to sort according to this data, it would not end up chronological. We therefore need to convert the values to a date data type for OpenRefine to interpret them properly.
@@ -256,9 +260,9 @@ All data in OpenRefine has a "type". The most common is "string", which is a pie
 **Exercise 10** – Reformat the date
 
 1. Make sure you remove all Facets and Filters
-1. On the Date column, use the drop-down menu to select `Edit cells > Common transforms > To date`
-1. Note how the values are now displayed in green and follow a standard convention for their display format (ISO8601) - this indicates they are now stored as date data types in OpenRefine. We can now carry out functions that are specific to Dates.
-1. In the Date column drop-down, select `Edit column > Add column based on this column`. Using this function you can create a new column, while preserving the old column.
+1. On the `Date` column, use the drop-down menu to select `Edit cells > Common transforms > To date`
+1. Note how the values are now displayed in green and follow a standard convention for their display format (ISO8601) - this indicates they are now stored as date-time data types in OpenRefine. We can now carry out functions that are specific to Dates.
+1. In the `Date` column drop-down, select `Edit column > Add column based on this column`. Using this dialog, you can create a new column, while preserving the old column.
 1. In the ‘New column name’ type “Formatted Date”
 1. In the ‘Expression’ box, type the GREL expression `value.toString("dd MMMM yyyy")`
 
@@ -282,7 +286,7 @@ if(value.contains("test"),"Test data",value)
 
 #### Handling arrays
 
-There is another inconsistency in our "Authors" column: some names are using the order `<last name>, <first name>`, and others use the natural order. We'd like to stick to natural order for all, but to do that, we need to talk about arrays.
+There is another inconsistency in our "Authors" column: a few names are using the order `<last name>, <first name>`, and all others use the `<first name> <last name>` order. We'd like to stick to the same order for all, but to do that, we need to talk about arrays.
 
 > How do I use arrays in a GREL expression?
 
@@ -341,16 +345,16 @@ We can focus on the rows that have a comma in their author name:
 
 Now that we have narrowed down to the lines with a comma in the author name, we can use the `split()` function.
 
-1. On the Authors column use the drop-down menu and select `Edit cells > Transform`
-1. In the Expression box type `value.split(", ")`.  This will create an array of separate last name and first name, removing the comma and space.
+3. On the Authors column use the drop-down menu and select `Edit cells > Transform`
+4. In the Expression box type `value.split(", ")`.  This will create an array of separate last name and first name, removing the comma and space.
 
 To get the author name in the natural order, you can reverse the array and join it back together with a space to create the string you need:
 
-1. In the Expression box, add to the existing expression until it reads `value.split(", ").reverse().join(" ")`
-1. In the Preview section, you should be able see this has reversed the array, and joined it back into a string, without any comma
-1. Click `OK` to apply your transformation, and notice how your filter shows 0 results, because all commas have been removed in the "Authors" column.
+5. In the Expression box, add to the existing expression until it reads `value.split(", ").reverse().join(" ")`
+6. In the Preview section, you should be able see this has reversed the array, and joined it back into a string, without any comma
+7. Click `OK` to apply your transformation, and notice how your filter shows 0 results, because all commas have been removed in the "Authors" column.
 
-> For more elaborate array creation, we can use the `match()` function along with Regular Expressions. Regular Expressions, or "Regex", use a syntax to match pretty much any pattern of characters, for example if you wanted to extract an array of decimals in the string "1.2345; 2.34567".
+> For more elaborate array creation, we can use the `match()` function along with Regular Expressions. Regular Expressions, or "Regex", use a syntax to match pretty much any pattern of characters.
 
 ### Reconciliation
 
@@ -360,7 +364,7 @@ We can associate one of our columns to an external database by using OpenRefine'
 
 * On the "Publisher" column, select `Reconcile > Start reconciling...`. The default service listed is Wikidata.
 * The tool will automatically try to match the column to a Wikidata type, but we can specify exactly the one we want to use.
-* After checking and completing by hand the matches, we can add extra data to our project by using `Edit column > Add columns for reconciled values`. For example, try adding the headquarters location of the publishers into a new column.
+* After checking the existing matches, and completing by hand the missing ones, we can add extra data to our project by using `Edit column > Add columns for reconciled values`. For example, try adding the headquarters location of the publishers into a new column.
 
 ### Exporting the data and saving a project
 
@@ -370,8 +374,8 @@ OpenRefine can **export a transformed dataset** into a variety of formats. You c
 
 Your project is **automatically saved every 15 minutes** and can be reopened with `Open Project` when you next start OpenRefine. However, if you need to share or save a snapshot of your project, you can use `Export > Export project` to download an archive.
 
-> When you quit OpenRefine, make sure you interrupt the OpenRefine process properly with <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal, to guarantee that your project changes are saved. (This is true for both Windows and Linux.)
-> See the official wiki for more information: https://github.com/OpenRefine/OpenRefine/wiki/Installation-Instructions
+> When you quit OpenRefine, make sure you interrupt the OpenRefine process properly with <kbd>Ctrl</kbd> + <kbd>C</kbd> (for both Windows and Linux) or <kbd>Command</kbd> + <kbd>Q</kbd> (for MacOS) in the terminal, to guarantee that your project changes are saved.
+> See the official [documentation on starting and exiting OpenRefine](https://docs.openrefine.org/manual/running#starting-and-exiting).
 
 
 ## Useful links
