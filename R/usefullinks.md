@@ -19,7 +19,7 @@
 
 ## Practice
 
-* Solve challenges and learn from other people's solutions: https://exercism.io/my/tracks/r
+* Solve challenges and learn from other people's solutions: https://exercism.org/tracks/r
 * `swirl` is a package that allows you to learn R interactively in an R session: https://swirlstats.com/
 
 ### Data visualisation
