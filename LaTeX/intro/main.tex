@@ -1,0 +1,505 @@
+% type of document and default font size:
+\documentclass[12 pt]{article}
+% extra package for setting margin sizes:
+\usepackage[a4paper, top=2cm,bottom=2cm, left=3cm, right=3cm, marginparwidth=1.75cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel} % set language for the document
+\usepackage{graphicx}       % for figures
+\usepackage{float}          % to use the "H" placement for figures
+\usepackage[colorlinks=true, allcolors=purple]{hyperref}       % for hyperlinks
+\usepackage{tcolorbox}      % for frames around sections
+\usepackage{menukeys}       % for formatting keyboard shortcuts
+
+\graphicspath{ {images/} }  % specify the default path for images
+
+\title{Overleaf: write and collaborate on \LaTeX documents}
+\author{UQ Library}
+\date{August 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+\LaTeX is a markup language and software system that allows writing beautiful documents. It is widely used in professional mathematics writing in particular because of its powerful \textbf{mathematical formula typesetting}, but it is also popular in other fields, including philosophy, physics, economics, engineering and linguistics.
+
+The strong point of \LaTeX is that it allows you to create very \textbf{consistent documents}, while concentrating on the contents and the structure, rather than worry about the appearance. The style of the document can then be changed independently of the contents.
+
+To author today's document, we use \textbf{Overleaf}: an online platform that facilitates editing and collaborating on \LaTeX documents.
+
+\subsection{At UQ}
+
+The UQ community has access to Overleaf Professional accounts. The extra features offered (when compared to free accounts) are:
+\begin{itemize}
+    \item Unlimited collaborators
+    \item Real-time track changes
+    \item Full document history
+    \item Advanced reference search
+    \item Reference manager sync
+    \item Dropbox integration
+    \item Git and GitHub integration
+    \item Priority support
+\end{itemize}
+
+To access your professional account, sign into Overleaf with your UQ email address.
+
+\section{New project}
+
+In Overleaf, creating a \textbf{project} will create a new space to store, upload and edit files.
+
+On the main page, once logged in:
+\begin{itemize}
+    \item Click on "New Project"
+    \item Select "Example Project"
+    \item Give it a name and click "Create"
+\end{itemize}
+
+Overleaf will then take you to a new document called "main.tex": the source code is in the panel on the left, whereas the "compiled" document is shown on the right.
+
+\section{Overleaf interface}
+
+Apart from the source and PDF panels, Overleaf includes a left-hand sidebar that shows the project files and the file outline (very useful to jump from section to section).
+
+The top-left "Menu" button reveals another sidebar with project options, editor customisations and help links.
+
+You can resize and hide the panels at you will to make editing the document more comfortable.
+
+\section{Editing}
+
+\subsection{Preamble}
+
+The top of the source code, before the \verb+\begin{document}+ tag, is called the \textbf{Preamble}. This is where the settings and main metadata of the document are stored. Overleaf automatically populated with some defaults, but as we need more features to write our document, we regularly go back to the preamble to add extra \textbf{packages} and modify their settings.
+
+The following table describes what the example document contains in its preamble:
+
+\begin{center}
+\begin{tabular}{ l l }
+ Tag & What it does \\
+ \hline
+ \verb+\documentclass{article}+ & Set the document type \\
+ \verb+\usepackage[english]{babel}+ & Set the document language \\ 
+ \verb+\usepackage[...]{geometry}+ & Set the page and margin sizes \\  
+ \verb+\usepackage{amsmath}+ & Display options for math equations \\
+ \verb+\usepackage{graphicx}+ & Include graphics \\
+ \verb+\usepackage[...]{hyperref}+ & Include hyperlinks \\
+ \verb+\title{Your Paper}+ & Document title \\
+ \verb+\author{You}+ & Document author \\
+\end{tabular}
+\end{center}
+
+Make sure you update the title and author of the document. We might also want to change the paper format to "a4paper" instead of "letterpaper", and add an extra \verb+\date{...}+ tag to fix the date.
+
+\subsection{The tab key}
+
+Some of the most useful shortcuts in Overleaf are provided by the \textbf{tab key}. It helps autocomplete your code: using the \keys{\tab} key, you can autocomplete the name of a command from the dropdown list of suggestions, and some values can also be autocompleted inside the curly braces (for example, when using references to figures).
+
+The same key also helps move outside of the curly braces.
+
+\subsection{Compiling}
+
+After editing the document, you will have to \textbf{compile} the document to see the results. This can be done with the green "Recompile" button, or using the \keys{\ctrl + \return} shortcut.
+
+\subsection{Editing the contents}
+
+The \textbf{contents} of the document are in between the \verb+\begin{document}+ and \verb+\end{document}+ tags.
+
+You can switch between the "Source" editor, which shows you the \LaTeX code, and the "Rich Text" editor, which is more similar to visual text editors we are used to, like Microsoft Word or LibreOffice Writer – although you will quickly find that the features of the Rich Text editor are very limiting.
+
+Try adding a new section to your document (with the "Insert Section Heading" button, and styling it with the "Rich Text" mode. See what the corresponding code looks like in the "Source" mode.
+
+\subsection{Common tags}
+
+Here are a few common tags used in formatting the text:
+
+\begin{center}
+\begin{tabular}{ l l }
+ Tag & What it defines \\
+ \hline
+ \verb+\textbf{bold text}+ & \textbf{bold text} \\ 
+ \verb+\textit{italic text}+ & \textit{italic text} \\  
+ \verb+\section{main sections}+ & main section titles \\
+ \verb+\subsection{second level sections}+ & second level section titles \\
+ \verb+\subsubsection{second level sections}+ & third level section titles \\
+\end{tabular}
+\end{center}
+
+\subsection{Lists}
+
+Now, add a list to your article. The tag \texttt{itemize} is for unordered lists, whereas \texttt{enumerate} is for numbered lists:
+
+\begin{tcolorbox}
+\begin{verbatim}
+Unordered list:
+\begin{itemize}
+    \item teatree
+    \item bottlebrush
+    \item melaleuca
+\end{itemize}
+And numbered:
+\begin{enumerate}
+    \item apple
+    \item rose
+    \item peach
+\end{enumerate}
+\end{verbatim}
+\end{tcolorbox}
+
+Which results in the following:
+
+\begin{tcolorbox}
+Unordered list:
+\begin{itemize}
+    \item teatree
+    \item bottlebrush
+    \item melaleuca
+\end{itemize}
+    
+And numbered:
+\begin{enumerate}
+    \item apple
+    \item rose
+    \item peach
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Errors}
+
+In the "Source" editor, you will notice that you get some visual feedback if your code is not valid. Try for example to misspell one of the tags opening or closing your bullet list: the whole block is highlighted in red, and you can get a hint of what the issue is by hovering over the red mark in the margin. If you try to compile the document, you will also see an error message in the Logs (next to the "Recompile" button).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{syntax_error}
+    \caption{Syntax error notification in source panel.}
+    \label{fig:my_label}
+\end{figure}
+
+\subsection{Hyperlinks}
+
+To be able to add hyperlinks, you will need to add the \texttt{hyperref} package at the top of your document, with this line:
+
+\begin{verbatim}
+    \usepackage{hyperref}
+\end{verbatim}
+
+You'll then be able to add external URLS like so:
+
+\begin{tcolorbox}
+\begin{verbatim}
+A URL shown as is:
+    \url{https://www.overleaf.com/}; 
+Or some hyperlinked text:
+    \href{https://www.overleaf.com/}{The Overleaf website}
+\end{verbatim}
+\end{tcolorbox}
+
+Which would result in this block of text:
+
+\begin{tcolorbox}
+A URL shown as is:
+    \url{https://www.overleaf.com/}; 
+Or some hyperlinked text:
+    \href{https://www.overleaf.com/}{The Overleaf website}
+\end{tcolorbox}
+
+\subsection{Commenting the source}
+
+As you are editing the source that defines what the documents will look like when compiled, it might be useful to include comments that are only visible when looking at the source. It is also useful when collaborating on a document, to make sure others can make sense of a syntax not commonly used.
+
+You can add a comment to your source by starting a line with \texttt{\%}.
+
+For example, to let others know what the \texttt{hyperref} package is for, you could add at the top of the page:
+
+\begin{tcolorbox}
+\begin{verbatim}
+    \usepackage{hyperref} % for including hyperlinks
+\end{verbatim}
+\end{tcolorbox}
+
+\subsection{Graphics}
+
+To add \textbf{graphics} to a document, the \texttt{graphicx} is needed, which you can add at the top of the document with:
+
+\begin{verbatim}
+    \usepackage{graphicx}
+\end{verbatim}
+
+You will then be able to add graphics with:
+
+\begin{verbatim}
+    \includegraphics{example_figure.png}
+\end{verbatim}
+
+In Overleaf, if you want to keep things tidy, you can upload images to a dedicated directory. However, it will be easier to then declare that directory as the default one for images, at the top of the document. For example, if all the images are stored in an "images" directory, we should add this to the top of the document:
+
+\begin{verbatim}
+    \graphicspath{ {images/} }
+\end{verbatim}
+
+Try it now:
+
+\begin{enumerate}
+    \item Find and download a \href{https://commons.wikimedia.org/wiki/Featured_Pictures_in_the_Public_Domain}{Public Domain featured picture from Wikimedia Commons}
+    \item Upload the picture to the "images" directory
+    \item Add the picture to the document
+\end{enumerate}
+
+This is the simplest form of adding graphics to the document, but we often want to add other associated information (like a caption) and modify placement options.
+
+Overleaf makes it easy to add a code template for figures by adding the opening tag \texttt{\\begin{figure}} to the source code. You should automatically end up with the following:
+
+\begin{verbatim}
+\begin{figure}
+    \centering
+    \includegraphics{}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
+\end{verbatim}
+
+This allows us to specify:
+
+\begin{itemize}
+    \item The horizontal position of the figure
+    \item The name of the file
+    \item The figure caption
+    \item The label that will allow cross-referencing of the figure
+\end{itemize}
+
+Try to move your previous picture to this new block of code, adding a caption and a label.
+
+One important option that is missing from this template is the \textbf{placement specifier}. It comes straight after the \texttt{\\begin{figure}} tag, in between square brackets. If it is not specified, the figure will default to being placed at the top of the page. If you want to place the figure where the code is located, you can use the \texttt{h} position, which stands for "here". Other placement options can be found in the \href{https://www.overleaf.com/learn/latex/Positioning_of_Figures}{Overleaf documentation about figures}.
+
+About the placement of the figure: an important detail is that the (lowercase) "h" option place the picture \textit{exactly} where it the code is (for example when page breaks move a picture to the next page). To really force the location of a figure relatively to the text, you can use the (uppercase) "H" option, which requires the extra \texttt{float} package (i.e. you need to add \verb+\usepackage{float}+ to your preamble).
+
+Another important option is the \textbf{width of the picture}. If a picture is too large, it might not be displayed at all, simply giving you a warning along the lines of "float too large". The width of a figure can be specified with the \verb+\includegraphics+ tag.
+
+As an example, the following code:
+
+\begin{tcolorbox}
+\begin{verbatim}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{J_D_Story_1966.jpg}
+    \caption{J D Story Administration building, UQ St Lucia (1966, Public Domain)}
+    \label{fig:JD}
+\end{figure}
+\end{verbatim}
+\end{tcolorbox}
+
+Results in the following figure:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{J_D_Story_1966.jpg}
+    \caption{J D Story Administration building, UQ St Lucia (1966, Public Domain)}
+    \label{fig:JD}
+\end{figure}
+
+Because a label was used, we can now reference the figure itself and the page it is on:
+
+\begin{tcolorbox}
+\begin{verbatim}
+    \ref{fig:JD}     % reference the figure
+    \pageref{fig:JD} % reference the page the figure is on
+\end{verbatim}
+\end{tcolorbox}
+
+Overleaf will suggest figure labels when using these two tags, so you can autocomplete your code.
+
+The following code:
+
+\begin{tcolorbox}
+\begin{verbatim}
+See \ref{fig:JD} on page \pageref{fig:JD}.
+\end{verbatim}
+\end{tcolorbox}
+
+Results in the following text:
+
+\begin{tcolorbox}
+See \ref{fig:JD} on page \pageref{fig:JD}.
+\end{tcolorbox}
+
+\subsection{Warnings}
+
+As you write the source code of your document, and compile it regularly, you might see \textbf{warnings} pop up in the margin of the source panel. By hovering the pointer over the icon, you should see extra information.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{hbox_warning.png}
+    \caption{A warning message about an "Overfull hbox", revealed by hovering over the warning icon in the source's margin.}
+    \label{fig:warning}
+\end{figure}
+
+It is very common to see warnings about "overfull and underfull boxes" ("hbox" or "vbox"). These warnings are issued by the TeX engine the compile the document, and can usually be safely ignored. However, they might sometime help you spot undesirable typesetting, (e.g. some text overflowing to one side). Take note of them, but often won't require you to take any action. If you want to learn more about these warnings, see the \href{https://www.overleaf.com/learn/how-to/Understanding_underfull_and_overfull_box_warnings}{Overleaf documentation about overfull and underfull warnings}.
+
+All errors and warning are listed in the log view, which you can access with the "Logs and output files" button next to the "Recompile" button.
+
+\subsection{Equations}
+
+A lot of \LaTeX's power lies in its mathematical equation typesetting. For example, the following code:
+
+\begin{tcolorbox}
+\begin{verbatim}
+\begin{equation} \label{eq:euler}
+e^{\pi i} + 1 = 0
+\end{equation}
+
+The beautiful equation \ref{eq:euler} is known as Euler's
+identity.
+\end{verbatim}
+\end{tcolorbox}
+
+Will produce this output:
+
+\begin{tcolorbox}
+    \begin{equation} \label{eq:euler}
+    e^{\pi i} + 1 = 0
+    \end{equation}
+    The beautiful equation \ref{eq:euler} is known as Euler's identity.
+\end{tcolorbox}
+
+Notice the use of labels for cross-reference, just like we used for figures.
+
+\section{Collaborating}
+
+You can share your document with the "Share" button at the top right of your screen, using your collaborators' email.
+
+It is possible to give different rights to different collaborators: you could decide that one person can edit the document, whereas another one can only see it.
+
+\subsection{Review and track changes}
+
+The "Review" button at the top of the screen will open a side panel showing the \textbf{comments}. Select some text and add a comment to the document you are collaborating on. Others can then reply to your comment.
+
+This panel is also where tracked changes can be turned on. Changes will be shown in the same side panel as the comments. Collaborators can then accept or reject changes.
+
+\subsection{Chat}
+
+Finally, a \textbf{chat} function is available in Overleaf. You can open it with the top-right "Chat" button.
+
+\section{History}
+
+You can see a \textbf{history} of versions by clicking the "History" button in the top right.
+
+Specific versions can also be \textbf{labelled}, which might be useful to help navigate a complex history of versions, and direct collaborators to where major changes have happened.
+
+\section{Export and publish}
+
+To \textbf{export the document to PDF}, click on the "Download PDF" button above the compiled view panel.
+
+Overleaf integrates some guidance to publish on a selection of platforms. You can see the publishers available by clicking on the "Submit" button in the top toolbar.
+
+To make sure you can keep working on your document outside of Overleaf, or to submit the \textbf{source files} to a publisher, you will have to download the whole project, not just the compiled PDF. To do that, open the main menu (top right "Menu" button) and click on "Source". You will then be able to download a zip archive containing all your .tex files, images, references files and others.
+
+\section{Templates}
+
+Overleaf provides many \textbf{templates} to choose from, which makes it easier to find a document style that looks right from the beginning and not spend too much time on finding the right packages and changing parameters in the preamble.
+
+\begin{itemize}
+    \item Go to the main Overleaf page (up arrow button in the top toolbar)
+    \item Click on "New Project"
+    \item Choose from either:
+    \begin{itemize}
+        \item Institution templates
+        \item One of the main templates listed
+        \item The full list of templates
+    \end{itemize}
+    \item In the template's description page, click "Open as template"
+\end{itemize}
+
+See for example the Beamer template offered in the UQ templates (\href{https://www.overleaf.com/learn/latex/Beamer}{Beamer documents} are used for creating presentation slides). This particular templates also demonstrates the use of a \LaTeX plotting package called \texttt{pgfplots}, which you can learn more about on \href{https://www.overleaf.com/learn/latex/Pgfplots_package}{Overleaf's pgfplots documentation}.
+
+\section{Account integrations}
+
+Your Overleaf account can be integrated with a variety of other services and platforms.
+
+\subsection{Git and GitHub}
+
+\textbf{Git} is a version control tool widely used to record a project's history, notably for software development.
+
+From a project, using the top-right Menu button, it is possible to:
+
+\begin{itemize}
+    \item Clone the project repository to your own computer (and use Overleaf as a remote repository)
+    \item Link the project to a GitHub repository
+\end{itemize}
+
+\subsection{ORCiD}
+
+\href{https://orcid.org/}{\textbf{ORCiD}} is a unique identifier for researchers. Linking your Overleaf account to your ORCiD will automatically use it when submitting an article to publishers.
+
+This option can be found in the account settings.
+
+\subsection{Reference managers}
+
+Overleaf integrates \textbf{Zotero} and \textbf{Mendeley} to easily import references into projects.
+
+This option can be found in the account settings. You will then be able to use the "From Zotero" or "From Mendeley" options in the "Upload" dialog to import your library as a .bib file.
+
+Once a .bib file is available in the project, it is possible to use the \texttt{biblatex} package to cite references and create a bibliography. For example, adding this to the preamble:
+
+\begin{tcolorbox}
+\begin{verbatim}
+\usepackage{biblatex}
+\addbibresource{references.bib}
+\end{verbatim}
+\end{tcolorbox}
+
+And then referencing in the document:
+
+\begin{tcolorbox}
+\begin{verbatim}
+This section is sourced \cite{aguiar_invasion_2013}.
+This other section as well \cite{akkemik_archaeology_2012}.
+\section{Bibliography}
+\printbibliography
+\end{verbatim}
+\end{tcolorbox}
+
+If you use EndNote, you should be able to export your library to a .bib file by using the BibTeX export style, and then upload it to your Overleaf project.
+
+Many options are available to customise your citations and bibliography. To learn more, see the \href{https://www.overleaf.com/learn/how-to/Using_bibliographies_on_Overleaf}{Overleaf documentation on bibliographies}.
+
+\section{Accessibility}
+
+Unfortunately, it is not currently easy to create fully \textbf{accessible PDFs} using LaTeX (i.e.\ tagged PDF, or following full PDF/UA specifications). Some tools do exist to make the output more universally accessible, including a tool called \texttt{make4ht} to create HTML instead of PDF, and a package called \texttt{tagpdf} to explore the possibility of creating tagged PDFs. However, they are still very experimental, and only trying to patch a deeper issue in how PDFs are structured.
+
+While there is \href{https://tex.stackexchange.com/a/605142/160963}{work underway} to integrate accessibility features in the underlying software, we are still a long way away from having access to these improvements on Overleaf, and the best that can be done for users is to style and structure our documents for improved accessibility. Here are some recommendations to keep in mind from the onset when working on any kind of document:
+
+\begin{itemize}
+    \item Make sure all figures and tables are captioned, and that they are sufficiently described
+    \item Do not include tables as pictures
+    \item Avoid using text annotations, labels and titles inside pictures, and move that information to the main text
+    \item If pictures contain text, it might be a better option to use vector graphics (like the SVG format) rather than raster graphics (PNG, JPG, etc.)
+    \item Check the colours used throughout the document to make sure the contrast is sufficient, and the palettes are accessible to colourblind readers
+    \item Give text descriptions to hyperlinks instead of only displaying the URL
+    \item Keep the structure of the document simple
+\end{itemize}
+
+If you are interested in the topic of accessibility in \LaTeX, here are some resources (many of which are rather technical):
+
+\begin{itemize}
+    \item \href{https://www.tug.org/twg/accessibility/}{\LaTeX Accessibility Working Group}
+    \item \href{https://www.overleaf.com/learn/latex/An_introduction_to_tagged_PDF_files:_internals_and_the_challenges_of_accessibility}{Overleaf's technical paper on the challenges of PDF accessibility}
+    \item \href{https://tug.org/TUGboat/tb41-1/tb127fischer-accessible.pdf}{Current state and planned actions for accessible PDFs in \LaTeX}
+    \item \href{https://www.latex-project.org/publications/indexbytopic/pdf/}{\LaTeX Project publications on the topic of PDF accessibility}
+\end{itemize}
+
+\section{Further resources}
+
+\begin{itemize}
+    \item \href{https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes}{\textit{Learn LaTeX in 30 minutes}}, by Overleaf
+    \item \href{https://www.overleaf.com/events/webinars}{Overleaf Webinars}
+    \item The full, comprehensive \href{https://www.overleaf.com/learn}{Overleaf documentation}
+    \item \href{https://www.lyx.org/Home}{LyX} is an Open Source desktop LaTeX editor, if you want to use an offline alternative on your own computer.
+    \item \href{https://www.overleaf.com/edu/uq#templates}{UQ \LaTeX templates}, including the Thesis template
+    \item \textit{\href{https://www.overleaf.com/latex/templates/a-quick-guide-to-latex/fghqpfgnxggz}{A Quick Guide to \LaTeX}}: a handy cheatsheet with common commands
+    \item \href{https://tex.stackexchange.com}{TeX StackExchange}: questions and answers about \LaTeX
+\end{itemize}
+
+\section{Licence}
+
+This document and its source are released under the Creative Commons licence "Attribution 4.0 International" (CC BY 4.0). For the detailed licence text, please see the \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0 page on the Creative Commons website}.
+
+\end{document}
