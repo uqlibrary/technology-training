@@ -1,6 +1,6 @@
 # UQ Library training resources
 
-Here you will find resources related to R, Python, Bash, Git, OpenStreetMap, QGIS, OpenRefine, Audacity and Voyant Tools training sessions held at the UQ Library.
+Here you will find resources related to R, Python, LaTeX, Bash, Git, OpenStreetMap, QGIS, OpenRefine, Audacity and Voyant Tools training sessions held at the UQ Library.
 
 Other training resources are also available [on the Library website](https://web.library.uq.edu.au/library-services/training/software-training-resources).
 
@@ -18,7 +18,7 @@ This is the Library's **regular R cycle**:
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
-| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) <sup>[source](R/rstudio_intro/rstudio_intro.Rmd) | [html](https://demo.hedgedoc.org/s/rkfyJemYE) | [YT](https://www.youtube.com/watch?v=BoDTNbP7_OQ&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2&t=0s), [LBRY](lbry://RwithRStudiogettingstarted#5) |
+| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) <sup>[source](R/rstudio_intro/rstudio_intro.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rkfyJemYE) | [YT](https://www.youtube.com/watch?v=BoDTNbP7_OQ&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2&t=0s), [LBRY](lbry://RwithRStudiogettingstarted#5) |
 | R data manipulation with RStudio and dplyr | [md](R/dplyr/dplyr.md) <sup>[source](R/dplyr/dplyr.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/HyyLCm3KN) | [YT](https://www.youtube.com/watch?v=vqvsyaaqJUk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2) |
 | R data visualisation with RStudio and ggplot2: introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rJIPr0vi4) | [YT](https://www.youtube.com/watch?v=LoeBgXSJWTw&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=3) |
 | R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rJLdcW-24) | [YT](https://www.youtube.com/watch?v=zzXCkYR84M0&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=4) |
@@ -55,9 +55,9 @@ These sessions focus on dealing with geospatial data, using QGIS, the OpenStreet
 | Python data transformation and visualisation with pandas | [md](Python/pandas/pandas.md) | [html](https://demo.hedgedoc.org/s/SJVpdtm_v) | ... |
 | Audacity: introduction to audio editing | [md](Audacity/audacity.md) | [html](https://demo.hedgedoc.org/s/HkkITjw9L) | ... |
 | Voyant Tools: zero to hero | [md](Voyant/voyant.md) | ... | ... |
+| Overleaf: write and collaborate on LaTeX documents | [pdf](https://web.library.uq.edu.au/files/145715/2021-12-02_Overleaf_write_articles_with_LaTeX.pdf) <sup>[source](LaTeX/intro/main.tex)</sup> | ... | ... |
 | _next: Open Source tools for your research_ | ... | ... | ... |
 | _next: Wikipedia: start contributing_ | ... | ... | ... |
-| _next: Overleaf: write articles with LaTeX_ | ... | ... | ... |
 
 
 ### One-off sessions
