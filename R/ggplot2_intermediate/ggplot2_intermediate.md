@@ -237,7 +237,7 @@ continents!
 A useful package that introduces many palettes for ggplot2 is the
 colorspace package, which promotes the [Hue-Chroma-Luminance (HCL)
 colour
-space](http://colorspace.r-forge.r-project.org/articles/color_spaces.html#human-color-vision-and-the-hcl-color-model-1).
+space](https://colorspace.r-forge.r-project.org/articles/color_spaces.html#human-color-vision-and-the-hcl-color-model-1).
 This colour space is perceptually-based, which means it is particularly
 suited for human perception of colours.
 
@@ -294,12 +294,11 @@ prints out a list of their names, but know that you are not limited to
 these 657 values: you can also use HEX values, which is particularly
 useful if you have to respect a colour scheme you were given.
 
-You can find [visual
-lists](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) of all the
-R colours, but there is a way to pick colours more comfortably: we can
-use the colourpicker package, which adds a handy add-in to RStudio.
-Install it and use the new “Addins \> Colour Picker” tool to create a
-vector of colours for your custom palette.
+You can find [visual lists](https://r-charts.com/colors/) of all the R
+colours, but there is a way to pick colours more comfortably: we can use
+the colourpicker package, which adds a handy add-in to RStudio. Install
+it and use the new “Addins \> Colour Picker” tool to create a vector of
+colours for your custom palette.
 
 > That was a lot of options about colours, but know that in some cases,
 > the most straight-forward way to make your visualisations readable by
@@ -669,20 +668,19 @@ all the necessary commands in your script.
     -   [ggplot2
         cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
     -   Official [ggplot2
-        documentation](http://docs.ggplot2.org/current/)
-    -   Official [ggplot2 website](http://ggplot2.tidyverse.org/)
+        documentation](https://docs.ggplot2.org/current/)
+    -   Official [ggplot2 website](https://ggplot2.tidyverse.org/)
     -   [Chapter on data
-        visualisation](http://r4ds.had.co.nz/data-visualisation.html) in
-        the book *R for Data Science*
+        visualisation](https://r4ds.had.co.nz/data-visualisation.html)
+        in the book *R for Data Science*
     -   [From Data to Viz](https://www.data-to-viz.com/), a website to
         explore different visualisations and the code that generates
         them
     -   Selva Prabhakaran’s [*r-statistics.co* section on
-        ggplot2](http://r-statistics.co/ggplot2-Tutorial-With-R.html)
+        ggplot2](https://r-statistics.co/ggplot2-Tutorial-With-R.html)
     -   [Coding Club’s data visualisation
         tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html)
-    -   [Cookbook for R graphs](http://www.cookbook-r.com/Graphs/)
+    -   [Cookbook for R graphs](https://www.cookbook-r.com/Graphs/)
     -   [STHDA’s ggplot2
-        essentials](http://www.sthda.com/english/wiki/ggplot2-essentials)
--   Our compilation of [general R
-    resources](https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md)
+        essentials](https://www.sthda.com/english/wiki/ggplot2-essentials)
+-   Our compilation of [general R resources](/R/usefullinks.md)
