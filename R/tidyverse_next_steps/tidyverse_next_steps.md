@@ -6,7 +6,7 @@ Stéphane Guillou
 ## Setting up
 
 > If needed, review the [installation
-> instructions](R/Installation.md#r--rstudio-installation-instructions).
+> instructions](/R/Installation.md#r--rstudio-installation-instructions).
 
 -   If you are using your own laptop please open RStudio
     -   Make sure you have a working Internet connection
@@ -662,6 +662,6 @@ ggplotly(pdif)
     -   [tidyr](https://raw.githubusercontent.com/rstudio/cheatsheets/master/tidyr.pdf)
     -   [purrr](https://raw.githubusercontent.com/rstudio/cheatsheets/master/purrr.pdf)
 -   Explore our [recommended resources, online and around
-    UQ](R/usefullinks.md#what-next)
+    UQ](/R/usefullinks.md#what-next)
 -   [Tidy Data
     paper](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf)
