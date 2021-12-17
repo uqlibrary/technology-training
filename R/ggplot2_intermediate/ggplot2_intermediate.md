@@ -1,39 +1,30 @@
 R data visualisation with RStudio and ggplot2: intermediate
 ================
-2021-06-18
-
-> This document is written in R Markdown, and then knitted into a
-> markdown document. The source code is available at:
-> <https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.Rmd>  
-> The published document is available at:
-> <https://gitlab.com/stragu/DSH/blob/master/R/ggplot2_intermediate/ggplot2_intermediate.md>
-
-If you need to review the installation instructions:
-<https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
+2021-12-17
 
 ## Essential shortcuts
 
-  - function or dataset help: press <kbd>F1</kbd> with your cursor
+-   function or dataset help: press <kbd>F1</kbd> with your cursor
     anywhere in a function name.
-  - execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
-  - assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
+-   execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+-   assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
 ## Open RStudio
 
 On library computers:
 
-  - Log in with your UQ username and password (use your student
+-   Log in with your UQ username and password (use your student
     credentials if you are both staff and student)
-  - Make sure you have a working internet connection
-  - Go to search the magnifying glass (bottom left)
-  - Open the ZENworks application
-  - Look for the letter R
-  - Double click on RStudio which will install both R and RStudio
+-   Make sure you have a working internet connection
+-   Go to search the magnifying glass (bottom left)
+-   Open the ZENworks application
+-   Look for the letter R
+-   Double click on RStudio which will install both R and RStudio
 
 If you are using your own laptop:
 
-  - Make sure you have a working internet connection
-  - Open RStudio
+-   Make sure you have a working internet connection
+-   Open RStudio
 
 ## Disclaimer
 
@@ -44,14 +35,14 @@ ggplot2 before.
 
 During this hands-on session, you will:
 
-  - install a tool for picking colours
-  - customise scales and ranges
-  - divide a visualisation into facets
-  - explore new geometries
-  - modify statistical transformations
-  - adjust a geometry’s position
-  - further modify themes
-  - make a plot interactive
+-   install a tool for picking colours
+-   customise scales and ranges
+-   divide a visualisation into facets
+-   explore new geometries
+-   modify statistical transformations
+-   adjust a geometry’s position
+-   further modify themes
+-   make a plot interactive
 
 ## Material
 
@@ -63,17 +54,17 @@ During this hands-on session, you will:
 **Create a new project** to keep everything nicely contained in one
 directory:
 
-  - Click the “Create a project” button (top left cube icon)
-  - Click “New Directory”
-  - Click “New Project” (“Empty project” if you have an older version of
+-   Click the “Create a project” button (top left cube icon)
+-   Click “New Directory”
+-   Click “New Project” (“Empty project” if you have an older version of
     RStudio)
-  - In “Directory name”, type the name of your project,
-    e.g. “ggplot2\_intermediate”
-  - Select the folder where to locate your project:
-    e.g. `Documents/RProjects`, which you can create if it doesn’t
-    exist yet. You can use your H drive at UQ to make sure you can find
-    it again.
-  - Click the “Create Project” button
+-   In “Directory name”, type the name of your project,
+    e.g. “ggplot2_intermediate”
+-   Select the folder where to locate your project:
+    e.g. `Documents/RProjects`, which you can create if it doesn’t exist
+    yet. You can use your H drive at UQ to make sure you can find it
+    again.
+-   Click the “Create Project” button
 
 Let’s also create a “plots” folder to store exports:
 
@@ -93,8 +84,6 @@ Finally, make sure you **load ggplot2** so we can use its functions:
 ``` r
 library(ggplot2)
 ```
-
-    ## Warning: package 'ggplot2' was built under R version 4.0.5
 
 ### Import data
 
@@ -143,9 +132,9 @@ ggplot(data = gapminder,
 
 Remember that the 3 main elements of a ggplot2 visualisation are:
 
-  - the *data*
-  - the *mapping of aesthatics to variables*
-  - the *geometry*
+-   the *data*
+-   the *mapping of aesthatics to variables*
+-   the *geometry*
 
 ### Aesthetics available
 
@@ -154,12 +143,13 @@ available, depending on the geometry that you are using.
 
 Here are some common examples:
 
-  - To change the *shape* based on a variable, use `shape = <discrete
-    variable>` inside the `aes()` call.
-  - If you want to change the size of the geometric object, you can use
+-   To change the *shape* based on a variable, use
+    `shape = <discrete variable>` inside the `aes()` call.
+-   If you want to change the size of the geometric object, you can use
     the `size = <continuous variable>` argument.
-  - Similarly, to change the *colour* based on a variable, use `colour =
-    <variable>` and `fill = <variable>` inside the `aes()` call.
+-   Similarly, to change the *colour* based on a variable, use
+    `colour = <variable>` and `fill = <variable>` inside the `aes()`
+    call.
 
 Let’s modify our plot to colour the points according to the continent
 variable.
@@ -242,7 +232,7 @@ alone might not be enough to picture them, so head to
 <http://colorbrewer2.org/> to find the one that you like. Importantly,
 the website allows you to tick the options “colorblind safe” and “print
 friendly”… which would rule out all the qualitative palettes for our 5
-continents\!
+continents!
 
 A useful package that introduces many palettes for ggplot2 is the
 colorspace package, which promotes the [Hue-Chroma-Luminance (HCL)
@@ -258,11 +248,6 @@ Let’s first use an alternative qualitative palette:
 
 ``` r
 library(colorspace)
-```
-
-    ## Warning: package 'colorspace' was built under R version 4.0.5
-
-``` r
 p +
   scale_colour_discrete_qualitative()
 ```
@@ -271,7 +256,7 @@ p +
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
-This is the default ggplot2 palette\! Which means ggplot2 already use a
+This is the default ggplot2 palette! Which means ggplot2 already use a
 HCL palette. But having the colorspace package loaded, we can now see
 all the palettes available:
 
@@ -383,7 +368,7 @@ represent part of the data because of the axis limits.
 The method we use works for our point geometry, but is problematic for
 other shapes that could disappear entirely or change their appearance
 because they are based on different data: we are actually **clipping**
-our visualisation\! Notice how the trend line now looks different?
+our visualisation! Notice how the trend line now looks different?
 
 A better way to focus on one part of the plot would be to modify the
 **coordinate system**:
@@ -406,7 +391,7 @@ visualisations, or to `coord_map()` to visualise spatial data.
 The plotly package brings the power of the Plotly javascript library to
 R. Install it with `install.packages(plotly)`, and you’ll then be able
 to convert a ggplot2 visualisation into an interactive HTML
-visualisation with one single function\!
+visualisation with one single function!
 
 Let’s reuse our original plot object, and feed it to `ggplotly()`:
 
@@ -461,7 +446,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
 > names** is useful when learning the ins and outs of a function, but as
 > you get more familiar with ggplot2, you can do away with the obvious
 > ones, like `data =` and `mapping =` (as long as they are used in the
-> right order\!).
+> right order!).
 
 Let’s change the bin width:
 
@@ -493,7 +478,7 @@ ggplot(gapminder, aes(x = lifeExp, colour = continent)) +
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
-…but it only colours the outline of the rectangles\!
+…but it only colours the outline of the rectangles!
 
 Some aesthetics will work better with some geometries than others. We
 have to use the `fill` aesthetic to colour the areas instead:
@@ -528,11 +513,7 @@ We can also modify the y-axis labels with the `labs()` function.
 
 ``` r
 library(scales)
-```
 
-    ## Warning: package 'scales' was built under R version 4.0.5
-
-``` r
 ggplot(gapminder,
        aes(x = lifeExp,
            fill = continent)) +
@@ -594,7 +575,7 @@ ggplot(gapminder,
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-32-1.png)<!-- -->
 
 If you use a pre-built theme function, make sure you place it before
-customising the legend. Otherwise it will bring the legend back\!
+customising the legend. Otherwise it will bring the legend back!
 
 ``` r
 ggplot(gapminder,
@@ -637,15 +618,15 @@ ggplot(diamonds,
 
 In this visualisation:
 
-  - 4 different variables are represented, thanks to both aesthetics and
+-   4 different variables are represented, thanks to both aesthetics and
     facets
-  - two geometries are layered on top of each other to repersent a
+-   two geometries are layered on top of each other to repersent a
     relationship
-  - both geometries are customised to make the plot readable (important
+-   both geometries are customised to make the plot readable (important
     here, since there are close to 54000 rows of data)
-  - the default the colour scale is replaced
-  - a built-in theme is used
-  - a label clarifies the unit of measurement
+-   the default the colour scale is replaced
+-   a built-in theme is used
+-   a label clarifies the unit of measurement
 
 ### Boxplots
 
@@ -674,7 +655,7 @@ This is useful if the x labels get too cramped on the x axis: you can
 rotate them to whatever angle you want.
 
 > Try turning this plot into an interactive visualisation to see stats
-> easily\!
+> easily!
 
 ### Close project
 
@@ -684,23 +665,24 @@ all the necessary commands in your script.
 
 ## Useful links
 
-  - For ggplot2:
-    
-      - ggplot2 cheatsheet:
-        <https://www.rstudio.org/links/data_visualization_cheat_sheet>
-      - Official ggplot2 documentation:
-        <http://docs.ggplot2.org/current/>
-      - Official ggplot2 website: <http://ggplot2.tidyverse.org/>
-      - Chapter on data visualisation in the book *R for Data Science*:
-        <http://r4ds.had.co.nz/data-visualisation.html>
-      - from Data to Viz: <https://www.data-to-viz.com/>
-      - Selva Prabhakaran’s *r-statistics.co* section on ggplot2:
-        <http://r-statistics.co/ggplot2-Tutorial-With-R.html>
-      - Coding Club’s data visualisation tutorial:
-        <https://ourcodingclub.github.io/2017/01/29/datavis.html>
-      - Cookbook for R graphs: <http://www.cookbook-r.com/Graphs/>
-      - STHDA’s ggplot2 essentials:
-        <http://www.sthda.com/english/wiki/ggplot2-essentials>
-
-  - More resources for R in general:
-    <https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md>
+-   For ggplot2:
+    -   [ggplot2
+        cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
+    -   Official [ggplot2
+        documentation](http://docs.ggplot2.org/current/)
+    -   Official [ggplot2 website](http://ggplot2.tidyverse.org/)
+    -   [Chapter on data
+        visualisation](http://r4ds.had.co.nz/data-visualisation.html) in
+        the book *R for Data Science*
+    -   [From Data to Viz](https://www.data-to-viz.com/), a website to
+        explore different visualisations and the code that generates
+        them
+    -   Selva Prabhakaran’s [*r-statistics.co* section on
+        ggplot2](http://r-statistics.co/ggplot2-Tutorial-With-R.html)
+    -   [Coding Club’s data visualisation
+        tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html)
+    -   [Cookbook for R graphs](http://www.cookbook-r.com/Graphs/)
+    -   [STHDA’s ggplot2
+        essentials](http://www.sthda.com/english/wiki/ggplot2-essentials)
+-   Our compilation of [general R
+    resources](https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md)

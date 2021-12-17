@@ -1,21 +1,21 @@
 R and the Tidyverse: next steps
 ================
 Stéphane Guillou
-2021-09-10
+2021-12-17
 
 ## Setting up
 
 > If needed, review the [installation
-> instructions](https://gitlab.com/stragu/DSH/blob/master/R/Installation.md).
+> instructions](R/Installation.md#r--rstudio-installation-instructions).
 
-  - If you are using your own laptop please open RStudio
-      - Make sure you have a working Internet connection
-  - On the Library’s training computers:
-      - Log in with your UQ username and password
-      - Make sure you have a working Internet connection
-      - Open the ZENworks application
-      - Look for “RStudio”
-      - Double click on RStudio, which will install both R and RStudio
+-   If you are using your own laptop please open RStudio
+    -   Make sure you have a working Internet connection
+-   On the Library’s training computers:
+    -   Log in with your UQ username and password
+    -   Make sure you have a working Internet connection
+    -   Open the ZENworks application
+    -   Look for “RStudio”
+    -   Double click on RStudio, which will install both R and RStudio
 
 With RStudio open, let’s make sure we have the necessary packages
 installed by running this command (this might take a few minutes):
@@ -30,8 +30,8 @@ This will install all the Tidyverse packages (and their dependencies).
 
 tidyr and purrr, just like dplyr and ggplot2, are core to the Tidyverse.
 
-  - tidyr can be used to tidy your data
-  - purrr is useful to apply functions iteratively on lists or vectors
+-   tidyr can be used to tidy your data
+-   purrr is useful to apply functions iteratively on lists or vectors
 
 ## Create a project and a script
 
@@ -51,32 +51,14 @@ We can use one single command to load the 8 core Tidyverse packages:
 library(tidyverse)
 ```
 
-    ## Warning: package 'tidyverse' was built under R version 4.0.5
+    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
 
-    ## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+    ## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+    ## ✓ tibble  3.1.6     ✓ dplyr   1.0.7
+    ## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
+    ## ✓ readr   2.1.1     ✓ forcats 0.5.1
 
-    ## v ggplot2 3.3.5     v purrr   0.3.4
-    ## v tibble  3.1.4     v dplyr   1.0.7
-    ## v tidyr   1.1.3     v stringr 1.4.0
-    ## v readr   2.0.1     v forcats 0.5.1
-
-    ## Warning: package 'ggplot2' was built under R version 4.0.5
-
-    ## Warning: package 'tibble' was built under R version 4.0.5
-
-    ## Warning: package 'tidyr' was built under R version 4.0.5
-
-    ## Warning: package 'readr' was built under R version 4.0.5
-
-    ## Warning: package 'purrr' was built under R version 4.0.5
-
-    ## Warning: package 'dplyr' was built under R version 4.0.5
-
-    ## Warning: package 'stringr' was built under R version 4.0.5
-
-    ## Warning: package 'forcats' was built under R version 4.0.5
-
-    ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -92,9 +74,9 @@ read and populate. This is usually called “wide format”. Tidy data is
 
 The ultimate rules of tidy data are:
 
-  - Each row is an observation
-  - Each column is a variable
-  - Each cell contains one single value
+-   Each row is an observation
+-   Each column is a variable
+-   Each cell contains one single value
 
 > To learn more about Tidy Data, you can read [Hadley Wickham’s 2014
 > article on the
@@ -111,7 +93,7 @@ Let’s download the file:
 
 ``` r
 # download data, save locally
-download.file(url = "https://gitlab.com/stragu/DSH/raw/master/R/tidyverse_next_steps/data_wb_climate.csv",
+download.file(url = "https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/tidyverse_next_steps/data_wb_climate.csv",
               destfile = "data_wb_climate.csv")
 ```
 
@@ -125,15 +107,15 @@ climate_raw <- read_csv("data_wb_climate.csv",
 
     ## Rows: 1165 Columns: 28
 
-    ## -- Column specification --------------------------------------------------------
+    ## ── Column specification ────────────────────────────────────────────────────────
     ## Delimiter: ","
     ## chr  (4): Country code, Country name, Series code, Series name
     ## dbl (23): SCALE, Decimals, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1...
     ## lgl  (1): 2011
 
     ## 
-    ## i Use `spec()` to retrieve the full column specification for this data.
-    ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 We defined with the `na` argument that, in this dataset, missing data is
 recorded as “..”.
@@ -183,10 +165,10 @@ codes <- climate_long %>%
 codes
 ```
 
-    ## # A tibble: 5 x 2
+    ## # A tibble: 5 × 2
     ##   `Series code`        `Series name`                                            
     ##   <chr>                <chr>                                                    
-    ## 1 EG.USE.COMM.GD.PP.KD Energy use per units of GDP (kg oil eq./$1,000 of 2005 P~
+    ## 1 EG.USE.COMM.GD.PP.KD Energy use per units of GDP (kg oil eq./$1,000 of 2005 P…
     ## 2 EG.USE.PCAP.KG.OE    Energy use per capita (kilograms of oil equivalent)      
     ## 3 EN.ATM.CO2E.KT       CO2 emissions, total (KtCO2)                             
     ## 4 EN.ATM.CO2E.PC       CO2 emissions per capita (metric tons)                   
@@ -245,7 +227,7 @@ unique(climate_tidy$`Country name`)
 ### Visualising
 
 Now that we have clean, tidy data, we can process and visualise it more
-comfortably\! For example, to visualise the increase in KT of
+comfortably! For example, to visualise the increase in KT of
 CO<sup>2</sup>-equivalent for each country:
 
 ``` r
@@ -319,7 +301,7 @@ output
     ##  [1]  19.200   6.000 196.300 123.000   3.695   3.325  17.710   0.000   0.000
     ## [10]   4.000   2.000
 
-Better than having the same code repeated 11 times\!
+Better than having the same code repeated 11 times!
 
 We allocate space in the expected **output** first (more efficient). We
 then specify the **sequence** for the loop, and put what we want to
@@ -334,11 +316,11 @@ vector or a list (e.g. a dataframe).
 
 At purrr’s core, there is the map family:
 
-  - `map()` outputs a list.
-  - `map_lgl()` outputs a logical vector.
-  - `map_int()` outputs an integer vector.
-  - `map_dbl()` outputs a double vector.
-  - `map_chr()` outputs a character vector.
+-   `map()` outputs a list.
+-   `map_lgl()` outputs a logical vector.
+-   `map_int()` outputs an integer vector.
+-   `map_dbl()` outputs a double vector.
+-   `map_chr()` outputs a character vector.
 
 For example, to do a similar operation to our previous for loop:
 
@@ -671,3 +653,15 @@ pdif
 # interactive plot
 ggplotly(pdif)
 ```
+
+## What next
+
+-   [Chapter on iteration](https://r4ds.had.co.nz/iteration.html) in the
+    book *R for Data Science*
+-   Cheatsheets:
+    -   [tidyr](https://raw.githubusercontent.com/rstudio/cheatsheets/master/tidyr.pdf)
+    -   [purrr](https://raw.githubusercontent.com/rstudio/cheatsheets/master/purrr.pdf)
+-   Explore our [recommended resources, online and around
+    UQ](R/usefullinks.md#what-next)
+-   [Tidy Data
+    paper](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf)

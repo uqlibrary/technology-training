@@ -1,13 +1,7 @@
 R data visualisation with RStudio and ggplot2: introduction
 ================
 UQ Library
-2021-06-11
-
-## Before we start
-
-> If you don’t have both R and RStudio installed, you can use our
-> [installation
-> instructions](https://gitlab.com/stragu/DSH/blob/master/R/Installation.md).
+2021-12-17
 
 ## What are we going to learn?
 
@@ -26,6 +20,8 @@ During this session, you will:
 ## Open RStudio
 
 -   If you are using your own laptop please open RStudio
+    -   If you need theme, we have [installation
+        instruction](/R/Installation.md#r--rstudio-installation-instructions)
     -   Make sure you have a working Internet connection
 -   On the Library computers (the first time takes about 10 min):
     -   Log in with your UQ username and password (use your student
@@ -33,7 +29,8 @@ During this session, you will:
     -   Make sure you have a working Internet connection
     -   Open the ZENworks application
     -   Look for RStudio
-    -   Double-click on RStudio which will install both R and RStudio
+    -   Double-click on RStudio which will install both R and RStudio,
+        and open RStudio
 
 ## Essential shortcuts
 
@@ -68,7 +65,7 @@ Let’s create a new **R project** to keep everything tidy:
 -   Click “New Directory”
 -   Click “New Project”
 -   In “Directory name”, type the name of your project,
-    e.g. “ggplot2\_intro”
+    e.g. “ggplot2_intro”
 -   Select the folder where to locate your project: e.g. a
     `Documents/RProjects` folder, which you can create if it doesn’t
     exist yet.
@@ -83,7 +80,7 @@ We will write ggplot2 code more comfortably in a **script**:
     <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> or (for Mac)
     <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an
     “Untitled1” file.
--   Go to “File &gt; Save” or press (for Windows/Linux)
+-   Go to “File > Save” or press (for Windows/Linux)
     <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac)
     <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save
     your file and the name of the new file.
@@ -674,17 +671,19 @@ all the necessary commands in your script.
     -   [ggplot2
         cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
     -   Official [ggplot2
-        documentation](http://docs.ggplot2.org/current/)
-    -   Official [ggplot2 website](http://ggplot2.tidyverse.org/)
+        documentation](https://docs.ggplot2.org/current/)
+    -   Official [ggplot2 website](https://ggplot2.tidyverse.org/)
     -   [Chapter on data
-        visualisation](http://r4ds.had.co.nz/data-visualisation.html) in
-        the book *R for Data Science*
+        visualisation](https://r4ds.had.co.nz/data-visualisation.html)
+        in the book *R for Data Science*
+    -   [From Data to Viz](https://www.data-to-viz.com/), a website to
+        explore different visualisations and the code that generates
+        them
     -   Selva Prabhakaran’s [*r-statistics.co* section on
-        ggplot2](http://r-statistics.co/ggplot2-Tutorial-With-R.html)
+        ggplot2](https://r-statistics.co/ggplot2-Tutorial-With-R.html)
     -   [Coding Club’s data visualisation
         tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html)
-    -   [Cookbook for R graphs](http://www.cookbook-r.com/Graphs/)
+    -   [Cookbook for R graphs](https://www.cookbook-r.com/Graphs/)
     -   [STHDA’s ggplot2
-        essentials](http://www.sthda.com/english/wiki/ggplot2-essentials)
--   Our compilation of [general R
-    resources](https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md)
+        essentials](https://www.sthda.com/english/wiki/ggplot2-essentials)
+-   Our compilation of [general R resources](/R/usefullinks.md)
