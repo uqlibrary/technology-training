@@ -1,4 +1,4 @@
-# UQ Library training resources
+# UQ Library technology training resources
 
 Here you will find resources related to R, Python, LaTeX, Bash, Git, OpenStreetMap, QGIS, OpenRefine, Audacity and Voyant Tools training sessions held at the UQ Library.
 
@@ -18,7 +18,7 @@ This is the Library's **regular R cycle**:
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
-| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) <sup>[source](R/rstudio_intro/rstudio_intro.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rkfyJemYE) | [YT](https://www.youtube.com/watch?v=BoDTNbP7_OQ&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2&t=0s), [LBRY](lbry://RwithRStudiogettingstarted#5) |
+| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) <sup>[source](R/rstudio_intro/rstudio_intro.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rkfyJemYE) | [YT](https://www.youtube.com/watch?v=BoDTNbP7_OQ&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2&t=0s) |
 | R data manipulation with RStudio and dplyr | [md](R/dplyr/dplyr.md) <sup>[source](R/dplyr/dplyr.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/HyyLCm3KN) | [YT](https://www.youtube.com/watch?v=vqvsyaaqJUk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2) |
 | R data visualisation with RStudio and ggplot2: introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rJIPr0vi4) | [YT](https://www.youtube.com/watch?v=LoeBgXSJWTw&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=3) |
 | R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rJLdcW-24) | [YT](https://www.youtube.com/watch?v=zzXCkYR84M0&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=4) |
@@ -73,18 +73,18 @@ Some sessions are not run regularly, but files can also be hosted here.
 Files available for each course, hosted in this repository:
 
 * **Markdown material** that the instructor can use to teach, and that attendees can refer to after the course;
-* A **HTML pad export** that can be used to initialise a collaborative pad to use during sessions ([https://etherpad.wikimedia.org](Etherpad), [https://cryptpad.fr/code](Cryptpad) and [https://demo.hedgedoc.org](HedgeDoc) are recommended to publish).
+* A **HTML pad export** that can be used to initialise a collaborative pad to use during sessions ([Etherpad](https://etherpad.wikimedia.org), [CryptPad](https://cryptpad.fr/code) and [HedgeDoc](https://demo.hedgedoc.org) are recommended to publish).
 
 ## Licence
 
-All of the information on this repository (https://gitlab.com/stragu/DSH/) is freely available under the [Creative Commons - Attribution 4.0 International Licence](https://creativecommons.org/licenses/by/4.0/). You may re-use and re-mix the material in any way you wish, without asking permission, provided you cite the original source. However, we'd love to hear about what you do with it!
+All of the information on this repository (https://github.com/uqlibrary/technology-training) is freely available under the [Creative Commons - Attribution 4.0 International Licence](https://creativecommons.org/licenses/by/4.0/). You may re-use and re-mix the material in any way you wish, without asking permission, provided you cite the original source. However, we'd love to hear about what you do with it!
 
 Part of this repository is based on [Paula Andrea Martinez](https://orcid.org/0000-0002-8990-1985)'s work [available under the same CC-By-4.0 licence](https://github.com/orchid00/CDS).
 
 ## Contributing
 
-If you have questions about contributing to the material, please contact the UQ Library. You can also raise an issue or submit a change in this repository if you spot something that needs fixing. If you would like to develop on top of this, please cite the source as mentioned above, and conserve the git history if possible (so authors are credited).
+If you have questions about contributing to the material, please contact the UQ Library. You can also [raise an issue](https://github.com/uqlibrary/technology-training/issues) or submit a change in this repository if you spot something that needs fixing. If you would like to develop on top of this, please cite the source as mentioned above, and conserve the git history if possible (so authors are credited).
 
 ## Contact
 
-If you are part of the UQ community, you can contact the library trainers for a 1-on-1 consultation, an enquiry about sessions, or any question about the programs supported by the UQ Library: training<sub><[commercial at](https://en.wikipedia.org/wiki/At_sign)></sub>library.uq.edu.au
+If you are part of the UQ community, you can contact the technology trainers for a 1-on-1 consultation, an enquiry about sessions, or any question about the programs supported by the UQ Library: training<sub><[commercial at](https://en.wikipedia.org/wiki/At_sign)></sub>library.uq.edu.au
