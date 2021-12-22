@@ -1,28 +1,22 @@
 R reproducible reports with R Markdown and knitr
 ================
 Stéphane Guillou
-2020-11-30
-
-> This document is redacted in R Markdown; the source file is available
-> here:
-> <https://gitlab.com/stragu/DSH/blob/master/R/reports/reports.Rmd> It
-> is then knitted as a markdown file, which is the best version to view
-> online and to print:
-> <https://gitlab.com/stragu/DSH/blob/master/R/reports/reports.md>
+2021-12-22
 
 ## Setting up
 
-> If you want to review the installation instructions:
-> <https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
+> If you don’t have R and RStudio installed already, we have
+> [installation
+> instructions](/R/Installation.md#r--rstudio-installation-instructions)
 
-  - If you are using your own laptop please open RStudio
-      - Make sure you have a working Internet connection
-  - On the Library’s training computers:
-      - Log in with your UQ username and password
-      - Make sure you have a working Internet connection
-      - Open the ZENworks application
-      - Look for “RStudio”
-      - Double click on RStudio, which will install both R and RStudio
+-   If you are using your own laptop please open RStudio
+    -   Make sure you have a working Internet connection
+-   On the Library’s training computers:
+    -   Log in with your UQ username and password
+    -   Make sure you have a working Internet connection
+    -   Open the ZENworks application
+    -   Look for “RStudio”
+    -   Double click on RStudio, which will install both R and RStudio
 
 With RStudio open, let’s make sure we have the necessary packages
 installed by running this command (this might take a few minutes):
@@ -37,7 +31,7 @@ visualisations, and the htmltools for having all bases covered regarding
 rendering HTML documents.
 
 > If R asks about installing a binary or building from source, **pick
-> the binary option**: it will be faster\!
+> the binary option**: it will be faster!
 
 ## What are we going to learn?
 
@@ -65,10 +59,11 @@ See how the document is already populated with a template? Scroll
 through and have a look at how it is structured. The three main elements
 are:
 
-  - a **YAML header** at the top, between the `---` tags;
-  - **Markdown** sections, where we can write prose, format text and add
+-   a **YAML header** at the top, between the `---` tags;
+-   **Markdown** sections, where we can write prose, format text and add
     headers;
-  - and **code chunks**, in between ` ``` ` where we can write R code.
+-   and **code chunks**, in between ```` ``` ```` where we can write R
+    code.
 
 But before we edit this document, let’s go straight to the **“knit”
 button** at the top of the source panel. Clicking that button will
@@ -82,7 +77,7 @@ and explanations?
 ## Editing the document
 
 Let’s remove everything below our YAML header, and start writing our own
-report\!
+report!
 
 ### Markdown syntax
 
@@ -95,7 +90,7 @@ let’s add a header and some text about the source of the data and
 importing it. For example:
 
     ## National Greenhouse Gas Inventory data
-    
+
     Our data comes from the NGA, and is released under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) licence. The latest release can be found on [this page](https://publications.industry.gov.au/publications/climate-change/climate-change/climate-science-data/greenhouse-gas-measurement/publications.html)
 
 Notice how we used a `[text](link)` syntax to add a link to a website?
@@ -104,11 +99,11 @@ Notice how we used a `[text](link)` syntax to add a link to a website?
 
 We can also style our text by surrounding with other tags:
 
-  - `**` for **bold**
-  - `*` for *italic*
+-   `**` for **bold**
+-   `*` for *italic*
 
 Try to style your text, and add a header of level 3 for a section on
-“importing the data”. Knit the document to see if it works\!
+“importing the data”. Knit the document to see if it works!
 
 ### R code chunks
 
@@ -132,11 +127,11 @@ Now, try to knit the document and see what it looks like.
 #### Challenge 2
 
 Inside a new chunk, add some code to import the dataset located
-[here](https://gitlab.com/stragu/DSH/-/raw/master/R/reports/aus_ghg_2017.csv)
+[here](https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2017.csv)
 into an object called `ghg`.
 
 ``` r
-ghg <- read_csv("https://gitlab.com/stragu/DSH/-/raw/master/R/reports/aus_ghg_2017.csv")
+ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2017.csv")
 ```
 
 > Clicking “Knit” will automatically save your .Rmd file as well as the
@@ -148,8 +143,8 @@ Now, we can add a chunk to show the data, by including this code in it:
 ghg
 ```
 
-    ## # A tibble: 28 x 8
-    ##     year `Agriculture, F~ `Forestry - Cha~ Mining Manufacturing `Electricity, G~
+    ## # A tibble: 28 × 8
+    ##     year `Agriculture, F… `Forestry - Cha… Mining Manufacturing `Electricity, G…
     ##    <dbl>            <dbl>            <dbl>  <dbl>         <dbl>            <dbl>
     ##  1  1990             286.            -19.1   44.6          68.0             148.
     ##  2  1991             266.            -14.8   46.1          67.9             150.
@@ -161,8 +156,8 @@ ghg
     ##  8  1997             156.            -22.6   54.4          66.9             166.
     ##  9  1998             140.            -22.5   55.4          67.5             178.
     ## 10  1999             151.            -22.0   53.0          68.8             184.
-    ## # ... with 18 more rows, and 2 more variables: `Services, Construction and
-    ## #   Transport` <dbl>, Residential <dbl>
+    ## # … with 18 more rows, and 2 more variables:
+    ## #   Services, Construction and Transport <dbl>, Residential <dbl>
 
 ### Working directory
 
@@ -188,7 +183,7 @@ options** like so:
     {r message=FALSE}
 
 The code will be executed and the output (if there is any) will be
-shown, but the messages won’t\!
+shown, but the messages won’t!
 
 There are many options to choose from, depending on what you want to do
 and show with your chunk of code. For example, to hide both messages and
@@ -218,8 +213,8 @@ Here is an example of a chunk you might use to change default options:
 
 That would make sure that, by default:
 
-  - The code is shown, but
-  - the messages and warnings are hidden.
+-   The code is shown, but
+-   the messages and warnings are hidden.
 
 ## Errors when knitting
 
@@ -251,10 +246,10 @@ ghg_tidy <- pivot_longer(ghg,
 We can also **include code that will be executed *inside* Markdown
 text**. For example, you can write the following sentence:
 
-> The dataset contains GHG emissions for the period `` `r
-> min(ghg_tidy$year)` `` to `` `r max(ghg_tidy$year)` ``. The maximum
-> GHG emissions recorded for the mining sector is `` `r
-> max(ghg_tidy[ghg_tidy$sector == "Mining",]$emissions)` ``.
+> The dataset contains GHG emissions for the period
+> `` `r min(ghg_tidy$year)` `` to `` `r max(ghg_tidy$year)` ``. The
+> maximum GHG emissions recorded for the mining sector is
+> `` `r max(ghg_tidy[ghg_tidy$sector == "Mining",]$emissions)` ``.
 
 We can also use this feature to **auto-update the date** of your report
 every time it is knitted. Replace the `date` line in the YAML header
@@ -305,16 +300,16 @@ to update the whole report is point the data import code to the new
 file, at the top of our document, changing the year to “2018”:
 
 ``` r
-ghg <- read_csv("https://gitlab.com/stragu/DSH/-/raw/master/R/reports/aus_ghg_2018.csv")
+ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2018.csv")
 ```
 
-Knitting again will update all the objects and visualisations for us\!
+Knitting again will update all the objects and visualisations for us!
 This is the power of reproducible reports in R.
 
 With reporducible reports, you can potentially structure and write (most
 of) a report even before you have your research project’s final dataset.
 (Well, at least the data analysis part, maybe not so much the
-conclusions\!)
+conclusions!)
 
 ## Output formats
 
@@ -322,20 +317,20 @@ conclusions\!)
 
 The benefits of using HTML documents are multiple:
 
-  - figures won’t break the flow of the document by jumping to the next
+-   figures won’t break the flow of the document by jumping to the next
     page and leaving a large blank space;
-  - you can include interactive visualisations making use of the latest
+-   you can include interactive visualisations making use of the latest
     HTML features;
-  - they can be directly integrated into a website.
+-   they can be directly integrated into a website.
 
 However, other output formats are available. Here are some examples:
 
-  - `pdf_document` for a non-editable, widespread, portable format
-  - `word_document` and `odt_document` to open and edit with Microsoft
+-   `pdf_document` for a non-editable, widespread, portable format
+-   `word_document` and `odt_document` to open and edit with Microsoft
     Word and LibreOffice Writer
-  - `md_document` for a Markdown file that can easily be published on
+-   `md_document` for a Markdown file that can easily be published on
     GitHub or GitLab
-  - and more, including for creating slides.
+-   and more, including for creating slides.
 
 ### Knitting to PDF
 
@@ -359,14 +354,15 @@ After this, try to change your YAML header’s `output` value to
 
 Related to R Markdown and knitr:
 
-  - *R Markdown Cookbook*, by Yihui Xie and Christophe Dervieux:
-    <https://bookdown.org/yihui/rmarkdown-cookbook/>
-  - Official website by RStudio: <https://rmarkdown.rstudio.com/>
-      - Tutorial: <https://rmarkdown.rstudio.com/lesson-1.html>
-      - Documentation: <https://rmarkdown.rstudio.com/docs/>
-  - R Markdown cheatsheet:
-    <https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf>
+-   *[R Markdown
+    Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)*, by Yihui
+    Xie and Christophe Dervieux
+-   [Official R Markdown website](https://rmarkdown.rstudio.com/) by
+    RStudio
+    -   [Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
+    -   [Documentation](https://rmarkdown.rstudio.com/docs/)
+-   [R Markdown
+    cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
 
-Our list of recommended R resources:
-
-  - <https://gitlab.com/stragu/DSH/-/blob/master/R/usefullinks.md>
+We also have a [list of recommended R
+resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md#what-next).

@@ -9,12 +9,9 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-> This document is redacted in R Markdown; the source file is available here: https://gitlab.com/stragu/DSH/blob/master/R/reports/reports.Rmd
-> It is then knitted as a markdown file, which is the best version to view online and to print: https://gitlab.com/stragu/DSH/blob/master/R/reports/reports.md
-
 ## Setting up
 
-> If you want to review the installation instructions: https://gitlab.com/stragu/DSH/blob/master/R/Installation.md
+> If you don't have R and RStudio installed already, we have [installation instructions](/R/Installation.md#r--rstudio-installation-instructions)
 
 * If you are using your own laptop please open RStudio
     + Make sure you have a working Internet connection
@@ -102,10 +99,10 @@ Now, try to knit the document and see what it looks like.
 
 #### Challenge 2
 
-Inside a new chunk, add some code to import the dataset located [here](https://gitlab.com/stragu/DSH/-/raw/master/R/reports/aus_ghg_2017.csv) into an object called `ghg`.
+Inside a new chunk, add some code to import the dataset located [here](https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2017.csv) into an object called `ghg`.
 
 ```{r import, message=FALSE, warning=FALSE}
-ghg <- read_csv("https://gitlab.com/stragu/DSH/-/raw/master/R/reports/aus_ghg_2017.csv")
+ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2017.csv")
 ```
 
 > Clicking "Knit" will automatically save your .Rmd file as well as the HTML output.
@@ -229,7 +226,7 @@ knitr::opts_chunk$set(fig.width = 8)
 We have an updated version of the dataset. The only thing we need to do to update the whole report is point the data import code to the new file, at the top of our document, changing the year to "2018":
 
 ```{r import_new, echo=TRUE, eval=FALSE}
-ghg <- read_csv("https://gitlab.com/stragu/DSH/-/raw/master/R/reports/aus_ghg_2018.csv")
+ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2018.csv")
 ```
 
 Knitting again will update all the objects and visualisations for us! This is the power of reproducible reports in R.
@@ -270,12 +267,10 @@ After this, try to change your YAML header's `output` value to `pdf_document` an
 
 Related to R Markdown and knitr:
 
-* _R Markdown Cookbook_, by Yihui Xie and Christophe Dervieux: https://bookdown.org/yihui/rmarkdown-cookbook/
-* Official website by RStudio: https://rmarkdown.rstudio.com/
-    * Tutorial: https://rmarkdown.rstudio.com/lesson-1.html
-    * Documentation: https://rmarkdown.rstudio.com/docs/
-* R Markdown cheatsheet: https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf
+* _[R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)_, by Yihui Xie and Christophe Dervieux
+* [Official R Markdown website](https://rmarkdown.rstudio.com/) by RStudio
+    * [Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
+    * [Documentation](https://rmarkdown.rstudio.com/docs/)
+* [R Markdown cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
 
-Our list of recommended R resources:
-
-* https://gitlab.com/stragu/DSH/-/blob/master/R/usefullinks.md
+We also have a [list of recommended R resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md#what-next).
