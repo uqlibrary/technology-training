@@ -693,9 +693,8 @@ function.
 
 ## What next?
 
--   You can see what is next in our [cycle of R
-    lessons](/README.md#r-sessions)
+-   You can see what is next in our [cycle of R lessons](/README.md#r-sessions)
 -   We have a [compilation of resources](R/usefullinks.md) for the rest
     of your R learning
--   And a cheatsheet of [main terms and concepts for
-    R](R/terminology.md)
+-   A cheatsheet of [main terms and concepts for R](R/terminology.md)
+-   Check out the [RStudio IDE cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf)
