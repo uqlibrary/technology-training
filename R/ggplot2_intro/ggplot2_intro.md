@@ -1,7 +1,7 @@
 R data visualisation with RStudio and ggplot2: introduction
 ================
 UQ Library
-2021-12-17
+2022-01-27
 
 ## What are we going to learn?
 
@@ -213,7 +213,7 @@ structure with:
 str(economics)
 ```
 
-    ## spec_tbl_df [574 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+    ## spec_tbl_df [574 x 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
     ##  $ date    : Date[1:574], format: "1967-07-01" "1967-08-01" ...
     ##  $ pce     : num [1:574] 507 510 516 512 517 ...
     ##  $ pop     : num [1:574] 198712 198911 199113 199311 199498 ...
@@ -442,6 +442,14 @@ example, to export a plot for your presentation:
 ``` r
 ggsave(filename = "plots/horiz_bar_pres.png", dpi = "screen")
 ```
+
+> Saving a .svg file with requires installing the svglite package. This
+> packages seems so work best installing in a fresh R session (Session
+> \> Restart R) from source
+> `install.packages("svglite", type = "source")`. Then load the library
+> `library(svglite)` rerun your code including loading previous
+> libraries (`ggplot2` etc.) and now saving a plot with a .svg extension
+> should work!
 
 **Challenge 2 – add a variable and a smooth line**
 
