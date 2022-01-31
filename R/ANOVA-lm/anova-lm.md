@@ -1,4 +1,4 @@
-Anova-linearregression
+RStats Introduction: ANOVA and linear regression
 ================
 UQ Library
 (2022-01-31)
@@ -18,6 +18,7 @@ UQ Library
     -   [Visualize the data](#visualize-the-data)
     -   [Analysis of Variance (ANOVA)](#analysis-of-variance-anova)
     -   [Linear Model](#linear-model)
+-   [The inbetween…](#the-inbetween)
 -   [Introducing Tidymodels](#introducing-tidymodels)
     -   [Build and fit a model](#build-and-fit-a-model)
 -   [Use a model to predict](#use-a-model-to-predict)
@@ -633,9 +634,24 @@ ggplot(data = mpg2,
 
 ![](anova-lm_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
+## The inbetween…
+
+Before going into Tidymodels, it should be mentioned there are *many*
+excellent linear regression packages. To name a few:
+
+-   nlme
+-   lmer
+-   lmerTest
+-   glmmTMB
+-   and more…
+
+The packages vary in the methods, how to specify random factors, etc.
+The model outputs also tend to be not so friendly to export into a table
+and document.
+
 ## Introducing Tidymodels
 
-Like the tidyverse package, the tidymodels framework is a collection of
+Like the tidyverse package, the Tidymodels framework is a collection of
 packages for modeling and machine learning following the tidyverse
 principles.
 
