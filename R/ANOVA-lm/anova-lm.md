@@ -1,7 +1,7 @@
 RStats Introduction: ANOVA and linear regression
 ================
 UQ Library
-(2022-01-31)
+(2022-02-01)
 
 -   [What are we going to learn?](#what-are-we-going-to-learn)
 -   [Keep in mind](#keep-in-mind)
@@ -150,7 +150,7 @@ urchins <-
    # read in the data
    read_csv("https://tidymodels.org/start/models/urchins.csv") %>% 
    # change the names to be more description
-setNames(c("food_regime", "initial_volume", "width")) %>% 
+   setNames(c("food_regime", "initial_volume", "width")) %>% 
    # convert food_regime from chr to a factor, helpful for modeling
    mutate(food_regime = factor(food_regime, 
                                levels = c("Initial", "Low", "High")))
@@ -202,23 +202,11 @@ plot(width ~ initial_volume, data = urchins)
 
 ![](anova-lm_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
 
-``` r
-boxplot(mpg ~ cyl, data = mtcars)
-```
-
-![](anova-lm_files/figure-gfm/unnamed-chunk-2-3.png)<!-- -->
-
-``` r
-plot(mpg ~ cyl, data = mtcars)
-```
-
-![](anova-lm_files/figure-gfm/unnamed-chunk-2-4.png)<!-- -->
-
 We can see that there are some relationships between the response
 variable (width) and our two covariates (food_regime and initial
 volume). But what about the interaction between the two covariates?
 
-**Challenge 1 - use ggplot2 to make a plot visualizing the interaction
+**Challenge 1 - Use ggplot2 to make a plot visualizing the interaction
 between our two variables. Add a trendline to the data.**
 
 > Hint: think about grouping and coloring.
@@ -230,16 +218,12 @@ ggplot(urchins,
            col = food_regime)) +
    geom_point() +
    geom_smooth(method = "lm", se = FALSE) + # add a linear trendline with out a confidence interval e.g., se = FALSE
-   scale_color_viridis_d(option = "plasma", end = 0.7)
+   scale_color_viridis_d(option = "plasma", end = 0.7)   # change to color blind friendly palette, end is a corrected hue value
 ```
 
     ## `geom_smooth()` using formula 'y ~ x'
 
 ![](anova-lm_files/figure-gfm/ggplot%20urchins-1.png)<!-- -->
-
-``` r
-      # change the color palette, end is a corrected hue value
-```
 
 Urchins that were larger in volume at the start of the experiment tended
 to have wider sutures at the end. Slopes of the lines look different so
@@ -264,7 +248,7 @@ variables.
 > `response variable ~ covariate1 + covariate2`. The \* denotes the
 > inclusion of both main effects and interactions which we have done
 > below. The formula below is equivalent to
-> `reponse ~ covar1 + covar2 + covar1:covar2` i.e. the main effect of
+> `reponse ~ covar1 + covar2 + covar1:covar2` i.e., the main effect of
 > covar 1 and covar 2, and the interaction between the two.
 
 ``` r
@@ -310,17 +294,6 @@ TukeyHSD(aov_urch)
 The comparison between High-Initial and High-Low food regimes are
 significant (p \< 0.05).
 
-``` r
-aov_cars <- aov(mpg ~ cyl, data = mtcars)
-summary(aov_cars)
-```
-
-    ##             Df Sum Sq Mean Sq F value   Pr(>F)    
-    ## cyl          1  817.7   817.7   79.56 6.11e-10 ***
-    ## Residuals   30  308.3    10.3                     
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
 #### Checking the model
 
 We also want to check that our model is a good fit and does not violate
@@ -337,14 +310,14 @@ normal**.
 hist(urchins$width)
 ```
 
-![](anova-lm_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](anova-lm_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 qqnorm(urchins$width)
 qqline(urchins$width)
 ```
 
-![](anova-lm_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
+![](anova-lm_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
 
 You could also run a Shapiro-Wilk test on the data:
 
@@ -368,17 +341,17 @@ not want too much deviation from 0.
 plot(aov_urch, 1)
 ```
 
-![](anova-lm_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](anova-lm_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 Can also plot the predicted values from the model with the acutal
 values.
 
 ``` r
-plot(predict(aov_urch) ~ aov_urch$model$width)
+plot(predict(aov_urch) ~ urchins$width)
 abline(0, 1, col = "red") # plot a red line with intercept of 0 and slope of 1
 ```
 
-![](anova-lm_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](anova-lm_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 Check the **normality of residuals**, run Shapiro-Wilk test on
 residuals:
@@ -387,7 +360,7 @@ residuals:
 plot(aov_urch, 2)
 ```
 
-![](anova-lm_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](anova-lm_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 ``` r
 shapiro.test(resid(aov_urch))
@@ -405,7 +378,7 @@ result is non-significant (p \> 0.05).
 Check for **homogeneity of variance**
 
 **Challenge 3 - use the help documentation for `leveneTest()` from the
-`car` package to check homogenetity of variance on `food_regime`. **
+`car` package to check homogenetity of variance on `food_regime`.**
 
 > Again, only works for factor groups.
 
@@ -526,7 +499,7 @@ check several aspects of your model in one go:
 check_model(lm_urch)
 ```
 
-![](anova-lm_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](anova-lm_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 **Challenge 5 - conduct your own ANOVA or linear regression using the
 mgp dataset from {ggplot2}.**
@@ -632,7 +605,7 @@ ggplot(data = mpg2,
 
     ## `geom_smooth()` using formula 'y ~ x'
 
-![](anova-lm_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](anova-lm_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 ## The inbetween…
 
@@ -758,7 +731,7 @@ tidy(lm_fit) %>%
                              linetype = 2))
 ```
 
-![](anova-lm_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](anova-lm_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 ## Use a model to predict
 
@@ -845,7 +818,7 @@ ggplot(plot_data,
    labs(y = "urchin size")
 ```
 
-![](anova-lm_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+![](anova-lm_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 There is also an example of a *Bayesian* model in the tidymodels article
 I have not included here.

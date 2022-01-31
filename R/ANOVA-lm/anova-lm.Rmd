@@ -107,7 +107,7 @@ urchins <-
    # read in the data
    read_csv("https://tidymodels.org/start/models/urchins.csv") %>% 
    # change the names to be more description
-setNames(c("food_regime", "initial_volume", "width")) %>% 
+   setNames(c("food_regime", "initial_volume", "width")) %>% 
    # convert food_regime from chr to a factor, helpful for modeling
    mutate(food_regime = factor(food_regime, 
                                levels = c("Initial", "Low", "High")))
@@ -132,17 +132,13 @@ Use a boxplot to visualize width versus `food_regime` as a factor and a scatterp
 ```{r}
 boxplot(width ~ food_regime, data = urchins)
 plot(width ~ initial_volume, data = urchins)
-
-boxplot(mpg ~ cyl, data = mtcars)
-plot(mpg ~ cyl, data = mtcars)
 ```
 
 We can see that there are some relationships between the response variable (width) and our two covariates (food_regime and initial volume). But what about the interaction between the two covariates?
 
-**Challenge 1 - use ggplot2 to make a plot visualizing the interaction between our two variables. Add a trendline to the data.**
+**Challenge 1 - Use ggplot2 to make a plot visualizing the interaction between our two variables. Add a trendline to the data.**
 
 > Hint: think about grouping and coloring.
-
 
 ```{r ggplot urchins}
 ggplot(urchins,
@@ -151,8 +147,7 @@ ggplot(urchins,
            col = food_regime)) +
    geom_point() +
    geom_smooth(method = "lm", se = FALSE) + # add a linear trendline with out a confidence interval e.g., se = FALSE
-   scale_color_viridis_d(option = "plasma", end = 0.7)
-      # change the color palette, end is a corrected hue value
+   scale_color_viridis_d(option = "plasma", end = 0.7)   # change to color blind friendly palette, end is a corrected hue value
 ```
 
 Urchins that were larger in volume at the start of the experiment tended to have wider sutures at the end. Slopes of the lines look different so this effect may depend on the feeding regime indicating we should include an interaction term.
@@ -163,7 +158,7 @@ Information in this section was taken from [rpubs.com](https://rpubs.com/tmcurle
 
 We can do an ANOVA with the `aov()` function to test for differences in sea urchin suture width between our groups. We are technically running and **analysis of covariance (ANCOVA)** as we have both a continuous and a categorical variable. ANOVAs are for categorical variables and we will see that some of the *post-hoc* tests are not amenable to continuous variables.
 
->`aov()` uses the model formula `response variable ~ covariate1 + covariate2`. The * denotes the inclusion of both main effects and interactions which we have done below. The formula below is equivalent to `reponse ~ covar1 + covar2 + covar1:covar2` i.e. the main effect of covar 1 and covar 2, and the interaction between the two.
+>`aov()` uses the model formula `response variable ~ covariate1 + covariate2`. The * denotes the inclusion of both main effects and interactions which we have done below. The formula below is equivalent to `reponse ~ covar1 + covar2 + covar1:covar2` i.e., the main effect of covar 1 and covar 2, and the interaction between the two.
 
 ```{r}
 aov_urch <- aov(width ~ food_regime * initial_volume, 
@@ -182,11 +177,6 @@ TukeyHSD(aov_urch)
 ```
 
 The comparison between High-Initial and High-Low food regimes are significant (p < 0.05). 
-
-```{r}
-aov_cars <- aov(mpg ~ cyl, data = mtcars)
-summary(aov_cars)
-```
 
 #### Checking the model 
 
@@ -221,9 +211,8 @@ plot(aov_urch, 1)
 Can also plot the predicted values from the model with the acutal values.
 
 ```{r}
-plot(predict(aov_urch) ~ aov_urch$model$width)
+plot(predict(aov_urch) ~ urchins$width)
 abline(0, 1, col = "red") # plot a red line with intercept of 0 and slope of 1
-
 ```
 
 Check the **normality of residuals**, run Shapiro-Wilk test on residuals:
@@ -238,7 +227,7 @@ The residuals fall on the Normal Q-Q plot diagonal and the Shapiro-Wilk result i
 
 Check for **homogeneity of variance**
 
-**Challenge 3 - use the help documentation for `leveneTest()` from the `car` package to check homogenetity of variance on `food_regime`. **
+**Challenge 3 - use the help documentation for `leveneTest()` from the `car` package to check homogenetity of variance on `food_regime`.**
 
 > Again, only works for factor groups.
 
