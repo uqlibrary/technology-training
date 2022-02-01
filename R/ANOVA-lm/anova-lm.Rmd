@@ -52,23 +52,17 @@ For any dataset or function doubts that you might have, don't forget the three w
 
 ## Setting up
 
-### Install and load required packages
+### Install and load required packages for first sections
 
 ```{r packages, message=FALSE}
-# install.packages("tidymodels")
-library(tidymodels) # for parsnip package and rest of tidymodels
-
-# helper packages
 # install.packages("readr")
 library(readr)       # for importing data
+# install.packages("dplyr")
+library(dplyr) # data manipulation package
 # install.packages("car")
 library(car)         # Companion to Applied Regression package
 # install.packages("performance")
 library(performance) # Assessment of Regressmon Models performance
-# install.packages("dotwhisker")
-library(dotwhisker)# for visualizing regression results
-# install.packages("parsnip")
-library(parsnip)
 # install.packages("ggplot2")
 library(ggplot2) # data visualization
 ```
@@ -324,6 +318,17 @@ Like the tidyverse package, the Tidymodels framework is a collection of packages
 
 This section is modified from the first [Tidymodels article](https://www.tidymodels.org/start/models/).
 
+### Load more packages
+
+```{r packages, message=FALSE}
+# install.packages("tidymodels")
+library(tidymodels) # for parsnip package and rest of tidymodels
+
+library(dotwhisker)# for visualizing regression results
+# install.packages("parsnip")
+library(parsnip)
+# install.packages("ggplot2")
+```
 ### Build and fit a model
 
 Let's apply a standard two-way analysis of variance (ANOVA) model to the dataset as we did before. For this kind of model, ordinary least squares is a good initial approach.  
