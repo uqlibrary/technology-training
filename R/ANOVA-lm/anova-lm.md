@@ -8,8 +8,8 @@ UQ Library
     -   [Help](#help)
 -   [Open RStudio](#open-rstudio)
 -   [Setting up](#setting-up)
-    -   [Install and load required
-        packages](#install-and-load-required-packages)
+    -   [Install and load required packages for first
+        sections](#install-and-load-required-packages-for-first-sections)
     -   [New project](#new-project)
     -   [Create a script](#create-a-script)
     -   [Introducing our data](#introducing-our-data)
@@ -20,6 +20,7 @@ UQ Library
     -   [Linear Model](#linear-model)
 -   [The inbetween…](#the-inbetween)
 -   [Introducing Tidymodels](#introducing-tidymodels)
+    -   [Load more packages](#load-more-packages)
     -   [Build and fit a model](#build-and-fit-a-model)
 -   [Use a model to predict](#use-a-model-to-predict)
 -   [Close project](#close-project)
@@ -73,25 +74,20 @@ three ways of getting help in RStudio:
 
 ## Setting up
 
-### Install and load required packages
+### Install and load required packages for first sections
 
 ``` r
-# install.packages("tidymodels")
-library(tidymodels) # for parsnip package and rest of tidymodels
-
-# helper packages
 # install.packages("readr")
 library(readr)       # for importing data
+# install.packages("dplyr")
+library(dplyr) # data manipulation package
+# install.packages("ggplot2")
+library(ggplot2) # data visualization
+
 # install.packages("car")
 library(car)         # Companion to Applied Regression package
 # install.packages("performance")
 library(performance) # Assessment of Regressmon Models performance
-# install.packages("dotwhisker")
-library(dotwhisker)# for visualizing regression results
-# install.packages("parsnip")
-library(parsnip)
-# install.packages("ggplot2")
-library(ggplot2) # data visualization
 ```
 
 > Remember to use <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute a command
@@ -630,6 +626,18 @@ principles.
 
 This section is modified from the first [Tidymodels
 article](https://www.tidymodels.org/start/models/).
+
+### Load more packages
+
+``` r
+# install.packages("tidymodels")
+library(tidymodels) # for parsnip package and rest of tidymodels
+
+library(dotwhisker)# for visualizing regression results
+# install.packages("parsnip")
+library(parsnip)
+# install.packages("ggplot2")
+```
 
 ### Build and fit a model
 
