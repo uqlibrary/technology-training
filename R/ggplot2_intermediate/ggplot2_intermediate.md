@@ -1,6 +1,6 @@
 R data visualisation with RStudio and ggplot2: intermediate
 ================
-2021-12-17
+2022-02-03
 
 ## Essential shortcuts
 
@@ -133,7 +133,7 @@ ggplot(data = gapminder,
 Remember that the 3 main elements of a ggplot2 visualisation are:
 
 -   the *data*
--   the *mapping of aesthatics to variables*
+-   the *mapping of aesthetics to variables*
 -   the *geometry*
 
 ### Aesthetics available
@@ -168,7 +168,7 @@ ggplot(data = gapminder,
 
 #### Challenge 2 - save our plot
 
-How can we save our scatterplot to the ‘plots’ directory we created
+How can we save our scatter plot to the ‘plots’ directory we created
 using a function?
 
 ``` r
@@ -381,7 +381,7 @@ p +
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
-The cartesian coordinate system is the default one in ggplot2. You could
+The Cartesian coordinate system is the default one in ggplot2. You could
 change the coordinate system to `coord_polar()` for circular
 visualisations, or to `coord_map()` to visualise spatial data.
 
@@ -592,7 +592,7 @@ ggplot(gapminder,
 
 This extra example gives an idea of how a refined ggplot2 visualisation
 might be constructed. It represents 4 different variables, using the
-larger diamonds dataset.
+larger diamonds data set.
 
 ``` r
 ggplot(diamonds,
@@ -619,7 +619,7 @@ In this visualisation:
 
 -   4 different variables are represented, thanks to both aesthetics and
     facets
--   two geometries are layered on top of each other to repersent a
+-   two geometries are layered on top of each other to represent a
     relationship
 -   both geometries are customised to make the plot readable (important
     here, since there are close to 54000 rows of data)
@@ -655,6 +655,137 @@ rotate them to whatever angle you want.
 
 > Try turning this plot into an interactive visualisation to see stats
 > easily!
+
+### Summarise data and plot
+
+Let’s try summarising the average and standard deviation of life
+expectancy by continent from the gapminder data and piping it directly
+into a ggplot. We will need to install/load dplyr for this.
+
+``` r
+# install.packages("dplyr")
+library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
+gapminder %>% 
+  group_by(continent) %>% 
+  summarise(aveLE = mean(lifeExp),
+            sdLE = sd(lifeExp)) %>% 
+  ggplot(aes(x = continent, 
+             y = aveLE)) +
+  geom_bar(stat = "identity",
+           fill = "tomato") +
+  geom_errorbar(aes(ymin = aveLE - sdLE,
+                    ymax = aveLE + sdLE),
+                width = 0.1)
+```
+
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-37-1.png)<!-- -->
+
+### Plot from mutliple summarised dataframes
+
+In ggplot2, multiple data frames can be plotted on the same plot. For
+example, let’s say we wanted to make a bar graph of total population by
+year with the gapminder data set colored by continent and also include
+the standard deviation of the total population per year at the top of
+each column as an error bar? This may or may not make the most sense in
+terms of representing the data, but we will do it here as an exercise.
+
+1.  summarise the data by year to calculate the standard deviation
+2.  summarise the data by continent and year for the filled columns
+3.  plot the continent data and add the error bars from the first
+    summary
+
+``` r
+total <- gapminder %>% 
+   group_by(year) %>% # group by year
+   summarise(tot = sum(pop), # sum the population for every year
+             SD = sd(pop))
+total
+```
+
+    ## # A tibble: 12 x 3
+    ##     year         tot         SD
+    ##    <int>       <dbl>      <dbl>
+    ##  1  1952 2406957151.  58100863.
+    ##  2  1957 2664404580   65504285.
+    ##  3  1962 2899782974   69788650.
+    ##  4  1967 3217478384   78375481.
+    ##  5  1972 3576977158   88646817.
+    ##  6  1977 3930045807   97481091.
+    ##  7  1982 4289436840  105098650.
+    ##  8  1987 4691477418  114756180.
+    ##  9  1992 5110710260  124502589.
+    ## 10  1997 5515204472  133417391.
+    ## 11  2002 5886977579  140848283.
+    ## 12  2007 6251013179  147621398.
+
+``` r
+cont_ave <- gapminder %>% 
+  group_by(continent, year) %>% 
+  summarise(totalpop = sum(pop)) %>% 
+   ungroup()
+```
+
+    ## `summarise()` has grouped output by 'continent'. You can override using the `.groups` argument.
+
+``` r
+cont_ave
+```
+
+    ## # A tibble: 60 x 3
+    ##    continent  year  totalpop
+    ##    <chr>     <int>     <dbl>
+    ##  1 Africa     1952 237640501
+    ##  2 Africa     1957 264837738
+    ##  3 Africa     1962 296516865
+    ##  4 Africa     1967 335289489
+    ##  5 Africa     1972 379879541
+    ##  6 Africa     1977 433061021
+    ##  7 Africa     1982 499348587
+    ##  8 Africa     1987 574834110
+    ##  9 Africa     1992 659081517
+    ## 10 Africa     1997 743832984
+    ## # ... with 50 more rows
+
+When specifying a data set outside of the main `ggplot()` function - the
+`data =` argument must be used. The other functions `geom_bar()` etc.
+assume the first argument is `mapping = aes()` unless the data argument
+is explicitly defined.
+
+``` r
+ggplot(data = cont_ave, aes(x = year, 
+             y = totalpop)) +
+  geom_bar(aes(fill = continent),
+           stat = "identity") + # default is `stat = count` like a histogram
+  geom_errorbar(data = total, # must use `data = ` to specify a new data set being used
+                 aes(y = tot, # the y from the ggplot(aes()) is inherited, update
+                     ymin = tot - SD, # error bar arguments
+                     ymax = tot + SD),
+                width = 0.8) +
+   labs(x = "Year", 
+        y = "Population in Billions",
+        fill = "Continent") + # relabel legend from the 'fill' in the geom_bar
+   scale_x_continuous(breaks = seq(from = 1952, to = 2007, by = 5)) + # use seq to get years from 1952 - 2007 every 5 yrs to label every column
+   scale_y_continuous(breaks = c(2e9, 4e9, 6e9), # keep the same breaks
+      labels = c("2", "4", "6")) + # relabel
+   theme_dark() + # different theme 
+   theme(panel.grid = element_blank()) # remove the grid lines
+```
+
+![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-39-1.png)<!-- -->
 
 ### Close project
 
