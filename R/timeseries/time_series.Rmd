@@ -1,0 +1,63 @@
+---
+title: "Time series data in R and RStudio"
+output: github_document
+date: "`r Sys.Date()`"
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Essential shortcuts
+
+-   function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in a function name.
+-   execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+-   assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
+
+## Open RStudio
+
+On library computers:
+
+-   Log in with your UQ username and password (use your student credentials if you are both staff and student)
+-   Make sure you have a working internet connection
+-   Go to search the magnifying glass (bottom left)
+-   Open the ZENworks application
+-   Look for the letter R
+-   Double click on RStudio which will install both R and RStudio
+
+If you are using your own laptop:
+
+-   Make sure you have a working internet connection
+-   Open RStudio
+
+## Disclaimer
+
+We will assume basic knowledge of R and RStudio for this course including installing and loading packages, reading in data, creating objects in R, tranforming data frames and tibbles with `dplyr` package.
+
+## What are we going to learn?
+
+During this hands-on session, you will:
+
+- read in data from multiple excel sheets
+- clean the data and extract information
+- use different date/time data formats
+- visualize time series data, “rolling” operations
+- conduct trend analyses with seasonal components
+
+## Material
+
+### Setting up
+
+**Install ggplot2** if you don't already have it, with: `install.packages("ggplot2")`
+
+**Create a new project** to keep everything nicely contained in one directory:
+
+-   Click the "Create a project" button (top left cube icon)
+-   Click "New Directory"
+-   Click "New Project" ("Empty project" if you have an older version of RStudio)
+-   In "Directory name", type the name of your project, e.g. "ggplot2_intermediate"
+-   Select the folder where to locate your project: e.g. `Documents/RProjects`, which you can create if it doesn't exist yet. You can use your H drive at UQ to make sure you can find it again.
+-   Click the "Create Project" button
+
+Let's also create a "plots" folder to store exports:
