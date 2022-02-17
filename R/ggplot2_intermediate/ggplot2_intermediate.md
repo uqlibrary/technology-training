@@ -1,6 +1,6 @@
 R data visualisation with RStudio and ggplot2: intermediate
 ================
-2022-02-03
+2022-02-17
 
 ## Essential shortcuts
 
@@ -689,7 +689,9 @@ gapminder %>%
            fill = "tomato") +
   geom_errorbar(aes(ymin = aveLE - sdLE,
                     ymax = aveLE + sdLE),
-                width = 0.1)
+                width = 0.1) +
+  labs(x = "Continent",
+       y = "Life Expectancy in Years")
 ```
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-37-1.png)<!-- -->
@@ -775,12 +777,12 @@ ggplot(data = cont_ave, aes(x = year,
                      ymin = tot - SD, # error bar arguments
                      ymax = tot + SD),
                 width = 0.8) +
-   labs(x = "Year", 
-        y = "Population in Billions",
-        fill = "Continent") + # relabel legend from the 'fill' in the geom_bar
-   scale_x_continuous(breaks = seq(from = 1952, to = 2007, by = 5)) + # use seq to get years from 1952 - 2007 every 5 yrs to label every column
+      scale_x_continuous(breaks = seq(from = 1952, to = 2007, by = 5)) + # use seq to get years from 1952 - 2007 every 5 yrs to label every column
    scale_y_continuous(breaks = c(2e9, 4e9, 6e9), # keep the same breaks
-      labels = c("2", "4", "6")) + # relabel
+      labels = c("2", "4", "6")) + # relabel so number represent billions
+   labs(x = "Year", 
+        y = "Population in Billions", # rename units in billions
+        fill = "Continent") + # relabel legend from the 'fill' in the geom_bar
    theme_dark() + # different theme 
    theme(panel.grid = element_blank()) # remove the grid lines
 ```
