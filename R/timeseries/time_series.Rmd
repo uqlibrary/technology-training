@@ -43,13 +43,18 @@ During this hands-on session, you will:
 - clean the data and extract information
 - use different date/time data formats
 - visualize time series data, “rolling” operations
-- conduct trend analyses with seasonal components
+- investigate aspects of a times series such as trends, seasonality, and stationarity
+- assess autocorrelation
+- apply different models
 
 ## Material
 
 ### Setting up
 
-**Install ggplot2** if you don't already have it, with: `install.packages("ggplot2")`
+**Install tidyverse, readxl, plotly, and RcppRoll** if you don't already have them, with: `install.packages("ggplot2")`
+`install.packages("ggplot2")`
+`install.packages("ggplot2")`
+`install.packages("ggplot2")`
 
 **Create a new project** to keep everything nicely contained in one directory:
 
@@ -60,4 +65,305 @@ During this hands-on session, you will:
 -   Select the folder where to locate your project: e.g. `Documents/RProjects`, which you can create if it doesn't exist yet. You can use your H drive at UQ to make sure you can find it again.
 -   Click the "Create Project" button
 
-Let's also create a "plots" folder to store exports:
+Let's also create a "data" and "images" folder to store exports:
+
+```{r eval=FALSE}
+dir.create("data")
+dir.create("data")
+```
+
+## About the data
+
+Our dataset describes atmospheric samples of a compound which were collected each day during seven consecutive days for different month in the year. Some years and months had less samples due to technical issues.
+
+### Download the data
+
+Let's download our dataset form the web:
+
+```{r download data, eval=FALSE}
+download.file("https://github.com/uqlibrary/technology-training/blob/master/R/timeseries/data/analytes_data.xlsx"
+              destfile = "data/analytes_data.xlsx",
+              mode = 'wb')
+```
+
+> The `mode = 'wb'` is binary and necessary for `download.file()` to work on Windows OS.
+
+### Read in the data
+
+We have an XLSX workbook that contains several sheets. The first one is only documenting what the data is about, whereas the two other ones contain the data we are interested in.
+
+The package [readxl](https://readxl.tidyverse.org/) is useful for importing data stored in XLS and XLSX files. For example, to have a look at a single sheet of data, we can do the following:
+
+```{r import one sheet}
+# load the package
+library(readxl)
+# only import the second sheet
+analytes <- read_excel("data/analytes_data.xlsx",
+                       sheet = 2)
+```
+
+We could also point to the correct sheet by using the sheet name instead of its index. For that, the `excel_sheets()` function is useful to find the names:
+
+```{r use sheet name}
+# excel_sheets() shows the sheet names
+excel_sheets("data/analytes_data.xlsx")
+analytes <- read_excel("data/analytes_data.xlsx", sheet = "Site_759")
+```
+
+Let's have a look at the first few rows of data:
+
+```{r see data}
+head(analytes)
+```
+
+### Bind several workbook sheets
+
+Even though this workbook only has two sheets of data, we might want to automate the reading and binding of all data sheets to avoid repeating code. This comes in very handy if you have a workbook with a dozen sheets of data, or if your data is split between several files.
+
+The Tidyverse's [purrr](https://purrr.tidyverse.org/) package allows "mapping" a function (or a more complex command) to several elements. Here, we will _map_ the reading of the sheet to each _element_ in a vector of sheet names.
+
+Using the `map_dfr()` function makes sure we have a single data frame as an output.
+
+```{r bind sheets}
+library(tidyverse)
+# only keep sheet names that contain actual data
+sheets <- excel_sheets("data/analytes_data.xlsx")[2:3]
+# map the reading to each sheet
+analytes <- map_dfr(sheets,
+                    ~ read_excel("data/analytes_data.xlsx", sheet = .x))
+```
+
+We could map a function by simply providing the name of the function. However, because we are doing something slightly more elaborate here (pointing to one single file, and using an extra argument to point to the sheet itself), we need to use the `~` syntax, and point to the element being processed with the `.x` placeholder.
+
+> For more information on the different options the `map` family offers, see `?map`.
+
+## Data cleaning
+
+There are a few issues with the dataset. First of all, there are variations in how the compound is named. We can replace the value in the first column with a simpler, consistent one:
+
+```{r typos}
+# all same compound
+analytes$Analyte <- "x"
+```
+
+Our column names are not the most reusable names for R. Better names do not contain spaces or special characters like `/`. dplyr's `rename()` function is very handy for that:
+
+```{r rename columns}
+library(dplyr)
+analytes <- rename(analytes, Site = 1, Date = 3, mg_per_day = 4)
+```
+
+Finally, the Site column is stored as numeric data. If we plot it as it is, R will consider it to be a continuous variable, when it really should be discrete. Let's fix that with dplyr's `mutate()` function:
+
+```{r sites as character}
+analytes <- mutate(analytes, Site = as.character(Site))
+```
+
+> We could convert it to a factor instead, but the Tidyverse packages tend to be happy with categorical data stored as the character type.
+
+### Export a clean dataset
+
+We now have a clean dataset in a single table, which we could make a copy of, especially to share with others, or if we want to split our code into several scripts that can work independently.
+
+```{r write to CSV}
+write.csv(analytes, "data/analytes_data_clean.csv",
+          row.names = FALSE)
+```
+
+> `write.csv()` will by default include a column of row names in the exported file, which are the row numbers if no row names have been assigned. That's not usually something we want, so we can turn it off with `row.names = FALSE`
+
+## Visualisation with ggplot2
+
+At this stage, we can start exploring visually. For a lot of R users, the go-to package for data visualisation is [ggplot2](https://ggplot2.tidyverse.org/), which is also part of the Tidyverse.
+
+For a ggplot2 visualisations, remember that we usually need these three essential elements:
+
+* the dataset
+* the mapping of aesthetic elements to variables in the dataset
+* the geometry used to represent the data
+
+Let's try a first timeline visualisation with a line plot:
+
+```{r simple viz}
+library(ggplot2)
+ggplot(analytes,             # data
+       aes(x = Date,         # mapping of aesthetics
+           y = mg_per_day,
+           colour = Site)) + # (separate by site)
+  geom_line()                # geometry
+```
+
+A simple line plot is not great here, because of the periodicity: there were bursts of sampling, several days in a row, and then nothing for a while. Which results in a fine, daily resolution for small periods of time, and a straight line joining these periods of time.
+
+We might want to "smoothen" that line, hoping to get a better idea of the trend, keeping the original data as points in the background:
+
+```{r smooth line}
+ggplot(analytes, aes(x = Date, y = mg_per_day, colour = Site)) +
+  geom_point() +
+  geom_smooth()
+```
+
+The trend lines only give a very general trend. What if we make it follow the points more closely?
+
+```{r lower span}
+ggplot(analytes, aes(x = Date, y = mg_per_day, colour = Site)) +
+  geom_point(size = 0.3) + # smaller points
+  geom_smooth(span = 0.05) # follow the data more closely
+```
+
+With the method used, we end up with an increased uncertainty (the shaded area around the curves). It also creates artificial "dips" to fit the data, for example close to the beginning of 2000 for the site 1335 (it even reaches negative values).
+
+## Summarise the data
+
+In this case, because we have sampling points for what looks like groups of successive days, we can try to summarise them.
+
+Operations on time-date data can be done more comfortably with extra packages. The Tidyverse comes with the [lubridate](https://lubridate.tidyverse.org/) package, which has been around for a while and is very powerful. Another, more recent package called "[clock](https://clock.r-lib.org/)" can do most of what lubridate can, and more, but it is still being heavily developed, so we stick to lubridate here.
+
+Let's start by extracting all the date components that could be useful:
+
+```{r extract date components}
+library(lubridate)
+analytes <- analytes %>% 
+   mutate(year = year(Date),
+          month = month(Date),
+          day = day(Date),
+          week = week(Date),
+          weekday = weekdays(Date))
+```
+
+How many sampling days per month are there?
+
+```{r samples per month}
+analytes %>% 
+   group_by(Site, year, month) %>% 
+   count() %>% 
+   head(12)
+```
+
+The number of samples per month is irregular, and some months have no data.
+
+Furthermore, the week numbers don't align with the sampling weeks, and some sampling weeks overlap over two months:
+
+```{r see month overlaps}
+analytes %>%  select(year, month, day, week) %>% head(10)
+```
+
+In any case, the fact that week numbers are reset at the beginning of the year wouldn't help.
+
+One way to group the sampling days together is to detect which ones are spaced by one day, and which ones by a lot more. The `lag()` and `lead()` functions from dplyr are very useful to compare values in a single column:
+
+```{r space}
+analytes <- analytes %>%
+   arrange(Site, Date) %>% # make sure it is in chronological order
+   group_by(Site) %>% # deal with sites separately
+   mutate(days_lapsed = as.integer(Date - lag(Date))) %>%  # compare date to previous date
+   ungroup() # leftover grouping might have unintended consequences later on
+```
+
+> Grouping by site is important, otherwise we get an erroneous value at the row after switching to the second site. Because we grouped, it does not compare to the previous value in the different site, but instead only returns an `NA`.
+
+How consistent are the sampling periods? Let's investigate:
+
+```{r investigate spacing}
+analytes %>% 
+   count(days_lapsed) %>% 
+   head()
+```
+
+It looks like some sampling days might have been missed, so we can define a sampling period as "a period in which sampling times are not spaced by more than 3 days".
+
+To create a grouping index, we can first assign a value of `TRUE` to the first row of each time period, and then use the cumulative sum function on that column (as it converts `TRUE`s to 1s and `FALSE`s to 0s):
+
+```{r define periods}
+analytes <- analytes %>% 
+   group_by(Site) %>%
+   mutate(sampling_period = row_number() == 1 | days_lapsed > 3,
+          sampling_period = cumsum(sampling_period)) %>%
+   ungroup()
+```
+
+We can now use these new group indices to summarise by time period:
+
+```{r summarise periods}
+analytes_summary <- analytes %>% 
+   group_by(Analyte, Site, sampling_period) %>% # we are keeping Analyte
+   summarise(Date = round_date(mean(Date), unit = "day"),
+             mg_per_day = mean(mg_per_day)) %>% 
+   ungroup()
+```
+
+> We chose to average and round the date for each sampling period, but we could opt for another option depending on what we want to do, for example keeping the actual time interval: `interval(start = min(Date), end = max(Date))`
+
+Let's try again our line plot with the summarised data:
+
+```{r line plot summarised}
+ggplot(analytes_summary,
+       aes(x = Date,
+           y = mg_per_day,
+           colour = Site)) +
+  geom_line()  
+```
+
+This is a lot cleaner than what we had originally!
+
+## Export summarised data
+
+We have previously exported a CSV, which is a great, simple format that can be opened pretty much anywhere. However, if you want to save an R object to reopen it exactly as it was, you can use an R-specific format like RData.
+
+```{r export RData}
+save(analytes_summary, file = "data/summary.RData")
+```
+
+The file can then be imported again with the `load()` function. You won't need to convert the columns to the correct data type again.
+
+## Interactive visualisation
+
+Exploring timelines might be more comfortable with an interactive visualisation. [Plotly](https://plotly.com/r/) is a helpful library available for various programming languages, and the plotly package makes it easy to use it in R.
+
+Once a visualisation is created in R, it is trivial to convert it to a Plotly visualisation with one single function: `ggplotly()`.
+
+```{r ggplotly}
+# save as an object
+p <- ggplot(analytes_summary,
+       aes(x = Date,
+           y = mg_per_day,
+           colour = Site)) +
+  geom_line()
+# turn it into a plotly visualisation
+library(plotly)
+ggplotly(p)
+```
+
+To focus on a section, draw a rectangle (and double-click to reset to the full view).
+
+With several time series plotted, it is useful to change the hover setting to "compare data on hover" with this button:
+
+!["Compare data on hover" button in Plotly visualisation](images/compare_button.png)
+
+It is however possible to set a similar hover mode as a default:
+
+```{r hovermode}
+ggplotly(p) %>% 
+   layout(hovermode = "x unified")
+```
+
+## Rolling operations
+
+With time series affected by seasonality, or with a lot of variation creating visual noise, it is sometimes useful to represent long-term trends with a rolling average.
+
+The package [RcppRoll](https://cran.r-project.org/package=RcppRoll) is useful for this kind of windowed operation:
+
+```{r rolling average}
+library(RcppRoll)
+analytes_summary %>% 
+   group_by(Site) %>% 
+   mutate(rolling_mean = roll_mean(mg_per_day,
+                                   n = 6,          # the size of the window
+                                   fill = NA)) %>% # to have same length
+   ggplot(aes(x = Date,
+           y = rolling_mean,
+           colour = Site)) +
+  geom_line()
+```
+
+This method might not be the best for this data, but it proves very useful in other cases, for example for COVID-19 daily infection rates (with a 7-day window).
