@@ -33,7 +33,7 @@ We also offer these more specialised sessions (run less regularly, but feel free
 | R advanced: packaging and sharing functions | [md](R/packaging/packaging.md) <sup>[source](R/packaging/packaging.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/ryCzbvgXB) | ... |
 | R advanced: webapps with Shiny | [md](R/shiny/shiny.md) <sup>[source](R/shiny/shiny.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/S19FIXxg8) | ... |
 | RStats Introduction: ANOVA and linear regression | [md](R/ANOVA-lm/anova-lm.md) <sup>[source](R/ANOVA=lm/anova-lm.Rmd)</sup> | - | ... |
-| Time series data in R and RStudio | [md](R/timeseries/time_series.md) <sup>[source](R/timeseries/time_series.md)</sup> | - | ... |
+| RStats: Working with and analysing time series data | [md](R/timeseries/time_series.md) <sup>[source](R/timeseries/time_series.md)</sup> | - | ... |
 
 ### GIS sessions
 
