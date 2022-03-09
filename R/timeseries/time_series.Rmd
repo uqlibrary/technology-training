@@ -1,0 +1,770 @@
+---
+title: "RStats: Working with and analysing time series data"
+output: github_document
+date: "`r Sys.Date()`"
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Essential shortcuts
+
+-   function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in a function name.
+-   execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+-   assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
+
+## Open RStudio
+
+On library computers:
+
+-   Log in with your UQ username and password (use your student credentials if you are both staff and student)
+-   Make sure you have a working internet connection
+-   Go to search the magnifying glass (bottom left)
+-   Open the ZENworks application
+-   Look for the letter R
+-   Double click on RStudio which will install both R and RStudio
+
+If you are using your own laptop:
+
+-   Make sure you have a working internet connection
+-   Open RStudio
+
+## Disclaimer
+
+We will assume basic knowledge of R and RStudio for this course including installing and loading packages, reading in data, creating objects in R, tranforming data frames and tibbles with `dplyr` package.
+
+## What are we going to learn?
+
+This hands-on session is broken into two parts
+
+In Part 1 you will:
+
+- read in data from multiple excel sheets
+- clean the data and extract information
+- use different date/time data formats
+- visualize time series data, “rolling” operations
+
+And Part 2 will focus on:
+
+- investigating aspects of a times series such as trends, seasonality, and stationarity
+- assessing autocorrelation
+- applying different models
+
+## Material
+
+### Setting up
+
+**Install tidyverse, readxl, lubridate, plotly, RcppRoll, zoo, forecast, tseries, and xts** if you don't already have them, with: 
+
+- `install.packages("tidyvserse")` - the data science 'metapackage'
+- `install.packages("readxl")` - reading in data from excel
+- `install.packages("lubridate")` - to work with date and time data
+- `install.packages("plotly")` - interactive plots
+- `install.packages("RcppRoll")` - rolling average package 
+- `install.packages("zoo")` - "Zeileis ordered observations" irregularly spaced time series using the zoo 
+- `install.packages("forecast")` - seasonality components
+- `install.packages("tseries")` - test for stationarity
+- `install.packages("xts")` - moving averages
+
+**Create a new project** to keep everything nicely contained in one directory:
+
+-   Click the "Create a project" button (top left cube icon)
+-   Click "New Directory"
+-   Click "New Project" ("Empty project" if you have an older version of RStudio)
+-   In "Directory name", type the name of your project, e.g. "ggplot2_intermediate"
+-   Select the folder where to locate your project: e.g. `Documents/RProjects`, which you can create if it doesn't exist yet. You can use your H drive at UQ to make sure you can find it again.
+-   Click the "Create Project" button
+
+Let's also create a "data" and "images" folder to store exports:
+
+```{r eval=FALSE}
+dir.create("data")
+dir.create("images")
+```
+
+## About the data
+
+Our dataset describes atmospheric samples of a compound which were collected each day during seven consecutive days for different month in the year. Some years and months had less samples due to technical issues.
+
+## Part 1: working with time series data
+
+### Download the data
+
+Let's download our dataset form the web:
+
+```{r download data, eval=FALSE}
+download.file("https://github.com/uqlibrary/technology-training/blob/master/R/timeseries/data/analytes_data.xlsx"
+              destfile = "data/analytes_data.xlsx",
+              mode = 'wb')
+```
+
+> The `mode = 'wb'` is binary and necessary for `download.file()` to work on Windows OS.
+
+### Read in the data
+
+We have an XLSX workbook that contains several sheets. The first one is only documenting what the data is about, whereas the two other ones contain the data we are interested in.
+
+The package [readxl](https://readxl.tidyverse.org/) is useful for importing data stored in XLS and XLSX files. For example, to have a look at a single sheet of data, we can do the following:
+
+```{r import one sheet}
+# load the package
+library(readxl)
+# only import the second sheet
+analytes <- read_excel("data/analytes_data.xlsx",
+                       sheet = 2)
+```
+
+We could also point to the correct sheet by using the sheet name instead of its index. For that, the `excel_sheets()` function is useful to find the names:
+
+```{r use sheet name}
+# excel_sheets() shows the sheet names
+excel_sheets("data/analytes_data.xlsx")
+analytes <- read_excel("data/analytes_data.xlsx", sheet = "Site_759")
+```
+
+Let's have a look at the first few rows of data:
+
+```{r see data}
+head(analytes)
+```
+
+### Bind several workbook sheets
+
+Even though this workbook only has two sheets of data, we might want to automate the reading and binding of all data sheets to avoid repeating code. This comes in very handy if you have a workbook with a dozen sheets of data, or if your data is split between several files.
+
+The Tidyverse's [purrr](https://purrr.tidyverse.org/) package allows "mapping" a function (or a more complex command) to several elements. Here, we will _map_ the reading of the sheet to each _element_ in a vector of sheet names.
+
+Using the `map_dfr()` function makes sure we have a single data frame as an output.
+
+```{r bind sheets}
+library(tidyverse)
+# only keep sheet names that contain actual data
+sheets <- excel_sheets("data/analytes_data.xlsx")[2:3]
+# map the reading to each sheet
+analytes <- map_dfr(sheets,
+                    ~ read_excel("data/analytes_data.xlsx", sheet = .x))
+```
+
+We could map a function by simply providing the name of the function. However, because we are doing something slightly more elaborate here (pointing to one single file, and using an extra argument to point to the sheet itself), we need to use the `~` syntax, and point to the element being processed with the `.x` placeholder.
+
+> For more information on the different options the `map` family offers, see `?map`.
+
+## Data cleaning
+
+There are a few issues with the dataset. First of all, there are variations in how the compound is named. We can replace the value in the first column with a simpler, consistent one:
+
+```{r typos}
+# all same compound
+analytes$Analyte <- "x"
+```
+
+Our column names are not the most reusable names for R. Better names do not contain spaces or special characters like `/`. dplyr's `rename()` function is very handy for that:
+
+```{r rename columns}
+library(dplyr)
+analytes <- rename(analytes, Site = 1, Date = 3, mg_per_day = 4)
+```
+
+Finally, the Site column is stored as numeric data. If we plot it as it is, R will consider it to be a continuous variable, when it really should be discrete. Let's fix that with dplyr's `mutate()` function:
+
+```{r sites as character}
+analytes <- mutate(analytes, Site = as.character(Site))
+```
+
+> We could convert it to a factor instead, but the Tidyverse packages tend to be happy with categorical data stored as the character type.
+
+### Export a clean dataset
+
+We now have a clean dataset in a single table, which we could make a copy of, especially to share with others, or if we want to split our code into several scripts that can work independently.
+
+```{r write to CSV}
+write.csv(analytes, "data/analytes_data_clean.csv",
+          row.names = FALSE)
+```
+
+> `write.csv()` will by default include a column of row names in the exported file, which are the row numbers if no row names have been assigned. That's not usually something we want, so we can turn it off with `row.names = FALSE`
+
+## Visualisation with ggplot2
+
+At this stage, we can start exploring visually. For a lot of R users, the go-to package for data visualisation is [ggplot2](https://ggplot2.tidyverse.org/), which is also part of the Tidyverse.
+
+For a ggplot2 visualisations, remember that we usually need these three essential elements:
+
+* the dataset
+* the mapping of aesthetic elements to variables in the dataset
+* the geometry used to represent the data
+
+Let's try a first timeline visualisation with a line plot:
+
+```{r simple viz}
+library(ggplot2)
+ggplot(analytes,             # data
+       aes(x = Date,         # mapping of aesthetics
+           y = mg_per_day,
+           colour = Site)) + # (separate by site)
+  geom_line()                # geometry
+```
+
+A simple line plot is not great here, because of the periodicity: there were bursts of sampling, several days in a row, and then nothing for a while. Which results in a fine, daily resolution for small periods of time, and a straight line joining these periods of time.
+
+We might want to "smoothen" that line, hoping to get a better idea of the trend, keeping the original data as points in the background:
+
+```{r smooth line}
+ggplot(analytes, aes(x = Date, y = mg_per_day, colour = Site)) +
+  geom_point() +
+  geom_smooth()
+```
+
+The trend lines only give a very general trend. What if we make it follow the points more closely?
+
+```{r lower span}
+ggplot(analytes, aes(x = Date, y = mg_per_day, colour = Site)) +
+  geom_point(size = 0.3) + # smaller points
+  geom_smooth(span = 0.05) # follow the data more closely
+```
+
+With the method used, we end up with an increased uncertainty (the shaded area around the curves). It also creates artificial "dips" to fit the data, for example close to the beginning of 2000 for the site 1335 (it even reaches negative values).
+
+## Summarise the data
+
+In this case, because we have sampling points for what looks like groups of successive days, we can try to summarise them.
+
+Operations on time-date data can be done more comfortably with extra packages. The Tidyverse comes with the [lubridate](https://lubridate.tidyverse.org/) package, which has been around for a while and is very powerful. Another, more recent package called "[clock](https://clock.r-lib.org/)" can do most of what lubridate can, and more, but it is still being heavily developed, so we stick to lubridate here.
+
+Let's start by extracting all the date components that could be useful:
+
+```{r extract date components}
+library(lubridate)
+analytes <- analytes %>% 
+   mutate(year = year(Date),
+          month = month(Date),
+          day = day(Date),
+          week = week(Date),
+          weekday = weekdays(Date))
+```
+
+How many sampling days per month are there?
+
+```{r samples per month}
+analytes %>% 
+   group_by(Site, year, month) %>% 
+   count() %>% 
+   head(12)
+```
+
+The number of samples per month is irregular, and some months have no data.
+
+Furthermore, the week numbers don't align with the sampling weeks, and some sampling weeks overlap over two months:
+
+```{r see month overlaps}
+analytes %>%  select(year, month, day, week) %>% head(10)
+```
+
+In any case, the fact that week numbers are reset at the beginning of the year wouldn't help.
+
+One way to group the sampling days together is to detect which ones are spaced by one day, and which ones by a lot more. The `lag()` and `lead()` functions from dplyr are very useful to compare values in a single column:
+
+```{r space}
+analytes <- analytes %>%
+   arrange(Site, Date) %>% # make sure it is in chronological order
+   group_by(Site) %>% # deal with sites separately
+   mutate(days_lapsed = as.integer(Date - lag(Date))) %>%  # compare date to previous date
+   ungroup() # leftover grouping might have unintended consequences later on
+```
+
+> Grouping by site is important, otherwise we get an erroneous value at the row after switching to the second site. Because we grouped, it does not compare to the previous value in the different site, but instead only returns an `NA`.
+
+How consistent are the sampling periods? Let's investigate:
+
+```{r investigate spacing}
+analytes %>% 
+   count(days_lapsed) %>% 
+   head()
+```
+
+It looks like some sampling days might have been missed, so we can define a sampling period as "a period in which sampling times are not spaced by more than 3 days".
+
+To create a grouping index, we can first assign a value of `TRUE` to the first row of each time period, and then use the cumulative sum function on that column (as it converts `TRUE`s to 1s and `FALSE`s to 0s):
+
+```{r define periods}
+analytes <- analytes %>% 
+   group_by(Site) %>%
+   mutate(sampling_period = row_number() == 1 | days_lapsed > 3,
+          sampling_period = cumsum(sampling_period)) %>%
+   ungroup()
+```
+
+We can now use these new group indices to summarise by time period:
+
+```{r summarise periods}
+analytes_summary <- analytes %>% 
+   group_by(Analyte, Site, sampling_period) %>% # we are keeping Analyte
+   summarise(Date = round_date(mean(Date), unit = "day"),
+             mg_per_day = mean(mg_per_day)) %>% 
+   ungroup()
+```
+
+> We chose to average and round the date for each sampling period, but we could opt for another option depending on what we want to do, for example keeping the actual time interval: `interval(start = min(Date), end = max(Date))`
+
+Let's try again our line plot with the summarised data:
+
+```{r line plot summarised}
+ggplot(analytes_summary,
+       aes(x = Date,
+           y = mg_per_day,
+           colour = Site)) +
+  geom_line()  
+```
+
+This is a lot cleaner than what we had originally!
+
+## Export summarised data
+
+We have previously exported a CSV, which is a great, simple format that can be opened pretty much anywhere. However, if you want to save an R object to reopen it exactly as it was, you can use an R-specific format like RData.
+
+```{r export RData}
+save(analytes_summary, file = "data/summary.RData")
+```
+
+The file can then be imported again with the `load()` function. You won't need to convert the columns to the correct data type again.
+
+## Interactive visualisation
+
+Exploring timelines might be more comfortable with an interactive visualisation. [Plotly](https://plotly.com/r/) is a helpful library available for various programming languages, and the plotly package makes it easy to use it in R.
+
+Once a visualisation is created in R, it is trivial to convert it to a Plotly visualisation with one single function: `ggplotly()`.
+
+```{r ggplotly}
+# save as an object
+p <- ggplot(analytes_summary,
+       aes(x = Date,
+           y = mg_per_day,
+           colour = Site)) +
+  geom_line()
+# turn it into a plotly visualisation
+library(plotly)
+ggplotly(p)
+```
+
+To focus on a section, draw a rectangle (and double-click to reset to the full view).
+
+With several time series plotted, it is useful to change the hover setting to "compare data on hover" with this button:
+
+!["Compare data on hover" button in Plotly visualisation](images/compare_button.png)
+
+It is however possible to set a similar hover mode as a default:
+
+```{r hovermode}
+ggplotly(p) %>% 
+   layout(hovermode = "x unified")
+```
+
+## Rolling operations
+
+With time series affected by seasonality, or with a lot of variation creating visual noise, it is sometimes useful to represent long-term trends with a rolling average.
+
+The package [RcppRoll](https://cran.r-project.org/package=RcppRoll) is useful for this kind of windowed operation:
+
+```{r rolling average}
+library(RcppRoll)
+analytes_summary %>% 
+   group_by(Site) %>% 
+   mutate(rolling_mean = roll_mean(mg_per_day,
+                                   n = 6,          # the size of the window
+                                   fill = NA)) %>% # to have same length
+   ggplot(aes(x = Date,
+           y = rolling_mean,
+           colour = Site)) +
+  geom_line()
+```
+
+This method might not be the best for this data, but it proves very useful in other cases, for example for COVID-19 daily infection rates (with a 7-day window).
+
+## Part 2: time series analysis
+
+### Load more packages
+
+```{r packages, warning=FALSE, message = FALSE}
+library(lubridate) # work with date/time data
+
+library(zoo)
+library(forecast)
+library(tseries) # test for stationarity
+```
+
+### Read in the data
+
+For this section, we will go the process of analysing time series for one site. 
+
+Let's read in the cleaned data from Part 1, filter out the same site (1335), and split the Date column with lubridate. This can be done in one go with piping.
+
+```{r}
+s1335 <- read_csv("data/analytes_data_clean.csv") %>% 
+   filter(Site == "1335") %>% 
+   mutate(Year = year(Date),
+          Month = month(Date),
+          Day = day(Date),
+          Site = factor(Site)) # change Site to a factor
+s1335
+```
+
+### Visualize the data for one site
+
+```{r}
+ggplot(s1335,
+        aes(Date, mg_per_day, color = Site)) +
+   geom_point()
+```
+
+Count the number of samples per month.
+
+```{r}
+s1335 %>% 
+   group_by(Year, Month) %>% 
+   summarize(count = n()) %>% 
+   arrange(-count) # arrange by count column in descending order
+```
+
+The maximum number of samples we have per month is 7. Probably not enough to do any meaningful analysis for a daily trend. Let's average samples by month. There also can be no data gaps for a time series (ts) data class.
+
+```{r}
+ave_s1335 <- s1335 %>% 
+   group_by(Year, Month, Site) %>% 
+   summarize(mg_per_day = mean(mg_per_day),
+             SD = sd(mg_per_day))
+```
+
+Alternatively, can graphically summarize the distribution of dates using the `hist()` (`hist.Date()`) function. 
+
+```{r}
+hist(as.Date(s1335$Date), # change POSIXct to Date object
+     breaks = "months", 
+     freq = TRUE,
+     xlab = "", # remove label so doesn't overlap with date labels,
+     format = "%b %Y", # format the date label, mon year
+     las = 2)
+```
+
+Let's convert our data into a time series. Times series data must be sampled at equispaced points in time.
+
+There are several different time series object that have different functionalities such as working with irregularly spaced time series. See this [resource](https://faculty.washington.edu/ezivot/econ424/Working%20with%20Time%20Series%20Data%20in%20R.pdf).
+
+```{r}
+ts_1335 <- ts(ave_s1335$mg_per_day, frequency = 12,
+                 start = c(1991, 11), end = c(2000, 9))
+
+class(ts_1335) # check the object class
+ts_1335 # see the data
+```
+
+### Create a irregularly spaced time series using the zoo (Zeileis ordered observations) package
+
+The `zoo` class is a flexible time series data with an ordered time index. The data is stored in a matrix with vector date information attached. Can be regularly or irregularly spaced. [document](https://faculty.washington.edu/ezivot/econ424/Working%20with%20Time%20Series%20Data%20in%20R.pdf).
+
+```{r}
+library(zoo)
+z_1335 <- zoo(s1335$mg_per_day, order.by = s1335$Date)
+
+head(z_1335)
+```
+
+### Decomposition
+
+Decomposition separates out a times series $Y_{t}$ into a seasonal $S_{t}$, trend $T_{t}$, and error/residual $E_{t}$ components. NOTE: there are lot of different words for this last component - irregular, random, residual, etc. See resources at the bottom.
+
+These elements can be *additive* when the seasonal component is relatively constant over time.
+
+$$Y_{t} = S_{t} + T_{t} + E_{t}$$
+
+Or *multiplicative* when seasonal effects tend to increase as the trend increases.
+
+$$Y_{t} = S_{t} * T_{t} * E_{t}$$
+
+The `decompose()` function uses a moving average (MA) approach to filter the data. The *window* or period over which you after is based on the frequency of the data. For example, monthly data can be averaged across a 12 month period. Original code from [Time Series Analysis with R Ch. 7.2.1](https://nicolarighetti.github.io/Time-Series-Analysis-With-R/structural-decomposition.html#components-of-a-time-series).
+
+```{r}
+library(xts)
+xts_1335 <- as.xts(x = ts_1335)
+
+k2 <- rollmean(xts_1335, k = 2)
+k4 <- rollmean(xts_1335, k = 4)
+k8 <- rollmean(xts_1335, k = 8)
+k16 <- rollmean(xts_1335, k = 16)
+k32 <- rollmean(xts_1335, k = 32)
+
+kALL <- merge.xts(xts_1335, k2, k4, k8, k16, k32)
+head(kALL)
+
+plot.xts(kALL, multi.panel = TRUE)
+```
+
+Let's use the  use the `stats::decompose()` function for an additive model:
+
+```{r}
+decomp_1335 <- decompose(ts_1335, type = "additive") # additive is the default
+plot(decomp_1335)
+```
+
+In the top 'observed' plot there does not appear to be a clear case of seasonality increasing over time so the additive model should be fine. There is a huge peak in the trend in 1995 which decreases until around 1998 before increasing again.
+
+### Remove seasonality components using the forecast package.
+
+```{r}
+stl_1335 <- stl(ts_1335, s.window = "periodic") # deompose into seasonal, trend, and irregular components
+head(stl_1335$time.series)
+```
+
+The seasonal and reminder/irregular components are small compared to the trend component.
+
+Let's seasonally adjust the data and plot the raw data and adjusted data.
+
+```{r}
+sa_1335 <- seasadj(stl_1335) # seasonally adjusted data
+
+par(mfrow = c(2,1))
+plot(ts_1335) #, type = "1")
+plot(sa_1335)
+```
+
+These two plots are pretty much the same. There does not seem to be a large seasonality component in the data.
+
+It can also be visualised using on the same plot to highlight the small effect of seasonality. Code modified from [Time Series Analysis with R Ch. 7.3](https://nicolarighetti.github.io/Time-Series-Analysis-With-R/structural-decomposition.html#seasonality).
+
+```{r}
+s1335_deseason <- ts_1335 - decomp_1335$seasonal # manually adjust for seasonality
+
+deseason <- ts.intersect(ts_1335, s1335_deseason) # bind the two time series
+
+plot.ts(deseason, 
+        plot.type = "single",
+        col = c("red", "blue"),
+        main = "Original (red) and Seasonally Adjusted Series (blue)")
+```
+
+Plot the time series against the seasons in separate years.
+
+```{r}
+par(mfrow = c(1,1))
+seasonplot(sa_1335, 12, col=rainbow(12), year.labels=TRUE, main="Seasonal plot: Site 1335")
+```
+
+The lines do not really follow the same pattern throughout the year - again, not a big seasonality component.
+
+### Stationarity
+
+The **residual** part of the model should be **random** where the model explained most significant patterns or *signal* in the time series leaving out the *noise*.
+
+[This article](http://r-statistics.co/Time-Series-Analysis-With-R.html) states that the following conditions must be met:
+
+1. The mean value of time-series is constant over time, which implies, the trend component is nullified.
+2. The variance does not increase over time.
+3. Seasonality effect is minimal.
+
+There are a few tests for stationarity with the `tseries` package: Augmented Dickery-Fuller and KPSS. See this [section](https://atsa-es.github.io/atsa-labs/sec-boxjenkins-aug-dickey-fuller.html). 
+
+```{r}
+adf.test(ts_1335) # p-value < 0.05 indicates the TS is stationary
+kpss.test(ts_1335, null = "Trend") # null hypothesis is that the ts is level/trend stationary, so do not want to reject the null, p > 0.05
+```
+
+The tests indicate that the time series is not stationary. How do you make a non-stationary time series stationary?
+
+### Differencing
+
+One common way is to *difference* a time series - subtract each point in the series from the previous point.
+
+Using the `forecast` package, we can do *seasonal differencing* and *regular differencing*.
+
+```{r}
+nsdiffs(ts_1335, type = "trend") # seasonal differencing
+ndiffs(ts_1335, type = "trend") # type 'level' deterministic component is default
+
+stationaryTS <- diff(ts_1335, differences= 1)
+
+diffed <- ts.intersect(ts_1335, stationaryTS) # bind the two time series
+
+plot.ts(diffed, 
+        plot.type = "single",
+        col = c("red", "blue"),
+        main = "Original (red) and Differenced Series (blue)")
+```
+
+Let's check the differenced time series with the same stationarity tests: 
+
+```{r}
+adf.test(stationaryTS) 
+kpss.test(stationaryTS, null = "Trend")
+```
+
+The both tests now indicate the differenced time series is now stationary.
+
+### Autocorrelation
+
+#### Autocorrelation plots
+
+Plot the **autocorrelation function** (ACF) correlogram for the time series. There are *k* lags on the x-axis and the unit of lag is sampling interval (month here). Lag 0 is always the theoretical maximum of 1 and helps to compare other lags. 
+
+The cutest explanation of ACF by Dr Allison Horst:
+
+![Autocorrelation function art by Allison Horst](acf_1.jpg)
+
+See the full artwork series explaining ACF [here](https://qaehs-lib-rtimeseries2022.netlify.app/2022/02/03/acf-art/).
+
+```{r}
+acf(s1335$mg_per_day)
+```
+
+You can used the ACF to estimate the number of moving average (MA) coefficients in the model. Here, the number of significant lags is high. The lags crossing the dotted blue line are statistically significant.
+
+The **partial autocorrelation function** can also be plotted. The partial correlation is the left over correlation at lag *k* between all data points that are *k* steps apart accounting for the correlation with the data between *k* steps.
+
+```{r}
+pacf(s1335$mg_per_day)
+```
+
+Practically, this can help us identify the number of autoregression (AR) coefficients in an autoregression integrated moving average (ARIMA) model. The above plot shows *k* = 3 so the initial ARIMA model will have three AR coefficients (AR(3)). The model will still require fitting and checking.
+
+#### Autocorrelation test
+
+There is also the `base::Box.test()` function that can be used to test for autocorrelation:
+
+```{r}
+Box.test(ts_1335)
+```
+
+The p-value is significant which means the data contains significant autocorrelations.
+
+## Models for time series data
+
+> Most of the content below follows the great book: Introductory Time Series with R by Cowpertwait & Metcalfe.
+### Autoregressive model
+
+Autoregressive (AR) models can simulate *stochastic* trends by regressing the time series on its past values. Order selection is done by Arkaike Information Criterion (AIC) and method chosen here is maximum likelihood estimation (mle).
+
+```{r}
+ar_1335 <- ar(ts_1335, method = "mle")
+
+mean(ts_1335)
+
+ar_1335$order
+ar_1335$ar
+acf(ar_1335$res[-(1:ar_1335$order)], lag = 50) 
+```
+
+The correlogram of residuals has a few marginally significant lags (around 15 and between 30-40). The AR(6) model is a relatively good fit for the time series.
+
+### Regression
+
+*Deterministic* trends and seasonal variation can be modeled using regression.
+
+Linear models are non-stationary for time series data, thus a non-stationary time series must be differenced.
+
+```{r}
+diff <- window(ts_1335, start = 1991)
+head(diff)
+
+lm_s1335 <- lm(diff ~ time(diff)) # extract the time component as the explanatory variable
+coef(lm_s1335)
+
+confint(lm_s1335)
+acf(resid(lm_s1335))
+```
+
+The confidence interval does not include 0, which means there is no statistical evidence of increasing Compound X in the atmosphere. The ACF of the model residuals are significantly positively autocorrelated meaning the model likely underestimates the standard error and the confidence interval is too narrow.
+
+### Adding a seasonal component
+
+```{r}
+Seas <- cycle(diff)
+Time <- time(diff)
+s1335_slm <- lm(ts_1335 ~ 0 + Time + factor(Seas))
+coef(s1335_slm)
+acf(resid(s1335_slm))
+```
+
+###  Generalised Least Squares
+
+*Generalised Least Squares* model can account for some of this autocorrelation.
+
+From 5.4 of Cowpertwait & Metcalfe, 2009: 
+
+> *Generalised Least Squares* can be used to provide better estimates of the standard errors of the regression parameters to account for the autocorrelation in the residual series.
+
+A correlation structure is defined using the `cor` argument. The value is estimated from the acf at lag 1 in the previous correlogram. The residuals are approximated as an AR(1).
+
+```{r}
+library(nlme)
+gls_s1335 <- gls(ts_1335 ~ time(ts_1335), cor = corAR1(0.7))
+coef(gls_s1335)
+confint(gls_s1335)
+acf(resid(gls_s1335))
+```
+
+The  confidence interval still includes 0 and the acf of the model residuals still have significant autocorrelation.
+
+### Autoregressive Integated Moving Average (ARIMA)
+
+Autoregressive *integrated* moving average models define the model order (*p*, *d*, *q*). 
+
+[Cookbook R](https://rc2e.com/timeseriesanalysis#recipe-id085) explains it as:
+
+> *p* is the number of autoregressive coefficients, *d* is the degree of differencing, and *q* is tne number of moving average coefficients.
+
+```{r}
+par(mfrow = c(2,1)) # change window so 2 rows, 1 column of plots
+plot(ts_1335)
+plot(diff(ts_1335))
+```
+
+```{r}
+arima_1 <-  arima(ts_1335, order = c(6,1,12))
+arima_1
+acf(resid(arima_1), lag = 50)
+```
+
+Let's run a model with order(1, 1, 1) and compare AIC.
+
+```{r}
+arima_2 <-  arima(ts_1335, order = c(1, 1, 1))
+arima_2
+acf(resid(arima_2), lag = 50)
+```
+
+The second model had a lower AIC. Let's use the `forecast::auto.arima()` function from the forecast package to search for the best *p, d, q*.
+
+```{r}
+arima_3 <- auto.arima(ts_1335, seasonal = FALSE, max.p = 20, max.q = 20)
+arima_3
+acf(resid(arima_3), lag = 50)
+
+autoplot(ts_1335) # plot the time series
+```
+
+### Seasonal ARIMA
+
+A seasonal component can also be added to ARIMA. The default for `auto.arima()` includes the seasonal component. 
+
+```{r}
+sarima <- auto.arima(ts_1335)
+sarima
+
+acf(resid(sarima), lag = 50)
+```
+
+The addition of the seasonal component improves the AIC and the correlogram is close to the 'white noise' standard.
+
+## Resources 
+
+Check out [tidyverts](https://tidyverts.org/), tidy tools for time series!
+
+Resources used to compile this session included:
+
+* [Introductory Time Series with R](https://link-springer-com.ezproxy.library.uq.edu.au/chapter/10.1007%2F978-0-387-88698-5_5) by Paul Cowpertwait and Andrew Metcalfe, Springer 2009.
+* [Ch 14 Time Series Analysis](https://rc2e.com/timeseriesanalysis) in R Cookbook, 2nd edition, by JD Long and Paul Teetor. Copyright 2019 JD Long and Paul Teetor, 978-1-492-04068-2
+* [Time Series Analysis with R](https://nicolarighetti.github.io/Time-Series-Analysis-With-R/) by Nicola Righetti
+* [Applied Time Series Analysis For Fisheries and Environmental Sciences](https://atsa-es.github.io/atsa-labs/sec-boxjenkins-aug-dickey-fuller.html) by Elizabeth Holmes, Mark Scheuerell, and Eric Ward.
+* [Time Series Analysis](http://r-statistics.co/Time-Series-Analysis-With-R.html) article by Selva Prabhakaran
+* [Working with Financial Time Series Data in R](https://faculty.washington.edu/ezivot/econ424/Working%20with%20Time%20Series%20Data%20in%20R.pdf) document by Eric Zivot.
+
