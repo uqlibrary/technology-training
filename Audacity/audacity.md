@@ -25,7 +25,7 @@ This training covers how to:
 
 ## Download some audio
 
-Our sample audio files come from the Internet Archive. You can download the archived file [here](https://gitlab.com/stragu/DSH/raw/master/Audacity/audacity_project.zip), and extract it wherever you would like to store your Audacity project.
+Our sample audio files come from the Internet Archive. You can download the archived file [here](https://downgit.github.io/#/home?url=https://github.com/uqlibrary/technology-training/tree/master/Audacity/audacity_project), and extract it wherever you would like to store your Audacity project.
 
 The pages that describe the recordings are here:
 
