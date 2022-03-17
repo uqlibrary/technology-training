@@ -1,7 +1,7 @@
 R with RStudio: getting started
 ================
 UQ Library
-2021-12-17
+2022-03-17
 
 ## R + RStudio
 
@@ -229,15 +229,7 @@ round(num2, 2)
 
     ## [1] 4.67
 
-#### Challenge 1 – Finding help
-
-Use the help pages to find out what these functions do, and try
-executing commands with them:
-
-1.  `c()`
-2.  `rep.int()`
-3.  `mean()`
-4.  `rm()`
+To group values together in a single object, use the `c()` function.
 
 `c()` combines the arguments into a vector. In other words, it takes any
 number of arguments (hence the `...`), and stores all those values
@@ -267,9 +259,18 @@ barplot(ages)
 
 ![](rstudio_intro_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
-Moving on to our second function: `rep.int()` also creates vectors, but
-it is designed to easily replicate values. For example, if you find
-something very funny:
+#### Challenge 1 – Finding help
+
+Use the help pages to find out what these functions do, and try
+executing commands with them:
+
+1.  `rep.int()`
+2.  `mean()`
+3.  `rm()`
+4.  `citation()`
+
+`rep.int()` creates vectors like `c()`, but it is designed to easily
+replicate values. For example, if you find something very funny:
 
 ``` r
 rep.int("Ha!", 30)
@@ -302,8 +303,8 @@ mean(ages, na.rm = TRUE)
 > In our last command, if we hadn’t named the `na.rm` argument, R would
 > have understood `TRUE` to be the value for the `trim` argument!
 
-Finally, `rm()` removes an object from your environment (`remove()` and
-`rm()` point to the same function). For example:
+`rm()` removes an object from your environment (`remove()` and `rm()`
+point to the same function). For example:
 
 ``` r
 rm(num1)
@@ -330,6 +331,9 @@ rm(list = ls())
 We are nesting a function inside another one. More precisely, we are
 using the output of the `ls()` function as the value passed on to the
 `list` argument in the `rm()` function.
+
+Finally, the `citation()` function allows you to cite R or a specific
+package.
 
 ### More help
 
@@ -609,7 +613,7 @@ library(praise) # load the package
 praise() # use a function from the package
 ```
 
-    ## [1] "You are polished!"
+    ## [1] "You are bee's knees!"
 
 Even though you might need the motivation provided by this function,
 other packages are more useful for your work.
@@ -693,8 +697,9 @@ function.
 
 ## What next?
 
--   You can see what is next in our [cycle of R lessons](/README.md#r-sessions)
+-   You can see what is next in our [cycle of R
+    lessons](/README.md#r-sessions)
 -   We have a [compilation of resources](R/usefullinks.md) for the rest
     of your R learning
--   A cheatsheet of [main terms and concepts for R](R/terminology.md)
--   Check out the [RStudio IDE cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf)
+-   And a cheatsheet of [main terms and concepts for
+    R](R/terminology.md)
