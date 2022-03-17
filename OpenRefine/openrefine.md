@@ -391,7 +391,7 @@ OpenRefine learning:
 * Free your Metadata website: http://freeyourmetadata.org/
 * OpenRefine Blog: http://openrefine.org/category/blog.html
 * Official OpenRefine documentation:
-  * GREL documentation: https://github.com/OpenRefine/OpenRefine/wiki/General-Refine-Expression-Language
+  * GREL documentation: https://docs.openrefine.org/manual/expressions#grel-general-refine-expression-language
   * Clustering in Depth: https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth
   * A compilation of "OpenRefine recipes": https://github.com/OpenRefine/OpenRefine/wiki/Recipes
 
