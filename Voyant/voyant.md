@@ -25,7 +25,7 @@ You don't need to install anything to use Voyant Tools, as it can be **used onli
 
 However, if you want to use it offline, on your own computer, you can:
 
-* Download the [latest Zip archive](https://github.com/sgsinclair/VoyantServer/releases/latest)
+* Download the [latest Zip archive](https://github.com/voyanttools/VoyantServer/releases/latest)
 * Extract the archive (this might take a while)
 * Open the VoyantServer.jar file
 
