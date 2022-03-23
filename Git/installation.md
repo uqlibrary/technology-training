@@ -10,7 +10,7 @@ For example, on a Debian-based distribution (e.g. Debian, Ubuntu, Linux Mint...)
 
 ## macOS
 
-Git for Mac makes it possible to use git on macOS: http://sourceforge.net/projects/git-osx-installer/files/
+[Git for Mac](http://sourceforge.net/projects/git-osx-installer/files/) makes it possible to use git on macOS.
 
 For macOS 10.9 and higher, download and run the most recent "mavericks" installer.
 
@@ -18,9 +18,11 @@ For older versions of macOS (10.5-10.8), download and run the most recent "snow-
 
 ## Windows
 
-Here are the different options, **in order of preference**:
+Here are the different options available to you:
 
 ### Bash for Windows 10 + Git on your laptop
+
+> This takes more time, but will give you a more complete Linux environment inside Windows.
 
 Windows 10 introduces the Windows Subsystem for Linux, which allows using Bash inside Windows. If you have admin rights on your laptop, follow these steps:
 
@@ -34,15 +36,17 @@ Windows 10 introduces the Windows Subsystem for Linux, which allows using Bash i
 
 ### Git for Windows on your laptop
 
+> This option is the fastest way to get Git going.
+
 If you don't have Windows 10, or if you can't install Ubuntu for Windows:
 
-1. Go to the Git for Windows website and click on "Download": https://gitforwindows.org/
+1. Go to the [Git for Windows website](https://gitforwindows.org/) and click on "Download";
 1. Download and run the installer that starts with "Git" and finishes with ".exe";
 1. Once installed, launch "Git Bash" from the start menu.
 
-### Git for Windows on a library computer
+### Git for Windows on a Library computer
 
-If you can't install software on your own laptop, you can still use the library computers:
+If you can't install software on your own laptop, you can still use the Library computers:
 
 1. Go to ZENworks;
 1. Search for "Git for Windows" and double-click on the icon to install it;
