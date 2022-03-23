@@ -1,7 +1,7 @@
 R data visualisation with RStudio and ggplot2: introduction
 ================
 UQ Library
-2022-01-27
+2022-03-23
 
 ## What are we going to learn?
 
@@ -80,7 +80,7 @@ We will write ggplot2 code more comfortably in a **script**:
     <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> or (for Mac)
     <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an
     “Untitled1” file.
--   Go to “File > Save” or press (for Windows/Linux)
+-   Go to “File \> Save” or press (for Windows/Linux)
     <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac)
     <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save
     your file and the name of the new file.
@@ -213,7 +213,7 @@ structure with:
 str(economics)
 ```
 
-    ## spec_tbl_df [574 x 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+    ## spec_tbl_df [574 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
     ##  $ date    : Date[1:574], format: "1967-07-01" "1967-08-01" ...
     ##  $ pce     : num [1:574] 507 510 516 512 517 ...
     ##  $ pop     : num [1:574] 198712 198911 199113 199311 199498 ...
@@ -431,7 +431,7 @@ To save the last plot with a command, you can use the `ggsave()`
 function:
 
 ``` r
-ggsave(filename = "plots/horiz_bar.png")
+ggsave(filename = "plots/fuel_efficiency.png")
 ```
 
 This is great to automate the export process for each plot in your
@@ -440,7 +440,7 @@ which is useful for getting the right resolution for a specific use. For
 example, to export a plot for your presentation:
 
 ``` r
-ggsave(filename = "plots/horiz_bar_pres.png", dpi = "screen")
+ggsave(filename = "plots/fuel_efficiency.png", dpi = "screen")
 ```
 
 > Saving a .svg file with requires installing the svglite package. This

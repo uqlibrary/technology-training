@@ -301,13 +301,13 @@ Like your visualisation? You can export it with the "Export" menu in the "Plots"
 To save the last plot with a command, you can use the `ggsave()` function:
 
 ```{r eval=FALSE}
-ggsave(filename = "plots/horiz_bar.png")
+ggsave(filename = "plots/fuel_efficiency.png")
 ```
 
 This is great to automate the export process for each plot in your script, but `ggsave()` also has extra options, like setting the DPI, which is useful for getting the right resolution for a specific use. For example, to export a plot for your presentation:
 
 ```{r eval=FALSE}
-ggsave(filename = "plots/horiz_bar_pres.png", dpi = "screen")
+ggsave(filename = "plots/fuel_efficiency.png", dpi = "screen")
 ```
 
 > Saving a .svg file with requires installing the svglite package. This packages seems so work best installing in a fresh R session (Session > Restart R) from source `install.packages("svglite", type = "source")`. Then load the library `library(svglite)` rerun your code including loading previous libraries (`ggplot2` etc.) and now saving a plot with a .svg extension should work! 
