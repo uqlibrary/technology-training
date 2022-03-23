@@ -203,7 +203,7 @@ applied automatically to the data.
 > the geometry (and let ggplot2 pick the default statistics that are
 > applied).
 
-### Scatterplots
+### Line plots
 
 Let’s have a look at another dataset: the `economics` dataset from the
 US. Learn more about it with `?economics`, and have a peak at its
@@ -222,13 +222,13 @@ str(economics)
     ##  $ unemploy: num [1:574] 2944 2945 2958 3143 3066 ...
 
 Do you think that unemployment is stable over the years? Let’s have a
-look with a scatterplot:
+look with a line plot, often used to visualise time series:
 
 ``` r
 ggplot(data = economics,
        mapping = aes(x = date,
                      y = unemploy)) + 
-    geom_point()
+    geom_line()
 ```
 
 ![](ggplot2_intro_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
@@ -242,6 +242,8 @@ Let’s go through our essential elements once more:
     variables**;
 -   The `geom_<...>()` function specifies what **geometric element** we
     want to use.
+
+### Scatterplots
 
 Scatterplots are often used to look at the relationship between two
 variables. Let’s try it with a new dataset: `mpg` (which stands for
@@ -261,6 +263,8 @@ We can focus on two variables:
 -   `displ`: a car’s engine size, in litres.
 -   `hwy`: a car’s fuel efficiency on the highway, in miles per gallon.
 
+For the geometry, we now have use “points”:
+
 ``` r
 ggplot(data = mpg,
        mapping = aes(x = displ,
@@ -271,9 +275,21 @@ ggplot(data = mpg,
 ![](ggplot2_intro_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 Notice how the points seem to be aligned on a grid? That’s because the
-data was rounded. If we want to better visualise the distribution of the
-points and avoid overlapping of points, we can use the “jitter” geometry
-instead, which gives the points a little shake:
+data was rounded. If we want to better visualise the density of points,
+we can use the “count” geometry, which makes the dots bigger when data
+points have the same `x` and `y` values:
+
+``` r
+ggplot(data = mpg,
+       mapping = aes(x = displ,
+                     y = hwy)) +
+    geom_count()
+```
+
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+Alternatively, we can avoid overlapping of points by using the “jitter”
+geometry, which gives the points a little shake:
 
 ``` r
 ggplot(data = mpg,
@@ -282,7 +298,10 @@ ggplot(data = mpg,
     geom_jitter()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+Even though the position of the dots does not match exactly the original
+`x` and `y` values, it does help visualise densities better.
 
 The plot shows a negative relationship between engine size (`displ`) and
 fuel efficiency (`hwy`). In other words, cars with big engines use more
@@ -304,7 +323,7 @@ ggplot(data = mpg,
     geom_jitter()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 It seems that two-seaters are more fuel efficient than other cars with a
 similar engine size, which can be explained by the lower weight of the
@@ -326,7 +345,7 @@ ggplot(mpg,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 > We stopped using the argument names because we know in which order
 > they appear: first the data, then the mapping of aesthetics. Let’s
@@ -351,7 +370,7 @@ ggplot(mpg,
 
     ## `geom_smooth()` using formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 ### Layering
 
@@ -368,7 +387,7 @@ ggplot(mpg,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 > The order of the functions matters: the points will be drawn before
 > the trend line, which is probably what you’re after.
@@ -388,7 +407,7 @@ ggplot(mpg,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 **Challenge 1 – where should aesthetics be defined?**
 
@@ -455,7 +474,8 @@ ggsave(filename = "plots/fuel_efficiency.png", dpi = "screen")
 
 Let’s use a similar approach to what we did with the `mpg` dataset.
 
-Take our previous “economics” scatterplot:
+Take our previous unemployment visualisation, but represented with
+points this time:
 
 ``` r
 ggplot(economics,
@@ -466,7 +486,8 @@ ggplot(economics,
 
 How could we:
 
-1.  Add a trend line for the number of unemployed people
+1.  Add a smooth line for the number of unemployed people. Are there any
+    interesting arguments that could make the smoother more useful?
 2.  Colour the points according to the median duration of unemployment
     (see `?economics`)
 
@@ -480,14 +501,14 @@ ggplot(economics,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 > See how the legend changes depending on the type of data mapped to the
 > `colour` aesthetic? (i.e. categorical vs continuous)
 
-This “trend line” is not particularly useful. We could make it follow
-the data more closely by using the `span` argument. The closer to 0, the
-closer to the data the smoother will be:
+This default “trend line” is not particularly useful. We could make it
+follow the data more closely by using the `span` argument. The closer to
+0, the closer to the data the smoother will be:
 
 ``` r
 ggplot(economics,
@@ -499,7 +520,7 @@ ggplot(economics,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 You can now see why this is called a “smoother”: we can fit a smooth
 curve to data that varies a lot.
@@ -518,12 +539,12 @@ ggplot(economics,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 The [early 1980s
-recession](https://en.wikipedia.org/wiki/Early_1980s_recession) now seem
-to have had a more significant impact on unemployment than the [Global
-Financial
+recession](https://en.wikipedia.org/wiki/Early_1980s_recession) now
+seems to have had a more significant impact on unemployment than the
+[Global Financial
 Crisis](https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%9308)
 of 2007-2008.
 
@@ -531,7 +552,7 @@ of 2007-2008.
 
 Let’s use the `diamonds` dataset now. The `diamonds` dataset comes with
 ggplot2 and contains information about \~54,000 diamonds, including the
-price, carat, color, clarity, and cut of each diamond.
+price, carat, colour, clarity, and cut quality of each diamond.
 
 Let’s have a look at the data:
 
@@ -551,7 +572,7 @@ ggplot(diamonds,
     geom_bar()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 The chart shows that more diamonds are available with high quality cuts
 than with low quality cuts.
@@ -582,7 +603,7 @@ ggplot(diamonds,
     geom_bar(fill = "tomato")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 If you are curious about what colour names exist in R, you can use the
 `colours()` function.
@@ -601,7 +622,7 @@ ggplot(diamonds,
          y = "Number of diamonds")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 
 Let’s have a look at what `labs()` can do:
 
@@ -631,7 +652,7 @@ ggplot(diamonds,
        x = "Number of diamonds") # ...and here!
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 This is particularly helpful when long category names overlap under the
 x axis.
@@ -652,7 +673,7 @@ ggplot(diamonds,
   theme_bw()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](ggplot2_intro_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 
 Try `theme_minimal()` as well, and if you want more options, install the
 `ggthemes` package!

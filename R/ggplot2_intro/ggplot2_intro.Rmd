@@ -150,7 +150,7 @@ Here, we don't need to specify what variable is associated to the y axis, as the
 
 > In ggplot2, each geometry has default statistics, so we often don't need to specify which stats we want to use. We could use a `stat_*()` function instead of a `geom_*()` function, but most people start with the geometry (and let ggplot2 pick the default statistics that are applied).
 
-### Scatterplots 
+### Line plots
 
 Let's have a look at another dataset: the `economics` dataset from the US. Learn more about it with `?economics`, and have a peak at its structure with:
 
@@ -158,13 +158,13 @@ Let's have a look at another dataset: the `economics` dataset from the US. Learn
 str(economics)
 ```
 
-Do you think that unemployment is stable over the years? Let's have a look with a scatterplot:
+Do you think that unemployment is stable over the years? Let's have a look with a line plot, often used to visualise time series:
 
 ```{r}
 ggplot(data = economics,
        mapping = aes(x = date,
                      y = unemploy)) + 
-    geom_point()
+    geom_line()
 ```
 
 Let's go through our essential elements once more:
@@ -172,6 +172,8 @@ Let's go through our essential elements once more:
 * The `ggplot()` function initialises a ggplot object. In it, we declare the **input data frame** and specify the set of plot aesthetics used throughout all layers of our plot;
 * The `aes()` function groups our **mappings of aesthetics to variables**;
 * The `geom_<...>()` function specifies what **geometric element** we want to use.
+
+### Scatterplots
 
 Scatterplots are often used to look at the relationship between two variables. Let's try it with a new dataset: `mpg` (which stands for "miles per gallon"), a dataset about fuel efficiency of different models of cars.
 
@@ -187,6 +189,8 @@ We can focus on two variables:
 * `displ`: a car’s engine size, in litres.
 * `hwy`: a car’s fuel efficiency on the highway, in miles per gallon.
 
+For the geometry, we now have use "points":
+
 ```{r}
 ggplot(data = mpg,
        mapping = aes(x = displ,
@@ -194,7 +198,16 @@ ggplot(data = mpg,
     geom_point()
 ```
 
-Notice how the points seem to be aligned on a grid? That's because the data was rounded. If we want to better visualise the distribution of the points and avoid overlapping of points, we can use the "jitter" geometry instead, which gives the points a little shake:
+Notice how the points seem to be aligned on a grid? That's because the data was rounded. If we want to better visualise the density of points, we can use the "count" geometry, which makes the dots bigger when data points have the same `x` and `y` values:
+
+```{r}
+ggplot(data = mpg,
+       mapping = aes(x = displ,
+                     y = hwy)) +
+    geom_count()
+```
+
+Alternatively, we can avoid overlapping of points by using the "jitter" geometry, which gives the points a little shake:
 
 ```{r}
 ggplot(data = mpg,
@@ -202,6 +215,8 @@ ggplot(data = mpg,
                      y = hwy)) +
     geom_jitter()
 ```
+
+Even though the position of the dots does not match exactly the original `x` and `y` values, it does help visualise densities better.
 
 The plot shows a negative relationship between engine size (`displ`) and fuel efficiency (`hwy`). In other words, cars with big engines use more fuel. Does this confirm or refute your hypothesis about fuel efficiency and engine size?
 
@@ -316,7 +331,7 @@ ggsave(filename = "plots/fuel_efficiency.png", dpi = "screen")
 
 Let's use a similar approach to what we did with the `mpg` dataset.
 
-Take our previous "economics" scatterplot:
+Take our previous unemployment visualisation, but represented with points this time:
 
 ```{r eval=FALSE}
 ggplot(economics,
@@ -327,7 +342,7 @@ ggplot(economics,
 
 How could we:
 
-1. Add a trend line for the number of unemployed people
+1. Add a smooth line for the number of unemployed people. Are there any interesting arguments that could make the smoother more useful?
 2. Colour the points according to the median duration of unemployment (see `?economics`)
 
 ```{r}
@@ -340,7 +355,7 @@ ggplot(economics,
 
 > See how the legend changes depending on the type of data mapped to the `colour` aesthetic? (i.e. categorical vs continuous)
 
-This "trend line" is not particularly useful. We could make it follow the data more closely by using the `span` argument. The closer to 0, the closer to the data the smoother will be:
+This default "trend line" is not particularly useful. We could make it follow the data more closely by using the `span` argument. The closer to 0, the closer to the data the smoother will be:
 
 ```{r}
 ggplot(economics,
@@ -362,12 +377,12 @@ ggplot(economics,
     geom_smooth(span = 0.1)
 ```
 
-The [early 1980s recession](https://en.wikipedia.org/wiki/Early_1980s_recession) now seem to have had a more significant impact on unemployment than the [Global Financial Crisis](https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%9308) of 2007-2008.
+The [early 1980s recession](https://en.wikipedia.org/wiki/Early_1980s_recession) now seems to have had a more significant impact on unemployment than the [Global Financial Crisis](https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%9308) of 2007-2008.
 
 ### Bar charts and ordered factors
 
 Let's use the `diamonds` dataset now.
-The `diamonds` dataset comes with ggplot2 and contains information about ~54,000 diamonds, including the price, carat, color, clarity, and cut of each diamond.
+The `diamonds` dataset comes with ggplot2 and contains information about ~54,000 diamonds, including the price, carat, colour, clarity, and cut quality of each diamond.
 
 Let's have a look at the data:
 
