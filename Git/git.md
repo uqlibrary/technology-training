@@ -15,7 +15,7 @@ This short course is based on the longer course _[Version Control with Git](http
 
 We will use Git inside a command-line shell called Bash.
 
-Installation instructions are available on [this page](https://gitlab.com/stragu/CDS/blob/master/Git/installation.md).
+Installation instructions are available on [this page](https://github.com/uqlibrary/technology-training/blob/master/R/Installation.md).
 
 ## Material
 
