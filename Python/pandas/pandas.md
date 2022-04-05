@@ -117,14 +117,14 @@ It looks like the dataset is also consistently missing values for nitrous oxide 
 
 ### Challenge 1: remove recent patchy years
 
-How can you remove the patchy years after 2016? Design an operation that is similar to removing the pre-1900 data.
+How can you remove the patchy years after 2018? Design an operation that is similar to removing the pre-1900 data.
 
 Can you add a second command to check it has done the right thing?
 
 Solution:
 
 ```python
-df = df[df.year < 2017]
+df = df[df.year < 2019]
 max(df.year)
 ```
 
