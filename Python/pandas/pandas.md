@@ -55,7 +55,7 @@ It is available under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) li
 We can import it directly with pandas, with:
 
 ```python
-df_raw = pd.read_csv("https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv")
+df_raw = pd.read_csv('https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv')
 ```
 
 Using the `type()` function confirms what type of variable the data is stored as:
@@ -193,7 +193,7 @@ We can see that quite a few rows have missing ISO codes, which for the most part
 Again, by using a logical test:
 
 ```python
-df = df[(df.iso_code != "OWID_WRL") & (df.iso_code.notna())]
+df = df[(df.iso_code != 'OWID_WRL') & (df.iso_code.notna())]
 ```
 
 We use two conditions at once:
@@ -258,8 +258,8 @@ The SPI dataset also has a three-letter code for the countries, which we can mat
 spi = pd.read_csv('https://gist.githubusercontent.com/stragu/57b0a0750678bada09625d429a0f806b/raw/a18a454d7d225bd24074399a7ab79a4189e53501/spi.csv')
 # merge on two columns
 df_all = pd.merge(df, spi,
-                  left_on = ['iso_code', 'year'],
-                  right_on = ['country_code', 'year'])
+                  left_on=['iso_code', 'year'],
+                  right_on=['country_code', 'year'])
 ```
 
 We specified the two data frames, and which columns we wanted to merge on. However, we end up losing a lot of data. Looking at the documentation for the `merge()` function, we can see that there are many ways to merge tables, depending on what we want to keep:
@@ -272,9 +272,9 @@ The `how` argument defines which kind of merge we want to do. Because we want to
 
 ```python
 df_all = pd.merge(df, spi,
-                  how = 'left',
-                  left_on = ['iso_code', 'year'],
-                  right_on = ['country_code', 'year'])
+                  how='left',
+                  left_on=['iso_code', 'year'],
+                  right_on=['country_code', 'year'])
 ```
 
 We can now "drop" the useless country_code column:
@@ -290,13 +290,13 @@ df_all.pop('country_code')
 The `aggregate()` method, which has a shorter alias `agg()`, allows creating summaries by applying a function to a column. In combination with the `groupby()` method, we can create summary tables. For example, to find the average SPI for each country, and then sort the values in descending order:
 
 ```python
-df_all.groupby('country').spi.agg('mean').sort_values(ascending = False)
+df_all.groupby('country').spi.agg('mean').sort_values(ascending=False)
 ```
 
 If you want to export that summary table and use it outside Spyder, you can first save it as a variable, and then write it to a CSV file:
 
 ```python
-spi_sum = df_all.groupby('country').spi.agg('mean').sort_values(ascending = False)
+spi_sum = df_all.groupby('country').spi.agg('mean').sort_values(ascending=False)
 # write to file
 spi_sum.to_csv('spi_summary.csv')
 ```
@@ -311,43 +311,43 @@ pandas integrates visualisation tools, thanks to the `plot()` method and its man
 For example, to visualise the relationship between CO<sub>2</sub>e per capita and SPI:
 
 ```python
-df_all.plot(x = 'co2e_pc', y = 'spi')
+df_all.plot(x='co2e_pc', y='spi')
 ```
 
 The default kind of plot is a line plot, so let's change that to a scatterplot:
 
 ```python
-df_all.plot(x = 'co2e_pc', y = 'spi', kind = 'scatter')
+df_all.plot(x='co2e_pc', y='spi', kind='scatter')
 ```
 
 Focusing on the latest year will guarantee that there only is one point per country:
 
 ```python
-df_all[df_all.year == 2016].plot(x = 'co2e_pc',
-                                 y = 'spi',
-                                 kind = 'scatter')
+df_all[df_all.year == 2016].plot(x='co2e_pc',
+                                 y='spi',
+                                 kind='scatter')
 ```
 
-To visualise a third variable, GDP per capite, let's map it to the colour of the points, thanks to the `c` argument:
+To visualise a third variable, GDP per capita, let's map it to the colour of the points, thanks to the `c` argument:
 
 ```python
-df_all[df_all.year == 2016].plot(x = 'co2e_pc',
-                                 y = 'spi',
-                                 c = 'gdp_pc',
-                                 colormap = 'viridis',
-                                 kind = 'scatter')
+df_all[df_all.year == 2016].plot(x='co2e_pc',
+                                 y='spi',
+                                 c='gdp_pc',
+                                 colormap='viridis',
+                                 kind='scatter')
 ```
 
 We can change the labels too:
 
 ```python
-df_all[df_all.year == 2016].plot(x = 'co2e_pc',
-                                 y = 'spi',
-                                 c = 'gdp_pc',
-                                 colormap = 'viridis',
-                                 kind = 'scatter',
-                                 xlabel = 'GHG per capita (MT CO2e/yr)',
-                                 ylabel = 'Social Progress Index')
+df_all[df_all.year == 2016].plot(x='co2e_pc',
+                                 y='spi',
+                                 c='gdp_pc',
+                                 colormap='viridis',
+                                 kind='scatter',
+                                 xlabel='GHG per capita (MT CO2e/yr)',
+                                 ylabel='Social Progress Index')
 ```
 
 ### Challenge 2: GHG timeline
@@ -358,7 +358,7 @@ We can subset the columns that matter to us, create a summary, and plot it:
 
 ```python
 sub = df_all[['year', 'co2', 'methane', 'nitrous_oxide']]
-sub.groupby('year').agg('sum').plot(ylabel = 'MT CO2e')
+sub.groupby('year').agg('sum').plot(ylabel='MT CO2e')
 ```
 
 Remember that the default `kind` of plot in this function is `'line'`, which works for this visualisation. And as we fed it a series variable with several columns, it automatically assigned a different colour to each one.
