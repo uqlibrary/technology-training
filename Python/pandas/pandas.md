@@ -383,4 +383,4 @@ By default, your variables are *not* saved, which is another reason why working 
 * About our datasets:
     * [Our World in Data](https://ourworldindata.org)
     * [Social Progress Index](https://www.socialprogress.org)
-* Our [compilation of useful Python links](https://gitlab.com/stragu/DSH/blob/master/Python/useful_links.md)
+* Our [compilation of useful Python links](https://github.com/uqlibrary/technology-training/blob/master/Python/useful_links.md)
