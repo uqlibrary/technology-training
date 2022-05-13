@@ -1,7 +1,7 @@
 R reproducible reports with R Markdown and knitr
 ================
 Stéphane Guillou
-2021-12-22
+2022-05-13
 
 ## Setting up
 
@@ -91,7 +91,9 @@ importing it. For example:
 
     ## National Greenhouse Gas Inventory data
 
-    Our data comes from the NGA, and is released under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) licence. The latest release can be found on [this page](https://publications.industry.gov.au/publications/climate-change/climate-change/climate-science-data/greenhouse-gas-measurement/publications.html)
+    Our data comes from the NGA, and is released under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) licence. The latest release can be found on [this page](https://www.industry.gov.au/data-and-publications/national-inventory-reports)
+
+    The values are reported in Mt CO<sub>2</sub>-e.
 
 Notice how we used a `[text](link)` syntax to add a link to a website?
 
@@ -144,7 +146,7 @@ ghg
 ```
 
     ## # A tibble: 28 × 8
-    ##     year `Agriculture, F… `Forestry - Cha… Mining Manufacturing `Electricity, G…
+    ##     year `Agriculture, …` `Forestry - Ch…` Mining Manufacturing `Electricity, …`
     ##    <dbl>            <dbl>            <dbl>  <dbl>         <dbl>            <dbl>
     ##  1  1990             286.            -19.1   44.6          68.0             148.
     ##  2  1991             266.            -14.8   46.1          67.9             150.
@@ -157,7 +159,7 @@ ghg
     ##  9  1998             140.            -22.5   55.4          67.5             178.
     ## 10  1999             151.            -22.0   53.0          68.8             184.
     ## # … with 18 more rows, and 2 more variables:
-    ## #   Services, Construction and Transport <dbl>, Residential <dbl>
+    ## #   `Services, Construction and Transport` <dbl>, Residential <dbl>
 
 ### Working directory
 
@@ -247,9 +249,9 @@ We can also **include code that will be executed *inside* Markdown
 text**. For example, you can write the following sentence:
 
 > The dataset contains GHG emissions for the period
-> `` `r min(ghg_tidy$year)` `` to `` `r max(ghg_tidy$year)` ``. The
-> maximum GHG emissions recorded for the mining sector is
-> `` `r max(ghg_tidy[ghg_tidy$sector == "Mining",]$emissions)` ``.
+> `` `r min(ghg$year)` `` to `` `r max(ghg$year)` ``. The maximum GHG
+> emissions recorded for the mining sector is
+> `` `r round(max(ghg$Mining), 2)` ``.
 
 We can also use this feature to **auto-update the date** of your report
 every time it is knitted. Replace the `date` line in the YAML header
@@ -265,7 +267,8 @@ We can also include a visualisation using, for example, ggplot2:
 
 ``` r
 ggplot(ghg_tidy, aes(x = year, y = emissions, colour = sector)) +
-    geom_line()
+  geom_line() +
+  ylab("emissions (Mt CO2e)")
 ```
 
 ![](reports_files/figure-gfm/viz-1.png)<!-- -->
@@ -278,7 +281,8 @@ Finally, let’s create an interactive version of our plot:
 ``` r
 library(plotly)
 p <- ggplot(ghg_tidy, aes(x = year, y = emissions, colour = sector)) +
-    geom_line()
+  geom_line() +
+  ylab("emissions (Mt CO2e)")
 ggplotly(p)
 ```
 
@@ -297,16 +301,16 @@ the top of the document). For example:
 
 We have an updated version of the dataset. The only thing we need to do
 to update the whole report is point the data import code to the new
-file, at the top of our document, changing the year to “2018”:
+file, at the top of our document, changing the year to “2019”:
 
 ``` r
-ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2018.csv")
+ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2019.csv")
 ```
 
 Knitting again will update all the objects and visualisations for us!
 This is the power of reproducible reports in R.
 
-With reporducible reports, you can potentially structure and write (most
+With reproducible reports, you can potentially structure and write (most
 of) a report even before you have your research project’s final dataset.
 (Well, at least the data analysis part, maybe not so much the
 conclusions!)
