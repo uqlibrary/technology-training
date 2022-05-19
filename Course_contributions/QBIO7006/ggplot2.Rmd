@@ -2,11 +2,13 @@
 title: "ggplot2 advanced"
 author: "Stéphane Guillou"
 date: "`r Sys.Date()`"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
 ```
 
 ## Refining ggplot2 visualisations
@@ -116,7 +118,7 @@ However, most of the grid is coloured with the lower end of the colour scale. Th
 ggplot(bun_ab, aes(x = abundance)) + geom_density()
 ```
 
-It could be useful to log-transform the colour scale directly, which has the added benefit of making the absence of as species more obvious. We can do that directly in the `scale_*()` function, instead of modifying the underlying data. We then tweak the theme's grid to better guide the audience between species names and coloured cells:
+It could be useful to log-transform the colour scale directly, which has the added benefit of making the absence of a species more obvious. We can do that directly in the `scale_*()` function, instead of modifying the underlying data. We then tweak the theme's grid to better guide the audience between species names and coloured cells:
 
 ```{r warning=FALSE, fig.height=7, warning=FALSE}
 bun_ab %>% 
@@ -140,6 +142,22 @@ bun_ab %>%
 ```
 
 If you want to fix the cell size ratio, a coordinate function can help. To get a grid of squares, `coord_equal()` will use a default ratio of 1 (but you might have to deal with clipped facet labels).
+
+### A note on heatmaps
+
+This ggplot2 equivalent of a heatmap is lacking a very important aspect of that specialised visualisation: the clustering and reordering of rows and columns. When using a dedicated heatmap tool, like the base R `heatmap()` function, the clustering and reordering is visualised by the default inclusion of dendrograms around the grid of cells:
+
+```{r}
+# prepare colours to highlight different locations
+loc_colours <- c("green","purple","pink","blue","red")[as.factor(bunyas$abundances$location)]
+# see the default
+bunyas$abundances[,-(1:2)] %>% # remove the two first columns
+  as.matrix() %>% 
+  heatmap(scale = "column", # scaling in the column direction reveals highs and lows per species
+          RowSideColors = loc_colours)
+```
+
+The clustering of the subplots is not perfect, but different functions can be used to more effectively compute the dissimilarity between rows and columns.
 
 ## Patchwork
 
@@ -167,9 +185,19 @@ p_heat <- bun_ab %>%
   theme(panel.spacing = unit(0, "points"),
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank())
+# what class of object?
+class(p_heat)
 ```
 
-Then, create other visualisations, saved as objects. One bar chart about how prominent different families are:
+`ggplot` objects contain all the building blocks of a visualisation, which means they can be further customised by chaining more ggplot2 functions with `+`, and their internals can also be manipulated. For example, to add an extra geometry to the plot:
+
+```{r}
+p_heat + geom_text(aes(label = abundance), size = 2)
+```
+
+Let's now create two more visualisations, saved as objects.
+
+First, a bar chart that shows only the 5 most prominent families:
 
 ```{r}
 # get counts of 5 most common families
@@ -185,9 +213,14 @@ p_fams <- top_5_fams %>%
   guides(fill = "none") +
   labs(x ="count", y = "family") +
   theme_minimal()
+# see it
+p_fams
 ```
 
-And one scatterplot of wood density vs maximum height, in which we join the family data, and define
+And one scatterplot of wood density vs maximum height, in which we:
+
+1. join the family data
+2. add a column to help colour only the top 5 families, using the same colours as in the other plot:
 
 ```{r}
 # get species familes from trees dataset
@@ -201,15 +234,19 @@ p_traits <- bunyas$traits %>%
   mutate(fam_col = if_else(family %in% top_5_fams$family, family, NA_character_)) %>% 
   ggplot(aes(x = wd, y = sqrt_mh)) +
   geom_point(aes(colour = fct_relevel(fam_col, top_5_fams$family))) + # same order as previous plot
-  geom_smooth(linetype = "dashed", colour = "black", size = 0.5) +
+  geom_smooth(linetype = "dashed", colour = "black", size = 0.5,
+              se = FALSE) + # remove the confidence interval
   scale_colour_discrete(guide = "none", # bar chart will serve as a legend
                         na.value = "lightgrey") + # make other families more discrete
   labs(x = "wood density (fresh mass / dry mass)",
-       y = "maximum height (sqrt of m)") +
+       y = "maximum height (sqrt of m)",
+       caption = "(lower is denser)") +
   theme_minimal()
+# see it
+p_traits
 ```
 
-Finally, combine the plots in one single layout:
+Finally, combine the plots in one single layout, using the patchwork syntax:
 
 ```{r patchwork, fig.height=8, fig.width=10, warning=FALSE}
 library(patchwork)
@@ -222,16 +259,19 @@ Note that patchwork takes care of aligning the plot areas.
 Patchwork provides many tools, including the `&` operator to apply a theme to all plots:
 
 ```{r patchwork_theme, fig.height=8, fig.width=10, warning=FALSE}
-pw & theme_bw()
+pw & theme_bw() & theme(text = element_text('mono'))
 ```
 
-It also allows annotating each plot, with tags for example:
+Notice however that this replaces any theme customisation you might have done previously (for example, the custom spacing and grids in the heatmap).
+
+Patchwork also allows annotating each plot, with tags for example:
 
 ```{r patchwork_tags, fig.height=8, fig.width=10, warning=FALSE}
 pw + plot_annotation(tag_levels = "A")
 ```
 
 > How could we further improve this combination of plots? Identify issues or annoying details, and try to find solutions in the relevant functions' documentation and online.
+> Could we remove things? Do we need to add more text for it to be self-explanatory? What other arguments could be useful in the `plot_annotation()` function?
 
 ## Exporting
 
@@ -251,14 +291,17 @@ For such a large layout of plots, we need larger dimensions:
 ggsave("bunyas.svg", width = 28, height = 18, units = "cm")
 ```
 
-## Custom themes
-
-...
 
 ## Interaction with Plotly
 
-...
+Plotly is a data visualisation library useful for interactive plots. It is available for various programming languages, and the R package plotly makes it possible to build this kind of visualisation from scratch, but also by "translating" a `ggplot` object with the `ggplotly()` function:
 
+```{r eval=FALSE}
+library(plotly)
+ggplotly(p_traits)
+```
+
+The benefit of this kind of visualisation over the static one is on-demand information by using the cursor and revealing a tooltip of values. By adding the aesthetic mapping of `label = species` to the code that generated `p_traits`, we could add the species names to the tooltip to make it even more useful. (And we could pre-process the data so we don't get the superfluous `fct_relevel()` code.)
 
 ## Interaction with Shiny
 
@@ -266,13 +309,16 @@ Shiny is a package and framework for creating web applications with R.
 
 An application's structure is divided in two main elements: the **server** (what happens in the background) and the **UI** (the User Interface, in which the user sees and interacts with the content).
 
-In this minimal example, we want to show the user a Plotly visualisation of the relationship between fuel efficiency and size of the engine, using the `mpg` dataset, and let the user control what determines the colour of the points in the scatterplot.
+In this minimal example, we want to reuse our top families bar chart and let the user control the number of families shown.
 
 In a single script called `app.R`, we define which packages will be necessary:
 
 ```{r eval=FALSE}
 # Load the necessary packages
+library(boilrdata)
 library(shiny)
+library(dplyr)
+library(forcats)
 library(plotly)
 ```
 
@@ -287,41 +333,44 @@ Then, we define the UI, including:
 #### UI ####
 ui <- fluidPage(
   # Title
-  titlePanel("Fuel efficiency explorer"),
+  titlePanel("Top families"),
   # Sidebar with a variable selector
   sidebarLayout(
     sidebarPanel(
-      selectInput("colour_by",
-                  label = "Colour by:",
-                  choices = c("Type of car" = "class",
-                              "Drive train" = "drv"))
+      sliderInput("n_fam",
+                  label = "Number of families",
+                  min = 1, max = 12, value = 5)
     ),
     # Show the plot
     mainPanel(
-      plotlyOutput("scatter")
+      plotlyOutput("top_bars")
     )
   )
 )
 ```
 
-We then define what happens on the server:
+We then define what happens on the server. The code that goes inside `renderPlotly()` is the same code we've used previously for our static visualisation, the only difference being that we make use of the user's input, `input$n_fam`, when slicing the dataset:
 
 ```{r eval=FALSE}
 #### Server ####
 server <- function(input, output) {
   
-  output$scatter <- renderPlotly({
-    # Draw, using the choice provided as an input for colour.
-    # Note the use of aes_string()
-    p <- ggplot(mpg, aes_string("displ", "hwy",
-                                label = "manufacturer", label2 = "model",
-                                colour = input$colour_by)) +
-      labs(x = "Engine size",
-           y = "Fuel efficiency",
-           colour = input$colour_by) +
-      geom_jitter()
-    # Make interactive
-    ggplotly(p)
+  output$top_bars <- renderPlotly({
+    # get counts of 5 most common families
+    top_5_fams <- bunyas$trees %>% 
+      count(family, sort = TRUE) %>% 
+      slice(1:input$n_fam)
+    
+    p_fams <- top_5_fams %>% 
+      ggplot(aes(x = n,
+                 y = fct_inorder(family), # order bars by frequency
+                 fill = family)) + 
+      geom_col() +
+      guides(fill = "none") +
+      labs(x ="count", y = "family") +
+      theme_minimal()
+    # see it
+    p_fams
   })
 }
 ```
@@ -333,45 +382,12 @@ Finally, we specify how the app should be run, using the `ui` and `server` objec
 shinyApp(ui = ui, server = server)
 ```
 
-> [See the application online](https://stragu.shinyapps.io/shiny_example_1/).
-
-As you test the application online, notice how the code that is run gets highlighted as you select a variable. This demonstrates an important aspect of Shiny apps: their **reactivity**. When a value changes, for example when the user interacts with an input widget, only the section of code that depends on it will be re-run. In our example, the input is used by the ggplot2 code and will therefore be re-run when it changes. Because the `ggplotly()` function depends on the ggplot2 code, it will also be re-run once the `p` object is available.
-
-In this next example, we want to give the option to the user to filter out some values by using a range slider. In the UI, we add another control, a `sliderInput`, which allows the user to select a range of values for the cylinders variable:
-
-```{r eval=FALSE}
-      # Range slider is here
-      sliderInput("range",
-                  label = "Cylinders range:",
-                  min = min(mpg$cyl),
-                  max = max(mpg$cyl),
-                  value = range(mpg$cyl),
-                  step = 1)
-```
-
-And on the server side, we make use of it just before the plot code, using a `filter()`:
-
-```{r eval=FALSE}
-  output$scatter <- renderPlotly({
-    p <- mpg %>% 
-      # Filter according to the range slider
-      filter(between(cyl, input$range[1], input$range[2])) %>% 
-      ggplot(aes_string("displ", "hwy",
-                        label = "manufacturer", label2 = "model",
-                        colour = input$colour_by)) +
-      labs(x = "Engine size",
-           y = "Fuel efficiency",
-           colour = input$colour_by) +
-      geom_jitter() +
-      geom_smooth(aes(displ, hwy), inherit.aes = FALSE)
-    ggplotly(p)
-  })
-```
-
-> [See the application online](https://stragu.shinyapps.io/shiny_example_2/).
+If you add the extra option `options = list(display.mode = "showcase")` to the `shinyApp()` function that starts the app, you will see how the code that is run gets highlighted as you change the slider value This demonstrates an important aspect of Shiny apps: their **reactivity**. When a value changes, for example when the user interacts with an input widget, only the section of code that depends on it will be re-run. In our example, the input is used by the data processing and ggplot2 code blocks and they will therefore be re-run when it changes.
 
 ## Further resources
 
+- A gallery of [extensions to ggplot2](https://exts.ggplot2.tidyverse.org/gallery/)
+- [Cédric Scherer's "ggplot Wizardry"](https://www.cedricscherer.com/slides/OutlierConf2021_ggplot-wizardry.pdf), a showcase of refined ggplot2 visualisations
 - The book _[Interactive web-based data visualization with R, plotly, and shiny](https://plotly-r.com/)_ by Carson Sievert
 - The documentation for both [Plotly](https://plotly.com/r/) and [Shiny](https://shiny.rstudio.com/)
 
