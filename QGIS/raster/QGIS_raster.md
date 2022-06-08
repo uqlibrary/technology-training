@@ -18,9 +18,10 @@ A Digital Elevation Model (DEM) is a common example of **raster data**, i.e. gri
 For this tutorial, we are using a DEM sourced from the USGS website.
 
 * Go to https://earthexplorer.usgs.gov/
-* Search for "Brisbane" in the "Address/Place" search box and select the first result
+* Click the World Features box, and the search for "Brisbane" in the "Feature Name" search box
+* Click Show and select the first result
 * Zoom onto an area of interest around Brisbane and click "Use Map"
-* Click `Data Sets > Digital Elevation > SRTM`, select "SRTM 1 Arc-Second Global" and click "Results"
+* Click the "Data Sets" button and then `Digital Elevation > SRTM`, select "SRTM 1 Arc-Second Global" and click "Results"
 
 "SRTM" stands for "[Shuttle Radar Topography Mission](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)". It provides global elevation data collected in 2000 by the space shuttle Endeavour.
 
