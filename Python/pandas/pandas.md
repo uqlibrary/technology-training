@@ -190,7 +190,13 @@ df.count()
 
 We can see that quite a few rows have missing ISO codes, which for the most part indicates an aggregate region. So how do we remove all that superfluous data?
 
-Again, by using a logical test:
+Again, by using a logical test. But first, check what will be removed:
+
+```python
+df[df.iso_code.isna()].country.unique()
+```
+
+No, use both conditions to remove aggregate regions:
 
 ```python
 df = df[(df.iso_code != 'OWID_WRL') & (df.iso_code.notna())]
