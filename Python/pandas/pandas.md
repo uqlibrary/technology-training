@@ -1,6 +1,6 @@
 # Python data transformation and visualisation with pandas
 
-This hands-on course – directed at intermediate users – looks at using the **pandas** module to transform and visualise tabular data.
+This hands-on course -- directed at intermediate users -- looks at using the **pandas** module to transform and visualise tabular data.
 
 ## Setup
 
@@ -352,6 +352,8 @@ df_all[df_all.year == 2016].plot(x='co2e_pc',
                                  xlabel='GHG per capita (MT CO2e/yr)',
                                  ylabel='Social Progress Index')
 ```
+
+If the x labels don't show, try this workaround: <https://github.com/pandas-dev/pandas/issues/36064#issuecomment-1011175535>
 
 ### Challenge 2: GHG timeline
 
