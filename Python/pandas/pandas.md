@@ -1,6 +1,6 @@
 # Python data transformation and visualisation with pandas
 
-This hands-on course – directed at intermediate users – looks at using the **pandas** module to transform and visualise tabular data.
+This hands-on course -- directed at intermediate users -- looks at using the **pandas** module to transform and visualise tabular data.
 
 ## Setup
 
@@ -12,11 +12,11 @@ Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a t
 
 In order to keep everything nicely contained in one directory, and to find files more easily, we need to create a project.
 
-* Projects -> New project...
-* New directory
-* Project name: "python_pandas"
-* Choose a location that suits you on your computer
-* Click "Create"
+-   Projects -\> New project...
+-   New directory
+-   Project name: "python_pandas"
+-   Choose a location that suits you on your computer
+-   Click "Create"
 
 This will move our working directory to the directory we just created, and Python will look for files (and save files) in this same directory by default.
 
@@ -24,9 +24,9 @@ This will move our working directory to the directory we just created, and Pytho
 
 Spyder opens a temporary script automatically. You can save that as a file into our project directory:
 
-* File -> Save as...
-* Make sure you are located in the project directory
-* Name the script "process.py"
+-   File -\> Save as...
+-   Make sure you are located in the project directory
+-   Name the script "process.py"
 
 Working in a script allows us to write code more comfortably, and save a process as a clearly defined list of commands that others can review and reuse.
 
@@ -38,7 +38,7 @@ However, pandas is not limited to importing and storing dataframes. Many functio
 
 To be able to use the functions included in pandas, we have to first import it:
 
-```python
+``` python
 import pandas as pd
 ```
 
@@ -46,7 +46,7 @@ import pandas as pd
 
 ## Importing data
 
-Our data is a CO<sub>2</sub> emission dataset from Our World in Data: https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv
+Our data is a CO<sub>2</sub> emission dataset from Our World in Data: <https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv>
 
 It is available under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) licence, an open licence that requires that any sharing or derivative of it needs to attribute the original source and authors.
 
@@ -54,25 +54,25 @@ It is available under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) li
 
 We can import it directly with pandas, with:
 
-```python
+``` python
 df_raw = pd.read_csv('https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv')
 ```
 
 Using the `type()` function confirms what type of variable the data is stored as:
 
-```python
+``` python
 type(df_raw)
 ```
 
 This dataset is a fairly big one. We can investigate its size thanks to the `shape` attribute attached to all pandas dataframes:
 
-```python
+``` python
 df_raw.shape
 ```
 
 The dataset contains dozens of columns. What are their names?
 
-```python
+``` python
 df_raw.columns
 ```
 
@@ -84,32 +84,32 @@ We want to focus on only a few columns, especially since a lot of the data can b
 
 We want to keep 8 columns:
 
-* The `iso_code`, which is very useful for matching several datasets without having to worry about variations in country names
-* `country`
-* `year`
-* `population`
-* `gdp`
-* The three main greenhouse gases, which according to the codebook are all in million tonnes of CO<sub>2</sub>-equivalent:
-    * `co2`
-    * `methane`
-    * `nitrous_oxide`
+-   The `iso_code`, which is very useful for matching several datasets without having to worry about variations in country names
+-   `country`
+-   `year`
+-   `population`
+-   `gdp`
+-   The three main greenhouse gases, which according to the codebook are all in million tonnes of CO<sub>2</sub>-equivalent:
+    -   `co2`
+    -   `methane`
+    -   `nitrous_oxide`
 
 To only keep these columns, we can index the dataframe with a list of names:
 
-```python
+``` python
 keep = ['iso_code', 'country', 'year', 'population', 'gdp', 'co2', 'methane', 'nitrous_oxide']
 df = df_raw[keep]
 ```
 
 The other issue with the data is that it starts in the 18th century, but we might want to ignore early patchy data:
 
-```python
+``` python
 df = df[df.year >= 1900]
 ```
 
 We can check that it has worked:
 
-```python
+``` python
 min(df.year)
 ```
 
@@ -123,7 +123,7 @@ Can you add a second command to check it has done the right thing?
 
 Solution:
 
-```python
+``` python
 df = df[df.year < 2019]
 max(df.year)
 ```
@@ -132,25 +132,25 @@ max(df.year)
 
 To check what kind of data each column is stored as, we can use the `dtypes` attribute:
 
-```python
+``` python
 df.dtypes
 ```
 
 The `describe()` method is useful for descriptive statistics about our numerical columns:
 
-```python
+``` python
 df.describe()
 ```
 
 However, it will only show the two first ones and two last ones. We can focus on a specific column instead, for example one that was hidden previously:
 
-```python
+``` python
 df.co2.describe()
 ```
 
 Or a categorical column:
 
-```python
+``` python
 df.country.describe()
 ```
 
@@ -160,7 +160,7 @@ df.country.describe()
 
 Which country does this maximum value belong to? Let's investigate by subsetting the data:
 
-```python
+``` python
 df[df.co2 == max(df.co2)]
 ```
 
@@ -170,7 +170,7 @@ What is this "OWID_WRL" country? It is the whole world. Many datasets have aggre
 
 We can also find out that many rows do not have an ISO code at all, by using Spyder's data explorer, or by using two methods stringed together:
 
-```python
+``` python
 df.iso_code.isna().sum()
 ```
 
@@ -178,13 +178,13 @@ df.iso_code.isna().sum()
 
 Similarly, we can average boolean values to find the fraction of missing data:
 
-```python
+``` python
 df.iso_code.isna().mean()
 ```
 
 Alternatively, pandas dataframes have a `count()` method to give a count of non-NA values for each column:
 
-```python
+``` python
 df.count()
 ```
 
@@ -192,26 +192,26 @@ We can see that quite a few rows have missing ISO codes, which for the most part
 
 Again, by using a logical test. But first, check what will be removed:
 
-```python
+``` python
 df[df.iso_code.isna()].country.unique()
 ```
 
 No, use both conditions to remove aggregate regions:
 
-```python
+``` python
 df = df[(df.iso_code != 'OWID_WRL') & (df.iso_code.notna())]
 ```
 
 We use two conditions at once:
 
-1. we want the ISO code to be _different_ to "OWID_WRL";
-1. we want the ISO code to _not_ be a missing value, thanks to the `notna()` method (which does the opposite to `isna()`).
+1.  we want the ISO code to be *different* to "OWID_WRL";
+2.  we want the ISO code to *not* be a missing value, thanks to the `notna()` method (which does the opposite to `isna()`).
 
-By joining these two conditions with `&`, we only keep the rows that match _both conditions_.
+By joining these two conditions with `&`, we only keep the rows that match *both conditions*.
 
 We can now check what actual countries are left in the dataset, with the `unique()` method:
 
-```python
+``` python
 df.country.unique()
 ```
 
@@ -223,7 +223,7 @@ For example, we can first sum the three greenhouse gases (as they use the same u
 
 For the total greenhouse gaz emissions in CO<sub>2</sub>e:
 
-```python
+``` python
 df['co2e'] = df[['co2', 'methane', 'nitrous_oxide']].sum(axis=1)
 ```
 
@@ -231,18 +231,16 @@ The operation is done row-wise: we use `axis=1` to specify that we apply the fun
 
 You can confirm by looking at the data that the NA values are skipped when calculating the sum. The help page for this method mentions the `skipna` argument, which is set to `True` by default:
 
-```python
+``` python
 df.sum?
 ```
 
-```
-skipna : bool, default True
-    Exclude NA/null values when computing the result.
-```
+    skipna : bool, default True
+        Exclude NA/null values when computing the result.
 
 And then, for the CO<sub>2</sub>e per capita and the GDP per capita:
 
-```python
+``` python
 df['co2e_pc'] = df.co2e / df.population
 df['gdp_pc'] = df.gdp / df.population
 ```
@@ -255,11 +253,11 @@ It is common to want to merge two datasets from two different sources. To do tha
 
 We want to add the countries' Social Progress Index to our dataset.
 
-> You can find out more about the SPI on their website: https://www.socialprogress.org/
+> You can find out more about the SPI on their website: <https://www.socialprogress.org/>
 
 The SPI dataset also has a three-letter code for the countries, which we can match to our existing `iso_code` column. We have an SPI for several different years, so we should match that column as well:
 
-```python
+``` python
 # read the data
 spi = pd.read_csv('https://gist.githubusercontent.com/stragu/57b0a0750678bada09625d429a0f806b/raw/a18a454d7d225bd24074399a7ab79a4189e53501/spi.csv')
 # merge on two columns
@@ -270,13 +268,13 @@ df_all = pd.merge(df, spi,
 
 We specified the two data frames, and which columns we wanted to merge on. However, we end up losing a lot of data. Looking at the documentation for the `merge()` function, we can see that there are many ways to merge tables, depending on what we want to keep:
 
-```python
+``` python
 pd.merge?
 ```
 
 The `how` argument defines which kind of merge we want to do. Because we want to keep all of the data from `df`, we want to do a "left merge":
 
-```python
+``` python
 df_all = pd.merge(df, spi,
                   how='left',
                   left_on=['iso_code', 'year'],
@@ -285,7 +283,7 @@ df_all = pd.merge(df, spi,
 
 We can now "drop" the useless country_code column:
 
-```python
+``` python
 df_all.pop('country_code')
 ```
 
@@ -295,13 +293,13 @@ df_all.pop('country_code')
 
 The `aggregate()` method, which has a shorter alias `agg()`, allows creating summaries by applying a function to a column. In combination with the `groupby()` method, we can create summary tables. For example, to find the average SPI for each country, and then sort the values in descending order:
 
-```python
+``` python
 df_all.groupby('country').spi.agg('mean').sort_values(ascending=False)
 ```
 
 If you want to export that summary table and use it outside Spyder, you can first save it as a variable, and then write it to a CSV file:
 
-```python
+``` python
 spi_sum = df_all.groupby('country').spi.agg('mean').sort_values(ascending=False)
 # write to file
 spi_sum.to_csv('spi_summary.csv')
@@ -309,26 +307,25 @@ spi_sum.to_csv('spi_summary.csv')
 
 > The CSV file should be found in your project directory, as it became the default working directory when we created the project.
 
-
 ## Visualising data
 
 pandas integrates visualisation tools, thanks to the `plot()` method and its many arguments.
 
 For example, to visualise the relationship between CO<sub>2</sub>e per capita and SPI:
 
-```python
+``` python
 df_all.plot(x='co2e_pc', y='spi')
 ```
 
 The default kind of plot is a line plot, so let's change that to a scatterplot:
 
-```python
+``` python
 df_all.plot(x='co2e_pc', y='spi', kind='scatter')
 ```
 
 Focusing on the latest year will guarantee that there only is one point per country:
 
-```python
+``` python
 df_all[df_all.year == 2016].plot(x='co2e_pc',
                                  y='spi',
                                  kind='scatter')
@@ -336,7 +333,7 @@ df_all[df_all.year == 2016].plot(x='co2e_pc',
 
 To visualise a third variable, GDP per capita, let's map it to the colour of the points, thanks to the `c` argument:
 
-```python
+``` python
 df_all[df_all.year == 2016].plot(x='co2e_pc',
                                  y='spi',
                                  c='gdp_pc',
@@ -346,7 +343,7 @@ df_all[df_all.year == 2016].plot(x='co2e_pc',
 
 We can change the labels too:
 
-```python
+``` python
 df_all[df_all.year == 2016].plot(x='co2e_pc',
                                  y='spi',
                                  c='gdp_pc',
@@ -356,13 +353,15 @@ df_all[df_all.year == 2016].plot(x='co2e_pc',
                                  ylabel='Social Progress Index')
 ```
 
+If the x labels don't show, try this workaround: <https://github.com/pandas-dev/pandas/issues/36064#issuecomment-1011175535>
+
 ### Challenge 2: GHG timeline
 
 How would you visualise global GHG emissions over the years, with one line per type of GHG?
 
 We can subset the columns that matter to us, create a summary, and plot it:
 
-```python
+``` python
 sub = df_all[['year', 'co2', 'methane', 'nitrous_oxide']]
 sub.groupby('year').agg('sum').plot(ylabel='MT CO2e')
 ```
@@ -377,16 +376,16 @@ By default, your variables are *not* saved, which is another reason why working 
 
 ## Resources
 
-* [Official pandas documentation](https://pandas.pydata.org/)
-    * [Getting started](https://pandas.pydata.org/docs/getting_started/index.html)
-    * [10 Minutes to pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
-    * [User guide](https://pandas.pydata.org/docs/user_guide/index.html)
-* More visualisation modules:
-    * [Altair](https://altair-viz.github.io/)
-    * [Bokeh](https://docs.bokeh.org/en/latest/)
-    * [Vega](https://vega.github.io/vega/)
-    * [Matplotlib](https://matplotlib.org/)
-* About our datasets:
-    * [Our World in Data](https://ourworldindata.org)
-    * [Social Progress Index](https://www.socialprogress.org)
-* Our [compilation of useful Python links](https://github.com/uqlibrary/technology-training/blob/master/Python/useful_links.md)
+-   [Official pandas documentation](https://pandas.pydata.org/)
+    -   [Getting started](https://pandas.pydata.org/docs/getting_started/index.html)
+    -   [10 Minutes to pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
+    -   [User guide](https://pandas.pydata.org/docs/user_guide/index.html)
+-   More visualisation modules:
+    -   [Altair](https://altair-viz.github.io/)
+    -   [Bokeh](https://docs.bokeh.org/en/latest/)
+    -   [Vega](https://vega.github.io/vega/)
+    -   [Matplotlib](https://matplotlib.org/)
+-   About our datasets:
+    -   [Our World in Data](https://ourworldindata.org)
+    -   [Social Progress Index](https://www.socialprogress.org)
+-   Our [compilation of useful Python links](https://github.com/uqlibrary/technology-training/blob/master/Python/useful_links.md)
