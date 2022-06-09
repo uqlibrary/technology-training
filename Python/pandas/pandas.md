@@ -196,7 +196,7 @@ Again, by using a logical test. But first, check what will be removed:
 df[df.iso_code.isna()].country.unique()
 ```
 
-No, use both conditions to remove aggregate regions:
+Now, use both conditions to remove aggregate regions:
 
 ``` python
 df = df[(df.iso_code != 'OWID_WRL') & (df.iso_code.notna())]
