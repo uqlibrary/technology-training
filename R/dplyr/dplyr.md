@@ -1,7 +1,7 @@
 R data manipulation with RStudio and dplyr
 ================
 UQ Library
-(2021-12-17)
+(2022-06-09)
 
 -   [What are we going to learn?](#what-are-we-going-to-learn)
 -   [Keep in mind](#keep-in-mind)
@@ -110,7 +110,7 @@ We will use a script to write code more comfortably.
     shortcut (for Windows/Linux) <kbd>Ctrl</kbd>+Shift</kbd>+N</kbd> or
     (for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will
     open an “Untitled1” file.
--   Go to “File > Save” or press (for Windows/Linux)
+-   Go to “File \> Save” or press (for Windows/Linux)
     <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac)
     <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save
     your file and the name of the new file.
@@ -221,15 +221,25 @@ You can also rename columns in the same command:
 gap_small <- select(gapminder, year, country, gdpPerPerson = gdpPercap)
 ```
 
-Finally, if you have many variables but only want to remove a small
-number, it might be better to deselect instead of selecting. You can do
-that by using the `-` character in front of a variable name:
+If you have many variables but only want to remove a small number, it
+might be better to deselect instead of selecting. You can do that by
+using the `-` character in front of a variable name:
 
 ``` r
 names(select(gapminder, -continent))
 ```
 
     ## [1] "country"   "year"      "pop"       "lifeExp"   "gdpPercap"
+
+There are also a lot of helper functions to select columns according to
+a logic. For example, to only keep the columns that have “a” in their
+names:
+
+``` r
+names(select(gapminder, contains("a")))
+```
+
+    ## [1] "year"      "gdpPercap"
 
 ### 2. Pick observations with `filter()`
 
@@ -724,9 +734,10 @@ gapminder %>%
   geom_line()
 ```
 
-    ## `summarise()` has grouped output by 'continent'. You can override using the `.groups` argument.
+    ## `summarise()` has grouped output by 'continent'. You can override using the
+    ## `.groups` argument.
 
-![](dplyr_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](dplyr_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 
 And another example, using using our gapminder dataset:
 
@@ -753,7 +764,7 @@ gapminder %>%
            color="black", size= 5 , angle=90) # add labels to colored lines
 ```
 
-![](dplyr_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+![](dplyr_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
 
 ## Close project
 
@@ -769,7 +780,7 @@ commands stored in your script when you re-open your project.
 More on dplyr:
 
 -   [dplyr
-    cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
+    cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 -   *R for Data Science*, [chapter about
     dplyr](http://r4ds.had.co.nz/transform.html)
 

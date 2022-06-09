@@ -140,11 +140,18 @@ You can also rename columns in the same command:
 gap_small <- select(gapminder, year, country, gdpPerPerson = gdpPercap)
 ```
 
-Finally, if you have many variables but only want to remove a small number, it might be better to deselect instead of selecting. You can do that by using the `-` character in front of a variable name:
+If you have many variables but only want to remove a small number, it might be better to deselect instead of selecting. You can do that by using the `-` character in front of a variable name:
 
 ```{r}
 names(select(gapminder, -continent))
 ```
+
+There are also a lot of helper functions to select columns according to a logic. For example, to only keep the columns that have "a" in their names:
+
+```{r}
+names(select(gapminder, contains("a")))
+```
+
 
 ### 2. Pick observations with `filter()`
 
