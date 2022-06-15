@@ -5,19 +5,15 @@ output:
   github_document: default
 ---
 
-> This document is edited as an R markdown file, and regularly exported as a GitHub document.
-> The source code is [here](https://gitlab.com/stragu/DSH/blob/master/R/heatmaps_intermediate.Rmd)
-> The published printer-friendly version is [here](https://gitlab.com/stragu/DSH/blob/master/R/heatmaps/heatmaps_intermediate.md)
+A **heatmap** is a way of visualising a table of numbers, where you substitute the numbers with colored cells. It’s useful for finding highs and lows, and see patterns more clearly. There are many functions available in R to create this kind of visualisations, but we will focus in four options here.
 
 ## What are we going to learn?
 
-A **heatmap** is a way of visualising a table of numbers, where you substitute the numbers with colored cells. It’s useful for finding highs and lows, and see patterns more clearly. There are many functions available in R to create this kind of visualisations, but we will focus in four options here.
-
 During this session, you will:
 
-* Learn how to produce a simple heatmap with the base function `heatmap()`;
-* Learn about alternatives to produce more complex heatmaps, like `heatmap.2()` and `pheatmap()`;
-* Learn how to produce a rudimentary heatmap with the ggplot2 package.
+-   Learn how to produce a simple heatmap with the base function `heatmap()`;
+-   Learn about alternatives to produce more complex heatmaps, like `heatmap.2()` and `pheatmap()`;
+-   Learn how to produce a rudimentary heatmap with the ggplot2 package.
 
 ## Disclaimer
 
@@ -25,23 +21,23 @@ We will assume you are an R intermediate user and that you have used RStudio bef
 
 ## Open RStudio
 
-> If you need the installation instructions: https://gitlab.com/stragu/DSH/blob/master/R/Installation.md
+> [Installation instructions](https://github.com/uqlibrary/technology-training/blob/master/R/Installation.md) are available if you don't have R and RStudio installed already.
 
-* On your own computer:
-    * Open RStudio
-    * Make sure you have a working internet connection
-* On Library computers:
-    * Log in with your UQ username and password
-    * Make sure you have a working internet connection
-    * Open the ZENworks application
-    * Look for the letter "R"
-    * Double click on RStudio which will install both R and RStudio 
+-   On your own computer:
+    -   Open RStudio
+    -   Make sure you have a working internet connection
+-   On Library computers:
+    -   Log in with your UQ username and password
+    -   Make sure you have a working internet connection
+    -   Open the ZENworks application
+    -   Look for the letter "R"
+    -   Double click on RStudio which will install both R and RStudio
 
 ## Essential shortcuts
 
-* function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in a function name.
-* execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
-* assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
+-   function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in a function name.
+-   execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+-   assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
 ## Material
 
@@ -49,21 +45,21 @@ We will assume you are an R intermediate user and that you have used RStudio bef
 
 Everything we write today will be saved in your script, so please remember to create your project on your H drive (or USB stick) if you use the University computers, so you can go back to it after the session.
 
-* Create a new project:
-    * Click the "New project" menu icon
-    * Click "New Directory"
-    * Click "New Project"
-    * In "Directory name", type the name of your project, e.g. "heatmaps"
-    * Browse and select a folder where to locate your project (for example, an "r_projects" directory where all your projects live)
-    * Click the "Create Project" button
-* Create new folders with the following commands:
+-   Create a new project:
+    -   Click the "New project" menu icon
+    -   Click "New Directory"
+    -   Click "New Project"
+    -   In "Directory name", type the name of your project, e.g. "heatmaps"
+    -   Browse and select a folder where to locate your project (for example, an "r_projects" directory where all your projects live)
+    -   Click the "Create Project" button
+-   Create new folders with the following commands:
 
 ```{r eval=FALSE}
 dir.create("scripts")
 dir.create("plots")
 ```
 
-* Create a new R script called "heatmaps.R" in the "scripts" folder:
+-   Create a new R script called "heatmaps.R" in the "scripts" folder:
 
 ```{r eval=FALSE}
 file.create("scripts/heatmaps.R")
@@ -124,7 +120,7 @@ With versions of R up to 3.5, the default heatmap palette was `heat.colors()`, w
 
 Since R 3.6, the default palette is "YlOrRd", which stand for "Yellow, Orange, Red".
 
-You can however replace the default palette and use different colours, and different numbers of levels. For example, in the palette function `cm.colors(n)`, n is the number of levels (>= 1) contained in the cyan-to-magenta palette. This function can be used in the `col` argument:
+You can however replace the default palette and use different colours, and different numbers of levels. For example, in the palette function `cm.colors(n)`, n is the number of levels (\>= 1) contained in the cyan-to-magenta palette. This function can be used in the `col` argument:
 
 ```{r}
 heatmap(mtcars_matrix,
@@ -132,7 +128,7 @@ heatmap(mtcars_matrix,
         col = cm.colors(n = 15))
 ```
 
-You can try other functions, like `terrain.colors()` or `hcl.colors()` (in R > 3.6), and you can reverse them with the `rev = TRUE` argument.
+You can try other functions, like `terrain.colors()` or `hcl.colors()` (in R \> 3.6), and you can reverse them with the `rev = TRUE` argument.
 
 #### Challenge 1: Remove dendrograms
 
@@ -140,7 +136,7 @@ Does it make sense to have both columns and rows for this dataset?
 
 Look at the help documentation for `heatmap` to see if the dendrograms can be removed for rows and/or columns.
 
-> Hint: see the `Rowv` and `Colv` arguments. 
+> Hint: see the `Rowv` and `Colv` arguments.
 
 ```{r}
 heatmap(mtcars_matrix,
@@ -369,11 +365,9 @@ rm(list = ls())
 
 The first three methods differ in their default settings and in the order of the processing steps:
 
-```
-stats::heatmap():     scale (row) -> cluster -> colour
-gplots::heatmap.2():  cluster -> scale (none) -> colour
-pheatmap::pheatmap(): scale (none) -> cluster -> colour
-```
+    stats::heatmap():     scale (row) -> cluster -> colour
+    gplots::heatmap.2():  cluster -> scale (none) -> colour
+    pheatmap::pheatmap(): scale (none) -> cluster -> colour
 
 ### Method 4: a dataframe in ggplot2
 
@@ -560,12 +554,12 @@ When closing RStudio, you should be prompted to save your workspace. If your scr
 
 ## Important links
 
-* For heatmaps:
-    * a more in-depth example with pheatmap: http://slowkow.com/notes/pheatmap-tutorial/
-    * Leanne Wicken's dataset with heatmap.2 and an interactive heatmap with d3heatmap: https://rpubs.com/ab604/98032
-    * a heatmap gallery: https://www.r-graph-gallery.com/heatmap
-* More heatmap packages:
-    * Full reference on **ComplexHeatmap**: https://jokergoo.github.io/ComplexHeatmap-reference/book/
-    * **tidyHeatmap**, built on ComplexHeatmap but for tidy data: https://github.com/stemangiola/tidyHeatmap#tidyheatmap
-    * **iheatmapr**, for richer interactive heatmaps: https://docs.ropensci.org/iheatmapr/
-* Our compilation of R resources: https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md
+-   For heatmaps:
+    -   a more in-depth example with pheatmap: <http://slowkow.com/notes/pheatmap-tutorial/>
+    -   Leanne Wicken's dataset with heatmap.2 and an interactive heatmap with d3heatmap: <https://rpubs.com/ab604/98032>
+    -   a heatmap gallery: <https://www.r-graph-gallery.com/heatmap>
+-   More heatmap packages:
+    -   Full reference on **ComplexHeatmap**: <https://jokergoo.github.io/ComplexHeatmap-reference/book/>
+    -   **tidyHeatmap**, built on ComplexHeatmap but for tidy data: <https://github.com/stemangiola/tidyHeatmap#tidyheatmap>
+    -   **iheatmapr**, for richer interactive heatmaps: <https://docs.ropensci.org/iheatmapr/>
+-   Our [compilation of R resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md)
