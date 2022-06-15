@@ -1,14 +1,6 @@
 R data visualisation with RStudio: heatmaps
 ================
-2021-09-06
-
-> This document is edited as an R markdown file, and regularly exported
-> as a GitHub document. The source code is
-> [here](https://gitlab.com/stragu/DSH/blob/master/R/heatmaps_intermediate.Rmd)
-> The published printer-friendly version is
-> [here](https://gitlab.com/stragu/DSH/blob/master/R/heatmaps/heatmaps_intermediate.md)
-
-## What are we going to learn?
+2022-06-15
 
 A **heatmap** is a way of visualising a table of numbers, where you
 substitute the numbers with colored cells. It’s useful for finding highs
@@ -16,13 +8,15 @@ and lows, and see patterns more clearly. There are many functions
 available in R to create this kind of visualisations, but we will focus
 in four options here.
 
+## What are we going to learn?
+
 During this session, you will:
 
-  - Learn how to produce a simple heatmap with the base function
+-   Learn how to produce a simple heatmap with the base function
     `heatmap()`;
-  - Learn about alternatives to produce more complex heatmaps, like
+-   Learn about alternatives to produce more complex heatmaps, like
     `heatmap.2()` and `pheatmap()`;
-  - Learn how to produce a rudimentary heatmap with the ggplot2 package.
+-   Learn how to produce a rudimentary heatmap with the ggplot2 package.
 
 ## Disclaimer
 
@@ -31,25 +25,26 @@ RStudio before.
 
 ## Open RStudio
 
-> If you need the installation instructions:
-> <https://gitlab.com/stragu/DSH/blob/master/R/Installation.md>
+> [Installation
+> instructions](https://github.com/uqlibrary/technology-training/blob/master/R/Installation.md)
+> are available if you don’t have R and RStudio installed already.
 
-  - On your own computer:
-      - Open RStudio
-      - Make sure you have a working internet connection
-  - On Library computers:
-      - Log in with your UQ username and password
-      - Make sure you have a working internet connection
-      - Open the ZENworks application
-      - Look for the letter “R”
-      - Double click on RStudio which will install both R and RStudio
+-   On your own computer:
+    -   Open RStudio
+    -   Make sure you have a working internet connection
+-   On Library computers:
+    -   Log in with your UQ username and password
+    -   Make sure you have a working internet connection
+    -   Open the ZENworks application
+    -   Look for the letter “R”
+    -   Double click on RStudio which will install both R and RStudio
 
 ## Essential shortcuts
 
-  - function or dataset help: press <kbd>F1</kbd> with your cursor
+-   function or dataset help: press <kbd>F1</kbd> with your cursor
     anywhere in a function name.
-  - execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
-  - assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
+-   execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+-   assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
 ## Material
 
@@ -60,28 +55,23 @@ remember to create your project on your H drive (or USB stick) if you
 use the University computers, so you can go back to it after the
 session.
 
-  - Create a new project:
-      - Click the “New project” menu icon
-      - Click “New Directory”
-      - Click “New Project”
-      - In “Directory name”, type the name of your project,
+-   Create a new project:
+    -   Click the “New project” menu icon
+    -   Click “New Directory”
+    -   Click “New Project”
+    -   In “Directory name”, type the name of your project,
         e.g. “heatmaps”
-      - Browse and select a folder where to locate your project (for
-        example, an “r\_projects” directory where all your projects
-        live)
-      - Click the “Create Project” button
-  - Create new folders with the following commands:
-
-<!-- end list -->
+    -   Browse and select a folder where to locate your project (for
+        example, an “r_projects” directory where all your projects live)
+    -   Click the “Create Project” button
+-   Create new folders with the following commands:
 
 ``` r
 dir.create("scripts")
 dir.create("plots")
 ```
 
-  - Create a new R script called “heatmaps.R” in the “scripts” folder:
-
-<!-- end list -->
+-   Create a new R script called “heatmaps.R” in the “scripts” folder:
 
 ``` r
 file.create("scripts/heatmaps.R")
@@ -140,8 +130,6 @@ Look at the function’s help page, and read the description of the
 ``` r
 ?heatmap
 ```
-
-    ## starting httpd help server ... done
 
 **Scale** is important: the values should be centered and scaled in
 either rows or columns. In our case, we want to visualise highs and lows
@@ -220,8 +208,6 @@ If you don’t have the gplots package yet, use
 library(gplots)
 ```
 
-    ## Warning: package 'gplots' was built under R version 4.0.5
-
     ## 
     ## Attaching package: 'gplots'
 
@@ -291,7 +277,7 @@ heatmap.2(data_matrix)
 
 ![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
-> The `scale` argument in `heatmap.2()` is by default set to `"none"`\!
+> The `scale` argument in `heatmap.2()` is by default set to `"none"`!
 
 For a more informative visualisation, we can scale the data for each
 protein:
@@ -412,8 +398,6 @@ Load the required package with:
 library(pheatmap)
 ```
 
-    ## Warning: package 'pheatmap' was built under R version 4.0.5
-
 How does `pheatmap()` (which stands for “pretty heatmap”) differ from
 other functions?
 
@@ -503,8 +487,6 @@ Load the necessary library:
 library(ggplot2)
 ```
 
-    ## Warning: package 'ggplot2' was built under R version 4.0.5
-
 We are using a built-in dataset about oesophageal cancer occurence:
 `esoph`.
 
@@ -566,7 +548,7 @@ library(ComplexHeatmap)
     ## Loading required package: grid
 
     ## ========================================
-    ## ComplexHeatmap version 2.9.3
+    ## ComplexHeatmap version 2.12.0
     ## Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
     ## Github page: https://github.com/jokergoo/ComplexHeatmap
     ## Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
@@ -596,10 +578,8 @@ library(ComplexHeatmap)
 library(circlize) # for the colorRamp2() function
 ```
 
-    ## Warning: package 'circlize' was built under R version 4.0.5
-
     ## ========================================
-    ## circlize version 0.4.13
+    ## circlize version 0.4.15
     ## CRAN page: https://cran.r-project.org/package=circlize
     ## Github page: https://github.com/jokergoo/circlize
     ## Documentation: https://jokergoo.github.io/circlize_book/book/
@@ -756,18 +736,18 @@ execute the whole script when you go back to your project.
 
 ## Important links
 
-  - For heatmaps:
-      - a more in-depth example with pheatmap:
+-   For heatmaps:
+    -   a more in-depth example with pheatmap:
         <http://slowkow.com/notes/pheatmap-tutorial/>
-      - Leanne Wicken’s dataset with heatmap.2 and an interactive
+    -   Leanne Wicken’s dataset with heatmap.2 and an interactive
         heatmap with d3heatmap: <https://rpubs.com/ab604/98032>
-      - a heatmap gallery: <https://www.r-graph-gallery.com/heatmap>
-  - More heatmap packages:
-      - Full reference on **ComplexHeatmap**:
+    -   a heatmap gallery: <https://www.r-graph-gallery.com/heatmap>
+-   More heatmap packages:
+    -   Full reference on **ComplexHeatmap**:
         <https://jokergoo.github.io/ComplexHeatmap-reference/book/>
-      - **tidyHeatmap**, built on ComplexHeatmap but for tidy data:
+    -   **tidyHeatmap**, built on ComplexHeatmap but for tidy data:
         <https://github.com/stemangiola/tidyHeatmap#tidyheatmap>
-      - **iheatmapr**, for richer interactive heatmaps:
+    -   **iheatmapr**, for richer interactive heatmaps:
         <https://docs.ropensci.org/iheatmapr/>
-  - Our compilation of R resources:
-    <https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md>
+-   Our [compilation of R
+    resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md)
