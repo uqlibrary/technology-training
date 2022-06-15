@@ -18,7 +18,7 @@ This is the Library's **regular R cycle**:
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
-| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) <sup>[source](R/rstudio_intro/rstudio_intro.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rkfyJemYE) | [YT](https://www.youtube.com/watch?v=BoDTNbP7_OQ&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2&t=0s) |
+| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) <sup>[source](R/rstudio_intro/rstudio_intro.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rkfyJemYE) | [YT](https://www.youtube.com/watch?v=BICccwBynJc&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=1) |
 | R data manipulation with RStudio and dplyr | [md](R/dplyr/dplyr.md) <sup>[source](R/dplyr/dplyr.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/HyyLCm3KN) | [YT](https://www.youtube.com/watch?v=vqvsyaaqJUk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2) |
 | R data visualisation with RStudio and ggplot2: introduction | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rJIPr0vi4) | [YT](https://www.youtube.com/watch?v=LoeBgXSJWTw&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=3) |
 | R data visualisation with RStudio and ggplot2: intermediate | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rJLdcW-24) | [YT](https://www.youtube.com/watch?v=zzXCkYR84M0&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=4) |
