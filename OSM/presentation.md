@@ -4,6 +4,16 @@ theme: gaia
 paginate: true
 ---
 
+<!--
+This Markdown file is designed to be compiled into a HTML file using Marpit.
+Use marpit-cli to do that. Install it:
+https://github.com/marp-team/marp-cli
+And then run in the local directory the command:
+   npx marp presentation.md
+... which should create a "presentation.html" file.
+-->
+
+
 # OpenStreetMap
 ![h:200](pics/logo.png)
 
@@ -26,13 +36,15 @@ See the front page: https://www.openstreetmap.org
 
 # Statistics
 
-2004 -> 2021 :chart_with_upwards_trend: :
+2004 -> 2022 :chart_with_upwards_trend: :
 
-- 7+ million users
-- 100+ million changesets
-- 6+ billion nodes
+- 8+ million contributors
+- 120+ million changesets
+- 7+ billion nodes
 
-![h:200](pics/users.png)
+<!-- ![h:200](pics/users.png) -->
+![bg contain vertical right:66%](pics/edits.png)
+![bg contain](pics/users.png)
 
 ---
 
