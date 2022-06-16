@@ -50,7 +50,7 @@ See the front page: https://www.openstreetmap.org
 
 # Uses
 
-![w:700](pics/renders.png)
+![bg](pics/renders.png)
 
 ---
 
@@ -62,7 +62,7 @@ See the front page: https://www.openstreetmap.org
 
 # Uses (3)
 
-![h:450](pics/osmand.png) ![h:450](pics/beer.png)
+![h:450](pics/osmand.jpg) ![h:450](pics/beer.png)
 
 ---
 
