@@ -149,7 +149,7 @@ We can now draw buffers using a specific radius:
 
 To finish with a cleaner look, we can **merge** the two layers (now that they are both the same kind of geometry), and **dissolve** the buffers into a single multipolygon:
 
-1. Go to Vector > Geoprocessing Tools > Merge Vector Layers...
+1. Go to Vector > Data Management Tools > Merge Vector Layers...
 1. In Input layers, click the three dot and select the two buffered layers
 1. Click "Run"
 1. Go to Vector > Geoprocessing Tools > Dissolve...
@@ -178,13 +178,18 @@ The following statement should suffice in most cases:
 
 > *© OpenStreetMap contributors: https://www.openstreetmap.org/copyright*
 
-## OSM links
+## Further resources
 
-* Browse the data and export it: https://www.openstreetbrowser.org
-* Keep in touch with contributors around Brisbane: https://wiki.openstreetmap.org/wiki/Brisbane
-* OSM user diaries: https://www.openstreetmap.org/diary
-* Missing Maps: https://www.missingmaps.org/
+### OSM links
 
-## QGIS links
+* Other ways to get data:
+    * Browse the data and export particular categories with [OpenStreetBrowser](https://www.openstreetbrowser.org)
+    * Create more advanced queries with [Overpass Turbo](https://overpass-turbo.eu/)
+    * Use an R package like [osmdata](https://cran.r-project.org/web/packages/osmdata/index.html) or [osmextract](https://cran.r-project.org/web/packages/osmextract/index.html)
+* Keep in touch with contributors around Brisbane by looking at the [local wiki page](https://wiki.openstreetmap.org/wiki/Brisbane)
+* Read the [OSM user diaries](https://www.openstreetmap.org/diary)
+* Continue chipping in with "humanitarian mapping" with [Missing Maps](https://www.missingmaps.org/)
 
-* Official training manual: https://docs.qgis.org/testing/en/docs/training_manual/index.html
+### QGIS links
+
+* [Official QGIS training manual](https://docs.qgis.org/testing/en/docs/training_manual/index.html)
