@@ -2,7 +2,7 @@
 
 ## Setting up
 
-This tutorial is designed for **QGIS 3.16**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
+This tutorial is designed for **QGIS 3.22**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
 
 The **data** for this session can be downloaded here: https://cloudstor.aarnet.edu.au/plus/s/GjVmwTxN14OwmEc
 
