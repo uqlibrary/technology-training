@@ -1,6 +1,7 @@
 # QGIS intermediate: raster analysis
 
 Stéphane Guillou and Nicholas Wiggins (UQ Library)
+Luke was here.
 
 ## Setting up
 
