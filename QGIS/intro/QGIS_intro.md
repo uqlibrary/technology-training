@@ -1,5 +1,7 @@
 # QGIS: Introduction to mapping
 
+Stéphane Guillou and Nicholas Wiggins (UQ Library)
+
 ## Setting up
 
 This tutorial is designed for **QGIS 3.22**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
