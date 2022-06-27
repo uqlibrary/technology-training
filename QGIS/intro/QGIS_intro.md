@@ -64,7 +64,7 @@ To remove the useless regions, we can do the following:
 
 The new layer is loaded to the map by default.
 
-Now that we have we have a layer with only the administrative regions for Australia, we can use that as an overlay layer to clip the rivers and cities. Follow these steps for each one:
+Now that we have we have a layer with only the administrative regions for Australia, we can use that as an overlay layer to clip the rivers. Follow these steps:
 
 1. Select the layer to clip
 1. Use the `Vector > Geoprocessing Tools > Clip...` tool
@@ -76,6 +76,8 @@ Now that we have we have a layer with only the administrative regions for Austra
 Notice how the clipped layers don't have a descriptive name? Make sure you rename them.
 
 You can now hide the original layers and confirm that you have only Australian data visible in the canvas by using the `Zoom Full` button.
+
+> Challenge, can you do the same for the Cities? Do you notice anything strange? How can we fix that?
 
 ## Change the symbology
 
@@ -148,6 +150,8 @@ In our case, we can import the solaran file with `Data Source Manager > Raster`,
 ### Style a raster layer
 
 This layer is a single-band raster layer, which gets coloured automatically in greyscale. We can change that in the symbology, set the `Render type` as "Singleband pseudocolor", use the `Color ramp` called "Spectral", and use the `Color ramp` drop-down menu to "Invert Color Ramp" in order to make the colouring more intuitive (i.e. red for high values and blue for low values).
+
+> To learn more about rasters, have a look at our [Raster Analysis](https://github.com/uqlibrary/technology-training/blob/master/QGIS/raster/QGIS_raster.md) course 
 
 ## Plugins
 
