@@ -168,6 +168,12 @@ We now use `Raster > Extraction > Clip Raster by Mask Layer` to **focus on our a
 * Set the Mask Layer to "UQ_Boundary"
 * Scroll down to "Clipped (mask)" and click "..." next to [Create Temporary Layer]", then "Save to file", and save it as **St_Lucia_DEM** to your project folder.
 
+* Another way to clip would be to use Extent
+* Make sure the virtual raster output DEM is selected in the Input layer
+* Navigate to `Raster > Extraction > Clip Raster by Extent` 
+* Next to "Clipping extent" click `... > Calculate from Layer > UQ_Boundary`
+* Scroll down to "Clipped (extent)" and click "..." next to [Create Temporary Layer]", then "Save to file", and save it as **St_Lucia_DEM** to your project folder.
+
 If you don't save to file directly, remember two things:
 
 * **rename** your clipped layer so it is more descriptive than the generic "Clipped (extent)"
@@ -183,7 +189,7 @@ We can repeat the same process as above to clip the Aerial Imagery.
 
 Now, clip the converted aerial imagery:
 
-* Go to `Raster > Extraction > Clip Raster by Mask Layer`
+* Go to `Raster > Extraction > Clip Raster by Extent`
 * Make sure St_Lucia_Aerial is selected in the Input layer
 * Set the Mask Layer to "UQ_Boundary"
 * You may need to define the Source and Target CRS to ensure that it all runs smoothly 
@@ -222,7 +228,7 @@ Adding a **contour** makes your elevation even more evident and can also be used
 
 ## Exporting to Avenza Maps
 
-Click on `Show Layout Manager` in the toolbar. `Create` a new layout called "Avenza". We can now see the Layout window.
+Click on `Show Layout Manager` in the toolbar or use `Project > Layout Manager`. `Create` a new layout called "Avenza". We can now see the Layout window.
 
 Normally we would add many elements to our layout if we were exporting it for print such as the map, a legend, a scale bar, a north arrow...
 
@@ -235,7 +241,6 @@ In this case however, we are simply interested in our map. Let's add the map to 
 * Go to 'Layout > Export as PDF...' and save your map.
 * The 'PDF Export Options' window will open
 * Tick the 'Create Geospatial PDF (GeoPDF)' box
-* Untick the 'Include vector feature information' box
 * Click 'Save'
 
 You can repeat this process with the DEM and Hillshade to export out another kind of map.
