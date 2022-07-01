@@ -2,7 +2,7 @@
 
 ## Setting up
 
-This tutorial is designed for **QGIS 3.16**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
+This tutorial is designed for **QGIS 3.22**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
 
 Open QGIS and create a **new project** with `Project > New`.
 Let's straight away **save** our project: `Project > Save`. We should create a new folder, let's call it "qgis_mobile". This where our project and all the saved data will live. Folder structure is very important for keeping you data tidy, but also for ease of sharing your project with others. You simply need to zip the project folder if you need to share it. We can save our .qgz project file here, named "qgis_mobile_map" for example.
@@ -20,7 +20,7 @@ For Android Devices: https://play.google.com/store/apps/details?id=com.Avenza&hl
 
 For Apple Devices: https://apps.apple.com/au/app/avenza-maps/id388424049
 
-There are alternatives to Avenza Maps out there, such as [QField](https://qfield.org/), which is specifically created for use with QGIS on your mobile.
+There are alternatives to Avenza Maps out there, such as [QField](https://qfield.org/) or [Input (MerginMaps)](https://merginmaps.com/features) which are specifically created for use with QGIS on your mobile.
 However, we will be using Avenza today for its simplicity. 
 
 ## Get some data
@@ -34,67 +34,72 @@ A Digital Elevation Model (DEM) is a common example of **raster data**, i.e. gri
 For this tutorial, we are using a DEM sourced from **ELVIS** - Geoscience Australia's ELeVation Information System.
 
 * Go to http://www.ga.gov.au/elvis/
-* Search for "St Lucia" in the "Enter a Location" search box and select the first result
-* Click the first icon next to "Select area by:" to use the bounding box tool
-* Click and drag on the map to draw a rectangle around your desired area
+* Search for "St Lucia" in the `Location Search` search box and select the first result
+* Click `Order Data`
+* Choose "Draw" and "Box" and then click the `Draw` button 
+* Click on the map to start drawing a rectangle around your desired area
+* Then click `Search`
 * The right panel will show you all the different datasets available in that area
-* We want the QLD Government 1 Metre DEM, click "show list"
-* As you hover over the different options, they will highlight a red box on the map, select all that overlap the area you're interested in
-* When you have the data you want, click Download Selected Datasets
-* Enter your industry, email, tick the reCAPTCHA, and click "Start extract of datasets"
+* We want the QLD Government 1 Metre DEM, click the down arrow on the right
+* As you hover over the different options, they will highlight a red box on the map, select all that overlap the area you're interested in (note that there may be data from different years here)
+* When you have the data you want, scroll to the bottom of the Order Data window
+* Select your industry, enter your email, tick the reCAPTCHA, and click the `Order Datasets` button
 * You should receive an email within 5 minutes, download the files from the link in the email, extract the folder to your project folder, and add them to your map.
 
 ### Aerial Imagery
 
-There are a few places you can aquire aerial photography, today we will look at two sources, on is freely available Government Data from **QImagery**, the other is accessible from NearMap using your UQ credentials.
+There are a few places you can aquire aerial photography, today we will look at two sources, one is freely available Government Data from **QImagery**, the other is accessible from NearMap using your UQ credentials.
 
 * Go to https://qimagery.information.qld.gov.au/
-* Click the Search button, and search for "St Lucia" in the "Enter search term" search box and select the first result
-* It will zoom to your selected location then click the newly appeared "Search" button
+* Read and tick the "I acknowledge I have read and agree to the Terms & Conditions" box, and click `Get Started`
+* Click the Search button, select 'locality, town or city' and search for "St Lucia" in the "Enter search term" search box and select the first result
+* It will zoom to your selected location then click the newly appeared `Search` button
 * From here you can select from a wide array of images of QLD over many years.
 * Click one of the drop-downs and hover over the options to see where those images are location. Preview the image by clicking View.
 * You can then download your desired images by clicking "Download" and selecting TIFF (georeferenced)
 * Move the TIFF file(s) to your project folder, and open them in QGIS
 
-If you want even higher resolution maps, there restricted options available. Your particular study area may have maps available such as the Sunshine Coast MyMaps service, or CSIRO's Norfolk Island Data Portal.
+If you want even higher resolution maps, there are restricted options available. Your particular study area may have maps available such as the [Sunshine Coast MyMaps](https://scrc.maps.arcgis.com/apps/webappviewer/index.html?id=48501cb9e7294555be5b08e35e949616) service, CSIRO's [Norfolk Island Data Portal](https://data.csiro.au/collection/csiro:43016) or other [CSIRO spatial products](https://data.csiro.au/collections/search/SQDEM/STsearch-by-keyword/). It's worth exploring to discover what various local council and government resources are available.
 As a UQ student, you also have access to very high resoltuion imagery from **NearMap**. You can even access an array of imagery going back in time.
 
 * Go to the [UQ NearMap Portal](https://admin.nearmap.com/invitation/domain-signup?token=q9WIbXMtna1iskb2meNGhKpCaQp3WTRbMhXpQVGWkKouKUeqzkpjNznC_Ogz5iKYiw0Ev7vym2Ykaj_W_V4dBbTzR6qUX2eTDsNHpBuR4XbU9vDRxQN_Rg==)
 * Enter your UQ Student (@student.uq.edu.au) or Staff (@uq.edu.au) email address, with the appropriate domain selected. Click "Invite me".
 * You should receive an email soon after, click the "Accept Invitation" button, and go through the account setup process.
 * Go to Login and enter your email address, click "Next" and enter your password.
-* From the welcome screen select "MapBrowser".
-* Type "St Lucia, QLD" in the search box, and click "Go".
-* You can click the nodes up the top to look at different snapshots in time.
-* To save imagery from NearMap, simply click the "SavePhotoMaps" button on the left handside (it is a camera icon)
-* From the popup that appears select "Define Area" (you must choose this for the image to be georeferenced)
+* From the top left select `MapBrowser`.
+* Type "St Lucia, QLD" in the search box, press enter
+* You can click the date down the bottom to look at different snapshots in time, and even compare maps side-by-side.
+* To save imagery from NearMap, simply click the "Exports" button on the left handside (it is an image icon)
+* From the menu that appears change the "Export type" to "Georeferenced image"
 * From "Projection" choose GDA2020 / MGA zone 56
-* You can increase and decrease the size of the bounding box by adjusting its corners, a smalle rbox means you can have a finer resolution, down to 0.075m. If we select all of St Lucia in one go, the highest resolution we can have is 0.597m.
-* Tick the "Include georeference file" box
-* Click "Save"
+* You can increase and decrease the size of the bounding box by adjusting its corners, a smaller box means you can have a finer resolution, down to 0.075m. If we select all of UQ St Lucia in one go, the highest resolution we can have is 0.299m.
+* Once you're happy with your selection click `Download Files`
 * Move the downloaded zip file to your project folder, and open them in QGIS
 
 ### Lot Plans
 
-You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial 
+You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial. 
 I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from cloudstor.
 
 * To access data from QLD Spatial go to https://qldspatial.information.qld.gov.au/
-* Search for "property boundaries and select the "property boundaries Queensland" option.
+* Search for "property boundaries" and select the "property boundaries Queensland" option.
 * You could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop here: https://cloudstor.aarnet.edu.au/plus/s/Mg7M6xYbtNYw3dd
 * Move the downloaded zip file to your project folder, and open the shapefile in QGIS
 
 ### Queensland Globe
 
+Another way to access QSpatial Data is using the Queensland Globe portal.
+
 * To access data from Queensland Globe go to https://qldglobe.information.qld.gov.au
 * Accept the T&Cs.
-* Click **Search**, Select **Locality**, and search for the location you want an select it from the list.
-* Click **Layers**, click **Add Layers** here you can scroll through and filter different layer types
+* Click **Search**, Select **Locality (Suburb) within a Local Government Area**, and search for the location you want and select it from the list.
+* Click **Layers**, click **Add Layers +** here you can scroll through and filter different layer types
 * We want to tick the box next to `Planning Cadastre > Land Parcels > Land Parcel` (you may need to zoom in to see certain layers)
-* To export data click the Wrench Icon in the top right, and then click the Identify Marker icon
+* To export data click the Wrench Icon in the top right, and then click the Identify icon (i)
 * Use the triangular Identify Polygon tool to select and area of interest. Double click when you've finished selecting your area.
 * The Layers menu will now show your selection. You can download all, or sections, of your selection.
 * I will choose **Land Parcel** and then **Download** as a **shp** file.
+* Note: You may need to disable other layers for this to work correctly. I needed to turn off the **Transportation** layer to prevent roads from being included in my selection.
 
 ## Import our data
 
@@ -111,7 +116,7 @@ We first need to select the lots that are relevant by using the "Select Feature 
 We can now create a buffer:
 
 * Go to `Vector > Geoprocessing Tools > Buffer`
-* Choose "Brisbane_lot_plans" as the Input Layer, and tick the 
+* Choose "Brisbane_lot_plans" as the Input Layer, and tick the **Selected features only** box
 * There are many settings we can change to edit the shape of the buffer, but let's leave most of these as the defaults for now.
 * We can choose the distance that we want to create a buffer away from our vector. You'll note that the distance is currently in degrees, as the layer projection is EPSG:4283 GDA94, a geographic coordinate system. This might cause issues.
 * If you click Run. Your buffer won't look very good. We need to convert our layer to a local projected coordinate system.
@@ -119,7 +124,7 @@ We can now create a buffer:
 Let's reproject the layer for better results:
 
 * Go to `Vector > Data Management Tools > Reproject Layer`
-* Choose "Brisbane_lot_plans" as the Input Layer.
+* Choose "Brisbane_lot_plans" as the Input Layer, and tick the **Selected features only** box
 * We want to choose a local projected coordinate system such as GDA94 / MGA zone 56 or GDA2020 / MGA zone 56. This will convert our measurements to metres instead of degrees, and by choosing an Australian projection, it reduces distortion.
 * Click "Run"
 * The new scratch layer will look the same, but it now has a different projection.
@@ -128,7 +133,7 @@ Let's create that buffer again.
 
 * Select the relevant lots
 * Go to `Vector > Geoprocessing Tools > Buffer`
-* This time choose "Reprojected" as the Input Layer, and tick "Selected features only"
+* This time choose "Reprojected" as the Input Layer
 * You'll notice the distance is now in metres. For this instance, I want a larger buffer of 50 m.
 * When you click "Run", your buffer should be a good distance away from the original boundary.
 
@@ -140,14 +145,14 @@ Now we can Dissolve those layers together:
 
 > **Note** the Buffer tool has a "dissolve" option, but it's important to know that there are many tools available.
 
-## Build a virtual raster
+## Combine our DEMs
 
 See the visible line between the raster tiles? That is because the separate raster files have different maximum and minimum values, so use different shades for different elevations. We have to **merge** them to make sure they use the same colour scale.
 
-To do that, we use the `Raster > Miscellaneous > Build Virtual Raster...` tool to create one single layer from them.
+To do that, we use the `Raster > Miscellaneous > Merge...` tool to create one single layer from them.
 
 * First, select all  DEM layers for the "Input layers"
-* Make sure you untick the option "Place each input file into a separate band", as we want to end up with one single-band layer
+* Make sure the option "Place each input file into a separate band" is **unchecked**, as we want to end up with one single-band layer
 * We can save the output on disk instead of only creating a temporary file (for example, name it `St_Lucia_DEM_merged` and save it inside your project directory)
 * Click "Run"
 
@@ -174,17 +179,14 @@ It's not essential at this stage, it's just a good reminder to save your work re
 
 ## Clip the Aerial Imagery
 
-We can repeat the same process as above to clip the Aerial Imagery, however due to the nature of the image from NearMaps, we need to first convert it to a GeoTIFF file format before we can clip it:
-
-* `Right Click the image layer > Export > Save as...`
-* Ensure the Format is GeoTIFF
-* Click '...' next to File name and name your layer "St_Lucia_Aerial"
+We can repeat the same process as above to clip the Aerial Imagery.
 
 Now, clip the converted aerial imagery:
 
 * Go to `Raster > Extraction > Clip Raster by Mask Layer`
 * Make sure St_Lucia_Aerial is selected in the Input layer
 * Set the Mask Layer to "UQ_Boundary"
+* You may need to define the Source and Target CRS to ensure that it all runs smoothly 
 * Scroll down to "Clipped (mask)" and click "..." next to [Create Temporary Layer]", then "Save to file", and save it as **St_Lucia_Aerial_clipped** to your project folder.
 
 We can now clean up our project by removing the original and intermediate layers we won't need.
