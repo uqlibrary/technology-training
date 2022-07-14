@@ -66,6 +66,7 @@ Where the code is
 
 Cloning code
 
+Example projects: GGPlot, Pandas, etc
 
 ### Things not covered today
 
