@@ -18,6 +18,10 @@ Let's also add an OpenStreetMap basemap to locate ourselves on the globe: `Brows
 We're going to explore a number of different online spatial data repositories.
 Species, post code, protected areas, environmentally signficant areas
 
+### ABS Data
+
+
+
 ### Species Locations
 
 Atlas of Living Australia
@@ -29,6 +33,27 @@ iNaturalist
 ### Post Code Data
 
 Need to talk to Matt to get the rest of these details
+
+Interactive Maps
+https://www.abs.gov.au/websitedbs/D3310114.nsf/home/Interactive+Maps
+
+Spatial Data
+https://www.abs.gov.au/websitedbs/D3310114.nsf/home/ABS+Geography+Publications
+
+Boundaries (including postcodes)
+https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files
+
+Stats
+https://www.abs.gov.au/statistics
+
+Population
+https://www.abs.gov.au/statistics/people/population/regional-population/latest-release#data-download
+
+Sex, age, pop
+https://www.abs.gov.au/statistics/people/population/regional-population-age-and-sex/2020#data-download
+
+Income
+https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/personal-income-australia/2014-15-2018-19#local-government-area-median-total-income
 
 This could be used for analyses where the user inputs a postcode, and gets a certain related value for that.
 
@@ -48,6 +73,6 @@ Heat maps of species distribution
 
 Perform nearest neighbour calculations to determine how close things are
 
+### Vector to Raster conversion
 
-
-
+### Calculating Population change in different regional areas
