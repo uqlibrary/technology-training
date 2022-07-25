@@ -2,11 +2,12 @@
 
 ### Software
 
-We will use Git inside a command-line shell called Bash.
+We will use Git through GitHub Desktop, you will need to install GitHub Desktop and create a Github Account.
 
-Installation instructions are available on [this page](https://github.com/uqlibrary/technology-training/blob/master/Git/installation.md).
+Installation instructions are available on [this page](https://docs.github.com/en/desktop/installing-and-configuring-github-desktop/installing-and-authenticating-to-github-desktop/installing-github-desktop).
 
-### Github Account Creation
+Account creation instructions are available on [this page](https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account).
+
 
 ## Material
 
