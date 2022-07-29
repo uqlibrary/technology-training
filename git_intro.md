@@ -41,9 +41,23 @@ A version control system is a tool that keeps track of changes for us, effective
 
 GitHub is a Git host server which stores your Git repository online. This means that you can easily use this platform to share your work, find the work of others, and collaborate. There are many other Git host servers such as GitLab and BitBucket.
 
-Once you have created a GitHub account, and have GitHub Desktop installed, open GitHub Desktop.
+### Navigating GitHub Online
+
+Read the Readme
+
+Popularity
+
+History
+
+Where the code is
+
+Cloning code
+
+Example projects: GGPlot, Pandas, etc
 
 ### Creating a Repository
+
+Once you have created a GitHub account, and have GitHub Desktop installed, open GitHub Desktop.
 
 You can clone (make a copy of) a repository that you (or someone else) has previously created on the internet, create a repository within an already existing folder for a project you're already working on, or you can create a new folder and repository when you begin your project.
 Let's create a new folder for our project today.
@@ -117,19 +131,7 @@ Images
 
 Links
 
-### Navigating Git Online
 
-Read the Readme
-
-Popularity
-
-History
-
-Where the code is
-
-Cloning code
-
-Example projects: GGPlot, Pandas, etc
 
 ### Things not covered today
 
