@@ -61,8 +61,9 @@ Now that we've created our repository, let's populate it with some files.
 
 Open **RStudio** create a new R script file `File > New File > R Script`
 Add a line of code to get started: 
-  `# a basic R comment 
-  print("Hello World")`
+  ```# a basic R comment 
+  print("Hello World")
+  ```
 
 Save your script `File > Save As...` navigate to your portfolio folder and save your file as `process`
 
