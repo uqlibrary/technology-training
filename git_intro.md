@@ -11,12 +11,11 @@ This course borrows information from the Git Bash course _[Git version control f
 
 ### Software
 
-We will use Git through GitHub Desktop, you will need to install GitHub Desktop and create a Github Account.
-
-Installation instructions are available on [this page](https://docs.github.com/en/desktop/installing-and-configuring-github-desktop/installing-and-authenticating-to-github-desktop/installing-github-desktop).
+We will use Git through GitHub Desktop, you will need to create a Github Account and install GitHub Desktop.
 
 Account creation instructions are available on [this page](https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account).
 
+Installation instructions are available on [this page](https://docs.github.com/en/desktop/installing-and-configuring-github-desktop/installing-and-authenticating-to-github-desktop/installing-github-desktop).
 
 ## Material
 
@@ -43,6 +42,10 @@ GitHub is a Git host server which stores your Git repository online. This means 
 
 ### Navigating GitHub Online
 
+#### How to explore GitHub
+You can search for repositories in a search engine, or on https://github.com/
+For example, if you search for ggplot2 on GitHub you 
+
 Read the Readme
 
 Popularity
@@ -52,6 +55,8 @@ History
 Where the code is
 
 Cloning code
+
+Portfolio: https://github.com/archd3sai/Portfolio
 
 Example projects: GGPlot, Pandas, etc
 
@@ -132,6 +137,9 @@ Images
 Links
 
 
+### Things not covered today
+
+RUG, R Lavdies, UQL Training, Hacky Hour
 
 ### Things not covered today
 
