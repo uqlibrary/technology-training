@@ -44,21 +44,29 @@ GitHub is a Git host server which stores your Git repository online. This means 
 
 #### How to explore GitHub
 You can search for repositories in a search engine, or on https://github.com/
-For example, if you search for ggplot2 on GitHub you 
+For example, if you search for ggplot2 on GitHub you can see many projects relating to ggplot.
+The highest and most popular holds the code behind ggplot2 - one of the most popular R packages.
+Click the link to have a look.
 
-Read the Readme
+#### Read the Readme
+A first look at a Github repository can be intimidating, but you should initially ignore the folder structure you see, and scroll down to the Readme section where you can usually find details surrounding what the project is, how to install/use it, and get more help.
 
-Popularity
+#### Popularity
+On the right menu you can see how popular this repository is, the number of forks (or spin-off repositories) that have been created from this, and more.
 
-History
+#### History
+Near the top of the repository you will see a clock icon followed by some numbers. This is the Hisotry of edits to this repository. You can click on this an see the entire history of changes made to this code.
+![image](https://user-images.githubusercontent.com/67612228/182783554-5abc6679-8e1e-4fcd-bae3-9347bb46e72a.png)
 
-Where the code is
+#### Where the code is 
+Once you go back to the folder structure you can dig in to find the code that makes up the ggplot2 package. If you navigate to R > geom-bar.r you can see the code that underpins the Bar charts that you can create with ggplot2.
 
-Cloning code
+#### Cloning code
+To clone, or make a copy, of the code, you can simply click the Code button on the main repository screen, and import it into GitHub Desktop, allowing you to edit and make your own alterations to, and versions of the code before you.
 
-Portfolio: https://github.com/archd3sai/Portfolio
-
-Example projects: GGPlot, Pandas, etc
+#### Creating a Portfolio
+You can also use GitHub to create and display your own work. This good example has their details, their achievements, and links to all their major projects: 
+https://github.com/archd3sai/Portfolio
 
 ### Creating a Repository
 
