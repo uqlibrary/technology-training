@@ -151,12 +151,19 @@ Let's create some documents we want Github to ignore.
 You can do this in Github Desktop by going to `Repository > Repository Settings... > Ignored files` and then entering the locations, names, or types of files you want to ignore.
 
 ### Creating a good Readme
+The Readme is often the first place people go when looking at a Git Repository, so it's important to have useful information here, and displayed in a meaningful way.
 
-Markup
+#### Markdown
+When editing a Readme file you can format it using a simple coding language called Markdown.
+You can **Bold** text by `**example text**`
+
+
 
 Images
 
 Links
+
+https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
 
 
 ### Things not covered today
