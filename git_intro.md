@@ -120,21 +120,35 @@ If you return to GitHub, you will see the former text in red, and our new additi
 
 Before we can push this to GitHub, we need to describe our edits "changed the print code", and then click `Commit to **main**`. Press `Ctrl + P` to push it to GitHub.
 
-### Viewing and Editing Online
+### Accessing and intereacting with your Git Repository Online
 
+#### View and edit online
+If you click your profile picture in the top right of Github online, you can view all **Your repositories**.
+From here you can access your **portfolio** repository, and then the **process.R** file we pushed earlier.
+Once you've navigated to the file, you can click the pencil button to edit the code online.
+Make some edits to the code, provide a description of your changes in the **Commit changes** section, and then click the `Commit changes` button.
 
+#### Fetch/Pull
+Before doing any edits on a file in a repository that is worked on by many individuals or on different devices, it's best to **Fetch/Pull** your repository. You can do this in Github Desktop by clicking **Pull origin** up the top. This will pull the changes from the online repository, and let you know if there are any new additons, deletions, or, if you have simultaneously changed the same section of code, any conflicts (which need to be fixed and resolved before continuing).
+ 
+We can see the creation, updates, and commits on the left side of Github Desktop.
 
-View and edit online
+#### Delete
+Let's navigate to the file location, and then delete the file so that we can see the process behind this.
+Once you delete the file, Github Desktop will show this as a **Change** where all lines of code were removed.
 
-Fetch/Pull
+#### Push
+We can now commit this change, and then push it to the repository.
 
-Delete
+#### Revert
+Even though we have deleted the file locally, and pushed that deletion to the web based repository, we can revert that change within Github Desktop (you can also do this through the Git command line, but note that **you cannot** do this on Github online.
+Within Github Desktop click the **History** tab, right click on the commit where the file was deleted, and select **Revert changes in commit**. This will bring our file back.
 
-Push
-
-Revert
-
-Gitignore
+#### Gitignore
+Before you push to a git repository, it's worth making sure that you want to commit everything in that repository.
+For example, there may be private documents, or large datafiles you do not want to commit and upload. You can set these to be ignored with Gitignore.
+Let's create some documents we want Github to ignore.
+You can do this in Github Desktop by going to `Repository > Repository Settings... > Ignored files` and then entering the locations, names, or types of files you want to ignore.
 
 ### Creating a good Readme
 
@@ -157,5 +171,6 @@ Branching
 Git in R
 Conflicts
 Resolving Conflicts
+Creating a website with Git
 
 
