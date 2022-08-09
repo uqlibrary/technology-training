@@ -155,18 +155,34 @@ The Readme is often the first place people go when looking at a Git Repository, 
 
 #### Markdown
 When editing a Readme file you can format it using a simple coding language called Markdown.
-You can **Bold** text by `**example text**`
+
+- You can **Bold** text by putting it between a set of double asterisks, eg. \**example text\** becomes **example text**.
+
+- You can create code blocks by using backticks, eg. \`example text\` becomes `example text`.
+
+- You can create headings using \# symbols, \# will create the largest heading, and \###### will create the smallest, eg. \###Middle Heading\### becomes: 
+### Middle Heading ###
 
 
+There is a lot more customisation you can do, and you can find a complete breakdown of [Git Markdown here](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
-Images
+#### Images
+You can display an image by first typing `!` and providing a description with `[ ]`. You then put the link address in parentheses `()`.
 
-Links
+`![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)`
 
-https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
 
 
-### Things not covered today
+#### Links
+You can add links by wrapping the link text in `[ ]`, and then putting the link address in parentheses `()`.
+
+`[This is a link](https://github.com/Nijawi/Portfolio/edit/main/git_intro.md)`
+
+[This is a link](https://github.com/Nijawi/Portfolio/edit/main/git_intro.md)
+
+
+### Want to learn more?
 
 RUG, R Lavdies, UQL Training, Hacky Hour
 
