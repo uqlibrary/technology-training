@@ -44,25 +44,28 @@ GitHub is a Git host server which stores your Git repository online. This means 
 
 ### How to explore GitHub
 You can search for repositories in a search engine, or on https://github.com/
-For example, if you search for ggplot2 on GitHub you can see many projects relating to ggplot.
-The highest and most popular holds the code behind ggplot2 - one of the most popular R packages.
-Click the link to have a look.
+
+For example, if you search for **ggplot2** on GitHub you can see many projects relating to ggplot2.
+
+The highest and most popular link listed contains the code behind ggplot2 - one of the most popular R packages.
+
+**Click** the link to have a look.
 
 ### Read the Readme
-A first look at a Github repository can be intimidating, but you should initially ignore the folder structure you see, and scroll down to the Readme section where you can usually find details surrounding what the project is, how to install/use it, and get more help.
+A first look at a Github repository can be intimidating, but you should initially ignore the folder structure you see, and scroll down to the **Readme** section where you can usually find details surrounding what the project is, how to install/use it, and get more help.
 
 ### Popularity
-On the right menu you can see how popular this repository is, the number of forks (or spin-off repositories) that have been created from this, and more.
+On the **right menu** you can see how popular this repository is, the number of forks (or spin-off repositories) that have been created from this, and more.
 
 ### History
 Near the top of the repository you will see a clock icon followed by some numbers. This is the Hisotry of edits to this repository. You can click on this an see the entire history of changes made to this code.
 ![image](https://user-images.githubusercontent.com/67612228/182783554-5abc6679-8e1e-4fcd-bae3-9347bb46e72a.png)
 
 ### Where the code is 
-Once you go back to the folder structure you can dig in to find the code that makes up the ggplot2 package. If you navigate to R > geom-bar.r you can see the code that underpins the Bar charts that you can create with ggplot2.
+Once you go back to the folder structure you can dig in to find the code that makes up the ggplot2 package. If you navigate to `R > geom-bar.r` you can see the code that underpins the Bar charts that you can create with ggplot2.
 
 ### Cloning code
-To clone, or make a copy, of the code, you can simply click the Code button on the main repository screen, and import it into GitHub Desktop, allowing you to edit and make your own alterations to, and versions of the code before you.
+To **clone**, or make a copy, of the code, you can simply click the `**Code**` button on the main repository screen, and import it into GitHub Desktop, allowing you to edit and make your own alterations to, and versions of the code before you.
 
 ### Creating a Portfolio
 You can also use GitHub to create and display your own work. This good example has their details, their achievements, and links to all their major projects: 
@@ -72,21 +75,22 @@ https://github.com/archd3sai/Portfolio
 
 Once you have created a GitHub account, and have GitHub Desktop installed, open GitHub Desktop.
 
-You can clone (make a copy of) a repository that you (or someone else) has previously created on the internet, create a repository within an already existing folder for a project you're already working on, or you can create a new folder and repository when you begin your project.
-Let's create a new folder for our project today.
+You can **clone** (make a copy of) a repository that you (or someone else) has previously created on the internet, create a repository within an already existing folder for a project you're already working on, or you can create a new folder and repository when you begin your project.
 
-Click `+ Create a New Repository on your hard drive...` or go to `File > New Repository...` or press `Ctrl + N`
-In the **Create a new repository** window fill in the details for your repository:
-**Name**: `Portfolio`
-**Description**: `A portfolio of my coding projects`
-**Local path**: In this case we're going to create a new folder in our Documents click `Choose...` and select Documents - GitHub will create a new folder here for our project to be stored in.
-Tick the **Initialize this repository with a README** box
+Let's create a new folder for our project today by doing the following:
 
-Leave **Git ignore** and **License** as `None` for now.
+1. Click `+ Create a New Repository on your hard drive...` or go to `File > New Repository...` or press `Ctrl + N`
+1. In the **Create a new repository** window fill in the details for your repository:
+* **Name**: `Portfolio`
+* **Description**: `A portfolio of my coding projects`
+* **Local path**: In this case we're going to create a new folder in our Documents click `Choose...` and select Documents - GitHub will create a new folder here for our project to be stored in.
+* Tick the **Initialize this repository with a README** box
+* Leave **Git ignore** and **License** as `None` for now.
 
 Now that we've created our repository, let's populate it with some files.
 
 Open **RStudio** create a new R script file `File > New File > R Script`
+
 Add a line of code to get started: 
   ```# a basic R comment 
   print("Hello World")
@@ -94,38 +98,63 @@ Add a line of code to get started:
 
 Save your script `File > Save As...` navigate to your portfolio folder and save your file as `process`
 
-If you navigate back to GitHub, you will see that it has already identified that there is a new change in our repository. They appear green to demonstate that these changes have added something new, as opposed to deleting something. We can now begin the process of commiting and backing up these changes.
+If you navigate back to GitHub, you will see that it has already identified that there is a new change in our repository. 
+> They appear green to demonstate that these changes have added something new, as opposed to deleting something. 
+We can now begin the process of commiting and backing up these changes.
 
 
 ## Tracking Changes
 
-Instead of viewing your version history as a series of documents with different changes (e.g. thesis_final.pdf, thesis_final_1.pdf, etc.), Git views your document as a compilation, or a stack, of different changes through time. This means that you can go back in time to view each change as it was commited to the main document. 
+Instead of viewing your version history as a series of documents with different changes (e.g. thesis_final.pdf, thesis_final_1.pdf, etc.), Git views your **document as a compilation, or a stack, of different changes through time**. 
+This means that you can go back in time to view each change as it was commited to the main document. 
+
 When we commit a change, it writes that change to the branch of our repository that we choose to, in this case, that is called `main`. This means that if you want to do some experimenting with your code, you can instead commit it to an `experimental` branch so that you don't break your main code while you play. 
 
-Before commiting your changes, it's best practice to briefly describe your changes. Type a brief description into the box in the bottom right which currently reads `Update process.R` type something like "Added a comment and line of code". You can provide more detail in the `Description` box below if necessary. 
-Comments describing our commits are a very important part of Git, as they allow us to quickly visual changes at a glance.
+> Before commiting your changes, it's best practice to briefly describe your changes. 
 
-Now we can commit our changes click `Commit to **main**`
+### Describe your changes
 
-This has committed the versio history to our local device, but if we want to share this with others, or store it online, we will need to Publish/Push the file to GitHub. 
-To do this we will first need to sign in to our GitHub.com account `File > Options... . Accounts > Sign in > Continue with browser` sign in to GitHub in your browser, and then it will take you back to GitHub Desktop with you signed in. You may need to allow this in your browser.
+Type a brief description into the box in the bottom right which currently reads `Update process.R` 
+* Type something along the lines of "Added a comment and line of code". You can provide more detail in the `Description` box below if necessary. 
+> Comments describing our commits are a very important part of Git, as they allow us to quickly visual changes at a glance.
 
-Now Publish your repository by clicking the blue `Publish Repository` button, going to `Repository > Push`, or pressing `Ctrl + p`
-You can choose to keep your code private for now, but if you want to share it with others, you will need to untick this box. Then click `Publish Repository`.
+### Committing and pushing Changes
+
+Now we can commit our changes click `Commit to main`
+
+This has committed the version history to our local device, but if we want to share this with others, or store it online, we will need to Publish/Push the file to GitHub. 
+
+To do this we will first need to sign in to our GitHub.com account:
+1. Navigate to `File > Options... . Accounts > Sign in > Continue with browser` 
+2. Sign in to GitHub in your browser
+3. It will then take you back to GitHub Desktop with you signed in (you may need to click to allow this in your browser)
+
+You can publish your repository in any one of three different ways:
+* clicking the blue `Publish Repository` button
+* going to `Repository > Push`
+* or pressing `Ctrl + p`
+You can choose to keep your code private for now, and simply make it public later on. Click `Publish Repository`.
 
 Let's have a look at what it looks like when we edit a file.
+
 Go to R and insert edit our previous line to: `print("Hello GitHub")`
 
 If you return to GitHub, you will see the former text in red, and our new addition highlighted in green.
 
-Before we can push this to GitHub, we need to describe our edits "changed the print code", and then click `Commit to **main**`. Press `Ctrl + P` to push it to GitHub.
+Before we can push this to GitHub, we need to:
+1. Describe our edits "changed the print code"
+2. Then click `Commit to **main**`
+3. Then press `Ctrl + P` to push it to GitHub.
 
 ## Accessing and intereacting with your Git Repository Online
 
 ### View and edit online
 If you click your profile picture in the top right of Github online, you can view all **Your repositories**.
+
 From here you can access your **portfolio** repository, and then the **process.R** file we pushed earlier.
+
 Once you've navigated to the file, you can click the pencil button to edit the code online.
+
 Make some edits to the code, provide a description of your changes in the **Commit changes** section, and then click the `Commit changes` button.
 
 ### Fetch/Pull
@@ -142,12 +171,15 @@ We can now commit this change, and then push it to the repository.
 
 ### Revert
 Even though we have deleted the file locally, and pushed that deletion to the web based repository, we can revert that change within Github Desktop (you can also do this through the Git command line, but note that **you cannot** do this on Github online.
+
 Within Github Desktop click the **History** tab, right click on the commit where the file was deleted, and select **Revert changes in commit**. This will bring our file back.
 
 ### Gitignore
 Before you push to a git repository, it's worth making sure that you want to commit everything in that repository.
 For example, there may be private documents, or large datafiles you do not want to commit and upload. You can set these to be ignored with Gitignore.
+
 Let's create some documents we want Github to ignore.
+
 You can do this in Github Desktop by going to `Repository > Repository Settings... > Ignored files` and then entering the locations, names, or types of files you want to ignore.
 
 ## Creating a good Readme
@@ -184,16 +216,19 @@ You can add links by wrapping the link text in `[ ]`, and then putting the link 
 
 # Want to learn more?
 
-RUG, R Lavdies, UQL Training, Hacky Hour
+* RUG
+* R Ladies
+* UQL Training
+* Hacky Hour
 
 # Things not covered today
 
-Collaboration
-Terminal
-Branching
-Git in R
-Conflicts
-Resolving Conflicts
-Creating a website with Git
+* Collaboration
+* Terminal
+* Branching
+* Git in R
+* Conflicts
+* Resolving Conflicts
+* Creating a website with Git
 
 
