@@ -201,9 +201,9 @@ There is a lot more customisation you can do, and you can find a complete breakd
 ### Images
 You can display an image by first typing `!` and providing a description with `[ ]`. You then put the link address in parentheses `()`.
 
-`![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)`
+`![This is an image](https://upload.wikimedia.org/wikipedia/commons/2/29/GitHub_logo_2013.svg)`
 
-![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
+![This is an image](https://upload.wikimedia.org/wikipedia/commons/2/29/GitHub_logo_2013.svg)
 
 
 ### Links
