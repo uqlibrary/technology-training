@@ -223,21 +223,19 @@ This **Portfolio** contains all of my Analytics projects
 There is a lot more customisation you can do, and you can find a complete breakdown of [Git Markdown here](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
 
-# Want to learn more?
+# Things not covered today
+* Branching (creating experimental branches of your code)
+* Collaboration
+* Conflicts (often caused by collaboration!)
+* Resolving Conflicts (Git makes them easier to fix)
 
+# More Guides
+* [Terminal/GitBash](https://github.com/uqlibrary/technology-training/blob/master/Git/git.md)
+* [Git in R](https://r-bio.github.io/intro-git-rstudio/)
+* [Creating a website with Git and R](https://geospatial-community.netlify.app/post/create-a-geospatial-blog/)
+
+# UQ User Groups, Support, and Training
 * [UQ R User Group (UQ RUG)](https://frama.link/uqrug)
 * [R Ladies](https://www.meetup.com/en-AU/rladies-brisbane/)
 * [UQ Library Training](https://web.library.uq.edu.au/library-services/training#keyword=;campus=;weekstart=)
 * [RCC's Hacky Hour](https://rcc.uq.edu.au/meetups)
-
-# Things not covered today
-
-* Collaboration
-* [Terminal/GitBash](https://github.com/uqlibrary/technology-training/blob/master/Git/git.md)
-* Branching
-* Git in R
-* Conflicts
-* Resolving Conflicts
-* [Creating a website with Git and R](https://geospatial-community.netlify.app/post/create-a-geospatial-blog/)
-
-
