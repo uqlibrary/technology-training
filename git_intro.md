@@ -49,6 +49,8 @@ For example, if you search for **ggplot2** on GitHub you can see many projects r
 
 The highest and most popular link listed contains the code behind ggplot2 - one of the most popular R packages.
 
+https://github.com/khanhnamle1994/spotify-artists-analysis/blob/master/Data-Processing.R
+
 **Click** the link to have a look.
 
 ### Read the Readme
@@ -219,6 +221,7 @@ This **Portfolio** contains all of my Analytics projects
 ``` 
 <img align="left" width="250" height="150" src="https://user-images.githubusercontent.com/67612228/184837530-9a4537b3-22f0-495c-90d1-6ccdcb4bc4bd.png">
 ```
+8. Scroll to the bottom and descibe your commit, and click `**Commit** changes`
 
 There is a lot more customisation you can do, and you can find a complete breakdown of [Git Markdown here](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
