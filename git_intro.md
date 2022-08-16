@@ -184,8 +184,12 @@ Before you push to a git repository, it's worth making sure that you want to com
 For example, there may be private documents, or large datafiles you do not want to commit and upload. You can set these to be ignored with Gitignore.
 
 Let's create some documents we want Github to ignore.
+1. Navigate to your Portfolio folder
+2. Right-click inside the folder and select **New** > **Text Document**, and call it **example.txt**
 
-You can do this in Github Desktop by going to `Repository > Repository Settings... > Ignored files` and then entering the locations, names, or types of files you want to ignore.
+Now let's have GitHub ignore this file.
+You can do this in Github Desktop by going to `Repository > Repository Settings... > Ignored files` and then entering the locations, names, or types of files you want to ignore. Let's enter **example.txt**. 
+> You can also cover all instances of a particular document type by entering something similar to ***.dat**
 
 ## Creating a good Readme for your Portfolio
 The Readme is often the first place people go when looking at a Git Repository, so it's important to have useful information here, and displayed in a meaningful way. This is especially the case for your Portfolio.
