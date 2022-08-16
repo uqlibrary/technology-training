@@ -155,19 +155,22 @@ From here you can access your **portfolio** repository, and then the **process.R
 
 Once you've navigated to the file, you can click the pencil button to edit the code online.
 
-Make some edits to the code, provide a description of your changes in the **Commit changes** section, and then click the `Commit changes` button.
+1. Make some edits to the code
+1. Provide a description of your changes in the **Commit changes** section
+1. Then click the `Commit changes` button.
+> On the desktop you would need to push to the repository, as we are already in the external repository, you don't need to do that, however next time you access the file in another location, you should **Pull** the data.
 
 ### Fetch/Pull
-Before doing any edits on a file in a repository that is worked on by many individuals or on different devices, it's best to **Fetch/Pull** your repository. You can do this in Github Desktop by clicking **Pull origin** up the top. This will pull the changes from the online repository, and let you know if there are any new additons, deletions, or, if you have simultaneously changed the same section of code, any conflicts (which need to be fixed and resolved before continuing).
+Before doing any edits on a file in a repository that is worked on by many individuals or on different devices, it's best to **Fetch/Pull** your repository. 
+You can do this in Github Desktop by clicking **Pull origin** up the top. 
+This will pull the changes from the online repository, and let you know if there are any new additons, deletions, or, if you have simultaneously changed the same section of code, any conflicts (which need to be fixed and resolved before continuing).
  
 We can see the creation, updates, and commits on the left side of Github Desktop.
 
 ### Delete
-Let's navigate to the file location, and then delete the file so that we can see the process behind this.
+Let's navigate to the file location, and then **delete the file** so that we can see the process behind this.
 Once you delete the file, Github Desktop will show this as a **Change** where all lines of code were removed.
-
-### Push
-We can now commit this change, and then push it to the repository.
+We can now add comments, commit this change, and then push it to the repository.
 
 ### Revert
 Even though we have deleted the file locally, and pushed that deletion to the web based repository, we can revert that change within Github Desktop (you can also do this through the Git command line, but note that **you cannot** do this on Github online.
@@ -182,53 +185,59 @@ Let's create some documents we want Github to ignore.
 
 You can do this in Github Desktop by going to `Repository > Repository Settings... > Ignored files` and then entering the locations, names, or types of files you want to ignore.
 
-## Creating a good Readme
-The Readme is often the first place people go when looking at a Git Repository, so it's important to have useful information here, and displayed in a meaningful way.
+## Creating a good Readme for your Portfolio
+The Readme is often the first place people go when looking at a Git Repository, so it's important to have useful information here, and displayed in a meaningful way. This is especially the case for your Portfolio.
 
 ### Markdown
-When editing a Readme file you can format it using a simple coding language called Markdown.
+When editing a Readme file you can format it using a simple coding language called Markdown, as well as HTML coding.
 
-- You can **Bold** text by putting it between a set of double asterisks, eg. \**example text\** becomes **example text**.
+Today we're going to finish by creating a simple **Readme** template.
 
-- You can create code blocks by using backticks, eg. \`example text\` becomes `example text`.
-
-- You can create headings using \# symbols, \# will create the largest heading, and \###### will create the smallest, eg. \###Middle Heading\### becomes: 
-### Middle Heading ###
-
+1. Navigate to your GitHub repository online.
+2. Click the **pencil** icon to edit your README.md
+3. Create a heading by entering 
+``` 
+# Analytics Portfolio - <your name>
+```
+> You can create headings using \# symbols, \# will create the largest heading, and \###### will create the smallest
+4. On the next line, enter some normal text describing your portfolio 
+``` 
+This **Portfolio** contains all of my Analytics projects
+```
+> You can **Bold** text by putting it between a set of double asterisks, eg. \**example text\** becomes **example text**.
+5. Create a dot point with a link to your contact details by entering 
+``` 
+- **Email**: [yourname@email.com](yourname@email.com)
+```
+> A - symbol will give you a bullet point.
+> You can add links, including emails, by wrapping the link text in `[ ]`, and then putting the link address in parentheses `()`. 
+6. Add a second level heading by entering 
+``` 
+## Projects
+```
+7. Insert an image by entering the following HTML code: 
+``` 
+<img align="left" width="250" height="150" src="https://user-images.githubusercontent.com/67612228/184837530-9a4537b3-22f0-495c-90d1-6ccdcb4bc4bd.png">
+```
 
 There is a lot more customisation you can do, and you can find a complete breakdown of [Git Markdown here](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Images
-You can display an image by first typing `!` and providing a description with `[ ]`. You then put the link address in parentheses `()`.
-
-`![This is an image](https://upload.wikimedia.org/wikipedia/commons/2/29/GitHub_logo_2013.svg)`
-
-![This is an image](https://upload.wikimedia.org/wikipedia/commons/2/29/GitHub_logo_2013.svg)
-
-
-### Links
-You can add links by wrapping the link text in `[ ]`, and then putting the link address in parentheses `()`.
-
-`[This is a link](https://github.com/Nijawi/Portfolio/edit/main/git_intro.md)`
-
-[This is a link](https://github.com/Nijawi/Portfolio/edit/main/git_intro.md)
 
 
 # Want to learn more?
 
-* RUG
-* R Ladies
-* UQL Training
-* Hacky Hour
+* [UQ R User Group (UQ RUG)](https://frama.link/uqrug)
+* [R Ladies](https://www.meetup.com/en-AU/rladies-brisbane/)
+* [UQ Library Training](https://web.library.uq.edu.au/library-services/training#keyword=;campus=;weekstart=)
+* [RCC's Hacky Hour](https://rcc.uq.edu.au/meetups)
 
 # Things not covered today
 
 * Collaboration
-* Terminal
+* [Terminal/GitBash](https://github.com/uqlibrary/technology-training/blob/master/Git/git.md)
 * Branching
 * Git in R
 * Conflicts
 * Resolving Conflicts
-* Creating a website with Git
+* [Creating a website with Git and R](https://geospatial-community.netlify.app/post/create-a-geospatial-blog/)
 
 
