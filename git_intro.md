@@ -45,11 +45,11 @@ GitHub is a Git host server which stores your Git repository online. This means 
 ### How to explore GitHub
 You can search for repositories in a search engine, or on https://github.com/
 
-For example, if you search for **ggplot2** on GitHub you can see many projects relating to ggplot2.
+For example, if you search for **spotify artists analysis** on GitHub you can see many projects relating to spotify.
 
-The highest and most popular link listed contains the code behind ggplot2 - one of the most popular R packages.
+The highest and most popular link listed is generally the one that you're after.
 
-https://github.com/khanhnamle1994/spotify-artists-analysis/blob/master/Data-Processing.R
+You should find your way to this repository: https://github.com/khanhnamle1994/spotify-artists-analysis
 
 **Click** the link to have a look.
 
