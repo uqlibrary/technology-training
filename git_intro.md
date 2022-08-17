@@ -77,7 +77,10 @@ https://github.com/archd3sai/Portfolio
 
 Once you have created a GitHub account, and have GitHub Desktop installed, open GitHub Desktop.
 
-You can **clone** (make a copy of) a repository that you (or someone else) has previously created on the internet, create a repository within an already existing folder for a project you're already working on, or you can create a new folder and repository when you begin your project.
+We have a few options here:
+- You can **clone** (make a copy of) a repository that you (or someone else) has previously created on the internet
+- You can create a repository within an already existing folder for a project you're already working on
+- You can create a new folder and repository when you begin your project
 
 Let's create a new folder for our project today by doing the following:
 
@@ -169,6 +172,34 @@ This will pull the changes from the online repository, and let you know if there
  
 We can see the creation, updates, and commits on the left side of Github Desktop.
 
+### Conflicts
+If we simultaneously make edits online, and then make edits on desktop without Fetching/Pulling first, we will have conflicts. Let's create a conflict.
+1. Edit the document online, add `# Edited online`, then **Commit**
+2. Edit the document on desktop, add `# Edited on Desktop`, **save** the file, then **Commit**
+3. Click **Push**
+> You will receive an error that there are newer commits on the remote. Before we **Push**, we will need to **Fetch**
+4. Click **Fetch**
+5. Click **Pull Origin**
+> A popup will appear asking you to resolve the conflicts in the document before you merge. We need to open the file to view and remove those conflicts.
+6. Open the file with the conflict. You will see code similar to that below:
+```R
+<<<<<<< HEAD
+# Edited on Desktop
+=======
+# Edited Online
+>>>>>>> 7e2e0c3b4a819b3cf3c285a47a862f975629bf8a
+```
+7. Here we decide what we want to keep, and what we want to delete. Once we have decided what to keep, we need to remove the unwanted code, as well as the tags that Git has inserted. Let's keep both edits, and simply remove the tags that Git added. Your code should look like this:
+```R
+print("Hello Github")
+# I added this code on GitHub Online 
+# Edited on Desktop
+# Edited Online
+```
+8. Save your file.
+9. Return to GitHub Desktop, and it should now update to show that there are no conflicts remaining. Click **Continue merge**
+10. The conflicts are now resolved, and you can once again **Push** our edits to our GitHub repository.
+
 ### Delete
 Let's navigate to the file location, and then **delete the file** so that we can see the process behind this.
 Once you delete the file, Github Desktop will show this as a **Change** where all lines of code were removed.
@@ -234,8 +265,6 @@ There is a lot more customisation you can do, and you can find a complete breakd
 * Branching (creating experimental branches of your code)
 * Fulling cloning others' code
 * Collaboration
-* Conflicts (often caused by collaboration!)
-* Resolving Conflicts (Git makes them easier to fix)
 
 # More Guides
 * [Terminal/GitBash](https://github.com/uqlibrary/technology-training/blob/master/Git/git.md)
