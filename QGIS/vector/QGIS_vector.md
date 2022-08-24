@@ -76,3 +76,6 @@ Perform nearest neighbour calculations to determine how close things are
 ### Vector to Raster conversion
 
 ### Calculating Population change in different regional areas
+
+### Calculating Population change in different regional areas
+Drawing and editing points, lines and polygons.
