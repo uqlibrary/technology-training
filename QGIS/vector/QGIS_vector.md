@@ -13,16 +13,32 @@ In QGIS 3.10 and above this will automatically set the **project home** too. To 
 Let's also add an OpenStreetMap basemap to locate ourselves on the globe: `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
 
 
-## Get some data
+## Gather some data
 
 We're going to explore a number of different online spatial data repositories.
-Species, post code, protected areas, environmentally signficant areas
-
-### ABS Data
 
 
+Species, post code, protected areas, environmentally signficant areas, population, satellite data
+?? Indigenous areas, Cat geography
+
+### Data from the ABS
+#### Postcodes
+https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files
+
+#### Population
+https://www.abs.gov.au/statistics/people/population/regional-population/latest-release#data-download
+
+### Data from QLD Gov
+#### Protected Areas
+QLD Globe / QLD Spatial
+
+#### Areas of Environmental Significance
+QLD Globe / QLD Spatial
 
 ### Species Locations
+#### GBIF or ALA
+Create an account?
+Or download data beforehand?
 
 Atlas of Living Australia
 
@@ -30,40 +46,43 @@ Global Biodiversity Information Facility
 
 iNaturalist
 
-### Post Code Data
+#### CSV import
+A csv file with lat long data in it
 
-Need to talk to Matt to get the rest of these details
+### Satellite Imagery
+NearMap Data
 
-Interactive Maps
-https://www.abs.gov.au/websitedbs/D3310114.nsf/home/Interactive+Maps
+## Prepare Data for Analysis
+### Projections
+We need to ensure that all of our data is in the same projection. This is an important step, but is especially important given the analyses we will be performing today will include determining spatial overlaps.
 
-Spatial Data
-https://www.abs.gov.au/websitedbs/D3310114.nsf/home/ABS+Geography+Publications
+### Digitizing Map Data
+We will use the satellite imagery to create our own polygons for analysis.
+Let's create some polygons around the forested area of interest.
 
-Boundaries (including postcodes)
-https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files
+INSTRUCTIONS ON HOW TO USE THE DIGITISATION TOOLS
 
-Stats
-https://www.abs.gov.au/statistics
-
-Population
-https://www.abs.gov.au/statistics/people/population/regional-population/latest-release#data-download
-
-Sex, age, pop
-https://www.abs.gov.au/statistics/people/population/regional-population-age-and-sex/2020#data-download
-
-Income
-https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/personal-income-australia/2014-15-2018-19#local-government-area-median-total-income
-
-This could be used for analyses where the user inputs a postcode, and gets a certain related value for that.
-
+## Analysis
 ### Spatial Overlaps
 
 How do protected areas overlap with areas of environmental significance?
 Use Intersect
 Calculate area in the attribute table
+
 Create other summary stats
+
 Species counts within areas
+
+Population counts within areas
+
+How population and species interact
+
+## Map Creation
+We will create a species and population distribution map with summary stats attached.
+
+
+
+## Stretch analyses
 
 ### Heatmaps
 
@@ -75,6 +94,7 @@ Perform nearest neighbour calculations to determine how close things are
 
 ### Vector to Raster conversion
 
-### Calculating Population change in different regional areas
+Convert a species distribution point dataset to a raster image
 
-### Drawing and editing points, lines and polygons.
+
+
