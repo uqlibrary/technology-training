@@ -126,6 +126,8 @@ knit the whole document every time you want to test your code.
 
 Now, try to knit the document and see what it looks like.
 
+Note that you can insert an r chunk by using the Ctrl+Alt+I (or Cmd+Alt+I on Mac).
+
 #### Challenge 2
 
 Inside a new chunk, add some code to import the dataset located
@@ -353,6 +355,12 @@ tinytex::install_tinytex()
 
 After this, try to change your YAML header’s `output` value to
 `pdf_document` and knit it.
+
+## Switching to the visual editor
+At the top of the Rmd editor window, you have the option to switch between **Source** and **Visual**.
+If you change to the visual editor, you will see that the document now formats itself to be slightly more like the final output. This includes creating the code boxes, and showing text formatting, such as bold and italics.
+
+You can also use this much more easily insert tables and other items without having to code so much by hand.
 
 ## Useful links
 
