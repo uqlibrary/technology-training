@@ -28,12 +28,16 @@ https://www.abs.gov.au/statistics/standards/australian-statistical-geography-sta
 #### Population
 https://www.abs.gov.au/statistics/people/population/regional-population/latest-release#data-download
 
-### Data from QLD Gov
+### Data from Fed Gov
 #### Protected Areas
 QLD Globe / QLD Spatial
+http://www.environment.gov.au/fed/catalog/search/resource/details.page?uuid=%7B4448CACD-9DA8-43D1-A48F-48149FD5FCFD%7D
 
 #### Areas of Environmental Significance
 QLD Globe / QLD Spatial
+
+https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={E4CCDBA7-11AB-45DD-A064-BDBC02899204}
+https://environment.des.qld.gov.au/wildlife/animals/living-with/koalas/mapping/koalamaps
 
 ### Species Locations
 #### GBIF or ALA
@@ -41,13 +45,14 @@ Create an account?
 Or download data beforehand?
 
 Atlas of Living Australia
+https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/e9d6fbbd-1505-4073-990a-dc66c930dad6
 
 Global Biodiversity Information Facility
 
 iNaturalist
 
 #### CSV import
-A csv file with lat long data in it
+This is what you get grom ALA
 
 ### Satellite Imagery
 NearMap Data
