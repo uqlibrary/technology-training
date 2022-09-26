@@ -57,6 +57,9 @@ This is what you get grom ALA
 ### Satellite Imagery
 NearMap Data
 
+## Inspect our Data
+### Layer Properties
+
 ## Prepare Data for Analysis
 ### Projections
 We need to ensure that all of our data is in the same projection. This is an important step, but is especially important given the analyses we will be performing today will include determining spatial overlaps.
@@ -65,7 +68,14 @@ We need to ensure that all of our data is in the same projection. This is an imp
 We will use the satellite imagery to create our own polygons for analysis.
 Let's create some polygons around the forested area of interest.
 
+### Edit a layer
+Remove one of the polygons that we created.
+
+Edit a feature name of a polygon
+
 INSTRUCTIONS ON HOW TO USE THE DIGITISATION TOOLS
+
+### Raster to Vector Conversion
 
 ## Analysis
 ### Spatial Overlaps
@@ -81,6 +91,9 @@ Species counts within areas
 Population counts within areas
 
 How population and species interact
+
+## Heatmaps (vector to raster)
+
 
 ## Map Creation
 We will create a species and population distribution map with summary stats attached.
