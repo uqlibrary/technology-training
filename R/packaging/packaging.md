@@ -26,7 +26,7 @@ In this session, you will learn about:
 So we can get straight into the interesting stuff, we have an R project
 that already contains relevant custom functions. You can download it
 with this link:
-<https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R%2packaging>
+<https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R/packaging>
 
 Unzip this archive, and open the .Rproj file to open the project in
 RStudio.
