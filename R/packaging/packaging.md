@@ -132,7 +132,7 @@ block of code. Back in our script, we can now load in, and then call our new fun
 get the data:
 
 ``` r
-source("get_acorn.R") # source anothjer R script
+source("get_acorn.R") # source another R script
 get_acorn(dest = "acorn_sat_v2_daily_tmax")
 ```
 
@@ -242,6 +242,7 @@ use the “Source” button at the top right of the source panel.
 Back in our script, we can now test it on our first file:
 
 ``` r
+source("read_station.R") # source the R script
 read_station("acorn_sat_v2_daily_tmax/tmax.002012.daily.csv")
 ```
 
@@ -302,6 +303,7 @@ merge_acorn <- function(dir) {
 Let’s source this function, and try it in our script:
 
 ``` r
+source("merge_acorn.R") # source the R script
 all_tmax <- merge_acorn("acorn_sat_v2_daily_tmax")
 ```
 
@@ -434,6 +436,8 @@ what extra packages are needed for our package to work.
 
 GPL or MIT are common licences for R packages. They are Open Source and
 allow others to reuse your code, which is the norm in the R ecosystem.
+Here is a useful site for choosing the best license for you:
+https://choosealicense.com/ 
 
 ### 2\. NAMESPACE
 
