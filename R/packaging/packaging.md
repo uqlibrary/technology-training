@@ -529,6 +529,9 @@ through all the steps.
 
 Notice any error, warning or note?
 
+Another way that we can check our code is by using the package [testthat](https://testthat.r-lib.org/).
+This is a package which will help you set up processes to comprehensively test your code and is especially helpful when you're maintaining a package, and need to check that it still runs the same after making some updates.
+
 ### Building and installing
 
 We can also install our package on our system.
@@ -595,9 +598,18 @@ repository. We can then use the Git tab to save snapshots of our files.
 You can then host your code on Gitlab or GitHub to make it accessible to
 others. See for example: <https://github.com/Lchiffon/wordcloud2>
 
-The package usethis provides many useful functions to setup packages,
+If you have Git installed on your computer and you have a Github account, you can try creating a new repository, and then following the steps it provides to push your R project from the R terminal.
+
+The package [usethis](https://usethis.r-lib.org/) provides many useful functions to setup packages,
 including a `use_github()` function to quickly create a remote
 repository, and a `use_readme_*()` to add a readme file for the project.
+
+For example, we can create a readme md with:
+
+``` r
+usethis::use_readme_md()
+```
+
 
 Others will then be able to install your package from your remote
 repository with:
