@@ -128,10 +128,11 @@ not exist, it will be created. If it already exist, it will move on to
 the next step without executing the `dir.create(dest)` command.
 
 To have access to this new funtion, make sure you execute the whole
-block of code. Back in our script, we can now call our new function to
+block of code. Back in our script, we can now load in, and then call our new function to
 get the data:
 
 ``` r
+source("get_acorn.R") # source anothjer R script
 get_acorn(dest = "acorn_sat_v2_daily_tmax")
 ```
 
