@@ -54,6 +54,9 @@ Species, post code, protected areas, environmentally signficant areas, populatio
 LGAs of QLD
 https://qldspatial.information.qld.gov.au/catalogue/custom/search.page?q=SEQ
 
+Locality/Suburbs QLD
+https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={8F24D271-EE3B-491C-915C-E7DD617F95DC}
+
 ### Data from the ABS
 #### Postcodes
 https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files
