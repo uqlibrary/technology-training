@@ -13,6 +13,36 @@ In QGIS 3.10 and above this will automatically set the **project home** too. To 
 Let's also add an OpenStreetMap basemap to locate ourselves on the globe: `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
 
 
+More notes
+
+Hammer home that the dataset is encounters
+
+Koala counts 
+Area calculation
+
+Zonal Statistics
+Count points in polygon
+Field calculator to get Koala PP
+
+Checking our data to look at influence of popualation on encounters
+How many people are in each suburb?
+How many koalas?
+
+What suburbs actually have koala habitat?
+
+How many koalas in the priority areas?
+How much of the priority area is actually protected?
+
+Digitise missing bits
+
+Heatmaps
+Point clustering
+Convert points to raster
+
+Nearest neighbour analyses?
+
+
+
 ## Gather some data
 
 We're going to explore a number of different online spatial data repositories.
