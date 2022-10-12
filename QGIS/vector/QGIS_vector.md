@@ -117,7 +117,7 @@ For each of our layers, do the following:
 * Choose the layer in `Input layer`
 * Set the Target CRS to `EPSG:7856 - GDA2020 / MGA zone 56`
 * Click the three dots `...` next to the `Reprojected` section, and click **Save to File...**
-* Navigate to your **vector_data** folder and save the file ther. For example, save **SA2_2021_AUST_GDA2020** as **SA2_Reprojected**
+* Navigate to your **vector_data** folder and save the file there. For example, save **SA2_2021_AUST_GDA2020** as **SA2_Reprojected**
 * Click `Run`
 
 ## Subset our SA2 data down to SEQ - Select features using an expression
@@ -127,12 +127,6 @@ The following code will allow you to select the SA2 features that are in SEQ.
 * Right click on the reprojected SA2 layer, and select **Open Attribute Table**
 * From the Attribute Table that opens, click the Select features using an expression button: ![image](https://user-images.githubusercontent.com/67612228/195261159-b949e22b-7634-4326-ab50-089b94e76dc4.png)
 * In the Select by Expression window that opens, paste the code from below into the Expression field, and then click `Select Features` in the bottom right of the window.
-* Close the Select by Expression window and Attribute Table 
-* You should see the SEQ SA2 areas highlighted in yellow.
-* To permanently save this selection, right click on the reprojected SA2 layer, and select `Export > Save Selected Features As...`
-* Save your file as `SA2_SEQ`
-* Make sure the CRS stays as `EPSG:7856 - GDA2020 / MGA zone 56`, then click `OK`
-
 
 ``` SQL
  "GCC_NAME21"  =  'Greater Brisbane' 
@@ -143,11 +137,20 @@ OR
   OR
  "SA4_NAME21" =  'Toowoomba' 
  ```
+ 
+* Close the Select by Expression window and Attribute Table 
+* You should see the SEQ SA2 areas highlighted in yellow.
+* To permanently save this selection, right click on the reprojected SA2 layer, and select `Export > Save Selected Features As...`
+* Save your file as `SA2_SEQ`
+* Make sure the CRS stays as `EPSG:7856 - GDA2020 / MGA zone 56`, then click `OK`
 
-## Analysis
-### Spatial Overlaps
-#### How much of the priority area is protected?
+
+
+## Analysis: Spatial Overlaps
+
 Let's find out how much of our Koala Priority areas are already under federally recognised protection. To do this we will use the Intersection tool
+
+### Intersection
 * Go to `Vector > Geoprocessing Tools > Intersection`
 * Under **Input Layer** select **CAPAD2020_terrestrial_QLD** 
 * Under **Overlay Layer** select **koala_priority_area**
@@ -155,6 +158,9 @@ Let's find out how much of our Koala Priority areas are already under federally 
 
 We get an error `Feature (26) from “CAPAD2020_terrestrial_QLD” has invalid geometry.`
 This is caused by little issues in the polygon layer. Sometimes when polygons are drawn or exported out from other areas, they will create errors, and sometimes little slither polygons on the edges. We can investigate the source of these errors using the `Check validity` tool, but for today, we're simply going to fix them with the `Fix Geometries` tool from the Processing Toolbox.
+
+#### Fix Geometries
+
 * Open the Processing Toolbox by clicking the cog icon from the top menu ![image](https://user-images.githubusercontent.com/67612228/195267106-f54d2655-2762-42ec-acd0-a2c744b059e9.png) (alternatively go to `View > Panels > Processing Toolbox`
 * In the **Processing Toolbox** window `Search` for "Fix geometries"
 * Double-click on the **Fix geometries** option
@@ -163,23 +169,73 @@ This is caused by little issues in the polygon layer. Sometimes when polygons ar
 
 You can now re-run the **Intersection** tool with the resulting **Fixed Geometries** layer (instead of the **CAPAD2020_terrestrial_QLD** layer)
 
-If we look at the Instersection results.
-Click the Field calculator and type the expression
+#### Field Calculator
+We can use the **Field Calculator** to calculate the area of our polygon.
+
+Select **Intersection** from the **Layers** panel, and the click the **Open Field Calculator** button ![image](https://user-images.githubusercontent.com/67612228/195319687-1538f2a0-d8c8-4084-a632-0e3181fb11dd.png)
+
+In the **Field calculator** window, type the following code into the **Expression** tab:
 ``` SQL
 sum($area)
 ```
+* $area will give us the area of a single polygon
+* sum() will add together the area for every polygon in that layer.
+
+Below the text box, you will see a field titled **Preview:**, the value following that contains the results of our expression.
 Copy that number.
 
-Do the same for the original koala_priority_area.
+Do the same **Field Calculator** steps for the original koala_priority_area.
 
-Use filed calculator to determine that
+You can now use the **Field calculator** to determine the percentage of the Koala Priority area which is currently protected.
 1506573200.936991 / 5776218019.211894 = 26%
 
+Only 26%! Let's look into this further, are there certain areas that have more koalas?
 
-Why is this priority, but not a protected area?
-How many koalas are in the priority areas?
+### Count Points in Polygons
 
-Run a Count Points in polygon
+We can use the Count Points in Polygons tool to quickly count the number of points from a particular layer inside a polygon.
+Let's determine how many koalas are actually inside of Protected Areas.
+* Go to `Vector > Analysis Tools > Count Points in Polygons...` 
+* In the **Polygons** field select `Fixed Geometries` (remember, this is our fixed CAPAD2020 layer)
+* In the **Points ** field select `koala_reduced`
+* In the **Count field name** field type in something like `NUM_KOALAS
+* Click the three dots `...` next to the **Count** section, and click **Save to File...**
+* Navigate to your **vector_data** folder and save the file as **protected_area_koalas**
+* Click `Run`
+You will have a new layer, you can look at the **Attribute Table** for this layer to see the number of koala sightings in each priority area
+We can use the **Field Calculator** again to sum this number for us.
+* Click on the **Field Calculator** icon
+* In the `Expression` tab enter `sum(NUM_KOALAS)
+* The **Preview:** will again show us the result
+
+A lot of koala sightings fall outside of the Protected areas, perhaps our dataset is missing some new conservation areas. Let's turn on the OpenStreetMap to see if we can see anything missing here. Let's have a look at the dense collection of koala sightings near Springwood and the Daisy Hill Conservation Park.
+We can see that there are some protected bushlands in this area that aren't in our CAPAD2020 dataset. It may be that these aren't strict enough conservation areas, or our dataset may be out of date. Regardless, this gives us a good opportunity to use an important tool in GIS: Digitisation.
+
+## Map Digitisation
+
+You may often need to create your own points, lines, and polygons when digitising satellite data, or simply highlighting a particular area.
+Let's use the OpenStreeMap and digitise the Emu Street Bushland Refuge (you can quickly navigate here by changing your **Scale** to 1:10000 and **Coordinate** to  518271.26,6948896.93)
+* Go to `Layer > Create Layer > New GeoPackage Layer...`
+* Click the three dots `...` next to the **Database** section
+* Navigate to your **vector_data** folder and save the file as **ESBR_polygon**
+* From **Geometry type** select `MultiPolygon`
+* Make sure the CRS is set to `EPSG:7856 - GDA2020 / MGA zone 56`
+* Leave the other fields blank for now and click `OK`
+
+We now have a brand new layer that we can add polygons to.
+* Select the new **ESBR_polygon** layer and then click the **Toggle Editing** pencil ![image](https://user-images.githubusercontent.com/67612228/195329987-d435f41e-c111-40b0-8ee5-043cf135692c.png) from the top menu (or go to `Layer > Toggle Edititng`
+* On your keyboard, press `Ctrl + .` to start adding a new polygon
+* Zoom in to a corner of the area you want to create the polygon, and then `Left click` to start drawing your polygon ()You can use the mouse wheel to zoom in, and also press on the mouse wheel to navigate)
+* Continue adding points to your polygon until your return back to the start, `Right click` to stop digitising and create your polygon.
+* Leave the fid as `Autogenerate` and click `OK`
+* To save what you've done, click the **Save Layer Edits** button next to the **Toggle Editing** button
+* To finish editing your layer click the **Toggle Editing** button again
+
+
+
+
+
+
 
 Koala pop heatmaps
 
