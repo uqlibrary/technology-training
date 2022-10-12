@@ -59,12 +59,6 @@ http://www.environment.gov.au/fed/catalog/search/resource/details.page?uuid=%7B4
   Koala Priority Areas are areas in SEQ which have been identified as key areas for conservation as part of the South East Queensland Koala Conservation Strategy 2019-2024.
   https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={E4CCDBA7-11AB-45DD-A064-BDBC02899204}
 
-I think I'm going to remove the Koala Habitat section here
-
-#### Koala habitat
-  Koala's need certain species of Eucalyptus for feeding and habitat. This dataset covers all of those areas in QLD>
-  https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={8929E344-D485-432C-821C-B1E95F57BE05}
-
 ### Australian Bureau of Statistics Data
   The ABS is a huge source of data, however, it can be a bit difficult to find that data, and use it in a spatial context.
   
