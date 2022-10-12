@@ -84,10 +84,10 @@ We will go into projections in more detail soon.
 ## Load in our data
 For most of our data, we will simply be able to double click on it in the Project Home folder within the Browser window.
   Load in:
-* SA2/Suburb data
-* Population Data GRID File
-* Protected Areas
-* Koala Priority Areas
+* SA2_ERP_2021 (suburb data)
+* CAPAD2020 (Protected Areas)
+* koala_priority_area
+* Population Data GRID File (as a stretch goal)
 
 But what about the Koala Encounters location data? We need to handle this differently, as it is currently not in a spatial format, but in a csv file.
 
