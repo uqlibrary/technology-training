@@ -21,6 +21,8 @@ https://mapschool.io/
 
 ## What are we doing today?
 To look at vector data, we're going to use the example of koala populations and protected areas, and use some analyses to see how they interact.
+The QLD Government has set koala protection as a priority for the State, but how do their priorities match up with the data?
+We can use QGIS and spatial analysis to ask questions of the data.
 
 ## Gather some data
 
@@ -148,7 +150,8 @@ OR
 
 ## Analysis: Spatial Overlaps
 
-Let's find out how much of our Koala Priority areas are already under federally recognised protection. To do this we will use the Intersection tool
+Let's find out how much of our Koala Priority areas are already under federally recognised protection. To do this we will use the Intersection tool.
+This tool is similar to the **Clip** tool, but rather than just cutting out the overlapping area, it also combines the Attribute Tables of the two layers.
 
 ### Intersection
 * Go to `Vector > Geoprocessing Tools > Intersection`
@@ -213,11 +216,17 @@ We now have a brand new layer that we can add polygons to.
 * To save what you've done, click the **Save Layer Edits** button next to the **Toggle Editing** button
 * To finish editing your layer click the **Toggle Editing** button again
 
+You now know how to digitise a polygon, but the same steps apply for creating a point or a line layer.
+We created a new layer here, and you can also do the same steps to edit a pre-exisitng layer too.
+
+
+Despite these missing Refuge area polygons, you can still see that there are a lot of koalas which are found outside of protected areas. Infact, most sightings seem to occur outside of protected areas! Is this poor protected area management, or might our data be biased by when and where people are more likely to encounter koalas?
+
 
 ## Analysis: How do koalas and people overlap?
 ### Count Points in Polygons
 
-Eaerlier we lookied at overlap between polygons, we can also look at points in polygon. Let's use the Count Points in Polygons tool to quickly count the number of points from a particular layer inside a polygon.
+Earlier we lookied at overlap between polygons, we can also look at points in polygon. Let's use the Count Points in Polygons tool to quickly count the number of points from a particular layer inside a polygon.
 We could look at a few things here, we could look at koala sightings in protected areas or in the priority areas, but let's try to get an idea of how people and koala sightings overlap. You would expect there to be more koalas where there are fewer people, but perhaps our data is skewed by population levels.
 
 Let's determine how many koalas are inside of each SA2 suburb.
@@ -244,6 +253,14 @@ We can go further and use the **Field Calculator** to compare this to the curren
 
 We can now see how koala populations compare with human populations.
 
+## Wrap up
+
+Today we explored projections, looked at a variety of data sources, questioned the quality of our data, used the Intersection tool, the Field Calculator, digitised a map, and used polygon point counts.
+
+After running these tests and analyses, do we feel that there is adequate protection and conservation areas for koalas in QLD?
+How might you show this?
+
+How might you use these tools in your own analysis?
 
 
 ## Stretch goals
