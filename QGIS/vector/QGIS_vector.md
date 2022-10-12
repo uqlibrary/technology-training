@@ -72,6 +72,14 @@ The ABS have a lot of data, today we will be using population data. Thye proivde
   Today we will be using the ESRI Grid format.
 https://www.abs.gov.au/statistics/people/population/regional-population/latest-release#data-download
 
+## Set the Project Projection
+We need to choose the projection for our current session of QGIS. Today we will be focusing on South East Queensland (SEQ), so we will choose GDA2020 / MGA zone 56.
+We will go into projections in more detail soon.
+
+* Go to `Project > Properties` select the **CRS** tab.
+* In the filter section, type "GDA2020 56"
+* From the **Coordinate Reference System** list, select `GDA2020 / MGA zone 56`
+
 
 ## Load in our data
 For most of our data, we will simply be able to double click on it in the Project Home folder within the Browser window.
@@ -138,6 +146,21 @@ OR
 
 ## Analysis
 ### Spatial Overlaps
+#### How much of the priority area is protected?
+Let's find out how much of our Koala Priority areas are already under federally recognised protection. To do this we will use the Intersection tool
+* Go to `Vector > Geoprocessing Tools > Intersection`
+* Under **Input Layer** select **CAPAD2020_terrestrial_QLD** 
+* Under **Overlay Layer** select **SA2_SEQ**
+* Click `Run`
+
+We get an error `Feature (26) from “CAPAD2020_terrestrial_QLD” has invalid geometry.`
+This is caused by little issues in the polygon layer. Sometimes when polygons are drawn or exported out from other areas, they will create errors, and sometimes little slither polygons on the edges. We can investigate the source of these errors using the `Check validity` tool, but for today, we're simply going to fix them with the `Fix Geometries` tool from the Processing Toolbox.
+* Open the Processing Toolbox by clicking the cog icon from the top menu ![image](https://user-images.githubusercontent.com/67612228/195267106-f54d2655-2762-42ec-acd0-a2c744b059e9.png) (alternatively go to `View > Panels > Processing Toolbox`
+* In the **Processing Toolbox** window `Search` for "Fix geometries"
+* Double-click on the **Fix geometries** option
+* In the **Fix Geometries** window, select `CAPAD2020_terrestrial_QLD` from the **Input layer** options, then click `Run`
+
+You can now re-run the **Intersection** tool with the resulting **Fixed Geometries** layer
 
 
 ## Inspect our Data
