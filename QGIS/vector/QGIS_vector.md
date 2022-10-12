@@ -150,7 +150,7 @@ OR
 Let's find out how much of our Koala Priority areas are already under federally recognised protection. To do this we will use the Intersection tool
 * Go to `Vector > Geoprocessing Tools > Intersection`
 * Under **Input Layer** select **CAPAD2020_terrestrial_QLD** 
-* Under **Overlay Layer** select **SA2_SEQ**
+* Under **Overlay Layer** select **koala_priority_area**
 * Click `Run`
 
 We get an error `Feature (26) from “CAPAD2020_terrestrial_QLD” has invalid geometry.`
@@ -159,8 +159,57 @@ This is caused by little issues in the polygon layer. Sometimes when polygons ar
 * In the **Processing Toolbox** window `Search` for "Fix geometries"
 * Double-click on the **Fix geometries** option
 * In the **Fix Geometries** window, select `CAPAD2020_terrestrial_QLD` from the **Input layer** options, then click `Run`
+* We will need to do this same process now for the 
 
-You can now re-run the **Intersection** tool with the resulting **Fixed Geometries** layer
+You can now re-run the **Intersection** tool with the resulting **Fixed Geometries** layer (instead of the **CAPAD2020_terrestrial_QLD** layer)
+
+If we look at the Instersection results.
+Click the Field calculator and type the expression
+``` SQL
+sum($area)
+```
+Copy that number.
+
+Do the same for the original koala_priority_area.
+
+Use filed calculator to determine that
+1506573200.936991 / 5776218019.211894 = 26%
+
+
+Why is this priority, but not a protected area?
+How many koalas are in the priority areas?
+
+Run a Count Points in polygon
+
+Koala pop heatmaps
+
+What protected areas are missing?
+Let's digitise some of the missing protected areas
+Go through digitisation
+
+
+
+Why are the koalas where they are?
+Why not protected areas?
+
+Let's look at our data, is there sampling bias?
+
+What kind of koala sightings do we have?
+Why are there koalas on the edge?
+Why not in the forests?
+Look at koala habitat data (tree type)
+
+Population
+Use Zonal Statistics to calculate Per suburb
+Calculate koala per suburb
+Field calculator 
+
+
+
+
+We need more data
+
+
 
 
 ## Inspect our Data
