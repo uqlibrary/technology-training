@@ -25,7 +25,7 @@ To look at vector data, we're going to use the example of koala populations and 
 ## Gather some data
 
 We're going to explore a number of different online spatial data repositories.
-Please [download the full dataset here](https://cloudstor.aarnet.edu.au/plus/s/2NXIXjqgSxKvD7k), and extract it into the qgis_vector folder you created earlier.
+Please [download the full dataset here](https://cloudstor.aarnet.edu.au/plus/s/qcJ8G4spqWQ0qE4), and extract it into the qgis_vector folder you created earlier.
 
 I will quickly show you where all of this data came from.
 
