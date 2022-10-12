@@ -5,7 +5,7 @@
 This tutorial is designed for **QGIS 3.22**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
 
 Open QGIS and create a **new project** with `Project > New`.
-Let's start by saving our project: `Project > Save`. We should create a new folder, let's call it "qgis_vector". This where our project and all the saved data will live. Folder structure is very important for keeping you data tidy, but also for ease of sharing your project with others. You simply need to zip the project folder if you need to share it. We can save our .qgz project file here, named "qgis_mobile_map" for example.
+Let's start by saving our project: `Project > Save`. We should create a new folder, let's call it "qgis_vector". This where our project and all the saved data will live. Folder structure is very important for keeping you data tidy, but also for ease of sharing your project with others. You simply need to zip the project folder if you need to share it. We can save our .qgz project file here, named "qgis_vector_map" for example.
 I also recommend creating a Data folder, for all of your downloaded data. And creating a Products folder, for all the things we create today. Your .qgz file should always be in the highest level folder, so it's only looking down into folders for data, not back out.
 
 In QGIS 3.10 and above this will automatically set the **project home** too. To do this manually, you can go to `Project > Properties > General` and set `Project home` to the same folder. This is where we can also give the project a title.
@@ -108,11 +108,23 @@ For each of our layers, do the following:
 * Go to `Vector > Data Management Tools > Reproject Layer...`
 * Choose the layer in `Input layer`
 * Set the Target CRS to `EPSG:7856 - GDA2020 / MGA zone 56`
+* Click the three dots `...` next to the `Reprojected` section, and click **Save to File...**
+* Navigate to your **vector_data** folder and save the file ther. For example, save **SA2_2021_AUST_GDA2020** as **SA2_Reprojected**
 * Click `Run`
 
-## Subset our data
+## Subset our SA2 data down to SEQ - Select features using an expression
 
-### Select features using an expression
+The following code will allow you to select the SA2 features that are in SEQ.
+
+* Right click on the reprojected SA2 layer, and select **Open Attribute Table**
+* From the Attribute Table that opens, click the Select features using an expression button: ![image](https://user-images.githubusercontent.com/67612228/195261159-b949e22b-7634-4326-ab50-089b94e76dc4.png)
+* In the Select by Expression window that opens, paste the code from below into the Expression field, and then click `Select Features` in the bottom right of the window.
+* Close the Select by Expression window and Attribute Table 
+* You should see the SEQ SA2 areas highlighted in yellow.
+* To permanently save this selection, right click on the reprojected SA2 layer, and select `Export > Save Selected Features As...`
+* Save your file as `SA2_SEQ`
+* Make sure the CRS stays as `EPSG:7856 - GDA2020 / MGA zone 56`, then click `OK`
+
 
 ``` SQL
  "GCC_NAME21"  =  'Greater Brisbane' 
@@ -123,6 +135,10 @@ OR
   OR
  "SA4_NAME21" =  'Toowoomba' 
  ```
+
+## Analysis
+### Spatial Overlaps
+
 
 ## Inspect our Data
 ### Layer Properties
