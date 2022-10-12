@@ -117,7 +117,7 @@ For each of our layers, do the following:
 * Choose the layer in `Input layer`
 * Set the Target CRS to `EPSG:7856 - GDA2020 / MGA zone 56`
 * Click the three dots `...` next to the `Reprojected` section, and click **Save to File...**
-* Navigate to your **vector_data** folder and save the file there. For example, save **SA2_2021_AUST_GDA2020** as **SA2_Reprojected**
+* Navigate to your **vector_data** folder and save the file there. For example, save **SA2_ERP_2021** as **SA2_Reprojected**
 * Click `Run`
 
 ## Subset our SA2 data down to SEQ - Select features using an expression
