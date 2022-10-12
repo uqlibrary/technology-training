@@ -25,7 +25,7 @@ To look at vector data, we're going to use the example of koala populations and 
 ## Gather some data
 
 We're going to explore a number of different online spatial data repositories.
-Please download the full dataset here, and extract it into the qgis_vector folder you created earlier.
+Please [download the full dataset here](https://cloudstor.aarnet.edu.au/plus/s/2NXIXjqgSxKvD7k), and extract it into the qgis_vector folder you created earlier.
 
 I will quickly show you where all of this data came from.
 
@@ -59,6 +59,8 @@ http://www.environment.gov.au/fed/catalog/search/resource/details.page?uuid=%7B4
   Koala Priority Areas are areas in SEQ which have been identified as key areas for conservation as part of the South East Queensland Koala Conservation Strategy 2019-2024.
   https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={E4CCDBA7-11AB-45DD-A064-BDBC02899204}
 
+I think I'm going to remove the Koala Habitat section here
+
 #### Koala habitat
   Koala's need certain species of Eucalyptus for feeding and habitat. This dataset covers all of those areas in QLD>
   https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={8929E344-D485-432C-821C-B1E95F57BE05}
@@ -80,7 +82,6 @@ https://www.abs.gov.au/statistics/people/population/regional-population/latest-r
 ## Load in our data
 For most of our data, we will simply be able to double click on it in the Project Home folder within the Browser window.
   Load in:
-* Koala habitat
 * SA2/Suburb data
 * Population Data GRID File
 * Protected Areas
