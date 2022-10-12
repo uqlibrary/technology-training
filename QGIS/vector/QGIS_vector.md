@@ -1,4 +1,4 @@
-# QGIS: Vector Analysis DRAFT
+# QGIS: Vector Analysis
 
 ## Setting up
 
