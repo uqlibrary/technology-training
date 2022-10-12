@@ -94,6 +94,40 @@ But what about the Koala Encounters location data? We need to handle this differ
 * This should automatically identify decimalLongitude and the X field, and decimalLatitude as the Y field.
 * Click `Add`
   
+## Projections
+### What are projections?
+To turn the geoid/spheroid shape the of Earth into a flat map, we need to squish, stretch, and distort the map to make it flat. The mathematical equations used to do this are what we're talking about when we day projections. Imagine it like a soccer ball, we have to squash it to make it flat, and it's not going to look nice and square like our maps do. So we pull and stretch it to make it flat.
+There will always be some kind of distrortion, such as the Mercator Projection making Greenland look large, and Africa look smaller than it really is.
+
+### Why are they important to us?
+Well, when we make these distortions, we have to compromise somewhere, and that means our lengths, or size or direction will be different to what it really is. To avoid this kind of distortion, often local projections are used. There are fewer compromises needed when focused on a small area. By using a local projection, we don't need to worry about keeping Greenland looking the right shape if we're focused on Brisbane.
+Going back to Soccer balls, if we cut out a single panel from the ball, it will be much easier to make that flat.
+
+The trouble with using data of different projections is that they might be slightly off around the edges, giving us different total areas in a polygon, or showing a point outside a boundary, when it's really inside.
+To avoid this, it's often best to convert all of your data to using the same projection.
+
+Today we're going to use a suitable local projection: EPSG:7856 - GDA2020 / MGA zone 56 
+
+### Reproject
+For each of our layers, do the following:
+* Go to `Vector > Data Management Tools > Reproject Layer...`
+* Choose the layer in `Input layer`
+* Set the Target CRS to `EPSG:7856 - GDA2020 / MGA zone 56`
+* Click `Run`
+
+## Subset our data
+
+### Select features using an expression
+
+``` SQL
+ "GCC_NAME21"  =  'Greater Brisbane' 
+OR
+ "SA4_NAME21" =  'Gold Coast' 
+ OR
+ "SA4_NAME21" =  'Sunshine Coast' 
+  OR
+ "SA4_NAME21" =  'Toowoomba' 
+ ```
 
 ## Inspect our Data
 ### Layer Properties
