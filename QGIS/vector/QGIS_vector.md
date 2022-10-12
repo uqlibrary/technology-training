@@ -159,7 +159,7 @@ Let's find out how much of our Koala Priority areas are already under federally 
 We get an error `Feature (26) from “CAPAD2020_terrestrial_QLD” has invalid geometry.`
 This is caused by little issues in the polygon layer. Sometimes when polygons are drawn or exported out from other areas, they will create errors, and sometimes little slither polygons on the edges. We can investigate the source of these errors using the `Check validity` tool, but for today, we're simply going to fix them with the `Fix Geometries` tool from the Processing Toolbox.
 
-#### Fix Geometries
+### Fix Geometries
 
 * Open the Processing Toolbox by clicking the cog icon from the top menu ![image](https://user-images.githubusercontent.com/67612228/195267106-f54d2655-2762-42ec-acd0-a2c744b059e9.png) (alternatively go to `View > Panels > Processing Toolbox`
 * In the **Processing Toolbox** window `Search` for "Fix geometries"
@@ -169,7 +169,7 @@ This is caused by little issues in the polygon layer. Sometimes when polygons ar
 
 You can now re-run the **Intersection** tool with the resulting **Fixed Geometries** layer (instead of the **CAPAD2020_terrestrial_QLD** layer)
 
-#### Field Calculator
+### Field Calculator
 We can use the **Field Calculator** to calculate the area of our polygon.
 
 Select **Intersection** from the **Layers** panel, and the click the **Open Field Calculator** button ![image](https://user-images.githubusercontent.com/67612228/195319687-1538f2a0-d8c8-4084-a632-0e3181fb11dd.png)
@@ -178,43 +178,25 @@ In the **Field calculator** window, type the following code into the **Expressio
 ``` SQL
 sum($area)
 ```
-* $area will give us the area of a single polygon
-* sum() will add together the area for every polygon in that layer.
-
-Below the text box, you will see a field titled **Preview:**, the value following that contains the results of our expression.
-Copy that number.
+* $area will give us the area of a single polygon - we could use this to create a new field in our Attribute Table based on area if we wanted to
+* sum() will add together the area for every polygon in that layer. 
+* Below the text box, you will see a field titled **Preview:**, the value following that contains the results of our expression. Copy that number.
+* Click `Cancel`
 
 Do the same **Field Calculator** steps for the original koala_priority_area.
 
 You can now use the **Field calculator** to determine the percentage of the Koala Priority area which is currently protected.
 1506573200.936991 / 5776218019.211894 = 26%
 
-Only 26%! Let's look into this further, are there certain areas that have more koalas?
+Only 26%! Let's look into this further. Perhaps our dataset is missing some new conservation areas. 
 
-### Count Points in Polygons
-
-We can use the Count Points in Polygons tool to quickly count the number of points from a particular layer inside a polygon.
-Let's determine how many koalas are actually inside of Protected Areas.
-* Go to `Vector > Analysis Tools > Count Points in Polygons...` 
-* In the **Polygons** field select `Fixed Geometries` (remember, this is our fixed CAPAD2020 layer)
-* In the **Points ** field select `koala_reduced`
-* In the **Count field name** field type in something like `NUM_KOALAS
-* Click the three dots `...` next to the **Count** section, and click **Save to File...**
-* Navigate to your **vector_data** folder and save the file as **protected_area_koalas**
-* Click `Run`
-You will have a new layer, you can look at the **Attribute Table** for this layer to see the number of koala sightings in each priority area
-We can use the **Field Calculator** again to sum this number for us.
-* Click on the **Field Calculator** icon
-* In the `Expression` tab enter `sum(NUM_KOALAS)
-* The **Preview:** will again show us the result
-
-A lot of koala sightings fall outside of the Protected areas, perhaps our dataset is missing some new conservation areas. Let's turn on the OpenStreetMap to see if we can see anything missing here. Let's have a look at the dense collection of koala sightings near Springwood and the Daisy Hill Conservation Park.
+Let's turn on the OpenStreetMap to see if we can see anything missing here. Let's have a look at the dense collection of koala sightings near Springwood and the Daisy Hill Conservation Park.
 We can see that there are some protected bushlands in this area that aren't in our CAPAD2020 dataset. It may be that these aren't strict enough conservation areas, or our dataset may be out of date. Regardless, this gives us a good opportunity to use an important tool in GIS: Digitisation.
 
 ## Map Digitisation
 
 You may often need to create your own points, lines, and polygons when digitising satellite data, or simply highlighting a particular area.
-Let's use the OpenStreeMap and digitise the Emu Street Bushland Refuge (you can quickly navigate here by changing your **Scale** to 1:10000 and **Coordinate** to  518271.26,6948896.93)
+Let's use the OpenStreeMap (in Browser, scroll down to XYZ Tiles, and double-click on OpenStreetMap) and digitise the Emu Street Bushland Refuge (you can quickly navigate here by changing your **Scale** to 1:10000 and **Coordinate** to  518271.26,6948896.93)
 * Go to `Layer > Create Layer > New GeoPackage Layer...`
 * Click the three dots `...` next to the **Database** section
 * Navigate to your **vector_data** folder and save the file as **ESBR_polygon**
@@ -232,94 +214,53 @@ We now have a brand new layer that we can add polygons to.
 * To finish editing your layer click the **Toggle Editing** button again
 
 
+## Analysis: How do koalas and people overlap?
+### Count Points in Polygons
+
+Eaerlier we lookied at overlap between polygons, we can also look at points in polygon. Let's use the Count Points in Polygons tool to quickly count the number of points from a particular layer inside a polygon.
+We could look at a few things here, we could look at koala sightings in protected areas or in the priority areas, but let's try to get an idea of how people and koala sightings overlap. You would expect there to be more koalas where there are fewer people, but perhaps our data is skewed by population levels.
+
+Let's determine how many koalas are inside of each SA2 suburb.
+* Go to `Vector > Analysis Tools > Count Points in Polygons...` 
+* In the **Polygons** field select `SA2_SEQ`
+* In the **Points ** field select `koala_reduced`
+* In the **Count field name** field type in something like `NUM_KOALAS`
+* Click the three dots `...` next to the **Count** section, and click **Save to File...**
+* Navigate to your **vector_data** folder and save the file as **SA2_SEQ_koalas**
+* Click `Run`
+You will have a new layer, you can look at the **Attribute Table** for this layer to see the number of koala sightings in each suburb
+* Let's double click on that layer and change the **Symbology** to `Graduated`
+* Set the **Value** to `NUM_KOALAS`
+* Choose a **Color ramp** of your liking
+* Click `Classify`
+* Then click `OK`
+
+We can go further and use the **Field Calculator** to compare this to the current population in that area, and create a new field
+* Click on the **Field Calculator** icon
+* Under **Create a new field** set the **Output field name** to `KOALAS_PP` and set the **Output field type** to `Decimal number (real)` (we need to choose this option to ensure that we have decimals in our output)
+* In the `Expression` tab enter `"NUM_KOALAS" / "ERP_2021"
+* Click `OK
+* Try changing the **value** in ***Symbology** to `KOALA_PP` instead.
+
+We can now see how koala populations compare with human populations.
 
 
 
+## Stretch goals
 
+### Export a Map
 
-Koala pop heatmaps
-
-What protected areas are missing?
-Let's digitise some of the missing protected areas
-Go through digitisation
-
-
-
-Why are the koalas where they are?
-Why not protected areas?
-
-Let's look at our data, is there sampling bias?
-
-What kind of koala sightings do we have?
-Why are there koalas on the edge?
-Why not in the forests?
-Look at koala habitat data (tree type)
-
-Population
-Use Zonal Statistics to calculate Per suburb
-Calculate koala per suburb
-Field calculator 
-
-
-
-
-We need more data
-
-
-
-
-## Inspect our Data
-### Layer Properties
-
-## Prepare Data for Analysis
-### Projections
-We need to ensure that all of our data is in the same projection. This is an important step, but is especially important given the analyses we will be performing today will include determining spatial overlaps.
-
-### Digitizing Map Data
-We will use the satellite imagery to create our own polygons for analysis.
-Let's create some polygons around the forested area of interest.
-
-### Edit a layer
-Remove one of the polygons that we created.
-
-Edit a feature name of a polygon
-
-INSTRUCTIONS ON HOW TO USE THE DIGITISATION TOOLS
-
-### Raster to Vector Conversion
-
-## Analysis
-### Spatial Overlaps
-
-How do protected areas overlap with areas of environmental significance?
-Use Intersect
-Calculate area in the attribute table
-
-Create other summary stats
-
-Species counts within areas
-
-Population counts within areas
-
-How population and species interact
-
-## Heatmaps (vector to raster)
-
-
-## Map Creation
-We will create a species and population distribution map with summary stats attached.
-
-
-
-## Stretch analyses
+Use the data and summary statistics to export a useful map from this data.
 
 ### Heatmaps
 
-Heat maps of species distribution
+Try changing the **Symbology** of the `koala_reduced` point dataset to the **Heatmap** option or even the **Point Cluster** option.
 
-### Nearest Neighbour
+Compare the **Heatmap** from **Symbology** with one that you can create with the `Heatmap (Kernel Density Estimation)` tool from the **Processing Toolbox**
 
-Perform nearest neighbour calculations to determine how close things are
+### Use Zonal Statistics to calculate values from Rasters
+
+You can use the `Zonal statistics` tool from the **Processing Toolbox** to count the number of raster squares, sum together all of the values, and find the average value from a raster that overlaps with a chosen polygon. 
 
 ### Vector to Raster conversion
 
