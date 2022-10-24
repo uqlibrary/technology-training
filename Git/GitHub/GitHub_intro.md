@@ -1,4 +1,6 @@
-# Legal
+# GitHub Basics + Creating Analytics Projects Portfolios 
+
+## Legal
 
 This course borrows information from the Git Bash course _[Git version control for collaboration](https://github.com/uqlibrary/technology-training/blob/master/Git/git.md)_ which is based on the longer course _[Version Control with Git](http://swcarpentry.github.io/git-novice/)_ developped by the non-profit organisation [The Carpentries](http://carpentries.org/). The original material [is licensed](https://software-carpentry.org/license/) under a Creative Commons Attribution license ([CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)), and this modified version uses the same license. You are therefore free to:
 
@@ -7,9 +9,9 @@ This course borrows information from the Git Bash course _[Git version control f
 
 ... as long as you give attribution, i.e. you give appropriate credit to the original author, and link to the license.
 
-# Setup
+## Setup
 
-## Software
+### Software
 
 We will use Git through GitHub Desktop, you will need to create a Github Account and install GitHub Desktop.
 
@@ -17,9 +19,9 @@ Account creation instructions are available on [this page](https://docs.github.c
 
 Installation instructions are available on [this page](https://docs.github.com/en/desktop/installing-and-configuring-github-desktop/installing-and-authenticating-to-github-desktop/installing-github-desktop).
 
-# Material
+## Material
 
-## What is Git?
+### What is Git?
 
 If you need to collaborate on a project, a script, some code or a document, there are a few ways to operate. Sending a file back and forth and taking turns is not efficient; a cloud-based office suite requires a connection to the Internet and doesn't usually keep a clean record of contributions.
 
@@ -36,13 +38,13 @@ Programmers use version control systems to collaborativelly write code all the t
 A version control system is a tool that keeps track of changes for us, effectively creating different versions of our files. It allows us to decide which changes will be made to the next version (each record of these changes is called a **commit**), and keeps useful metadata about them. The complete history of commits for a particular project and their metadata make up a **repository**. Repositories can be kept in sync across different computers, facilitating collaboration among different people.
 
 
-## What is GitHub?
+### What is GitHub?
 
 GitHub is a Git host server which stores your Git repository online. This means that you can easily use this platform to share your work, find the work of others, and collaborate. There are many other Git host servers such as GitLab and BitBucket.
 
-## Navigating GitHub Online
+### Navigating GitHub Online
 
-### How to explore GitHub
+#### How to explore GitHub
 You can search for repositories in a search engine, or on https://github.com/
 
 For example, if you search for **spotify artists analysis** on GitHub you can see many projects relating to spotify.
@@ -53,27 +55,27 @@ You should find your way to this repository: https://github.com/khanhnamle1994/s
 
 **Click** the link to have a look.
 
-### Read the Readme
+#### Read the Readme
 A first look at a Github repository can be intimidating, but you should initially ignore the folder structure you see, and scroll down to the **Readme** section where you can usually find details surrounding what the project is, how to install/use it, and get more help.
 
-### Popularity
+#### Popularity
 On the **right menu** you can see how popular this repository is, the number of forks (or spin-off repositories) that have been created from this, and more.
 
-### History
+#### History
 Near the top of the repository you will see a clock icon followed by some numbers. This is the Hisotry of edits to this repository. You can click on this an see the entire history of changes made to this code.
 ![image](https://user-images.githubusercontent.com/67612228/182783554-5abc6679-8e1e-4fcd-bae3-9347bb46e72a.png)
 
-### Where the code is 
+#### Where the code is 
 Once you go back to the folder structure you can dig in to find the code that makes up the ggplot2 package. If you navigate to `R > geom-bar.r` you can see the code that underpins the Bar charts that you can create with ggplot2.
 
-### Cloning code
+#### Cloning code
 To **clone**, or make a copy, of the code, you can simply click the `**Code**` button on the main repository screen, and import it into GitHub Desktop, allowing you to edit and make your own alterations to, and versions of the code before you.
 
-### Creating a Portfolio
+#### Creating a Portfolio
 You can also use GitHub to create and display your own work. This good example has their details, their achievements, and links to all their major projects: 
 https://github.com/archd3sai/Portfolio
 
-## Creating a Repository
+### Creating a Repository
 
 Once you have created a GitHub account, and have GitHub Desktop installed, open GitHub Desktop.
 
@@ -108,7 +110,7 @@ If you navigate back to GitHub, you will see that it has already identified that
 We can now begin the process of commiting and backing up these changes.
 
 
-## Tracking Changes
+### Tracking Changes
 
 Instead of viewing your version history as a series of documents with different changes (e.g. thesis_final.pdf, thesis_final_1.pdf, etc.), Git views your **document as a compilation, or a stack, of different changes through time**. 
 This means that you can go back in time to view each change as it was commited to the main document. 
@@ -117,13 +119,13 @@ When we commit a change, it writes that change to the branch of our repository t
 
 > Before commiting your changes, it's best practice to briefly describe your changes. 
 
-### Describe your changes
+#### Describe your changes
 
 Type a brief description into the box in the bottom right which currently reads `Update process.R` 
 * Type something along the lines of "Added a comment and line of code". You can provide more detail in the `Description` box below if necessary. 
 > Comments describing our commits are a very important part of Git, as they allow us to quickly visual changes at a glance.
 
-### Committing and pushing Changes
+#### Committing and pushing Changes
 
 Now we can commit our changes click `Commit to main`
 
@@ -151,9 +153,9 @@ Before we can push this to GitHub, we need to:
 2. Then click `Commit to **main**`
 3. Then press `Ctrl + P` to push it to GitHub.
 
-## Accessing and intereacting with your Git Repository Online
+### Accessing and intereacting with your Git Repository Online
 
-### View and edit online
+#### View and edit online
 If you click your profile picture in the top right of Github online, you can view all **Your repositories**.
 
 From here you can access your **portfolio** repository, and then the **process.R** file we pushed earlier.
@@ -165,14 +167,14 @@ Once you've navigated to the file, you can click the pencil button to edit the c
 1. Then click the `Commit changes` button.
 > On the desktop you would need to push to the repository, as we are already in the external repository, you don't need to do that, however next time you access the file in another location, you should **Pull** the data.
 
-### Fetch/Pull
+#### Fetch/Pull
 Before doing any edits on a file in a repository that is worked on by many individuals or on different devices, it's best to **Fetch/Pull** your repository. 
 You can do this in Github Desktop by clicking **Pull origin** up the top. 
 This will pull the changes from the online repository, and let you know if there are any new additons, deletions, or, if you have simultaneously changed the same section of code, any conflicts (which need to be fixed and resolved before continuing).
  
 We can see the creation, updates, and commits on the left side of Github Desktop.
 
-### Conflicts
+#### Conflicts
 If we simultaneously make edits online, and then make edits on desktop without Fetching/Pulling first, we will have conflicts. Let's create a conflict.
 1. Edit the document online, add `# Edited online`, then **Commit**
 2. Edit the document on desktop, add `# Edited on Desktop`, **save** the file, then **Commit**
@@ -200,17 +202,17 @@ print("Hello Github")
 9. Return to GitHub Desktop, and it should now update to show that there are no conflicts remaining. Click **Continue merge**
 10. The conflicts are now resolved, and you can once again **Push** our edits to our GitHub repository.
 
-### Delete
+#### Delete
 Let's navigate to the file location, and then **delete the file** so that we can see the process behind this.
 Once you delete the file, Github Desktop will show this as a **Change** where all lines of code were removed.
 We can now add comments, commit this change, and then push it to the repository.
 
-### Revert
+#### Revert
 Even though we have deleted the file locally, and pushed that deletion to the web based repository, we can revert that change within Github Desktop (you can also do this through the Git command line, but note that **you cannot** do this on Github online.
 
 Within Github Desktop click the **History** tab, right click on the commit where the file was deleted, and select **Revert changes in commit**. This will bring our file back.
 
-### Gitignore
+#### Gitignore
 Before you push to a git repository, it's worth making sure that you want to commit everything in that repository.
 For example, there may be private documents, or large datafiles you do not want to commit and upload. You can set these to be ignored with Gitignore.
 
@@ -222,10 +224,10 @@ Now let's have GitHub ignore this file.
 You can do this in Github Desktop by going to `Repository > Repository Settings... > Ignored files` and then entering the locations, names, or types of files you want to ignore. Let's enter **example.txt**. 
 > You can also cover all instances of a particular document type by entering something similar to ***.dat**
 
-## Creating a good Readme for your Portfolio
+### Creating a good Readme for your Portfolio
 The Readme is often the first place people go when looking at a Git Repository, so it's important to have useful information here, and displayed in a meaningful way. This is especially the case for your Portfolio.
 
-### Markdown
+#### Markdown
 When editing a Readme file you can format it using a simple coding language called Markdown, as well as HTML coding.
 
 Today we're going to finish by creating a simple **Readme** template.
@@ -261,17 +263,17 @@ This **Portfolio** contains all of my Analytics projects
 There is a lot more customisation you can do, and you can find a complete breakdown of [Git Markdown here](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
 
-# Things not covered today
+## Things not covered today
 * Branching (creating experimental branches of your code)
 * Fulling cloning others' code (this can vary from straightforward to complex)
 * Collaboration
 
-# More Guides
+## More Guides
 * [Terminal/GitBash](https://github.com/uqlibrary/technology-training/blob/master/Git/git.md)
 * [Git in R](https://r-bio.github.io/intro-git-rstudio/)
 * [Creating a website with Git and R](https://geospatial-community.netlify.app/post/create-a-geospatial-blog/)
 
-# UQ User Groups, Support, and Training
+## UQ User Groups, Support, and Training
 * [UQ R User Group (UQ RUG)](https://frama.link/uqrug)
 * [R Ladies](https://www.meetup.com/en-AU/rladies-brisbane/)
 * [UQ Library Training](https://web.library.uq.edu.au/library-services/training#keyword=;campus=;weekstart=)
