@@ -699,7 +699,7 @@ function.
 
 -   You can see what is next in our [cycle of R
     lessons](/README.md#r-sessions)
--   We have a [compilation of resources](R/usefullinks.md) for the rest
+-   We have a [compilation of resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md) for the rest
     of your R learning
 -   And a cheatsheet of [main terms and concepts for
-    R](R/terminology.md)
+    R](https://github.com/uqlibrary/technology-training/blob/master/R/terminology.md)
