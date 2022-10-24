@@ -430,6 +430,18 @@ them as local mappings for the layer. It will use these mappings to
 extend or overwrite the global mappings for that layer only. This makes
 it possible to display different aesthetics in different layers.
 
+## Assigning a plot to a variable
+
+We just created multiple trendlines with slightly different geometries. When you're wanting to create multiple geometries from the same data and mapping settings, one shortcut you can use is to assign the data and mapping to a variable, and then add a geometry to the variable. The code below will create the same output as our original graph. This can be a helpful way of simplifying your code.
+
+``` r
+p < -ggplot(mpg,
+       aes(x = displ,
+           y = hwy))
+         
+p + geom_smooth()
+```
+
 ### Saving a plot
 
 Like your visualisation? You can export it with the “Export” menu in the
