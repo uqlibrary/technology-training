@@ -54,9 +54,9 @@ We can now remove the two original raster files.
 
 ## Reproject the DEM
 
-In the merged layer's Properties (`Right click > Properties... > Source`), we can see that the Coordinate Reference System (CRS) in use is [EPSG:4326 - WGS 84](https://epsg.io/4326). It is the one that QGIS detected when opening the file (you can see this information in the associated XML file in the archive we downloaded). This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). A good PRS for around Brisbane/Meanjin is "[EPSG:7856 - GDA2020 / MGA zone 56](https://epsg.io/7856)".
+In the merged layer's Properties (`Right click > Properties... > Source`), we can see that the Coordinate Reference System (CRS) in use is [EPSG:4326 - WGS 84](https://epsg.io/4326). It is the one that QGIS detected when opening the file (you can see this information in the associated XML file in the archive we downloaded). This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). A good PRS for around Brisbane/Meanjin is "[EPSG:7856 - GDA2020 / MGA zone 56](https://epsg.io/7856)". We can't change that here, we instead will need to use the **Warp (Reproject)** tool.
 
-Use the tool `Raster > Projections > Warp (Reproject)`, use the merged layer as an input, and pick "EPSG:7856 - GDA2020 / MGA zone 56" as the Target CRS.
+* Use the tool `Raster > Projections > Warp (Reproject)`, use the merged layer as an input, and pick "EPSG:7856 - GDA2020 / MGA zone 56" as the Target CRS (you may need to click the Select CRS button ![image](https://user-images.githubusercontent.com/67612228/197653760-a9df4671-5852-499c-a085-3d995489599a.png), untick No CRS, and then use the filter to search for "7856"). 
 
 > If you want to learn more about the static datum GDA2020 (for "Geocentric Datum of Australia 2020"), an upgrade from the previous, less precise GDA94, head to the [ICSM website](https://www.icsm.gov.au/gda2020).
 
@@ -64,7 +64,7 @@ Use the tool `Raster > Projections > Warp (Reproject)`, use the merged layer as 
 
 We now use `Raster > Extraction > Clip Raster by Extent` to **focus on a smaller area of interest**.
 
-Make sure the DEM is selected in the Input layer, and set the clip extent with `... > Select Extent on Canvas`. We want to select an area that is inland, and contains both some of the D'Aguilar National Park, and a section of the Brisbane river (you can untick the DEM in the Layers panel to reveal the basemap).
+Make sure the DEM is selected in the Input layer, and set the clip extent with `... > Draw on Canvas`. We want to select an area that is inland, and contains both some of the D'Aguilar National Park, and a section of the Brisbane river (you can untick the DEM in the Layers panel to reveal the basemap).
 
 If you don't save to file directly, remember two things:
 
@@ -91,6 +91,7 @@ Adding a **hillshade** makes your visualisation of elevation more readable and v
 *  Change the "Render type" to "Hillshade"
 *  The defaults should work well, but you can play with the settings, like the Altitude and the Azimuth
 *  Make sure you apply some transparency to the pseudocolour DEM, and place the hillshade layer underneath (in `Properties > Symbology > Transparency`)
+*  Down the bottom of the window under **Resampling** change the `Zoomed: in` and `out` from "Nearest Neighbour" to "Cubic" (this will remove some of the grid-like patterns you might see in your Hillshade layer otherwise)
 
 > Another method is to use the hillshade tool instead of the symbology: `Raster > Analysis > Hillshade...`.
 
@@ -98,9 +99,13 @@ Adding a **hillshade** makes your visualisation of elevation more readable and v
 
 Using the Strahler tool, we can create a **watershed** raster that shows where water would flow according to the DEM.
 
-Open the Processing Toolbox (cog icon) and try using the SAGA tool called "**Strahler order**" using the clipped DEM as an input (a temporary file is fine for now).
+Open the Processing Toolbox (cog icon) and try using the SAGA Next Gen tool called "**Strahler order**" using the clipped DEM as an input (a temporary file is fine for now).
 
-Look at the result. It seems there is an issue with our data. A common problem with DEMs is that they have sinks and spikes that will make further analyses more difficult.
+Look at the result. It looks like there are few issues with our data. 
+You may get a question mark symbol ![image](https://user-images.githubusercontent.com/67612228/197657028-314f7460-1c2c-4a5c-b447-25b82bea39ee.png) next to your data, when hovered over it will say "There is no coordinate reference system set!".
+To resolve this, issue, simply left-click on the question mark symbol and assign "EPSG:7856 - GDA2020 / MGA zone 56" as the CRS.
+
+However there is still another issue with our data. A common problem with DEMs is that they have sinks and spikes that will make further analyses more difficult. This will mean the analysis is unable to best find where the water would flow. To resolve this, we need to use another tool to smooth out our raster before using the Strahler order tool.
 
 We can use the "Fill sinks (Wang & Liu)" tool to **fill the sinks** in our clipped DEM.
 
@@ -130,8 +135,16 @@ This is an example of **creating vector data from raster data**!
 We can now play with the **symbology** for those elements. For example:
 
 * Try using different colours for each basin, by classifying by ID, or remove the fill (`Simple fill > Fill Style > No Brush`) so you can see the colours of the elevation colours underneath. You can also make the borders more obvious by changing the width of the stroke.
-* Change the colour and thickness of the channels. You can also differentiate minor channels from minor ones by using a "Data defined override" for the Width value:
-    * Click on the "Data defined override" icon next to the Width field
+* Change the colour of the channels. 
+    * Change the symbol from "Single Symbol" to Graduated.
+    * Set the `Value` to "Order"
+    * Choose an appropriate colour ramp
+    * Change the `Mode` down the bottom of the window to "Equal Interval"
+    * Click Apply
+* You can also further differentiate minor channels from major ones by using a "Data defined override" for the Width value:
+    * Click on the bar next to `Symbol` ![image](https://user-images.githubusercontent.com/67612228/197659925-41753cd0-2fc7-4534-b6ec-7ddc4775d721.png)
+    * Click on the "Data defined override" icon ![image](https://user-images.githubusercontent.com/67612228/197659891-5474b893-2de3-47a4-95f5-9991b394ecf3.png)
+ next to the Width field
     * Use the "Assistant"
     * "Source" needs to be the column "ORDER" (which corresponds to the Strahler order)
     * Click the double-arrow icon to "Fetch value range from layer"
@@ -144,7 +157,7 @@ A 3D viewer is integrated in QGIS: `View > New 3D Map View`
 
 In the 3D map window, make sure to first:
 
-* Click on the settings icon and set the "Type" to "DEM (Raster layer)", and set the "Elevation" to your clipped DEM.
+* Click on the **Options** wrench icon and set the "Type" to "DEM (Raster layer)", and set the "Elevation" to your clipped DEM.
 * Exaggerate the relief with the "Vertical scale" setting (try 3).
 
 To see the 3D effect, you will have to use your <kbd>Ctrl</kbd> or <kbd>Shift</kbd> keys on your keyboard while panning with the mouse to change the angle of view.
@@ -155,7 +168,7 @@ To see the 3D effect, you will have to use your <kbd>Ctrl</kbd> or <kbd>Shift</k
 
 Use the Layout Manager to create a new layout, and insert both a 2D map and a 3D map.
 
-When inserting the 3D map, it will tell you that the "scene is not set". You will have to import the 3D scene settings from your view: Item Properties > Scene Settings > Copy Scene Settings from a 3D View...
+When inserting the 3D map, it will tell you that the "scene is not set". You will have to import the 3D scene settings from your view: Item Properties > Scene Settings > Copy Scene Settings from a 3D View... and then select your 3D map from the drop-down.
 
 ## Saving your project
 
