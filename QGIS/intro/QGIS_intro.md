@@ -166,9 +166,18 @@ The plugin should automatically open a side panel in which you can search for te
 
 Click on `Show Layout Manager` in the toolbar. `Create` a new layout called "Default". We can now see the Layout window.
 
-We can now add elements to our layout: the map, a legend, a scale bar, a north arrow... In order to create a nice printout, or export in a variety of formats.
+We can now add elements to our layout: the map, a legend, a scale bar, a north arrow... In order to create a nice printout, or export in a variety of formats. You can select these from the sidebar, or by going to the `Add Item` menu up the top.
 
 The layout manager allows us to save several different layouts, one for each output we want to generate. Even if we change our map data, we can reuse the same layouts and export an updated map.
+
+> If you need to zoom in on the Map you've added, you'll need to change your edit tool the the **Move item content** tool by clicking it in the sidebar, going to `Edit > Move content`, or by pressing `C` on your keyboard. 
+> If you're having trouble zooming in exactly where you want to on the map, you can try the following:
+> * Go back to your project window
+> * Right click on the layer that covers the full extent of your area of interest and select `Zoom to Layer(s)`
+> * Navigate back to the layout manager window, select your map from the `Items` tab, and click ont he `Item Properties` tab.
+> * Click the **Set Map Extent to Match Main Canvas Extent** button ![image](https://user-images.githubusercontent.com/67612228/197666779-fa1adbec-f934-4644-b6c5-57c9fd9a0541.png)
+> * Your map should zoom to match the extent your zoomed to in the project window.
+
 
 ## Saving your project
 
