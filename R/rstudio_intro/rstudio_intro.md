@@ -88,7 +88,7 @@ Let’s first create a new project:
 
 ## Maths and objects
 
-The **console** (usually at the bottom right in RStudio) is where most
+The **console** (usually at the bottom left in RStudio) is where most
 of the action happens. In the console, we can use R interactively. We
 write a **command** and then **execute** it by pressing
 <kbd>Enter</kbd>.
@@ -190,7 +190,7 @@ RStudio:
 
 1.  the shortcut command: `?functionname`
 2.  the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a
-    function name
+    function name (you can do this by simply clicking on the function name)
 
 Let’s look through the documentation for the `round()` function:
 
@@ -598,8 +598,8 @@ You can see the list of installed packages in your “Packages” tab, or by
 using the `library()` function without any argument.
 
 We are going to install and load a new package called “praise”. We can
-do that with the GUI: click the “Install” button in the “Packages” tab
-(bottom right pane), and search for “praise”.
+do that outside of the console, the area outside of the console is know as the Graphical User Interface (GUI).
+* click the “Install” button in the “Packages” tab (bottom right pane), and search for “praise”.
 
 Notice how it runs an `install.packages()` command in the console? You
 can use that too.
