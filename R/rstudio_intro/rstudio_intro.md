@@ -21,7 +21,7 @@ R’s main strong points are:
     process in a script;
 -   **Customisable**: being a programming language, you can create your
     own custom tools;
--   **Large datasets**: it can handle very large datasets (certainly beyond the row limitations of Excel!);
+-   **Large datasets**: it can handle very large datasets (certainly well beyond the row limitations of Excel, and even further using HPCs and [other tricks](https://rviews.rstudio.com/2019/07/17/3-big-data-strategies-for-r/));
 -   **Diverse ecosystem**: packages allow you to extend R for thousands of
     different analyses.
 
