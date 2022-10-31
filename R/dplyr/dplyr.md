@@ -128,7 +128,7 @@ Let’s import and explore our data.
 gapminder <- read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
 
-> Remember you can use <kbd>Ctrl</kbd>+<kbd>shift</kbd> to execute a
+> Remember you can use <kbd>Ctrl</kbd>+<kbd>enter</kbd> to execute a
 > command from the script.
 
 2.  Explore the gapminder dataset using `dim()` and `str()`
@@ -495,6 +495,9 @@ readable** than when nesting functions into each other, and avoids the
 creation of several intermediate objects. It is also easier to trouble
 shoot as it makes it easy to execute the pipeline step by step.
 
+THe shortcut for inserting a pipe is <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> or
+    (for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
+
 From now on, we’ll use the pipe syntax as a default.
 
 > Note that this material uses the `magrittr` pipe. The `magrittr`
@@ -780,7 +783,7 @@ commands stored in your script when you re-open your project.
 More on dplyr:
 
 -   [dplyr
-    cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
+    cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf)
 -   *R for Data Science*, [chapter about
     dplyr](http://r4ds.had.co.nz/transform.html)
 
