@@ -94,6 +94,7 @@ We will go into projections in more detail soon.
 * In the filter section, type "GDA2020 56"
 * From the **Coordinate Reference System** list, select `EPSG:7856 - GDA2020 / MGA zone 56`
 
+> You will notice that the OpenStreetMap basemap looks very warped, except for the East Coast of Australia. This is because the projection we have selected is very focused on reducing distortion within the bounds of the projection's area (Eastern Australia).
 
 ## Load in our data
 For most of our data, we will simply be able to double click on it in the Project Home folder within the Browser window.
