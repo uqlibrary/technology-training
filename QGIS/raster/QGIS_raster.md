@@ -56,7 +56,13 @@ We can now remove the two original raster files.
 
 In the merged layer's Properties (`Right click > Properties... > Source`), we can see that the Coordinate Reference System (CRS) in use is [EPSG:4326 - WGS 84](https://epsg.io/4326). It is the one that QGIS detected when opening the file (you can see this information in the associated XML file in the archive we downloaded). This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). A good PRS for around Brisbane/Meanjin is "[EPSG:7856 - GDA2020 / MGA zone 56](https://epsg.io/7856)". We can't change that here, we instead will need to use the **Warp (Reproject)** tool.
 
-* Use the tool `Raster > Projections > Warp (Reproject)`, use the merged layer as an input, and pick "EPSG:7856 - GDA2020 / MGA zone 56" as the Target CRS (you may need to click the Select CRS button ![image](https://user-images.githubusercontent.com/67612228/197653760-a9df4671-5852-499c-a085-3d995489599a.png), untick No CRS, and then use the filter to search for "7856"). 
+* Use the tool `Raster > Projections > Warp (Reproject)`
+* use the merged layer as an input
+* pick "EPSG:7856 - GDA2020 / MGA zone 56" as the Target CRS 
+   *  you may need to click the Select CRS button ![image](https://user-images.githubusercontent.com/67612228/197653760-a9df4671-5852-499c-a085-3d995489599a.png)
+   *  untick No CRS
+   *  use the filter to search for "7856"
+   *  You should be able to find "EPSG:7856 - GDA2020 / MGA zone 56" under **Predefined Coordinate Reference Systems**
 
 > If you want to learn more about the static datum GDA2020 (for "Geocentric Datum of Australia 2020"), an upgrade from the previous, less precise GDA94, head to the [ICSM website](https://www.icsm.gov.au/gda2020).
 
