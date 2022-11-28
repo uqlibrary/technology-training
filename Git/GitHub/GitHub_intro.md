@@ -122,7 +122,7 @@ We can now begin the process of commiting and backing up these changes.
 Instead of viewing your version history as a series of documents with different changes (e.g. thesis_final.pdf, thesis_final_1.pdf, etc.), Git views your **document as a compilation, or a stack, of different changes through time**. 
 This means that you can go back in time to view each change as it was commited to the main document. 
 
-When we commit a change, it writes that change to the branch of our repository that we choose to, in this case, that is called `main`. This means that if you want to do some experimenting with your code, you can instead commit it to an `experimental` branch so that you don't break your main code while you play. 
+When we commit a change, it writes that change to the branch of our repository that we choose to, in this case, that is called `main`. This means that if you want to do some experimenting with your code, you can instead commit it to an `experimental` branch so that you don't break your main code while you play. If you want more info about Branching, I have provided a link at the bottom of this document.
 
 > Before commiting your changes, it's best practice to briefly describe your changes. 
 
@@ -283,9 +283,10 @@ There is a lot more customisation you can do, and you can find a complete breakd
 
 
 ## Things not covered today
-* Branching (creating experimental branches of your code)
-* Fulling cloning others' code (this can vary from straightforward to complex)
-* Collaboration
+* [Branching (creating experimental branches of your code)](https://docs.github.com/en/enterprise-cloud@latest/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository)
+* [Fulling cloning others' code (this can vary from straightforward to complex)](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+* [Collaboration](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop)
+* [Making your Repo Public](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility)
 
 ## More Guides
 * [Terminal/GitBash](https://github.com/uqlibrary/technology-training/blob/master/Git/git.md)
