@@ -45,6 +45,8 @@ GitHub is a Git host server which stores your Git repository online. This means 
 ### Navigating GitHub Online
 
 #### How to explore GitHub
+GitHub can be quite intimidating the first time you come across it. Let's break things down a bit.
+
 You can search for repositories in a search engine, or on https://github.com/
 
 For example, if you search for **spotify artists analysis** on GitHub you can see many projects relating to spotify.
@@ -58,24 +60,27 @@ You should find your way to this repository: https://github.com/khanhnamle1994/s
 #### Read the Readme
 A first look at a Github repository can be intimidating, but you should initially ignore the folder structure you see, and scroll down to the **Readme** section where you can usually find details surrounding what the project is, how to install/use it, and get more help.
 
-#### Popularity
-On the **right menu** you can see how popular this repository is, the number of forks (or spin-off repositories) that have been created from this, and more.
+#### About
+The about section on the right gives a brief overview of the repository.
+Below that it has links to:
+* The Readme
+* The License type (it's important to give your code a license so others know what they can do with it, [here's a helpful resource for choosing the right one](https://choosealicense.com/)).
+* Popularity (those who like this repo)
+* Watching (those want to be aware of changes)
+* Forks (those who have created their own spinoffs)
 
 #### History
-Near the top of the repository you will see a clock icon followed by some numbers. This is the Hisotry of edits to this repository. You can click on this an see the entire history of changes made to this code.
+Near the top of the repository you will see a clock icon followed by some numbers. This is the History of edits to this repository. You can click on this an see the entire history of changes made to this code.
 ![image](https://user-images.githubusercontent.com/67612228/182783554-5abc6679-8e1e-4fcd-bae3-9347bb46e72a.png)
 
 #### Where the code is 
-Once you go back to the folder structure you can dig in to find the code that makes up the ggplot2 package. If you navigate to `R > geom-bar.r` you can see the code that underpins the Bar charts that you can create with ggplot2.
+Once you go back to the folder structure you can dig in to find the code that makes up this repository. If you navigate to `Data-Processing.R` you can see the code that underpins the data processing process.
 
 #### Cloning code
 To **clone**, or make a copy, of the code, you can simply click the `**Code**` button on the main repository screen, and import it into GitHub Desktop, allowing you to edit and make your own alterations to, and versions of the code before you.
 
-#### Creating a Portfolio
-You can also use GitHub to create and display your own work. This good example has their details, their achievements, and links to all their major projects: 
-https://github.com/archd3sai/Portfolio
 
-### Creating a Repository
+## Creating a Repository
 
 Once you have created a GitHub account, and have GitHub Desktop installed, open GitHub Desktop.
 
@@ -90,7 +95,7 @@ Let's create a new folder for our project today by doing the following:
 1. In the **Create a new repository** window fill in the details for your repository:
 * **Name**: `Portfolio`
 * **Description**: `A portfolio of my coding projects`
-* **Local path**: In this case we're going to create a new folder in our Documents click `Choose...` and select Documents - GitHub will create a new folder here for our project to be stored in.
+* **Local path**: In this case we're going to create a new folder in our Documents click `Choose...` and select Documents - GitHub will create a new folder here for our project to be stored in. (generally you want to save this in the project folder you will be working from going forward)
 * Tick the **Initialize this repository with a README** box
 * Leave **Git ignore** and **License** as `None` for now.
 
@@ -125,11 +130,15 @@ Type a brief description into the box in the bottom right which currently reads 
 * Type something along the lines of "Added a comment and line of code". You can provide more detail in the `Description` box below if necessary. 
 > Comments describing our commits are a very important part of Git, as they allow us to quickly visual changes at a glance.
 
-#### Committing and pushing Changes
+#### Committing Changes
 
-Now we can commit our changes click `Commit to main`
+Now we can commit our changes click `Commit to **main**` (this is where you could commit it to a different branch if it were an experimental change, but for today we're just committing to main).
+
+We can go to the History tab to look at this saved commit.
 
 This has committed the version history to our local device, but if we want to share this with others, or store it online, we will need to Publish/Push the file to GitHub. 
+
+#### Pushing Changes
 
 To do this we will first need to sign in to our GitHub.com account:
 1. Navigate to `File > Options... . Accounts > Sign in > Continue with browser` 
@@ -141,6 +150,8 @@ You can publish your repository in any one of three different ways:
 * going to `Repository > Push`
 * or pressing `Ctrl + p`
 You can choose to keep your code private for now, and simply make it public later on. Click `Publish Repository`.
+
+You will see that the `Publish Repository` button has changed to `Fetch origin`. **Origin** refers to the online repository where you code is kept, you should click this before starting to work on code, just in case changes have been made elsewhere that you need to pull to the device you're working on.
 
 Let's have a look at what it looks like when we edit a file.
 
@@ -163,8 +174,8 @@ From here you can access your **portfolio** repository, and then the **process.R
 Once you've navigated to the file, you can click the pencil button to edit the code online.
 
 1. Make some edits to the code
-1. Provide a description of your changes in the **Commit changes** section
-1. Then click the `Commit changes` button.
+2. Provide a description of your changes in the **Commit changes** section (these descriptions may feel unnecessary, but generally when you make changes, you're changing a number of things, and this can be very very helpful).
+3. Then click the `Commit changes` button.
 > On the desktop you would need to push to the repository, as we are already in the external repository, you don't need to do that, however next time you access the file in another location, you should **Pull** the data.
 
 #### Fetch/Pull
@@ -191,7 +202,7 @@ If we simultaneously make edits online, and then make edits on desktop without F
 # Edited Online
 >>>>>>> 7e2e0c3b4a819b3cf3c285a47a862f975629bf8a
 ```
-7. Here we decide what we want to keep, and what we want to delete. Once we have decided what to keep, we need to remove the unwanted code, as well as the tags that Git has inserted. Let's keep both edits, and simply remove the tags that Git added. Your code should look like this:
+7. Here we decide what we want to keep, and what we want to delete. Once we have decided what to keep, we need to remove the unwanted code, as well as the tags that Git has inserted. You will want to make sure the code conflicts are resolved, and that the code works. In this case, let's keep both edits, and simply remove the tags that Git added. Your code should look like this:
 ```R
 print("Hello Github")
 # I added this code on GitHub Online 
@@ -201,6 +212,8 @@ print("Hello Github")
 8. Save your file.
 9. Return to GitHub Desktop, and it should now update to show that there are no conflicts remaining. Click **Continue merge**
 10. The conflicts are now resolved, and you can once again **Push** our edits to our GitHub repository.
+
+We can now have a look at the history tab to see the history we're starting to create.
 
 #### Delete
 Let's navigate to the file location, and then **delete the file** so that we can see the process behind this.
@@ -222,10 +235,14 @@ Let's create some documents we want Github to ignore.
 
 Now let's have GitHub ignore this file.
 You can do this in Github Desktop by going to `Repository > Repository Settings... > Ignored files` and then entering the locations, names, or types of files you want to ignore. Let's enter **example.txt**. 
-> You can also cover all instances of a particular document type by entering something similar to ***.dat**
+> You can also cover all instances of a particular document type by entering something similar to **\*.dat** (the asterix will mean that *any* file of that type will be ignored)
 
-### Creating a good Readme for your Portfolio
+## Creating a good Readme for your Portfolio
 The Readme is often the first place people go when looking at a Git Repository, so it's important to have useful information here, and displayed in a meaningful way. This is especially the case for your Portfolio.
+
+#### Creating a Portfolio
+You can use GitHub to create and display your own work. This good example has their details, their achievements, and links to all their major projects: 
+https://github.com/archd3sai/Portfolio
 
 #### Markdown
 When editing a Readme file you can format it using a simple coding language called Markdown, as well as HTML coding.
