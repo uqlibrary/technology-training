@@ -84,6 +84,8 @@ To **clone**, or make a copy, of the code, you can simply click the `**Code**` b
 
 Once you have created a GitHub account, and have GitHub Desktop installed, open GitHub Desktop.
 
+![image](https://user-images.githubusercontent.com/67612228/204198875-83895e12-ff53-4454-b9c8-9ab358938737.png)
+
 We have a few options here:
 - You can **clone** (make a copy of) a repository that you (or someone else) has previously created on the internet
 - You can create a repository within an already existing folder for a project you're already working on
