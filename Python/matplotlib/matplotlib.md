@@ -47,3 +47,121 @@ import matplotlib.pyplot as plt
 `plt` is the usual nickname for the pyplot submodule, and writing out `matplotlib.pyplot...` every time we need to use a function gets cumbersome pretty quickly.
 
 ## The basics
+
+To begin with, let's use the aptly named `plot()` function:
+
+``` python
+plt.plot()
+```
+
+![image](https://user-images.githubusercontent.com/118239146/204414576-5047bd1b-83ad-4132-b51d-052ee2a37918.png)
+
+Here, we gain a small insight into what `plot()` does - it produces a figure (the canvas/area) and axes. If we want to include anything else, we'll need to include it as arguments inside the brackets. Let's plot some basic data in the function
+
+| days | sunshine (h) |
+|---|---|
+| 0 | 6 | 
+| 1 | 4 | 
+| 2 | 8 | 
+| 3 | 5 | 
+
+by assigning it to variable as follows
+
+``` python
+days = [0,1,2,3]
+sunshine = [6,4,8,5]
+plt.plot(days, sunshine)
+```
+![image](https://user-images.githubusercontent.com/118239146/204417297-291d7d2e-7e10-450a-aaaf-e5c4ae0016f3.png)
+
+> We could have also done this simply by placing the lists into the function, `plt.plot([0,1,2,3],[6,4,8,5])`
+
+Examining our figure, we see that *days* has been plotted on the x-axis and *sunshine* on the y-axis. This is because plot identifies the first argument as x-values and the second as y-values.
+``` python
+plt.plot(x, y, ...
+```
+> If only put one set of data in, it will be plotted on the y-axis at x = 0, 1, 2, ...
+
+### Formatting
+
+#### Colour and style
+
+Let's look at some basic formatting. We can change the colour and style of our plotted line **within** the plot function as an argument after the data.
+
+``` python
+plt.plot(days, sunshine, 'r--')
+```
+![image](https://user-images.githubusercontent.com/118239146/204424300-a85fece6-1705-4074-ba4a-b535eda666db.png)
+
+Here's how the formatting argument works.
+1. It has to be a string, so we need to place everything inside quotation marks `' '`
+2. The colour of the line is determined by letter, e.g. r = red, b = blue, g = green etc.
+3. The style of the line is determined by a symbol or letter, e.g. -- = dashed, o = circle, * = star etc.
+
+> To see a longer list of the colours and styles availble, type `help(plt.plot)` and scroll down.
+
+#### Other keywords
+
+There are also other arguments **within** the plot function that change the formatting of our line. These need to be called, and can also be found after running `help(plt.plot)` under `**kwargs` (keyword arguments). For example
+
+``` python
+plt.plot(days, sunshine, 'r--', linewidth = 2)
+```
+
+gives a thicker line, and
+
+``` python
+plt.plot(days, sunshine, 'ro', fillstyle = 'none')
+```
+
+gives hollow (as opposed to filled in) circles.
+
+#### Other features
+
+We can also format other aspects of our axes and figure with features like labels, a title and a legend. These are done **outside** `plt.plot` with other functions.
+
+##### Labels
+Axis labels and a title can be specified with the functions
+
+```python
+plt.xlabel('days')
+plt.ylabel('sunshine (h)')
+plt.title('Hours of sunshine per day')
+```
+
+![image](https://user-images.githubusercontent.com/118239146/204429698-a3157bd5-2c0b-4bed-a57a-e6a10a3914e3.png)
+
+These should be placed **after** our previous `plt.plot` code and will produce a plot with these features
+> When running multiple functions for a single plot, they **must** be run at the same time. To do this, select **all** the code to be run and press F9.
+
+##### Legend
+
+A legend can be similarly introduced, after our `plt.plot` function, as follows.
+
+``` python
+plt.legend(['Interpolated data'])
+```
+
+![image](https://user-images.githubusercontent.com/118239146/204429796-22cee710-2618-4c56-bd73-6796adeb239e.png)
+
+Notice that this is similar to the previous features, however, our string is within square brackets making it a list. This is because `plt.legend` might need to have multiple labels for other lines, so it expects a list. We can choose the position of our legend with the argument `loc = ' '` and enter the position between the quotation marks. For example,
+
+```python
+plt.legend(['Interpolated data'], loc = 'lower right')
+```
+
+![image](https://user-images.githubusercontent.com/118239146/204429845-e0be447a-c1a9-45ce-8c19-c07d8091069a.png)
+
+A full list of positions can be found under `help(plt.legend)`
+
+##### Axes
+
+The size of the axes is automatically determined by `plt.plot`, but we can manually override that with the `plt.axis()` function. Inside the function we need to put the dimensions of the axes in the format `plt.axis([x_min, x_max, y_min, y_max])`. Let's change ours to go from 0 to 5 on the x-axis and 0-10 on the y-axis.
+
+``` python
+plt.axis([0, 5, 0, 10])
+```
+
+![image](https://user-images.githubusercontent.com/118239146/204430360-772f689d-3c3d-4868-a8bd-fdaa4cfbb6f2.png)
+
+### Plot types
