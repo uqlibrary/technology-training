@@ -164,4 +164,74 @@ plt.axis([0, 5, 0, 10])
 
 ![image](https://user-images.githubusercontent.com/118239146/204430360-772f689d-3c3d-4868-a8bd-fdaa4cfbb6f2.png)
 
-### Plot types
+## Plot types
+
+Now that we've looked at the fundamentals of plotting with matplotlib, let's explore the different visualisation options availble. We're going to make use of the `pandas` module which we looked at in our [data transformation guide](https://github.com/uqlibrary/technology-training/blob/a0a1bdf568fa88dd282356043751b04186ce29ae/Python/pandas/pandas.md). This will allow us to import some real data which we can visualise in different ways.
+
+### Importing `pandas` and the data
+
+First, import the `pandas` module, similarly to how we imported `matplotlib.pyplot`. You might want to put this near the top of your code.
+
+``` python
+import pandas as pd
+```
+
+As usual, we use `pd` as the standard nickname for `pandas`.
+
+Next, we'll import our data. In this session our data comes from https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv, which includes interesting statistics like population and GDP about most countries over time. It's called gapminder.
+
+To import it directly, we run
+
+``` python
+df_raw = pd.read_csv('https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv')
+```
+
+If you look in *Variable Explorer*, you should now see a new variable `gapminder`, with type `DataFrame` and size `(1704, 6)`. `gapminder` is now the variable which stores our data. To get a sense of what this data looks like, simply run
+
+``` python
+df_raw
+```
+
+![image](https://user-images.githubusercontent.com/118239146/204963864-e9f2f77d-bf56-4b3f-ab84-9784ace925c9.png)
+
+As you can see, there are six columns (variables)
+
+1. `country`
+2. `year`
+3. `pop` (population)
+4. `continent`
+5. `lifeExp` (life expentancy)
+6. `gdpPercap` (GDP per capita)
+
+with 1703 rows.
+
+We can visualise different aspects of this data, and we will have different options depending on the types of variables we choose. Data can be categorical or numerical, and ordered or unordered, leading to a variety of visualisation possibilities. If you would like to explore this more, check out [From data to Viz](https://www.data-to-viz.com/), a tool which helps you to find the best option.
+
+Finally, let's copy the data into a new variable so that we can always go back to the original if something goes wrong.
+
+``` python
+df = df_raw
+```
+
+### Bar Chart
+
+Let's start with the simple bar chart. It requires a categorical variable (like continent) and a numerical variable (like population). Firstly, let's simplify our data by just considering the year 2007.
+
+``` python
+df_bar = df[df.year == 2007]
+```
+
+Next, let's apply a `groupby` to summarise our data by continent.
+
+``` python
+df_bar = df_bar.groupby('continent', as_index = False).agg('mean')
+```
+
+Let's examine what just happened. By combining `groupby('continent',` and `agg('mean')`, we group the data by continent and take the average for each other column (i.e., average life expentancy in Africa, Asia ...; average population in Africa, Asia ...). `as_index = False` just allows us to access the `continent` column later (otherwise it would be the index, which is harder to use).
+
+Now, let's plot the bar chart. Instead of using `plt.plot`, this time we'll use `plt.bar`.
+
+``` python
+plt.bar(df_bar['continent'], df_bar['pop'])
+```
+
