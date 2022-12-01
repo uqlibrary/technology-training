@@ -212,10 +212,59 @@ Finally, let's copy the data into a new variable so that we can always go back t
 ``` python
 df = df_raw
 ```
+### Scatter Plot
+
+A common visualisation is the scatter plot. The scatter plot takes two numerical variables and plots them on the x- and y-axes respectively. Let's examine GDP per capita and life expentancy. We can access this data from our dataframe with
+
+```python
+df['gdpPercap']
+df['lifeExp']
+```
+> Notice that we use square brackets to select specific columns from our dataframes.
+
+To plot them, we'll use the function `plt.scatter` as follows.
+
+``` python
+plt.scatter(df['gdpPercap'],df['lifeExp'])
+```
+
+As with before, let's add some labels. Don't forget to run all the plot code at the same time by selecting it all before presing F9.
+
+``` python
+plt.xlabel('GDP per capita (USD)')
+plt.ylabel('Life Expectancy (years)')
+```
+
+![image](https://user-images.githubusercontent.com/118239146/204979072-70a3a28b-37ec-441b-be96-149e112235d1.png)
+
+There is a lot of data there, so most points are overlapping. Let's change our markers from blue circles to black dots. Unlike with `plt.plot`, we can't simply type `'k.'` afterwards, as `plt.scatter` is expecting different arguments. Instead, we need to use `c = 'k'` for colour (k (key) = black) and `marker = 'k.'`. Let's also use `s = 3` to make them smaller.
+
+```python
+plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = 'k', marker = '.')
+plt.xlabel('GDP per capita (USD)')
+plt.ylabel('Life Expectancy (years)')
+```
+
+![image](https://user-images.githubusercontent.com/118239146/204980440-54447664-6d27-44f0-8237-bdffffe80193.png)
+
+An important visualisation tool is colour. We can use colour to represent a third variable, say continent. To group by continent, we simply replace `c = 'k'` with `c = continent`, telling python to use continent to determine the colour.
+
+```python
+plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = continent, marker = '.')
+plt.xlabel('GDP per capita (USD)')
+plt.ylabel('Life Expectancy (years)')
+```
+
+MOVE TO SEABORN??
+
+### Line Plot
+
+Do lifeExp vs year here
+
 
 ### Bar Chart
 
-Let's start with the simple bar chart. It requires a categorical variable (like continent) and a numerical variable (like population). Firstly, let's simplify our data by just considering the year 2007.
+Now, let's look at the simple bar chart. It requires a categorical variable (like continent) and a numerical variable (like population). Firstly, let's simplify our data by just considering the year 2007.
 
 ``` python
 df_bar = df[df.year == 2007]
@@ -234,4 +283,33 @@ Now, let's plot the bar chart. Instead of using `plt.plot`, this time we'll use 
 ``` python
 plt.bar(df_bar['continent'], df_bar['pop'])
 ```
+
+As with before, let's add some labels and a title. Don't forget to run all the plot code at the same time by selecting it all before presing F9.
+
+``` python
+plt.xlabel('Continent')
+plt.ylabel('Population')
+plt.title('Population per continent in 2007')
+```
+
+![image](https://user-images.githubusercontent.com/118239146/204972798-b2abbd3b-687d-43bc-9bfd-552102109377.png)
+
+We could include a third (categorical) variable on our bar chart too. Let's include the data from 2004 for comparison. We can define a new dataframe, similarly to above, but for 2004. Combining two of the steps above, we have
+
+``` python
+df_bar04 = df[df.year == 2004].groupby('continent', as_index = False).agg('mean')
+```
+
+We can then plot the data for both years (remember, `df_bar` refers to 2007) with labels
+
+``` python
+plt.bar(df_bar04['continent'], df_bar04['pop'])
+plt.bar(df_bar['continent'], df_bar['pop'])
+plt.xlabel('Continent')
+plt.ylabel('Population')
+plt.title('Population per continent')
+```
+
+# ***CONTINUE THIS LATER***
+
 
