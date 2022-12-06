@@ -137,9 +137,10 @@ Git noticed there is a new file. The "Untracked files” message means that ther
 git add mars.txt
 ```
 You may get a note saying `warning: LF will be replaced by CRLF in mars.txt.`
-You can ignore this.
+This is highlighting the difference in the way that Linux systems and Windows systems handle carriage returns. And this *can* be recorded as a change when you go between operating systems, but only if you change those lines, and there is now a lot more cross compatibility, so you can actually just safely ignore this.
 
-... and use `git status` again to see what happenned:
+
+Now we can use `git status` again to see what happenned:
 
 ```
 git status
@@ -170,6 +171,8 @@ git log
 ```
 
 `git log` lists all commits made to a repository in reverse chronological order. The listing for each commit includes the commit’s full identifier (which starts with the same characters as the short identifier printed by the `git commit` command earlier), the commit’s author, when it was created, and the log message Git was given when the commit was created.
+
+![](https://github.com/chrisburr/analysis-essentials-1/blob/master/git/fig/git-staging-area.svg)
 
 Now, let's add a line to our text file:
 
@@ -213,6 +216,9 @@ The staging area can hold changes from any number of files that you want to comm
 1. Add some text to mars.txt noting your decision to consider Venus as a base
 1. Create a new file venus.txt with your initial thoughts about Venus as a base for you and your friends
 1. Add changes from both files to the staging area, and commit those changes as one single commit.
+
+Adding and committing multiple files:
+![](https://github.com/chrisburr/analysis-essentials-1/blob/master/git/fig/git-committing.svg)
 
 ### Exploring history
 
@@ -294,6 +300,21 @@ Luckily, she has been keeping track of her project’s versions using Git! Which
 1. `git checkout <unique ID of last commit> data_cruncher.py`
 1. Both 2 and 4
 
+Checkout summary:
+![](https://github.com/chrisburr/analysis-essentials-1/blob/master/git/fig/git-checkout.svg)
+
+#### Recap
+
+* `git config`: configure git
+* `git init`: initialise a git repository here
+* `git status`: see information about current state of the repository
+* `git add`: add a change from a file (or several) to the staging area
+* `git commit -m "..."`: commit a change (or several) to our history
+* `git log`: see history
+* `git show`: show changes in one commit for one file
+* `git checkout`: roll back to previous version
+* `git diff`: difference between file on disk and commit in repository
+
 ### Ignoring things
 
 > How can I tell git to ignore things?
@@ -328,7 +349,13 @@ git commit -m "Ignore data files"
 git status
 ```
 
-### Remotes in GitLab
+### Remotes
+
+Git is the software.
+GitHub is a platform to allow you to host the repository and share it with others.
+There are others such as GitLab, BitBucket, GitTea, and GitBucket.
+
+Let's look at GitHub: https://github.com
 
 > How do I share my changes with others on the web?
 
