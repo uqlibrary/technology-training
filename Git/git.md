@@ -61,12 +61,21 @@ git config --help
 
 ### Creating a repository
 
-First, let's create a directory for our project and move into it:
+First, let's make sure we're in the right directory. We can check the directory using the `pwd` command, and then change directory using the `cd` command. On windows we can change to our default home directory like so:
+
+```
+cd /c/Users/<yourusername>
+```
+
+We can using `ls` to get a list of everything that is in our current directory.
+
+Now, let's create a directory for our project and move into it:
 
 ```
 mkdir planets
 cd planets
 ```
+This is the same as creating a new folder.
 
 Then we tell Git to make `planets` a repository — a place where Git can store versions of our files:
 
@@ -82,7 +91,7 @@ ls -a
 
 Git created a hidden `.git` directory to store information about the project (i.e. everything inside the directory where the repository was initiated).
 
-We can now check the status of our project with:
+Now that we've initialised the git repositry, we can start using commands to manage versions. We can now check the status of our project with:
 
 ```
 git status
@@ -106,7 +115,11 @@ Type the following text into it:
 Cold and dry, but everything is my favorite colour
 ```
 
-Write out with <kbd>Ctrl</kbd>+<kbd>O</kbd> and exit nano with <kbd>Ctrl</kbd>+<kbd>X</kbd>. You can check the contents of your new file with the `cat` command:
+Write out with <kbd>Ctrl</kbd>+<kbd>O</kbd> and exit nano with <kbd>Ctrl</kbd>+<kbd>X</kbd>. 
+
+We can now use `ls` to check that the file has been created.
+
+You can also check the contents of your new file with the `cat` command:
 
 ```
 cat mars.txt
@@ -123,6 +136,8 @@ Git noticed there is a new file. The "Untracked files” message means that ther
 ```
 git add mars.txt
 ```
+You may get a note saying `warning: LF will be replaced by CRLF in mars.txt.`
+You can ignore this.
 
 ... and use `git status` again to see what happenned:
 
