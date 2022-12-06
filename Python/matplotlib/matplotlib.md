@@ -192,7 +192,7 @@ If you look in *Variable Explorer*, you should now see a new variable `gapminder
 df_raw
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/204963864-e9f2f77d-bf56-4b3f-ab84-9784ace925c9.png)
+![image](https://user-images.githubusercontent.com/118239146/205763808-9505a434-adf2-41a4-9008-aaefc9127e6e.png)
 
 As you can see, there are six columns (variables)
 
@@ -247,15 +247,117 @@ plt.ylabel('Life Expectancy (years)')
 
 ![image](https://user-images.githubusercontent.com/118239146/204980440-54447664-6d27-44f0-8237-bdffffe80193.png)
 
-An important visualisation tool is colour. We can use colour to represent a third variable, say continent. To group by continent, we simply replace `c = 'k'` with `c = continent`, telling python to use continent to determine the colour.
+Until this point, we could have just used `plt.plot` and achieved the same outcome. However, `plt.scatter` allows us to utilise color and size of the markers to communicate more information. Let's use colour to represent a third variable, like year. To group by year, we tell python to determine the colour based on the year variable, replacing our previous colour argument with `c = df['year']`.
 
 ```python
-plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = continent, marker = '.')
+plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = df['year'], marker = '.')
 plt.xlabel('GDP per capita (USD)')
 plt.ylabel('Life Expectancy (years)')
 ```
 
-MOVE TO SEABORN??
+![image](https://user-images.githubusercontent.com/118239146/205767477-dc67a779-5261-4267-9fb6-4fefefb7fdbc.png)
+
+Of course, we need to communicate what the colours represent. If our data is numerical and continuous (which time normally is), we can use a colourbar. If we include the line below with our previous plotting code, we produce a scale for our year.
+
+```python
+plt.colorbar()
+```
+> Note that the American spelling 'color' is required
+
+![image](https://user-images.githubusercontent.com/118239146/205769560-665f2284-70f7-435a-8e7d-3b5fc742cdb1.png)
+
+We don't initially need to pass any arguments into `plt.colorbar` because it automatically applies to our current plot. However, we can specify some properties, like location, orientation, size and label. Let's add a label.
+
+``` python
+plt.colorbar(label = 'Year')
+```
+
+![image](https://user-images.githubusercontent.com/118239146/205770607-0caa7309-9cef-4ff9-a434-7e5afb3f7b48.png)
+
+> Some vector graphics viewers (svg and pdf) cause white bars to appear in the colorbar. This is a bug in the viewers. If this occurs, use the following workaround:
+> ``` python
+> cbar = colorbar()
+> cbar.solids.set_edgecolor("face")
+> draw()
+> ```
+
+We can similarly include our population variable in our plot, changing the *size* of each point. Here, we assign our population variable `df['pop']` to the size argument `s`. Since the population values are so huge, let's also scale them down by a factor of 1000000. All together, our code reads
+
+``` python
+plt.scatter(df['gdpPercap'],df['lifeExp'], s = df['pop']/1000000, c = df['year'], marker = '.')
+plt.xlabel('GDP per capita (USD)')
+plt.ylabel('Life Expectancy (years)')
+plt.colorbar(label = 'Year')
+```
+
+![image](https://user-images.githubusercontent.com/118239146/205772366-686338cf-703b-4e81-92c0-5df980369d9a.png)
+
+As you can see, some points are now much bigger than others, representing the population size. In this case, with so many data points, its not particularly helpful, as it obscures some of the other data. Not all visualisation tools are going to be useful in all cases, and it can be harmful to try display too much in one plot. Often, simpler is more effective. For the next part, let's go back to our previous size argument, `s = 3`.
+
+#### Advanced
+
+Let's look at one final possibility. Often it is useful to group data into categorical groups, like *continent*, rather than numerical ones. We could try doing the same thing
+
+```python
+plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = df['continent'], marker = '.')
+```
+but we end up with the following error:
+
+![image](https://user-images.githubusercontent.com/118239146/205770911-2d822a17-3388-403c-902e-d56d4d755cff.png)
+
+This occurs because the colour argument `c = ` is expecting either a list of colours or a list/array of numbers. Before, when we input year, it could take those numbers and apply them to a scale. For continent, we can't do that. Instead, we'll need to assign a number to each continent. Through `pandas`, we can do this.
+
+1. Specify the data type as *categorical* (`df.dtypes` shows us that continent is an `object` - we actually want it to be `category`)
+2. Assign a unique number to each category using `.codes` (actually, the numbers are already assigned, we're just accessing them)
+3. Assign the colour in the scatterplot to these numbers
+4. Create the label
+
+Firstly, we'll assign the continents to a new variable, changing the datatype to 'category'
+```python
+con = df['continent'].astype('category')
+```
+Next, we can access and assign to a variable a unique list of numbers applied to those categories through
+```python
+numcon = con.cat.codes
+```
+> We can use `cat.` because the datatype is categorical. `cat.codes` accesses the list of indices
+
+We can now group the data by continent
+
+```python
+graph = plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = numcon, marker = '.')
+```
+> Notice that we assigned the plot to a variable, `graph`. This is very important as it allows us to access the colours for the legend.
+
+Finally, we need to create the legend. Let's quickly examine what a legend requires: `plt.legend(*handles*,*labels*, ... )`. The first argument is a list of *handles* - the things to display, like colours, sizes or lines. The second argument is a list of *labels* - the text corresponding to each handle.
+
+To access the handles, we'll use the function `legend_elements()`
+```python
+colours = graph.legend_elements()[0]
+```
+`<your plot>.legend_elements()` produces an array with the *handles* and *labels* which were given to the `plt.scatter` function. We only want the handles because the labels it gives numbers, not continents. We take the zeroth element (handles only) by inserting `[0]` afterwards. Effectively, this is a list of the colours.
+
+For a corresponding list of the continents, we use
+```python
+labels = con.cat.categories
+```
+`cat.categories` operates in the opposite way to `cat.codes` - it takes the numbers and produces the strings. Putting this all together, our legend gets produced with `plt.legend(colours, labels, title = "Continent")`. All up, the code was
+
+```python
+con = df['continent'].astype('category')
+numcon = con.cat.codes
+
+graph = plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = numcon, marker = '.')
+
+colours = graph.legend_elements()[0]
+labels = con.cat.categories
+
+plt.legend(colours,labels,title = "Continent")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/205785213-0232ae6b-a428-40e2-9a70-26fd60f7828f.png)
+
+Don't worry if this felt too advanced - there are some complex functions at work, this definitely isn't the easiest process. Take some time to have a look at what the individual parts of the code are doing.
 
 ### Line Plot
 
