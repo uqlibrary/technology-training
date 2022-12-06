@@ -281,16 +281,27 @@ plt.colorbar(label = 'Year')
 > draw()
 > ```
 
-We can similarly include our population variable in our plot, changing the *size* of each point. Here, we assign our population variable `df['pop']` to the size argument `s`. Since the population values are so huge, let's also scale them down by a factor of 1000000. All together, our code reads
+You may want to use a different colour scheme. This can be chosen by the `cmap = ` argument within the `plt.scatter` function. A list of options are available [here](https://matplotlib.org/stable/gallery/color/colormap_reference.html), let's choose magma
 
 ``` python
-plt.scatter(df['gdpPercap'],df['lifeExp'], s = df['pop']/1000000, c = df['year'], marker = '.')
+plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = df['year'], marker = '.', cmap = 'magma')
 plt.xlabel('GDP per capita (USD)')
 plt.ylabel('Life Expectancy (years)')
 plt.colorbar(label = 'Year')
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/205772366-686338cf-703b-4e81-92c0-5df980369d9a.png)
+![image](https://user-images.githubusercontent.com/118239146/205786977-4324c0d0-99fe-48f6-90e9-80f37553f110.png)
+
+We can similarly include our population variable in our plot, changing the *size* of each point. Here, we assign our population variable `df['pop']` to the size argument `s`. Since the population values are so huge, let's also scale them down by a factor of 1000000. All together, our code reads
+
+``` python
+plt.scatter(df['gdpPercap'],df['lifeExp'], s = df['pop']/1000000, c = df['year'], marker = '.', cmap = 'magma')
+plt.xlabel('GDP per capita (USD)')
+plt.ylabel('Life Expectancy (years)')
+plt.colorbar(label = 'Year')
+```
+
+![image](https://user-images.githubusercontent.com/118239146/205787031-f64145fe-4cfc-4742-bac4-bbf489e57b67.png)
 
 As you can see, some points are now much bigger than others, representing the population size. In this case, with so many data points, its not particularly helpful, as it obscures some of the other data. Not all visualisation tools are going to be useful in all cases, and it can be harmful to try display too much in one plot. Often, simpler is more effective. For the next part, let's go back to our previous size argument, `s = 3`.
 
@@ -356,6 +367,22 @@ plt.legend(colours,labels,title = "Continent")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/205785213-0232ae6b-a428-40e2-9a70-26fd60f7828f.png)
+
+Finally, it's worth noting that these colours are made to look continuous, but our data is categorical and unordered, so it's unhelpful. We can change our choice of colours with the `cmap` argument. A good choice is in the qualitative sets, let's use 'Accent'
+
+```python
+con = df['continent'].astype('category')
+numcon = con.cat.codes
+
+graph = plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = numcon, marker = '.', cmap = 'Accent')
+
+colours = graph.legend_elements()[0]
+labels = con.cat.categories
+
+plt.legend(colours,labels,title = "Continent")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/205787214-b874bdda-da57-4bef-bba2-e22c07da4676.png)
 
 Don't worry if this felt too advanced - there are some complex functions at work, this definitely isn't the easiest process. Take some time to have a look at what the individual parts of the code are doing.
 
