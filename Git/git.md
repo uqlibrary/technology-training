@@ -351,11 +351,11 @@ git status
 
 ### Remotes
 
+If you haven't already, now is the time to create a [GitHub](https://github.com) account. In our class, I'd ask you to share your username, so that we can collaborate later.
+
 Git is the software.
 GitHub is a platform to allow you to host the repository and share it with others.
 There are others such as GitLab, BitBucket, GitTea, and GitBucket.
-
-Let's look at GitHub: https://github.com
 
 > How do I share my changes with others on the web?
 
@@ -363,19 +363,27 @@ Version control really becomes extra useful when we begin to **collaborate with 
 
 It is easiest to use one copy as a central hub, stored online.
 
-Let's **share our repository with the world**. Log into GitLab and create a new repository called `planets` ("+ > New project" in the top toolbar). Make sure you select "Public" for the visibility level.
+Let's look at GitHub: https://github.com
 
-Our local repository (on our computer) contains our recent work, but the **remote repository** on GitLab's servers doesn't.
+Let's **share our repository with the world**. Log into GitHub and create a new repository called `planets` ("+ > New repository" in the top toolbar). Make sure you select "Public" for the visibility level.
 
-We now need to connect the two: we do this by making the GitLab repository a **remote** for the local repository. The home page of the repository on GitLab includes the URL we need to identify it, under "HTTPS". Copy it to your clipboard, and in your local repository, run the following command:
+Our local repository (on our computer) contains our recent work, but the **remote repository** on GitHub's servers doesn't.
+
+We now need to connect the two: we do this by making the GitHub repository a **remote** for the local repository. The home page of the repository on GitHub includes the URL we need to identify it, under "…or push an existing repository from the command line". Copy it to your clipboard, and in your local repository, run the following command (note that you will need to right click when using the Shell):
 
 ```shell
-git remote add origin https://gitlab.com/<your_username>/planets.git
+git remote add origin https://github.com/<your_username>/planets.git
 ```
 
 The name `origin` is a local nickname for your remote repository. We could use something else if we wanted to, but `origin` is by far the most common choice.
 
-Now, we can **push** our changes from our local repository to the remote on GitLab. Try this:
+GitHub wants to make sure that we're using the same name for our main branch as they do on GitHub. You will note that our branch is currently called **master**, we can change the branch name to **main** with the next line of code:
+
+```shell
+git branch -M main
+```
+
+Now, we can **push** our changes from our local repository to the remote on GitHub. Try this:
 
 ```shell
 git push
@@ -384,20 +392,33 @@ git push
 Git does not know where it should push by default. See the suggested command in the error message? We can set the default remote with a shorter version of that:
 
 ```shell
-git push -u origin master
+git push -u origin main
 ```
 
-We only need to do that once: from now one, Git will know that the default is the `origin` remote and the `master` branch.
+We only need to do that once: from now one, Git will know that the default is the `origin` remote and the `main` branch.
 
-You can now see on GitLab that your changes were pushed to the remote repository.
+It may request your credentials, which used to simply be your username and password, however, GitHub now requires you to create a Personal Access Token.
+1. Click on your avatar in the top right of GitHub.com
+1. Click settings
+1. Scroll to the bottom and on the left, and click Developer settings.
+1. Click Personal access tokens (either type is fine)
+1. Click `Generate new token` (either is fine, classic is simpler)
+1. You may need to authenticate yourself using TFA (you can also choose to use your password)
+1. You can select what you need to be able to edit. If you've chosen classic, you can skip this and scroll to the bottom to `Generate token`.
+1. Make sure you copy this token immediately and save it somewhere so you can reuse it.
 
-You can edit files directly on GitLab if you want. Try adding a line on mars.txt by clicking on "Edit".
+
+You can now see on GitHub that your changes were pushed to the remote repository.
+
+You can edit files directly on GitHub if you want. Try editing your READ.me by clicking on "Edit".
 
 If you do that, you will then need to **pull** changes from the remote repository to your local one before further editing:
 
 ```shell
+git log
 git pull
-cat mars.txt
+git log
+ls
 ```
 
 In summary: `git push` sends commited changes to a remote repository, whereas `git pull` gets commited changes from the remote to your local repository.
@@ -408,7 +429,7 @@ In summary: `git push` sends commited changes to a remote repository, whereas `g
 
 Now, let's get into pairs: one person is the "Owner", the other is the "Collaborator".
 
-First, the Owner needs to give the collaborator editing access to the repository. On GitLab's left panel, go to "Settings > Members", search for your partner's username, select "Maintainer" and click "Add to project".
+First, the Owner needs to give the collaborator editing access to the repository. Go to the Settings tab in your GitHub repository. On the left panel, you can click Collaborators and  then `Add people`. Here you can enter usernames and email addresses.
 
 The Collaborator can then accept the invitation.
 
@@ -418,34 +439,43 @@ Next, the Collaborator needs to download a copy of the Owner's repository to the
 cd ..
 ```
 
-Now, you can clone the Owner's repository, giving it a recognisable name:
+Now, you can clone the Owner's repository (you can do this by clicking the green `Code` button on a repository), and you can give it a recognisable local name:
 
 ```shell
-git clone https://gitlab.com/<owner_username>/planets.git partner-planets
+git clone https://github.com/<owner_username>/planets.git partner-planets
 ```
 
 The Collaborator can now make changes in their clone of the Owner's repository:
 
 ```shell
 cd partner-planets
-nano pluto.txt
-git commit -m "add notes about Pluto"
+nano README.md
 ```
 
-Then push the change to the Owner's repository on GitLab:
+Add a section for your collaborators.
+```
+## Contributors
+
+Name
+Name2
+```
+
+Then add, commit, and push the change to the Owner's repository on GitLab:
 
 ```shell
+git add README.md
+git commit -m "added collaborators"
 git push
 ```
 
 We didn't have to create a remote called `origin`, or set the default upstream: that was done by default by Git when cloning the repository.
 
-You can see that the changes are now live on GitLab.
+You can see that the changes are now live on GitHubb.
 
-The Owner can now download the Collaborator's changes from GitLab:
+The Owner can now download the Collaborator's changes from GitHub:
 
 ```shell
-git pull origin master
+git pull origin main
 ```
 
 If you collaborate on a remote repository, **remember to `pull` before working**!
@@ -475,7 +505,7 @@ git commit -m "Add a line in my friend's file"
 git push
 ```
 
-Now let’s have the Owner make a different change to their own copy _without pulling from GitLab beforehand_:
+Now let’s have the Owner make a different change to their own copy _without pulling from GitHub beforehand_:
 
 ```shell
 nano mars.txt
@@ -488,13 +518,13 @@ git add mars.txt
 git commit -m "Add a line in my own copy"
 ```
 
-But Git won't let us push to GitLab:
+But Git won't let us push to GitHub:
 
 ```shell
 git push
 ```
 
-Git rejects the push because it detects that the remote repository has new updates that have not been incorporated into the local branch. What we have to do is (1) **pull** the changes from GitLab, (2) **merge** them into the copy we’re currently working in, and then (3) **push** that. Let’s start by pulling:
+Git rejects the push because it detects that the remote repository has new updates that have not been incorporated into the local branch. What we have to do is (1) **pull** the changes from GitHub, (2) **merge** them into the copy we’re currently working in, and then (3) **push** that. Let’s start by pulling:
 
 ```shell
 git pull
@@ -514,15 +544,15 @@ It is now up to the Owner to fix this conflict:
 nano mars.txt
 ```
 
-They can now add and commit to their local repo, and then push the changes to GitLab:
+They can now add and commit to their local repo, and then push the changes to GitHub:
 
 ```shell
 git add mars.txt
-git commit -m "Merge changes from GitLab"
+git commit -m "Merge changes from GitHub"
 git push
 ```
 
-Git keeps track of merged files. The Collaborator can now pull the changes from GitLab:
+Git keeps track of merged files. The Collaborator can now pull the changes from GitHub:
 
 ```shell
 git pull
