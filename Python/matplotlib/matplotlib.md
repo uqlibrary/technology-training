@@ -388,15 +388,133 @@ Don't worry if this felt too advanced - there are some complex functions at work
 
 ### Line Plot
 
-Do lifeExp vs year here
+Did you notice a trend when we added colour to our scatterplot earlier? It appears that greater life expectancy corresponds to a lighter colour - a later year. If we want to examine the relationship between year and life expectancy more closely, we could use a line plot.
+
+We actually produced one of these before, in the first section. For simplicity, let's start by only considering Australia's life expectancy and seeing what happens. To do this, create a new dataframe which isolates the Australia data
+
+``` python
+df_aus = df[df['country'] == 'Australia']
+```
+
+Let's summarise this briefly
+1. `df['country'] == 'Australia` is a dataframe which has a `False` for all countries except Australia, which it assigns `True`
+2. By putting this inside `df[ ... ]`, we're telling python which data to access. We're effectively saying *No* to all countries except Australia.
+
+If you run `df_aus`, you should see
+
+![image](https://user-images.githubusercontent.com/118239146/206355035-134d4e0e-33d8-4a4d-97a1-ac6d97ece29f.png)
+
+Now, let's plot the year and life expectancy variables with the `plt.plot` function
+
+```python
+plt.plot(df_aus['year'],df_aus['lifeExp'])
+```
+
+![image](https://user-images.githubusercontent.com/118239146/206355453-e98df791-2cae-4c46-ae03-d1c90f6d83dd.png)
+
+It looks like life expectancy increases pretty linearly with year. Notice that there are kinks in the line, easier to see at the beginning. What `plt.plot` does by default is *interpolate* a straight line between each data point. With more data, the line becomes smoother. We would expect this data to be continuous, so we can leave an interpolated line between points. 
+
+Let's give our graph some labels and a title. Don't forget to run these, with `plt.plot`, at the same time.
+``` python
+plt.xlabel('Year')
+plt.ylabel('Life Expectancy (years)')
+plt.title('Life expectancy in Australia since 1950')
+```
+
+![image](https://user-images.githubusercontent.com/118239146/206356085-2d071249-31d2-4447-977a-af056582a9a4.png)
+
+Let's add a few more countries, our close neighbours New Zealand and Indonesia. We could create one dataframe with all three if we liked, but we'd have to isolate them anyway when we plot, so let's just create two new datasets for the two new countries, the same way that we did for Australia
+
+``` python
+df_nzl = df[df['country'] == 'New Zealand']
+df_idn = df[df['country'] == 'Indonesia']
+```
+
+To plot the lines, we can simply replicate what we did above for Australia - `plt.plot(df_aus['year'],df_aus['lifeExp'])` - for the new datasets `df_png` and `df_nzl`. Together, this reads
+
+``` python
+plt.plot(df_aus['year'],df_aus['lifeExp'])
+plt.plot(df_nzl['year'],df_nzl['lifeExp'])
+plt.plot(df_idn['year'],df_idn['lifeExp'])
+```
+
+We can add a title and labels as usual
+
+``` python
+plt.xlabel('Year')
+plt.ylabel('Life Expectancy (years)')
+plt.title('Life expectancy since 1950')
+```
+
+![image](https://user-images.githubusercontent.com/118239146/206358190-d4869c0e-ea22-4ff5-b7d6-4554dbe1623c.png)
+
+We have a problem - which line corresponds to which country? This plot needs a legend. To do this, let's first label our plots and then use the `plt.legend` function. 
+
+Within each plot function, we want to add the argument `plt.plot( ... , label = ' <countryname> ')`. This assigns the label for the legend to each line that we plot. All we need to do then is call the legend function, `plt.legend()`.
+
+``` python
+plt.plot(df_aus['year'],df_aus['lifeExp'], label = 'Australia')
+plt.plot(df_nzl['year'],df_nzl['lifeExp'], label = 'New Zealand')
+plt.plot(df_idn['year'],df_idn['lifeExp'], label = 'Indonesia')
+
+plt.legend()
+
+plt.xlabel('Year')
+plt.ylabel('Life Expectancy (years)')
+plt.title('Life expectancy since 1950')
+```
+
+![image](https://user-images.githubusercontent.com/118239146/206359167-7c1c548c-1794-4181-a16e-dbc854986fbb.png)
+
+> There are four different ways to create a legend:
+> 1. As above, labelling our plots
+> 2. Assigning the plots to variables instead of labelling them: `plt.legend([line1, line2, line3], ['Australia','New Zealand','Indonesia'])`
+> 3. Like 2., but keeping the `label = ` argument in `plt.plot`: `plt.legend([line1, line2, line3])`
+> 4. Like in the introduction, just listing the labels: `plt.legend(['Australia', 'New Zealand', 'Indonesia'])`
+>
+> While 4. might look like the simplest, it can cause the most errors and relies on remembering the order of your plots. Thus, 1-3 are advised. 2-3 allow specific lines to be included/excluded and the order they appear to be customised.
+
+Let's move the legend to a different position in the graph for clarity.
+```python
+plt.legend(loc = 'lower right')
+```
+
+Finally, let's include one more line - the global average. This will require the use of the `groupby` function which comes with `pandas`. Let's look at the code and then break it down
+
+```python
+df_globalAvg = df.groupby('year', as_index = False).agg('mean')
+```
+
+
+By combining `groupby('year',` and `agg('mean')`, we group the data by year and take the average for each other column (i.e., average life expentancy in Africa, Asia ...; average population in Africa, Asia ...). `as_index = False` just allows us to access the `year` column later (otherwise it would be the index, which is harder to use).
+
+Now, what we have is a new variable `df_globalAvg` which contains the average of variable for each year, averaged over all countries. To plot it, we'll simply use
+
+``` python
+plt.plot(df_globalAvg['year'], df_globalAvg['lifeExp'], label = "Global Average")
+```
+
+Combining this line with our previous plots, labels and legend, our graph looks like
+
+![image](https://user-images.githubusercontent.com/118239146/206362467-7de1e241-b993-43f0-8adb-6e8f88a9ef43.png)
+
+> If "Global Average" didn't appear in your legend, check that `plt.legend` occurs *after* all `plt.plot` functions. Otherwise, the legend is being created before all the plots have, and it won't include the ones created after it.
+
+We can adjust the colours and styles of the line within the plot function as before, and like with the scatterplot. Let's just change our global average to be a black, dashed, thick line
+
+``` python
+plt.plot(df_globalAvg['year'],df_globalAvg['lifeExp'],'k--', linewidth = 3, label = "Global Average")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/206362910-c41c7cdd-2723-4790-bb60-8efed8550312.png)
 
 
 ### Bar Chart
 
-Now, let's look at the simple bar chart. It requires a categorical variable (like continent) and a numerical variable (like population). Firstly, let's simplify our data by just considering the year 2007.
+Now, let's look at the simple bar chart. It requires a categorical variable (like continent) and a numerical variable (like population). Firstly, let's simplify our data by just considering the year 2004.
 
 ``` python
-df_bar = df[df.year == 2007]
+df_bar = df[df.year == 2004]
 ```
 
 Next, let's apply a `groupby` to summarise our data by continent.
@@ -405,9 +523,7 @@ Next, let's apply a `groupby` to summarise our data by continent.
 df_bar = df_bar.groupby('continent', as_index = False).agg('mean')
 ```
 
-Let's examine what just happened. By combining `groupby('continent',` and `agg('mean')`, we group the data by continent and take the average for each other column (i.e., average life expentancy in Africa, Asia ...; average population in Africa, Asia ...). `as_index = False` just allows us to access the `continent` column later (otherwise it would be the index, which is harder to use).
-
-Now, let's plot the bar chart. Instead of using `plt.plot`, this time we'll use `plt.bar`.
+This functions identically to the previous groupby in the line plot. Now, let's plot the bar chart. Instead of using `plt.plot`, this time we'll use `plt.bar`.
 
 ``` python
 plt.bar(df_bar['continent'], df_bar['pop'])
@@ -423,22 +539,18 @@ plt.title('Population per continent in 2007')
 
 ![image](https://user-images.githubusercontent.com/118239146/204972798-b2abbd3b-687d-43bc-9bfd-552102109377.png)
 
-We could include a third (categorical) variable on our bar chart too. Let's include the data from 2004 for comparison. We can define a new dataframe, similarly to above, but for 2004. Combining two of the steps above, we have
+Let's include a third variable and create a stacked bar plot. Here, we'll compare the population in 1952 with the population in 2004 for Europe and Americas, with the year on the x-axis. Creating two variables, but this time selecting Europe and Americas,
 
 ``` python
-df_bar04 = df[df.year == 2004].groupby('continent', as_index = False).agg('mean')
+df_bar52 = df[df.year == 1952]
+df_bar07 = df[df.year == 2007]
 ```
 
-We can then plot the data for both years (remember, `df_bar` refers to 2007) with labels
+Next, let's apply the same groupby as before
 
 ``` python
-plt.bar(df_bar04['continent'], df_bar04['pop'])
-plt.bar(df_bar['continent'], df_bar['pop'])
-plt.xlabel('Continent')
-plt.ylabel('Population')
-plt.title('Population per continent')
+df_bar52 = df_bar52.groupby('continent', as_index = False).agg('mean')
+df_bar07 = df_bar52.groupby('continent', as_index = False).agg('mean')
 ```
 
-# ***CONTINUE THIS LATER***
-
-
+Finally, we can plot our bar graph. This time, we actually want to plot two graphs, one for 1952 and one for 
