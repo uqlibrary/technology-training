@@ -335,6 +335,16 @@ using the output of the `ls()` function as the value passed on to the
 Finally, the `citation()` function allows you to cite R or a specific
 package.
 
+#### Incomplete Functions
+If you don't finish a function, by leaving off the last bracket `)` for example, the line of code won't necessarily give you an error, but it won't work very well.
+If you forget to include that last bracket, R will run the code, and then wait for further instructions before giving you an output. This will appear as a `+` in the console like so:
+``` r
+> round(1.23
++
+```
+If you try to give any further instructions to R, it will likely just continue giving you `+` symbols, and not return anything.
+To stop this, click on the console and press the `Esc` key on your keyboard.
+
 ### More help
 
 We’ve practised how to find help about functions we know the name of.
