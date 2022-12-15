@@ -203,6 +203,71 @@ Here, the marker style has been changed for the variable **sex**. Again, there's
 
 ### Line plots
 
+Finally, let's look at line plots. Line plots are useful for visualising certain continuous numerical data, but typically where no two points occupy the same *x* value (or certain specific configurations, like circles), unlike our scatter plot above. Imagine trying to draw a line between each data point above! Unfortunately, our **tips** data doesn't contain any suitable variables, so we'll need a new set. Let's import the dataset `flights`.
+
+``` python
+flights = sns.load_dataest("flights")
+```
+
+Let's have a look at what it contains
+
+``` python
+flights
+```
+
+![image](https://user-images.githubusercontent.com/118239146/207772174-f57f083b-d860-4448-bf3f-4925deab8efa.png)
+
+Here, we can see that there are monthly passenger numbers from Jan 1949 to Dec 1960. Let's see what happens if we assign year to the x-axis and passengers to the y-axis
+
+``` python
+sns.lineplot(data = flights, x = "year", y = "passengers")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/207772491-305e5fc1-ac3f-4d27-b4f2-3ca024be561a.png)
+
+Great! Clearly, passenger numbers increased steadily during the 50s. But hold on, our data has a different value for every month. What's going on? Well, seaborn recognises that each year has 12 entries, and aggregates them. By default, it takes the mean, but like before we can specify the method we want to use with the `estimator = ` argument. Most statistical methods require the `numpy` module. After `import numpy as np`, the functions can be called, such as `np.median`, `np.mean`. For now, let's just leave it as the mean.
+
+You'll also notice a faint blue shaded zone - this is the error/confidence interval. As with before, this can be adjusted using either
+
+1. The `errorbar = ` argument (for versions v0.12+)
+2. The `ci = ` argument (for versions before v0.12)
+
+The default is a 95% confidence interval.
+
+Let's narrow things down. Say we wanted to examine just December - we can do this by creating a new variable
+
+``` python
+flights_dec = flights[flights.month == "Dec"]
+```
+
+If you run `flights_dec`, you'll see that it only includes December's statistics
+
+![image](https://user-images.githubusercontent.com/118239146/207773790-4ef6bfb0-fe12-44da-bcb2-c56c5df33051.png)
+
+We can plot this data too, replacing the `data = ` argument:
+
+``` python
+sns.lineplot(data = flights_dec, x = "year", y = "passengers")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/207774450-58acbdd8-fa46-45ab-851a-5ede79480faa.png)
+
+Now, we see that seaborn has removed the confidence interval because it hasn't had to do any statistical aggregation - every data point is plotted. Let's add a new month, June, to compare.
+
+``` python
+flights_jun = flights[flights.month == "Jun"]
+
+sns.lineplot(data = flights_jun, x = "year", y = "passengers")
+sns.lineplot(data = flights_dec, x = "year", y = "passengers")
+```
+> We have to run both lineplots at the same time if we want both lines to appear on the same plot.
+
+![image](https://user-images.githubusercontent.com/118239146/207774784-82a396f8-4d73-4579-ba36-10e4ba714b9d.png)
+
+Let's add a legend too
+
+```
+sns.
                _________________________________________________________________________________________________________________________________
 
 
