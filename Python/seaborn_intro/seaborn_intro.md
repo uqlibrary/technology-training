@@ -1,6 +1,6 @@
-# Python data visualisation with seaborn
+# Introduction to python data visualisation with seaborn
 
-This is an intermediate course which delves into data visualisation in python with the **seaborn** module. Beginning with some basic plot types and importing data using **pandas**, different visualisation possibilities are explored. Some customisation and technical details are also looked at near the end.
+This is an introductory course which delves into data visualisation in python with the **seaborn** module. Beginning with some basic plot types and importing data using **pandas**, different visualisation possibilities are explored. Some customisation and technical details are also looked at near the end.
 
 ## Setup
 
