@@ -1,8 +1,8 @@
 # Python data visualisation with seaborn
 
-## Introduction and Setup
+This is an intermediate course which delves into data visualisation in python with the **seaborn** module. Beginning with some basic plot types and importing data using **pandas**, different visualisation possibilities are explored. Some customisation and technical details are also looked at near the end.
 
-
+## Setup
 
 The easiest way to use Python 3, seaborn and Spyder is to [install the Anaconda Distribution](https://www.anaconda.com/products/distribution), a data science platform for Windows, Linux and macOS.
 
@@ -424,4 +424,34 @@ Figure level plots interact directly with the figure, using a seaborn method tha
 
 Axes level plots interact directly with the drawn axes on a figure produced by matplotlib. Since they draw onto the axis, they cannot edit anything on the rest of the canvas. They interact easier with matplotlib and are marginally simpler to produce, but offer less simple customisability. They're most useful for complex figures which combine many different plots onto a single axes object, or when integration with matplotlib is particularly important.
 
+## Saving your work
+
+Your project can be reopened from the "Projects" menu in Spyder.
+
+By default, your variables are not saved, which is another reason why working with a script is important: you can execute the whole script in one go to get everything back. You can however save your variables as a .spydata file if you want to (for example, if it takes a lot of time to process your data).
+
+Figures can be saved in one of two ways. Firstly, you can simply right click on the image and click save. Alternatively, seaborn offers the `.savefig()` command for figure level plots. Let's save our current figure in that way
+
+``` python
+sns.set_theme(style = "whitegrid")
+
+flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
+flights_plot._legend.set_title("Month")
+
+flights_plot.savefig("flights.png")
+```
+
+If you press the *Files* tab next to *Variable explorer* (not next to *Edit*), you should see your file saved there.
+
 ## Conclusion
+
+As we have seen, seaborn is a powerful tool for visualising data efficiently and aesthetically. A range of other plot types and customisation is available, for inspiration have a look at the [seaborn gallery](https://seaborn.pydata.org/examples/index.html). If any of the content here was too challenging, you have other related issues you'd like to discuss or would simply like to learn more, we the technology training team would love to hear from you. You can contact us at
+
+training@library.uq.edu.au
+
+## Resources
+
+- [Official seaborn documentation](https://seaborn.pydata.org/index.html)
+- [Official matplotlib documentation](https://matplotlib.org/stable/index.html)
+- Our [compilation of useful Python links](https://github.com/uqlibrary/technology-training/blob/master/Python/useful_links.md)
