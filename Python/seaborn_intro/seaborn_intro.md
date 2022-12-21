@@ -14,7 +14,7 @@ In order to keep everything nicely contained in one directory, and to find files
 
 -   Projects -\> New project...
 -   New directory
--   Project name: "python_seaborn"
+-   Project name: "python_seaborn_intro"
 -   Choose a location that suits you on your computer
 -   Click "Create"
 
