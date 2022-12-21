@@ -59,14 +59,15 @@ tips
 
 ![image](https://user-images.githubusercontent.com/118239146/207469652-c4872136-1caa-42b9-a647-0fa5066efa2a.png)
 
-Here we can see that our data is separated into six variables (columns):
+Here we can see that our data is separated into seven variables (columns):
 
 1. `total_bill`
 2. `tip`
 3. `sex`
 4. `smoker`
 5. `day`
-6. `size`
+6. `time`
+7. `size`
 
 with 244 rows. It looks like this data contains statistics on the tips that a restaurant or cafe received in a week.
 
@@ -78,9 +79,9 @@ Before we begin, let's just quickly examine how the seaborn syntax works. There 
 
 Figure level plots interact with the *figure*, which is in essence the canvas or white space on which everything else is drawn. There are three functions for figure level plots
 
-1. `sns.relplot( ... ` for relational plots like scatter or line graphs.
-2. `sns.displot( ...` for distributions like histograms.
-3. `sns.catplot( ...` for categorical plots, like bar graphs and boxplots.
+- `sns.relplot( ... ` for relational plots like scatter or line graphs.
+- `sns.displot( ...` for distributions like histograms.
+- `sns.catplot( ...` for categorical plots, like bar graphs and boxplots.
 
 Axes level plots interact with the *axes*, which is in essence the space allocated on the canvas for the actual plot. There are many axes level functions, such as `sns.lineplot( ...`, `sns.boxplot( ...`,  `sns.scatterplot( ...`. We won't make use of these, but we will examine them near the end. The diagram below summarises how the figure and axes level plots connect.
 
@@ -96,7 +97,7 @@ sns.plotfunction(data = <dataset>, x = <variable>, y = <variabale>, kind = <plot
 
 In essence, the steps are
 1. Direct python to the seaborn library with `sns.`
-2. Call the chosen plotting function, e.g. `sns.lineplot(`, `sns.boxplot(` etc.
+2. Call the chosen plotting function, e.g. `sns.relplot(`, `sns.boxplot(` etc.
 3. Input the dataset, `sns.plotfunction(data = <dataset>`
 4. Choose the variable(s), `sns.plotfunction(data = <dataset>, x = "<variable>", y = "<variable>",`
 5. Specify your plot type (if figure level), `sns.plotfunction(data = <dataset>, x = "<variable>", y = "<variable>", kind = <plottype>,`
@@ -120,17 +121,17 @@ sns.catplot(data = tips, x = "day", kind = "count")
 
 There it is! It looks like Friday is their quietest day.
 
-There are a few ways we can add more information to bar plots. One common way is to group them by a third categorical variable. Let's add the variable **sex** to the data.
+There are a few ways we can add more information to bar plots. One common way is to group them by a third categorical variable. Let's add the variable **smoker** to the data.
 
 To produce a grouped plot by introducing the new variable we'll need to specify a way of identifying this variable, since both axes are already in use. A great tool is to group by *colour*, which we can do by specifying a variable to the argument `hue = `.
 
 ``` python
-sns.catplot(data = tips, x = "day", kind = "count", hue = "sex")
+sns.catplot(data = tips, x = "day", kind = "count", hue = "smoker")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/208792423-8777cd70-2b65-48b4-b997-e0064c1ab333.png)
+![image](https://user-images.githubusercontent.com/118239146/208806291-9b7a2943-2ca4-4232-888d-69a15d2e5ef4.png)
 
-`kind = "count"` provides a simple and efficient way of producing a bar plot when the y-axis is the frequency of a variable, however, it is restricted to these limitations. Often, it is desirable to display a different variable on the y-axis, and for this, seaborn offers the `kind = "bar"` type.
+This special type of categorical plot, with type `kind = "count"`, provides a simple and efficient way of producing a bar plot when the y-axis is the frequency of a variable, however, it is restricted to these limitations. Often, it is desirable to display a different variable on the y-axis, and for this, seaborn offers the `kind = "bar"` type.
 
 The `kind = "bar"` argument needs our `sns.catplot()` function to have two variables, one categorical and one numerical. Let's compare our variables **day** and **total bill**. This time, we need to include the `y = ` argument too.
 
@@ -148,21 +149,21 @@ sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", estimator = 
 
 ![image](https://user-images.githubusercontent.com/118239146/208792588-8af0ba47-241a-4560-ad6b-924f5a7315a8.png)
 
-> Specifically, the input for `estimator = ` should be a function that seaborn can apply to each variable. Others include `min`, `max`, `median`, etc., and there are lots include in the mathematics module `numpy`, which should be imported as `import numpy as np`
+> Specifically, the input for `estimator = ` should be a function that seaborn can apply to each variable. Others include `min`, `max`, `median`, etc., and there are lots included in the mathematics module `numpy`, which should be imported as `import numpy as np`
 
 The errorbars aren't so helpful here, so let's remove them. There are two ways to do this, depending on your version of seaborn:
 
 1. If you have a version older than v0.12, then use `ci = 0`
 2. If you have version v0.12 or later, then use `errorbar = None`
 
-If you're not sure, try both and see which one works. Let's also group by our variable **smoker**.
+If you're not sure, try both and see which one works.
 
 ``` python
-sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", hue = "smoker", estimator = sum, ci = 0) # Prior to v0.12
-sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", hue = "smoker", estimator = sum, errorbar = None) # v0.12 or later
+sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", estimator = sum, ci = 0) # Prior to v0.12
+sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", estimator = sum, errorbar = None) # v0.12 or later
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/208792695-86a3ae84-1738-4143-b725-4f67f18e076b.png)
+![image](https://user-images.githubusercontent.com/118239146/208806623-576581ed-44bf-4781-963f-09755f8f11db.png)
 
 ### Scatter plots
 
@@ -224,7 +225,7 @@ Here, the marker style has been changed for the variable **sex**. Again, there's
 Finally, let's look at line plots. Line plots are useful for visualising certain continuous numerical data, but typically where no two points occupy the same *x* value (or certain specific configurations, like circles), unlike our scatter plot above. Imagine trying to draw a line between each data point above! Unfortunately, our **tips** data doesn't contain any suitable variables, so we'll need a new set. Let's import the dataset `flights`.
 
 ``` python
-flights = sns.load_dataest("flights")
+flights = sns.load_dataset("flights")
 ```
 
 Let's have a look at what it contains
@@ -259,6 +260,8 @@ Let's narrow things down. Say we wanted to examine just December - we can do thi
 ``` python
 flights_dec = flights[flights.month == "Dec"]
 ```
+
+> If you're unsure on what this does, or would like to learn more about data manipulation, have a look at our previous course on the **pandas** module. In essence, whatever resides in the square brackets [ ... ] corresponds to the variable we want to select, and `flights.month == "Dec"` returns true for `"Dec"` and false for all the rest.
 
 If you run `flights_dec`, you'll see that it only includes December's statistics
 
@@ -321,14 +324,14 @@ A full list of parameters which can be set using `.set` are available [here](htt
 We can also change the legend title. To do so, we'll need to access the legend that is stored in our `flights_plot` variable and change its title. We can do that by
 
 1. Accessing the legend with `flights_plot._legend`
-2. Changing the title by adding `.set_title("Month"`
+2. Changing the title by adding `.set_title("Month")`
 
 All together, with our previous code, this reads
 
 ``` python
 flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
-flights_plot._legend.set_title("Month")
+flights_plot._legend.set_title("Month")  # <-- Our new line
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208798645-995bdcb6-0174-4703-84af-9feabc9cfe12.png)
@@ -349,7 +352,7 @@ flights_plot._legend.set_title("Month")
 
 Notice that our graph now has a background with gridlines.
 
-> `sns.set_theme() is global and will affect all seaborn and matplotlib plots produced
+> `sns.set_theme()` is global and will affect all seaborn and matplotlib plots produced
 
 Let's examine some of the different arguments available
 
@@ -422,7 +425,22 @@ There are two ways that seaborn could produce a plot through matplotlib. After i
 
 Figure level plots interact directly with the figure, using a seaborn method that doesn't quite align with normal matplotlib plotting. Since it manipulates the canvas, it means that individual plots have easier customisation, such as legend position and multiple plots. These are the plots we have made so far.
 
+The three figure level plotting functions are
+
+- `sns.relplot( ... ` for relational plots like scatter or line graphs.
+- `sns.displot( ... ` for distributions like histograms.
+- `sns.catplot( ... ` for categorical plots, like bar graphs and boxplots.
+
+All seaborn plots reside within one of those three functions, specified by the `kind = ` parameter.
+
 Axes level plots interact directly with the drawn axes on a figure produced by matplotlib. Since they draw onto the axis, they cannot edit anything on the rest of the canvas. They interact easier with matplotlib and are marginally simpler to produce, but offer less simple customisability. They're most useful for complex figures which combine many different plots onto a single axes object, or when integration with matplotlib is particularly important.
+
+Axes level plots include
+- `sns.lineplot( ... `
+- `sns.boxplot( ... `
+- `sns.scatterplot( ... `
+- `sns.lmplot( ... `
+- etc.
 
 ## Saving your work
 
