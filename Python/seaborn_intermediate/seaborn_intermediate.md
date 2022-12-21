@@ -1,15 +1,5 @@
 # Intermediate data visualisation in python with seaborn
 
-Features to include
-
-- Facets
-- Regressions
-- More exotic graph types
-- Geospatial data
-
-
-***Introduction***
-
 This session takes an intermediate look at data visualisation in python with the package seaborn. If you haven't completed [the introductory session](https://github.com/camwest5/technology-training/blob/ef4ed737c36d975cffd7672ee3a8ba3c7fcb6853/Python/seaborn_intro/seaborn_intro.md), it is strongly advised you work through that material first, as the fundamentals of plotting with seaborn are covered there. This session continues from the foundation built in the introductory session and explores different, more specific forms of visualisation, using facets, regressions and other plotting types.
 
 ## Setup
