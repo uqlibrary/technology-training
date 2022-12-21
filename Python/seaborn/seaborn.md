@@ -1,8 +1,8 @@
 # Python data visualisation with seaborn
 
-***Introduction***
+## Introduction and Setup
 
-## Setup
+
 
 The easiest way to use Python 3, seaborn and Spyder is to [install the Anaconda Distribution](https://www.anaconda.com/products/distribution), a data science platform for Windows, Linux and macOS.
 
@@ -74,33 +74,49 @@ We can visualise different aspects of this data, and we will have different opti
 
 ## Plotting
 
-Before we begin, let's just quickly examine how the seaborn syntax works. Stored in the library are many functions like `lineplot()`, `boxplot()`, `scatterplot()` etc. which, when run with the correct inputs, which produce the plot that their name indicates. In general, most plots work as follows:
+Before we begin, let's just quickly examine how the seaborn syntax works. There are two ways of plotting that seaborn offers: *figure-level* and *axes-level*. At the end we'll explore the differences in much greater depth, but here's a small summary.
+
+Figure level plots interact with the *figure*, which is in essence the canvas or white space on which everything else is drawn. There are three functions for figure level plots
+
+1. `sns.relplot( ... ` for relational plots like scatter or line graphs.
+2. `sns.displot( ...` for distributions like histograms.
+3. `sns.catplot( ...` for categorical plots, like bar graphs and boxplots.
+
+Axes level plots interact with the *axes*, which is in essence the space allocated on the canvas for the actual plot. There are many axes level functions, such as `sns.lineplot( ...`, `sns.boxplot( ...`,  `sns.scatterplot( ...`. We won't make use of these, but we will examine them near the end. The diagram below summarises how the figure and axes level plots connect.
+
+![image](https://user-images.githubusercontent.com/118239146/208792174-ff4ec064-ad30-47ff-99b4-45afd4bd7c63.png)
+
+
+The syntax for most plots is as follows:
 
 ``` python
-sns.plotfunction(data = <dataset>, x = <variable>, y = <variabale>, ... )
+sns.plotfunction(data = <dataset>, x = <variable>, y = <variabale>, kind = <plottype>, ... )
 ```
+> Note that the argument `kind = ` is only necessary for *figure level plots*. At the end, we'll look into greater depth at the differences between *figure* and *axes* level plots.
 
 In essence, the steps are
 1. Direct python to the seaborn library with `sns.`
 2. Call the chosen plotting function, e.g. `sns.lineplot(`, `sns.boxplot(` etc.
 3. Input the dataset, `sns.plotfunction(data = <dataset>`
-4. Choose the variable(s), `sns.plotfunction(data = <dataset>, x = "<variable>", y = "<variabale>",`
-5. Customise colours, sizes, shapes, all other features, with more arguments `sns.plotfunction(data = <dataset>, x = <variable>, y = <variabale>, ... )`
+4. Choose the variable(s), `sns.plotfunction(data = <dataset>, x = "<variable>", y = "<variable>",`
+5. Specify your plot type (if figure level), `sns.plotfunction(data = <dataset>, x = "<variable>", y = "<variable>", kind = <plottype>,`
+6. Customise colours, sizes, shapes, all other features, with more arguments `sns.plotfunction(data = <dataset>, x = <variable>, y = <variabale>, kind = <plottype>, ... )`
 
 ### Bar and Count Plots
 
-Let's try this now with one of the simplest plots possible: `sns.countplot()`. This is a bar chart, with one categorical variable on the x-axis and a count of the number of times they occur on the y-axis. Let's examine the **day** variable. The steps are:
+Let's try this now with one of the simplest plots possible: `sns.catplot()` with `kind = "count"`. This is a bar chart, with one categorical variable on the x-axis and a count of the number of times they occur on the y-axis. Let's examine the **day** variable. The steps are:
 
 1. Direct python to seaborn: `sns.`
-2. Call our plotting function: `sns.countplot(`
-3. Input our data: `sns.countplot(data = tips`
-4. Choose our variable(s): `sns.countplot(data = tips, x = "day")`
+2. Call our plotting function: `sns.catplot(`
+3. Input our data: `sns.catplot(data = tips`
+4. Choose our variable(s): `sns.catplot(data = tips, x = "day"`
+5. Choose our plot type: `sns.catplot(data = tips, x = "day", kind = "count")`
 
 ``` python
-sns.countplot(data = tips, x = "day")
+sns.catplot(data = tips, x = "day", kind = "count")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207475961-f6d9a545-f772-4030-af32-3765085272f5.png)
+![image](https://user-images.githubusercontent.com/118239146/208792365-400f2764-da02-4099-bc88-d5cb49551a32.png)
 
 There it is! It looks like Friday is their quietest day.
 
@@ -109,28 +125,28 @@ There are a few ways we can add more information to bar plots. One common way is
 To produce a grouped plot by introducing the new variable we'll need to specify a way of identifying this variable, since both axes are already in use. A great tool is to group by *colour*, which we can do by specifying a variable to the argument `hue = `.
 
 ``` python
-sns.countplot(data = tips, x = "day", hue = "sex")
+sns.catplot(data = tips, x = "day", kind = "count", hue = "sex")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207477038-eaa3dc93-9894-465a-80b8-389699c6646f.png)
+![image](https://user-images.githubusercontent.com/118239146/208792423-8777cd70-2b65-48b4-b997-e0064c1ab333.png)
 
-`sns.countplot()` provides a simple and efficient way of producing a bar plot when the y-axis is the frequency of a variable, however, it is restricted to these limitations. Often, it is desirable to display a different variable on the y-axis, and for this, seaborn offers the `sns.barplot()` function.
+`kind = "count"` provides a simple and efficient way of producing a bar plot when the y-axis is the frequency of a variable, however, it is restricted to these limitations. Often, it is desirable to display a different variable on the y-axis, and for this, seaborn offers the `kind = "bar"` type.
 
-The `sns.barplot()` function requires two variables, one categorical and one numerical. Let's compare our variables **day** and **total bill**. This time, we need to include the `y = ` argument too.
+The `kind = "bar"` argument needs our `sns.catplot()` function to have two variables, one categorical and one numerical. Let's compare our variables **day** and **total bill**. This time, we need to include the `y = ` argument too.
 
 ```python
-sns.barplot(data = tips, x = "day", y = "total_bill")
+sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207478554-0e1846bb-cd47-4d73-b9b1-7703b23b84ce.png)
+![image](https://user-images.githubusercontent.com/118239146/208792601-49cee96f-49fd-4b21-9f9d-9bb787e01219.png)
 
 Notice that seaborn has automatically taken the average **total bill** for each day of the week, and displayed confidence intervals too (the black lines). By inputting the variable **total bill**, seaborn recieves 244 data to plot, but can only plot 4 bars, so it has to aggregate them somehow. By default it takes the mean, however, the method can be specified with the `estimator = ` argument. For example, we could take the *sum*, displaying the total they earned each day.
 
 ```python
-sns.barplot(data = tips, x = "day", y = "total_bill", estimator = sum)
+sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", estimator = sum)
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207479800-7d0c5b7e-ef61-42ab-add0-2df7a5b325ce.png)
+![image](https://user-images.githubusercontent.com/118239146/208792588-8af0ba47-241a-4560-ad6b-924f5a7315a8.png)
 
 > Specifically, the input for `estimator = ` should be a function that seaborn can apply to each variable. Others include `min`, `max`, `median`, etc., and there are lots include in the mathematics module `numpy`, which should be imported as `import numpy as np`
 
@@ -142,62 +158,64 @@ The errorbars aren't so helpful here, so let's remove them. There are two ways t
 If you're not sure, try both and see which one works. Let's also group by our variable **smoker**.
 
 ``` python
-sns.barplot(data = tips, x = "day", y = "total_bill", hue = "smoker", estimator = sum, ci = 0) # Prior to v0.12
-sns.barplot(data = tips, x = "day", y = "total_bill", hue = "smoker", estimator = sum, errorbar = None) # v0.12 or later
+sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", hue = "smoker", estimator = sum, ci = 0) # Prior to v0.12
+sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", hue = "smoker", estimator = sum, errorbar = None) # v0.12 or later
 ```
+
+![image](https://user-images.githubusercontent.com/118239146/208792695-86a3ae84-1738-4143-b725-4f67f18e076b.png)
 
 ### Scatter plots
 
-Now, let's look at scatter plots. Perhaps the most common and versatile, these take two numerical variables and are called by the function `sns.scatterplot`. 
-> There is also a variation, using the function `sns.stripplot()`, which takes one categorical and one numerical variable, but for now we will just examine scatter plots.
+Now, let's look at scatter plots. Perhaps the most common and versatile, these take two numerical variables and are called by the function `sns.relplot()` with `kind = "scatter"`. 
+> There is also a variation, using the function `kind = "strip"`, which takes one categorical and one numerical variable, but for now we will just examine scatter plots.
 
 This time, let's compare **total bill** and **tip** to see if there might be a relationship between them.
 
 ```python
-sns.scatterplot(data = tips, x = "total_bill", y = "tip")
+sns.relplot(data = tips, x = "total_bill", y = "tip", kind = "scatter")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207483060-50446354-8e26-46ce-892b-29a7c46bd80f.png)
+![image](https://user-images.githubusercontent.com/118239146/208792911-affb90bd-d1ee-4e1b-8585-0cbe9867be22.png)
 
 Clear correlation looks a little dubious, but there might be a general trend. Like before, we can categorise by colour using `hue = `. Let's use our **time** category.
 
 ```python
-sns.scatterplot(data = tips, x = "total_bill", y = "tip", hue = "time")
+sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "time", kind = "scatter")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207484131-1af71bfe-3faf-4881-8889-cef3eea2fd7a.png)
+![image](https://user-images.githubusercontent.com/118239146/208792986-9115757e-8a78-49da-8da1-dc1adfa20cfe.png)
 
 Since each data point is plotted on the graph, each can be given the colour directly. seaborn recognises these as categorical variables and assigns corresponding colours (blue and orange are good for a discrete variable). Let's see what happens when we instead use **size**.
 
 ```python
-sns.scatterplot(data = tips, x = "total_bill", y = "tip", hue = "size")
+sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", kind = "scatter")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207484781-151635b1-b2f2-43d1-b30a-d44bda172808.png)
+![image](https://user-images.githubusercontent.com/118239146/208793039-67a229df-42e5-4c7d-a7e1-0f8742cc82b5.png)
 
 Here, seaborn chooses a different colour palette, one which suits ordered data. It is important to choose a colour palette that matches your data. We can do that with the `palette = ` argument. One of the [seaborn tutorials](https://seaborn.pydata.org/tutorial/color_palettes.html#palette-tutorial) offers a list of available palettes and some guidance on which ones to choose. Let's use *flare*.
 
 ``` python
-sns.scatterplot(data = tips, x = "total_bill", y = "tip", hue = "size", palette = "flare")
+sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", palette = "flare", kind = "scatter")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207486382-143a24dd-a237-4e28-b374-c6dfc66fa0de.png)
+![image](https://user-images.githubusercontent.com/118239146/208793115-9643aadb-fcc8-4b95-8354-a221bfc0ad84.png)
 
 Instead of using colour, there is also the possibility of altering the size of the markers, using `size = `. Let's see what happens if we use size instead of colour.
 
 ``` python
-sns.scatterplot(data = tips, x = "total_bill", y = "tip", size = "size")
+sns.relplot(data = tips, x = "total_bill", y = "tip", size = "size", kind = "scatter")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207486820-e3eba706-85b2-4ed5-b34c-a6f1bc68bd25.png)
+![image](https://user-images.githubusercontent.com/118239146/208793160-82c5eea4-c814-4c74-b4f6-1489d01d907f.png)
 
 While each point has been grouped by size, it isn't a very clear choice for this plot. In general, size doesn't work particularly well when there are lots of points. We could also group by marker style, using `style = `. Let's use colour to group by **size** and marker to group by **sex**.
 
 ``` python
-sns.scatterplot(data = tips, x = "total_bill", y = "tip", hue = "size", style = "sex", palette = "flare")
+sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", style = "sex", palette = "flare", kind = "scatter")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207487270-0f43e3ee-0558-42ec-8174-fc4549c6c783.png)
+![image](https://user-images.githubusercontent.com/118239146/208793213-bb9e1fe8-c187-4746-b610-f9209d40eac2.png)
 
 Here, the marker style has been changed for the variable **sex**. Again, there's probably too much information here for good visualisation, so making good, tactful use of `hue = `, `size = ` and `style = ` is very important.
 
@@ -217,15 +235,17 @@ flights
 
 ![image](https://user-images.githubusercontent.com/118239146/207772174-f57f083b-d860-4448-bf3f-4925deab8efa.png)
 
-Here, we can see that there are monthly passenger numbers from Jan 1949 to Dec 1960. Let's see what happens if we assign year to the x-axis and passengers to the y-axis
+Here, we can see that there are monthly passenger numbers from Jan 1949 to Dec 1960. Line plots are another type of relational plot, so we again want to use `sns.relplot()`, this time with `kind = "line"`. Let's see what happens if we assign year to the x-axis and passengers to the y-axis
 
 ``` python
-sns.lineplot(data = flights, x = "year", y = "passengers")
+sns.relplot(data = flights, x = "year", y = "passengers", kind = "line")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207772491-305e5fc1-ac3f-4d27-b4f2-3ca024be561a.png)
+![image](https://user-images.githubusercontent.com/118239146/208793359-57c0801c-b78d-4350-ae69-6bd68f6ccca6.png)
 
-Great! Clearly, passenger numbers increased steadily during the 50s. But hold on, our data has a different value for every month. What's going on? Well, seaborn recognises that each year has 12 entries, and aggregates them. By default, it takes the mean, but like before we can specify the method we want to use with the `estimator = ` argument. Most statistical methods require the `numpy` module. After `import numpy as np`, the functions can be called, such as `np.median`, `np.mean`. For now, let's just leave it as the mean.
+Great! Clearly, passenger numbers increased steadily during the 50s. But hold on, our data has a different value for every month. What's going on? Well, seaborn recognises that each year has 12 entries, and aggregates them. By default, it takes the mean, but like before we can specify the method we want to use with the `estimator = ` argument. 
+
+> Most statistical methods require the `numpy` module. After `import numpy as np`, the functions can be called, such as `np.median`, `np.mean`. For now, let's just leave it as the mean.
 
 You'll also notice a faint blue shaded zone - this is the error/confidence interval. As with before, this can be adjusted using either
 
@@ -247,535 +267,161 @@ If you run `flights_dec`, you'll see that it only includes December's statistics
 We can plot this data too, replacing the `data = ` argument:
 
 ``` python
-sns.lineplot(data = flights_dec, x = "year", y = "passengers")
+sns.relplot(data = flights_dec, x = "year", y = "passengers", kind = "line")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/207774450-58acbdd8-fa46-45ab-851a-5ede79480faa.png)
+![image](https://user-images.githubusercontent.com/118239146/208793397-a9207dc9-742f-4d51-9e44-2b58858d7676.png)
 
-Now, we see that seaborn has removed the confidence interval because it hasn't had to do any statistical aggregation - every data point is plotted. Let's add a new month, June, to compare.
+Now, we see that seaborn has removed the confidence interval because it hasn't had to do any statistical aggregation - every data point is plotted. What if we wanted to include multiple months? Well, let's look at our original dataset, grouping each month by `hue = `
 
 ``` python
-flights_jun = flights[flights.month == "Jun"]
-
-sns.lineplot(data = flights_jun, x = "year", y = "passengers")
-sns.lineplot(data = flights_dec, x = "year", y = "passengers")
+sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
 ```
-> We have to run both lineplots at the same time if we want both lines to appear on the same plot.
 
-![image](https://user-images.githubusercontent.com/118239146/207774784-82a396f8-4d73-4579-ba36-10e4ba714b9d.png)
+![image](https://user-images.githubusercontent.com/118239146/208793439-c2358bb1-94e6-416a-822a-519a74df79fb.png)
 
-Let's add a legend too
+This looks a little too crowded because we have so many months, but we can still make some interesting observations. It looks like the middle of the year (cooler colours) sees consistantly more passengers than the start/end of the year (warmer colours).
 
-```
-sns.
-               _________________________________________________________________________________________________________________________________
+## Customisation
 
+We may want to customise of the features on our plot, such as axis labels, legend, tick marks and scale.
 
+### Axis labels and titles
 
-
-To begin with, let's use the aptly named `plot()` function:
+There are two ways to change axis labels. Firstly, notice that all our labels until now have been the name of the variable we feed in, so if we change the variable names, the plot will naturally follow. If we don't want to adjust the variables, though, we can make use of the `set()` function to set our various preferences. Firstly, we need to assign our plot to a variable. Let's use the flights plot we just produced.
 
 ``` python
-plt.plot()
+flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/204414576-5047bd1b-83ad-4132-b51d-052ee2a37918.png)
-
-Here, we gain a small insight into what `plot()` does - it produces a figure (the canvas/area) and axes. If we want to include anything else, we'll need to include it as arguments inside the brackets. Let's plot some basic data in the function
-
-| days | sunshine (h) |
-|---|---|
-| 0 | 6 | 
-| 1 | 4 | 
-| 2 | 8 | 
-| 3 | 5 | 
-
-by assigning it to variable as follows
-
-``` python
-days = [0,1,2,3]
-sunshine = [6,4,8,5]
-plt.plot(days, sunshine)
-```
-![image](https://user-images.githubusercontent.com/118239146/204417297-291d7d2e-7e10-450a-aaaf-e5c4ae0016f3.png)
-
-> We could have also done this simply by placing the lists into the function, `plt.plot([0,1,2,3],[6,4,8,5])`
-
-Examining our figure, we see that *days* has been plotted on the x-axis and *sunshine* on the y-axis. This is because plot identifies the first argument as x-values and the second as y-values.
-``` python
-plt.plot(x, y, ...
-```
-> If only put one set of data in, it will be plotted on the y-axis at x = 0, 1, 2, ...
-
-### Formatting
-
-#### Colour and style
-
-Let's look at some basic formatting. We can change the colour and style of our plotted line **within** the plot function as an argument after the data.
-
-``` python
-plt.plot(days, sunshine, 'r--')
-```
-![image](https://user-images.githubusercontent.com/118239146/204424300-a85fece6-1705-4074-ba4a-b535eda666db.png)
-
-Here's how the formatting argument works.
-1. It has to be a string, so we need to place everything inside quotation marks `' '`
-2. The colour of the line is determined by letter, e.g. r = red, b = blue, g = green etc.
-3. The style of the line is determined by a symbol or letter, e.g. -- = dashed, o = circle, * = star etc.
-
-> To see a longer list of the colours and styles availble, type `help(plt.plot)` and scroll down.
-
-#### Other keywords
-
-There are also other arguments **within** the plot function that change the formatting of our line. These need to be called, and can also be found after running `help(plt.plot)` under `**kwargs` (keyword arguments). For example
-
-``` python
-plt.plot(days, sunshine, 'r--', linewidth = 2)
-```
-
-gives a thicker line, and
-
-``` python
-plt.plot(days, sunshine, 'ro', fillstyle = 'none')
-```
-
-gives hollow (as opposed to filled in) circles.
-
-#### Other features
-
-We can also format other aspects of our axes and figure with features like labels, a title and a legend. These are done **outside** `plt.plot` with other functions.
-
-##### Labels
-Axis labels and a title can be specified with the functions
+This assigns our plot to the variable `flights_plot`. If you look in variable explorer, it should be there as a `FacetGrid` object (this is how seaborn uses figures). Now, we want to assign the labels. Let's capitalise the current labels manually with the following code
 
 ```python
-plt.xlabel('days')
-plt.ylabel('sunshine (h)')
-plt.title('Hours of sunshine per day')
+flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot.set(xlabel = "Year", ylabel = "Passengers")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/204429698-a3157bd5-2c0b-4bed-a57a-e6a10a3914e3.png)
+> Both lines must be run **at the same time**
 
-These should be placed **after** our previous `plt.plot` code and will produce a plot with these features
-> When running multiple functions for a single plot, they **must** be run at the same time. To do this, select **all** the code to be run and press F9.
+![image](https://user-images.githubusercontent.com/118239146/208797206-4819c7b0-440d-4829-8eff-3312e5a73988.png)
 
-##### Legend
+There we go - our axes have been renamed. Now, let's also include a title. Note that often figures are captioned in the text they are inserted into (such as a journal article) which means they do not require a title like this.
 
-A legend can be similarly introduced, after our `plt.plot` function, as follows.
-
-``` python
-plt.legend(['Interpolated data'])
-```
-
-![image](https://user-images.githubusercontent.com/118239146/204429796-22cee710-2618-4c56-bd73-6796adeb239e.png)
-
-Notice that this is similar to the previous features, however, our string is within square brackets making it a list. This is because `plt.legend` might need to have multiple labels for other lines, so it expects a list. We can choose the position of our legend with the argument `loc = ' '` and enter the position between the quotation marks. For example,
+To include a title, we simply include `title = ` inside our `flights_plot.set(` function.
 
 ```python
-plt.legend(['Interpolated data'], loc = 'lower right')
+flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/204429845-e0be447a-c1a9-45ce-8c19-c07d8091069a.png)
+![image](https://user-images.githubusercontent.com/118239146/208797348-b2a78825-9ab2-400b-a30b-3ac98d052614.png)
 
-A full list of positions can be found under `help(plt.legend)`
+A full list of parameters which can be set using `.set` are available [here](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set.html), which is the matplotlib documentation for the `.set()` command, since this is what seaborn is using.
 
-##### Axes
+We can also change the legend title. To do so, we'll need to access the legend that is stored in our `flights_plot` variable and change its title. We can do that by
 
-The size of the axes is automatically determined by `plt.plot`, but we can manually override that with the `plt.axis()` function. Inside the function we need to put the dimensions of the axes in the format `plt.axis([x_min, x_max, y_min, y_max])`. Let's change ours to go from 0 to 5 on the x-axis and 0-10 on the y-axis.
+1. Accessing the legend with `flights_plot._legend`
+2. Changing the title by adding `.set_title("Month"`
+
+All together, with our previous code, this reads
 
 ``` python
-plt.axis([0, 5, 0, 10])
+flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
+flights_plot._legend.set_title("Month")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/204430360-772f689d-3c3d-4868-a8bd-fdaa4cfbb6f2.png)
+![image](https://user-images.githubusercontent.com/118239146/208798645-995bdcb6-0174-4703-84af-9feabc9cfe12.png)
 
-## Plot types
+### Themes
 
-Now that we've looked at the fundamentals of plotting with matplotlib, let's explore the different visualisation options availble. We're going to make use of the `pandas` module which we looked at in our [data transformation guide](https://github.com/uqlibrary/technology-training/blob/a0a1bdf568fa88dd282356043751b04186ce29ae/Python/pandas/pandas.md). This will allow us to import some real data which we can visualise in different ways.
-
-### Importing `pandas` and the data
-
-First, import the `pandas` module, similarly to how we imported `matplotlib.pyplot`. You might want to put this near the top of your code.
-
-``` python
-import pandas as pd
-```
-
-As usual, we use `pd` as the standard nickname for `pandas`.
-
-Next, we'll import our data. In this session our data comes from https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv, which includes interesting statistics like population and GDP about most countries over time. It's called gapminder.
-
-To import it directly, we run
-
-``` python
-df_raw = pd.read_csv('https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv')
-```
-
-If you look in *Variable Explorer*, you should now see a new variable `gapminder`, with type `DataFrame` and size `(1704, 6)`. `gapminder` is now the variable which stores our data. To get a sense of what this data looks like, simply run
-
-``` python
-df_raw
-```
-
-![image](https://user-images.githubusercontent.com/118239146/205763808-9505a434-adf2-41a4-9008-aaefc9127e6e.png)
-
-As you can see, there are six columns (variables)
-
-1. `country`
-2. `year`
-3. `pop` (population)
-4. `continent`
-5. `lifeExp` (life expentancy)
-6. `gdpPercap` (GDP per capita)
-
-with 1703 rows.
-
-We can visualise different aspects of this data, and we will have different options depending on the types of variables we choose. Data can be categorical or numerical, and ordered or unordered, leading to a variety of visualisation possibilities. If you would like to explore this more, check out [From data to Viz](https://www.data-to-viz.com/), a tool which helps you to find the best option.
-
-Finally, let's copy the data into a new variable so that we can always go back to the original if something goes wrong.
-
-``` python
-df = df_raw
-```
-### Scatter Plot
-
-A common visualisation is the scatter plot. The scatter plot takes two numerical variables and plots them on the x- and y-axes respectively. Let's examine GDP per capita and life expentancy. We can access this data from our dataframe with
+The function `sns.set_theme( ... )` includes a number of aesthetic possibilities for your plotting. First, let's just see what happens when we run it without any arguments, using our plot from before.
 
 ```python
-df['gdpPercap']
-df['lifeExp']
-```
-> Notice that we use square brackets to select specific columns from our dataframes.
+sns.set_theme()
 
-To plot them, we'll use the function `plt.scatter` as follows.
+flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
+flights_plot._legend.set_title("Month")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/208799969-d422da48-03d3-4d44-88d7-58cb374442ef.png)
+
+Notice that our graph now has a background with gridlines.
+
+> `sns.set_theme() is global and will affect all seaborn and matplotlib plots produced
+
+Let's examine some of the different arguments available
+
+#### `sns.set_theme(context = "scaling", ... )`
+
+The first parameter is `context = `, which defines the scaling of the graph. Here, you can either specify your own parameters in a `dict` (advanced) or choose from one of four presets
+
+- `paper`
+- `notebook`
+- `talk`
+- `poster`
+
+> The default is always `notebook`
+
+Let's see what happens if we choose `paper`
 
 ``` python
-plt.scatter(df['gdpPercap'],df['lifeExp'])
+sns.set_theme(context = "paper")
+
+flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
+flights_plot._legend.set_title("Month")
 ```
 
-As with before, let's add some labels. Don't forget to run all the plot code at the same time by selecting it all before presing F9.
+![image](https://user-images.githubusercontent.com/118239146/208799766-544cb451-6bee-4ab4-8665-23d551c2f665.png)
+
+Notice that all the text is smaller, suited for a journal article. `talk` and `poster` both increase the scale, with poster being the largest.
+  
+#### `sns.set_theme(style = "style choice", ... )`
+
+Next we have `style = `, which defines the background colour and gridline choices. Again, it is possible to specify your own parameters in a `dict` (advanced), but there are also five presets available
+
+- `darkgrid`
+- `whitegrid`
+- `dark`
+- `white`
+- `ticks`
+
+Let's choose `whitegrid`
 
 ``` python
-plt.xlabel('GDP per capita (USD)')
-plt.ylabel('Life Expectancy (years)')
+sns.set_theme(style = "whitegrid")
+
+flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
+flights_plot._legend.set_title("Month")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/204979072-70a3a28b-37ec-441b-be96-149e112235d1.png)
+![image](https://user-images.githubusercontent.com/118239146/208800930-e0fca77f-fd59-4e32-be2f-03d10ed26c70.png)
 
-There is a lot of data there, so most points are overlapping. Let's change our markers from blue circles to black dots. Unlike with `plt.plot`, we can't simply type `'k.'` afterwards, as `plt.scatter` is expecting different arguments. Instead, we need to use `c = 'k'` for colour (k (key) = black) and `marker = 'k.'`. Let's also use `s = 3` to make them smaller.
+Here, the background has become white and gridlines are still present.
 
-```python
-plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = 'k', marker = '.')
-plt.xlabel('GDP per capita (USD)')
-plt.ylabel('Life Expectancy (years)')
-```
+#### `sns.set_theme(palette = "palette choice", ... )`
 
-![image](https://user-images.githubusercontent.com/118239146/204980440-54447664-6d27-44f0-8237-bdffffe80193.png)
+Here we have `palette = `, which we used before on our scatterplot. As mentioned earlier, it is important to choose a colour palette that corresponds to the data choice. There are [many options]([https://seaborn.pydata.org/generated/seaborn.color_palette.html#seaborn.color_palette](https://seaborn.pydata.org/tutorial/color_palettes.html#palette-tutorial)) available. However, since we are using a colour in our plotting function, it will override the general setting, so we won't be able to see any difference with the flight data we have been using.
 
-Until this point, we could have just used `plt.plot` and achieved the same outcome. However, `plt.scatter` allows us to utilise color and size of the markers to communicate more information. Let's use colour to represent a third variable, like year. To group by year, we tell python to determine the colour based on the year variable, replacing our previous colour argument with `c = df['year']`.
+Finally, there are a [few other options](https://seaborn.pydata.org/generated/seaborn.set_theme.html#seaborn.set_theme) available too, such as `font = ` for the font. 
 
-```python
-plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = df['year'], marker = '.')
-plt.xlabel('GDP per capita (USD)')
-plt.ylabel('Life Expectancy (years)')
-```
+## Behind the scenes
 
-![image](https://user-images.githubusercontent.com/118239146/205767477-dc67a779-5261-4267-9fb6-4fefefb7fdbc.png)
+Now that we've examined a few different plot types, it's delving a little deeper into what seaborn is doing behind the scenes, because it will allow us to have greater control over the visualisations we ultimately create.
 
-Of course, we need to communicate what the colours represent. If our data is numerical and continuous (which time normally is), we can use a colourbar. If we include the line below with our previous plotting code, we produce a scale for our year.
+The module seaborn is built 'on top' of another - matplotlib - which is a popular data and mathematics visualisation module, modelled closely on MATLAB. seaborn actually takes all our commands and produces the plots using matplotlib. This is helpful for two reasons. Firstly, all matplotlib functions will work and apply to seaborn plots, so the modules are compatible (although we won't make use of this). Secondly, the structure of plots is the same, so understanding how seaborn plots are structured is the same as understanding how matplotlib plots are structured.
 
-```python
-plt.colorbar()
-```
-> Note that the American spelling 'color' is required
+Let's examine how seaborn and matplotlib plots are structured. Firstly, what's called a `figure` class is created - essentially, this is like a variable which could contain any image. This is like a canvas for our plot. Inside the `figure` an `axes` object is created - this is like a blank set of axes drawn onto the canvas. It's inside the `axes` object that the plot is produced and customised. 
 
-![image](https://user-images.githubusercontent.com/118239146/205769560-665f2284-70f7-435a-8e7d-3b5fc742cdb1.png)
+There are two ways that seaborn could produce a plot through matplotlib. After interpreting our inputs (the data, variables, other features), seaborn can either pass the information directly into an `axes` object, or interact with the `figure` class (the canvas itself). As you might expect, seaborn offers us both ways.
 
-We don't initially need to pass any arguments into `plt.colorbar` because it automatically applies to our current plot. However, we can specify some properties, like location, orientation, size and label. Let's add a label.
+### Figure vs Axes level plots
 
-``` python
-plt.colorbar(label = 'Year')
-```
+Figure level plots interact directly with the figure, using a seaborn method that doesn't quite align with normal matplotlib plotting. Since it manipulates the canvas, it means that individual plots have easier customisation, such as legend position and multiple plots. These are the plots we have made so far.
 
-![image](https://user-images.githubusercontent.com/118239146/205770607-0caa7309-9cef-4ff9-a434-7e5afb3f7b48.png)
+Axes level plots interact directly with the drawn axes on a figure produced by matplotlib. Since they draw onto the axis, they cannot edit anything on the rest of the canvas. They interact easier with matplotlib and are marginally simpler to produce, but offer less simple customisability. They're most useful for complex figures which combine many different plots onto a single axes object, or when integration with matplotlib is particularly important.
 
-> Some vector graphics viewers (svg and pdf) cause white bars to appear in the colorbar. This is a bug in the viewers. If this occurs, use the following workaround:
-> ``` python
-> cbar = colorbar()
-> cbar.solids.set_edgecolor("face")
-> draw()
-> ```
-
-You may want to use a different colour scheme. This can be chosen by the `cmap = ` argument within the `plt.scatter` function. A list of options are available [here](https://matplotlib.org/stable/gallery/color/colormap_reference.html), let's choose magma
-
-``` python
-plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = df['year'], marker = '.', cmap = 'magma')
-plt.xlabel('GDP per capita (USD)')
-plt.ylabel('Life Expectancy (years)')
-plt.colorbar(label = 'Year')
-```
-
-![image](https://user-images.githubusercontent.com/118239146/205786977-4324c0d0-99fe-48f6-90e9-80f37553f110.png)
-
-We can similarly include our population variable in our plot, changing the *size* of each point. Here, we assign our population variable `df['pop']` to the size argument `s`. Since the population values are so huge, let's also scale them down by a factor of 1000000. All together, our code reads
-
-``` python
-plt.scatter(df['gdpPercap'],df['lifeExp'], s = df['pop']/1000000, c = df['year'], marker = '.', cmap = 'magma')
-plt.xlabel('GDP per capita (USD)')
-plt.ylabel('Life Expectancy (years)')
-plt.colorbar(label = 'Year')
-```
-
-![image](https://user-images.githubusercontent.com/118239146/205787031-f64145fe-4cfc-4742-bac4-bbf489e57b67.png)
-
-As you can see, some points are now much bigger than others, representing the population size. In this case, with so many data points, its not particularly helpful, as it obscures some of the other data. Not all visualisation tools are going to be useful in all cases, and it can be harmful to try display too much in one plot. Often, simpler is more effective. For the next part, let's go back to our previous size argument, `s = 3`.
-
-#### Advanced
-
-Let's look at one final possibility. Often it is useful to group data into categorical groups, like *continent*, rather than numerical ones. We could try doing the same thing
-
-```python
-plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = df['continent'], marker = '.')
-```
-but we end up with the following error:
-
-![image](https://user-images.githubusercontent.com/118239146/205770911-2d822a17-3388-403c-902e-d56d4d755cff.png)
-
-This occurs because the colour argument `c = ` is expecting either a list of colours or a list/array of numbers. Before, when we input year, it could take those numbers and apply them to a scale. For continent, we can't do that. Instead, we'll need to assign a number to each continent. Through `pandas`, we can do this.
-
-1. Specify the data type as *categorical* (`df.dtypes` shows us that continent is an `object` - we actually want it to be `category`)
-2. Assign a unique number to each category using `.codes` (actually, the numbers are already assigned, we're just accessing them)
-3. Assign the colour in the scatterplot to these numbers
-4. Create the label
-
-Firstly, we'll assign the continents to a new variable, changing the datatype to 'category'
-```python
-con = df['continent'].astype('category')
-```
-Next, we can access and assign to a variable a unique list of numbers applied to those categories through
-```python
-numcon = con.cat.codes
-```
-> We can use `cat.` because the datatype is categorical. `cat.codes` accesses the list of indices
-
-We can now group the data by continent
-
-```python
-graph = plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = numcon, marker = '.')
-```
-> Notice that we assigned the plot to a variable, `graph`. This is very important as it allows us to access the colours for the legend.
-
-Finally, we need to create the legend. Let's quickly examine what a legend requires: `plt.legend(*handles*,*labels*, ... )`. The first argument is a list of *handles* - the things to display, like colours, sizes or lines. The second argument is a list of *labels* - the text corresponding to each handle.
-
-To access the handles, we'll use the function `legend_elements()`
-```python
-colours = graph.legend_elements()[0]
-```
-`<your plot>.legend_elements()` produces an array with the *handles* and *labels* which were given to the `plt.scatter` function. We only want the handles because the labels it gives numbers, not continents. We take the zeroth element (handles only) by inserting `[0]` afterwards. Effectively, this is a list of the colours.
-
-For a corresponding list of the continents, we use
-```python
-labels = con.cat.categories
-```
-`cat.categories` operates in the opposite way to `cat.codes` - it takes the numbers and produces the strings. Putting this all together, our legend gets produced with `plt.legend(colours, labels, title = "Continent")`. All up, the code was
-
-```python
-con = df['continent'].astype('category')
-numcon = con.cat.codes
-
-graph = plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = numcon, marker = '.')
-
-colours = graph.legend_elements()[0]
-labels = con.cat.categories
-
-plt.legend(colours,labels,title = "Continent")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/205785213-0232ae6b-a428-40e2-9a70-26fd60f7828f.png)
-
-Finally, it's worth noting that these colours are made to look continuous, but our data is categorical and unordered, so it's unhelpful. We can change our choice of colours with the `cmap` argument. A good choice is in the qualitative sets, let's use 'Accent'
-
-```python
-con = df['continent'].astype('category')
-numcon = con.cat.codes
-
-graph = plt.scatter(df['gdpPercap'],df['lifeExp'], s = 3, c = numcon, marker = '.', cmap = 'Accent')
-
-colours = graph.legend_elements()[0]
-labels = con.cat.categories
-
-plt.legend(colours,labels,title = "Continent")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/205787214-b874bdda-da57-4bef-bba2-e22c07da4676.png)
-
-Don't worry if this felt too advanced - there are some complex functions at work, this definitely isn't the easiest process. Take some time to have a look at what the individual parts of the code are doing.
-
-### Line Plot
-
-Did you notice a trend when we added colour to our scatterplot earlier? It appears that greater life expectancy corresponds to a lighter colour - a later year. If we want to examine the relationship between year and life expectancy more closely, we could use a line plot.
-
-We actually produced one of these before, in the first section. For simplicity, let's start by only considering Australia's life expectancy and seeing what happens. To do this, create a new dataframe which isolates the Australia data
-
-``` python
-df_aus = df[df['country'] == 'Australia']
-```
-
-Let's summarise this briefly
-1. `df['country'] == 'Australia` is a dataframe which has a `False` for all countries except Australia, which it assigns `True`
-2. By putting this inside `df[ ... ]`, we're telling python which data to access. We're effectively saying *No* to all countries except Australia.
-
-If you run `df_aus`, you should see
-
-![image](https://user-images.githubusercontent.com/118239146/206355035-134d4e0e-33d8-4a4d-97a1-ac6d97ece29f.png)
-
-Now, let's plot the year and life expectancy variables with the `plt.plot` function
-
-```python
-plt.plot(df_aus['year'],df_aus['lifeExp'])
-```
-
-![image](https://user-images.githubusercontent.com/118239146/206355453-e98df791-2cae-4c46-ae03-d1c90f6d83dd.png)
-
-It looks like life expectancy increases pretty linearly with year. Notice that there are kinks in the line, easier to see at the beginning. What `plt.plot` does by default is *interpolate* a straight line between each data point. With more data, the line becomes smoother. We would expect this data to be continuous, so we can leave an interpolated line between points. 
-
-Let's give our graph some labels and a title. Don't forget to run these, with `plt.plot`, at the same time.
-``` python
-plt.xlabel('Year')
-plt.ylabel('Life Expectancy (years)')
-plt.title('Life expectancy in Australia since 1950')
-```
-
-![image](https://user-images.githubusercontent.com/118239146/206356085-2d071249-31d2-4447-977a-af056582a9a4.png)
-
-Let's add a few more countries, our close neighbours New Zealand and Indonesia. We could create one dataframe with all three if we liked, but we'd have to isolate them anyway when we plot, so let's just create two new datasets for the two new countries, the same way that we did for Australia
-
-``` python
-df_nzl = df[df['country'] == 'New Zealand']
-df_idn = df[df['country'] == 'Indonesia']
-```
-
-To plot the lines, we can simply replicate what we did above for Australia - `plt.plot(df_aus['year'],df_aus['lifeExp'])` - for the new datasets `df_png` and `df_nzl`. Together, this reads
-
-``` python
-plt.plot(df_aus['year'],df_aus['lifeExp'])
-plt.plot(df_nzl['year'],df_nzl['lifeExp'])
-plt.plot(df_idn['year'],df_idn['lifeExp'])
-```
-
-We can add a title and labels as usual
-
-``` python
-plt.xlabel('Year')
-plt.ylabel('Life Expectancy (years)')
-plt.title('Life expectancy since 1950')
-```
-
-![image](https://user-images.githubusercontent.com/118239146/206358190-d4869c0e-ea22-4ff5-b7d6-4554dbe1623c.png)
-
-We have a problem - which line corresponds to which country? This plot needs a legend. To do this, let's first label our plots and then use the `plt.legend` function. 
-
-Within each plot function, we want to add the argument `plt.plot( ... , label = ' <countryname> ')`. This assigns the label for the legend to each line that we plot. All we need to do then is call the legend function, `plt.legend()`.
-
-``` python
-plt.plot(df_aus['year'],df_aus['lifeExp'], label = 'Australia')
-plt.plot(df_nzl['year'],df_nzl['lifeExp'], label = 'New Zealand')
-plt.plot(df_idn['year'],df_idn['lifeExp'], label = 'Indonesia')
-
-plt.legend()
-
-plt.xlabel('Year')
-plt.ylabel('Life Expectancy (years)')
-plt.title('Life expectancy since 1950')
-```
-
-![image](https://user-images.githubusercontent.com/118239146/206359167-7c1c548c-1794-4181-a16e-dbc854986fbb.png)
-
-> There are four different ways to create a legend:
-> 1. As above, labelling our plots
-> 2. Assigning the plots to variables instead of labelling them: `plt.legend([line1, line2, line3], ['Australia','New Zealand','Indonesia'])`
-> 3. Like 2., but keeping the `label = ` argument in `plt.plot`: `plt.legend([line1, line2, line3])`
-> 4. Like in the introduction, just listing the labels: `plt.legend(['Australia', 'New Zealand', 'Indonesia'])`
->
-> While 4. might look like the simplest, it can cause the most errors and relies on remembering the order of your plots. Thus, 1-3 are advised. 2-3 allow specific lines to be included/excluded and the order they appear to be customised.
-
-Let's move the legend to a different position in the graph for clarity.
-```python
-plt.legend(loc = 'lower right')
-```
-
-Finally, let's include one more line - the global average. This will require the use of the `groupby` function which comes with `pandas`. Let's look at the code and then break it down
-
-```python
-df_globalAvg = df.groupby('year', as_index = False).agg('mean')
-```
-
-
-By combining `groupby('year',` and `agg('mean')`, we group the data by year and take the average for each other column (i.e., average life expentancy in Africa, Asia ...; average population in Africa, Asia ...). `as_index = False` just allows us to access the `year` column later (otherwise it would be the index, which is harder to use).
-
-Now, what we have is a new variable `df_globalAvg` which contains the average of variable for each year, averaged over all countries. To plot it, we'll simply use
-
-``` python
-plt.plot(df_globalAvg['year'], df_globalAvg['lifeExp'], label = "Global Average")
-```
-
-Combining this line with our previous plots, labels and legend, our graph looks like
-
-![image](https://user-images.githubusercontent.com/118239146/206362467-7de1e241-b993-43f0-8adb-6e8f88a9ef43.png)
-
-> If "Global Average" didn't appear in your legend, check that `plt.legend` occurs *after* all `plt.plot` functions. Otherwise, the legend is being created before all the plots have, and it won't include the ones created after it.
-
-We can adjust the colours and styles of the line within the plot function as before, and like with the scatterplot. Let's just change our global average to be a black, dashed, thick line
-
-``` python
-plt.plot(df_globalAvg['year'],df_globalAvg['lifeExp'],'k--', linewidth = 3, label = "Global Average")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/206362910-c41c7cdd-2723-4790-bb60-8efed8550312.png)
-
-
-### Bar Chart
-
-Now, let's look at the simple bar chart. It requires a categorical variable (like continent) and a numerical variable (like population). Firstly, let's simplify our data by just considering the year 2004.
-
-``` python
-df_bar = df[df.year == 2004]
-```
-
-Next, let's apply a `groupby` to summarise our data by continent.
-
-``` python
-df_bar = df_bar.groupby('continent', as_index = False).agg('mean')
-```
-
-This functions identically to the previous groupby in the line plot. Now, let's plot the bar chart. Instead of using `plt.plot`, this time we'll use `plt.bar`.
-
-``` python
-plt.bar(df_bar['continent'], df_bar['pop'])
-```
-
-As with before, let's add some labels and a title. Don't forget to run all the plot code at the same time by selecting it all before presing F9.
-
-``` python
-plt.xlabel('Continent')
-plt.ylabel('Population')
-plt.title('Population per continent in 2007')
-```
-
-![image](https://user-images.githubusercontent.com/118239146/204972798-b2abbd3b-687d-43bc-9bfd-552102109377.png)
-
-Let's include a third variable and create a stacked bar plot. Here, we'll compare the population in 1952 with the population in 2004 for Europe and Americas, with the year on the x-axis. Creating two variables, but this time selecting Europe and Americas,
-
-``` python
-df_bar52 = df[df.year == 1952]
-df_bar07 = df[df.year == 2007]
-```
-
-Next, let's apply the same groupby as before
-
-``` python
-df_bar52 = df_bar52.groupby('continent', as_index = False).agg('mean')
-df_bar07 = df_bar52.groupby('continent', as_index = False).agg('mean')
-```
-
-Finally, we can plot our bar graph. This time, we actually want to plot two graphs, one for 1952 and one for 
+## Conclusion
