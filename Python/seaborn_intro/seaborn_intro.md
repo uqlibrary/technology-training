@@ -1,6 +1,6 @@
 # Introduction to python data visualisation with seaborn
 
-This is an introductory course which delves into data visualisation in python with the **seaborn** module. Beginning with some basic plot types and importing data using **pandas**, different visualisation possibilities are explored. Some customisation and technical details are also looked at near the end.
+This is an intermediate course which delves into data visualisation in python with the **seaborn** module. Beginning with some basic plot types and importing data using **pandas**, different visualisation possibilities are explored. Some customisation and technical details are also looked at near the end.
 
 ## Setup
 
@@ -32,7 +32,7 @@ Working in a script allows us to write code more comfortably, and save a process
 
 ### Introducing and installing seaborn
 
-seaborn is a Python module useful for statistical data visualisation. It is a high-level module built upon another module called matplotlib. Effectively, seaborn is a more user friendly module which uses matplotlib in the background to do all the work. It is also possible to use matplotlib in directly, although it is less intuitive. matplotlib is modelled on MATLAB, so if you have MATLAB experience, then it should be easier to use.
+Seaborn is a Python module useful for statistical data visualisation. It is a high-level module built upon another module called matplotlib. Effectively, seaborn is a more user friendly module which uses matplotlib in the background to do all the work. It is also possible to use matplotlib in directly, although it is less intuitive. Matplotlib is modelled on MATLAB, so if you have MATLAB experience, then it should be easier to use.
 
 To be able to use the functions included in seaborn, we'll need to import it first.
 
@@ -43,7 +43,7 @@ import seaborn as sns
 > `sns` is the usual nickname for the seaborn, and writing out `seaborn. ...` every time we need to use a function gets cumbersome pretty quickly.
 
 ### Importing our data
-To begin with, let's import a dataset to visualise. seaborn has some inbuilt data, we'll use the one called "tips". To import the data, we use the `sns.load_dataset( ... )` as follows:
+To begin with, let's import a dataset to visualise. Seaborn has some inbuilt data, we'll use the one called "tips". To import the data, we use the `sns.load_dataset( ... )` as follows:
 
 ``` python
 tips = sns.load_dataset("tips")
@@ -83,7 +83,7 @@ Figure level plots interact with the *figure*, which is in essence the canvas or
 - `sns.displot( ...` for distributions like histograms.
 - `sns.catplot( ...` for categorical plots, like bar graphs and boxplots.
 
-Axes level plots interact with the *axes*, which is in essence the space allocated on the canvas for the actual plot. There are many axes level functions, such as `sns.lineplot( ...`, `sns.boxplot( ...`,  `sns.scatterplot( ...`. We won't make use of these, but we will examine them near the end. The diagram below summarises how the figure and axes level plots connect.
+Axes level plots interact with the *axes*, which is in essence the space allocated on the canvas for the actual plot. There are many axes level functions, such as `sns.lineplot( ...`, `sns.boxplot( ...`,  `sns.scatterplot( ...`. We won't make use of these, but we will examine them near the end. The diagram below summarises how the figure and axes level plots connect - note that all axes level plots can be produced with one of the three figure level plots.
 
 ![image](https://user-images.githubusercontent.com/118239146/208792174-ff4ec064-ad30-47ff-99b4-45afd4bd7c63.png)
 
@@ -95,7 +95,7 @@ sns.plotfunction(data = <dataset>, x = <variable>, y = <variabale>, kind = <plot
 ```
 > Note that the argument `kind = ` is only necessary for *figure level plots*. At the end, we'll look into greater depth at the differences between *figure* and *axes* level plots.
 
-In essence, the steps are
+The steps are
 1. Direct python to the seaborn library with `sns.`
 2. Call the chosen plotting function, e.g. `sns.relplot(`, `sns.boxplot(` etc.
 3. Input the dataset, `sns.plotfunction(data = <dataset>`
@@ -133,7 +133,7 @@ sns.catplot(data = tips, x = "day", kind = "count", hue = "smoker")
 
 This special type of categorical plot, with type `kind = "count"`, provides a simple and efficient way of producing a bar plot when the y-axis is the frequency of a variable, however, it is restricted to these limitations. Often, it is desirable to display a different variable on the y-axis, and for this, seaborn offers the `kind = "bar"` type.
 
-The `kind = "bar"` argument needs our `sns.catplot()` function to have two variables, one categorical and one numerical. Let's compare our variables **day** and **total bill**. This time, we need to include the `y = ` argument too.
+The `kind = "bar"` argument needs our `sns.catplot()` function to have two variables, one categorical and one numerical. Let's compare our variables **day** and **total bill**. This time, we need to include the `y = ` argument.
 
 ```python
 sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar")
@@ -141,7 +141,7 @@ sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar")
 
 ![image](https://user-images.githubusercontent.com/118239146/208792601-49cee96f-49fd-4b21-9f9d-9bb787e01219.png)
 
-Notice that seaborn has automatically taken the average **total bill** for each day of the week, and displayed confidence intervals too (the black lines). By inputting the variable **total bill**, seaborn recieves 244 data to plot, but can only plot 4 bars, so it has to aggregate them somehow. By default it takes the mean, however, the method can be specified with the `estimator = ` argument. For example, we could take the *sum*, displaying the total they earned each day.
+Notice that seaborn has automatically taken the average **total bill** for each day of the week, and displayed confidence intervals too (the black lines). By inputting the variable **total bill**, seaborn recieves 244 data entries to plot, but can only plot 4 bars, so it has to aggregate them somehow. By default it takes the mean, however, the method can be specified with the `estimator = ` argument. For example, we could take the *sum*, displaying the total they earned each day.
 
 ```python
 sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", estimator = sum)
@@ -149,7 +149,7 @@ sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", estimator = 
 
 ![image](https://user-images.githubusercontent.com/118239146/208792588-8af0ba47-241a-4560-ad6b-924f5a7315a8.png)
 
-> Specifically, the input for `estimator = ` should be a function that seaborn can apply to each variable. Others include `min`, `max`, `median`, etc., and there are lots included in the mathematics module `numpy`, which should be imported as `import numpy as np`
+> Specifically, the input for `estimator = ` should be a function that seaborn can apply to each variable. Others include `min`, `max`, etc., and there are lots included in the mathematics module `numpy`, which should be imported with `import numpy as np`
 
 The errorbars aren't so helpful here, so let's remove them. There are two ways to do this, depending on your version of seaborn:
 
@@ -186,7 +186,7 @@ sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "time", kind = "scat
 
 ![image](https://user-images.githubusercontent.com/118239146/208792986-9115757e-8a78-49da-8da1-dc1adfa20cfe.png)
 
-Since each data point is plotted on the graph, each can be given the colour directly. seaborn recognises these as categorical variables and assigns corresponding colours (blue and orange are good for a discrete variable). Let's see what happens when we instead use **size**.
+Since each data point is plotted on the graph, each can be given the colour directly. Seaborn recognises these as categorical variables and assigns corresponding colours (blue and orange are good for a discrete variable). Let's see what happens when we instead use **size**.
 
 ```python
 sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", kind = "scatter")
@@ -244,14 +244,14 @@ sns.relplot(data = flights, x = "year", y = "passengers", kind = "line")
 
 ![image](https://user-images.githubusercontent.com/118239146/208793359-57c0801c-b78d-4350-ae69-6bd68f6ccca6.png)
 
-Great! Clearly, passenger numbers increased steadily during the 50s. But hold on, our data has a different value for every month. What's going on? Well, seaborn recognises that each year has 12 entries, and aggregates them. By default, it takes the mean, but like before we can specify the method we want to use with the `estimator = ` argument. 
+Great! Clearly, passenger numbers increased steadily during the 50s. But hold on, our data has 12 different values for each year (each month), how does it choose which one to plot? Well, seaborn recognises that each year has multiple entries, and aggregates them. By default, it takes the mean, but like before we can specify the method we want to use with the `estimator = ` argument. 
 
 > Most statistical methods require the `numpy` module. After `import numpy as np`, the functions can be called, such as `np.median`, `np.mean`. For now, let's just leave it as the mean.
 
 You'll also notice a faint blue shaded zone - this is the error/confidence interval. As with before, this can be adjusted using either
 
-1. The `errorbar = ` argument (for versions v0.12+)
-2. The `ci = ` argument (for versions before v0.12)
+- The `errorbar = ` argument (for versions v0.12+)
+- The `ci = ` argument (for versions before v0.12)
 
 The default is a 95% confidence interval.
 
@@ -415,7 +415,7 @@ Finally, there are a [few other options](https://seaborn.pydata.org/generated/se
 
 Now that we've examined a few different plot types, it's delving a little deeper into what seaborn is doing behind the scenes, because it will allow us to have greater control over the visualisations we ultimately create.
 
-The module seaborn is built 'on top' of another - matplotlib - which is a popular data and mathematics visualisation module, modelled closely on MATLAB. seaborn actually takes all our commands and produces the plots using matplotlib. This is helpful for two reasons. Firstly, all matplotlib functions will work and apply to seaborn plots, so the modules are compatible (although we won't make use of this). Secondly, the structure of plots is the same, so understanding how seaborn plots are structured is the same as understanding how matplotlib plots are structured.
+The module seaborn is built 'on top' of another - matplotlib - which is a popular data and mathematics visualisation module, modelled closely on MATLAB. Seaborn actually takes all our commands and produces the plots using matplotlib. This is helpful for two reasons. Firstly, all matplotlib functions will work and apply to seaborn plots, so the modules are compatible (although we won't make use of this). Secondly, the structure of plots is the same, so understanding how seaborn plots are structured is the same as understanding how matplotlib plots are structured.
 
 Let's examine how seaborn and matplotlib plots are structured. Firstly, what's called a `figure` class is created - essentially, this is like a variable which could contain any image. This is like a canvas for our plot. Inside the `figure` an `axes` object is created - this is like a blank set of axes drawn onto the canvas. It's inside the `axes` object that the plot is produced and customised. 
 
