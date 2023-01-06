@@ -166,9 +166,9 @@ df[df.co2 == df.co2.max()]
 
 We use a condition that will be checked against each row, and only the row that contains the maximum value will be returned.
 
-What is this "OWID_WRL" country? It is the whole world. Many datasets have aggregate regions on top of single countries, which is something to keep in mind!
+The maximum co2 value is associated with the whole world. Many datasets have aggregate regions on top of single countries, which is something to keep in mind!
 
-We can also find out that many rows do not have an ISO code at all, by using Spyder's data explorer, or by using two methods stringed together:
+Here, we see that this entry has no ISO code (given as `nan`, *not a number*). We can find out how many rows do not have an ISO code at all by using Spyder's data explorer or by using two methods stringed together:
 
 ``` python
 df.iso_code.isna().sum()
@@ -196,18 +196,11 @@ Again, by using a logical test. But first, check what will be removed:
 df[df.iso_code.isna()].country.unique()
 ```
 
-Now, use both conditions to remove aggregate regions:
+Now to remove aggregate regions:
 
 ``` python
-df = df[(df.iso_code != 'OWID_WRL') & (df.iso_code.notna())]
+df = df[df.iso_code.notna()]
 ```
-
-We use two conditions at once:
-
-1.  we want the ISO code to be *different* to "OWID_WRL";
-2.  we want the ISO code to *not* be a missing value, thanks to the `notna()` method (which does the opposite to `isna()`).
-
-By joining these two conditions with `&`, we only keep the rows that match *both conditions*.
 
 We can now check what actual countries are left in the dataset, with the `unique()` method:
 
