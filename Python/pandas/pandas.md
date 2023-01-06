@@ -161,7 +161,7 @@ df.country.describe()
 Which country does this maximum value belong to? Let's investigate by subsetting the data:
 
 ``` python
-df[df.co2 == max(df.co2)]
+df[df.co2 == df.co2.max()]
 ```
 
 We use a condition that will be checked against each row, and only the row that contains the maximum value will be returned.
