@@ -165,6 +165,27 @@ sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", estimator = 
 
 ![image](https://user-images.githubusercontent.com/118239146/208806623-576581ed-44bf-4781-963f-09755f8f11db.png)
 
+#### Challenge 1:
+
+Can you produce a bar plot which compares the maximum tip size for each day, without error bars, with a bar for each time of day grouped by colour?
+
+> Hint, the variables to consider are `tip`, `day` and `time`, and you can use `max` for the `estimator` argument.
+
+<details>
+  <summary>Solution</summary>
+  
+  The code is
+  
+  ``` python
+  sns.catplot(data = tips, x = "day", y = "tip", hue = "time", kind = "bar", estimator = max, ci = 0)
+  ```
+  
+  And the plot is
+  
+  ![image](https://user-images.githubusercontent.com/118239146/211444368-2fc5981a-a696-46b0-bdb6-15d0dda49e72.png)
+
+</details>
+  
 ### Scatter plots
 
 Now, let's look at scatter plots. Perhaps the most common and versatile, these take two numerical variables and are called by the function `sns.relplot()` with `kind = "scatter"`. 
@@ -210,7 +231,7 @@ sns.relplot(data = tips, x = "total_bill", y = "tip", size = "size", kind = "sca
 
 ![image](https://user-images.githubusercontent.com/118239146/208793160-82c5eea4-c814-4c74-b4f6-1489d01d907f.png)
 
-While each point has been grouped by size, it isn't a very clear choice for this plot. In general, size doesn't work particularly well when there are lots of points. We could also group by marker style, using `style = `. Let's use colour to group by **size** and marker to group by **sex**.
+While each point has been grouped by size, it isn't a very clear choice for this plot. In general, size doesn't work particularly well when there are lots of points. 
 
 ``` python
 sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", style = "sex", palette = "flare", kind = "scatter")
@@ -218,7 +239,27 @@ sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", style = "sex
 
 ![image](https://user-images.githubusercontent.com/118239146/208793213-bb9e1fe8-c187-4746-b610-f9209d40eac2.png)
 
-Here, the marker style has been changed for the variable **sex**. Again, there's probably too much information here for good visualisation, so making good, tactful use of `hue = `, `size = ` and `style = ` is very important.
+
+
+#### Challenge 2
+
+We could also group by marker style, using `style = `. Can you produce a scatter plot using colour to group by **size**, style to group by **smoker** and the viridis palette?
+
+<details>
+  <summary>Solution</summary>  
+  
+  The code is
+  ```python
+  sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", style = "smoker", kind = "scatter", palette = "viridis")
+  ```
+  
+  And the plot is
+  
+  ![image](https://user-images.githubusercontent.com/118239146/211445213-33f3e4c5-6ae1-41fd-b82b-5802b08d14f1.png)
+  
+</details>
+
+Again, there's probably too much information here for good visualisation, so making good, tactful use of `hue = `, `size = ` and `style = ` is very important.
 
 ### Line plots
 
@@ -284,6 +325,26 @@ sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = 
 ![image](https://user-images.githubusercontent.com/118239146/208793439-c2358bb1-94e6-416a-822a-519a74df79fb.png)
 
 This looks a little too crowded because we have so many months, but we can still make some interesting observations. It looks like the middle of the year (cooler colours) sees consistantly more passengers than the start/end of the year (warmer colours).
+
+> Note that we could also use `style = ` and `size = ` as before, this time adjusting the line type (dashed, dotted, etc.) and thickness.
+
+#### Challenge 3
+
+Could you make a line plot which, instead of years, plots month against passengers, using the line thickness to group by year?
+
+<details>
+  <summary>Solution</summary>
+  
+  The code is
+  ```python
+  sns.relplot(data = flights, x = "month", y = "passengers", kind = "line", size = "year")
+  ```
+  
+  And the plot is
+  
+  ![image](https://user-images.githubusercontent.com/118239146/211445975-c394af80-75fa-44f0-ae7d-f620bb676712.png)
+
+</details>
 
 ## Customisation
 
