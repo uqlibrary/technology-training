@@ -114,7 +114,7 @@ Let's try this now with one of the simplest plots possible: `sns.catplot()` with
 5. Choose our plot type: `sns.catplot(data = tips, x = "day", kind = "count")`
 
 ``` python
-sns.catplot(data = tips, x = "day", kind = "count")
+sns.catplot(x = "day", kind = "count", data = tips)
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208792365-400f2764-da02-4099-bc88-d5cb49551a32.png)
@@ -126,7 +126,7 @@ There are a few ways we can add more information to bar plots. One common way is
 To produce a grouped plot by introducing the new variable we'll need to specify a way of identifying this variable, since both axes are already in use. A great tool is to group by *colour*, which we can do by specifying a variable to the argument `hue = `.
 
 ``` python
-sns.catplot(data = tips, x = "day", kind = "count", hue = "smoker")
+sns.catplot(x = "day", kind = "count", hue = "smoker", data = tips)
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208806291-9b7a2943-2ca4-4232-888d-69a15d2e5ef4.png)
@@ -136,7 +136,7 @@ This special type of categorical plot, with type `kind = "count"`, provides a si
 The `kind = "bar"` argument needs our `sns.catplot()` function to have two variables, one categorical and one numerical. Let's compare our variables **day** and **total bill**. This time, we need to include the `y = ` argument.
 
 ```python
-sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar")
+sns.catplot(x = "day", y = "total_bill", data = tips, kind = "bar")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208792601-49cee96f-49fd-4b21-9f9d-9bb787e01219.png)
@@ -144,7 +144,7 @@ sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar")
 Notice that seaborn has automatically taken the average **total bill** for each day of the week, and displayed confidence intervals too (the black lines). By inputting the variable **total bill**, seaborn recieves 244 data entries to plot, but can only plot 4 bars, so it has to aggregate them somehow. By default it takes the mean, however, the method can be specified with the `estimator = ` argument. For example, we could take the *sum*, displaying the total they earned each day.
 
 ```python
-sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", estimator = sum)
+sns.catplot(x = "day", y = "total_bill", data = tips,  estimator = sum, kind = "bar")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208792588-8af0ba47-241a-4560-ad6b-924f5a7315a8.png)
@@ -159,8 +159,8 @@ The errorbars aren't so helpful here, so let's remove them. There are two ways t
 If you're not sure, try both and see which one works.
 
 ``` python
-sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", estimator = sum, ci = 0) # Prior to v0.12
-sns.catplot(data = tips, x = "day", y = "total_bill", kind = "bar", estimator = sum, errorbar = None) # v0.12 or later
+sns.catplot(x = "day", y = "total_bill", data = tips,  estimator = sum, ci = 0, kind = "bar") # Prior to v0.12
+sns.catplot(x = "day", y = "total_bill", data = tips, estimator = sum, errorbar = None, kind = "bar") # v0.12 or later
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208806623-576581ed-44bf-4781-963f-09755f8f11db.png)
@@ -177,7 +177,7 @@ Can you produce a bar plot which compares the maximum tip size for each day, wit
   The code is
   
   ``` python
-  sns.catplot(data = tips, x = "day", y = "tip", hue = "time", kind = "bar", estimator = max, ci = 0)
+  sns.catplot(x = "day", y = "tip", hue = "time", data = tips, estimator = max, ci = 0, kind = "bar")
   ```
   
   And the plot is
@@ -191,10 +191,13 @@ Can you produce a bar plot which compares the maximum tip size for each day, wit
 Now, let's look at scatter plots. Perhaps the most common and versatile, these take two numerical variables and are called by the function `sns.relplot()` with `kind = "scatter"`. 
 > There is also a variation, using the function `kind = "strip"`, which takes one categorical and one numerical variable, but for now we will just examine scatter plots.
 
-This time, let's compare **total bill** and **tip** to see if there might be a relationship between them.
+This time, let's compare **total bill** and **tip** to see if there might be a relationship between them. Also, we're going to include quite a few arguments a bit later on, so to ease visualisation of our code, we can actually write them on separate lines, as long as we **run them all at the same time**.
 
 ```python
-sns.relplot(data = tips, x = "total_bill", y = "tip", kind = "scatter")
+sns.relplot(x = "total_bill", 
+            y = "tip", 
+            data = tips, 
+            kind = "scatter")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208792911-affb90bd-d1ee-4e1b-8585-0cbe9867be22.png)
@@ -210,7 +213,11 @@ sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "time", kind = "scat
 Since each data point is plotted on the graph, each can be given the colour directly. Seaborn recognises these as categorical variables and assigns corresponding colours (blue and orange are good for a discrete variable). Let's see what happens when we instead use **size**.
 
 ```python
-sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", kind = "scatter")
+sns.relplot(x = "total_bill", 
+            y = "tip", 
+            hue = "size", 
+            data = tips, 
+            kind = "scatter")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208793039-67a229df-42e5-4c7d-a7e1-0f8742cc82b5.png)
@@ -218,7 +225,12 @@ sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", kind = "scat
 Here, seaborn chooses a different colour palette, one which suits ordered data. It is important to choose a colour palette that matches your data. We can do that with the `palette = ` argument. One of the [seaborn tutorials](https://seaborn.pydata.org/tutorial/color_palettes.html#palette-tutorial) offers a list of available palettes and some guidance on which ones to choose. Let's use *flare*.
 
 ``` python
-sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", palette = "flare", kind = "scatter")
+sns.relplot(x = "total_bill", 
+            y = "tip", 
+            hue = "size", 
+            data = tips, 
+            kind = "scatter", 
+            palette = "flare")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208793115-9643aadb-fcc8-4b95-8354-a221bfc0ad84.png)
@@ -226,7 +238,11 @@ sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", palette = "f
 Instead of using colour, there is also the possibility of altering the size of the markers, using `size = `. Let's see what happens if we use size instead of colour.
 
 ``` python
-sns.relplot(data = tips, x = "total_bill", y = "tip", size = "size", kind = "scatter")
+sns.relplot(x = "total_bill", 
+            y = "tip", 
+            size = "size", 
+            data = tips, 
+            kind = "scatter")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208793160-82c5eea4-c814-4c74-b4f6-1489d01d907f.png)
@@ -234,7 +250,13 @@ sns.relplot(data = tips, x = "total_bill", y = "tip", size = "size", kind = "sca
 While each point has been grouped by size, it isn't a very clear choice for this plot. In general, size doesn't work particularly well when there are lots of points. 
 
 ``` python
-sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", style = "sex", palette = "flare", kind = "scatter")
+sns.relplot(x = "total_bill", 
+            y = "tip", 
+            hue = "size", 
+            style = "sex", 
+            data = tips, 
+            kind = "scatter", 
+            palette = "flare")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208793213-bb9e1fe8-c187-4746-b610-f9209d40eac2.png)
@@ -250,7 +272,13 @@ We could also group by marker style, using `style = `. Can you produce a scatter
   
   The code is
   ```python
-  sns.relplot(data = tips, x = "total_bill", y = "tip", hue = "size", style = "smoker", kind = "scatter", palette = "viridis")
+  sns.relplot(x = "total_bill", 
+              y = "tip", 
+              hue = "size", 
+              style = "smoker", 
+              data = tips, 
+              kind = "scatter",
+              palette = "viridis")
   ```
   
   And the plot is
@@ -280,7 +308,10 @@ flights
 Here, we can see that there are monthly passenger numbers from Jan 1949 to Dec 1960. Line plots are another type of relational plot, so we again want to use `sns.relplot()`, this time with `kind = "line"`. Let's see what happens if we assign year to the x-axis and passengers to the y-axis
 
 ``` python
-sns.relplot(data = flights, x = "year", y = "passengers", kind = "line")
+sns.relplot(x = "year", 
+            y = "passengers", 
+            data = flights, 
+            kind = "line")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208793359-57c0801c-b78d-4350-ae69-6bd68f6ccca6.png)
@@ -311,7 +342,10 @@ If you run `flights_dec`, you'll see that it only includes December's statistics
 We can plot this data too, replacing the `data = ` argument:
 
 ``` python
-sns.relplot(data = flights_dec, x = "year", y = "passengers", kind = "line")
+sns.relplot(x = "year", 
+            y = "passengers", 
+            data = flights_dec, 
+            kind = "line")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208793397-a9207dc9-742f-4d51-9e44-2b58858d7676.png)
@@ -319,7 +353,11 @@ sns.relplot(data = flights_dec, x = "year", y = "passengers", kind = "line")
 Now, we see that seaborn has removed the confidence interval because it hasn't had to do any statistical aggregation - every data point is plotted. What if we wanted to include multiple months? Well, let's look at our original dataset, grouping each month by `hue = `
 
 ``` python
-sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+sns.relplot(x = "year", 
+            y = "passengers", 
+            hue = "month", 
+            data = flights, 
+            kind = "line")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208793439-c2358bb1-94e6-416a-822a-519a74df79fb.png)
@@ -337,7 +375,11 @@ Could you make a line plot which, instead of years, plots month against passenge
   
   The code is
   ```python
-  sns.relplot(data = flights, x = "month", y = "passengers", kind = "line", size = "year")
+  sns.relplot(x = "month", 
+              y = "passengers", 
+              size = "year", 
+              data = flights, 
+              kind = "line")
   ```
   
   And the plot is
@@ -355,13 +397,22 @@ We may want to customise of the features on our plot, such as axis labels, legen
 There are two ways to change axis labels. Firstly, notice that all our labels until now have been the name of the variable we feed in, so if we change the variable names, the plot will naturally follow. If we don't want to adjust the variables, though, we can make use of the `set()` function to set our various preferences. Firstly, we need to assign our plot to a variable. Let's use the flights plot we just produced.
 
 ``` python
-flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot = sns.relplot(x = "year", 
+                           y = "passengers", 
+                           hue = "month", 
+                           data = flights, 
+                           kind = "line")
 ```
 
 This assigns our plot to the variable `flights_plot`. If you look in variable explorer, it should be there as a `FacetGrid` object (this is how seaborn uses figures). Now, we want to assign the labels. Let's capitalise the current labels manually with the following code
 
 ```python
-flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot = sns.relplot(x = "year", 
+                           y = "passengers", 
+                           hue = "month", 
+                           data = flights, 
+                           kind = "line")
+
 flights_plot.set(xlabel = "Year", ylabel = "Passengers")
 ```
 
@@ -374,7 +425,12 @@ There we go - our axes have been renamed. Now, let's also include a title. Note 
 To include a title, we simply include `title = ` inside our `flights_plot.set(` function.
 
 ```python
-flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot = sns.relplot(x = "year", 
+                           y = "passengers", 
+                           hue = "month", 
+                           data = flights, 
+                           kind = "line")
+                           
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
 ```
 
@@ -390,7 +446,12 @@ We can also change the legend title. To do so, we'll need to access the legend t
 All together, with our previous code, this reads
 
 ``` python
-flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot = sns.relplot(x = "year", 
+                           y = "passengers", 
+                           hue = "month", 
+                           data = flights, 
+                           kind = "line")
+                           
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
 flights_plot._legend.set_title("Month")  # <-- Our new line
 ```
@@ -402,9 +463,14 @@ flights_plot._legend.set_title("Month")  # <-- Our new line
 The function `sns.set_theme( ... )` includes a number of aesthetic possibilities for your plotting. First, let's just see what happens when we run it without any arguments, using our plot from before.
 
 ```python
-sns.set_theme()
+sns.set_theme() # <-- Our new line
 
-flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot = sns.relplot(x = "year", 
+                           y = "passengers", 
+                           hue = "month", 
+                           data = flights, 
+                           kind = "line")
+                           
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
 flights_plot._legend.set_title("Month")
 ```
@@ -433,7 +499,12 @@ Let's see what happens if we choose `paper`
 ``` python
 sns.set_theme(context = "paper")
 
-flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot = sns.relplot(x = "year", 
+                           y = "passengers", 
+                           hue = "month", 
+                           data = flights, 
+                           kind = "line")
+                           
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
 flights_plot._legend.set_title("Month")
 ```
@@ -457,7 +528,12 @@ Let's choose `whitegrid`
 ``` python
 sns.set_theme(style = "whitegrid")
 
-flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot = sns.relplot(x = "year", 
+                           y = "passengers", 
+                           hue = "month", 
+                           data = flights, 
+                           kind = "line")
+                           
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
 flights_plot._legend.set_title("Month")
 ```
@@ -514,7 +590,12 @@ Figures can be saved in one of two ways. Firstly, you can simply right click on 
 ``` python
 sns.set_theme(style = "whitegrid")
 
-flights_plot = sns.relplot(data = flights, x = "year", y = "passengers", hue = "month", kind = "line")
+flights_plot = sns.relplot(x = "year", 
+                           y = "passengers", 
+                           hue = "month", 
+                           data = flights, 
+                           kind = "line")
+                           
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
 flights_plot._legend.set_title("Month")
 
