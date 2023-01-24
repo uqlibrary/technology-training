@@ -103,6 +103,9 @@ The steps are
 5. Specify your plot type (if figure level), `sns.plotfunction(data = <dataset>, x = "<variable>", y = "<variable>", kind = <plottype>,`
 6. Customise colours, sizes, shapes, all other features, with more arguments `sns.plotfunction(data = <dataset>, x = <variable>, y = <variabale>, kind = <plottype>, ... )`
 
+
+> If you're not sure what the best plot to choose is for the data that you have, a really helpful resource is [from Data to Viz](https://www.data-to-viz.com) which breaks everything down into data type, and then the appropriate plots. It then has individual pages for each plot, and what is needed to create those plots, as well as caveats and common mistakes. 
+
 ### Bar and Count Plots
 
 Let's try this now with one of the simplest plots possible: `sns.catplot()` with `kind = "count"`. This is a bar chart, with one categorical variable on the x-axis and a count of the number of times they occur on the y-axis. Let's examine the **day** variable. The steps are:
