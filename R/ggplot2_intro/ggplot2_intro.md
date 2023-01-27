@@ -339,8 +339,8 @@ A trend line can be created with the `geom_smooth()` function:
 
 ``` r
 ggplot(mpg,
-       aes(x = displ,
-           y = hwy)) +
+       aes(displ,
+           hwy)) +
     geom_smooth()
 ```
 
@@ -364,8 +364,8 @@ your function:
 
 ``` r
 ggplot(mpg,
-       aes(x = displ,
-           y = hwy)) +
+       aes(displ,
+           hwy)) +
     geom_smooth(method = "lm")
 ```
 
@@ -380,8 +380,8 @@ combine several layers? We can string them with the `+` operator:
 
 ``` r
 ggplot(mpg,
-       aes(x = displ,
-           y = hwy)) + 
+       aes(displ,
+           hwy)) + 
     geom_point() +
     geom_smooth()
 ```
@@ -400,8 +400,8 @@ the `class` variable to the `colour` aesthetic:
 
 ``` r
 ggplot(mpg,
-       aes(x = displ,
-           y = hwy)) + 
+       aes(displ,
+           hwy)) + 
     geom_point(aes(colour = class)) + 
     geom_smooth()
 ```
@@ -416,8 +416,8 @@ Take the last plot we created:
 
 ``` r
 ggplot(mpg,
-       aes(x = displ,
-           y = hwy)) + 
+       aes(displ,
+           hwy)) + 
     geom_point(aes(colour = class)) + 
     geom_smooth()
 ```
@@ -437,8 +437,8 @@ We just created multiple trendlines with slightly different geometries. When you
 
 ``` r
 p < -ggplot(mpg,
-       aes(x = displ,
-           y = hwy))
+       aes(displ,
+           hwy))
          
 p + geom_smooth()
 ```
