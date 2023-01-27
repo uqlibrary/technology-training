@@ -275,8 +275,9 @@ ggplot(data = mpg,
 ![](ggplot2_intro_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 Notice how the points seem to be aligned on a grid? That’s because the
-data was rounded. If we want to better visualise the density of points,
-we can use the “count” geometry, which makes the dots bigger when data
+data was rounded. 
+
+Another way to display the data is to use the “count” geometry, which makes the dots bigger when data
 points have the same `x` and `y` values:
 
 ``` r
