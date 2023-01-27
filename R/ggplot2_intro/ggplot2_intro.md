@@ -554,9 +554,8 @@ ggplot(economics,
 
 ![](ggplot2_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
-The [early 1980s
-recession](https://en.wikipedia.org/wiki/Early_1980s_recession) now
-seems to have had a more significant impact on unemployment than the
+This visualisation is uysefuk for comparing the impact of the [early 1980s
+recession](https://en.wikipedia.org/wiki/Early_1980s_recession) and the
 [Global Financial
 Crisis](https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%9308)
 of 2007-2008.
