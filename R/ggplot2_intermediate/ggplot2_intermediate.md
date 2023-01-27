@@ -346,7 +346,7 @@ p
 
 ![](ggplot2_intermediate_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
-To zoom in, we might want to change our axis limits by using `ylim()`.
+To zoom in, we might want to change our axis limits by using `xlim()`.
 
 ``` r
 p +
