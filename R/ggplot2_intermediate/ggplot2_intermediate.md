@@ -388,7 +388,7 @@ visualisations, or to `coord_map()` to visualise spatial data.
 ### Interactive plots
 
 The plotly package brings the power of the Plotly javascript library to
-R. Install it with `install.packages(plotly)`, and you’ll then be able
+R. Install it with `install.packages("plotly")`, and you’ll then be able
 to convert a ggplot2 visualisation into an interactive HTML
 visualisation with one single function!
 
