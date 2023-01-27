@@ -519,7 +519,7 @@ ggplot(economics,
 > See how the legend changes depending on the type of data mapped to the
 > `colour` aesthetic? (i.e. categorical vs continuous)
 
-This default “trend line” is not particularly useful. We could make it
+Alternativelly, we could make the trendline
 follow the data more closely by using the `span` argument. The closer to
 0, the closer to the data the smoother will be:
 
