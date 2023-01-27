@@ -138,7 +138,7 @@ Let's create that buffer again.
 * You'll notice the distance is now in metres. For this instance, I want a larger buffer of 50 m.
 * When you click "Run", your buffer should be a good distance away from the original boundary.
 
-Now we can Dissolve those layers together:
+Now we can Dissolve those polygons together:
 
 * Go to `Vector > Geoprocessing Tools > Dissolve
 * Choose "Buffered" as the Input Layer.
