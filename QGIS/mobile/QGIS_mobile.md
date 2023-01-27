@@ -56,7 +56,7 @@ using your UQ credentials.
 * Click the Search button, select 'locality, town or city' and search for "St Lucia" in the "Enter search term" search box and select the first result
 * It will zoom to your selected location then click the newly appeared `Search` button
 * From here you can select from a wide array of images of QLD over many years.
-* Click one of the drop-downs and hover over the options to see where those images are location. Preview the image by clicking View.
+* Click one of the drop-downs and hover over the options to see where those images are located. Preview the image by clicking View.
 * You can then download your desired images by clicking "Download" and selecting TIFF (georeferenced)
 * Move the TIFF file(s) to your project folder, and open them in QGIS
 
