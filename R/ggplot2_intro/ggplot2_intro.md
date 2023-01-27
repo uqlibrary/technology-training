@@ -467,7 +467,7 @@ ggsave(filename = "plots/fuel_efficiency.png")
 ```
 
 This is great to automate the export process for each plot in your
-script, but `ggsave()` also has extra options, like setting the DPI,
+script, but `ggsave()` also has extra options, like setting the resolution or "dots per inch" (DPI),
 which is useful for getting the right resolution for a specific use. For
 example, to export a plot for your presentation:
 
