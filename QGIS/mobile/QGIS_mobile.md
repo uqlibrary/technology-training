@@ -48,7 +48,8 @@ For this tutorial, we are using a DEM sourced from **ELVIS** - Geoscience Austra
 
 ### Aerial Imagery
 
-There are a few places you can aquire aerial photography, today we will look at two sources, one is freely available Government Data from **QImagery**, the other is accessible from NearMap using your UQ credentials.
+There are a few places you can aquire aerial photography, today we will look at two sources, one is freely available Government Data from **QImagery**, the other is accessible from 
+using your UQ credentials.
 
 * Go to https://qimagery.information.qld.gov.au/
 * Read and tick the "I acknowledge I have read and agree to the Terms & Conditions" box, and click `Get Started`
@@ -66,7 +67,7 @@ As a UQ student, you also have access to very high resoltuion imagery from **Nea
 * Enter your UQ Student (@student.uq.edu.au) or Staff (@uq.edu.au) email address, with the appropriate domain selected. Click "Invite me".
 * You should receive an email soon after, click the "Accept Invitation" button, and go through the account setup process.
 * Go to Login and enter your email address, click "Next" and enter your password.
-* From the top left select `MapBrowser`.
+* From the top right select `MapBrowser`.
 * Type "St Lucia, QLD" in the search box, press enter
 * You can click the date down the bottom to look at different snapshots in time, and even compare maps side-by-side.
 * To save imagery from NearMap, simply click the "Exports" button on the left handside (it is an image icon)
