@@ -74,6 +74,20 @@ a separate window when it is finished.
 See how the document contains a title, headers, code input and output,
 and explanations?
 
+### Working directory
+
+Note that the **working directory** for an R Markdown document will be
+the .Rmd file’s location by default (and not necessarily the working
+directory of the R project your are in). That is why it is a good idea
+to save your R Markdown file at the top of your R Project directory if
+you want consistency between your scripts and your R Markdown file.
+
+In our example, we will load a CSV file from the Internet, but if we had a
+data file stored locally, it is important to keep that in mind.
+
+> You can change the default behaviour by using the Knit dropdown menu
+> and choosing an option in “Knit directory”.
+
 ## Editing the document
 
 Let’s remove everything below our YAML header, and start writing our own
@@ -141,6 +155,8 @@ ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training
 > Clicking “Knit” will automatically save your .Rmd file as well as the
 > HTML output.
 
+### Data Tables
+
 Now, we can add a chunk to show the data, by including this code in it:
 
 ``` r
@@ -163,19 +179,12 @@ ghg
     ## # … with 18 more rows, and 2 more variables:
     ## #   `Services, Construction and Transport` <dbl>, Residential <dbl>
 
-### Working directory
+However, we can see that this isn't the prettiest way to display our data. Fortunately **knitr** has a function to create a nicely formatted table, kable() - a knitr table.
+Let's pipe the dataframe into a kable now, but also reduce the number of rows displayed.
 
-Note that the **working directory** for an R Markdown document will be
-the .Rmd file’s location by default (and not necessarily the working
-directory of the R project your are in). That is why it is a good idea
-to save your R Markdown file at the top of your R Project directory if
-you want consistency between your scripts and your R Markdown file.
-
-In our example, we load a CSV file from the Internet, but if we had a
-data file stored locally, it is important to keep that in mind.
-
-> You can change the default behaviour by using the Knit dropdown menu
-> and choosing an option in “Knit directory”.
+``` r
+ghg %>% head(5) %>% knitr::kable()
+```
 
 ### Chunk options
 
@@ -232,18 +241,6 @@ the R Markdown console?
 
 Double-click on the error message to jump the problem.
 
-## Tidy the data
-
-Let’s keep populating our report with more code. Our data is not
-respecting the tidy data principles, so let’s fix that first with a
-tidyr function:
-
-``` r
-ghg_tidy <- pivot_longer(ghg,
-                         -year,
-                         names_to = "sector",
-                         values_to = "emissions")
-```
 
 ## Inline code
 
@@ -262,6 +259,21 @@ with this one:
     date: "`r Sys.Date()`"
 
 Now, try knitting the report again.
+
+
+## Tidy the data
+
+Let’s keep populating our report with more code. Our data is not
+respecting the tidy data principles, so let’s fix that first with a
+tidyr function:
+
+``` r
+ghg_tidy <- pivot_longer(ghg,
+                         -year,
+                         names_to = "sector",
+                         values_to = "emissions")
+```
+
 
 ## Visualisation
 
@@ -291,6 +303,16 @@ ggplotly(p)
 This will work in a HTML document, but will most likely fail in other
 output formats.
 
+> We can make it check the output type before exporting so that we ensure that our plot will display regardless, by choosing the regular ggplot for everything except html.
+
+``` r 
+if (knitr::is_html_output() ) { 
+	library(plotly)
+	ggplotly(p) } 
+else { 
+	p }
+```
+
 If you want to change the size of your visualisations, you can tweak the
 width and height with chunk options. However, you make that consistent
 for all your figures, by using an extra default option in the setup
@@ -298,6 +320,9 @@ chunk (the one that contains the `{r setup, include=FALSE}` header, at
 the top of the document). For example:
 
     knitr::opts_chunk$set(fig.width = 8)
+    
+> Note that those units are in inches, we can use metric using the unit() function from ggplot2
+> `knitr::opts_chunk$set(fig.width = unit(10, "cm")`
 
 ## Update the report
 
@@ -354,7 +379,7 @@ tinytex::install_tinytex()
 ```
 
 After this, try to change your YAML header’s `output` value to
-`pdf_document` and knit it.
+`pdf_document`, then add `always_allow_html: yes` and knit it.
 
 ## Switching to the visual editor
 At the top of the Rmd editor window, you have the option to switch between **Source** and **Visual**.
@@ -375,6 +400,7 @@ Related to R Markdown and knitr:
     -   [Documentation](https://rmarkdown.rstudio.com/docs/)
 -   [R Markdown
     cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
+-   [Simple Markdown guide from GitHub (which also uses Markdown)](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
 We also have a [list of recommended R
 resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md#what-next).
