@@ -186,6 +186,10 @@ Let's pipe the dataframe into a kable now, but also reduce the number of rows di
 ghg %>% head(5) %>% knitr::kable()
 ```
 
+![image](https://user-images.githubusercontent.com/67612228/215646554-ccae9e88-c437-4d11-837d-4055cc65f20e.png)
+
+Much nicer!
+
 ### Chunk options
 
 Notice how our two first chunks show some messages as an output? We
