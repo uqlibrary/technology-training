@@ -628,7 +628,7 @@ devtools::install_gitlab("username/myPackage")
   - What to lookout for when publishing to CRAN:
     <https://cran.r-project.org/web/packages/policies.html>
   - Package development cheatsheet:
-    <https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf>
+    <https://github.com/rstudio/cheatsheets/blob/main/package-development.pdf>
 
 ## Extras
 
