@@ -32,7 +32,7 @@ Working in a script allows us to write code more comfortably, and save a process
 
 ### Introducing and installing seaborn
 
-seaborn is a Python module useful for statistical data visualisation. It is a high-level module built upon another module called matplotlib. Effectively, seaborn is a more user friendly module which uses matplotlib in the background to do all the work. It is also possible to use matplotlib in directly, although it is less intuitive. matplotlib is modelled on MATLAB, so if you have MATLAB experience, then it should be easier to use.
+seaborn is a Python module useful for statistical data visualisation. It is a high-level module built upon another module called matplotlib. Effectively, seaborn is a more user friendly module which uses matplotlib in the background to do all the work. It is also possible to use matplotlib in directly, although it is less intuitive. Matplotlib is modelled on MATLAB, so if you have MATLAB experience, then it should be easier to use.
 
 To be able to use the functions included in seaborn, we'll need to import it first.
 
@@ -73,46 +73,54 @@ with 244 rows. It looks like this data contains statistics on the tips that a re
 
 We can visualise different aspects of this data, and we will have different options depending on the types of variables we choose. Data can be categorical or numerical, and ordered or unordered, leading to a variety of visualisation possibilities. If you would like to explore this more, check out [From data to Viz](https://www.data-to-viz.com/), a tool which helps you to find the best option.
 
-In [the introductory session](https://github.com/camwest5/technology-training/blob/ef4ed737c36d975cffd7672ee3a8ba3c7fcb6853/Python/seaborn_intro/seaborn_intro.md) we explored the fundamentals of plotting with seaborn and some of the possible data visualisations tools available. Now, let's look at some more advanced possbilities that we can use.
-
 ### Setting the theme
 
-Finally, let's set our theme so that our plots look nice. You can choose whichever preferences you would like (see Customisation -> Themes in [the introductory session](https://github.com/camwest5/technology-training/blob/ef4ed737c36d975cffd7672ee3a8ba3c7fcb6853/Python/seaborn_intro/seaborn_intro.md)). Our preference for today is
+Let's set our theme so that our plots look nice. You can choose whichever preferences you would like (see Customisation -> Themes in [the introductory session](https://github.com/camwest5/technology-training/blob/ef4ed737c36d975cffd7672ee3a8ba3c7fcb6853/Python/seaborn_intro/seaborn_intro.md)). Our preference for today is
 
 ```python
 sns.set_theme(context = "talk", style = "ticks")
 ```
 
+### Cells
+
+In this session, we're going to write a single plot over multiple lines for readability. To run those lines together, we can section off areas of our code to run called cells.
+
+To start a cell, use the code `#%%`. You should see a horizontal bar marking the start of the cell and highlighted section of code (the cell). The cell will end before the next `#%%`, so if you need to close it too, place one at the end. Press **Ctrl + Return** to run the code in the cell, or Shift + Return to run the cell and move to the next. In our session we'll exclusively use **Ctrl + Return**.
+
+> Note that running a cell is equivalent to highlight the code and pressing F9 (run selection or current line). Cells are advantageous as they both save time and allow us to rerun the same highlighted code.
+
+![image](https://user-images.githubusercontent.com/118239146/221066003-11cd6d6e-8e1a-405e-bd9d-9ef77d8a1c3c.png)
+
+In this session, we'll include the **start** of a cell in every snippet, but not the end. If you have code which follows the snippet, you may need to insert an extra `#%%` to start a new cell below.
+
+In [the introductory session](https://github.com/camwest5/technology-training/blob/ef4ed737c36d975cffd7672ee3a8ba3c7fcb6853/Python/seaborn_intro/seaborn_intro.md) we explored the fundamentals of plotting with seaborn and some of the possible data visualisations tools available. Now, let's look at some more advanced possbilities that we can use.
+
 ## Multiple plot figures
 
 ### Facets
 
-When data visualisations include multiple separate plots, where the difference in plots corresponds to a variable but the $x$ and $y$ axes stay the same, they are called facets. A common example is a series of otherwise identical plots for different snapshots in time or comparisons between categorical variables, such as population in various countries, with each country given by a separate facet in the overall figure.
+When data visualisations include multiple separate plots, where the difference in plots corresponds to a variable but the $x$ and $y$ axes stay the same, they are called facets. For example, is a series of otherwise identical plots for different snapshots in time or comparisons between categorical variables, such as population, with each country given a different facet in the overall figure.
 
 The advantage of facetting is that each facet is a relatively 'clean' plot and comparison across the facetting variable is simple. This is quite easily achieved in seaborn, simply by using the `row = ` and `col = ` parameters in any figure level plots.
 
-Let's start by producing a scatter plot comparing the **total bill** and **tips** variables
+Let's start by producing a scatter plot comparing the **total bill** and **tips** variables. 
 
 ``` python
-sns.relplot(data = tips, x = "total_bill", y = "tip", kind = "scatter")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/209038219-fa92f665-ba74-45fd-8cf0-dc4c498c62f9.png)
-
-We can also write the above in a different, easier to read way:
-
-``` python
+#%%
 sns.relplot(data = tips, 
             x = "total_bill", 
             y = "tip", 
             kind = "scatter")
 ```
 
-You'll need to select and run each line in order for it work. We'll work in this format from here on because it makes reading the parameters easier.
+> Remember to press Ctrl + Return to run the current cell
+
+![image](https://user-images.githubusercontent.com/118239146/209038219-fa92f665-ba74-45fd-8cf0-dc4c498c62f9.png)
 
 Now, let's separate each day into columns. To do this, we introduce `col = "day"`
 
 ``` python
+#%%
 sns.relplot(data = tips, 
             x = "total_bill", 
             y = "tip", 
@@ -127,6 +135,7 @@ As you can see, there are now four separate plots, which correspond to the four 
 As with before, we can group by `hue = `, `size = ` or `style = ` to include another variable. Let's include the `smoker` variable with colour.
 
 ``` python
+#%%
 sns.relplot(data = tips, 
             x = "total_bill", 
             y = "tip", 
@@ -140,6 +149,7 @@ sns.relplot(data = tips,
 We can also include a set of facets for the row. Let's use the `sex` variable
 
 ``` python
+#%%
 sns.relplot(data = tips, 
             x = "total_bill", 
             y = "tip", 
@@ -160,6 +170,7 @@ We're free to add any of the customisation that we could in [the introductory se
 Pair plots appear very similar to facet plots, and are in a way a subset of facetting. They are often a useful way of summarising all the numerical data. To understand them, let's first create one. 
 
 ``` python
+#%%
 sns.pairplot(data = tips)
 ```
 
@@ -172,6 +183,7 @@ This pairplot looks a little odd because the `size` variable is discrete. Nevert
 We can customise the pairplot in a few ways. Firstly, as with all our plots, we can group by colour, using `hue = `. Grouping by time,
 
 ```python
+#%%
 sns.pairplot(data = tips, 
              hue = "time")
 ```
@@ -181,6 +193,7 @@ sns.pairplot(data = tips,
 Notice that the distributions have changed from histograms to *layered kernel density estimates* (KDEs). If we want to go back to histograms, we could try with the parameter `kind = "hist"`
 
 ```python
+#%%
 sns.pairplot(data = tips, 
              hue = "time", 
              kind = "hist")
@@ -191,6 +204,7 @@ sns.pairplot(data = tips,
 Althought this also changes our scatterplots to bivariate histograms. If we only want to adjust the diagonal, we can instead use `diag_kind = "hist"`
 
 ```python
+#%%
 sns.pairplot(data = tips, 
              hue = "time", 
              diag_kind = "hist")
@@ -201,6 +215,7 @@ sns.pairplot(data = tips,
 This yields stacked histograms and scatterplots. Let's say we wanted to have a bivariate histogram on the off diagonals and a KDE plot on the diagonal. We could do that by specifying `kind = "hist"` and `diag_kind = "kde"`
 
 ```python
+#%%
 sns.pairplot(data = tips, 
              hue = "time", 
              kind = "hist",
@@ -211,6 +226,7 @@ sns.pairplot(data = tips,
 Finally, we can use the `corner = True` parameter to only visualise half of the figure
 
 ```python
+#%%
 sns.pairplot(data = tips, 
              hue = "time", 
              kind = "hist",
@@ -227,6 +243,7 @@ sns.pairplot(data = tips,
 A third type of multi-plot visualisation is possible with the `sns.jointplot()` function. This visualisation plots distribution graphs along the axes of a bivariate plot (like a scatter plot or bivariate histogram). We can again compare our **total bill** and **tip** variables,
 
 ``` python
+#%%
 sns.jointplot(data = tips,
               x = "total_bill",
               y = "tip")
@@ -237,6 +254,7 @@ sns.jointplot(data = tips,
 If we group by a variable, say **smoker**, again using `hue = `, we see (like in the pair plots) a KDE distribution instead of a histogram
 
 ``` python
+#%%
 sns.jointplot(data = tips,
               x = "total_bill",
               y = "tip",
@@ -257,6 +275,7 @@ We can change our plot types using the `kind = ` parameter as before. The option
 Let's use `hist`. 
 
 ``` python
+#%%
 sns.jointplot(data = tips,
               x = "total_bill",
               y = "tip",
