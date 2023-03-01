@@ -89,7 +89,7 @@ To start a cell, use the code `#%%`. You should see a horizontal bar marking the
 
 > Note that running a cell is equivalent to highlight the code and pressing F9 (run selection or current line). Cells are advantageous as they both save time and allow us to rerun the same highlighted code.
 
-![image](https://user-images.githubusercontent.com/118239146/221066003-11cd6d6e-8e1a-405e-bd9d-9ef77d8a1c3c.png)
+![image](https://user-images.githubusercontent.com/118239146/222050338-6ce48d9f-0c66-40d8-b38e-0f4f3e3bebef.png)
 
 In this session, we'll include the **start** of a cell in every snippet, but not the end. If you have code which follows the snippet, you may need to insert an extra `#%%` to start a new cell below.
 
@@ -289,7 +289,52 @@ Joint plots provide a powerful tool for analysing data, particularly different g
 
 ## Regressions
 
+There are two plotting functions which will allow us to produce a regression easily in seaborn: `sns.lmplot` and `sns.regplot`. As you might expect, one is figure-level and one is axes-level. For consistency (and functionality), this session uses `sns.lmplot`, but the other functions similarly.
 
+Let's start by taking the same data and producing a linear regression.
+
+```
+#%%
+sns.lmplot(x = "total_bill",
+           y = "tip",
+           data = tips)
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222052904-70438175-4038-4572-95eb-28815f81d87b.png)
+
+Here, `sns.lmplot` has automatically produced a scatter plot with a linear regression, including a confidence interval. Clearly much of our data is falling outside the confidence interval, so its not necessarily the best model.
+
+As with the facetting examples, we can use `hue`, `col` and `row` to include additional variables. For example,
+
+```
+#%%
+sns.lmplot(x = "total_bill",
+           y = "tip",
+           data = tips,
+           hue = "smoker",
+           col = "day",
+           row = "time")
+```
+
+assigns the `hue` parameter (colour) to the variable **smoker**, and facets according to `col = "day"` and `row = "time"`.
+
+![image](https://user-images.githubusercontent.com/118239146/222053794-5c71b8b3-96a0-455e-acdc-70ad96533210.png)
+
+*Unlike* our facetting examples, however, these all include a linear regression. By applying a regresion to facetted results, we may observe relationships which are otherwise hidden in the large sample. That being said, facetting has drawbacks, as it can also hide broader group trends. Depending on your data, both or either may be relevant.
+
+The function `sns.lmplot` would be pretty limited if it only offered linear regressions. Luckily, there are a few different methods available. To change method requires including `<method_name> = True` as an attribute in the plotting function, like `hue = ` and `data = `. The possibilities are,
+
+| Method                | Attribute             | Notes |
+| ------                | ----                  | ----- |
+| Linear                | N/A (default or all `False`) | Standard linear regression. | 
+| Polynomial            | `order = <int>`       | Polynomial regression with specified order, e.g. `order = 3` is a third order polynomial fit. | 
+| Logistic              | `logistic = True`     | For binary variable $y$. Computer intensive, so reduce `n_boot` or `ci` if too slow. |
+| Lowess                | `lowess = True`       | Locally weighted linear regression. No confidence intervals (in seaborn). |
+| Log-linear            | `logx = True`         | Linear regression of the form $y \sim \log(x)$, but still displays on the $x-y$ axes. Could highlight an exponential relationship. |
+
+> For the logistic and lowess models, seaborn uses `statsmodels`, a python statistics module, behind the scenes.
+
+Let's produce 
 
 ## More plot types
 
