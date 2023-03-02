@@ -156,6 +156,100 @@ quotes around them.
 > You can use the shortcut <kbd>Alt</kbd>+<kbd>-</kbd> to type the
 > assignement operator quicker.
 
+## Create a folder structure
+
+To keep it tidy, we are creating 3 folders in our project directory:
+
+-   scripts
+-   data
+-   plots
+
+For that, we use the function `dir.create()`:
+
+``` r
+dir.create("scripts")
+dir.create("data")
+dir.create("plots")
+```
+
+> You can recall your recent commands with the up arrow, which is
+> especially useful to correct typos or slightly modify a long command.
+
+## Scripts
+
+Scripts are simple text files that contain R code. They are useful for:
+
+-   saving a set of commands for later use (and executing it in one
+    click)
+-   making research reproducible
+-   making writing and reading code more comfortable
+-   documenting the code with comments, and
+-   sharing your work with peers
+
+Let’s create a new R script with a command:
+
+``` r
+file.create("scripts/process.R")
+```
+
+> All the file paths are **relative** to our current working directory,
+> i.e. the project directory. To use an **absolute** file path, we can
+> start with `/`.
+
+To edit the new script, use the `file.edit()` function. Try using the
+<kbd>Tab</kbd> key to autocomplete your function name and your file
+path!
+
+``` r
+file.edit("scripts/process.R")
+```
+
+This opens our fourth panel in RStudio: the **source panel**.
+
+### Many ways to do one thing
+
+As in many programs, there are many ways to achieve one thing.
+
+For example, we used commands to create and edit a script, but we could
+also:
+
+-   use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
+-   use the top left drop-down menus
+
+Learning how to use functions rather than the graphical interface will
+allow you to integrate them in scripts, and will sometimes help you to
+do things faster.
+
+### Comments
+
+We should start with a couple of **comments**, to document our script.
+Comments start with `#`, and will be ignored by R:
+
+``` r
+# Description: Introduction to R and RStudio
+# Author: <your name>
+# Date: <today's date>
+```
+
+### Syntax highlighting
+
+Now, add a command to your script:
+
+``` r
+vect <- c(3, "Hi!")
+```
+
+Notice the colours? This is called **syntax highlighting**. This is one
+of the many ways RStudio makes it more comfortable to work with R. The
+code is more readable when working in a script.
+
+> While editing your script, you can run the current command (or the
+> selected block of code) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>.
+> Remember to save your script regularly with the shortcut
+> <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with
+> <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu “Tools \>
+> Keyboard Shortcuts Help”.
+
 ## Functions
 
 An R **function** is a little program that does a particular job. It
@@ -359,100 +453,6 @@ help about R?
     particular question, or a specific error message: most times, there
     already is an answer somewhere on the Internet. The challenge is to
     ask the right question!
-
-## Create a folder structure
-
-To keep it tidy, we are creating 3 folders in our project directory:
-
--   scripts
--   data
--   plots
-
-For that, we use the function `dir.create()`:
-
-``` r
-dir.create("scripts")
-dir.create("data")
-dir.create("plots")
-```
-
-> You can recall your recent commands with the up arrow, which is
-> especially useful to correct typos or slightly modify a long command.
-
-## Scripts
-
-Scripts are simple text files that contain R code. They are useful for:
-
--   saving a set of commands for later use (and executing it in one
-    click)
--   making research reproducible
--   making writing and reading code more comfortable
--   documenting the code with comments, and
--   sharing your work with peers
-
-Let’s create a new R script with a command:
-
-``` r
-file.create("scripts/process.R")
-```
-
-> All the file paths are **relative** to our current working directory,
-> i.e. the project directory. To use an **absolute** file path, we can
-> start with `/`.
-
-To edit the new script, use the `file.edit()` function. Try using the
-<kbd>Tab</kbd> key to autocomplete your function name and your file
-path!
-
-``` r
-file.edit("scripts/process.R")
-```
-
-This opens our fourth panel in RStudio: the **source panel**.
-
-### Many ways to do one thing
-
-As in many programs, there are many ways to achieve one thing.
-
-For example, we used commands to create and edit a script, but we could
-also:
-
--   use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
--   use the top left drop-down menus
-
-Learning how to use functions rather than the graphical interface will
-allow you to integrate them in scripts, and will sometimes help you to
-do things faster.
-
-### Comments
-
-We should start with a couple of **comments**, to document our script.
-Comments start with `#`, and will be ignored by R:
-
-``` r
-# Description: Introduction to R and RStudio
-# Author: <your name>
-# Date: <today's date>
-```
-
-### Syntax highlighting
-
-Now, add a command to your script:
-
-``` r
-vect <- c(3, "Hi!")
-```
-
-Notice the colours? This is called **syntax highlighting**. This is one
-of the many ways RStudio makes it more comfortable to work with R. The
-code is more readable when working in a script.
-
-> While editing your script, you can run the current command (or the
-> selected block of code) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>.
-> Remember to save your script regularly with the shortcut
-> <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with
-> <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu “Tools \>
-> Keyboard Shortcuts Help”.
 
 ## Import data
 
