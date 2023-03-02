@@ -329,12 +329,53 @@ The function `sns.lmplot` would be pretty limited if it only offered linear regr
 | Linear                | N/A (default or all `False`) | Standard linear regression. | 
 | Polynomial            | `order = <int>`       | Polynomial regression with specified order, e.g. `order = 3` is a third order polynomial fit. | 
 | Logistic              | `logistic = True`     | For binary variable $y$. Computer intensive, so reduce `n_boot` or `ci` if too slow. |
-| Lowess                | `lowess = True`       | Locally weighted linear regression. No confidence intervals (in seaborn). |
+| Lowess                | `lowess = True`       | **Lo**cally **we**ighted **s**catterplot **s**moothing. No confidence intervals (in seaborn). |
 | Log-linear            | `logx = True`         | Linear regression of the form $y \sim \log(x)$, but still displays on the $x-y$ axes. Could highlight an exponential relationship. |
 
 > For the logistic and lowess models, seaborn uses `statsmodels`, a python statistics module, behind the scenes.
 
-Let's produce 
+Let's produce a polynomial regression of order 3.
+
+```
+#%%
+sns.lmplot(x = "total_bill",
+           y = "tip",
+           data = tips,
+           order = 3)
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222330468-33829909-d58c-463c-83c6-6416a514ec52.png)
+
+Alternatively, we could try the lowess model.
+
+```
+#%%
+sns.lmplot(x = "total_bill",
+           y = "tip",
+           data = tips,
+           lowess = True)
+```
+> Note that if you try to use `order = ` and another model in the same plot, e.g. `logistic = True`, it will return an error, as order is only for polynomial regressions.
+
+![image](https://user-images.githubusercontent.com/118239146/222330559-686daf0b-afd0-44a7-a018-6a13515b2b47.png)
+
+This summarises the function `sns.lmplot`, providing some of the most common regression models. If you wanted to use a different model, a statistics package would need to be imported and used for the model. You could still then plot those results with seaborn, if you wanted to maintain visual consistancy.
+
+### Residual plot
+
+In the same family as the above is the residual plot, which is a scatterplot of the *residuals* from a linear regression performed in the background. If you're unfamiliar with residuals, they are a way of determining how well a regression fits, and where that fit is best.
+
+To produce a residual plot, we use the function `sns.residplot`. Let's use it on our previous data.
+
+```
+#%%
+sns.residplot(x = "total_bill",
+              y = "tip",
+              data = tips)
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222331779-c451bda3-dd57-48bc-8131-75cb7bcea091.png)
+
 
 ## More plot types
 
