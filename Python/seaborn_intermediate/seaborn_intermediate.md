@@ -377,13 +377,157 @@ sns.residplot(x = "total_bill",
 ![image](https://user-images.githubusercontent.com/118239146/222331779-c451bda3-dd57-48bc-8131-75cb7bcea091.png)
 
 
-## More plot types
+## Distributive plots
 
-### Distributive plots
+You may remember that there are three functions for normal, figure-level plots:
+- `sns.relplot` (relational plots, e.g. scatter plots, line plots)
+- `sns.catplot` (categorical plots, e.g. bar plots, box plots)
+- `sns.displot` (distributions, e.g. histograms, kernel density distributions)
 
-### Niche plots
+We are yet to use the third type, `sns.displot`. These are distributions, which provide an alternative way to analyse data.
 
-### Geospatial data
+### Histograms
+
+To begin with, let's produce a histogram showing us the distribution of the variable **total bill**
+
+```
+#%%
+sns.displot(x = "total_bill",
+            data = tips,
+            kind = "hist")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222332709-77ad7ce6-4530-43da-a6c9-372215244fbc.png)
+
+Immediately, we can see that the data is skewed, with a mean likely higher than the median due to a longer rightward tail.
+
+> Despite appearances, a histogram is *not* a bar plot, found in `sns.catplot`. A histogram is a distribution, where changing the number of bins (columns) can potentially reveal different results. Notice that **total bill** is numerical, something which wouldn't be possible with a bar plot (we would have a column for every number - that's a lot of columns!)
+
+#### Changing statistic
+
+While it appears simple, there are a lot of features available in `sns.displot`. In our previous plot, the statistic is *count* - the total number of observations. We can change that, using `stat = `, to any of the following options
+
+- `count` - count, as seen above
+- `frequency` - the number of observations divided by the bin width
+- `probability` - normalises the observations such that bar heights sum to 1
+- `density` - normalises such that the total area of the bars (all together) sums to 1
+
+Depending on your version, you may also have access to
+
+- `proportion` - almost identical to `probability`
+- `percent` - normalises such that bar heights sum to 100
+
+Let's use `probability` to normalise the histogram
+
+```
+#%%
+sns.displot(x = "total_bill",
+            data = tips,
+            kind = "hist",
+            stat = "probability")
+```
+
+#### Changing bin properties
+
+Next, we can adjust the bin (column) properties, such as width, range and aesthetics.
+
+Using `bins`, we can specify the number of bins used. Above, there are 14 - notice that if we reduce the number, perhaps to 7, we could draw some different conclusions.
+
+```
+#%%
+sns.displot(x = "total_bill",
+            data = tips,
+            kind = "hist",
+            stat = "probability",
+            bins = 7)
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222336719-5f3a9363-154c-47ce-bfc4-96f9da018adc.png)
+
+See how here the tail only decreases, while in the previous plot, the last bin is higher? Whatever choice we make, by grouping in bins, we always risk masking some data between bins. Similarly, we can increase the number to something high, say 50.
+
+```
+#%%
+sns.displot(x = "total_bill",
+            data = tips,
+            kind = "hist",
+            stat = "probability",
+            bins = 50)
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222337133-d8db7b57-961a-454e-bf68-1399f8d5e344.png)
+
+Here, the visualisation may be too sparse, making it harder to draw conclusions. Finding the best number of bins can be achieved algorithmically or manual aesthetic choice.
+
+#### Cumulative histogram
+
+Instead of visualising the individual observations, we could instead choose to view the cumulative observations. This may provide clarity on the general curve of the data, and could be especially useful for temporal data.
+
+Creating a cumulative histogram is as simple as including the parameter `cumulative = True`.
+
+```
+#%%
+sns.displot(x = "total_bill",
+            data = tips,
+            kind = "hist",
+            stat = "probability",
+            cumulative = True)
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222338046-474c2817-8661-4aa8-b94e-0ea35d8655a5.png)
+
+Here we can see that there 60% of the data is below $20, just by looking at the cumulative distribution.
+
+#### Overlaying histograms and histogram types
+
+By including a third variable with `hue = `, we can produce multiple histograms separated by colour. Let's introduce the variable **time**.
+```
+#%%
+sns.displot(x = "total_bill",
+            hue = "time",
+            data = tips,
+            kind = "hist",
+            stat = "probability")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222338742-e777839b-9921-4d3f-b9b6-0154c2f70add.png)
+
+Automatically, the times overlay. It looks like diners spend more in the evening than at lunch. The attribute `multiple = ` determines how the two plots are displayed:
+
+- `"layer"` - overlayed, as above
+- `"dodge"` - bars are interwoven/side-by-side, like prison bars
+- `"stack"` - bars are stacked
+- `"fill"` - stacked bars which all reach 1, displaying the probability of having one over another
+
+Additionally, the attribute `element = ` provides alternatives to bars which still display the same visualisation. These possibilities are,
+
+- `"bars"` - as above.
+- `"step"` - a continuous outline, maintaining the vertical structure of the bins.
+- `"poly"` - a continuous outline formed by straight lines between data points.
+
+Let's combine `multiple = "stack"` and `element = "step"`
+```
+#%%
+sns.displot(x = "total_bill",
+            hue = "time",
+            data = tips,
+            kind = "hist",
+            stat = "probability",
+            multiple = "stack",
+            element = "step")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222344591-aea7408a-1943-4f0d-be93-f10ef1493bd2.png)
+
+Finally, it is also possible to overlay a KDE (kernel density estimate) distribution too, using `kde = True`. We'll examine the KDE on its own now.
+
+### KDE plots
+
+
+
+## Niche plots
+
+## Geospatial data
 
 ## Creating palettes
 
