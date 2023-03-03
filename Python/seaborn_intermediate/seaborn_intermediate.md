@@ -521,9 +521,69 @@ sns.displot(x = "total_bill",
 
 Finally, it is also possible to overlay a KDE (kernel density estimate) distribution too, using `kde = True`. We'll examine the KDE on its own now.
 
-### KDE plots
+### Two more distributions
 
+#### Kernal Density Estimate
 
+KDE (kernel density estimate) plots are smooth distributions which fit statistical data. Their smoothness may reflect reality in a way histograms don't, although it's important to acknowledge that KDEs are estimations and will have some distortion of the data. Normally, they provide an accurate picture of the sample distribution.
+
+KDE plots are produced by changing the attribute `kind` in our `sns.displot` function.
+
+```
+#%%
+sns.displot(x = "total_bill",
+            hue = "time",
+            data = tips,
+            kind = "kde")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222624804-6a14e7f0-19e2-4a07-bbfd-4b4f2316c18a.png)
+
+Notice that the $y$-axis displays the *density* - the KDE, as its name suggests, estimates the probability density function, from which probabilities can be found. There are some attributes which allow the user to adjust specifics of the estimation to best account for the data, those can be found [here](https://seaborn.pydata.org/generated/seaborn.kdeplot.html).
+
+#### Empirical Cumulative Distribution Function
+
+The ECDF (empirical cumulative distribution function) plots provide a cumulative visualisation of the data. These are unique in that they require no aggregation or estimation - no bins or fitting function, the ECDF just plots observations as a running total.
+
+```
+#%%
+sns.displot(x = "total_bill",
+            hue = "time",
+            data = tips,
+            kind = "ecdf")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222625637-2630b793-8641-4252-8ff6-86343b0e4802.png)       
+
+### Bivariate plots
+
+The final feature of distributive plots we'll examine is bivariate plotting. For plots of `kind = "hist"` and `kind = "ecdf"`, it is possible to also pass a `y` attribute. Let's use **tip** with a histogram.
+
+```
+#%%
+sns.displot(x = "total_bill",
+            y = "tip",
+            data = tips,
+            kind = "hist")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222626832-85b0c6c3-c49d-4d42-b4a0-0232ef5f048d.png)
+
+These plots have all the options of their univariate counterparts, such as changing the bins, introducing another variable, etc.
+
+We can also create a bivariate KDE plot changing `kind = "kde"`
+
+```
+#%%
+sns.displot(x = "total_bill",
+            y = "tip",
+            data = tips,
+            kind = "kde")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222627073-e1d7c104-cddd-4be7-a047-629e56936880.png)
+
+Visualised here are contour lines, corresponding to values of the estimated probability. Contours tend to circle around maxima.
 
 ## Niche plots
 
