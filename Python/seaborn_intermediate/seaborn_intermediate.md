@@ -293,7 +293,7 @@ There are two plotting functions which will allow us to produce a regression eas
 
 Let's start by taking the same data and producing a linear regression.
 
-```
+```python
 #%%
 sns.lmplot(x = "total_bill",
            y = "tip",
@@ -306,7 +306,7 @@ Here, `sns.lmplot` has automatically produced a scatter plot with a linear regre
 
 As with the facetting examples, we can use `hue`, `col` and `row` to include additional variables. For example,
 
-```
+```python
 #%%
 sns.lmplot(x = "total_bill",
            y = "tip",
@@ -336,7 +336,7 @@ The function `sns.lmplot` would be pretty limited if it only offered linear regr
 
 Let's produce a polynomial regression of order 3.
 
-```
+```python
 #%%
 sns.lmplot(x = "total_bill",
            y = "tip",
@@ -348,7 +348,7 @@ sns.lmplot(x = "total_bill",
 
 Alternatively, we could try the lowess model.
 
-```
+```python
 #%%
 sns.lmplot(x = "total_bill",
            y = "tip",
@@ -367,7 +367,7 @@ In the same family as the above is the residual plot, which is a scatterplot of 
 
 To produce a residual plot, we use the function `sns.residplot`. Let's use it on our previous data.
 
-```
+```python
 #%%
 sns.residplot(x = "total_bill",
               y = "tip",
@@ -390,7 +390,7 @@ We are yet to use the third type, `sns.displot`. These are distributions, which 
 
 To begin with, let's produce a histogram showing us the distribution of the variable **total bill**
 
-```
+```python
 #%%
 sns.displot(x = "total_bill",
             data = tips,
@@ -419,7 +419,7 @@ Depending on your version, you may also have access to
 
 Let's use `probability` to normalise the histogram
 
-```
+```python
 #%%
 sns.displot(x = "total_bill",
             data = tips,
@@ -433,7 +433,7 @@ Next, we can adjust the bin (column) properties, such as width, range and aesthe
 
 Using `bins`, we can specify the number of bins used. Above, there are 14 - notice that if we reduce the number, perhaps to 7, we could draw some different conclusions.
 
-```
+```python
 #%%
 sns.displot(x = "total_bill",
             data = tips,
@@ -446,7 +446,7 @@ sns.displot(x = "total_bill",
 
 See how here the tail only decreases, while in the previous plot, the last bin is higher? Whatever choice we make, by grouping in bins, we always risk masking some data between bins. Similarly, we can increase the number to something high, say 50.
 
-```
+```python
 #%%
 sns.displot(x = "total_bill",
             data = tips,
@@ -465,7 +465,7 @@ Instead of visualising the individual observations, we could instead choose to v
 
 Creating a cumulative histogram is as simple as including the parameter `cumulative = True`.
 
-```
+```python
 #%%
 sns.displot(x = "total_bill",
             data = tips,
@@ -481,7 +481,7 @@ Here we can see that there 60% of the data is below $20, just by looking at the 
 #### Overlaying histograms and histogram types
 
 By including a third variable with `hue = `, we can produce multiple histograms separated by colour. Let's introduce the variable **time**.
-```
+```python
 #%%
 sns.displot(x = "total_bill",
             hue = "time",
@@ -506,7 +506,7 @@ Additionally, the attribute `element = ` provides alternatives to bars which sti
 - `"poly"` - a continuous outline formed by straight lines between data points.
 
 Let's combine `multiple = "stack"` and `element = "step"`
-```
+```python
 #%%
 sns.displot(x = "total_bill",
             hue = "time",
@@ -529,7 +529,7 @@ KDE (kernel density estimate) plots are smooth distributions which fit statistic
 
 KDE plots are produced by changing the attribute `kind` in our `sns.displot` function.
 
-```
+```python
 #%%
 sns.displot(x = "total_bill",
             hue = "time",
@@ -545,7 +545,7 @@ Notice that the $y$-axis displays the *density* - the KDE, as its name suggests,
 
 The ECDF (empirical cumulative distribution function) plots provide a cumulative visualisation of the data. These are unique in that they require no aggregation or estimation - no bins or fitting function, the ECDF just plots observations as a running total.
 
-```
+```python
 #%%
 sns.displot(x = "total_bill",
             hue = "time",
@@ -559,7 +559,7 @@ sns.displot(x = "total_bill",
 
 The final feature of distributive plots we'll examine is bivariate plotting. For plots of `kind = "hist"` and `kind = "ecdf"`, it is possible to also pass a `y` attribute. Let's use **tip** with a histogram.
 
-```
+```python
 #%%
 sns.displot(x = "total_bill",
             y = "tip",
@@ -573,7 +573,7 @@ These plots have all the options of their univariate counterparts, such as chang
 
 We can also create a bivariate KDE plot changing `kind = "kde"`
 
-```
+```python
 #%%
 sns.displot(x = "total_bill",
             y = "tip",
@@ -585,9 +585,72 @@ sns.displot(x = "total_bill",
 
 Visualised here are contour lines, corresponding to values of the estimated probability. Contours tend to circle around maxima.
 
-## Niche plots
+## Categorical plots
 
-## Geospatial data
+There are four categorical plots that we'll look at now, box plots, violin plots, swarm plots and point plots. To produce these, we'll move to the function `sns.catplot`.
+
+> Bar plots were covered in the [introductory session](https://github.com/uqlibrary/technology-training/blob/bc4007cd0d9d7cf3b13af635cb23f8deb4e7657c/Python/seaborn_intro/seaborn_intro.md).
+
+### Box plots
+
+Box plots are a classic categorical plot, showing key statistics about the dataset. To produce one, we can simply use
+
+```python
+#%%
+sns.catplot(data = tips,
+            kind = "box")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222629853-02cff570-4a17-44f4-b9b9-09b087aadaf5.png)
+
+Boxplots are composed of a box (coloured), whiskers (extending from the box in each direction) and outliers (diamond points). The box represents the middle quartiles (between 25%-75%, half of the data), displaying the median with the interior line. The whiskers display the outer quartiles (between 0-25% and 75-100%), with outliers excluded from the statistical calculations and displayed as points.
+
+Obviously, the observations don't scale too well between variables here, so let's isolate a specific variable, by assigning one to $x$. Let's use **size**.
+
+```python
+#%%
+sns.catplot(data = tips,
+            x = "total_bill",
+            kind = "box")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222630191-1f17eb0e-1770-40f3-87d6-321a9739a617.png)
+
+Next, we can introduce another variable with `y = `. Let's use **day**.
+
+```python
+#%%
+sns.catplot(data = tips,
+            x = "total_bill",
+            y = "day",
+            kind = "box")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222630961-62fb0e7c-7ddd-4cdb-8566-4b5f1743078d.png)
+
+Here four boxplots display the data for each day. We can introduce a third variable using `hue`, let's include **smoker**.
+
+```python
+#%%
+sns.catplot(data = tips,
+            x = "total_bill",
+            y = "day",
+            hue = "smoker",
+            kind = "box)
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222631311-7f089c14-d343-4e93-8a6d-13a35c2f7466.png)
+
+Bear in mind, boxplots don't display the number of data points, and by separating by day and smoker status, we have probably reduced our groups to small sample sizes which may be stastically unreliable.
+
+
+### Violin plots
+
+Violin plots are similar to boxplots, but use a smooth design rather than a box, to emphasise the distribution.
+
+To produce a violin plot like our previous boxplot,
+### Swarm plots
+### Point plots
 
 ## Creating palettes
 
