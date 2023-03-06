@@ -2,6 +2,10 @@
 
 It is best to use your own laptop for this session. Here are the installation instructions to use Git (through a shell) depending on your operating system.
 
+- [Linux instructions](https://github.com/uqlibrary/technology-training/blob/master/Git/installation.md#gnulinux)
+- [Mac instructions](https://github.com/uqlibrary/technology-training/blob/master/Git/installation.md#macos)
+- [Windows instructions](https://github.com/uqlibrary/technology-training/blob/master/Git/installation.md#windows)
+
 ## GNU/Linux
 
 If you don't already have Git installed, it should be available in your distribution's official repositories.
@@ -20,7 +24,17 @@ For older versions of macOS (10.5-10.8), download and run the most recent "snow-
 
 Here are the different options available to you:
 
-### Bash for Windows 10 + Git on your laptop
+### Git for Windows on your laptop (easiest install)
+
+> This option is the fastest way to get Git going.
+
+If you don't have Windows 10, or if you can't install Ubuntu for Windows:
+
+1. Go to the [Git for Windows website](https://gitforwindows.org/) and click on "Download";
+1. Download and run the installer that starts with "Git" and finishes with ".exe";
+1. Once installed, launch "Git Bash" from the start menu.
+
+### Bash for Windows 10 + Git on your laptop (more comprehensive install)
 
 > This takes more time, but will give you a more complete Linux environment inside Windows.
 
@@ -34,15 +48,6 @@ Windows 10 introduces the Windows Subsystem for Linux, which allows using Bash i
 1. Set your username and password to use this GNU/Linux Environment;
 1. Install Git with the following command: `sudo apt-get install git`
 
-### Git for Windows on your laptop
-
-> This option is the fastest way to get Git going.
-
-If you don't have Windows 10, or if you can't install Ubuntu for Windows:
-
-1. Go to the [Git for Windows website](https://gitforwindows.org/) and click on "Download";
-1. Download and run the installer that starts with "Git" and finishes with ".exe";
-1. Once installed, launch "Git Bash" from the start menu.
 
 ### Git for Windows on a Library computer
 
