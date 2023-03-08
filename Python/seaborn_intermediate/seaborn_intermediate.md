@@ -719,7 +719,7 @@ That was a lot of different plots. Here is a summary of what we just covered.
 
 Below is a summary of *all* available* plots in seaborn. Most of these have been examined in either the introductory session or this one, however, there are some which we have not yet looked at. The [seaborn documentation](https://seaborn.pydata.org/api.html) and [tutorials](https://seaborn.pydata.org/tutorial.html) provide desciptions and advice for all available plots.
 
-> As of v0.12.2
+> *As of v0.12.2
 
 ### Relational Plots
 
