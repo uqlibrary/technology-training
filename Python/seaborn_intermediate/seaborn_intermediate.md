@@ -705,13 +705,21 @@ sns.catplot(data = tips,
 
 Swarm plots give a clear qualitative indication of the spread of data.
 
-## Creating palettes
-
-Before we finish
-
 ## Conclusion
 
-A summary of plot types is below
+That was a lot of different plots. Here is a summary of what we just covered.
+
+| Topic | Description |
+| --- | --- |
+| **Cells**             | By using `#%%`, we can create a cell which runs all the code within it using ctrl + return |
+| **Faceting**          | With `col = ` and `row = ` we can facet by variables within our dataset. *Joint plots* and *Pair plots* offer special types of facet plots. |
+| **Regressions**       | The function `sns.lmplot( ... )` offers a number of regression options |
+| **Distributive Plots**| Histograms, KDE plots and ECGF plots all allow analysis of data distributions, which can be modified by statistic, bin dimensions, etc. |
+| **Categorical Plots** | A number of categorical plots are available (e.g. box plots, swarm plots) which provide alternative visualisations for categorical data |
+
+Below is a summary of *all* available* plots in seaborn. Most of these have been examined in either the introductory session or this one, however, there are some which we have not yet looked at. The [seaborn documentation](https://seaborn.pydata.org/api.html) and [tutorials](https://seaborn.pydata.org/tutorial.html) provide desciptions and advice for all available plots.
+
+> As of v0.12.2
 
 ### Relational Plots
 
@@ -739,9 +747,28 @@ A summary of plot types is below
 | Swarm Plot            | `sns.catplot( ... , kind = "swarm" , ... )`| |
 | Box Plot              | `sns.catplot( ... , kind = "box" , ... )` | Choose `x` and `y` carefully |
 | Violin Plot           | `sns.catplot( ... , kind = "violin" , ... )` | |
-| Enhanced Box Plot     | `sns.catplot( ... , kind = "box", ... )`  | A box plot with additional quantiles |
+| Enhanced Box Plot     | `sns.catplot( ... , kind = "boxen", ... )`  | A box plot with additional quantiles |
 | Point Plot            | `sns.catplot( ... , kind = "point" , ... ) ` | Like a line plot for categorical data | 
 | Bar Plot              | `sns.catplot( ... , kind = "bar" , ... ) `    | Aggregates data | 
 | Count Plot            | `sns.catplot( ... , kind = "count" , ... )` | A bar plot with the total number of observations |
 
+
+### Other Plots
+| Plot Name | Code | Notes |
+| --- | --- | --- |
+| Pair Plot             | `sns.pairplot( ... )` | A form of facetting |
+| Joint Plot            | `sns.jointplot( ... )` | |
+| Regressions           | `sns.lmplot( ... )` | |
+| Residual Plot         | `sns.residplot( ... )` | The residuals of a linear regression |
+| Heatmap               | `sns.heatmap( ... )`  | |
+| Clustermap            | `sns.clustermap( ... )` |
+
+
+If you have any further questions, would like to learn about more python content or would like support with your work, we would love to hear from you at training@library.uq.edu.au
+
+## Resources
+
+- [Official seaborn documentation](https://seaborn.pydata.org/index.html)
+- [Official matplotlib documentation](https://matplotlib.org/stable/index.html)
+- Our [compilation of useful Python links](https://github.com/uqlibrary/technology-training/blob/master/Python/useful_links.md)
 
