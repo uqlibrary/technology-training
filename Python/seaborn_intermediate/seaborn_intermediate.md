@@ -295,9 +295,9 @@ Let's start by taking the same data and producing a linear regression.
 
 ```python
 #%%
-sns.lmplot(x = "total_bill",
-           y = "tip",
-           data = tips)
+sns.lmplot(data = tips,
+           x = "total_bill",
+           y = "tip")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/222052904-70438175-4038-4572-95eb-28815f81d87b.png)
@@ -308,9 +308,9 @@ As with the facetting examples, we can use `hue`, `col` and `row` to include add
 
 ```python
 #%%
-sns.lmplot(x = "total_bill",
+sns.lmplot(data = tips,
+           x = "total_bill",
            y = "tip",
-           data = tips,
            hue = "smoker",
            col = "day",
            row = "time")
@@ -338,9 +338,9 @@ Let's produce a polynomial regression of order 3.
 
 ```python
 #%%
-sns.lmplot(x = "total_bill",
+sns.lmplot(data = tips,
+           x = "total_bill",
            y = "tip",
-           data = tips,
            order = 3)
 ```
 
@@ -350,9 +350,9 @@ Alternatively, we could try the lowess model.
 
 ```python
 #%%
-sns.lmplot(x = "total_bill",
+sns.lmplot(data = tips,
+           x = "total_bill",
            y = "tip",
-           data = tips,
            lowess = True)
 ```
 > Note that if you try to use `order = ` and another model in the same plot, e.g. `logistic = True`, it will return an error, as order is only for polynomial regressions.
@@ -369,9 +369,9 @@ To produce a residual plot, we use the function `sns.residplot`. Let's use it on
 
 ```python
 #%%
-sns.residplot(x = "total_bill",
-              y = "tip",
-              data = tips)
+sns.residplot(data = tips,
+              x = "total_bill",
+              y = "tip")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/222331779-c451bda3-dd57-48bc-8131-75cb7bcea091.png)
@@ -392,8 +392,8 @@ To begin with, let's produce a histogram showing us the distribution of the vari
 
 ```python
 #%%
-sns.displot(x = "total_bill",
-            data = tips,
+sns.displot(data = tips,
+            x = "total_bill",
             kind = "hist")
 ```
 
@@ -421,8 +421,8 @@ Let's use `probability` to normalise the histogram
 
 ```python
 #%%
-sns.displot(x = "total_bill",
-            data = tips,
+sns.displot(data = tips,
+            x = "total_bill",
             kind = "hist",
             stat = "probability")
 ```
@@ -435,8 +435,8 @@ Using `bins`, we can specify the number of bins used. Above, there are 14 - noti
 
 ```python
 #%%
-sns.displot(x = "total_bill",
-            data = tips,
+sns.displot(data = tips,
+            x = "total_bill",
             kind = "hist",
             stat = "probability",
             bins = 7)
@@ -448,8 +448,8 @@ See how here the tail only decreases, while in the previous plot, the last bin i
 
 ```python
 #%%
-sns.displot(x = "total_bill",
-            data = tips,
+sns.displot(data = tips,
+            x = "total_bill",
             kind = "hist",
             stat = "probability",
             bins = 50)
@@ -467,8 +467,8 @@ Creating a cumulative histogram is as simple as including the parameter `cumulat
 
 ```python
 #%%
-sns.displot(x = "total_bill",
-            data = tips,
+sns.displot(data = tips,
+            x = "total_bill",
             kind = "hist",
             stat = "probability",
             cumulative = True)
@@ -483,9 +483,9 @@ Here we can see that there 60% of the data is below $20, just by looking at the 
 By including a third variable with `hue = `, we can produce multiple histograms separated by colour. Let's introduce the variable **time**.
 ```python
 #%%
-sns.displot(x = "total_bill",
+sns.displot(data = tips,
+            x = "total_bill",
             hue = "time",
-            data = tips,
             kind = "hist",
             stat = "probability")
 ```
@@ -508,9 +508,9 @@ Additionally, the attribute `element = ` provides alternatives to bars which sti
 Let's combine `multiple = "stack"` and `element = "step"`
 ```python
 #%%
-sns.displot(x = "total_bill",
+sns.displot(data = tips,
+            x = "total_bill",
             hue = "time",
-            data = tips,
             kind = "hist",
             stat = "probability",
             multiple = "stack",
@@ -531,9 +531,9 @@ KDE plots are produced by changing the attribute `kind` in our `sns.displot` fun
 
 ```python
 #%%
-sns.displot(x = "total_bill",
+sns.displot(data = tips,
+            x = "total_bill",
             hue = "time",
-            data = tips,
             kind = "kde")
 ```
 
@@ -547,9 +547,9 @@ The ECDF (empirical cumulative distribution function) plots provide a cumulative
 
 ```python
 #%%
-sns.displot(x = "total_bill",
+sns.displot(data = tips,
+            x = "total_bill",
             hue = "time",
-            data = tips,
             kind = "ecdf")
 ```
 
@@ -561,9 +561,9 @@ The final feature of distributive plots we'll examine is bivariate plotting. For
 
 ```python
 #%%
-sns.displot(x = "total_bill",
+sns.displot(data = tips,
+            x = "total_bill",
             y = "tip",
-            data = tips,
             kind = "hist")
 ```
 
@@ -575,9 +575,9 @@ We can also create a bivariate KDE plot changing `kind = "kde"`
 
 ```python
 #%%
-sns.displot(x = "total_bill",
+sns.displot(data = tips,
+            x = "total_bill",
             y = "tip",
-            data = tips,
             kind = "kde")
 ```
 
