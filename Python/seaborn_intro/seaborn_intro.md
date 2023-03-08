@@ -83,10 +83,9 @@ Figure level plots interact with the *figure*, which is in essence the canvas or
 - `sns.displot( ...` for distributions like histograms.
 - `sns.catplot( ...` for categorical plots, like bar graphs and boxplots.
 
-Axes level plots interact with the *axes*, which is in essence the space allocated on the canvas for the actual plot. There are many axes level functions, such as `sns.lineplot( ...`, `sns.boxplot( ...`,  `sns.scatterplot( ...`. We won't make use of these, but we will examine them near the end. The diagram below summarises how the figure and axes level plots connect - note that all axes level plots can be produced with one of the three figure level plots.
+Axes level plots interact with the *axes*, which is the space allocated on the canvas for the actual plot. Figures can contain multiple axes and axes can only belong to one figure. There are many axes level functions, such as `sns.lineplot( ...`, `sns.boxplot( ...`,  `sns.scatterplot( ...`. We won't make use of these, but we will examine them near the end. The diagram below summarises how the figure and axes level plots connect - note that all axes level plots can be produced with one of the three figure level plots.
 
 ![image](https://user-images.githubusercontent.com/118239146/208792174-ff4ec064-ad30-47ff-99b4-45afd4bd7c63.png)
-
 
 The syntax for most plots is as follows:
 
