@@ -636,7 +636,7 @@ sns.catplot(data = tips,
             x = "total_bill",
             y = "day",
             hue = "smoker",
-            kind = "box)
+            kind = "box")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/222631311-7f089c14-d343-4e93-8a6d-13a35c2f7466.png)
@@ -648,12 +648,100 @@ Bear in mind, boxplots don't display the number of data points, and by separatin
 
 Violin plots are similar to boxplots, but use a smooth design rather than a box, to emphasise the distribution.
 
-To produce a violin plot like our previous boxplot,
+To produce a violin plot like our previous boxplot, we simply need to change the attribute `kind = "violin"`.
+
+```python
+#%%
+sns.catplot(data = tips,
+            x = "total_bill",
+            y = "day",
+            hue = "smoker",
+            kind = "violin")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/223583729-1cbb017e-9982-4f0c-a716-8080d8ad9803.png)
+
+Violin plots replace the boxes with Kernel Density Estatimates (remember them?) for the underlying distribution. Note that these may be misleading if there are only a small number of data points. We can check that by using the attribute `inner`
+
+With the `inner` attribute, there are five options:
+
+| Code | Description |
+| --- | --- |
+| `inner = "box"`       | Default, shows the box and whisker plot inside |
+| `inner = "quartile"`  | Shows the quartiles, with markers at 25% Q1, 50% (median) and 75% Q3 |
+| `inner = "point"`     | Shows individual data entries as points |
+| `inner = "stick"`     | Shows individual data entries as lines |
+| `inner = None`        | Shows nothing |
+
+Let's use `inner = "stick"`.
+
+```python
+#%%
+sns.catplot(data = tips,
+            x = "total_bill",
+            y = "day",
+            hue = "smoker",
+            kind = "violin",
+            inner = "stick")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/223584570-94668713-3c54-4f8b-b7a6-f01e7362959e.png)
+
+As you can see, some plots have more data points than others. In particular, the *Friday, Yes* plot has only a handful of points - the plot may be unreasonably smooth.
+
 ### Swarm plots
-### Point plots
+
+Finally, let's examine swarm plot. These are a way of creating scatterplot-like visualisations for categorical data that adjusts the position of individual points to present all observations. We can create one with the variables we used previously (let's exclude `hue` for now)
+
+```python
+#%%
+sns.catplot(data = tips,
+            x = "total_bill",
+            y = "day",
+            kind = "swarm")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/223587178-68e6bd43-4fd0-422a-9b55-9a9010b5d1c8.png)
+
+Swarm plots give a clear qualitative indication of the spread of data.
 
 ## Creating palettes
 
+Before we finish
+
 ## Conclusion
+
+A summary of plot types is below
+
+### Relational Plots
+
+| Plot Name | Code | Notes |
+| --- | --- | --- |
+| Scatter Plot          | `sns.relplot( ... , kind = "scatter", ... )` | Requires numerical data |
+| Line Plot             | `sns.relplot( ... , kind = "line", ... )` | Requires numerical data | 
+
+### Distributions
+
+| Plot Name | Code | Notes |
+| --- | --- | --- |
+| Histogram             | `sns.displot( ... , kind = "hist", ... )` | Can be univariate (`x` only) or bivariate (`x` and `y`)|
+| Kernal Density Estimate| `sns.displot( ... , kind = "kde" , ... )` | Can be univariate (`x` only) or bivariate (`x` and `y`)|
+| ECDF* | `sns.displot( ... , kind = "ecdf", ... )` | |
+| Rug Plot              | `sns.displot( ... , rug = True , ... ) `  | Combine with another `sns.displot`, plots marginal distributions | 
+
+> *Empirical Cumulative Distribution Functions
+
+### Categorical Plots
+
+| Plot Name | Code | Notes |
+| --- | --- | --- |
+| Strip Plot            | `sns.catplot( ... , kind = "strip" , ... )`| Like a scatterplot for categorical data |
+| Swarm Plot            | `sns.catplot( ... , kind = "swarm" , ... )`| |
+| Box Plot              | `sns.catplot( ... , kind = "box" , ... )` | Choose `x` and `y` carefully |
+| Violin Plot           | `sns.catplot( ... , kind = "violin" , ... )` | |
+| Enhanced Box Plot     | `sns.catplot( ... , kind = "box", ... )`  | A box plot with additional quantiles |
+| Point Plot            | `sns.catplot( ... , kind = "point" , ... ) ` | Like a line plot for categorical data | 
+| Bar Plot              | `sns.catplot( ... , kind = "bar" , ... ) `    | Aggregates data | 
+| Count Plot            | `sns.catplot( ... , kind = "count" , ... )` | A bar plot with the total number of observations |
 
 
