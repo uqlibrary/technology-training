@@ -95,6 +95,216 @@ In this session, we'll include the **start** of a cell in every snippet, but not
 
 In [the introductory session](https://github.com/camwest5/technology-training/blob/ef4ed737c36d975cffd7672ee3a8ba3c7fcb6853/Python/seaborn_intro/seaborn_intro.md) we explored the fundamentals of plotting with seaborn and some of the possible data visualisations tools available. Now, let's look at some more advanced possbilities that we can use.
 
+## Distributive plots
+
+You may remember that there are three functions for normal, figure-level plots:
+- `sns.relplot` (relational plots, e.g. scatter plots, line plots)
+- `sns.catplot` (categorical plots, e.g. bar plots, box plots)
+- `sns.displot` (distributions, e.g. histograms, kernel density distributions)
+
+We are yet to use the third type, `sns.displot`. These are distributions, which provide an alternative way to analyse data.
+
+### Histograms
+
+To begin with, let's produce a histogram showing us the distribution of the variable **total bill**
+
+```python
+#%%
+sns.displot(data = tips,
+            x = "total_bill",
+            kind = "hist")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222332709-77ad7ce6-4530-43da-a6c9-372215244fbc.png)
+
+Immediately, we can see that the data is skewed, with a mean likely higher than the median due to a longer rightward tail.
+
+> Despite appearances, a histogram is *not* a bar plot, found in `sns.catplot`. A histogram is a distribution, where changing the number of bins (columns) can potentially reveal different results. Notice that **total bill** is numerical, something which wouldn't be possible with a bar plot (we would have a column for every number - that's a lot of columns!)
+
+#### Changing statistic
+
+While it appears simple, there are a lot of features available in `sns.displot`. In our previous plot, the statistic is *count* - the total number of observations. We can change that, using `stat = `, to any of the following options
+
+- `count` - count, as seen above
+- `frequency` - the number of observations divided by the bin width
+- `probability` - normalises the observations such that bar heights sum to 1
+- `density` - normalises such that the total area of the bars (all together) sums to 1
+
+Depending on your version, you may also have access to
+
+- `proportion` - almost identical to `probability`
+- `percent` - normalises such that bar heights sum to 100
+
+Let's use `probability` to normalise the histogram
+
+```python
+#%%
+sns.displot(data = tips,
+            x = "total_bill",
+            kind = "hist",
+            stat = "probability")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/223629130-4d800b6b-05b9-41d4-a01f-3cdaaf37e685.png)
+
+#### Changing bin properties
+
+Next, we can adjust the bin (column) properties, such as width, range and aesthetics.
+
+Using `bins`, we can specify the number of bins used. Above, there are 14 - notice that if we reduce the number, perhaps to 7, we could draw some different conclusions.
+
+```python
+#%%
+sns.displot(data = tips,
+            x = "total_bill",
+            kind = "hist",
+            stat = "probability",
+            bins = 7)
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222336719-5f3a9363-154c-47ce-bfc4-96f9da018adc.png)
+
+See how here the tail only decreases, while in the previous plot, the last bin is higher? Whatever choice we make, by grouping in bins, we always risk masking some data between bins. Similarly, we can increase the number to something high, say 50.
+
+```python
+#%%
+sns.displot(data = tips,
+            x = "total_bill",
+            kind = "hist",
+            stat = "probability",
+            bins = 50)
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222337133-d8db7b57-961a-454e-bf68-1399f8d5e344.png)
+
+Here, the visualisation may be too sparse, making it harder to draw conclusions. Finding the best number of bins can be achieved algorithmically or manual aesthetic choice.
+
+#### Cumulative histogram
+
+Instead of visualising the individual observations, we could instead choose to view the cumulative observations. This may provide clarity on the general curve of the data, and could be especially useful for temporal data.
+
+Creating a cumulative histogram is as simple as including the parameter `cumulative = True`.
+
+```python
+#%%
+sns.displot(data = tips,
+            x = "total_bill",
+            kind = "hist",
+            stat = "probability",
+            cumulative = True)
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222338046-474c2817-8661-4aa8-b94e-0ea35d8655a5.png)
+
+Here we can see that there 60% of the data is below $20, just by looking at the cumulative distribution.
+
+#### Overlaying histograms and histogram types
+
+By including a third variable with `hue = `, we can produce multiple histograms separated by colour. Let's introduce the variable **time**.
+```python
+#%%
+sns.displot(data = tips,
+            x = "total_bill",
+            hue = "time",
+            kind = "hist",
+            stat = "probability")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222338742-e777839b-9921-4d3f-b9b6-0154c2f70add.png)
+
+Automatically, the times overlay. It looks like diners spend more in the evening than at lunch. The attribute `multiple = ` determines how the two plots are displayed:
+
+- `"layer"` - overlayed, as above
+- `"dodge"` - bars are interwoven/side-by-side, like prison bars
+- `"stack"` - bars are stacked
+- `"fill"` - stacked bars which all reach 1, displaying the probability of having one over another
+
+Additionally, the attribute `element = ` provides alternatives to bars which still display the same visualisation. These possibilities are,
+
+- `"bars"` - as above.
+- `"step"` - a continuous outline, maintaining the vertical structure of the bins.
+- `"poly"` - a continuous outline formed by straight lines between data points.
+
+Let's combine `multiple = "stack"` and `element = "step"`
+```python
+#%%
+sns.displot(data = tips,
+            x = "total_bill",
+            hue = "time",
+            kind = "hist",
+            stat = "probability",
+            multiple = "stack",
+            element = "step")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222344591-aea7408a-1943-4f0d-be93-f10ef1493bd2.png)
+
+Finally, it is also possible to overlay a KDE (kernel density estimate) distribution too, using `kde = True`. We'll examine the KDE on its own now.
+
+### Two more distributions
+
+#### Kernal Density Estimate
+
+KDE (kernel density estimate) plots are smooth distributions which fit statistical data. Their smoothness may reflect reality in a way histograms don't, although it's important to acknowledge that KDEs are estimations and will have some distortion of the data. Normally, they provide an accurate picture of the sample distribution.
+
+KDE plots are produced by changing the attribute `kind` in our `sns.displot` function.
+
+```python
+#%%
+sns.displot(data = tips,
+            x = "total_bill",
+            hue = "time",
+            kind = "kde")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222624804-6a14e7f0-19e2-4a07-bbfd-4b4f2316c18a.png)
+
+Notice that the $y$-axis displays the *density* - the KDE, as its name suggests, estimates the probability density function, from which probabilities can be found. There are some attributes which allow the user to adjust specifics of the estimation to best account for the data, those can be found [here](https://seaborn.pydata.org/generated/seaborn.kdeplot.html).
+
+#### Empirical Cumulative Distribution Function
+
+The ECDF (empirical cumulative distribution function) plots provide a cumulative visualisation of the data. These are unique in that they require no aggregation or estimation - no bins or fitting function, the ECDF just plots observations as a running total.
+
+```python
+#%%
+sns.displot(data = tips,
+            x = "total_bill",
+            hue = "time",
+            kind = "ecdf")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222625637-2630b793-8641-4252-8ff6-86343b0e4802.png)       
+
+### Bivariate plots
+
+The final feature of distributive plots we'll examine is bivariate plotting. For plots of `kind = "hist"` and `kind = "ecdf"`, it is possible to also pass a `y` attribute. Let's use **tip** with a histogram.
+
+```python
+#%%
+sns.displot(data = tips,
+            x = "total_bill",
+            y = "tip",
+            kind = "hist")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222626832-85b0c6c3-c49d-4d42-b4a0-0232ef5f048d.png)
+
+These plots have all the options of their univariate counterparts, such as changing the bins, introducing another variable, etc.
+
+We can also create a bivariate KDE plot changing `kind = "kde"`
+
+```python
+#%%
+sns.displot(data = tips,
+            x = "total_bill",
+            y = "tip",
+            kind = "kde")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/222627073-e1d7c104-cddd-4be7-a047-629e56936880.png)
+
+Visualised here are contour lines, corresponding to values of the estimated probability. Contours tend to circle around maxima.
+
 ## Multiple plot figures
 
 ### Facets
@@ -280,7 +490,7 @@ sns.jointplot(data = tips,
               x = "total_bill",
               y = "tip",
               hue = "smoker",
-              kind = "hex")
+              kind = "hist")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/209045268-2d1887d6-067c-4153-af25-a1721cfbb981.png)
@@ -376,215 +586,6 @@ sns.residplot(data = tips,
 
 ![image](https://user-images.githubusercontent.com/118239146/222331779-c451bda3-dd57-48bc-8131-75cb7bcea091.png)
 
-
-## Distributive plots
-
-You may remember that there are three functions for normal, figure-level plots:
-- `sns.relplot` (relational plots, e.g. scatter plots, line plots)
-- `sns.catplot` (categorical plots, e.g. bar plots, box plots)
-- `sns.displot` (distributions, e.g. histograms, kernel density distributions)
-
-We are yet to use the third type, `sns.displot`. These are distributions, which provide an alternative way to analyse data.
-
-### Histograms
-
-To begin with, let's produce a histogram showing us the distribution of the variable **total bill**
-
-```python
-#%%
-sns.displot(data = tips,
-            x = "total_bill",
-            kind = "hist")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222332709-77ad7ce6-4530-43da-a6c9-372215244fbc.png)
-
-Immediately, we can see that the data is skewed, with a mean likely higher than the median due to a longer rightward tail.
-
-> Despite appearances, a histogram is *not* a bar plot, found in `sns.catplot`. A histogram is a distribution, where changing the number of bins (columns) can potentially reveal different results. Notice that **total bill** is numerical, something which wouldn't be possible with a bar plot (we would have a column for every number - that's a lot of columns!)
-
-#### Changing statistic
-
-While it appears simple, there are a lot of features available in `sns.displot`. In our previous plot, the statistic is *count* - the total number of observations. We can change that, using `stat = `, to any of the following options
-
-- `count` - count, as seen above
-- `frequency` - the number of observations divided by the bin width
-- `probability` - normalises the observations such that bar heights sum to 1
-- `density` - normalises such that the total area of the bars (all together) sums to 1
-
-Depending on your version, you may also have access to
-
-- `proportion` - almost identical to `probability`
-- `percent` - normalises such that bar heights sum to 100
-
-Let's use `probability` to normalise the histogram
-
-```python
-#%%
-sns.displot(data = tips,
-            x = "total_bill",
-            kind = "hist",
-            stat = "probability")
-```
-
-#### Changing bin properties
-
-Next, we can adjust the bin (column) properties, such as width, range and aesthetics.
-
-Using `bins`, we can specify the number of bins used. Above, there are 14 - notice that if we reduce the number, perhaps to 7, we could draw some different conclusions.
-
-```python
-#%%
-sns.displot(data = tips,
-            x = "total_bill",
-            kind = "hist",
-            stat = "probability",
-            bins = 7)
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222336719-5f3a9363-154c-47ce-bfc4-96f9da018adc.png)
-
-See how here the tail only decreases, while in the previous plot, the last bin is higher? Whatever choice we make, by grouping in bins, we always risk masking some data between bins. Similarly, we can increase the number to something high, say 50.
-
-```python
-#%%
-sns.displot(data = tips,
-            x = "total_bill",
-            kind = "hist",
-            stat = "probability",
-            bins = 50)
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222337133-d8db7b57-961a-454e-bf68-1399f8d5e344.png)
-
-Here, the visualisation may be too sparse, making it harder to draw conclusions. Finding the best number of bins can be achieved algorithmically or manual aesthetic choice.
-
-#### Cumulative histogram
-
-Instead of visualising the individual observations, we could instead choose to view the cumulative observations. This may provide clarity on the general curve of the data, and could be especially useful for temporal data.
-
-Creating a cumulative histogram is as simple as including the parameter `cumulative = True`.
-
-```python
-#%%
-sns.displot(data = tips,
-            x = "total_bill",
-            kind = "hist",
-            stat = "probability",
-            cumulative = True)
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222338046-474c2817-8661-4aa8-b94e-0ea35d8655a5.png)
-
-Here we can see that there 60% of the data is below $20, just by looking at the cumulative distribution.
-
-#### Overlaying histograms and histogram types
-
-By including a third variable with `hue = `, we can produce multiple histograms separated by colour. Let's introduce the variable **time**.
-```python
-#%%
-sns.displot(data = tips,
-            x = "total_bill",
-            hue = "time",
-            kind = "hist",
-            stat = "probability")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222338742-e777839b-9921-4d3f-b9b6-0154c2f70add.png)
-
-Automatically, the times overlay. It looks like diners spend more in the evening than at lunch. The attribute `multiple = ` determines how the two plots are displayed:
-
-- `"layer"` - overlayed, as above
-- `"dodge"` - bars are interwoven/side-by-side, like prison bars
-- `"stack"` - bars are stacked
-- `"fill"` - stacked bars which all reach 1, displaying the probability of having one over another
-
-Additionally, the attribute `element = ` provides alternatives to bars which still display the same visualisation. These possibilities are,
-
-- `"bars"` - as above.
-- `"step"` - a continuous outline, maintaining the vertical structure of the bins.
-- `"poly"` - a continuous outline formed by straight lines between data points.
-
-Let's combine `multiple = "stack"` and `element = "step"`
-```python
-#%%
-sns.displot(data = tips,
-            x = "total_bill",
-            hue = "time",
-            kind = "hist",
-            stat = "probability",
-            multiple = "stack",
-            element = "step")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222344591-aea7408a-1943-4f0d-be93-f10ef1493bd2.png)
-
-Finally, it is also possible to overlay a KDE (kernel density estimate) distribution too, using `kde = True`. We'll examine the KDE on its own now.
-
-### Two more distributions
-
-#### Kernal Density Estimate
-
-KDE (kernel density estimate) plots are smooth distributions which fit statistical data. Their smoothness may reflect reality in a way histograms don't, although it's important to acknowledge that KDEs are estimations and will have some distortion of the data. Normally, they provide an accurate picture of the sample distribution.
-
-KDE plots are produced by changing the attribute `kind` in our `sns.displot` function.
-
-```python
-#%%
-sns.displot(data = tips,
-            x = "total_bill",
-            hue = "time",
-            kind = "kde")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222624804-6a14e7f0-19e2-4a07-bbfd-4b4f2316c18a.png)
-
-Notice that the $y$-axis displays the *density* - the KDE, as its name suggests, estimates the probability density function, from which probabilities can be found. There are some attributes which allow the user to adjust specifics of the estimation to best account for the data, those can be found [here](https://seaborn.pydata.org/generated/seaborn.kdeplot.html).
-
-#### Empirical Cumulative Distribution Function
-
-The ECDF (empirical cumulative distribution function) plots provide a cumulative visualisation of the data. These are unique in that they require no aggregation or estimation - no bins or fitting function, the ECDF just plots observations as a running total.
-
-```python
-#%%
-sns.displot(data = tips,
-            x = "total_bill",
-            hue = "time",
-            kind = "ecdf")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222625637-2630b793-8641-4252-8ff6-86343b0e4802.png)       
-
-### Bivariate plots
-
-The final feature of distributive plots we'll examine is bivariate plotting. For plots of `kind = "hist"` and `kind = "ecdf"`, it is possible to also pass a `y` attribute. Let's use **tip** with a histogram.
-
-```python
-#%%
-sns.displot(data = tips,
-            x = "total_bill",
-            y = "tip",
-            kind = "hist")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222626832-85b0c6c3-c49d-4d42-b4a0-0232ef5f048d.png)
-
-These plots have all the options of their univariate counterparts, such as changing the bins, introducing another variable, etc.
-
-We can also create a bivariate KDE plot changing `kind = "kde"`
-
-```python
-#%%
-sns.displot(data = tips,
-            x = "total_bill",
-            y = "tip",
-            kind = "kde")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222627073-e1d7c104-cddd-4be7-a047-629e56936880.png)
-
-Visualised here are contour lines, corresponding to values of the estimated probability. Contours tend to circle around maxima.
-
 ## Categorical plots
 
 There are four categorical plots that we'll look at now, box plots, violin plots, swarm plots and point plots. To produce these, we'll move to the function `sns.catplot`.
@@ -614,7 +615,7 @@ sns.catplot(data = tips,
             kind = "box")
 ```
 
-![image](https://user-images.githubusercontent.com/118239146/222630191-1f17eb0e-1770-40f3-87d6-321a9739a617.png)
+![image](https://user-images.githubusercontent.com/118239146/223629761-0b1b3730-4527-43fd-9aad-e8a61a7663a7.png)
 
 Next, we can introduce another variable with `y = `. Let's use **day**.
 
@@ -712,9 +713,9 @@ That was a lot of different plots. Here is a summary of what we just covered.
 | Topic | Description |
 | --- | --- |
 | **Cells**             | By using `#%%`, we can create a cell which runs all the code within it using ctrl + return |
+| **Distributive Plots**| Histograms, KDE plots and ECGF plots all allow analysis of data distributions, which can be modified by statistic, bin dimensions, etc. |
 | **Faceting**          | With `col = ` and `row = ` we can facet by variables within our dataset. *Joint plots* and *Pair plots* offer special types of facet plots. |
 | **Regressions**       | The function `sns.lmplot( ... )` offers a number of regression options |
-| **Distributive Plots**| Histograms, KDE plots and ECGF plots all allow analysis of data distributions, which can be modified by statistic, bin dimensions, etc. |
 | **Categorical Plots** | A number of categorical plots are available (e.g. box plots, swarm plots) which provide alternative visualisations for categorical data |
 
 Below is a summary of *all* available* plots in seaborn. Most of these have been examined in either the introductory session or this one, however, there are some which we have not yet looked at. The [seaborn documentation](https://seaborn.pydata.org/api.html) and [tutorials](https://seaborn.pydata.org/tutorial.html) provide desciptions and advice for all available plots.
