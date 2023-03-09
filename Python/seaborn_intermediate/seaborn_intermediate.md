@@ -319,7 +319,7 @@ Visualised here are contour lines, corresponding to values of the estimated prob
 
 ### Facets
 
-When data visualisations include multiple separate plots, where the difference in plots corresponds to a variable but the $x$ and $y$ axes stay the same, they are called facets. For example, is a series of otherwise identical plots for different snapshots in time or comparisons between categorical variables, such as population, with each country given a different facet in the overall figure.
+When data visualisations include multiple separate plots, where the difference in plots corresponds to a variable but the $x$ and $y$ axes stay the same, they are called facets. Examples include a series of otherwise identical plots for different snapshots in time or comparisons between categorical variables, such as population, with each country given a different facet in the overall figure.
 
 The advantage of facetting is that each facet is a relatively 'clean' plot and comparison across the facetting variable is simple. This is quite easily achieved in seaborn, simply by using the `row = ` and `col = ` parameters in any figure level plots.
 
@@ -431,31 +431,9 @@ sns.pairplot(data = tips,
 
 ![image](https://user-images.githubusercontent.com/118239146/209038900-0e59b2bd-4b8f-46bd-b7d1-384b4d67bfc4.png)
 
-This yields stacked histograms and scatterplots. Let's say we wanted to have a bivariate histogram on the off diagonals and a KDE plot on the diagonal. We could do that by specifying `kind = "hist"` and `diag_kind = "kde"`
+This yields stacked histograms and scatterplots.
 
-```python
-#%%
-sns.pairplot(data = tips, 
-             hue = "time", 
-             kind = "hist",
-             diag_kind = "kde")
-```
-![image](https://user-images.githubusercontent.com/118239146/209039889-a11e51aa-67a2-4f94-9882-e2462e09ce24.png)
-
-Finally, we can use the `corner = True` parameter to only visualise half of the figure
-
-```python
-#%%
-sns.pairplot(data = tips, 
-             hue = "time", 
-             kind = "hist",
-             diag_kind = "kde",
-             corner = True)
-```
-
-> Don't forget a capital 'T' in `True`
-
-![image](https://user-images.githubusercontent.com/118239146/209040294-de90e885-f2e9-4747-9ca1-ca164c7dd1cb.png)
+> If you want to change both the diagonal and off-diagonal plots, simply use both `kind` and `diag_kind` in your plot.
 
 ### Joint plots
 
@@ -484,12 +462,14 @@ sns.jointplot(data = tips,
 
 We can change our plot types using the `kind = ` parameter as before. The options available are
 
-- `scatter`, a scatter plot with histograms
-- `kde`, a univariate and bivariate KDE plot
-- `hist`, a univariate and bivariate histogram
-- `hex`, a univariate and bivariate histogram with hexagonal bins
-- `reg`, a scatter plot with a linear regression and histograms with a KDE
-- `resid`, the residuals of a linear regression with histograms
+| `kind = ... ` | Description |
+| --- | --- |
+| `"scatter"` | A scatter plot with histograms. |
+| `"kde"` | A univariate and bivariate KDE plot. |
+| `"hist"` | A univariate and bivariate histogram. |
+| `"hex"` | A univariate and bivariate histogram with hexagonal bins. |
+| `"reg"` | A scatter plot with a linear regression and histograms with a KDE. |
+| `"resid"` | The residuals of a linear regression with histograms. |
 
 Let's use `hist`. 
 
@@ -675,13 +655,13 @@ Violin plots replace the boxes with Kernel Density Estatimates (remember them?) 
 
 With the `inner` attribute, there are five options:
 
-| Code | Description |
+| `inner = ... ` | Description |
 | --- | --- |
-| `inner = "box"`       | Default, shows the box and whisker plot inside |
-| `inner = "quartile"`  | Shows the quartiles, with markers at 25% Q1, 50% (median) and 75% Q3 |
-| `inner = "point"`     | Shows individual data entries as points |
-| `inner = "stick"`     | Shows individual data entries as lines |
-| `inner = None`        | Shows nothing |
+| `"box"`       | Default, shows the box and whisker plot inside |
+| `"quartile"`  | Shows the quartiles, with markers at 25% Q1, 50% (median) and 75% Q3 |
+| `"point"`     | Shows individual data entries as points |
+| `"stick"`     | Shows individual data entries as lines |
+| `None`        | Shows nothing |
 
 Let's use `inner = "stick"`.
 
