@@ -115,6 +115,8 @@ sns.displot(data = tips,
             kind = "hist")
 ```
 
+> Remember to press Ctrl + Return to run the current cell
+
 ![image](https://user-images.githubusercontent.com/118239146/222332709-77ad7ce6-4530-43da-a6c9-372215244fbc.png)
 
 Immediately, we can see that the data is skewed, with a mean likely higher than the median due to a longer rightward tail.
@@ -125,17 +127,21 @@ Immediately, we can see that the data is skewed, with a mean likely higher than 
 
 While it appears simple, there are a lot of features available in `sns.displot`. In our previous plot, the statistic is *count* - the total number of observations. We can change that, using `stat = `, to any of the following options
 
-- `count` - count, as seen above
-- `frequency` - the number of observations divided by the bin width
-- `probability` - normalises the observations such that bar heights sum to 1
-- `density` - normalises such that the total area of the bars (all together) sums to 1
+| `stat = ... ` | Description | 
+| --- | --- |
+| `"count"` | Count, as seen above |
+| `"frequency"` | The number of observations divided by the bin width |
+| `"probability"` | Normalises the observations such that bar heights sum to 1 |
+| `"density"` | Normalises such that the total area of the bars (all together) sums to 1 |
 
 Depending on your version, you may also have access to
 
-- `proportion` - almost identical to `probability`
-- `percent` - normalises such that bar heights sum to 100
+| `stat = ... `| Description |
+| --- | --- |
+| `"proportion"` | Almost identical to `probability` |
+| `"percent"` | Normalises such that bar heights sum to 100 |
 
-Let's use `probability` to normalise the histogram
+Let's use `"probability"` to normalise the histogram
 
 ```python
 #%%
@@ -151,7 +157,7 @@ sns.displot(data = tips,
 
 Next, we can adjust the bin (column) properties, such as width, range and aesthetics.
 
-Using `bins`, we can specify the number of bins used. Above, there are 14 - notice that if we reduce the number, perhaps to 7, we could draw some different conclusions.
+Using `bins = `, we can specify the number of bins used. Above, there are 14. Notice that if we reduce the number, perhaps to 7, we could draw some different conclusions.
 
 ```python
 #%%
@@ -177,7 +183,7 @@ sns.displot(data = tips,
 
 ![image](https://user-images.githubusercontent.com/118239146/222337133-d8db7b57-961a-454e-bf68-1399f8d5e344.png)
 
-Here, the visualisation may be too sparse, making it harder to draw conclusions. Finding the best number of bins can be achieved algorithmically or manual aesthetic choice.
+Here, the visualisation may be too sparse, making it harder to draw conclusions. Finding the best number of bins can be achieved algorithmically or manual choice.
 
 #### Cumulative histogram
 
@@ -214,16 +220,20 @@ sns.displot(data = tips,
 
 Automatically, the times overlay. It looks like diners spend more in the evening than at lunch. The attribute `multiple = ` determines how the two plots are displayed:
 
-- `"layer"` - overlayed, as above
-- `"dodge"` - bars are interwoven/side-by-side, like prison bars
-- `"stack"` - bars are stacked
-- `"fill"` - stacked bars which all reach 1, displaying the probability of having one over another
+| `multiple = ... ` | Description |
+| --- | --- |
+| `"layer"` | Overlayed, as above. |
+| `"dodge"` | Bars are interwoven/side-by-side, like prison bars. |
+| `"stack"` | Bars are stacked. |
+| `"fill"` | Stacked bars which all reach 1, displaying the probability of obtaining one over the another. |
 
 Additionally, the attribute `element = ` provides alternatives to bars which still display the same visualisation. These possibilities are,
 
-- `"bars"` - as above.
-- `"step"` - a continuous outline, maintaining the vertical structure of the bins.
-- `"poly"` - a continuous outline formed by straight lines between data points.
+| `element = ... `| Description
+|--- | --- |
+| `"bars"` | As above.|
+| `"step"` | A continuous outline, maintaining the vertical structure of the bins.|
+| `"poly"` | A continuous outline formed by straight lines between data points.|
 
 Let's combine `multiple = "stack"` and `element = "step"`
 ```python
@@ -243,7 +253,7 @@ Finally, it is also possible to overlay a KDE (kernel density estimate) distribu
 
 ### Two more distributions
 
-#### Kernal Density Estimate
+#### Kernel Density Estimate
 
 KDE (kernel density estimate) plots are smooth distributions which fit statistical data. Their smoothness may reflect reality in a way histograms don't, although it's important to acknowledge that KDEs are estimations and will have some distortion of the data. Normally, they provide an accurate picture of the sample distribution.
 
@@ -305,7 +315,7 @@ sns.displot(data = tips,
 
 Visualised here are contour lines, corresponding to values of the estimated probability. Contours tend to circle around maxima.
 
-## Multiple plot figures
+## Visualising multiple plots
 
 ### Facets
 
@@ -323,7 +333,6 @@ sns.relplot(data = tips,
             kind = "scatter")
 ```
 
-> Remember to press Ctrl + Return to run the current cell
 
 ![image](https://user-images.githubusercontent.com/118239146/209038219-fa92f665-ba74-45fd-8cf0-dc4c498c62f9.png)
 
@@ -495,7 +504,7 @@ sns.jointplot(data = tips,
 
 ![image](https://user-images.githubusercontent.com/118239146/209045268-2d1887d6-067c-4153-af25-a1721cfbb981.png)
 
-Joint plots provide a powerful tool for analysing data, particularly different grouped data, because the distribution plots on the margin indicate whether specific variables group in certain sections. In this case, it looks like the smoker and non-smoker data are both distributed around the same means, with similar tails, indicating that there may not be a relationship between smoker and total bill or smoker and tip. One of the most important tools for this form of analysis, however, is linear regression, which we will now explore.
+Joint plots provide a powerful tool for analysing data, particularly different grouped data, because the distribution plots on the margin indicate whether specific variables group in certain sections. In this case, it looks like the smoker and non-smoker data are both distributed around the same means, with similar tails, indicating that there may not be a relationship between smoker and total bill or smoker and tip. One of the most important tools for this form of analysis, however, is linear regression, which we will now explore next.
 
 ## Regressions
 
@@ -734,7 +743,7 @@ Below is a summary of *all* available* plots in seaborn. Most of these have been
 | Plot Name | Code | Notes |
 | --- | --- | --- |
 | Histogram             | `sns.displot( ... , kind = "hist", ... )` | Can be univariate (`x` only) or bivariate (`x` and `y`)|
-| Kernal Density Estimate| `sns.displot( ... , kind = "kde" , ... )` | Can be univariate (`x` only) or bivariate (`x` and `y`)|
+| Kernel Density Estimate| `sns.displot( ... , kind = "kde" , ... )` | Can be univariate (`x` only) or bivariate (`x` and `y`)|
 | ECDF* | `sns.displot( ... , kind = "ecdf", ... )` | |
 | Rug Plot              | `sns.displot( ... , rug = True , ... ) `  | Combine with another `sns.displot`, plots marginal distributions | 
 
