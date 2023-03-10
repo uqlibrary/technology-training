@@ -133,6 +133,8 @@ We can now use the joined data to change the symbology of our regions according 
 
 Depending on the data that you deal with, different "Modes" will be more or less useful to create a good colour key. Try "Natural breaks (Jenks)" for example.
 
+#### Data Defined Symbology with the Assistant Tool
+
 Still using a continuous numerical variable, we can change the size of the "populated places" symbols according to population. Use the `Data defined override` dropdown next to the Size box, and use the `Assistant...` to define the scale, with the column `pop_max`. If the smallest size is too small, we can amend it.
 
 We can save styles with `right-click > Styles > Add`, which creates a new one and saves the previous version.
