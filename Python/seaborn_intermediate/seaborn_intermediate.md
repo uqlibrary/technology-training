@@ -315,6 +315,33 @@ sns.displot(data = tips,
 
 Visualised here are contour lines, corresponding to values of the estimated probability. Contours tend to circle around maxima.
 
+### Challenge 1:
+
+Can you produce a histogram which examines the variable **tip** with 13 bins, and also introduces the variable **size** with `hue = `. In addition, use the `"stack"` option for multiple variables and superimpose a kde distribution using `kde = True`.
+
+<details>
+  <summary>Solution</summary>
+  
+  The code is
+  
+  ```python
+  #%%
+  sns.displot(data = tips,
+              x = "tip",
+              hue = "size",
+              bins = 13,
+              multiple = "stack",
+              kde = True)
+  ```
+  
+  And the plot is
+  
+  ![image](https://user-images.githubusercontent.com/118239146/224217772-5530b860-6c53-40a5-a6b2-8d35a91ee0d8.png)
+            
+  Notice that by choosing a *numerical* variable for colour, seaborn uses a sequential palette, rather than a qualitative one.
+
+</details>
+
 ## Visualising multiple plots
 
 ### Facets
