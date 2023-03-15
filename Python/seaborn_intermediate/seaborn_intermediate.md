@@ -498,7 +498,7 @@ We can change our plot types using the `kind = ` parameter as before. The option
 | `"reg"` | A scatter plot with a linear regression and histograms with a KDE. |
 | `"resid"` | The residuals of a linear regression with histograms. |
 
-Let's use `hist`. 
+Let's try with `"hist"`.
 
 ``` python
 #%%
@@ -512,6 +512,31 @@ sns.jointplot(data = tips,
 ![image](https://user-images.githubusercontent.com/118239146/209045268-2d1887d6-067c-4153-af25-a1721cfbb981.png)
 
 Joint plots provide a powerful tool for analysing data, particularly different grouped data, because the distribution plots on the margin indicate whether specific variables group in certain sections. In this case, it looks like the smoker and non-smoker data are both distributed around the same means, with similar tails, indicating that there may not be a relationship between smoker and total bill or smoker and tip. One of the most important tools for this form of analysis, however, is linear regression, which we will now explore next.
+### Challenge 2:
+
+Can you produce a group of histograms which look at the distribution of **total bill**? The group should separate the responses to **smoker** into columns and **time** into rows.
+
+<details>
+  <summary>Solution</summary>
+  
+  The code is
+  
+  ```python
+  #%%
+  sns.displot(data = tips,
+            x = "total_bill",
+            col = "smoker",
+            row = "time")
+  ```
+  
+  And the plot is
+  
+  ![image](https://user-images.githubusercontent.com/118239146/225217944-c5cc2830-8448-40ce-8230-05065a04c3e9.png)
+            
+</details>
+
+
+
 
 ## Regressions
 
