@@ -781,7 +781,7 @@ sns.catplot(data = tips,
             palette = "crest",
             kind = "violin")
 ```         
-But this produces a strange graph (and takes some time to do so)
+But this produces a strange graph (and takes some time to do so) by considering *every* entry in **total bill** as a separate categorical variable, with its own plot.
 
 ![image](https://user-images.githubusercontent.com/118239146/225487647-1e5f5ba3-b4cb-4928-8bb9-7916bffeea15.png)
 
@@ -870,8 +870,8 @@ Below is a summary of *all* available* plots in seaborn. Most of these have been
 | --- | --- | --- |
 | Strip Plot            | `sns.catplot( ... , kind = "strip" , ... )`| Like a scatterplot for categorical data |
 | Swarm Plot            | `sns.catplot( ... , kind = "swarm" , ... )`| |
-| Box Plot              | `sns.catplot( ... , kind = "box" , ... )` | Choose `x` and `y` carefully |
-| Violin Plot           | `sns.catplot( ... , kind = "violin" , ... )` | |
+| Box Plot              | `sns.catplot( ... , kind = "box" , ... )` | One variable is always interpreted categorically |
+| Violin Plot           | `sns.catplot( ... , kind = "violin" , ... )` | One variable is always interpreted categorically |
 | Enhanced Box Plot     | `sns.catplot( ... , kind = "boxen", ... )`  | A box plot with additional quantiles |
 | Point Plot            | `sns.catplot( ... , kind = "point" , ... ) ` | Like a line plot for categorical data | 
 | Bar Plot              | `sns.catplot( ... , kind = "bar" , ... ) `    | Aggregates data | 
