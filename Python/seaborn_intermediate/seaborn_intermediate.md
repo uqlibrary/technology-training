@@ -315,7 +315,7 @@ sns.displot(data = tips,
 
 Visualised here are contour lines, corresponding to values of the estimated probability. Contours tend to circle around maxima.
 
-### Challenge 1:
+### Challenge 1
 
 Can you produce a histogram which examines the variable **tip** with 13 bins, and also introduces the variable **size** with `hue = `. In addition, use the `"stack"` option for multiple variables and superimpose a kde distribution using `kde = True`.
 
@@ -512,7 +512,8 @@ sns.jointplot(data = tips,
 ![image](https://user-images.githubusercontent.com/118239146/209045268-2d1887d6-067c-4153-af25-a1721cfbb981.png)
 
 Joint plots provide a powerful tool for analysing data, particularly different grouped data, because the distribution plots on the margin indicate whether specific variables group in certain sections. In this case, it looks like the smoker and non-smoker data are both distributed around the same means, with similar tails, indicating that there may not be a relationship between smoker and total bill or smoker and tip. One of the most important tools for this form of analysis, however, is linear regression, which we will now explore next.
-### Challenge 2:
+
+### Challenge 2
 
 Can you produce a group of histograms which look at the distribution of **total bill**? The group should separate the responses to **smoker** into columns and **time** into rows.
 
@@ -534,9 +535,6 @@ Can you produce a group of histograms which look at the distribution of **total 
   ![image](https://user-images.githubusercontent.com/118239146/225217944-c5cc2830-8448-40ce-8230-05065a04c3e9.png)
             
 </details>
-
-
-
 
 ## Regressions
 
@@ -746,6 +744,91 @@ sns.catplot(data = tips,
 ![image](https://user-images.githubusercontent.com/118239146/223587178-68e6bd43-4fd0-422a-9b55-9a9010b5d1c8.png)
 
 Swarm plots give a clear qualitative indication of the spread of data.
+
+### Challenge 3
+
+For our final challenge, try to produce this plot
+
+![image](https://user-images.githubusercontent.com/118239146/225487008-c254757b-ec6a-40d9-8138-d6691de61c81.png)
+
+> Hint: the colour palette used is called `"crest"`.
+
+<details>
+  <summary>Solution</summary>
+  
+  The code is
+  
+  ```python
+  #%%
+  sns.catplot(data = tips,
+              x = "size",
+              y = "total_bill",
+              palette = "crest",
+              kind = "violin")
+  ```         
+
+</details>
+
+#### Extension to Challenge 3 using pandas
+
+Here we briefly explore an extension to our previous plot, encountering some of the limitations with seaborn. What if we wanted to swap our axes above, displaying the violin plots horizontally? Well, we could try swapping the `x` and `y` variables:
+
+```python
+#%%
+sns.catplot(data = tips,
+            x = "total_bill",
+            y = "size",
+            palette = "crest",
+            kind = "violin")
+```         
+But this produces a strange graph (and takes some time to do so)
+
+![image](https://user-images.githubusercontent.com/118239146/225487647-1e5f5ba3-b4cb-4928-8bb9-7916bffeea15.png)
+
+Here we see that seaborn **automatically assumes the *x* variable is categorical *if both variables are numerical*** when using `sns.catplot`. We can tell seaborn to instead consider **size** as categorical by including `orient = "h"`
+
+![image](https://user-images.githubusercontent.com/118239146/225488009-0e29ef81-922d-4f2c-a902-282d3ebc019a.png)
+
+That's better! But hold on, the ordering of **size** is misleading. We should have 1 at the bottom and 6 at the top! Seaborn doesn't know this, because we've told it that **size** is categorical, so it doesn't know how to interpret the order. To change this requires a manual solution, using `order = `. If we know the order we want, we could simply include
+
+```python
+order = [6,5,4,3,2,1]
+```
+
+which does the trick
+
+![image](https://user-images.githubusercontent.com/118239146/225488485-3db55766-2503-49bb-9941-4ede2e2f22c4.png)
+
+However, what if there were many different options? It's hard work to put them all in manually. We can do it with the **pandas** module. Firstly, let's import it
+
+```python
+import pandas as pd
+```
+
+Next, let's create the list of the unique values in size that we want (like `[6,5,4, ... ]` above) and order them. 
+
+```python
+myOrder = sorted(pd.unique(tips["size"]), reverse = True)
+```
+
+Let's unpack this. Here, we've isolated our **size** data with `tips["size"]`, made a list of its unique values with `pd.unique( ... )`, and sorted them in reverse order with `sorted( ... , reverse = True)`. All together, we get the same list `[6,5,4, ... ]`.
+
+If we then put `myOrder` into the `order = ` attribute, it works!
+
+```python
+#%%
+myOrder = sorted(pd.unique(tips["size"]), reverse = True)
+
+sns.catplot(data = tips,
+            x = "total_bill",
+            y = "size",
+            palette = "crest",
+            kind = "violin",
+            orient = "h",
+            order = myOrder)
+```
+            
+![image](https://user-images.githubusercontent.com/118239146/225489334-163c864e-ff28-47ca-8d90-12a25f9e0823.png)
 
 ## Conclusion
 
