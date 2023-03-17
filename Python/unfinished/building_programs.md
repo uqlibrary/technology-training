@@ -85,7 +85,7 @@ print(type(myFloat))
 
 #####
 
-Finally, python offers a `complex` type which allows complex numbers (of the form $z = a + bi$ where $i = \sqrt{-1}$). If you don't deal with complex numbers, don't worry about it. Note that here, python uses `j` to mean $i$.
+Finally, python offers a `complex` type which allows complex numbers (of the form $z = a + bi$ where $i^2 \equiv -1$). If you don't deal with complex numbers, don't worry about it. Note that here, python uses `j` to mean $i$.
 
 ```python
 #%%
