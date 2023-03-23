@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 23 14:51:28 2023
-
-@author: uqcwest5
-"""
-
 #%% Setting up
 
 import seaborn as sns
