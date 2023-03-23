@@ -158,7 +158,7 @@ df.country.describe()
 
 ## More cleaning up
 
-Which country does this maximum value belong to? Let's investigate this by subsetting the data:
+Notice that the maximum co2 value (given above in `df.co2.describe()`) is 36826.508. Which country does this maximum value belong to? Let's investigate this by subsetting the data:
 
 ``` python
 df[df.co2 == df.co2.max()]
