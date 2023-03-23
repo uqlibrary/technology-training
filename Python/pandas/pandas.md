@@ -214,7 +214,7 @@ Now that we have a clean dataset, we can expand it by calculating new interestin
 
 For example, we can first sum the three greenhouse gases (as they use the same unit), and then calculate how much CO<sub>2</sub>-equivalent is emitted per person. We can also add GDP per capita to the dataset.
 
-For the total greenhouse gaz emissions in CO<sub>2</sub>e:
+For the total greenhouse gas emissions in CO<sub>2</sub>e:
 
 ``` python
 df['co2e'] = df[['co2', 'methane', 'nitrous_oxide']].sum(axis=1)
