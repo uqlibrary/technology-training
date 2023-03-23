@@ -3,6 +3,22 @@ R with RStudio: getting started
 UQ Library
 2022-03-17
 
+
+
+1. [R Overview and installation](#r--rstudio)
+2. [What are we going to learn?](#what-are-we-going-to-learn)
+3. [Setting Up](#open-rstudio)
+4. [Basic Code and Maths](#maths-and-objects)
+5. [Creating folder structures](#create-a-folder-structure)
+
+5. [Scripts](#scripts)
+6. [Functions](#functions)
+7. [Getting Help](#help)
+8. [Importing and Exploring Data](#import-data)
+9. [Packages](#packages)
+
+
+
 ## R + RStudio
 
 The [R programming language](https://cran.r-project.org/) is a language
@@ -34,19 +50,6 @@ For this course, you need to have both R and RStudio installed
 ([installation
 instructions](https://github.com/uqlibrary/technology-training/blob/master/R/Installation.md#r--rstudio-installation-instructions)).
 
-## Open RStudio
-
--   If you are using your own laptop please open RStudio
-    -   Make sure you have a working Internet connection
--   On Library computers:
-    -   Log in with your UQ username and password (if you are both staff
-        and student, use your student account)
-    -   Make sure you have a working Internet connection
-    -   Go to search at bottom left corner (magnifying glass)
-    -   Open the ZENworks application
-    -   Search for “RStudio”
-    -   Double-click on RStudio which will install both R and RStudio
-
 ## What are we going to learn?
 
 This session is designed to get straight into using R in a short amount
@@ -65,6 +68,19 @@ During this session, you will:
 -   Use a few shortcuts
 -   Know how to extend R with packages
 -   Generate a data visualisation
+
+## Open RStudio
+
+-   If you are using your own laptop please open RStudio
+    -   Make sure you have a working Internet connection
+-   On Library computers:
+    -   Log in with your UQ username and password (if you are both staff
+        and student, use your student account)
+    -   Make sure you have a working Internet connection
+    -   Go to search at bottom left corner (magnifying glass)
+    -   Open the ZENworks application
+    -   Search for “RStudio”
+    -   Double-click on RStudio which will install both R and RStudio
 
 ## R Projects
 
