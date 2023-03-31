@@ -100,10 +100,9 @@ We will go into projections in more detail soon.
 For most of our data, we will simply be able to double click on it in the Project Home folder within the Browser window.
 When you load in this data, QGIS will give you a warning that your Project Projection is different to the data you're importing. Simply click cancel on this window. We will be fixing this issue later. Make sure your Project Projection remains as EPSG:7856.
   Load in:
-* SA2_ERP_2021 (suburb data)
-* CAPAD2020 (Protected Areas)
-* koala_priority_area
-* Population Data GRID File (as a stretch goal)
+* SA2_ERP_2021.gpkg (suburb data)
+* CAPAD2020_terrestrial_QLD.gpkg (Protected Areas)
+* koala_priority_area.gpkg
 
 But what about the Koala Encounters location data? We need to handle this differently, as it is currently not in a spatial format, but in a csv file.
 
@@ -147,13 +146,13 @@ The following code will allow you to select the SA2 features that are in SEQ.
 * In the Select by Expression window that opens, paste the code from below into the Expression field, and then click `Select Features` in the bottom right of the window.
 
 ``` SQL
- "GCCSA_name2021"  =  'Greater Brisbane' 
+ "GCCSA_name_2021"  =  'Greater Brisbane' 
 OR
- "SA4_name2021" =  'Gold Coast' 
+ "SA4_name_2021" =  'Gold Coast' 
  OR
- "SA4_name2021" =  'Sunshine Coast' 
+ "SA4_name_2021" =  'Sunshine Coast' 
   OR
- "SA4_name2021" =  'Toowoomba' 
+ "SA4_name_2021" =  'Toowoomba' 
  ```
  
 * Close the Select by Expression window and Attribute Table 
@@ -184,7 +183,6 @@ This is caused by little issues in the polygon layer. Sometimes when polygons ar
 * In the **Processing Toolbox** window `Search` for "Fix geometries"
 * Double-click on the **Fix geometries** option
 * In the **Fix Geometries** window, select `CAPAD2020_terrestrial_QLD` from the **Input layer** options, then click `Run`
-* We will need to do this same process now for the 
 
 You can now re-run the **Intersection** tool with the resulting **Fixed Geometries** layer (instead of the **CAPAD2020_terrestrial_QLD** layer)
 
