@@ -447,7 +447,7 @@ sns.pairplot(data = tips,
 
 ![image](https://user-images.githubusercontent.com/118239146/209038743-face6cab-3d76-4280-b028-8bd78f6177a9.png)
 
-Althought this also changes our scatterplots to bivariate histograms. If we only want to adjust the diagonal, we can instead use `diag_kind = "hist"`
+Although this also changes our scatterplots to bivariate histograms. If we only want to adjust the diagonal, we can instead use `diag_kind = "hist"`
 
 ```python
 #%%
@@ -461,6 +461,18 @@ sns.pairplot(data = tips,
 This yields stacked histograms and scatterplots.
 
 > If you want to change both the diagonal and off-diagonal plots, simply use both `kind` and `diag_kind` in your plot.
+
+Finally, if you're only interested one set of the off-diagonals, which may often be the case due to the symmetry of the plots, then the parameter `corner = True` will only display the bottom-left half.
+
+```python
+#%%
+sns.pairplot(data = tips,
+             hue = "time",
+             diag_kind = "hist",
+             corner = True)
+```
+
+![image](https://user-images.githubusercontent.com/118239146/232927546-ec4f8c47-76dd-44ab-b194-cdca706e6e29.png)
 
 ### Joint plots
 
