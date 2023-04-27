@@ -184,34 +184,40 @@ sns.displot(data = tips,
             col = "smoker",
             row = "time")
 
-#%% Regressions
+#%% Overlaying multiple plots
 
-sns.lmplot(data = tips,
-           x = "total_bill",
-           y = "tip")
+# Our first plot to consider
+sns.relplot(data = tips,
+             x = "size",
+             y = "tip",
+             kind = "scatter")
 
-#%% Include hue, col and row
+#%% Our second plot to consider
+sns.relplot(data = tips,
+             x = "size",
+             y = "tip",
+             kind = "line")
 
-sns.lmplot(data = tips,
-           x = "total_bill",
-           y = "tip",
-           hue = "smoker",
-           col = "day",
-           row = "time")
+#%% Joining combining the two doesn't work!
+sns.relplot(data = tips,
+             x = "size",
+             y = "tip",
+             kind = "scatter")
 
-#%% Change regression type
+sns.relplot(data = tips,
+             x = "size",
+             y = "tip",
+             kind = "line")
 
-sns.lmplot(data = tips,
-           x = "total_bill",
-           y = "tip",
-           logx = True)
+#%% But using sns.lineplot() makes the second graph on the same figure
+sns.relplot(data = tips,
+             x = "size",
+             y = "tip",
+             kind = "scatter")
 
-#%% Plot the residuals
-
-sns.residplot(data = tips,
-              x = "total_bill",
-              y = "tip")
-
+sns.lineplot(data = tips,
+             x = "size",
+             y = "tip")
 
 #%% Categorical plot
 
