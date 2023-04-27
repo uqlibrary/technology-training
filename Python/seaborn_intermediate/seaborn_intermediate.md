@@ -525,6 +525,74 @@ sns.jointplot(data = tips,
 
 Joint plots provide a powerful tool for analysing data, particularly different grouped data, because the distribution plots on the margin indicate whether specific variables group in certain sections. In this case, it looks like the smoker and non-smoker data are both distributed around the same means, with similar tails, indicating that there may not be a relationship between smoker and total bill or smoker and tip. One of the most important tools for this form of analysis, however, is linear regression, which we will now explore next.
 
+### Overlaying plots
+
+The final multi-plot visualisation technique we will explore displays multiple different plots on the same set of axes. To do that, we need to call two plotting functions for each of our plots. Let's start by viewing a scatter plot of **size** vs **tip**
+
+``` python
+#%%
+sns.relplot(data = tips,
+            x = "size",
+            y = "tip",
+            kind = "scatter")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/235010385-06d02f7b-ba99-451c-93eb-f78b6206fcdd.png)
+
+Let's also create the graph that we want to overlay. We could try a line graph of the averages
+
+``` python
+#%%
+sns.relplot(data = tips,
+            x = "size",
+            y = "tip",
+            kind = "line")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/235011312-d044fae4-014d-4ba4-b798-15e037f9447a.png)
+
+Now, let's try put the line graph on top of the scatter. Here, we need to pause and consider the difference between figure-level and axes-level functions for a moment. 
+
+- Figure-level plots create a new figure (the whole image) every time they're used. `sns.relplot`, `sns.displot` and `sns.catplot` are the only figure-level plots.
+- Axes-level plots create a new plot *on the current axes* every time they're used. Using these, we can put multiple plots on the same image. Examples include `sns.lineplot`, `sns.barplot`, `sns.histplot` etc. We haven't used any of these yet, but the syntax is almost identical to those figure-level functions.
+
+The best way to understand this difference is to try them both. If I call two figure-level plots, it's going to create two separate images. Try running the two plots above in the same cell.
+
+``` python
+#%%
+sns.relplot(data = tips,
+            x = "size",
+            y = "tip",
+            kind = "scatter")
+            
+sns.relplot(data = tips,
+            x = "size",
+            y = "tip",
+            kind = "line")
+```
+
+What you should find is that two separate images are produced, the same ones as above! That's because the second plot, `sns.replot( ... , kind = "line")`, is a figure level plot, so it makes a whole new image for the visualisation. Instead, let's try by replacing the second plot with `sns.lineplot`. We also need to omit the `kind = "line"` argument, since it is now redundant.
+
+``` python
+#%%
+sns.relplot(data = tips,
+            x = "size",
+            y = "tip",
+            kind = "scatter")
+            
+sns.lineplot(data = tips,
+             x = "size",
+             y = "tip")
+```
+
+![image](https://user-images.githubusercontent.com/118239146/235011666-b2440c4b-3f37-476b-8320-c168e467b6f1.png)
+
+et voila! The line plot has been placed on top of the scatter plot. If we wanted to include any more plots, we would need to do so with additional axes-level functions.
+
+> Note that by keeping the first plot as figure-level, we retain the visual aesthetic of figure-level plots. In general, the first plot we use will define the default appearance.
+
+`sns.lineplot` is one example of many axes level functions. In fact, for every `kind = " ... "` option there is a corresponding `sns. ... plot()` axes-level function. So `sns.displot( ... , kind = "hist")` corresponds to `sns.histplot`, `sns.catplot( ... , kind = "count"` corresponds to `sns.countplot`, `sns.relplot( ... , kind = "scatter")` corresponds to `sns.scatterplot` etc.
+
 ### Challenge 2
 
 Can you produce a group of histograms which look at the distribution of **total bill**? The group should separate the responses to **smoker** into columns and **time** into rows.
