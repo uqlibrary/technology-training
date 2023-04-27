@@ -842,6 +842,19 @@ Below is a summary of *all* available* plots in seaborn. Most of these have been
 
 > *As of v0.12.2
 
+### Figure- to Axes-level plot
+
+All the plots below are figure-level. To produce the axes-level plot of the same type, simply use
+``` python
+sns.****plot()
+```
+where `****` is given in `kind = "****"` for the corresponding figure-level plot. For example,
+
+``` python
+sns.relplot( ..., kind = "scatter", ... ) # Figure-level scatter plot
+sns.scatterplot( ... ) # Axes-level scatter plot
+```
+
 ### Relational Plots
 
 | Plot Name | Code | Notes |
