@@ -548,95 +548,6 @@ Can you produce a group of histograms which look at the distribution of **total 
             
 </details>
 
-## Regressions
-
-There are two plotting functions which will allow us to produce a regression easily in seaborn: `sns.lmplot` and `sns.regplot`. As you might expect, one is figure-level and one is axes-level. For consistency (and functionality), this session uses `sns.lmplot`, but the other functions similarly.
-
-Let's start by taking the same data and producing a linear regression.
-
-```python
-#%%
-sns.lmplot(data = tips,
-           x = "total_bill",
-           y = "tip")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222052904-70438175-4038-4572-95eb-28815f81d87b.png)
-
-Here, `sns.lmplot` has automatically produced a scatter plot with a linear regression, including a confidence interval. Clearly much of our data is falling outside the confidence interval, so its not necessarily the best model.
-
-As with the facetting examples, we can use `hue`, `col` and `row` to include additional variables. For example,
-
-```python
-#%%
-sns.lmplot(data = tips,
-           x = "total_bill",
-           y = "tip",
-           hue = "smoker",
-           col = "day",
-           row = "time")
-```
-
-assigns the `hue` parameter (colour) to the variable **smoker**, and facets according to `col = "day"` and `row = "time"`.
-
-![image](https://user-images.githubusercontent.com/118239146/222053794-5c71b8b3-96a0-455e-acdc-70ad96533210.png)
-
-*Unlike* our facetting examples, however, these all include a linear regression. By applying a regresion to facetted results, we may observe relationships which are otherwise hidden in the large sample. That being said, facetting has drawbacks, as it can also hide broader group trends. Depending on your data, both or either may be relevant.
-
-The function `sns.lmplot` would be pretty limited if it only offered linear regressions. Luckily, there are a few different methods available. To change method requires including `<method_name> = True` as an attribute in the plotting function, like `hue = ` and `data = `. The possibilities are,
-
-| Method                | Attribute             | Notes |
-| ------                | ----                  | ----- |
-| Linear                | N/A (default or all `False`) | Standard linear regression. | 
-| Polynomial            | `order = <int>`       | Polynomial regression with specified order, e.g. `order = 3` is a third order polynomial fit. | 
-| Logistic              | `logistic = True`     | For binary variable $y$. Computer intensive, so reduce `n_boot` or `ci` if too slow. |
-| Lowess                | `lowess = True`       | **Lo**cally **we**ighted **s**catterplot **s**moothing. No confidence intervals (in seaborn). |
-| Log-linear            | `logx = True`         | Linear regression of the form $y \sim \log(x)$, but still displays on the $x-y$ axes. Could highlight an exponential relationship. |
-
-> For the logistic and lowess models, seaborn uses `statsmodels`, a python statistics module, behind the scenes.
-
-Let's produce a polynomial regression of order 3.
-
-```python
-#%%
-sns.lmplot(data = tips,
-           x = "total_bill",
-           y = "tip",
-           order = 3)
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222330468-33829909-d58c-463c-83c6-6416a514ec52.png)
-
-Alternatively, we could try the lowess model.
-
-```python
-#%%
-sns.lmplot(data = tips,
-           x = "total_bill",
-           y = "tip",
-           lowess = True)
-```
-> Note that if you try to use `order = ` and another model in the same plot, e.g. `logistic = True`, it will return an error, as order is only for polynomial regressions.
-
-![image](https://user-images.githubusercontent.com/118239146/222330559-686daf0b-afd0-44a7-a018-6a13515b2b47.png)
-
-This summarises the function `sns.lmplot`, providing some of the most common regression models. If you wanted to use a different model, a statistics package would need to be imported and used for the model. You could still then plot those results with seaborn, if you wanted to maintain visual consistancy.
-
-### Residual plot
-
-In the same family as the above is the residual plot, which is a scatterplot of the *residuals* from a linear regression performed in the background. If you're unfamiliar with residuals, they are a way of determining how well a regression fits, and where that fit is best.
-
-To produce a residual plot, we use the function `sns.residplot`. Let's use it on our previous data.
-
-```python
-#%%
-sns.residplot(data = tips,
-              x = "total_bill",
-              y = "tip")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/222331779-c451bda3-dd57-48bc-8131-75cb7bcea091.png)
-
 ## Categorical plots
 
 There are four categorical plots that we'll look at now, box plots, violin plots, swarm plots and point plots. To produce these, we'll move to the function `sns.catplot`.
@@ -849,9 +760,9 @@ That was a lot of different plots. Here is a summary of what we just covered.
 | Topic | Description |
 | --- | --- |
 | **Cells**             | By using `#%%`, we can create a cell which runs all the code within it using ctrl + return |
+| **Plotting**          | Remember that we use `sns.relplot` for relational plots (line & scatter), `sns.displot` for distributions and `sns.catplot` for categorical plots. See the summaries below for more depth. |
 | **Distributive Plots**| Histograms, KDE plots and ECGF plots all allow analysis of data distributions, which can be modified by statistic, bin dimensions, etc. |
 | **Faceting**          | With `col = ` and `row = ` we can facet by variables within our dataset. *Joint plots* and *Pair plots* offer special types of facet plots. |
-| **Regressions**       | The function `sns.lmplot( ... )` offers a number of regression options |
 | **Categorical Plots** | A number of categorical plots are available (e.g. box plots, swarm plots) which provide alternative visualisations for categorical data |
 
 Below is a summary of *all* available* plots in seaborn. Most of these have been examined in either the introductory session or this one, however, there are some which we have not yet looked at. The [seaborn documentation](https://seaborn.pydata.org/api.html) and [tutorials](https://seaborn.pydata.org/tutorial.html) provide desciptions and advice for all available plots.
