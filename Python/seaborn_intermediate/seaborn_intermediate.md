@@ -587,11 +587,15 @@ sns.lineplot(data = tips,
 
 ![image](https://user-images.githubusercontent.com/118239146/235011666-b2440c4b-3f37-476b-8320-c168e467b6f1.png)
 
-et voila! The line plot has been placed on top of the scatter plot. If we wanted to include any more plots, we would need to do so with additional axes-level functions.
+Et voila! The line plot has been placed on top of the scatter plot. If we wanted to include any more plots, we would need to do so with additional axes-level functions.
 
 > Note that by keeping the first plot as figure-level, we retain the visual aesthetic of figure-level plots. In general, the first plot we use will define the default appearance.
 
-`sns.lineplot` is one example of many axes level functions. In fact, for every `kind = " ... "` option there is a corresponding `sns. ... plot()` axes-level function. So `sns.displot( ... , kind = "hist")` corresponds to `sns.histplot`, `sns.catplot( ... , kind = "count"` corresponds to `sns.countplot`, `sns.relplot( ... , kind = "scatter")` corresponds to `sns.scatterplot` etc.
+`sns.lineplot` is one example of many axes level functions. In fact, for every `kind = " ... "` option there is a corresponding `sns. ... plot()` axes-level function. So 
+- `sns.displot( ... , kind = "hist")` corresponds to `sns.histplot`
+- `sns.catplot( ... , kind = "count"` corresponds to `sns.countplot`
+- `sns.relplot( ... , kind = "scatter")` corresponds to `sns.scatterplot`
+- etc.
 
 ### Challenge 2
 
@@ -831,6 +835,7 @@ That was a lot of different plots. Here is a summary of what we just covered.
 | **Plotting**          | Remember that we use `sns.relplot` for relational plots (line & scatter), `sns.displot` for distributions and `sns.catplot` for categorical plots. See the summaries below for more depth. |
 | **Distributive Plots**| Histograms, KDE plots and ECGF plots all allow analysis of data distributions, which can be modified by statistic, bin dimensions, etc. |
 | **Faceting**          | With `col = ` and `row = ` we can facet by variables within our dataset. *Joint plots* and *Pair plots* offer special types of facet plots. |
+| **Overlaying plots**  | By combining a figure-level plot with multiple axes-level plots, we can overlay multiple graphs onto the same visualisation | 
 | **Categorical Plots** | A number of categorical plots are available (e.g. box plots, swarm plots) which provide alternative visualisations for categorical data |
 
 Below is a summary of *all* available* plots in seaborn. Most of these have been examined in either the introductory session or this one, however, there are some which we have not yet looked at. The [seaborn documentation](https://seaborn.pydata.org/api.html) and [tutorials](https://seaborn.pydata.org/tutorial.html) provide desciptions and advice for all available plots.
