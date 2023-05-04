@@ -317,7 +317,7 @@ Visualised here are contour lines, corresponding to values of the estimated prob
 
 ### Challenge 1
 
-Can you produce a histogram which examines the variable **tip** with 13 bins, and also introduces the variable **size** with `hue = `. In addition, use the `"stack"` option for multiple variables and superimpose a kde distribution using `kde = True`.
+Can you produce a histogram which examines the variable **tip** with 13 bins, and also introduces the variable **size** with `hue = `. In addition, use the `"stack"` option for multiple variables. As a tricky extra step, you can superimpose a kde distribution using `kde = True` (which is something we haven't yet covered).
 
 <details>
   <summary>Solution</summary>
