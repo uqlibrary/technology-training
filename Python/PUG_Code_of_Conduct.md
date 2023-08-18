@@ -85,15 +85,13 @@ interactions with others. Our members come from all walks of life and so do we.
 We expect great people from a wide variety of backgrounds, not just because it 
 is the right thing, but because it makes our community stronger.
 
->>>
-"Inclusion is about the actions we take each day. Think about specific 
+>"Inclusion is about the actions we take each day. Think about specific 
 conversations or situations, where you can be exposed to new ideas and 
 perspectives, walk in someone else's shoes, or encourage those who might 
 feel like outsiders to join a conversation. I bet you will discover 
 something new about yourself and others too"
-
-– Terri Cooper, Chief Inclusion Officer.
->>>
+>
+> – Terri Cooper, Chief Inclusion Officer.
 
 We strive to make the collective sum of our individual differences, life 
 experiences, knowledge, innovation, self-expression, and talent our *culture*. 
