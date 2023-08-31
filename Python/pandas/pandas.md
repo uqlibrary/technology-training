@@ -128,6 +128,11 @@ df = df[df.year < 2019]
 max(df.year)
 ```
 
+You could also run both subsets at the same time by separating them with brackets and using &
+``` python
+df2 = df[(df.year >= 1900) & (df.year <= 2018)]
+```
+
 ## Exploring data
 
 To check what kind of data each column is stored as, we can use the `dtypes` attribute:
