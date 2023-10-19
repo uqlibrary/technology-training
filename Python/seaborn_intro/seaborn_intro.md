@@ -251,20 +251,6 @@ sns.relplot(data = tips,
 
 While each point has been grouped by size, it isn't a very clear choice for this plot. In general, size doesn't work particularly well when there are lots of points. 
 
-``` python
-sns.relplot(data = tips, 
-            x = "total_bill", 
-            y = "tip", 
-            hue = "size", 
-            style = "sex", 
-            kind = "scatter", 
-            palette = "flare")
-```
-
-![image](https://user-images.githubusercontent.com/118239146/208793213-bb9e1fe8-c187-4746-b610-f9209d40eac2.png)
-
-
-
 #### Challenge 2
 
 We could also group by marker style, using `style = `. Can you produce a scatter plot using colour to group by **size**, style to group by **smoker** and the viridis palette?
