@@ -20,7 +20,7 @@ We can use QGIS and spatial analysis to ask questions of the data.
 ## Gather some data
 
 We're going to explore a number of different online spatial data repositories.
-Please [download the full dataset here](https://cloudstor.aarnet.edu.au/plus/s/0wTrYQdyoofrePj), and extract it into the qgis_vector folder you created earlier.
+Please [download the full dataset here](https://uq.sharepoint.com/:u:/r/teams/mign1tba/Shared%20Documents/General/QGIS_Vector_Data.zip?csf=1&web=1&e=uHHc3u), and extract it into the qgis_vector folder you created earlier.
 
 I will quickly show you where all of this data came from.
 
