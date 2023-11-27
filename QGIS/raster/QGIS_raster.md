@@ -33,7 +33,7 @@ For this tutorial, we are using a DEM sourced from the USGS website.
 
 Our area covers two separate raster files. We can click on the foot icon to see the footprint of each file, and the picture icon to see what the DEM looks like.
 
-Use the download button to download each file into your project directory. You will need a login for that, which is free but can take a bit of time. You can instead **download the two raster files** as an archive from [here](https://cloudstor.aarnet.edu.au/plus/s/US2uOtwTu78Gpxq).
+Use the download button to download each file into your project directory. You will need a login for that, which is free but can take a bit of time. You can instead **download the two raster files** as an archive from our Github site [here](https://github.com/uqlibrary/technology-training/blob/8fba35504424b12236d28ff66898803361097c25/QGIS/raster/QGIS_Raster_Data.zip). Just press the three dots and download.
 
 ## Merge the two DEM layers
 
