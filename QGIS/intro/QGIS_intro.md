@@ -6,7 +6,7 @@ Stéphane Guillou and Nicholas Wiggins (UQ Library)
 
 This tutorial is designed for **QGIS 3.22**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
 
-The **data** for this session can be downloaded here: https://cloudstor.aarnet.edu.au/plus/s/GjVmwTxN14OwmEc
+The **data** for this session can be downloaded from our [Github page](https://github.com/uqlibrary/technology-training/blob/9a4dcc4b2fcb8be44dbc89ef01f550029472ddc4/QGIS/intro/QGIS_Intro_Data.zip), just click the three dots and download.
 
 Please download the archive and extract it to your desktop.
 
