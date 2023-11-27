@@ -80,11 +80,11 @@ As a UQ student, you also have access to very high resoltuion imagery from **Nea
 ### Lot Plans
 
 You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial. 
-I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from cloudstor.
+I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from our Github site.
 
 * To access data from QLD Spatial go to https://qldspatial.information.qld.gov.au/
 * Search for "property boundaries" and select the "property boundaries Queensland" option.
-* You could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop here: https://cloudstor.aarnet.edu.au/plus/s/Mg7M6xYbtNYw3dd
+* You could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop [here](https://github.com/uqlibrary/technology-training/blob/8e0aebe078198cd8bb65630c9ac4c4c8558a4392/QGIS/mobile/QGIS_Mobile_Data.zip), just press the three dots and download.
 * Move the downloaded zip file to your project folder, and open the shapefile in QGIS
 
 ### Queensland Globe
