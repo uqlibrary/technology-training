@@ -52,13 +52,27 @@ otherNumber = 5.678
 prod1 = favNumber * otherNumber
 ```
 
-> Spyder helps us with extra panels and features apart from the Console. To see what variables you have created, look at the "Variable explorer" tab in the top right.
+So far, we've only looked at numbers. If you click on the "variable explorer" tab, you should see two variables like these:
 
-## Data types
+![image](https://github.com/uqlibrary/technology-training/assets/118239146/f8e3a769-69b0-43df-a0f3-c8b00d307eaf)
 
-Variables have different types. The most common are `int` for integers, `float` for decimals and `string` for strings of characters.
+Notice that the "Type" of `favNumber` is `int`, while the other is `float`. These are different **variable types** and can operate differently. `int` means integer, and corresponds to whole numbers, while `float` stands for floating point number, meaning decimals. You may occasionally encounter errors where you can only use one type.
 
-> You can see the type of your existing variables in the Variable explorer.
+Even simpler than numbers is the **boolean** type. These are either True or False (1 or 0), representing a single binary unit (bit).
+
+```python
+myBool = True
+```
+
+> In Python, the boolean values `True` and `False` **must** begin with a capital letter.
+
+### Sequences
+
+Let's look at variable types which aren't numbers. **Sequences** are variables which store more than one data point. For example, **strings** store a sequence of characters and are created with quotation marks `'<insert string>' ` or `"<insert string>"`:
+
+```python
+sentence = 'Hello world!'
+```
 
 We can also create **lists**, which will store several variables (not necessarily of the same type). We need to use square brackets for that:
 
@@ -69,7 +83,7 @@ diverse = [3, 'Hi!', 9.0]
 
 Lists are very flexible as they can contain any number of items, and any type of data. You can even nest lists inside a list, which makes for a very flexible data type.
 
-Operators give different results depending on types. For example, we can use the `*` and `+` operators to repeat and append strings and lists:
+Operations on sequences are a bit different to numbers. We can still use `+` and `*`, but they will concatenate (append) and duplicate, rather than perform arithmetic.
 
 ```python
 sentence + ' How are you?'
@@ -83,7 +97,7 @@ However, depending on the variable, some operations won't work:
 sentence + favNumber
 ```
 
-There are other data types like booleans, tuples, dictionaries and sets, but we won't get into details today.
+There are other data types like tuples, dictionaries and sets, but we won't look at those in this session.
 
 ### Indexing
 
