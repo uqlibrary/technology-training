@@ -29,7 +29,7 @@ To start with, we can use Python like a calculator. Type the following **command
 
 After running each command, you should see the result as an output.
 
-### Variables
+## Variables
 
 Most programming languages are like spoken language in that they have nouns and verbs - you have "things" and they "do things". In Python, we have **variables** and **functions**. We'll look first at variables, the nouns of Python, which store data.
 
@@ -77,7 +77,7 @@ sentence = 'Hello world!'
 We can also create **lists**, which will store several variables (not necessarily of the same type). We need to use square brackets for that:
 
 ```python
-myList = [1, 6, 4, 3, 9]
+myList = [38, 3, 54, 17, 7]
 diverse = [3, 'Hi!', 9.0]
 ```
 
@@ -97,11 +97,17 @@ However, depending on the variable, some operations won't work:
 sentence + favNumber
 ```
 
-There are other data types like tuples, dictionaries and sets, but we won't look at those in this session.
+There are other data types like tuples, dictionaries and sets, but we won't look at those in this session. Here's a summary of the ones we've covered
+| Category | Type | Short name | Example | Generator |
+| --- | --- | --- | --- | --- |
+| Numeric | Integer | `int` | `3` | `int()` |
+| Numeric | Floating Point Number | `float` | `4.2` | `float()` |
+| Sequence | String | `str` | `A sentence ` | `" "` or `' '` or `str()` |
+| Sequence | List | `list` | `['apple', 'banana', 'cherry']` | `[ ]` or `list()` |
 
 ### Indexing
 
-**Indexing** is useful to get only a part of a variable. In Python, indexing **starts at 0**. For example, see what these commands return:
+We can access part of a sequence by **indexing**. Sequences are ordered, **starting at 0**, so the first element has index 0, the second index 1, the third 2 and so on. For example, see what these commands return:
 
 ```python
 sentence[0]
@@ -109,17 +115,32 @@ sentence[6]
 myList[4]
 ```
 
-You can use a range to index, but note that it will not include the upper bound in the returned values. For example:
+### Slicing
+
+If you want more than one element in a sequence, you can **slice**. Simple slices specify a range to slice, from the first index to the last, **but not including the last**. For example:
 
 ```python
 myList[0:4]
 ```
 
-That command returns "elements from position 0 up to - but not including! - position 4."
+That command returns "elements from position 0 up to - but not including! - position 4." By specifying a third number, we can skip indexing. For example, to choose every second number,
+
+```python
+myList[0:4:2]
+```
+
+We can get creative by skipping numbers too. Try these:
+
+```python
+myList[3:]
+myList[1::2]
+myList[::3]
+myList[:2]
+```
 
 ## Functions
 
-**Functions** are little programs that do specific jobs. Here are a few examples of built-in functions:
+**Functions** are little programs that do specific jobs. These are the verbs of Python, because they do things to and with our variables. Here are a few examples of built-in functions:
 
 ```python
 len(myList)
@@ -129,7 +150,7 @@ sum(myList)
 round(otherNumber)
 ```
 
-Functions always have parentheses behind their name, and they can take one or several **arguments**, or none at all, depending on what they can do, and how the user wants to use them.
+Functions always have parentheses after their name, and they can take one or several **arguments**, or none at all, depending on what they can do, and how the user wants to use them.
 
 Here, we use two arguments to modify the default behaviour of the `round()` function:
 
@@ -138,6 +159,30 @@ round(otherNumber, 2)
 ```
 
 > Notice how Spyder gives you hints about the available arguments after typing the function name?
+
+We can create our own custom functions too, using the `def` command. The syntax is quite particular: 
+1. We start with the line `def <function_name>(<input 1>,<input 2>,...):`
+1. Then put what our function does on the next few lines, **indented**.
+1. Finally, we use `return <output>` to specify what our function outputs.
+
+For example, the following function called `addOne` takes one variable, `x` and outputs the result of `x + 1` (stored temporarily in `y`):
+
+```python
+def addOne(x):
+  y = x + 1
+  return y
+```
+
+Notice that nothing happens when you run this code. That's because while we've *defined* the function, we haven't actually used it! Currently, it just exists like those other functions above (e.g. `min()`, `round()`, etc.). To use it, we need to input a variable
+
+```python
+addOne(7)
+```
+
+This calls the function, assigning `x = 7` temporarily while the function's internal code executes. It then spits out the result - `8` in this case - before deleting `x` and `y` from memory, because they only exist inside the function.
+
+
+
 
 ## Finding help
 
