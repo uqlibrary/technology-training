@@ -14,9 +14,9 @@ Python is a **programming language** that can be used to build programs (i.e. a 
 
 We are using **Spyder** to interact with Python more comfortably. If you have used RStudio to interact with R before, you should feel right at home: Spyder is a program designed for doing data science with Python.
 
-We will start by using the "Console" to work interactively. This is our direct line to the computer, and is the simplest way to run code. Don't worry about any unfamiliar language, fonts or colours - we can ignore most of it for now - all you need to know is that `In [1]: ... ` is code that we've sent to the computer, and `Out[1]: ... ` is its response.
+We will start by using the **console** to work interactively. This is our direct line to the computer, and is the simplest way to run code. Don't worry about any unfamiliar language, fonts or colours - we can ignore most of it for now - all you need to know is that `In [1]: ... ` is code that we've sent to the computer, and `Out[1]: ... ` is its response.
 
-## Maths
+### Maths
 
 To start with, we can use Python like a calculator. Type the following **commands** in the console, and press <kbd>Enter</kbd> to **execute** them:
 
@@ -24,13 +24,16 @@ To start with, we can use Python like a calculator. Type the following **command
 1 + 1
 2 * 3
 4 / 10
+5 ** 2
 ```
 
 After running each command, you should see the result as an output.
 
-## Variables
+### Variables
 
-**Variables** will store data. We need to give them a name, and assign a value to them with the `=` operator. For example:
+Most programming languages are like spoken language in that they have nouns and verbs - you have "things" and they "do things". In Python, we have **variables** and **functions**. We'll look first at variables, the nouns of Python, which store data.
+
+To create a variable, we choose its name (e.g. `favNumber`) and assign (`=`) it a value (e.g. `42`):
 
 ```python
 favNumber = 42
@@ -42,12 +45,11 @@ You can then retrieve the value by running the variable name on its own:
 favNumber
 ```
 
-Let's create more variable, and reuse them:
+Let's create more variables. We can use the variable names in place of their values, so we can perform maths:
 
 ```python
 otherNumber = 5.678
 prod1 = favNumber * otherNumber
-sentence = 'Hello world!'
 ```
 
 > Spyder helps us with extra panels and features apart from the Console. To see what variables you have created, look at the "Variable explorer" tab in the top right.
