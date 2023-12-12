@@ -33,6 +33,8 @@ After running each command, you should see the result as an output.
 
 ## Variables
 
+### Numbers
+
 Most programming languages are like spoken language in that they have nouns and verbs - you have "things" and they "do things". In Python, we have **variables** and **functions**. We'll look first at variables, the nouns of Python, which store data.
 
 To create a variable, we choose its name (e.g. `favNumber`) and assign (`=`) it a value (e.g. `42`):
@@ -60,6 +62,8 @@ So far, we've only looked at numbers. If you click on the "variable explorer" ta
 
 Notice that the "Type" of `favNumber` is `int`, while the other is `float`. These are different **variable types** and can operate differently. `int` means integer, and corresponds to whole numbers, while `float` stands for floating point number, meaning decimals. You may occasionally encounter errors where you can only use one type.
 
+### Booleans
+
 Even simpler than integers is the **boolean** type. These are either 1 or 0 (True or False), representing a single binary unit (bit). Don't be fooled by the words, these work like numbers: `True + True` gives `2`.
 
 ```python
@@ -70,7 +74,7 @@ myBool = True
 
 ### Sequences
 
-Let's look at variable types which aren't numbers. **Sequences** are variables which store more than one data point. For example, **strings** store a sequence of characters and are created with quotation marks `'<insert string>' ` or `"<insert string>"`:
+Let's look at variable types which aren't (necessarily) numbers. **Sequences** are variables which store more than one data point. For example, **strings** store a sequence of characters and are created with quotation marks `'<insert string>' ` or `"<insert string>"`:
 
 ```python
 sentence = 'Hello world!'
