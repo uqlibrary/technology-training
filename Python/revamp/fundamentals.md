@@ -119,7 +119,7 @@ int(True)
 yields `1`, converting a **boolean** into an **integer**. These commands are **functions**, as opposed to variables - we'll look at functions a bit later.
 
 
-### Indexing
+#### Indexing
 
 We can access part of a sequence by **indexing**. Sequences are ordered, **starting at 0**, so the first element has index 0, the second index 1, the third 2 and so on. For example, see what these commands return:
 
@@ -129,28 +129,13 @@ sentence[6]
 myList[4]
 ```
 
-### Slicing
-
 If you want more than one element in a sequence, you can **slice**. Simple slices specify a range to slice, from the first index to the last, **but not including the last**. For example:
 
 ```python
 myList[0:4]
 ```
 
-That command returns "elements from position 0 up to - but not including! - position 4." By specifying a third number, we can skip indexing. For example, to choose every second number,
-
-```python
-myList[0:4:2]
-```
-
-We can get creative by skipping numbers too. Try these:
-
-```python
-myList[3:]
-myList[1::2]
-myList[::3]
-myList[:2]
-```
+That command returns elements from position 0 up to - but not including! - position 4.
 
 ## Functions
 
@@ -174,6 +159,8 @@ round(otherNumber, 2)
 
 > Notice how Spyder gives you hints about the available arguments after typing the function name?
 
+## Defining functions
+
 We can create our own custom functions too, using the `def` command. The syntax is quite particular: 
 1. We start with the line `def <function_name>(<input 1>,<input 2>,...):`
 1. Then put what our function does on the next few lines, **indented**.
@@ -194,9 +181,3 @@ addOne(7)
 ```
 
 This calls the function, assigning `x = 7` temporarily while the function's internal code executes. It then spits out the result - `8` in this case - before deleting `x` and `y` from memory, because they only exist inside the function.
-
-### Important Built-in Functions
-
-## Project 1: isprime()
-
-In this project
