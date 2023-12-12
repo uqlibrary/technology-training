@@ -60,7 +60,7 @@ So far, we've only looked at numbers. If you click on the "variable explorer" ta
 
 Notice that the "Type" of `favNumber` is `int`, while the other is `float`. These are different **variable types** and can operate differently. `int` means integer, and corresponds to whole numbers, while `float` stands for floating point number, meaning decimals. You may occasionally encounter errors where you can only use one type.
 
-Even simpler than numbers is the **boolean** type. These are either True or False (1 or 0), representing a single binary unit (bit).
+Even simpler than integers is the **boolean** type. These are either 1 or 0 (True or False), representing a single binary unit (bit). Don't be fooled by the words, these work like numbers: `True + True` gives `2`.
 
 ```python
 myBool = True
