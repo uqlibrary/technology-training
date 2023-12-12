@@ -109,8 +109,15 @@ There are other data types like tuples, dictionaries and sets, but we won't look
 | Numeric | Integer | `int` | `3` | `int()` |
 | Numeric | Floating Point Number | `float` | `4.2` | `float()` |
 | Numeric | Boolean | `bool` | `True` | `bool()`|
-| Sequence | String | `str` | `A sentence ` | `" "` or `' '` or `str()` |
+| Sequence | String | `str` | `'A sentence '` | `" "` or `' '` or `str()` |
 | Sequence | List | `list` | `['apple', 'banana', 'cherry']` | `[ ]` or `list()` |
+
+The **generator** commands are new. We use these to manually change the variable type. For example, 
+```python
+int(True)
+```
+yields `1`, converting a **boolean** into an **integer**. These commands are **functions**, as opposed to variables - we'll look at functions a bit later.
+
 
 ### Indexing
 
