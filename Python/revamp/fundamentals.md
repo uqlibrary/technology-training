@@ -159,6 +159,21 @@ round(otherNumber, 2)
 
 > Notice how Spyder gives you hints about the available arguments after typing the function name?
 
+## Finding help
+
+To find help about a function, you can use the `help()` function, or a `?` after a function name:
+
+```python
+help(max)
+print?
+```
+
+In Spyder, you can use the <kbd>Ctrl</kbd> + <kbd>I</kbd> keyboard shortcut to open the help in a separate pane.
+
+> The help information can often be dense and difficult to read at first, taking some practice. In the [next session](https://github.com/uqlibrary/technology-training/blob/4ea3e86ab8f6f43a73c3b3a44d63a00ac8d366f8/Python/revamp/data_transformation.md) we look closer at interpreting this **documentation**, one of the most important Python skills.
+
+For a comprehensive manual, go to the [official online documentation](https://docs.python.org/). For questions and answers, typing the right question in a search engine will usually lead you to something helpful. If you can't find an answer, [StackOverflow is a great Q&A community](https://stackoverflow.com/questions/tagged/python).
+
 ## Defining functions
 
 We can create our own custom functions too, using the `def` command. The syntax is quite particular: 
