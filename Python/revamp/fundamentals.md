@@ -284,6 +284,7 @@ name = "your_name"
 
 if len(name) > 5:
   print(name + " is longer than 5 letters!")
+
 elif len(name) > 3:
   print(name + " is longer than 3 letters, but not more than 5")
 ```
@@ -297,8 +298,10 @@ name = "your_name"
 
 if len(name) > 5:
     print(name + " is longer than 5 letters!")
+
 elif len(name) > 3:
     print(name + " is longer than 3 letters, but not more than 5")
+
 else:
     print(name + " is 3 letters long or shorter.")
 ```
@@ -307,9 +310,43 @@ You can only have one `if` and `else` statement, but as many `elif`s as you'd li
 
 ## Loops
 
+For programming to speed up repetitive tasks we need to use loops. These run a code block multiple times, and there are two types: `while` and `for` loops.
+
+### `while` loops
+
+`while` loops run the code block until the condition is `False`, with similar syntax to `if` statements:
+
+```python
+a = 0
+
+while a < 10:
+    print(a)
+    a = a + 1
+```
+
+> **WARNING**
+> 
+> `while` loops can cause an infinite loop to occur if the condition is never `False`. If this happens, press <kbd>ctrl</kbd>+<kbd>C</kbd> or the red square in the console to stop the code.
+> 
+> ![image](https://github.com/uqlibrary/technology-training/assets/118239146/a8ba8293-c64b-4994-9869-074a6d12e0a0)
+
+### `for` loops
+
+`for` loops iterate through a variable, like a list:
+
+```python
+myList = [1,2,3]
+
+for element in myList:
+    primt(element)
+```
+
+These work a bit differently. Each time the loop runs, a variable (here called `element`) stores one of the values in the container (here called `myList`). The loop runs once for each element in the container, working from the start to the finish.
+
 ## Activity 2
 
 ## Modules
+
 
 ## Defining functions
 
