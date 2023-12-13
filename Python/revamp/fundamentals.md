@@ -137,6 +137,33 @@ myList[0:4]
 
 That command returns elements from position 0 up to - but not including! - position 4.
 
+## Scripts
+
+So far, we've been working in the console, our direct line to the computer. However, it is often more convenient to use a **script**. These are simple text files which store code and run when we choose. They are useful to
+- write code more comfortably,
+- store clearly defined steps in chronological order,
+- share a process with peers easily, and
+- make your work reproducible
+
+Let's create a folder system to store our script in by creating a **project**. 
+- Press `Projects > New project... ` and name your project, perhaps "python_fundamentals".
+- Create a new script with <kbd>ctrl</kbd>+<kbd>N</kbd>, `File > New file...` or the new file button ![image](https://github.com/uqlibrary/technology-training/assets/118239146/584d4955-2085-4b95-b03c-f4af9f2c3070) .
+
+You should now see a script on the left panel in Spyder, looking something like this:
+
+![image](https://github.com/uqlibrary/technology-training/assets/118239146/679517d6-3cf7-4b2b-a4a7-9172596dec61)
+
+Try typing a line of code in your new script, such as
+```python
+a = "hello!"
+a
+```
+Press <kbd>F9</kbd> to run each line, or <kbd>ctrl</kbd>+<kbd>enter</kbd> for the whole script. You should see something like the following appear in the **console** (depending on how you ran it):
+
+![image](https://github.com/uqlibrary/technology-training/assets/118239146/c2f0bc66-e84c-4e7d-ae66-5d7fd34b4684)
+
+We'll work out of a script for the rest of the session. Don't forget to save your script by pressing <kbd>ctrl</kbd>+<kbd>S</kbd> or the save button ![image](https://github.com/uqlibrary/technology-training/assets/118239146/10fbbc68-8f27-4c2d-aa6e-b064bf29b357) .
+
 ## Functions
 
 **Functions** are little programs that do specific jobs. These are the verbs of Python, because they do things to and with our variables. Here are a few examples of built-in functions:
@@ -159,6 +186,36 @@ round(otherNumber, 2)
 
 > Notice how Spyder gives you hints about the available arguments after typing the function name?
 
+### Operators
+
+Operators are a special type of function in Python with which you're already familiar. The most important is ` = `, which assigns values to variables. Here is a summary of some important operators, although there are many others:
+
+#### General
+| Operator | Function | Description | Example command |
+| --- | --- | --- | --- |
+| = | Assignment | Assigns values to variables | `a = 7` | 
+| # | Comment | Excludes any following text from being run | `# This text will be ignored by Python`
+
+#### Mathematical
+| Operator | Function | Description | Example command | Example output |
+| --- | --- | --- | --- | --- |
+| + | Addition | Adds or concatenates values, depending on variable types | `7 + 3` or `"a" + "b"` | `10` or `'ab'` |
+| - | Subtraction | Subtracts numerical values | `8 - 3` | `5` |
+| * | Multiplication | Multiplies values, depending on variable types | `7 * 2` or `"a" * 3` | `14` or `'aaa'`|
+| / | Division | Divides numerical vlues | `3 / 4` | `0.75` |
+| ** | Exponentiation | Raises a numerical value to a power | `7 ** 2` | `49` |
+| % | Remainder | Takes the remainder of numerical values | `13 % 7` | `6` |
+
+#### Comparison
+| Operator | Function | Description | Example command | Example output |
+| --- | --- | --- | --- | --- |
+| == | Equal to | Checks whether two variables are the same and outputs a boolean | `1 == 1` | `True` |
+| != | Not equal to | Checks whether two variables are different | `'1' != 1` | `True` |
+| > | Greater than | Checks whether one variable is greater than the other | `1 > 1` | `False` |
+| >= | Greater than or equal to | Checks whether greater than (>) or equal to (==) are true | `1 >= 1` | `True` |
+| < | Less than | Checks whether one variable is less than the other | `0 < 1` | `True` |
+| <= | Less than or equal to | Checks whether less than (<) or equal to (==) are true | `0 <= 1` | `True` |
+
 ## Finding help
 
 To find help about a function, you can use the `help()` function, or a `?` after a function name:
@@ -173,6 +230,86 @@ In Spyder, you can use the <kbd>Ctrl</kbd> + <kbd>I</kbd> keyboard shortcut to o
 > The help information can often be dense and difficult to read at first, taking some practice. In the [next session](https://github.com/uqlibrary/technology-training/blob/4ea3e86ab8f6f43a73c3b3a44d63a00ac8d366f8/Python/revamp/data_transformation.md) we look closer at interpreting this **documentation**, one of the most important Python skills.
 
 For a comprehensive manual, go to the [official online documentation](https://docs.python.org/). For questions and answers, typing the right question in a search engine will usually lead you to something helpful. If you can't find an answer, [StackOverflow is a great Q&A community](https://stackoverflow.com/questions/tagged/python).
+
+## Activity 1
+
+## Conditionals
+Funnelling code through different blocks based on conditions is a fundamental element of all programming, and achieved in Python with conditionals. The most important is the `if` statement, which checks a condition and runs the **indendented** code block if it returns `True`:
+
+```python
+if 1 + 1 == 2:
+    print("We are inside the if statement!")
+```
+
+Here's how it works
+1. `if` starts the conditional.
+2. `1 + 1 == 2` is the condition - this comes after `if`, and must return `True` (1) or `False` (0).
+3. The colon, `:`, indicates that the condition is finished and the code block is next
+4. `    print(" ...` the **indented** code is only run if the condition is `True` (1).
+
+Try altering the condition, and see if the code runs.
+
+Obviously, $1 + 1 = 2$, so this will always run and we don't need to use an `if` statement. Let's replace the condition with variables:
+
+```python
+name = "your_name"
+
+if len(name) > 5:
+  print(name + " is longer than 5 letters!")
+```
+
+Here, we're checking if the length of `name` is greater than `5`. Note that `name + " is longer than 5!"` concatenates (combines) the strings together.
+
+> ### Advanced
+>
+> Using `name + " is longer than 5!"` is a bit clunky, there is a better way to include variables in strings, called **f-strings**.
+>
+> ```python
+> name = "your_name"
+> 
+> if len(name) > 5:
+>     print(f"{name} is longer than 5 letters!")
+> ```
+>
+> By putting `f` before `'` or `"`, Python will insert any code run between curly brackets `{ }` into the string. Here, running `word` just returns "apple".
+
+### `elif` and `else`
+
+There are two other commands for conditionals: `elif` and `else`.
+
+`elif` is short for *else if*, and can be used after an if statement to apply another condition, **if** the first one fails.
+
+```python
+name = "your_name"
+
+if len(name) > 5:
+  print(name + " is longer than 5 letters!")
+elif len(name) > 3:
+  print(name + " is longer than 3 letters, but not more than 5")
+```
+
+Here, if the `name` is longer than `5`, it will run in the `if` block and skip `elif`. Otherwise, it will check the `elif` condition and run if it's `True`.
+
+Finally, `else` comes at the end of a conditional and will run if all other conditions failed
+
+```python
+name = "your_name"
+
+if len(name) > 5:
+    print(name + " is longer than 5 letters!")
+elif len(name) > 3:
+    print(name + " is longer than 3 letters, but not more than 5")
+else:
+    print(name + " is 3 letters long or shorter.")
+```
+
+You can only have one `if` and `else` statement, but as many `elif`s as you'd like.
+
+## Loops
+
+## Activity 2
+
+## Modules
 
 ## Defining functions
 
@@ -196,3 +333,5 @@ addOne(7)
 ```
 
 This calls the function, assigning `x = 7` temporarily while the function's internal code executes. It then spits out the result - `8` in this case - before deleting `x` and `y` from memory, because they only exist inside the function.
+
+## Activity 3
