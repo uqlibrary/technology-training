@@ -338,7 +338,7 @@ while a < 10:
 myList = [1,2,3]
 
 for element in myList:
-    primt(element)
+    print(element)
 ```
 
 These work a bit differently. Each time the loop runs, a variable (here called `element`) stores one of the values in the container (here called `myList`). The loop runs once for each element in the container, working from the start to the finish.
