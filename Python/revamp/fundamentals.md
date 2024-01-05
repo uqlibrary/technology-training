@@ -345,8 +345,85 @@ These work a bit differently. Each time the loop runs, a variable (here called `
 
 ## Activity 2
 
-## Modules
+## Packages
 
+Python is set apart from other languages by the scale of its community packages and the ease with which you import them. While you *could* code everything you need from scratch, it's often more effective to import someone else's predefined functions. 
+
+### Built-in packages
+
+Python comes with a number of pre-installed packages, so they're already on your computer. However, your specific Python application doesn't have access to them until they're imported:
+
+```python
+import math
+```
+
+The module `math` brings in some mathematics constants and functions. For example, you will get an **error** if you run `pi` on its own, but we can access the constant using the module:
+
+```python
+math.pi
+2*math.pi
+math.cos(math.pi)
+```
+
+Note that we use a period `.` in order to access objects inside the module. In general, we use periods in Python to access objects stored inside other objects.
+
+### Naming
+
+Some modules have long names and use abbreviated nicknames when imported.
+
+```python
+import math as m
+m.pi
+```
+
+Here the module `math` is stored as `m` in Python. 
+
+Where this naming is used, it is usually the standard, and sharing code with different (including original/full) module names will not be compatible with other programmers.
+
+### External packages
+
+There are hundreds of thousands of external packages available, and you need to install them before importing them as above. There are many ways to install packages, and two most common:
+
+#### Using `pip`
+
+If you are **not** using Anaconda, then the most common way to install a package is using the command `pip`, which installs packages from the Python Package Index (PyPI)
+
+```python
+pip install numpy
+```
+
+> If this doesn't work for you, try using `!pip install numpy` - using an exclamation mark `!` sends your command straight to your operating system shell
+
+#### Using `conda`
+
+If you are using **Anaconda**, then the recommended installation method is using the `conda` command, which installs from Anaconda's package database:
+
+```python
+conda install numpy
+```
+
+> As above, if this doesn't work for you, try using `!pip install numpy` - using an exclamation mark `!` sends your command straight to your operating system shell
+
+#### Common packages
+
+Once installed, you can import these modules as before. Here, we've installed `numpy`, which is a popular numerical package.
+
+```python
+import numpy as np
+```
+
+Some popular packages include
+
+| Package | Install command | Import command | Description |
+| ---- | ---- | ---- | ---- |
+| NumPy | `pip/conda install numpy` | `import numpy as np` | A **num**erical **Py**thon package, providing mathematical functions and constants, vector analysis, linear algebra etc. |
+| Pandas | `pip/conda install pandas` | `import pandas as pd` | **Pan**el **Da**ta  - data transformation, manipulation and analysis |
+| Matplotlib | `pip/conda install matplotlib` | `import matplotlib.pyplot as plt` | **Mat**hematical **plot**ing **lib**rary, a popular visualisation tool. Note that there are other ways to import it, but the `.pyplot` submodule as `plt` is most common. |
+| Seaborn | `pip/conda install seaborn` | `import seaborn as sns` | Another visualisation tool, closer to ggplot2 in R, built upon a matplotlib framework. |
+| SciPy | `pip/conda install scipy` | `import scipy` or `import scipy as sp` | A **sci**entific **Py**thon package with algorithms and models for analysis and statistics. |
+| Statsmodels | `pip/conda install statsmodels` | `import statsmodels.api as sm` and/or `import statsmodels.tsa.api as tsa`| **Stat**istical **model**ling. The first import `sm` is for cross-sectional models, while `tsa` is for time-series models. | 
+| Requests | `pip/conda install requests` | `import requests` | Make HTTP (internet) **requests**. |
+| Beautiful Soup | `pip/conda install beautifulsoup4` | `from bs4 import BeautifulSoup` | Collect HTML data from websites. | 
 
 ## Defining functions
 
