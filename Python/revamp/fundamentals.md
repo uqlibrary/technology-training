@@ -2,6 +2,12 @@
 
 This hands-on course – directed at beginners – will get you started on using **Python 3** and the program **Spyder** to import, explore, analyse and visualise data.
 
+## Table of Contents
+- [Setup](setup)
+- [Maths](#Maths)
+- [Maths](Maths)
+
+<a name = "setup"/>
 ## Setup
 
 The easiest way to use Python 3 and Spyder is to [install the Anaconda Distribution](https://www.anaconda.com/products/distribution), a data science platform for Windows, Linux and macOS.
@@ -424,28 +430,5 @@ Some popular packages include
 | Statsmodels | `pip/conda install statsmodels` | `import statsmodels.api as sm` and/or `import statsmodels.tsa.api as tsa`| **Stat**istical **model**ling. The first import `sm` is for cross-sectional models, while `tsa` is for time-series models. | 
 | Requests | `pip/conda install requests` | `import requests` | Make HTTP (internet) **requests**. |
 | Beautiful Soup | `pip/conda install beautifulsoup4` | `from bs4 import BeautifulSoup` | Collect HTML data from websites. | 
-
-## Defining functions
-
-We can create our own custom functions too, using the `def` command. The syntax is quite particular: 
-1. We start with the line `def <function_name>(<input 1>,<input 2>,...):`
-1. Then put what our function does on the next few lines, **indented**.
-1. Finally, we use `return <output>` to specify what our function outputs.
-
-For example, the following function called `addOne` takes one variable, `x` and outputs the result of `x + 1` (stored temporarily in `y`):
-
-```python
-def addOne(x):
-  y = x + 1
-  return y
-```
-
-Notice that nothing happens when you run this code. That's because while we've *defined* the function, we haven't actually used it! Currently, it just exists like those other functions above (e.g. `min()`, `round()`, etc.). To use it, we need to input a variable
-
-```python
-addOne(7)
-```
-
-This calls the function, assigning `x = 7` temporarily while the function's internal code executes. It then spits out the result - `8` in this case - before deleting `x` and `y` from memory, because they only exist inside the function.
 
 ## Activity 3
