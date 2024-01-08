@@ -3,11 +3,9 @@
 This hands-on course – directed at beginners – will get you started on using **Python 3** and the program **Spyder** to import, explore, analyse and visualise data.
 
 ## Table of Contents
-- [Setup](setup)
-- [Maths](#Maths)
-- [Maths](Maths)
+- [Setup](#Setup)
+- [Introduction](#Introducing_Python_and_Spyder)
 
-<a name = "setup"/>
 ## Setup
 
 The easiest way to use Python 3 and Spyder is to [install the Anaconda Distribution](https://www.anaconda.com/products/distribution), a data science platform for Windows, Linux and macOS.
