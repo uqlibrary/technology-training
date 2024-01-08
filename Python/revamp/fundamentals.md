@@ -272,6 +272,7 @@ In sum,
 <details>
     <summary>Solution</summary>
     We have five lines of code corresponding to the five steps above:
+    
     ```python
     # Rounder
     
