@@ -3,8 +3,23 @@
 This hands-on course – directed at beginners – will get you started on using **Python 3** and the program **Spyder** to import, explore, analyse and visualise data.
 
 ## Table of Contents
-- [Setup](#Setup)
-- [Introduction](#Introducing_Python_and_Spyder)
+- [Setup](#setup)
+- [Introduction](#introducing-python-and-spyder)
+- [Variables](#variables)
+    - [Numbers](numbers)
+    - [Booleans](Booleans)
+    - [Sequences](Sequences)
+        - [Indexing](Indexing)
+- [Scripts](scripts)
+- [Functions](functions)
+    - [Operators](Operators)
+- [Finding help](finding-help)
+- [Activity 1](activity-1)
+- [Conditionals (`if`, `elif` and `else`)](Conditionals)
+- [Loops (`while` and `for`)](loops)
+- [Activity 2](activity-2)
+- [Packages/Modules](packages)
+- [Activity 3](activity-3)
 
 ## Setup
 
