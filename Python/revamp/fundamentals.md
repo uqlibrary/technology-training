@@ -269,25 +269,29 @@ In sum,
 - Use `round( ... )` to round their number
 - Use `print( ... )` to output the rounded answer
 
+
 <details>
-    <summary>Solution</summary>
-    We have five lines of code corresponding to the five steps above:
+  <summary>Solution</summary>
+  
+  We have five lines of code corresponding to the five steps above:
+  
+  ```python
+  # Rounder
     
-    ```python
-    # Rounder
-    
-    # Welcome message
-    print("Welcome to the rounder. Here you can input a number and round it.")
+  # Welcome message
+  print("Welcome to the rounder. Here you can input a number and round it.")
 
-    # Collect number to round and number of digits
-    number = float(input("What is your number? "))
-    precision = int(input("How many digits would you like to round it to? "))
+  # Collect number to round and number of digits
+  number = float(input("What is your number? "))
+  precision = int(input("How many digits would you like to round it to? "))
 
-    # Round number and print result
-    rounded = round(number, precision)
-    print(f"\nYour number is {rounded}")
-    ```
+  # Round number and print result
+  rounded = round(number, precision)
+  print(f"Your number is {rounded}")
+  ```
+              
 </details>
+
 
 ## Conditionals
 Funnelling code through different blocks based on conditions is a fundamental element of all programming, and achieved in Python with conditionals. The most important is the `if` statement, which checks a condition and runs the **indendented** code block if it returns `True`:
