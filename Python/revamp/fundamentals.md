@@ -250,7 +250,24 @@ In Spyder, you can use the <kbd>Ctrl</kbd> + <kbd>I</kbd> keyboard shortcut to o
 
 For a comprehensive manual, go to the [official online documentation](https://docs.python.org/). For questions and answers, typing the right question in a search engine will usually lead you to something helpful. If you can't find an answer, [StackOverflow is a great Q&A community](https://stackoverflow.com/questions/tagged/python).
 
-## Activity 1
+## Activity 1: Rounder
+
+In this first activity, your challenge is to produce code which takes a user input, rounds it to the number of digits they specify, and returns the rounded result. In addition to the `round` function, use the `input` function to get user inputs. For example, the following code asks for the user's first name and outputs the first letter:
+
+```python
+name = input("Please input your name")
+first_letter = name[0]
+print(f"The first letter of your name is {first_letter})
+```
+
+You'll also need to use `float( ... )` and `int( ... )` around the inputs to change them from numbers to strings.
+
+In sum,
+- Use `print( ... )` to present a welcome message to the user
+- Use `float(input( ... ))` to ask the user for a number to round
+- Use `int(input( ... ))` to ask the user for the number of digits to round
+- Use `round( ... )` to round their number
+- Use `print( ... )` to output the rounded answer
 
 ## Conditionals
 Funnelling code through different blocks based on conditions is a fundamental element of all programming, and achieved in Python with conditionals. The most important is the `if` statement, which checks a condition and runs the **indendented** code block if it returns `True`:
@@ -290,7 +307,7 @@ Here, we're checking if the length of `name` is greater than `5`. Note that `nam
 >     print(f"{name} is longer than 5 letters!")
 > ```
 >
-> By putting `f` before `'` or `"`, Python will insert any code run between curly brackets `{ }` into the string. Here, running `word` just returns "apple".
+> By putting `f` before `'` or `"`, Python will insert any code run between curly brackets `{ }` into the string. Here, running `name` just returns "apple".
 
 ### `elif` and `else`
 
