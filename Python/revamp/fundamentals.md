@@ -1,4 +1,4 @@
-# Python with Spyder: introduction to data science
+# Python training (1 of 4): The fundamentals
 
 This hands-on course – directed at beginners – will get you started on using **Python 3** and the program **Spyder** to import, explore, analyse and visualise data.
 
@@ -404,6 +404,79 @@ for element in myList:
 These work a bit differently. Each time the loop runs, a variable (here called `element`) stores one of the values in the container (here called `myList`). The loop runs once for each element in the container, working from the start to the finish.
 
 ## Activity 2
+
+### Option A: Name comparison
+The second activity is a name comparer. Here, we will write code which identifies the letters in common between two names. 
+
+We'll need to use the command `in` for this activity. It checks whether a variable on the left exists inside a variable on the write, for example
+
+```python
+"app" in "apple"
+```
+
+will return `True`. We can use this for conditionals, like
+
+```python
+word = "apple"
+smaller = "app"
+
+if smaller in word:
+    print(f"{smaller} can be found inside {word})
+else:
+    print(f"{smaller} is not inside {word})
+```
+
+We will also need to use a *method*. These are functions that only apply to certain variables, and we access them using dot `.` notation. Here, we will use the list method `.append`:
+
+```python
+a = [1, 2, 3]
+a.append(4)
+print(a)
+```
+
+The list `a` is originally just `[1, 2, 3]`, but after running `a.append(4)`, it appends the element 4 to the end, making it `[1, 2, 3, 4]`.
+
+All together, for this activity we will need to 
+
+- Ask the user for their first name using `input( ... )`
+- Ask the user for their last/second name using `input( ... )`
+- Initialise a list of common letters using `common = []` (this will let us append to it later)
+- Use a `for` loop to iterate through the each letter in the first name
+- Use an `if` statement to check if each letter is inside the last/second name
+- Print a message stating the common letters
+
+<details>
+  <summary>Solution</summary>
+  
+  We have five lines of code corresponding to the five steps above:
+  
+  ```python
+  # Name comparer
+
+  # Ask user for names
+  firstname = input("What is your first name? ")
+  surname = input("What is your surname? ")
+
+  # Initialise list of common letters
+  common = [] 
+
+  # Loop through each letter in first name
+  for letter in firstname:
+    
+      # Check if the letter is in the second word
+      if letter in surname:
+        
+          # Add it to the list of common letters
+          common.append(letter)
+          
+  # Print final list of letters
+  print("The letter(s) in common between your names are: ")
+  print(common)
+  ```
+              
+</details>
+
+### Option B: Number Guesser
 
 For the second activity, we're going to create a number guessing game. We'll use the `input` command again and incorporate the new `while`, `if` and `else` functions. The game is simple: the code will pick a random number, and you need to guess it. After each guess, the game tells you if the guess was too high or too low. 
 
