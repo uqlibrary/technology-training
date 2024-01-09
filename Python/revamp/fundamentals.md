@@ -405,6 +405,69 @@ These work a bit differently. Each time the loop runs, a variable (here called `
 
 ## Activity 2
 
+For the second activity, we're going to create a number guessing game. We'll use the `input` command again and incorporate the new `while`, `if` and `else` functions. The game is simple: the code will pick a random number, and you need to guess it. After each guess, the game tells you if the guess was too high or too low. 
+
+We'll need to use some new code:
+
+```python
+import random
+random.randint(5,10)
+```
+
+This brings in some extra code (`import random`), and picks a random number between 5 and 10. We'll look at packages in the next section, these are the only lines you'll need.
+
+The coding steps for this activity are:
+
+- Import the random package `import random`.
+- Pick a random number using `answer = random.randint(MIN, MAX)`.
+- Ask the user for their guess using `int(input( ... ))`.
+- Use a `while` loop to check whether their guess matches the answer.
+- Use `if` and `else` statements inside the loop to respond "Too high" or "Too low".
+- Continue to ask for the user's guess.
+- Print a congratulatory message after they are correct.
+
+<details>
+  <summary>Solution</summary>
+  
+  We have five lines of code corresponding to the five steps above:
+  
+  ```python
+  # Number guesser
+
+  # Bring in some extra code
+  import random
+
+  # Define the max and min for the answer
+  MIN = 0
+  MAX = 100
+
+  # Pick a random number for the answer
+  number = random.randint(MIN, MAX)
+
+  # Ask the user for an initial guess
+  guess = int(input("What is your guess? "))
+  count = 1
+
+  # If incorrect, keep asking
+  while guess != number:
+    
+      # Print messages to help user
+      if guess > number:
+          print("Too high.")
+        
+      else:
+          print("Too low.")
+    
+      # Ask for new guess
+      guess = int(input("What is your guess? "))
+      count += 1
+    
+  # Congratulatory message
+  print(f"Correct! The answer is {number}. It took you {count} guesses.")
+  ```
+              
+</details>
+
 ## Packages
 
 Python is set apart from other languages by the scale of its community packages and the ease with which you import them. While you *could* code everything you need from scratch, it's often more effective to import someone else's predefined functions. 
