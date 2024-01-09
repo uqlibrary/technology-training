@@ -250,7 +250,7 @@ In Spyder, you can use the <kbd>Ctrl</kbd> + <kbd>I</kbd> keyboard shortcut to o
 
 For a comprehensive manual, go to the [official online documentation](https://docs.python.org/). For questions and answers, typing the right question in a search engine will usually lead you to something helpful. If you can't find an answer, [StackOverflow is a great Q&A community](https://stackoverflow.com/questions/tagged/python).
 
-## Activity 1: Rounder
+## Activity 1
 
 In this first activity, your challenge is to produce code which takes a user input, rounds it to the number of digits they specify, and returns the rounded result. In addition to the `round` function, use the `input` function to get user inputs. For example, the following code asks for the user's first name and outputs the first letter:
 
