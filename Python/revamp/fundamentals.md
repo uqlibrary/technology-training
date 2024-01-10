@@ -447,7 +447,7 @@ All together, for this activity we will need to
 <details>
   <summary>Solution</summary>
   
-  We have five lines of code corresponding to the five steps above:
+  One solution could be the following:
   
   ```python
   # Name comparer
