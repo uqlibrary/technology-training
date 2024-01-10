@@ -252,23 +252,22 @@ For a comprehensive manual, go to the [official online documentation](https://do
 
 ## Activity 1
 
-In this first activity, your challenge is to produce code which takes a user input, rounds it to the number of digits they specify, and returns the rounded result. In addition to the `round` function, use the `input` function to get user inputs. For example, the following code asks for the user's first name and outputs the first letter:
+In this first activity, we're going to write a program which asks the user to input their age and outputs how many minutes they've lived for.
+
+To prompt the user for to submit a value, we need to use a new command: `input`.
 
 ```python
-name = input("Please input your name")
-first_letter = name[0]
-print(f"The first letter of your name is {first_letter})
+number = int(input("Pick a number: "))
 ```
 
-You'll also need to use `float( ... )` and `int( ... )` around the inputs to change them from numbers to strings.
+Here, `input` asks the user to pick a number. After the user (you) types something into the console and presses <kbd>enter</kbd>, it is saved by Python in the variable `number`. Note that we need to put the input inside an `int( ... )` function to turn it into a number.
 
-In sum,
-- Use `print( ... )` to present a welcome message to the user
-- Use `float(input( ... ))` to ask the user for a number to round
-- Use `int(input( ... ))` to ask the user for the number of digits to round
-- Use `round( ... )` to round their number
-- Use `print( ... )` to output the rounded answer
+The steps for this activity are
+- Ask the user for their age using `input` and save it in an appropriate variable
+- Calculate their age in minutes ($\text{Age (minutes)} = \text{Age (years)} \times 365 \times 24 \times 60$)
+- Output the new value using `print` with a message
 
+> **Advanced**: if you found this too easy, try including a step which includes the days that have passed in the current year.
 
 <details>
   <summary>Solution</summary>
@@ -278,19 +277,18 @@ In sum,
   ```python
   # Rounder
     
-  # Welcome message
-  print("Welcome to the rounder. Here you can input a number and round it.")
+  # Prompt user for age
+  age_years = int(input("What is your age: "))
 
-  # Collect number to round and number of digits
-  number = float(input("What is your number? "))
-  precision = int(input("How many digits would you like to round it to? "))
+  # Calculate age in mins
+  age_mins = age_years * 365 * 24 * 60
 
-  # Round number and print result
-  rounded = round(number, precision)
-  print(f"Your number is {rounded}")
+  # Print result
+  print(f"You have lived for {age_mins} minutes!")
   ```
               
 </details>
+
 
 
 ## Conditionals
