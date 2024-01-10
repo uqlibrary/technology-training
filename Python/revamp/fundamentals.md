@@ -272,10 +272,10 @@ The steps for this activity are
 <details>
   <summary>Solution</summary>
   
-  We have five lines of code corresponding to the five steps above:
+  We have three lines of code corresponding to the five steps above:
   
   ```python
-  # Rounder
+  ### Age in minutes calculator
     
   # Prompt user for age
   age_years = int(input("What is your age: "))
