@@ -252,7 +252,7 @@ For a comprehensive manual, go to the [official online documentation](https://do
 
 ## Activity 1
 
-In this first activity, we're going to write a program which asks the user to input their age and outputs how many minutes they've lived for.
+In this first activity, write a program which asks the user to input their age and outputs how many minutes they've lived for.
 
 To prompt the user for to submit a value, we need to use a new command: `input`.
 
@@ -261,6 +261,8 @@ number = int(input("Pick a number: "))
 ```
 
 Here, `input` asks the user to pick a number. After the user (you) types something into the console and presses <kbd>enter</kbd>, it is saved by Python in the variable `number`. Note that we need to put the input inside an `int( ... )` function to turn it into a number.
+
+**Using `input`, convert the user's age in years to minutes**
 
 The steps for this activity are
 - Ask the user for their age using `input` and save it in an appropriate variable
