@@ -556,3 +556,10 @@ Some popular packages include
 | Beautiful Soup | `pip/conda install beautifulsoup4` | `from bs4 import BeautifulSoup` | Collect HTML data from websites. | 
 
 ## Activity 3
+
+In this final activity, we're going to create some data using loops and some packages.
+
+
+
+
+
