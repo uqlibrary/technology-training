@@ -584,7 +584,7 @@ df = pd.DataFrame(index = names, columns = cols)
 
 Having run all this code, you should now have a dataframe stored in the variable `df`. Check this by running `df`, you should see the following:
 
-![image]("https://github.com/uqlibrary/technology-training/assets/118239146/24df78e5-bcf8-4c93-8bb7-e4726bd03a1c")
+![image](https://github.com/uqlibrary/technology-training/assets/118239146/24df78e5-bcf8-4c93-8bb7-e4726bd03a1c)
 
 ### Part 1: Creating the data
 The first challenge in this activity is filling out the rest of the data. There are two new things you need
