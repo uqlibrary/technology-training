@@ -557,7 +557,35 @@ Some popular packages include
 
 ## Activity 3
 
-In this final activity, we're going to create some data using loops and some packages.
+In this final activity, we're going to create some sample data and visualise it.
+
+**Our goal is to create random weight, height and BMI data for five people**
+
+We'll complete this in two parts. Before we begin, we need to set things up by importing the modules we need
+
+```python
+import random
+import pandas as pd
+import seaborn as sns
+```
+
+> If importing any of these causes an error, it could be because you haven't installed it yet. See [above](#External-packages) for information on how to do so.
+
+Next, we'll initialise the data structure. The package **pandas** provides a `DataFrame` variable, which stores data in a spreadsheet-like way, with variables for columns and observations/indices for rows.
+
+We can create a dataframe for this project by specifying the columns and row names:
+
+```python
+cols = ["Height", "Weight", "BMI"]
+names = ["Alice", "Bob", "Charlie", "Dilsah", "Eliza"]
+
+df = pd.DataFrame(index = names, columns = cols)
+```
+
+Having run all this code, you should now have a dataframe stored in the variable `df`. Check this by running `df`, you should see the following:
+
+
+<img width="120" alt="image" src="https://github.com/uqlibrary/technology-training/assets/118239146/24df78e5-bcf8-4c93-8bb7-e4726bd03a1c">
 
 
 
