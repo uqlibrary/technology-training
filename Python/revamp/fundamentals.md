@@ -584,10 +584,89 @@ df = pd.DataFrame(index = names, columns = cols)
 
 Having run all this code, you should now have a dataframe stored in the variable `df`. Check this by running `df`, you should see the following:
 
+![image]("https://github.com/uqlibrary/technology-training/assets/118239146/24df78e5-bcf8-4c93-8bb7-e4726bd03a1c")
 
-<img width="120" alt="image" src="https://github.com/uqlibrary/technology-training/assets/118239146/24df78e5-bcf8-4c93-8bb7-e4726bd03a1c">
+### Part 1: Creating the data
+The first challenge in this activity is filling out the rest of the data. There are two new things you need
+
+To access a specific cell/element in our dataframe, we use `df.loc[row, column]` specifying the reference inside the brackets. For example, we can access Alice's height value by using
+```python
+df.loc["Alice", "Height"]
+```
+To make a random integer between e.g. 10 and 20, we use the function
+```python
+random.randint(10, 20)
+```
+
+To complete this part, create a `for` loop which cycles through each person (stored in `name`) and puts a random number for their Height and Weight. After the loop, you can use `df["BMI"] = df["Weight"] / (df["Height") ** 2)` to compute their BMI. All up,
+
+- Write a `for` loop which goes through each person's name
+- For each person, put a random number for their height and weight
+- After the loop, compute their BMI with `df["BMI"] = df["Weight"] / (df["Height") ** 2)`
+
+Once you've made the data, running `df` should yield the following.
+
+![image](https://github.com/uqlibrary/technology-training/assets/118239146/ea32aa49-a679-4bd2-b525-d9044b6d1279)
+
+> Your numbers will be different because of the randomisation. If they are wildly different, you have likely used a different maximum and minimum than here.
+
+<details>
+  <summary>Solution</summary>
+  
+  One solution could be the following:
+  
+  ```python
+  # Import packages
+  import random
+  import pandas as pd
+  import seaborn as sns
+  
+  # Initialise dataframe
+  cols = ["Height", "Weight", "BMI"]
+  names = ["Alice", "Bob", "Charlie", "Dilsah", "Eliza"]
+
+  df = pd.DataFrame(index = names, columns = cols)
+
+  # Fill in the data with random numbers
+  for person in names:
+      df.loc[person, "Height"] = random.randint(160,190) / 100
+      df.loc[person, "Weight"] = random.randint(60,120)
+
+  # Compute BMI
+  df["BMI"] = df["Weight"] / (df["Height"]**2)
+  ```
+              
+</details>
+
+### Part 2: Visualisation
+
+To visualise the data we just created, we can use the **seaborn** module, with the function `sns.catplot( ... )`. Inside the function, we'll need to specify the `x` and `y` values, and if we specifically want a bar plot, `kind` as well. Use the `help()` documentation to see if you can visualise the data we just created. See if you can produce something like the following plot:
+
+![image](https://github.com/uqlibrary/technology-training/assets/118239146/e85ece7e-0186-4599-9d2b-cbb137bcd981)
+
+<details>
+  <summary>Solution</summary>
+  
+  The plot above is produced with the code
+  
+  ```python
+  # Visualise
+  sns.catplot(data = df, x = names, y = "BMI", kind = "bar")
+  ```
+              
+</details>
 
 
+## Conclusion and Saving your work
 
+Your project can be reopened from the "Projects" menu in Spyder.
 
+By default, your variables are *not* saved, which is another reason why working with a script is important: you can execute the whole script in one go to get everything back. You can however save your variables as a `.spydata` file if you want to (for example, if it takes a lot of time to process your data).
 
+### Next session
+
+Thanks for completing this introductory session to Python! You're now ready for our next session, [Data Transformation](https://github.com/uqlibrary/technology-training/blob/55946e771a59b0d82e02e69b25917ad5a0ca5588/Python/revamp/data_transformation.md), which looks at using the **pandas** package in greater depth.
+
+Before you go, don't forget to check out the [Python User Group](bit.ly/uqpug), a gathering of Python users at UQ.
+
+Finally, if you need any support or have any other questions, shoot us an email at [training@library.uq.edu.au](training@library.uq.edu.au).
