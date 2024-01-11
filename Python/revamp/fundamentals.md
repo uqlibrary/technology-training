@@ -599,10 +599,10 @@ To make a random integer between e.g. 10 and 20, we use the function
 random.randint(10, 20)
 ```
 
-To complete this part, create a `for` loop which cycles through each person (stored in `name`) and puts a random number for their Height and Weight. After the loop, you can use `df["BMI"] = df["Weight"] / (df["Height") ** 2)` to compute their BMI. All up,
+To complete this part, create a `for` loop which cycles through each person (stored in `name`) and puts a random number for their height and weight into the dataframe. After the loop, you can use `df["BMI"] = df["Weight"] / (df["Height") ** 2)` to compute their BMI. All up,
 
 - Write a `for` loop which goes through each person's name
-- For each person, put a random number for their height and weight
+- For each person, put a random number for their height and weight into the dataframe
 - After the loop, compute their BMI with `df["BMI"] = df["Weight"] / (df["Height") ** 2)`
 
 Once you've made the data, running `df` should yield the following.
