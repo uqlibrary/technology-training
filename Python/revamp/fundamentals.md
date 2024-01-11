@@ -20,6 +20,7 @@ This hands-on course – directed at beginners – will get you started on using
 - [Activity 2](#activity-2)
 - [Packages/Modules](#packages)
 - [Activity 3](#activity-3)
+- [Conclusion](#conclusion-and-saving-your-work)
 
 ## Setup
 
@@ -657,7 +658,7 @@ To visualise the data we just created, we can use the **seaborn** module, with t
 </details>
 
 
-## Conclusion and Saving your work
+## Conclusion and saving your work
 
 Your project can be reopened from the "Projects" menu in Spyder.
 
