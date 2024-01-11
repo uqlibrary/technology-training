@@ -672,12 +672,12 @@ Today we looked at a lot of Python features, so don't worry if they haven't all 
 | --- | --- |
 | **The console vs scripts** | The **console** is our window into the computer, this is where we send code directly to the computer. **Scripts** are files which we can write, edit, store and run code, that's where you'll write most of your Python. | 
 | **Variables** | **Variables** are the nouns of programming, this is where we store information, the objects and things of our coding. They come in different types like integers, strings and lists. |
-| **Indexing** | In order to access elements of a sequence variable, like a list, we need to index, e.g. `myList[2]`. Python counts from 0.
-| **Functions** | **Functions are the verbs of programming, they perform actions on our variables. Call the function by name and put inputs inside parentheses, e.g. `round(2.5)` | 
-| **Help** | Running `help( ... )` will reveal the help documentation about a function or type. |
-| **Conditionals** | `if`, `elif` and `else` statements allow us to run code if certain conditions are true, and skip it otherwise. |
-| **Loops** | `while` loops will repeatedly run code until a condition is no longer true, and `for` loops will iterate through a variable | 
-| **Packages** | We can bring external code into our environment with `import ... `. This is how we use packages, an essential for Python. Don't forget to install the package first! | 
+| **Indexing** | In order to access elements of a sequence variable, like a list, we need to **index**, e.g. `myList[2]`. Python counts from 0.
+| **Functions** | **Functions** are the verbs of programming, they perform actions on our variables. Call the function by name and put inputs inside parentheses, e.g. `round(2.5)` | 
+| **Help** | Running `help( ... )` will reveal the **help** documentation about a function or type. |
+| **Conditionals** | `if`, `elif` and `else` statements allow us to run code if certain **conditions** are true, and skip it otherwise. |
+| **Loops** | `while` **loops** will repeatedly run code until a condition is no longer true, and `for` **loops** will iterate through a variable | 
+| **Packages** | We can bring external code into our environment with `import ... `. This is how we use **packages**, an essential for Python. Don't forget to install the package first! | 
 
 ### Next session
 
