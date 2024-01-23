@@ -146,12 +146,10 @@ sns.catplot(x = "day", y = "total_bill", data = tips, kind = "bar")
 Notice that seaborn has automatically taken the average **total bill** for each day of the week, and displayed confidence intervals too (the black lines). By inputting the variable **total bill**, seaborn recieves 244 data entries to plot, but can only plot 4 bars, so it has to aggregate them somehow. By default it takes the mean, however, the method can be specified with the `estimator = ` argument. For example, we could take the *sum*, displaying the total they earned each day.
 
 ```python
-sns.catplot(data = tips, x = "day", y = "total_bill", estimator = sum, kind = "bar")
+sns.catplot(data = tips, x = "day", y = "total_bill", estimator = "sum", kind = "bar")
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208792588-8af0ba47-241a-4560-ad6b-924f5a7315a8.png)
-
-> Specifically, the input for `estimator = ` should be a function that seaborn can apply to each variable. Others include `min`, `max`, etc., and there are lots included in the mathematics module `numpy`, which should be imported with `import numpy as np`
 
 The errorbars aren't so helpful here, so let's remove them. There are two ways to do this, depending on your version of seaborn:
 
@@ -179,7 +177,7 @@ Can you produce a bar plot which compares the maximum tip size for each day, wit
   The code is
   
   ``` python
-  sns.catplot(data = tips, x = "day", y = "tip", hue = "time", estimator = max, ci = 0, kind = "bar")
+  sns.catplot(data = tips, x = "day", y = "tip", hue = "time", estimator = "max", ci = 0, kind = "bar")
   ```
   
   And the plot is
