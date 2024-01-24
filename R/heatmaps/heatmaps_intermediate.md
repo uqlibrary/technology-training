@@ -92,6 +92,19 @@ head(mtcars)
 View(mtcars)
 ```
 
+#### Try to make a heatmap
+``` r
+heatmap(mtcars)
+```
+We received an error.
+We can find out how to resolve this by looking at the heatmap documentation.
+
+``` r
+?heatmap
+```
+
+We need to do a little more data preparation before we can visualise this dataset as a heatmap.
+
 #### Prepare data
 
 The data is a dataframe, but it has to be a **numeric matrix** to make
