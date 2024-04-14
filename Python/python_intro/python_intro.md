@@ -321,10 +321,10 @@ Let's now learn a bit more about our data. The `describe()` method gives us summ
 gap.describe()
 ```
 
-To create a customised summary, we can string different methods one after the other. Here, we first group by year to then get the yearly mean of the numerical columns:
+To create a customised summary, we can string different methods one after the other. Here, we first group by year to then get the yearly mean of the numerical columns, using `True` to indicate that we only want to consider the numeric columns:
 
 ```python
-gap.groupby('year').mean()
+gap.groupby('year').mean(True)
 ```
 
 ### Visualise data
