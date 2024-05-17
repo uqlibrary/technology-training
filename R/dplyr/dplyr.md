@@ -159,7 +159,7 @@ range(gapminder$year) # what is the time range?
 The R package `dplyr` was developed by Hadley Wickham for data
 manipulation.
 
-The book *[R for Data Science](https://r4ds.had.co.nz/)* introduces the
+The book *[R for Data Science](https://r4ds.hadley.nz/)* introduces the
 package as follows:
 
 > You are going to learn the five key dplyr functions that allow you to
