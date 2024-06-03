@@ -3,6 +3,7 @@
 This hands-on course – directed at beginners – will get you started on using **Python 3** and the program **Spyder** to import, explore, analyse and visualise data.
 
 ## Table of Contents
+
 - [Setup](#setup)
 - [Introduction](#introducing-python-and-spyder)
 - [Variables](#variables)
@@ -10,7 +11,7 @@ This hands-on course – directed at beginners – will get you started on using
 - [Functions](#functions)
 - [Finding help](#finding-help)
 - [Activity 1](#activity-1)
-- [Conditionals (`if`, `elif` and `else`)](#Conditionals)
+- [Conditionals (`if`, `elif` and `else`)](#conditionals)
 - [Loops (`while` and `for`)](#loops)
 - [Activity 2](#activity-2)
 - [Packages/Modules](#packages)
@@ -29,9 +30,10 @@ Python is a **programming language** that can be used to build programs (i.e. a 
 
 We are using **Spyder** to interact with Python more comfortably. If you have used RStudio to interact with R before, you should feel right at home: Spyder is a program designed for doing data science with Python.
 
-We will start by using the **console** to work interactively. This is our direct line to the computer, and is the simplest way to run code. Don't worry about any unfamiliar language, fonts or colours - we can ignore most of it for now - all you need to know is that 
-- `In [1]: ... ` is code that we've sent to the computer, and
-- `Out[1]: ... ` is its response.
+We will start by using the **console** to work interactively. This is our direct line to the computer, and is the simplest way to run code. Don't worry about any unfamiliar language, fonts or colours - we can ignore most of it for now - all you need to know is that
+
+- `In [1]: ...` is code that we've sent to the computer, and
+- `Out[1]: ...` is its response.
 
 ### Maths
 
