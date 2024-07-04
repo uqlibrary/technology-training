@@ -1,4 +1,4 @@
-R data visualisation with RStudio and ggplot2: intermediate
+R ggplot2: intermediate data visualisation
 ================
 2022-02-17
 
