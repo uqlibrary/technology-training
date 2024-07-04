@@ -1,4 +1,4 @@
-R data visualisation with RStudio and ggplot2: introduction
+R ggplot2: introductory data visualisation
 ================
 UQ Library
 2022-03-23
