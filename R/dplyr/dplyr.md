@@ -1,4 +1,4 @@
-R data manipulation with RStudio and dplyr
+R dplyr: preparing data for analysis
 ================
 UQ Library
 (2022-06-09)
