@@ -1,4 +1,4 @@
-R and the Tidyverse: next steps
+R tidyverse: loops and data tidying
 ================
 Stéphane Guillou
 2021-12-17
