@@ -427,8 +427,8 @@ A full list of parameters which can be set using `.set` are available [here](htt
 
 We can also change the legend title. To do so, we'll need to access the legend that is stored in our `flights_plot` variable and change its title. We can do that by
 
-1. Accessing the legend with `flights_plot._legend`
-2. Changing the title by adding `.set_title("Month")`
+1. Accessing the legend with `flights_plot.legend`
+2. Changing the title by adding `.set(title = "Month")`
 
 All together, with our previous code, this reads
 
@@ -439,7 +439,7 @@ flights_plot = sns.relplot(x = "year",
                            kind = "line")
                            
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
-flights_plot._legend.set_title("Month")  # <-- Our new line
+flights_plot.legend.set(title = "Month")  # <-- Our new line
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208798645-995bdcb6-0174-4703-84af-9feabc9cfe12.png)
