@@ -1,6 +1,53 @@
 # UQ PUG Past Meetings
 
-# 2023-4-11: UQ PUG 7
+# 2024 May 2<sup>nd</sup> -- UQ PUG 8
+
+Welcome to UQ Python User Group! Check out our general info above for how we work and what we do. Below you'll find the details of this month's gathering, and below that last month's.
+
+
+## Overview
+
+### Structure
+
+1. We start today by adding our names to the table below
+1. Add your questions to this page
+1. This month's presentation
+1. Finally, we spend the rest of the session answering the questions you've brought!
+
+### Mailing list
+
+If you would like to be on the mailing list and receive the latest PUG updates, please sign up here:
+
+https://forms.office.com/r/6qvfFX0qGr
+
+Feel free to send this link to anyone you think may benefit.
+
+### Training Resources
+
+We offer Python training sessions and resources, you can find our introductory guide [here](https://github.com/uqlibrary/technology-training/blob/master/Python/python_intro/python_intro.md).
+
+
+## Introduce yourself
+| What's your name? | Where are you from? | Why are you here? |
+| --- | --- | --- |
+| Julia | UQ HABS | Learn & meet python users |
+| Cameron | UQ Library / SMP | Help and learn! |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+
+# 2024-5-11: UQ PUG 7
 
 Welcome to UQ Python User Group! Check out our [general information](https://app.noteable.io/f/c84cf34f-03eb-48eb-aff4-ccf80b013b5c/UQ-PUG-General-Info.ipynb?cellID=1e2cf356) for details about who we are and what we do.
 
@@ -47,7 +94,7 @@ We offer Python training sessions and resources, you can find our introductory g
 | Jay|UQ EAIT|Learn python and have some inspiration |
 | | | |
 
-# 2023-3-7: UQ PUG 6
+# 2024-3-7: UQ PUG 6
 
 Welcome to UQ Python User Group! Check out our [general information](https://app.noteable.io/f/c84cf34f-03eb-48eb-aff4-ccf80b013b5c/UQ-PUG-General-Info.ipynb?cellID=1e2cf356) for details about who we are and what we do.
 
@@ -287,7 +334,7 @@ else:
 ```
 
 
-# 2023-3-7: UQ PUG 5
+# 2024-2-7: UQ PUG 5
 
 Welcome to UQ Python User Group! Check out our [general information](https://app.noteable.io/f/c84cf34f-03eb-48eb-aff4-ccf80b013b5c/UQ-PUG-General-Info.ipynb?cellID=1e2cf356) for details about who we are and what we do.
 

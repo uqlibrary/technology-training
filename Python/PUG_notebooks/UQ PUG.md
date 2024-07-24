@@ -1,8 +1,7 @@
 # UQ PUG
 
-Welcome to the UQ Python User Group's monthly gathering. Our next is on the 4th of July, feel free to add your questions in advance below.
+Welcome to the UQ Python User Group's monthly gathering. Our next is on the 1st of August, feel free to add your questions in advance below.
 
-We've recently migrated to this platform, HedgeDoc, since Noteable has shut down.
 
 If you're interested in viewing one of our past gatherings, you can find them in our [archive](https://demo.hedgedoc.org/s/h32mfqig2).
 
@@ -36,18 +35,15 @@ Here are a few links to some general resources.
 - [UQ Training Sessions](https://web.library.uq.edu.au/library-services/training)
 - Library training email - [training@library.uq.edu.au](training@library.uq.edu.au)
 - [Online courses](https://au.linkedin.com/learning/) with LinkedIn Learning (use [UQ credentials](https://web.library.uq.edu.au/library-services/training/linkedin-learning-online-courses))
-# 2024 July 4<sup>th</sup> -- UQ PUG 9
+# 2024 August 1<sup>st</sup> -- UQ PUG 10
 
 Welcome to UQ Python User Group! Check out our general info above for how we work and what we do. Below you'll find the details of this month's gathering, and below that last month's.
 
 
 ## Overview
 
-This month we will be discussing **functions and modules** - specifically, how to start using them and when they might help!
+This month we will be discussing **transitioning to Teams** - specifically, how we can use Teams to communicate as a group (PUG) moving forwards!
 
-```python
-df = pd.read_csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
-```
 
 ### Structure
 
@@ -72,8 +68,6 @@ We offer Python training sessions and resources, you can find our introductory g
 ## Introduce yourself
 | What's your name? | Where are you from? | Why are you here? |
 | --- | --- | --- |
-| Cameron West | UQ Library / SMP | To help |
-| Zoe| UQ | |
 | | | |
 | | | |
 | | | |
@@ -177,12 +171,18 @@ Add more details here
 * 
 
 
-# Previous Gathering -- 2024 May 2<sup>nd</sup> -- UQ PUG 8
+# Previous Gathering -- 2024 July 4<sup>th</sup> -- UQ PUG 9
 
 Welcome to UQ Python User Group! Check out our general info above for how we work and what we do. Below you'll find the details of this month's gathering, and below that last month's.
 
 
 ## Overview
+
+This month we will be discussing **functions and modules** - specifically, how to start using them and when they might help!
+
+```python
+df = pd.read_csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
+```
 
 ### Structure
 
@@ -207,10 +207,8 @@ We offer Python training sessions and resources, you can find our introductory g
 ## Introduce yourself
 | What's your name? | Where are you from? | Why are you here? |
 | --- | --- | --- |
-| Julia | UQ HABS | Learn & meet python users |
-| Cameron | UQ Library / SMP | Help and learn! |
-| | | |
-| | | |
+| Cameron West | UQ Library / SMP | To help |
+| Zoe| UQ | |
 | | | |
 | | | |
 | | | |
