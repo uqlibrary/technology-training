@@ -2717,7 +2717,7 @@ myList = [0,1,2,3,4]
 pd.unique(myList)
 ```
 
-    C:\Users\uqcwest5\AppData\Local\Temp\ipykernel_37288\1134000238.py:2: FutureWarning: unique with argument that is not not a Series, Index, ExtensionArray, or np.ndarray is deprecated and will raise in a future version.
+    C:\Users\uqcwest5\AppData\Local\Temp\ipykernel_23672\1134000238.py:2: FutureWarning: unique with argument that is not not a Series, Index, ExtensionArray, or np.ndarray is deprecated and will raise in a future version.
       pd.unique(myList)
     
 
@@ -3164,8 +3164,8 @@ df.groupby("Country")
 # Step 2: Aggregate over that variable by applying .agg() and choosing a method (e.g. "sum")
 df.groupby("Country").agg("sum")
 
-# Step 3: Store that result in a new variable
-country_sums = df.groupby("Country").agg("sum")
+# Step 3: Store that result in a new variable (as_index = False keeps "Country" as a column)
+country_sums = df.groupby("Country", as_index = False).agg("sum")
 
 # Look at the result
 country_sums
@@ -3192,6 +3192,7 @@ country_sums
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Country</th>
       <th>rank</th>
       <th>Youtuber</th>
       <th>subscribers</th>
@@ -3200,20 +3201,11 @@ country_sums
       <th>subscribers_for_last_30_days</th>
       <th>%_new_subs</th>
     </tr>
-    <tr>
-      <th>Country</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>Canada</th>
+      <th>0</th>
+      <td>Canada</td>
       <td>20</td>
       <td>Justin Bieber</td>
       <td>71600000</td>
@@ -3223,7 +3215,8 @@ country_sums
       <td>0.14</td>
     </tr>
     <tr>
-      <th>India</th>
+      <th>1</th>
+      <td>India</td>
       <td>33</td>
       <td>T-SeriesSET IndiaZee Music CompanySony SAB</td>
       <td>583700000</td>
@@ -3233,7 +3226,8 @@ country_sums
       <td>3.94</td>
     </tr>
     <tr>
-      <th>Japan</th>
+      <th>2</th>
+      <td>Japan</td>
       <td>8</td>
       <td>PewDiePie</td>
       <td>111000000</td>
@@ -3243,7 +3237,8 @@ country_sums
       <td>0.00</td>
     </tr>
     <tr>
-      <th>Russia</th>
+      <th>3</th>
+      <td>Russia</td>
       <td>9</td>
       <td>Like Nastya</td>
       <td>106000000</td>
@@ -3253,7 +3248,8 @@ country_sums
       <td>0.09</td>
     </tr>
     <tr>
-      <th>South Korea</th>
+      <th>4</th>
+      <td>South Korea</td>
       <td>32</td>
       <td>BLACKPINKBANGTANTV</td>
       <td>165400000</td>
@@ -3263,7 +3259,8 @@ country_sums
       <td>1.32</td>
     </tr>
     <tr>
-      <th>USA</th>
+      <th>5</th>
+      <td>USA</td>
       <td>38</td>
       <td>YouTube MoviesMrBeastCocomelon - Nursery Rhyme...</td>
       <td>804900000</td>
@@ -3273,7 +3270,8 @@ country_sums
       <td>6.92</td>
     </tr>
     <tr>
-      <th>United Kingdom</th>
+      <th>6</th>
+      <td>United Kingdom</td>
       <td>17</td>
       <td>5-Minute Crafts</td>
       <td>80100000</td>
@@ -3298,7 +3296,7 @@ Let's do it again, but this time we can remove the columns we don't need:
 cols_to_keep = ["video views", "Country"]
 
 # Groupby and aggregate
-country_sums = df[cols_to_keep].groupby("Country").agg("sum")
+country_sums = df[cols_to_keep].groupby("Country", as_index = False).agg("sum")
 
 country_sums
 ```
@@ -3324,40 +3322,44 @@ country_sums
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>video views</th>
-    </tr>
-    <tr>
       <th>Country</th>
-      <th></th>
+      <th>video views</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>Canada</th>
+      <th>0</th>
+      <td>Canada</td>
       <td>3.060812e+10</td>
     </tr>
     <tr>
-      <th>India</th>
+      <th>1</th>
+      <td>India</td>
       <td>5.348563e+11</td>
     </tr>
     <tr>
-      <th>Japan</th>
+      <th>2</th>
+      <td>Japan</td>
       <td>2.905804e+10</td>
     </tr>
     <tr>
-      <th>Russia</th>
+      <th>3</th>
+      <td>Russia</td>
       <td>9.047906e+10</td>
     </tr>
     <tr>
-      <th>South Korea</th>
+      <th>4</th>
+      <td>South Korea</td>
       <td>5.297159e+10</td>
     </tr>
     <tr>
-      <th>USA</th>
+      <th>5</th>
+      <td>USA</td>
       <td>4.402245e+11</td>
     </tr>
     <tr>
-      <th>United Kingdom</th>
+      <th>6</th>
+      <td>United Kingdom</td>
       <td>2.623679e+10</td>
     </tr>
   </tbody>
@@ -3396,40 +3398,44 @@ country_sums
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>video views</th>
-    </tr>
-    <tr>
       <th>Country</th>
-      <th></th>
+      <th>video views</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>India</th>
+      <th>1</th>
+      <td>India</td>
       <td>5.348563e+11</td>
     </tr>
     <tr>
-      <th>USA</th>
+      <th>5</th>
+      <td>USA</td>
       <td>4.402245e+11</td>
     </tr>
     <tr>
-      <th>Russia</th>
+      <th>3</th>
+      <td>Russia</td>
       <td>9.047906e+10</td>
     </tr>
     <tr>
-      <th>South Korea</th>
+      <th>4</th>
+      <td>South Korea</td>
       <td>5.297159e+10</td>
     </tr>
     <tr>
-      <th>Canada</th>
+      <th>0</th>
+      <td>Canada</td>
       <td>3.060812e+10</td>
     </tr>
     <tr>
-      <th>Japan</th>
+      <th>2</th>
+      <td>Japan</td>
       <td>2.905804e+10</td>
     </tr>
     <tr>
-      <th>United Kingdom</th>
+      <th>6</th>
+      <td>United Kingdom</td>
       <td>2.623679e+10</td>
     </tr>
   </tbody>

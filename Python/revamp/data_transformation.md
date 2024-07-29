@@ -714,7 +714,7 @@ myList = [0,1,2,3,4]
 pd.unique(myList)
 ```
 
-    C:\Users\uqcwest5\AppData\Local\Temp\ipykernel_37288\1134000238.py:2: FutureWarning: unique with argument that is not not a Series, Index, ExtensionArray, or np.ndarray is deprecated and will raise in a future version.
+    C:\Users\uqcwest5\AppData\Local\Temp\ipykernel_23672\1134000238.py:2: FutureWarning: unique with argument that is not not a Series, Index, ExtensionArray, or np.ndarray is deprecated and will raise in a future version.
       pd.unique(myList)
     
 
@@ -878,8 +878,8 @@ df.groupby("Country")
 # Step 2: Aggregate over that variable by applying .agg() and choosing a method (e.g. "sum")
 df.groupby("Country").agg("sum")
 
-# Step 3: Store that result in a new variable
-country_sums = df.groupby("Country").agg("sum")
+# Step 3: Store that result in a new variable (as_index = False keeps "Country" as a column)
+country_sums = df.groupby("Country", as_index = False).agg("sum")
 
 # Look at the result
 country_sums
@@ -888,15 +888,15 @@ country_sums
 
 
 
-|                |   ('rank', 'Unnamed: 1_level_1') | ('Youtuber', 'Unnamed: 2_level_1')                |   ('subscribers', 'Unnamed: 3_level_1') |   ('video views', 'Unnamed: 4_level_1') | ('category', 'Unnamed: 5_level_1')                |   ('subscribers_for_last_30_days', 'Unnamed: 6_level_1') |   ('%_new_subs', 'Unnamed: 7_level_1') |
-|:---------------|---------------------------------:|:--------------------------------------------------|----------------------------------------:|----------------------------------------:|:--------------------------------------------------|---------------------------------------------------------:|---------------------------------------:|
-| Canada         |                               20 | Justin Bieber                                     |                                71600000 |                             3.06081e+10 | Music                                             |                                            100000        |                                   0.14 |
-| India          |                               33 | T-SeriesSET IndiaZee Music CompanySony SAB        |                               583700000 |                             5.34856e+11 | MusicShowsMusicShows                              |                                                 5.2e+06  |                                   3.94 |
-| Japan          |                                8 | PewDiePie                                         |                               111000000 |                             2.9058e+10  | Gaming                                            |                                                 0        |                                   0    |
-| Russia         |                                9 | Like Nastya                                       |                               106000000 |                             9.04791e+10 | People & Blogs                                    |                                            100000        |                                   0.09 |
-| South Korea    |                               32 | BLACKPINKBANGTANTV                                |                               165400000 |                             5.29716e+10 | People & BlogsMusic                               |                                                 1.1e+06  |                                   1.32 |
-| USA            |                               38 | YouTube MoviesMrBeastCocomelon - Nursery Rhyme... |                               804900000 |                             4.40224e+11 | Film & AnimationEntertainmentEducationPeople &... |                                                 1.02e+07 |                                   6.92 |
-| United Kingdom |                               17 | 5-Minute Crafts                                   |                                80100000 |                             2.62368e+10 | Howto & Style                                     |                                                 0        |                                   0    |
+|    | Country        |   rank | Youtuber                                          |   subscribers |   video views | category                                          |   subscribers_for_last_30_days |   %_new_subs |
+|---:|:---------------|-------:|:--------------------------------------------------|--------------:|--------------:|:--------------------------------------------------|-------------------------------:|-------------:|
+|  0 | Canada         |     20 | Justin Bieber                                     |      71600000 |   3.06081e+10 | Music                                             |                  100000        |         0.14 |
+|  1 | India          |     33 | T-SeriesSET IndiaZee Music CompanySony SAB        |     583700000 |   5.34856e+11 | MusicShowsMusicShows                              |                       5.2e+06  |         3.94 |
+|  2 | Japan          |      8 | PewDiePie                                         |     111000000 |   2.9058e+10  | Gaming                                            |                       0        |         0    |
+|  3 | Russia         |      9 | Like Nastya                                       |     106000000 |   9.04791e+10 | People & Blogs                                    |                  100000        |         0.09 |
+|  4 | South Korea    |     32 | BLACKPINKBANGTANTV                                |     165400000 |   5.29716e+10 | People & BlogsMusic                               |                       1.1e+06  |         1.32 |
+|  5 | USA            |     38 | YouTube MoviesMrBeastCocomelon - Nursery Rhyme... |     804900000 |   4.40224e+11 | Film & AnimationEntertainmentEducationPeople &... |                       1.02e+07 |         6.92 |
+|  6 | United Kingdom |     17 | 5-Minute Crafts                                   |      80100000 |   2.62368e+10 | Howto & Style                                     |                       0        |         0    |
 
 
 
@@ -910,7 +910,7 @@ Let's do it again, but this time we can remove the columns we don't need:
 cols_to_keep = ["video views", "Country"]
 
 # Groupby and aggregate
-country_sums = df[cols_to_keep].groupby("Country").agg("sum")
+country_sums = df[cols_to_keep].groupby("Country", as_index = False).agg("sum")
 
 country_sums
 ```
@@ -918,15 +918,15 @@ country_sums
 
 
 
-|                |   ('video views', 'Unnamed: 1_level_1') |
-|:---------------|----------------------------------------:|
-| Canada         |                             3.06081e+10 |
-| India          |                             5.34856e+11 |
-| Japan          |                             2.9058e+10  |
-| Russia         |                             9.04791e+10 |
-| South Korea    |                             5.29716e+10 |
-| USA            |                             4.40224e+11 |
-| United Kingdom |                             2.62368e+10 |
+|    | Country        |   video views |
+|---:|:---------------|--------------:|
+|  0 | Canada         |   3.06081e+10 |
+|  1 | India          |   5.34856e+11 |
+|  2 | Japan          |   2.9058e+10  |
+|  3 | Russia         |   9.04791e+10 |
+|  4 | South Korea    |   5.29716e+10 |
+|  5 | USA            |   4.40224e+11 |
+|  6 | United Kingdom |   2.62368e+10 |
 
 
 
@@ -942,15 +942,15 @@ country_sums
 
 
 
-|                |   ('video views', 'Unnamed: 1_level_1') |
-|:---------------|----------------------------------------:|
-| India          |                             5.34856e+11 |
-| USA            |                             4.40224e+11 |
-| Russia         |                             9.04791e+10 |
-| South Korea    |                             5.29716e+10 |
-| Canada         |                             3.06081e+10 |
-| Japan          |                             2.9058e+10  |
-| United Kingdom |                             2.62368e+10 |
+|    | Country        |   video views |
+|---:|:---------------|--------------:|
+|  1 | India          |   5.34856e+11 |
+|  5 | USA            |   4.40224e+11 |
+|  3 | Russia         |   9.04791e+10 |
+|  4 | South Korea    |   5.29716e+10 |
+|  0 | Canada         |   3.06081e+10 |
+|  2 | Japan          |   2.9058e+10  |
+|  6 | United Kingdom |   2.62368e+10 |
 
 
 
