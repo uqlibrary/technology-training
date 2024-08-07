@@ -58,9 +58,6 @@ These sessions focus on dealing with geospatial data, using QGIS, the OpenStreet
 | Audacity: introduction to audio editing | [md](Audacity/audacity.md) | [html](https://demo.hedgedoc.org/s/HkkITjw9L) | ... |
 | Voyant Tools: zero to hero | [md](Voyant/voyant.md) | ... | ... |
 | Overleaf: write and collaborate on LaTeX documents | [pdf](https://web.library.uq.edu.au/files/145715/2021-12-02_Overleaf_write_articles_with_LaTeX.pdf) <sup>[source](LaTeX/intro/main.tex)</sup> | ... | ... |
-| _next: Open Source tools for your research_ | ... | ... | ... |
-| _next: Wikipedia: start contributing_ | ... | ... | ... |
-
 
 ### One-off sessions
 
