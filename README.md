@@ -35,6 +35,14 @@ We also offer these more specialised sessions (run less regularly, but feel free
 | RStats Introduction: ANOVA and linear regression | [md](R/ANOVA-lm/anova-lm.md) <sup>[source](R/ANOVA=lm/anova-lm.Rmd)</sup> | - | ... |
 | RStats: Working with and analysing time series data | [md](R/timeseries/time_series.md) <sup>[source](R/timeseries/time_series.md)</sup> | - | ... |
 
+### Python sessions
+
+| Python with Spyder: introduction to data science | [md](Python/python_intro/python_intro.md) | [html](https://demo.hedgedoc.org/s/B1DWolwgB) | ... |
+| Python data transformation and visualisation with pandas | [md](Python/pandas/pandas.md) | [html](https://demo.hedgedoc.org/s/SJVpdtm_v) | ... |
+| Introduction to python data visualisation with seaborn | [md](Python/seaborn_intermediate/seaborn_intermediate.md) | ... | ... |
+| Intermediate data visualisation in python with seaborn | [md](Python/seaborn_intro/seaborn_intro.md) | ... | ... |
+| Introduction to statistics in Python | [notebooks](Python/statistics) | ... | ... |
+
 ### GIS sessions
 
 These sessions focus on dealing with geospatial data, using QGIS, the OpenStreetMap database, and a variety of other data sources.
@@ -53,8 +61,6 @@ These sessions focus on dealing with geospatial data, using QGIS, the OpenStreet
 | Unix Shell: an introduction | [md](Shell/shell_intro.md) | [html](https://demo.hedgedoc.org/s/zjQhgaEuN) | ... |
 | Git version control for collaboration | [md](Git/git.md) | [html](https://demo.hedgedoc.org/s/HkJnjT9DH) | ... |
 | OpenRefine: introduction to dealing with messy data | [md](OpenRefine/openrefine.md) | [html](https://demo.hedgedoc.org/s/rJCXmqviH) | ... |
-| Python with Spyder: introduction to data science | [md](Python/python_intro/python_intro.md) | [html](https://demo.hedgedoc.org/s/B1DWolwgB) | ... |
-| Python data transformation and visualisation with pandas | [md](Python/pandas/pandas.md) | [html](https://demo.hedgedoc.org/s/SJVpdtm_v) | ... |
 | Audacity: introduction to audio editing | [md](Audacity/audacity.md) | [html](https://demo.hedgedoc.org/s/HkkITjw9L) | ... |
 | Voyant Tools: zero to hero | [md](Voyant/voyant.md) | ... | ... |
 | Overleaf: write and collaborate on LaTeX documents | [pdf](https://web.library.uq.edu.au/files/145715/2021-12-02_Overleaf_write_articles_with_LaTeX.pdf) <sup>[source](LaTeX/intro/main.tex)</sup> | ... | ... |
