@@ -43,7 +43,6 @@ We also offer these more specialised sessions (run less regularly, but feel free
 | Python data transformation and visualisation with pandas | [md](Python/pandas/pandas.md) | [html](https://demo.hedgedoc.org/s/SJVpdtm_v) | ... |
 | Introduction to python data visualisation with seaborn | [md](Python/seaborn_intermediate/seaborn_intermediate.md) | ... | ... |
 | Intermediate data visualisation in python with seaborn | [md](Python/seaborn_intro/seaborn_intro.md) | ... | ... |
-| Introduction to statistics in Python | [notebooks](Python/statistics) | ... | ... |
 
 ### GIS sessions
 
