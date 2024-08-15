@@ -107,7 +107,7 @@ You can even create complex "multi" features by using the "Add a polygon" and "A
 
 ## Import data
 
-Import this dataset that contains observations of the Australian White Ibis (_Threskiornis molucca_) around the most densely populated part of Brisbane: [FIXME]
+Import this dataset that contains observations of the Australian White Ibis (_Threskiornis molucca_) around the centre of Brisbane: https://github.com/uqlibrary/technology-training/raw/master/uMap/2024-08-15_ibis-brisbane-filtered.csv
 
 For that, use the "Import data" button at the bottom of the right toolbar, browse to the CSV file, give the new layer a name, and click "Import data".
 
