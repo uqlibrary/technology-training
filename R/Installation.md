@@ -1,4 +1,4 @@
-# R & RStudio installation instructions
+# R and RStudio installation instructions
 
 Participants are welcome to bring and use their own laptops with the software already installed (with a working Internet connection), to ensure that you can continue using what you learn once you leave the workshop. However, if you need, you can use one of the Library's training computers, as they all offer the necessary software.
 
@@ -15,18 +15,18 @@ If you use a UQ computer and don't have administrator rights, you might need to 
 
 * [Download R from the official website](https://cran.r-project.org/bin/windows/base/release.htm)
 * Run the .exe file that was just downloaded
-* Go to the [RStudio Download page](https://www.rstudio.com/products/rstudio/download/#download)
+* Go to the [RStudio Download page](https://posit.co/download/rstudio-desktop/#download)
 * Select the Windows installer.
 * Double click the file to install it
 * Once it's installed, open RStudio to make sure it works and there is no error messages.
 
-### Mac
+### macOS
 *To use RStudio, you need to install both R and RStudio*
 
-* [Go to the R website website](https://cran.r-project.org/bin/macosx/)
+* [Go to the R website](https://cran.r-project.org/bin/macosx/)
 * Select the .pkg file for the version of macOS that you have
 * Double-click on the file that was downloaded and R will install
-* Go to the [RStudio Download page](https://www.rstudio.com/products/rstudio/download/#download)
+* Go to the [RStudio Download page](https://posit.co/download/rstudio-desktop/#download)
 * Select the macOS installer
 * Once it's downloaded, double click the file to install it
 * Once it's installed, open RStudio to make sure it works and there is no error messages.
@@ -34,8 +34,8 @@ If you use a UQ computer and don't have administrator rights, you might need to 
 ### Linux
 *To use RStudio, you need to install both R and RStudio*
 
-* Download R by following the instructions for your distribution from CRAN. For most distributions, you can use your package manager (e.g. for Debian/Ubuntu run `sudo apt-get install r-base`, and for Fedora run `sudo yum install R`) 
-* Go to the [RStudio Download page](https://www.rstudio.com/products/rstudio/download/#download)
+* Download R by following the instructions for your distribution from [CRAN](https://cran.r-project.org/). For most distributions, you can use your package manager (e.g. for Debian/Ubuntu run `sudo apt-get install r-base`, and for Fedora run `sudo yum install R`)
+* Go to the [RStudio Download page](https://posit.co/download/rstudio-desktop/#download)
 * Select the installer for your distribution.
 * Once it's downloaded, double click the file to install it, or use a command like `sudo dpkg -i rstudio-x.yy.zzz-amd64.deb` in the terminal
 * Once it's installed, open RStudio to make sure it works and there is no error messages.
