@@ -8,7 +8,9 @@ This tutorial is designed for **QGIS 3.34**. If you need to install it on your c
 
 The **data** for this session can be downloaded from our [GitHub page](https://github.com/uqlibrary/technology-training/blob/9a4dcc4b2fcb8be44dbc89ef01f550029472ddc4/QGIS/intro/QGIS_Intro_Data.zip), click the three dots and download.
 
-Please download the archive and extract it to your desktop.
+![Screenshot of three-dot menu on GitHub](download-github.png)
+
+Once downloaded, extract the archive.
 
 > Some of our data comes from Natural Earth: http://www.naturalearthdata.com/
 
