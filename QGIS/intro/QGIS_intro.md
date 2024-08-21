@@ -6,7 +6,7 @@ Stéphane Guillou and Nicholas Wiggins (UQ Library)
 
 This tutorial is designed for **QGIS 3.34**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/download/).
 
-The **data** for this session can be downloaded from our [GitHub page](https://github.com/uqlibrary/technology-training/blob/9a4dcc4b2fcb8be44dbc89ef01f550029472ddc4/QGIS/intro/QGIS_Intro_Data.zip), click the three dots and download.
+The **data** for this session can be downloaded from our [GitHub page](https://github.com/uqlibrary/technology-training/blob/master/QGIS/intro/QGIS_Intro_Data.zip), click the three dots and download.
 
 ![Screenshot of three-dot menu on GitHub](download-github.png)
 
