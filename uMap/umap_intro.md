@@ -107,9 +107,18 @@ You can even create complex "multi" features by using the "Add a polygon" and "A
 
 ## Import data
 
-Import this dataset that contains observations of the Australian White Ibis (_Threskiornis molucca_) around the centre of Brisbane: https://github.com/uqlibrary/technology-training/raw/master/uMap/2024-08-15_ibis-brisbane-filtered.csv
+We have created data interactively on the map, but it is possible to import a dataset from a different source.
 
-For that, use the "Import data" button at the bottom of the right toolbar, browse to the CSV file, give the new layer a name, and click "Import data".
+This dataset contains observations of the Australian White Ibis (_Threskiornis molucca_) around the centre of Brisbane: https://github.com/uqlibrary/technology-training/raw/master/uMap/2024-08-15_ibis-brisbane-filtered.csv
+
+After downloading it, you can import with the following steps:
+
+1. Click "Import data" button at the bottom of the right toolbar
+1. Browse to the CSV file
+1. Give the new layer a name
+1. Click "Import data"
+
+Alternatively, you paste the URL directly in the "Choose data" section, which is especially useful if you know the resource will be updated in the future.
 
 In the right toolbar, click "Edit map name and caption" (the "i" icon) and add this citation in the Credits:
 
