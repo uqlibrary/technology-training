@@ -145,9 +145,9 @@ To always display a label for those features, we can go to: Layer properties pan
 
 ## Export
 
-To guarantee that no data is lost, make sure to export your data and / or project.
+To guarantee that no data is lost, make sure to export your data and / or project regularly. There are various options depending on how much you want to export:
 
-* To export a single layer's data, go to: Layer properties panel > Advanced actions > Download [FIXME: what data format is that?]
+* To export a single layer's data, go to: Layer properties panel > Advanced actions > Download. You can copy the text displayed, and save it as a .json file (the format is geojson).
 * To export the visible layers' data, go to the left toolbar's "Share and Download" panel. Several formats are available: geojson, gpx, kml, csv. For example, you can import all layers in one go into QGIS with a geojson export.
 * To export the full project, use "full backup" in the same panel, which downloads a ".umap" archive that can later on be imported back into uMap.
 * From your account dashboard, you can also export all maps at once.
