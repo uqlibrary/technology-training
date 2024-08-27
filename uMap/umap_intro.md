@@ -156,3 +156,8 @@ To guarantee that no data is lost, make sure to export your data and / or projec
 
 The "Share and Download" panel also provides the code to embed the interactive map into a website or blog article, using an iframe element.
 
+## Resources
+
+To learn more, consult the [uMap guide](https://wiki.openstreetmap.org/wiki/UMap/Guide) on the OpenStreetMap wiki. A [new version](https://discover.umap-project.org/) is in development.
+
+If you are interested in the technical aspects of hosting the software, use the [uMap technical documentation](https://docs.umap-project.org/en/stable/).
