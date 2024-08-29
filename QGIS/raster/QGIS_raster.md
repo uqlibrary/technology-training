@@ -4,12 +4,12 @@ Stéphane Guillou and Nicholas Wiggins (UQ Library)
 
 ## Setting up
 
-This tutorial is designed for **QGIS 3.22**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
+This tutorial is designed for **QGIS 3.34**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/download/).
 
 Open QGIS and create a **new project** with `Project > New`.
 Let's straight away **save** our project: `Project > Save`. We should create a new folder, where our project and all the saved data will live, named "qgis_raster_intro" for example.
 
-Saving the project should automatically set the **project home** to the same location: you should see a gree Project Home icon in the Browser panel. If that's not the case, go to `Project > Properties > General` and set `Project home` to the same folder. This dialogue is where we can also give the project a title.
+Saving the project should automatically set the **project home** to the same location: you should see a green Project Home icon in the Browser panel. If that's not the case, go to `Project > Properties > General` and set `Project home` to the same folder. This dialogue is where we can also give the project a title.
 
 We need to install a plugin so that certain features work go to `Plugins > Manage and Install Plugins...` and `Search...` for "**SAGA**". From the list on options choose **Processing Saga NextGen Provider** then in the bottom right, click `Install Plugin`.
 This has been needed since QGIS 3.22 where the functionality with SAGA begin to degrade.
@@ -23,7 +23,7 @@ A Digital Elevation Model (DEM) is a common example of **raster data**, i.e. gri
 For this tutorial, we are using a DEM sourced from the USGS website.
 
 * Go to https://earthexplorer.usgs.gov/
-* Click the World Features box, and the search for "Brisbane" in the "Feature Name" search box
+* Click the World Features box, and then search for "Brisbane" in the "Feature Name" search box
 * Click Show and select the first result
 * Zoom onto an area of interest around Brisbane and click "Use Map"
 * Click the "Data Sets" button and then `Digital Elevation > SRTM`, select "SRTM 1 Arc-Second Global" and click "Results"
@@ -32,7 +32,9 @@ For this tutorial, we are using a DEM sourced from the USGS website.
 
 Our area covers two separate raster files. We can click on the foot icon to see the footprint of each file, and the picture icon to see what the DEM looks like.
 
-Use the download button to download each file into your project directory. You will need a login for that, which is free but can take a bit of time. You can instead **download the two raster files** as an archive from our Github site [here](https://github.com/uqlibrary/technology-training/blob/8fba35504424b12236d28ff66898803361097c25/QGIS/raster/QGIS_Raster_Data.zip). Just press the three dots and download.
+Use the download button to download each file into your project directory. You will need a login for that, which is free but can take a bit of time. You can instead **download the two raster files** as an archive from our Github repository [here](https://github.com/uqlibrary/technology-training/blob/31f4a21885a0e07714ee9daa73412bbacab07744/QGIS/raster/QGIS_Raster_Data.zip). Click the three dots to download.
+
+![Screenshot of three-dot menu on GitHub](/QGIS/intro/download-github.png)
 
 ## Merge the two DEM layers
 
