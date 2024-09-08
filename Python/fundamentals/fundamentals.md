@@ -571,7 +571,7 @@ import seaborn as sns
 ### Part 1: Importing and modifying the data
 The first challenge in this activity is bringing in the data. To do this, we use the `pd.read_csv()` function, specifying the file path as the first argument (this can be a URL), and store it in a variable (typically `df`).
 
-Today's data is five (random) people's height and weight. You can download it [here](https://github.com/uqlibrary/technology-training/blob/efc315aae91c98ca5872404d1382c3db9fb1d01d/Python/revamp/BMI_data.csv).
+Today's data is five (random) people's height and weight. You can download it [here](https://github.com/uqlibrary/technology-training/blob/ef2d1e8eb721606a928ce140cdbebb12645f812e/Python/fundamentals/fundamentals.md).
 
 Next, you'll need to compute the each person's BMI. The code below demonstrates how to create a new column (converting weight into pounds). You should do the same, but use the formula
 
