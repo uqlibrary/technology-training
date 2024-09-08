@@ -250,7 +250,7 @@ For a comprehensive manual, go to the [official online documentation](https://do
 
 ## Activity 1
 
-**Stage 1**
+### Stage 1
 
 In this first activity, write a program which takes an age in years and outputs how many minutes they've lived for. Note that
 
@@ -261,7 +261,7 @@ Steps
 * Calculate the age in minutes
 * Print a message with the output
 
-**Stage 2**
+### Stage 2
 
 Next, we'll get the user to provide the age themselves. To prompt the user for to submit a value, we need to use a new command: `input`.
 
