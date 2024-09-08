@@ -250,9 +250,20 @@ For a comprehensive manual, go to the [official online documentation](https://do
 
 ## Activity 1
 
-In this first activity, write a program which asks the user to input their age and outputs how many minutes they've lived for.
+**Stage 1**
 
-To prompt the user for to submit a value, we need to use a new command: `input`.
+In this first activity, write a program which takes an age in years and outputs how many minutes they've lived for. Note that
+
+$$\text{Age (minutes)} = \text{Age (years)} \times 365 \times 24 \times 60$$
+
+Steps
+* Store the age in years in a variable
+* Calculate the age in minutes
+* Print a message with the output
+
+**Stage 2**
+
+Next, we'll get the user to provide the age themselves. To prompt the user for to submit a value, we need to use a new command: `input`.
 
 ```python
 number = int(input("Pick a number: "))
@@ -260,19 +271,10 @@ number = int(input("Pick a number: "))
 
 Here, `input` asks the user to pick a number. After the user (you) types something into the console and presses <kbd>enter</kbd>, it is saved by Python in the variable `number`. Note that we need to put the input inside an `int( ... )` function to turn it into a number.
 
-**Using `input`, convert the user's age in years to minutes**
-
-The steps for this activity are
-- Ask the user for their age using `input` and save it in an appropriate variable
-- Calculate their age in minutes ($\text{Age (minutes)} = \text{Age (years)} \times 365 \times 24 \times 60$)
-- Output the new value using `print` with a message
-
-> **Advanced**: if you found this too easy, try including a step which includes the days that have passed in the current year.
-
 <details>
   <summary>Solution</summary>
   
-  We have three lines of code corresponding to the five steps above:
+  We have three lines of code corresponding to the steps above:
   
   ```python
   ### Age in minutes calculator
@@ -284,9 +286,8 @@ The steps for this activity are
   age_mins = age_years * 365 * 24 * 60
 
   # Print result
-  print(f"You have lived for {age_mins} minutes!")
+  print("You have lived for" + age_mins + "minutes!")
   ```
-              
 </details>
 
 
