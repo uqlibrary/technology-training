@@ -4,11 +4,13 @@ Stéphane Guillou and Nicholas Wiggins (UQ Library)
 
 ## Setting up
 
-This tutorial is designed for **QGIS 3.22**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
+This tutorial is designed for **QGIS 3.34**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/download/).
 
-The **data** for this session can be downloaded from our [Github page](https://github.com/uqlibrary/technology-training/blob/9a4dcc4b2fcb8be44dbc89ef01f550029472ddc4/QGIS/intro/QGIS_Intro_Data.zip), just click the three dots and download.
+The **data** for this session can be downloaded from our [GitHub page](https://github.com/uqlibrary/technology-training/blob/master/QGIS/intro/QGIS_Intro_Data.zip), click the three dots and download.
 
-Please download the archive and extract it to your desktop.
+![Screenshot of three-dot menu on GitHub](download-github.png)
+
+Once downloaded, extract the archive.
 
 > Some of our data comes from Natural Earth: http://www.naturalearthdata.com/
 
@@ -47,7 +49,7 @@ You can also turn the **layer visibility** on and off from this panel with the t
 
 ### Learn about the data
 
-You can open the **attribute table** to see tabular data contained in each layer.
+You can open the **attribute table** to see tabular data contained in each layer. (Right-click on a layer and use "Open Attribute Table". Alternatively, use the top toolbar button or use <kbd>F6</kbd>.)
 
 You can also use the `Identify Features` tool in the top toolbar. This allows you to learn about specific features included in the currently selected layer.
 
@@ -69,7 +71,7 @@ Now that we have we have a layer with only the administrative regions for Austra
 1. Select the layer to clip
 1. Use the `Vector > Geoprocessing Tools > Clip...` tool
 1. Use the "australia_admin" layer as the overlay.
-1. Click OK
+1. Click "Run"
 
 > If you get an error about invalid geometries, you might have to use the `Fix geometries` tool on the Australian shapefile first (found in the Processing Toolbox).
 
@@ -77,7 +79,7 @@ Notice how the clipped layers don't have a descriptive name? Make sure you renam
 
 You can now hide the original layers and confirm that you have only Australian data visible in the canvas by using the `Zoom Full` button.
 
-> Challenge, can you do the same for the Cities? Do you notice anything strange? How can we fix that?
+> **Challenge**: can you do the same for the Cities? Do you notice anything strange? How can we fix that?
 
 ## Change the symbology
 
@@ -90,6 +92,8 @@ We can make more complex fills by adding an extra "symbol layer", and layering d
 
 Now try to change the point symbology of our "populated places" layer: we don't have to stick to `Simple marker`. Try for example the different icons available with `Symbol layer type > SVG marker` or `Font marker` selected.
 
+> The Properties dialog is quite large and makes it difficult to see the changes in symbology. You can use the "Layer Styling Panel" (button in the Layers panel, or <kbd>F7</kbd> shortcut) to use a side panel instead, with the "Live update" option on by default.
+
 ## Classify vector data
 
 ### Add labels
@@ -98,11 +102,11 @@ Have a look at the attribute table for our "populated places" layer. What could 
 
 Double-click on the "populated places" layer: `Labels > Single labels`. You can also use the `Layer Labelling Options` button to open the sidebar, which allows you to "Live update" the map when you change a setting.
 
-Choose `Label with > Name` to label with the city names. In the "Text" tab, we can change the look of our labels: amend the size, the colour, the font... We can also add a text buffer with the "Buffer tab" to make them more readable.
+Choose `Value > Name` to label with the city names. In the "Text" tab, we can change the look of our labels: amend the size, the colour, the font... We can also add a text buffer with the "Buffer tab" to make them more readable.
 
-The placement tab allows us to fine-tune the placement of the labels in reference to the points. If we want the label to cover the point, we can use `Offset from point` and use the middle quadrant. We might also want to replace the layer symbology with a 0-size ellipse marker.
+The placement tab allows us to fine-tune the placement of the labels in reference to the points. The default mode is "Cartographic", and we can increase the distance to the symbol used. If we want the label to cover the point, we can use `Mode > Offset from point` and use the middle quadrant. We might also want to set the layer's Symbology to "No Symbols".
 
-What if you want to label lines? It's a good idea to change the default `Placement` from `Parallel` to `Curved` so the labels follow the shape of the lines. You can try it on the rivers.
+What if you want to label lines? It's a good idea to change the default `Placement` from `Parallel` to `Curved` so the labels follow the shape of the lines. You can try it on the rivers. If the labels don't show, increaseing the Distance might help.
 
 > If labels appear several times on the same line, you can try using `Rendering > Merge connected lines to avoid duplicate labels`. You can also make it neater with the feature `Suppress labelling of features smaller than`, so QGIS doesn't try to render labels for tiny features.
 
@@ -124,18 +128,19 @@ What if we want to colour according to a variable? Depending on the type of vari
 
 We can now use the joined data to change the symbology of our regions according to the HDI:
 
-1. Click on the `Layer Labelling Options` button
-1. Go to the Symbology tab
+1. Click on the `Layer Styling Panel` button
 1. Change from "Single Symbol" to "Graduated"
 1. Use the HDI column
 1. Pick a relevant colour ramp
 1. Click "classify"
 
-Depending on the data that you deal with, different "Modes" will be more or less useful to create a good colour key. Try "Natural breaks (Jenks)" for example.
+Depending on the data that you deal with, different "Modes" will be more or less useful to create a good colour key. Try "Natural Breaks (Jenks)" for example.
 
 #### Data Defined Symbology with the Assistant Tool
 
-Still using a continuous numerical variable, we can change the size of the "populated places" symbols according to population. Use the `Data defined override` dropdown next to the Size box, and use the `Assistant...` to define the scale, with the column `pop_max`. If the smallest size is too small, we can amend it.
+Still using a continuous numerical variable, we can change the size of the "populated places" symbols according to population. Use the `Data defined override` dropdown next to the Size box, and use the `Assistant...` to define the scale: set the "Source" to `pop_max` and click the "Fetch value range from layer" button. If the "Size from" value is too small, we can amend it.
+
+## Save styles
 
 We can save styles with `right-click > Styles > Add`, which creates a new one and saves the previous version.
 
@@ -168,7 +173,7 @@ The plugin should automatically open a side panel in which you can search for te
 
 Click on `Show Layout Manager` in the toolbar. `Create` a new layout called "Default". We can now see the Layout window.
 
-We can now add elements to our layout: the map, a legend, a scale bar, a north arrow... In order to create a nice printout, or export in a variety of formats. You can select these from the sidebar, or by going to the `Add Item` menu up the top.
+We can now add elements to our layout: the map, a legend, a scale bar, a north arrow, text boxes for a title and data sources... In order to create a nice printout, or export in a variety of formats. You can select these from the left-hand-side toolbar, or by going to the `Add Item` menu up the top.
 
 The layout manager allows us to save several different layouts, one for each output we want to generate. Even if we change our map data, we can reuse the same layouts and export an updated map.
 

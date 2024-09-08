@@ -1,19 +1,17 @@
 # QGIS intermediate: raster analysis
 
 Stéphane Guillou and Nicholas Wiggins (UQ Library)
-Luke was here.
 
 ## Setting up
 
-This tutorial is designed for **QGIS 3.22**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
+This tutorial is designed for **QGIS 3.34**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/download/).
 
 Open QGIS and create a **new project** with `Project > New`.
 Let's straight away **save** our project: `Project > Save`. We should create a new folder, where our project and all the saved data will live, named "qgis_raster_intro" for example.
 
-Saving the project should automatically set the **project home** to the same location: you should see a gree Project Home icon in the Browser panel. If that's not the case, go to `Project > Properties > General` and set `Project home` to the same folder. This dialogue is where we can also give the project a title.
+Saving the project should automatically set the **project home** to the same location: you should see a green Project Home icon in the Browser panel. If that's not the case, go to `Project > Properties > General` and set `Project home` to the same folder. This dialogue is where we can also give the project a title.
 
-We need to install a plugin so that certain features work go to `Plugins > Manage and Install Plugins...` and `Search...` for "**SAGA**". From the list on options choose **Processing Saga NextGen Provider** then in the bottom right, click `Install Plugin`.
-This has been needed since QGIS 3.22 where the functionality with SAGA begin to degrade.
+We need to install a plugin so that certain features work go to `Plugins > Manage and Install Plugins...` and `Search...` for "**SAGA**". From the list on options choose **Processing Saga NextGen Provider** then in the bottom right, click `Install Plugin`. You might also need to install SAGA (version 9 or above) on your computer, if not already available. (This has been needed since QGIS 3.22 where the functionality with SAGA began to degrade.)
 
 Let's now add an OpenStreetMap basemap to locate ourselves on the globe: `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
 
@@ -24,7 +22,7 @@ A Digital Elevation Model (DEM) is a common example of **raster data**, i.e. gri
 For this tutorial, we are using a DEM sourced from the USGS website.
 
 * Go to https://earthexplorer.usgs.gov/
-* Click the World Features box, and the search for "Brisbane" in the "Feature Name" search box
+* Click the World Features box, and then search for "Brisbane" in the "Feature Name" search box
 * Click Show and select the first result
 * Zoom onto an area of interest around Brisbane and click "Use Map"
 * Click the "Data Sets" button and then `Digital Elevation > SRTM`, select "SRTM 1 Arc-Second Global" and click "Results"
@@ -33,7 +31,9 @@ For this tutorial, we are using a DEM sourced from the USGS website.
 
 Our area covers two separate raster files. We can click on the foot icon to see the footprint of each file, and the picture icon to see what the DEM looks like.
 
-Use the download button to download each file into your project directory. You will need a login for that, which is free but can take a bit of time. You can instead **download the two raster files** as an archive from our Github site [here](https://github.com/uqlibrary/technology-training/blob/8fba35504424b12236d28ff66898803361097c25/QGIS/raster/QGIS_Raster_Data.zip). Just press the three dots and download.
+Use the download button to download each file into your project directory. You will need a login for that, which is free but can take a bit of time. You can instead **download the two raster files** as an archive from our Github repository [here](https://github.com/uqlibrary/technology-training/blob/31f4a21885a0e07714ee9daa73412bbacab07744/QGIS/raster/QGIS_Raster_Data.zip). Click the three dots to download.
+
+![Screenshot of three-dot menu on GitHub](/QGIS/intro/download-github.png)
 
 ## Merge the two DEM layers
 
@@ -54,7 +54,7 @@ We can now remove the two original raster files.
 
 ## Reproject the DEM
 
-In the merged layer's Properties (`Right click > Properties... > Source`), we can see that the Coordinate Reference System (CRS) in use is [EPSG:4326 - WGS 84](https://epsg.io/4326). It is the one that QGIS detected when opening the file (you can see this information in the associated XML file in the archive we downloaded). This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). A good PRS for around Brisbane/Meanjin is "[EPSG:7856 - GDA2020 / MGA zone 56](https://epsg.io/7856)". We can't change that here, we instead will need to use the **Warp (Reproject)** tool.
+In the merged layer's Properties (`Right click > Properties... > Source`), we can see that the Coordinate Reference System (CRS) in use is [EPSG:4326 - WGS 84](https://epsg.io/4326). It is the one that QGIS detected when opening the file. This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). A good PRS for around Brisbane/Meanjin is "[EPSG:7856 - GDA2020 / MGA zone 56](https://epsg.io/7856)". We can't change that here, we instead will need to use the **Warp (Reproject)** tool.
 
 * Use the tool `Raster > Projections > Warp (Reproject)`
 * use the merged layer as an input
@@ -115,12 +115,12 @@ However there is still another issue with our data. A common problem with DEMs i
 
 We can use the "Fill sinks (Wang & Liu)" tool to **fill the sinks** in our clipped DEM.
 
-* When we do that, we might have to play with the "Minimum slope" value, but the default of 0.01 degrees should work well if the layer was reprojected to a suitable Projected Reference System.
+* When we do that, we might have to play with the "Minimum slope" value. A value of 0.01 degrees should work well if the layer was reprojected to a suitable Projected Reference System.
 * As an output, we only need to tick the "Filled DEM" (first one in the list), which we can also save to file. You can however keep the "Watershed Basins" output to check that your minimum slope is high enough.
 
 If we **re-run the Strahler order tool** on the filled DEM, we will be able to see more useful data.
 
-We can now colour the layer with "Singleband pseudocolor" to highlight the bigger streams.
+We can now colour the layer with "Singleband pseudocolor" to highlight the bigger streams. A palette that goes from white (for low values) to a dark colour (for high values) should work well.
 
 > To filter out the noise of the smaller streams and **highlight the major streams** in the network, we can use the `Raster > Raster Calculator` tool and use a formula like: `"name_of_layer@1" >= 6` (the value will depend on how many levels exist in the Strahler layer). We need to save to file to be able to do that (name it "strahler_filtered", for example). This will assign the value 1 to the cells matching the condition, and 0 to what is under the limit.
 
@@ -131,9 +131,9 @@ Another analysis we can do is use the "Channel network and drainage basins" tool
 * Make sure you run this tool on the filled DEM.
 * We might have to change the threshold to a higher one if the output includes too many small basins and channels. The middle point of your previous Strahler order values is a usually a good default.
 
-As an output, we only want to load (and save to file):
+As an output, we only want to load (and save to file) the two non-optional outputs:
 
-* Channels (as a shapefile. You can identify which one of the two it is when choosing a filename.)
+* Channels
 * Drainage basins (shapefile) (to differentiate the two "Drainage basins" options, you can check what format it saves the file as)
 
 This is an example of **creating vector data from raster data**!
@@ -159,14 +159,16 @@ We can now play with the **symbology** for those elements. For example:
 
 ## 3D maps
 
-A 3D viewer is integrated in QGIS: `View > New 3D Map View`
+A 3D viewer is integrated in QGIS: `View > 3D Map Views > New 3D Map View`
 
 In the 3D map window, make sure to first:
 
-* Click on the **Options** wrench icon and set the "Type" to "DEM (Raster layer)", and set the "Elevation" to your clipped DEM.
+* Click the **Options** wrench icon, choose `Configure > Terrain`, set the "Type" to "DEM (Raster layer)", and set the "Elevation" to your clipped DEM.
 * Exaggerate the relief with the "Vertical scale" setting (try 3).
 
 To see the 3D effect, you will have to use your <kbd>Ctrl</kbd> or <kbd>Shift</kbd> keys on your keyboard while panning with the mouse to change the angle of view.
+
+To avoid seeing gaps in the rendering, you can go back to your Terrain options and set the "Tile resolution" and "Skirt height" to higher values.
 
 > A useful plugin for 3D maps is qgis2threeJS, which might be handy to add a 3D map to a website.
 
@@ -174,7 +176,7 @@ To see the 3D effect, you will have to use your <kbd>Ctrl</kbd> or <kbd>Shift</k
 
 Use the Layout Manager to create a new layout, and insert both a 2D map and a 3D map.
 
-When inserting the 3D map, it will tell you that the "scene is not set". You will have to import the 3D scene settings from your view: Item Properties > Scene Settings > Copy Scene Settings from a 3D View... and then select your 3D map from the drop-down.
+When inserting the 3D map, it will tell you that the "scene is not set". You will have to import the 3D scene settings from your view: `Item Properties > Scene Settings > Copy Scene Settings from a 3D View...` and then select your 3D map from the drop-down.
 
 ## Saving your project
 
