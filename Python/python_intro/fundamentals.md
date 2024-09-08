@@ -418,9 +418,9 @@ word = "apple"
 smaller = "app"
 
 if smaller in word:
-    print(smaller + "can be found inside" + word)
+    print(f"{smaller} can be found inside {word})
 else:
-    print(smaller + "is not inside" + word)
+    print(f"{smaller} is not inside {word})
 ```
 
 We will also need to use a *method*. These are functions that only apply to certain variables, and we access them using dot `.` notation. Here, we will use the list method `.append`:
@@ -557,37 +557,56 @@ Some popular packages include
 
 In this final activity, we're going to create some sample data and visualise it.
 
-**Our goal is to import and visualise random BMI data**
+**Our goal is to create random weight, height and BMI data for five people**
 
 We'll complete this in two parts. Before we begin, we need to set things up by importing the modules we need
 
 ```python
+import random
 import pandas as pd
 import seaborn as sns
 ```
 
 > If importing any of these causes an error, it could be because you haven't installed it yet. See [above](#External-packages) for information on how to do so.
 
-### Part 1: Importing and modifying the data
-The first challenge in this activity is bringing in the data. To do this, we use the `pd.read_csv()` function, specifying the file path as the first argument (this can be a URL), and store it in a variable (typically `df`).
+Next, we'll initialise the data structure. The package **pandas** provides a `DataFrame` variable, which stores data in a spreadsheet-like way, with variables for columns and observations/indices for rows.
 
-Today's data is five (random) people's height and weight. You can download it [here]()
-
-Next, you'll need to compute the each person's BMI. The code below demonstrates how to create a new column (converting weight into pounds). You should do the same, but use the formula
-
-$$ BMI = \frac{Weight}{(Height)^2} $$
-
-> Remember, `5**2` is $5^2$
+We can create a dataframe for this project by specifying the columns and row names:
 
 ```python
-# Create a new column called Weight (lb) and store the weight in pounds
-df["Weight (lb)"] = df["Weight"]*2.205
+cols = ["Height", "Weight", "BMI"]
+names = ["Alice", "Bob", "Charlie", "Dilsah", "Eliza"]
+
+df = pd.DataFrame(index = names, columns = cols)
 ```
 
+Having run all this code, you should now have a dataframe stored in the variable `df`. Check this by running `df`, you should see the following:
 
-Once you've done these steps, you should see the following:
+![image](https://github.com/uqlibrary/technology-training/assets/118239146/24df78e5-bcf8-4c93-8bb7-e4726bd03a1c)
+
+### Part 1: Creating the data
+The first challenge in this activity is filling out the rest of the data. There are two new things you need
+
+To access a specific cell/element in our dataframe, we use `df.loc[row, column]` specifying the reference inside the brackets. For example, we can access Alice's height value by using
+```python
+df.loc["Alice", "Height"]
+```
+To make a random integer between e.g. 10 and 20, we use the function
+```python
+random.randint(10, 20)
+```
+
+To complete this part, create a `for` loop which cycles through each person (stored in `name`) and puts a random number for their height and weight into the dataframe. After the loop, you can use `df["BMI"] = df["Weight"] / (df["Height") ** 2)` to compute their BMI. All up,
+
+- Write a `for` loop which goes through each person's name
+- For each person, put a random number for their height and weight into the dataframe
+- After the loop, compute their BMI with `df["BMI"] = df["Weight"] / (df["Height") ** 2)`
+
+Once you've made the data, running `df` should yield the following.
 
 ![image](https://github.com/uqlibrary/technology-training/assets/118239146/ea32aa49-a679-4bd2-b525-d9044b6d1279)
+
+> Your numbers will be different because of the randomisation. If they are wildly different, you have likely used a different maximum and minimum than here.
 
 <details>
   <summary>Solution</summary>
@@ -596,24 +615,30 @@ Once you've done these steps, you should see the following:
   
   ```python
   # Import packages
+  import random
   import pandas as pd
   import seaborn as sns
   
-  # Import data - don't forget to change the file path as you need
-  df = pd.read_csv("BMI_data.csv")
+  # Initialise dataframe
+  cols = ["Height", "Weight", "BMI"]
+  names = ["Alice", "Bob", "Charlie", "Dilsah", "Eliza"]
 
-  # Create BMI column
+  df = pd.DataFrame(index = names, columns = cols)
+
+  # Fill in the data with random numbers
+  for person in names:
+      df.loc[person, "Height"] = random.randint(160,190) / 100
+      df.loc[person, "Weight"] = random.randint(60,120)
+
+  # Compute BMI
   df["BMI"] = df["Weight"] / (df["Height"]**2)
-
-  # Look at the data
-  df
   ```
               
 </details>
 
 ### Part 2: Visualisation
 
-To visualise the data, we can use the **seaborn** module, with the function `sns.catplot( ... )`. Inside the function, we'll need to specify the `x` and `y` values, and if we specifically want a bar plot, `kind` as well. Use the `help()` documentation to see if you can visualise the data we just created. See if you can produce something like the following plot:
+To visualise the data we just created, we can use the **seaborn** module, with the function `sns.catplot( ... )`. Inside the function, we'll need to specify the `x` and `y` values, and if we specifically want a bar plot, `kind` as well. Use the `help()` documentation to see if you can visualise the data we just created. See if you can produce something like the following plot:
 
 ![image](https://github.com/uqlibrary/technology-training/assets/118239146/e85ece7e-0186-4599-9d2b-cbb137bcd981)
 
