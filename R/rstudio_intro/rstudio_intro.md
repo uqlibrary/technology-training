@@ -1,23 +1,22 @@
 R with RStudio: getting started
 ================
 UQ Library
-2022-03-17
+2024-09-11
 
-
-
-1. [R Overview and installation](#r--rstudio)
-2. [What are we going to learn?](#what-are-we-going-to-learn)
-3. [Setting Up](#open-rstudio)
-4. [Basic Code and Maths](#maths-and-objects)
-5. [Creating folder structures](#create-a-folder-structure)
-
-5. [Scripts](#scripts)
-6. [Functions](#functions)
-7. [Getting Help](#help)
-8. [Importing and Exploring Data](#import-data)
-9. [Packages](#packages)
-
-
+- [R + RStudio](#r--rstudio)
+- [Installation](#installation)
+- [Open RStudio](#open-rstudio)
+- [What are we going to learn?](#what-are-we-going-to-learn)
+- [R Projects](#r-projects)
+- [Maths and objects](#maths-and-objects)
+- [Create a folder structure](#create-a-folder-structure)
+- [Scripts](#scripts)
+- [Functions](#functions)
+- [Import data](#import-data)
+- [Explore data](#explore-data)
+- [Packages](#packages)
+- [Closing RStudio](#closing-rstudio)
+- [What next?](#what-next)
 
 ## R + RStudio
 
@@ -31,15 +30,18 @@ many features on top of R to make it easier to write and run code.
 
 R’s main strong points are:
 
--   **Open Source**: you can install it anywhere and adapt it to your
-    needs;
--   **Reproducibility**: makes an analysis repeatable by detailing the
-    process in a script;
--   **Customisable**: being a programming language, you can create your
-    own custom tools;
--   **Large datasets**: it can handle very large datasets (certainly well beyond the row limitations of Excel, and even further using [HPCs](https://rcc.uq.edu.au/high-performance-computing) and [other tricks](https://rviews.rstudio.com/2019/07/17/3-big-data-strategies-for-r/));
--   **Diverse ecosystem**: packages allow you to extend R for thousands of
-    different analyses.
+- **Open Source**: you can install it anywhere and adapt it to your
+  needs;
+- **Reproducibility**: makes an analysis repeatable by detailing the
+  process in a script;
+- **Customisable**: being a programming language, you can create your
+  own custom tools;
+- **Large datasets**: it can handle very large datasets (certainly well
+  beyond the row limitations of Excel, and even further using
+  [HPCs](https://rcc.uq.edu.au/high-performance-computing) and [other
+  tricks](https://rviews.rstudio.com/2019/07/17/3-big-data-strategies-for-r/));
+- **Diverse ecosystem**: packages allow you to extend R for thousands of
+  different analyses.
 
 The learning curve will be steeper than point-and-click tools, but as
 far as programming languages go, R is more user-friendly than others.
@@ -50,6 +52,19 @@ For this course, you need to have both R and RStudio installed
 ([installation
 instructions](https://github.com/uqlibrary/technology-training/blob/master/R/Installation.md#r--rstudio-installation-instructions)).
 
+## Open RStudio
+
+- If you are using your own laptop please open RStudio
+  - Make sure you have a working Internet connection
+- On Library computers:
+  - Log in with your UQ username and password (if you are both staff and
+    student, use your student account)
+  - Make sure you have a working Internet connection
+  - Go to search at bottom left corner (magnifying glass)
+  - Open the ZENworks application
+  - Search for “RStudio”
+  - Double-click on RStudio which will install both R and RStudio
+
 ## What are we going to learn?
 
 This session is designed to get straight into using R in a short amount
@@ -58,42 +73,29 @@ details that make the language.
 
 During this session, you will:
 
--   Create a project for data analysis
--   Create a folder structure
--   Know where to find help
--   Learn about a few useful functions
--   Create a script
--   Import a dataset
--   Understand the different RStudio panels
--   Use a few shortcuts
--   Know how to extend R with packages
--   Generate a data visualisation
-
-## Open RStudio
-
--   If you are using your own laptop please open RStudio
-    -   Make sure you have a working Internet connection
--   On Library computers:
-    -   Log in with your UQ username and password (if you are both staff
-        and student, use your student account)
-    -   Make sure you have a working Internet connection
-    -   Go to search at bottom left corner (magnifying glass)
-    -   Open the ZENworks application
-    -   Search for “RStudio”
-    -   Double-click on RStudio which will install both R and RStudio
+- Create a project for data analysis
+- Create a folder structure
+- Know where to find help
+- Learn about a few useful functions
+- Create a script
+- Import a dataset
+- Understand the different RStudio panels
+- Use a few shortcuts
+- Know how to extend R with packages
+- Generate a data visualisation
 
 ## R Projects
 
 Let’s first create a new project:
 
--   Click the “File” menu button (top left corner), then “New Project”
--   Click “New Directory”
--   Click “New Project”
--   In “Directory name”, type the name of your project, for example
-    “YYYY-MM-DD_rstudio-intro”
--   Browse and select a folder where to locate your project (`~` is your
-    home directory). For example, a folder called “r-projects”.
--   Click the “Create Project” button
+- Click the “File” menu button (top left corner), then “New Project”
+- Click “New Directory”
+- Click “New Project”
+- In “Directory name”, type the name of your project, for example
+  “YYYY-MM-DD_rstudio-intro”
+- Browse and select a folder where to locate your project (`~` is your
+  home directory). For example, a folder called “r-projects”.
+- Click the “Create Project” button
 
 > R Projects make your work with R more straight forward, as they allow
 > you to segregate your different projects in separate folders. You can
@@ -104,10 +106,9 @@ Let’s first create a new project:
 
 ## Maths and objects
 
-The **console** (usually at the bottom left in RStudio) is where most
-of the action happens. In the console, we can use R interactively. We
-write a **command** and then **execute** it by pressing
-<kbd>Enter</kbd>.
+The **console** (usually at the bottom left in RStudio) is where most of
+the action happens. In the console, we can use R interactively. We write
+a **command** and then **execute** it by pressing <kbd>Enter</kbd>.
 
 In its most basic use, R can be a calculator. Try executing the
 following commands:
@@ -176,9 +177,9 @@ quotes around them.
 
 To keep it tidy, we are creating 3 folders in our project directory:
 
--   scripts
--   data
--   plots
+- scripts
+- data
+- plots
 
 For that, we use the function `dir.create()`:
 
@@ -195,12 +196,11 @@ dir.create("plots")
 
 Scripts are simple text files that contain R code. They are useful for:
 
--   saving a set of commands for later use (and executing it in one
-    click)
--   making research reproducible
--   making writing and reading code more comfortable
--   documenting the code with comments, and
--   sharing your work with peers
+- saving a set of commands for later use (and executing it in one click)
+- making research reproducible
+- making writing and reading code more comfortable
+- documenting the code with comments, and
+- sharing your work with peers
 
 Let’s create a new R script with a command:
 
@@ -229,8 +229,8 @@ As in many programs, there are many ways to achieve one thing.
 For example, we used commands to create and edit a script, but we could
 also:
 
--   use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
--   use the top left drop-down menus
+- use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
+- use the top left drop-down menus
 
 Learning how to use functions rather than the graphical interface will
 allow you to integrate them in scripts, and will sometimes help you to
@@ -300,7 +300,8 @@ RStudio:
 
 1.  the shortcut command: `?functionname`
 2.  the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a
-    function name (you can do this by simply clicking on the function name)
+    function name (you can do this by simply clicking on the function
+    name)
 
 Let’s look through the documentation for the `round()` function:
 
@@ -314,10 +315,10 @@ page.
 There is quite a lot of information in a function’s documentation, but
 the most important bits are:
 
--   **Description**: general description of the function(s)
--   **Usage**: overview of what syntax can be used
--   **Arguments**: description of what each argument is
--   **Examples**: some examples that demonstrate what is possible
+- **Description**: general description of the function(s)
+- **Usage**: overview of what syntax can be used
+- **Arguments**: description of what each argument is
+- **Examples**: some examples that demonstrate what is possible
 
 See how the `round()` function has a second argument available? Try this
 now:
@@ -367,7 +368,7 @@ dogs’ ages with the `barplot()` function:
 barplot(ages)
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](rstudio_intro_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 #### Challenge 1 – Finding help
 
@@ -445,15 +446,22 @@ using the output of the `ls()` function as the value passed on to the
 Finally, the `citation()` function allows you to cite R or a specific
 package.
 
-### Incomplete Functions
-If you don't finish a function, by leaving off the last bracket `)` for example, the line of code won't necessarily give you an error, but it won't work very well.
-If you forget to include that last bracket, R will run the code, and then wait for further instructions before giving you an output. This will appear as a `+` in the console like so:
+### Incomplete functions
+
+If you don’t finish a function, by leaving off the last bracket `)` for
+example, the line of code won’t necessarily give you an error, but it
+won’t work very well. If you forget to include that last bracket, R will
+run the code, and then wait for further instructions before giving you
+an output. This will appear as a `+` in the console like so:
+
 ``` r
 > round(1.23
 +
 ```
-If you try to give any further instructions to R, it will likely just continue giving you `+` symbols, and not return anything.
-To stop this, click on the console and press the `Esc` key on your keyboard.
+
+If you try to give any further instructions to R, it will likely just
+continue giving you `+` symbols, and not return anything. To stop this,
+click on the console and press the `Esc` key on your keyboard.
 
 ### More help
 
@@ -461,14 +469,14 @@ We’ve practised how to find help about functions we know the name of.
 What if we don’t know what the function is called? Or if we want general
 help about R?
 
--   The function `help.start()` is a good starting point: it opens a
-    browser of official R help.
--   If you want to search for a word in all the documentation, you can
-    use the `??` syntax. For example, try executing `??anova`.
--   Finally, you will often go to your web browser and search for a
-    particular question, or a specific error message: most times, there
-    already is an answer somewhere on the Internet. The challenge is to
-    ask the right question!
+- The function `help.start()` is a good starting point: it opens a
+  browser of official R help.
+- If you want to search for a word in all the documentation, you can use
+  the `??` syntax. For example, try executing `??anova`.
+- Finally, you will often go to your web browser and search for a
+  particular question, or a specific error message: most times, there
+  already is an answer somewhere on the Internet. The challenge is to
+  ask the right question!
 
 ## Import data
 
@@ -624,8 +632,9 @@ You can see the list of installed packages in your “Packages” tab, or by
 using the `library()` function without any argument.
 
 We are going to install and load a new package called “praise”. We can
-do that outside of the console, the area outside of the console is know as the Graphical User Interface (GUI).
-* click the “Install” button in the “Packages” tab (bottom right pane), and search for “praise”.
+do that outside of the console, the area outside of the console is know
+as the Graphical User Interface (GUI). \* click the “Install” button in
+the “Packages” tab (bottom right pane), and search for “praise”.
 
 Notice how it runs an `install.packages()` command in the console? You
 can use that too.
@@ -639,7 +648,7 @@ library(praise) # load the package
 praise() # use a function from the package
 ```
 
-    ## [1] "You are bee's knees!"
+    ## [1] "You are badass!"
 
 Even though you might need the motivation provided by this function,
 other packages are more useful for your work.
@@ -723,9 +732,10 @@ function.
 
 ## What next?
 
--   You can see what is next in our [cycle of R
-    lessons](/README.md#r-sessions)
--   We have a [compilation of resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md) for the rest
-    of your R learning
--   And a cheatsheet of [main terms and concepts for
-    R](https://github.com/uqlibrary/technology-training/blob/master/R/terminology.md)
+- You can see what is next in our [cycle of R
+  lessons](/README.md#r-sessions)
+- We have a [compilation of
+  resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md)
+  for the rest of your R learning
+- And a cheatsheet of [main terms and concepts for
+  R](https://github.com/uqlibrary/technology-training/blob/master/R/terminology.md)

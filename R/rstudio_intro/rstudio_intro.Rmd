@@ -2,7 +2,10 @@
 title: 'R with RStudio: getting started'
 author: "UQ Library"
 date: "`r Sys.Date()`"
-output: github_document
+output:
+  github_document:
+    toc: true
+    toc_depth: 2
 ---
 
 ## R + RStudio
@@ -16,8 +19,8 @@ R's main strong points are:
 * **Open Source**: you can install it anywhere and adapt it to your needs;
 * **Reproducibility**: makes an analysis repeatable by detailing the process in a script;
 * **Customisable**: being a programming language, you can create your own custom tools;
-* **Big data**: it can handle very large datasets;
-* **Large ecosystem**: packages allow you to extend R for thousands of different analyses.
+* **Large datasets**: it can handle very large datasets (certainly well beyond the row limitations of Excel, and even further using [HPCs](https://rcc.uq.edu.au/high-performance-computing) and [other tricks](https://rviews.rstudio.com/2019/07/17/3-big-data-strategies-for-r/));
+* **Diverse ecosystem**: packages allow you to extend R for thousands of different analyses.
 
 The learning curve will be steeper than point-and-click tools, but as far as programming languages go, R is more user-friendly than others.
 
@@ -69,7 +72,7 @@ Let's first create a new project:
 
 ## Maths and objects
 
-The **console** (usually at the bottom right in RStudio) is where most of the action happens. In the console, we can use R interactively. We write a **command** and then **execute** it by pressing <kbd>Enter</kbd>.
+The **console** (usually at the bottom left in RStudio) is where most of the action happens. In the console, we can use R interactively. We write a **command** and then **execute** it by pressing <kbd>Enter</kbd>.
 
 In its most basic use, R can be a calculator. Try executing the following commands:
 
@@ -103,6 +106,83 @@ As you can see, you can store different kinds of data as objects. If you want to
 
 > You can use the shortcut <kbd>Alt</kbd>+<kbd>-</kbd> to type the assignement operator quicker.
 
+## Create a folder structure
+
+To keep it tidy, we are creating 3 folders in our project directory:
+
+* scripts
+* data
+* plots
+
+For that, we use the function `dir.create()`:
+
+```r
+dir.create("scripts")
+dir.create("data")
+dir.create("plots")
+```
+
+> You can recall your recent commands with the up arrow, which is especially useful to correct typos or slightly modify a long command.
+
+## Scripts
+
+Scripts are simple text files that contain R code. They are useful for:
+
+* saving a set of commands for later use (and executing it in one click)
+* making research reproducible
+* making writing and reading code more comfortable
+* documenting the code with comments, and
+* sharing your work with peers
+
+Let's create a new R script with a command:
+
+```r
+file.create("scripts/process.R")
+```
+
+> All the file paths are **relative** to our current working directory, i.e. the project directory. To use an **absolute** file path, we can start with `/`.
+
+To edit the new script, use the `file.edit()` function. Try using the <kbd>Tab</kbd> key to autocomplete your function name and your file path!
+
+```r
+file.edit("scripts/process.R")
+```
+
+This opens our fourth panel in RStudio: the **source panel**.
+
+### Many ways to do one thing
+
+As in many programs, there are many ways to achieve one thing.
+
+For example, we used commands to create and edit a script, but we could also:
+
+* use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
+* use the top left drop-down menus
+
+Learning how to use functions rather than the graphical interface will allow you to integrate them in scripts, and will sometimes help you to do things faster.
+
+### Comments
+
+We should start with a couple of **comments**, to document our script. Comments start with `#`, and will be ignored by R:
+
+```r
+# Description: Introduction to R and RStudio
+# Author: <your name>
+# Date: <today's date>
+```
+
+### Syntax highlighting
+
+Now, add a command to your script:
+
+```{r}
+vect <- c(3, "Hi!")
+```
+
+Notice the colours? This is called **syntax highlighting**. This is one of the many ways RStudio makes it more comfortable to work with R. The code is more readable when working in a script.
+
+> While editing your script, you can run the current command (or the selected block of code) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>. Remember to save your script regularly with the shortcut <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu "Tools > Keyboard Shortcuts Help".
+
 ## Functions
 
 An R **function** is a little program that does a particular job. It usually looks like this:
@@ -130,7 +210,7 @@ What if we want to learn more about a function?
 There are two main ways to find **help** about a specific function in RStudio:
 
 1. the shortcut command: `?functionname`
-1. the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a function name
+1. the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a function name (you can do this by simply clicking on the function name)
 
 Let's look through the documentation for the `round()` function:
 
@@ -234,6 +314,19 @@ We are nesting a function inside another one. More precisely, we are using the o
 
 Finally, the `citation()` function allows you to cite R or a specific package.
 
+### Incomplete functions
+
+If you don't finish a function, by leaving off the last bracket `)` for example, the line of code won't necessarily give you an error, but it won't work very well.
+If you forget to include that last bracket, R will run the code, and then wait for further instructions before giving you an output. This will appear as a `+` in the console like so:
+
+``` r
+> round(1.23
++
+```
+
+If you try to give any further instructions to R, it will likely just continue giving you `+` symbols, and not return anything.
+To stop this, click on the console and press the `Esc` key on your keyboard.
+
 ### More help
 
 We've practised how to find help about functions we know the name of.
@@ -242,83 +335,6 @@ What if we don't know what the function is called? Or if we want general help ab
 * The function `help.start()` is a good starting point: it opens a browser of official R help.
 * If you want to search for a word in all the documentation, you can use the `??` syntax. For example, try executing `??anova`.
 * Finally, you will often go to your web browser and search for a particular question, or a specific error message: most times, there already is an answer somewhere on the Internet. The challenge is to ask the right question!
-
-## Create a folder structure
-
-To keep it tidy, we are creating 3 folders in our project directory:
-
-* scripts
-* data
-* plots
-
-For that, we use the function `dir.create()`:
-
-```r
-dir.create("scripts")
-dir.create("data")
-dir.create("plots")
-```
-
-> You can recall your recent commands with the up arrow, which is especially useful to correct typos or slightly modify a long command.
-
-## Scripts
-
-Scripts are simple text files that contain R code. They are useful for:
-
-* saving a set of commands for later use (and executing it in one click)
-* making research reproducible
-* making writing and reading code more comfortable
-* documenting the code with comments, and
-* sharing your work with peers
-
-Let's create a new R script with a command:
-
-```r
-file.create("scripts/process.R")
-```
-
-> All the file paths are **relative** to our current working directory, i.e. the project directory. To use an **absolute** file path, we can start with `/`.
-
-To edit the new script, use the `file.edit()` function. Try using the <kbd>Tab</kbd> key to autocomplete your function name and your file path!
-
-```r
-file.edit("scripts/process.R")
-```
-
-This opens our fourth panel in RStudio: the **source panel**.
-
-### Many ways to do one thing
-
-As in many programs, there are many ways to achieve one thing.
-
-For example, we used commands to create and edit a script, but we could also:
-
-* use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
-* use the top left drop-down menus
-
-Learning how to use functions rather than the graphical interface will allow you to integrate them in scripts, and will sometimes help you to do things faster.
-
-### Comments
-
-We should start with a couple of **comments**, to document our script. Comments start with `#`, and will be ignored by R:
-
-```r
-# Description: Introduction to R and RStudio
-# Author: <your name>
-# Date: <today's date>
-```
-
-### Syntax highlighting
-
-Now, add a command to your script:
-
-```{r}
-vect <- c(3, "Hi!")
-```
-
-Notice the colours? This is called **syntax highlighting**. This is one of the many ways RStudio makes it more comfortable to work with R. The code is more readable when working in a script.
-
-> While editing your script, you can run the current command (or the selected block of code) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>. Remember to save your script regularly with the shortcut <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu "Tools > Keyboard Shortcuts Help".
 
 ## Import data
 
@@ -402,11 +418,13 @@ plot(gapminder$gdpPercap, gapminder$lifeExp,
 > For more on visualisations, we will dive into the ggplot2 package during two of our other R sessions.
 
 ## Packages
+
 Packages add functionalities to R and RStudio. There are more than 18000 available.
 
 You can see the list of installed packages in your "Packages" tab, or by using the `library()` function without any argument.
 
-We are going to install and load a new package called "praise". We can do that with the GUI: click the "Install" button in the "Packages" tab (bottom right pane), and search for "praise".
+We are going to install and load a new package called "praise". We can do that outside of the console, the area outside of the console is know as the Graphical User Interface (GUI).
+* click the “Install” button in the “Packages” tab (bottom right pane), and search for “praise”.
 
 Notice how it runs an `install.packages()` command in the console? You can use that too.
 
@@ -449,5 +467,5 @@ The console, on the other hand, only shows a brand new R **session** when you re
 ## What next?
 
 * You can see what is next in our [cycle of R lessons](/README.md#r-sessions)
-* We have a [compilation of resources](R/usefullinks.md) for the rest of your R learning
-* And a cheatsheet of [main terms and concepts for R](R/terminology.md)
+* We have a [compilation of resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md) for the rest of your R learning
+* And a cheatsheet of [main terms and concepts for R](https://github.com/uqlibrary/technology-training/blob/master/R/terminology.md)
