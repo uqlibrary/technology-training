@@ -808,4 +808,4 @@ More on dplyr:
   dplyr](http://r4ds.had.co.nz/transform.html)
 
 For further R resources, look at [our compilation of
-resources](/R/terminology.md#main-terms-and-concepts-in-r).
+resources](/R/usefullinks.md#what-next).
