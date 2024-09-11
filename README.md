@@ -91,7 +91,11 @@ Part of this repository is based on [Paula Andrea Martinez](https://orcid.org/00
 
 ## Contributing
 
-If you have questions about contributing to the material, please contact the UQ Library. You can also [raise an issue](https://github.com/uqlibrary/technology-training/issues) or submit a change in this repository if you spot something that needs fixing. If you would like to develop on top of this, please cite the source as mentioned above, and conserve the git history if possible (so authors are credited).
+ You can [raise an issue](https://github.com/uqlibrary/technology-training/issues) or submit a change in this repository if you spot something that needs fixing. If you would like to develop on top of this, please cite the source as mentioned above, and conserve the git history if possible (so authors are credited).
+
+ To modify lesson materials, check if it has a source file. If it exists, edit the source file to then  compile its output (instead of directly editing the markdown output, for example).
+
+ If you have questions about contributing to the material, please contact the UQ Library.
 
 ## Contact
 
