@@ -272,7 +272,7 @@ gapminder %>%
 
 ```
 
-The pipe operator can be read as "then" and makes the code a lot **more readable** than when nesting functions into each other, and avoids the creation of several intermediate objects. It is also easier to trouble shoot as it makes it easy to execute the pipeline step by step.
+The pipe operator can be read as "then" and makes the code a lot **more readable** than when nesting functions into each other, and avoids the creation of several intermediate objects. It is also easier to troubleshoot as it makes it easy to execute the pipeline step by step.
 
 From now on, we'll use the pipe syntax as a default.
 
@@ -280,7 +280,7 @@ From now on, we'll use the pipe syntax as a default.
 
 #### Challenge 2 – a tiny dataset
 
-Select the 2002 life expectancy observation for Eritrea (and remove the rest of the variables).
+Only keep the 2002 life expectancy observation for Eritrea and remove the superfluous variables.
 
 ```{r}
 eritrea_2002 <- gapminder %>%
@@ -348,7 +348,16 @@ gapminder %>%
 
 The data in the cells is the same, the size of the object is the same. However, the dataframe was converted to a **tibble**, because a dataframe is not capable of storing grouping information.
 
-Using the `group_by()` function before summarising makes things more interesting. For example, to find out the total population per continent in 2007, we can do the following:
+Using the `group_by()` function before summarising makes things more interesting. Let's re-run the previous command, with the intermediate grouping step:
+
+```{r}
+gapminder %>%
+  group_by(continent) %>% 
+  summarise(meanLE = mean(lifeExp))
+```
+We now have the summary computed for each continent.
+
+Similarly, to find out the total population per continent in 2007, we can do the following:
 
 ```{r}
 gapminder %>% 
