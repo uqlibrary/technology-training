@@ -249,10 +249,11 @@ Comments start with `#`, and will be ignored by R:
 
 ### Syntax highlighting
 
-Now, add a command to your script:
+Now, add some commands to your script:
 
 ``` r
-vect <- c(3, "Hi!")
+num1 <- 42
+num2 <- num1 / 9
 ```
 
 Notice the colours? This is called **syntax highlighting**. This is one
@@ -369,6 +370,14 @@ barplot(ages)
 ```
 
 ![](rstudio_intro_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+We can customise the plot with a title and some colours, for example:
+
+``` r
+barplot(ages, main = "How old are my dogs?", col = "pink")
+```
+
+![](rstudio_intro_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 #### Challenge 1 – Finding help
 
@@ -569,21 +578,16 @@ str(gapminder) # general structure
 > The RStudio’s environment panel already shows us some of that
 > information (click on the blue arrow next to the object name).
 
-And to explore the data in a viewer, run the following:
-
-``` r
-View(gapminder) # spreadsheet-like view in new tab
-```
+And to explore the data in a viewer, click on the table icon next to the
+object in the Environment pane.
 
 This viewer allows you to explore your data by scrolling through,
 searching terms, filtering rows and sorting the data. Remember that it
 is only a viewer: it will never modify your original object.
 
-Notice that in R, the case matters: trying to use `view()` (with a
-lowercase “V”) will yield an error.
-
-> You can also click on the spreadsheet icon in your environment pane to
-> open the viewer.
+> Notice that RStudio actually runs the `View()` function. Feel free to
+> use that instead of clicking on the button, but note that the case
+> matters: using a lowercase “v” will yield an error.
 
 To see summary statistics for each of our variables, you can use the
 `summary()` function:
@@ -609,7 +613,7 @@ summary(gapminder)
 
 Notice how categorical and numerical variables are handled differently?
 
-Finally, let’s plot the relationship between GDP per capita and life
+Let’s now plot the relationship between GDP per capita and life
 expectancy:
 
 ``` r
@@ -618,58 +622,69 @@ plot(gapminder$gdpPercap, gapminder$lifeExp,
      ylab = "Life expectancy (years)")
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](rstudio_intro_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 > For more on visualisations, we will dive into the ggplot2 package
 > during two of our other R sessions.
 
+Finally, let’s fit a linear model to see how strongly correlated the two
+variables are:
+
+``` r
+linear_model <- lm(gapminder$lifeExp ~ gapminder$gdpPercap)
+summary(linear_model)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = gapminder$lifeExp ~ gapminder$gdpPercap)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -82.754  -7.758   2.176   8.225  18.426 
+    ## 
+    ## Coefficients:
+    ##                      Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)         5.396e+01  3.150e-01  171.29   <2e-16 ***
+    ## gapminder$gdpPercap 7.649e-04  2.579e-05   29.66   <2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 10.49 on 1702 degrees of freedom
+    ## Multiple R-squared:  0.3407, Adjusted R-squared:  0.3403 
+    ## F-statistic: 879.6 on 1 and 1702 DF,  p-value: < 2.2e-16
+
+The P-value suggests that there is a strong relationship between the
+two.
+
 ## Packages
 
-Packages add functionalities to R and RStudio. There are more than 18000
-available.
+Packages add functionalities to R and RStudio. There are [more than
+21000](https://cran.r-project.org/web/packages/index.html) available.
 
 You can see the list of installed packages in your “Packages” tab, or by
 using the `library()` function without any argument.
 
-We are going to install and load a new package called “praise”. We can
-do that outside of the console, the area outside of the console is know
-as the Graphical User Interface (GUI). \* click the “Install” button in
-the “Packages” tab (bottom right pane), and search for “praise”.
+We are going to install a package called “skimr”. We can do that in the
+Packages tab:
+
+1.  Open the “Packages” tab (bottom-right pane)
+2.  Click the “Install” button
+3.  Search for “skimr”
+4.  Click “Install”
 
 Notice how it runs an `install.packages()` command in the console? You
 can use that too.
 
-If I try running the command `praise()`, I get an error. That’s because,
-even though the package is installed, I need to **load** it every time I
-start a new R session. The `library()` function can do that.
-
-``` r
-library(praise) # load the package
-praise() # use a function from the package
-```
-
-    ## [1] "You are badass!"
-
-Even though you might need the motivation provided by this function,
-other packages are more useful for your work.
-
-Let’s take the skimr package: it is a package that contains a `skim()`
-function, which you might find more powerful than the `summary()`
-function we tried before.
-
-Let’s first install skimr on our computer. In the console, execute the
-following command:
-
-``` r
-install.packages("skimr")
-```
-
-We can now load the package, and use the `skim()` function to get an
+If I now try running the command `skim()`, I get an error. That’s
+because, even though the package is installed, I need to **load** it
+every time I start a new R session. The `library()` function does that.
+Let’s load the package, and use the `skim()` function to get an
 augmented summary of our `gapminder` dataset:
 
 ``` r
-library(skimr)
-skim(gapminder)
+library(skimr) # load the package
+skim(gapminder) # use a function from the package
 ```
 
 |                                                  |           |
@@ -704,6 +719,12 @@ Data summary
 
 This function provides further summary statistics, and even displays a
 small histogram for each numeric variable.
+
+> Packages are essential to use R to its full potential, by making the
+> most out of what other users have created and shared with the
+> community. To get an idea of some of the most important packages
+> depending on your field of study, you can start with the [CRAN Task
+> Tiews](https://cran.r-project.org/web/views/).
 
 ## Closing RStudio
 
