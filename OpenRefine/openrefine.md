@@ -9,28 +9,28 @@ dealing with messy data”.
 
 It can help you:
 
--   Get an **overview** of a data set, and explore subsets of it
--   **Resolve inconsistencies** in a data set, for example standardising
-    date formatting or fixing typos
--   **Split data up** into more granular parts, for example splitting up
-    cells with multiple authors into separate cells
--   **Match** local data up to other data sets, for example in matching
-    local subjects against the Library of Congress Subject Headings
--   **Enhance** a data set populating it with data from other sources
+- Get an **overview** of a data set, and explore subsets of it
+- **Resolve inconsistencies** in a data set, for example standardising
+  date formatting or fixing typos
+- **Split data up** into more granular parts, for example splitting up
+  cells with multiple authors into separate cells
+- **Match** local data up to other data sets, for example in matching
+  local subjects against the Library of Congress Subject Headings
+- **Enhance** a data set populating it with data from other sources
 
 Some common scenarios might be:
 
--   Where you want to know how many times a particular value (name,
-    publisher, subject) appears in a column in your data
--   Where you want to know how values are distributed across your whole
-    data set
--   Where you have a list of dates which are formatted in different
-    ways, and want to change all the dates in the list to a single
-    common date format
--   Where you have a list of names or terms that differ from each other
-    but refer to the same people, places or concepts
--   Where you have several bits of data combined together in a single
-    column, and you want to separate them out into new columns.
+- Where you want to know how many times a particular value (name,
+  publisher, subject) appears in a column in your data
+- Where you want to know how values are distributed across your whole
+  data set
+- Where you have a list of dates which are formatted in different ways,
+  and want to change all the dates in the list to a single common date
+  format
+- Where you have a list of names or terms that differ from each other
+  but refer to the same people, places or concepts
+- Where you have several bits of data combined together in a single
+  column, and you want to separate them out into new columns.
 
 ## What you will learn today
 
@@ -263,7 +263,7 @@ By default, OpenRefine uses the most common value to merge the data, but
 we can choose which value we prefer by clicking on it, or we can write
 our own replacement value.
 
-1.  You can also try changing the clustering method being used – which
+4.  You can also try changing the clustering method being used – which
     ones work well? Do they identify extra clusters?
 
 > The best clustering algorithm will depend on the kind of data your are
@@ -306,8 +306,8 @@ command** with various **functions** and preview its effect.
 
 GREL supports two types of syntax:
 
--   `value.function(options)`
--   `function(value, options)`
+- `value.function(options)`
+- `function(value, options)`
 
 Either is valid, and which is used is completely down to personal
 preference. In these notes the first syntax is used, as it is easier to
@@ -362,11 +362,11 @@ complex GREL transformations.
 All data in OpenRefine has a “type”. The most common is “string”, which
 is a piece of text. Data types supported are:
 
--   String
--   Number
--   Date-time
--   Boolean (logical)
--   Array
+- String
+- Number
+- Date-time
+- Boolean (logical)
+- Array
 
 **Date and numbers**: we currently have a `Date` column where the data
 is represented as a string. If we wanted to sort according to this data,
@@ -466,20 +466,20 @@ We can focus on the rows that have a comma in their author name:
 Now that we have narrowed down to the lines with a comma in the author
 name, we can use the `split()` function.
 
-1.  On the Authors column use the drop-down menu and select
+3.  On the Authors column use the drop-down menu and select
     `Edit cells > Transform`
-2.  In the Expression box type `value.split(", ")`. This will create an
+4.  In the Expression box type `value.split(", ")`. This will create an
     array of separate last name and first name, removing the comma and
     space.
 
 To get the author name in the natural order, you can reverse the array
 and join it back together with a space to create the string you need:
 
-1.  In the Expression box, add to the existing expression until it reads
+5.  In the Expression box, add to the existing expression until it reads
     `value.split(", ").reverse().join(" ")`
-2.  In the Preview section, you should be able see this has reversed the
+6.  In the Preview section, you should be able see this has reversed the
     array, and joined it back into a string, without any comma
-3.  Click `OK` to apply your transformation, and notice how your filter
+7.  Click `OK` to apply your transformation, and notice how your filter
     shows 0 results, because all commas have been removed in the
     “Authors” column.
 
@@ -494,16 +494,14 @@ OpenRefine’s reconciliation feature:
 
 **Exercise 12** – Reconcile publisher data against Wikidata
 
--   On the “Publisher” column, select
-    `Reconcile > Start reconciling...`. The default service listed is
-    Wikidata.
--   The tool will automatically try to match the column to a Wikidata
-    type, but we can specify exactly the one we want to use.
--   After checking the existing matches, and completing by hand the
-    missing ones, we can add extra data to our project by using
-    `Edit column > Add columns for reconciled values`. For example, try
-    adding the headquarters location of the publishers into a new
-    column.
+- On the “Publisher” column, select `Reconcile > Start reconciling...`.
+  The default service listed is Wikidata.
+- The tool will automatically try to match the column to a Wikidata
+  type, but we can specify exactly the one we want to use.
+- After checking the existing matches, and completing by hand the
+  missing ones, we can add extra data to our project by using
+  `Edit column > Add columns for reconciled values`. For example, try
+  adding the headquarters location of the publishers into a new column.
 
 ### Exporting the data and saving a project
 
@@ -531,52 +529,51 @@ you need to share or save a snapshot of your project, you can use
 
 OpenRefine learning:
 
--   Full lesson this one is based on:
-    https://librarycarpentry.github.io/lc-open-refine/
-    -   “Advanced functions” chapter:
-        https://librarycarpentry.github.io/lc-open-refine/13-looking-up-data/index.html
--   Video walk throughs: http://openrefine.org/
--   Video tutorial on reconciliation and Wikidata contribution:
-    https://www.youtube.com/watch?v=wfS1qTKFQoI
--   Getting started with OpenRefine by Thomas Padilla:
-    http://thomaspadilla.org/dataprep/
--   Cleaning Data with OpenRefine by Seth van Hooland, Ruben Verborgh
-    and Max De Wilde:
-    http://programminghistorian.org/lessons/cleaning-data-with-openrefine
--   Free your Metadata website: http://freeyourmetadata.org/
--   OpenRefine Blog: http://openrefine.org/category/blog.html
--   Official OpenRefine documentation:
-    -   GREL documentation:
-        https://docs.openrefine.org/manual/expressions#grel-general-refine-expression-language
-    -   Clustering in Depth:
-        https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth
-    -   A compilation of “OpenRefine recipes”:
-        https://github.com/OpenRefine/OpenRefine/wiki/Recipes
+- Full lesson this one is based on:
+  https://librarycarpentry.github.io/lc-open-refine/
+  - “Advanced functions” chapter:
+    https://librarycarpentry.github.io/lc-open-refine/13-looking-up-data/index.html
+- Video walk throughs: http://openrefine.org/
+- Video tutorial on reconciliation and Wikidata contribution:
+  https://www.youtube.com/watch?v=wfS1qTKFQoI
+- Getting started with OpenRefine by Thomas Padilla:
+  http://thomaspadilla.org/dataprep/
+- Cleaning Data with OpenRefine by Seth van Hooland, Ruben Verborgh and
+  Max De Wilde:
+  http://programminghistorian.org/lessons/cleaning-data-with-openrefine
+- Free your Metadata website: http://freeyourmetadata.org/
+- OpenRefine Blog: http://openrefine.org/category/blog.html
+- Official OpenRefine documentation:
+  - GREL documentation:
+    https://docs.openrefine.org/manual/expressions#grel-general-refine-expression-language
+  - Clustering in Depth:
+    https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth
+  - A compilation of “OpenRefine recipes”:
+    https://github.com/OpenRefine/OpenRefine/wiki/Recipes
 
 Regular Expressions:
 
--   Understanding Regular Expressions:
-    https://github.com/OpenRefine/OpenRefine/wiki/Understanding-Regular-Expressions
--   RegEx + GREL cheatsheet:
-    https://code4libtoronto.github.io/2018-10-12-access/GoogleRefineCheatSheets.pdf
+- Understanding Regular Expressions:
+  https://github.com/OpenRefine/OpenRefine/wiki/Understanding-Regular-Expressions
+- RegEx + GREL cheatsheet:
+  https://code4libtoronto.github.io/2018-10-12-access/GoogleRefineCheatSheets.pdf
 
 Other data sources for reconciliation:
 
--   https://github.com/OpenRefine/OpenRefine/wiki/Reconcilable-Data-Sources
+- https://github.com/OpenRefine/OpenRefine/wiki/Reconcilable-Data-Sources
 
 Examples of OpenRefine uses:
 
--   Identifying potential headings for Authority work using III Sierra,
-    MS Excel and OpenRefine:
-    http://epublications.marquette.edu/lib_fac/81/
--   Data Munging Tools in Preparation for RDF: Catmandu and LODRefine by
-    Christina Harlow: http://journal.code4lib.org/articles/11013
--   Blog posts on using OpenRefine from Owen Stephens:
-    http://www.meanboyfriend.com/overdue_ideas/tag/openrefine/?orderby=date&order=ASC
+- Identifying potential headings for Authority work using III Sierra, MS
+  Excel and OpenRefine: http://epublications.marquette.edu/lib_fac/81/
+- Data Munging Tools in Preparation for RDF: Catmandu and LODRefine by
+  Christina Harlow: http://journal.code4lib.org/articles/11013
+- Blog posts on using OpenRefine from Owen Stephens:
+  http://www.meanboyfriend.com/overdue_ideas/tag/openrefine/?orderby=date&order=ASC
 
 Another dataset to play around with:
 
--   http://www.thomaspadilla.org/data/dataprep/authors-people.csv
+- http://www.thomaspadilla.org/data/dataprep/authors-people.csv
 
 ## Legal
 
@@ -590,18 +587,18 @@ license](https://creativecommons.org/licenses/by/4.0/legalcode).
 
 You are free:
 
--   to **Share** – copy and redistribute the material in any medium or
-    format
--   to **Adapt** – remix, transform, and build upon the material
+- to **Share** – copy and redistribute the material in any medium or
+  format
+- to **Adapt** – remix, transform, and build upon the material
 
 for any purpose, even commercially.
 
 Under the following terms:
 
--   **Attribution** – You must give appropriate credit (mentioning that
-    your work is derived from work that is Copyright © Stéphane Guillou
-    and, where practical, linking to https://gitlab.com/stragu/DSH),
-    provide a [link to the
-    license](https://creativecommons.org/licenses/by/4.0/), and indicate
-    if changes were made. You may do so in any reasonable manner, but
-    not in any way that suggests the licensor endorses you or your use.
+- **Attribution** – You must give appropriate credit (mentioning that
+  your work is derived from work that is Copyright © Stéphane Guillou
+  and, where practical, linking to https://gitlab.com/stragu/DSH),
+  provide a [link to the
+  license](https://creativecommons.org/licenses/by/4.0/), and indicate
+  if changes were made. You may do so in any reasonable manner, but not
+  in any way that suggests the licensor endorses you or your use.
