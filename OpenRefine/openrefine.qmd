@@ -8,7 +8,7 @@ author: UQ Library
 
 ## OpenRefine?
 
-OpenRefine is an open source program self-described as "a power tool for dealing with messy data".
+[OpenRefine](https://openrefine.org/) is an open source program self-described as "a power tool for dealing with messy data".
 
 It can help you:
 
@@ -29,104 +29,75 @@ Some common scenarios might be:
 ## What you will learn today
 
 1. Import and export data
-2. What "facets" and "filters" are
-3. Edit cells
-4. Edit columns
-5. Group and transform data
-6. Reconcile a column with Wikidata
+1. What "facets" and "filters" are
+1. Edit cells
+1. Edit columns
+1. Group and transform data
+1. Reconcile a column with Wikidata
 
 ## Installation
 
-This lesson was designed using OpenRefine 3.4 but should be compatible with other supported versions.
+This lesson was designed using OpenRefine 3.8 but should be compatible with other supported versions.
 
 OpenRefine requires to have a Java Runtime Environment (JRE) installed. Depending on your operating system, you might need to install one from the [Java website](https://java.com/en/), or use the Windows kit with embedded Java.
 
-To install and run OpenRefine on your operating system, please follow the [instructions on the official website](https://openrefine.org/download.html).
+To install and run OpenRefine on your operating system, please follow the [instructions on the official website](https://openrefine.org/download).
 
-
-## Material
-
-### Creating a project
+## Create a project
 
 OpenRefine can deal with formats like TSV, CSV, ODS, XLS and XLSX, JSON, RDF, XML and more.
 
 **Exercise 1** – Create a project and import data
 
-1. Select `Web Addresses (URL)`
-2. Input the URL to our data: https://raw.githubusercontent.com/LibraryCarpentry/lc-open-refine/gh-pages/data/doaj-article-sample.csv
-3. Click "next"
-4. Click in the `Character encoding` box and select `UTF-8`
-5. Click on `Create Project`
+1. In the "Create project" screen that opens when starting OpenRefine, select `Web Addresses (URL)`
+1. Enter the URL to our data: https://raw.githubusercontent.com/LibraryCarpentry/lc-open-refine/gh-pages/data/doaj-article-sample.csv
+1. Click "Next"
+1. Click in the `Character encoding` box and select `UTF-8`
+1. This screen is also where you can ignore rows, name the project, assign tags...
+1. Click on `Create Project`
 
-You might not have to change the character encoding, but if you see inaccuracies in how special characters are displayed, you will have to try and find the right one for your data.
+You might not have to change the character encoding, but if you see inaccuracies in how special characters are displayed, you will have to find the right one for your data.
 
-### Layout of OpenRefine
+## Layout of OpenRefine
 
 > How is data organised? How do I navigate it?
-> How do I deal with cells that contain multiple kinds of data?
 
 OpenRefine displays data in a tabular format: rows usually are records, and columns are a type of information.
-You can decide how many rows you want to show at once.
+
+You can decide how many rows you want to show at once, and navigate the pages with the controls above the table.
 
 Drop-down menus next to the column headers allow you to do operations on the whole column.
 
-### Reorganising the data
+## Reorganising the data
 
-You can **reorder and remove columns** by clicking the drop-down menu at the top of the first column (labelled ‘All’), and choosing `Edit columns > Reorder / remove columns…`.
+You can **reorder and remove columns** by clicking the drop-down menu at the top of the first column (labelled ‘All’), and choosing `Edit columns > Re-order / remove columns…`.
 
 You can then drag and drop column names to reorder the columns, or remove columns completely if they are not required. For example, move the `Publisher` column closer to the beginning, and remove the `ISSNs` column.
 
 You can also **sort the rows** by clicking on the drop-down menu for the column you want to sort on, and choosing `Sort`.The sorting is not permanent, and a new `Sort` drop-down menu appears at the top, which allows you to modify the current sort, remove it, or make the sort permanent.
 
-### View modes
-
-OpenRefine has two **view modes** for viewing data: `Rows` and `Records`. In `Records` mode, OpenRefine can link together multiple rows as belonging to the same record.
-
-To demonstrate what the `Records` mode does, we are going to split author names into separate cells.
-
-### Split multi-valued cells
-
-Author names are currently separated with the pipe symbol `|`. We can use the `Split multi-valued cells` function to put them in their own cells.
-
-**Exercise 2** – Split multi-valued cells
-
-1. Open the drop-down menu for the `Authors` column
-1. Select `Edit cells` > `Split multi-valued cells`. Note that the rows are still numbered sequentially.
-1. Use the pipe character `|` as a separator.
-1. Switch to the `records` mode. Note how the numbering has changed: several rows are related to the same record.
-
-How would we join data from several cells together, for example after cleaning the data up?
-
-We can do the opposite operation, with `Edit cells` > `Join multi-valued cells`, and deciding which character we want to use to separate values.
-
-> Make sure you choose the right delimiter for the kind of data you deal with!
-
-**Exercise 3** – Practise splitting and joining
-
-How would you split and then join again the data in the `Subjects` column?
-
-### Facetting and filtering
+## Facetting and filtering
 
 > What are filters and facets in OpenRefine? How can they help me navigate data?
 > How can I correct common data issues?
 
 Facets and filters will allow you to gain insights on your data, zero-in onto issues you want to fix by hand, or only apply automated edits to one subset of your dataset.
 
-#### Filters
+Facet and filter information always appears in the left-hand panel in the OpenRefine interface, and they can be combined for more complex searches.
+
+### Filters
 
 You can apply a **text filter** to your data to do a search and restrict the displayed items to it.
 
 In the column drop-down menu, you can use the `Text filter` item and specify any string you want to filter for.
 
-For example, try filtering the `Subjects` column with the term `physic`.
+For example, try filtering the `Subjects` column with the term `physic`. The number of matching rows is displayed above the table.
 
-If you search for an author name, notice how the "rows" and "records" view will change how much is displayed? We can stick to "records" to have all the associated information.
-
-#### Facets
+### Facets
 
 A **facet** groups all the values that appear in a column, and allows you to subset the data and edit values across many records at the same time.
 
-The simplest type of Facet is called a ‘Text facet’. This simply groups all the text values in a column and lists each value with the number of records it appears in. The facet information always appears in the left hand panel in the OpenRefine interface.
+The simplest type of Facet is called a ‘Text facet’. It groups all the text values in a column and lists each value with the number of records it appears in.
 
 Let's create a Text Facet for a column:
 
@@ -136,7 +107,7 @@ Let's create a Text Facet for a column:
 1. You can `invert` your selection
 1. Click `reset` to deselect all values.
 
-**Exercise 4** – Explore licenses
+**Exercise 2** – Explore licenses
 
 > Which licences are used for articles in this dataset? Which one is the most common? How many articles don't have a licence?
 
@@ -148,7 +119,7 @@ Let's create a Text Facet for a column:
 
 There are more facets available, like numeric and timeline facets that produce graphs, or even custom facets for more advanced operations, like facets that return a logical value ("true" or "false").
 
-**Exercise 5** – Facet by blank
+**Exercise 3** – Facet by blank
 
 Find all the publications without a DOI (digital object identifier) with the `Facet by blank`. How many are there?
 
@@ -156,13 +127,13 @@ Find all the publications without a DOI (digital object identifier) with the `Fa
 
 This is more efficient than a text facet, as it will only give two categories: "true" for blank cells, "false" for cells with a value. You could then focus on the blank cells to populate the missing data by hand (an "Edit" button appears when you hover over a cell).
 
-> When you filter your data with facets or text filters, remember that any operation that you carry out will only apply to the filtered data.
+> When you filter your data with facets or text filters, remember that any operation that you carry out will only apply to the matches.
 
-#### Amending data
+## Amending data
 
 Using a text facet, you can edit values for a whole subset in one action with the `edit` option. This is very useful for fixing small typos or variations in spelling.
 
-**Exercise 6** – Correct values
+**Exercise 4** – Correct values
 
 Use a text facet on the `Language` column to replace `English` values with the language code `EN`.
 
@@ -170,11 +141,44 @@ Use a text facet on the `Language` column to replace `English` values with the l
 1. Hover over the term `English` and click `edit`
 1. Replace it with `EN` and click `Apply`
 
-All the occurences of `English` are replaced by `EN`, and the facet auto-updates to only show the remaining values.
+All the occurrences of `English` are replaced by `EN`, and the facet auto-updates to only show the remaining values.
 
-### Clustering
+## Split multi-valued cells
 
-> What can I use to identify and replace varying forms of the same data? Fixing variations by hand like we did for the languages works fine for small numbers of values, but if there are hundreds or more, it becomes very impractical.
+> How do I deal with cells that contain multiple values?
+
+Author names are currently separated with the pipe symbol `|`. We can use the `Split multi-valued cells` function to put them in their own cells.
+
+**Exercise 5** – Split multi-valued cells
+
+1. Open the drop-down menu for the `Authors` column
+1. Select `Edit cells` > `Split multi-valued cells`
+1. Use the pipe character `|` as a separator
+1. Click OK
+
+Note that we now have a lot more rows, and that they are still numbered sequentially.
+
+How would we join data from several cells together, for example after cleaning the data up? We can do the opposite operation, with `Edit cells` > `Join multi-valued cells`, and deciding which character we want to use to separate values.
+
+> Make sure you choose the right delimiter for the kind of data you deal with!
+
+**Exercise 6** – Practise splitting and joining
+
+How would you split and then join again the data in the `Subjects` column?
+
+## View modes
+
+OpenRefine has two **view modes** for viewing data: `Rows` and `Records`. In `Records` mode, OpenRefine can link together multiple rows as belonging to the same record.
+
+Switch to the `records` mode. Note how the numbering has changed: several rows are related to the same record, because of the splitting we just did.
+
+If you now filter for an author name, notice how the "rows" and "records" view will change how much is displayed? We can stick to "records" to have all the associated information.
+
+## Clustering
+
+> What can I use to identify and replace varying forms of the same data?
+
+Fixing variations by hand like we did for the languages works fine for small numbers of values, but if there are hundreds or more, it becomes very impractical.
 
 The **Cluster** function uses an algorithm to group together similar, but inconsistent values in a given column and lets you merge these inconsistent values into a single value you choose.
 
@@ -183,16 +187,16 @@ This is very effective where you have data with minor variations in values, e.g.
 **Exercise 7** – clean up the author names
 
 1. Make sure your authors are already split into different rows
-1. Choose `Edit cells > Cluster and edit` from the `Authors` column.
-1. Using the defaults (`key collision` Method and `fingerprint` Keying Function), work through the clusters of values, merging them into a single value where appropriate
+1. Choose `Edit cells > Cluster and edit` from the `Authors` column
+1. Using the defaults (`key collision` Method and `fingerprint` Keying Function), click "Cluster" and work through the clusters of values, merging them into a single value where appropriate
 
 By default, OpenRefine uses the most common value to merge the data, but we can choose which value we prefer by clicking on it, or we can write our own replacement value.
 
 4. You can also try changing the clustering method being used – which ones work well? Do they identify extra clusters?
 
-> The best clustering algorithm will depend on the kind of data your are processing. For more information of available algorithms, see the [documentation page on clustering methods](https://docs.openrefine.org/manual/cellediting#clustering-methods).
+> The best clustering algorithm will depend on the kind of data your are processing. For more information on available algorithms, see the [documentation page on clustering methods](https://docs.openrefine.org/manual/cellediting#clustering-methods).
 
-### Transformations
+## Transformations
 
 Facets, filters and clustering already allow us to explore and clean up our data.
 
@@ -209,7 +213,7 @@ Some common transformations are accessible directly in the menus, for example to
 3. On the `Publisher` column, use the drop-down menu to select `Edit cells > Common transforms > Collapse consecutive whitespace`
 4. Look at the publisher facet now – has it changed? (if it hasn’t changed, try clicking the `Refresh` option to make sure it updates)
 
-#### Writing transformations
+### Writing transformations
 
 The transformation screen is available through `Edit cells > Transform...`, in which you can write your **custom GREL command** with various **functions** and preview its effect.
 
@@ -232,20 +236,20 @@ Use Facets and the GREL function `toTitlecase()` to put some titles in Title Cas
 1. Click the drop-down menu on the `Title column`
 1. Choose `Edit cells > Transform...`
 1. In the Expression box type `value.toTitlecase()`
-1. In the `Preview` tab, note that you can see what the effect of running this will be
-1. Click <kbd>OK</kbd>
+1. In the `Preview` tab, see the effect of running this will be
+1. Click "OK"
 
 Note that this transformation is also available in the `Common transforms`.
 
 > Back in the Transform dialog, you can now see a history of transformations, and save your favourite ones by clicking on the star next to them. The `Help` tab is also a helpful reference.
 
-#### Undo and redo actions
+### Undo and redo actions
 
 In the left-hand panel, you can open the `Undo / Redo` tab to access all the steps taken so far, and **undo steps** by clicking the last step you want to preserve.
 
 The `Extract...` button allows you to **save a set of steps** as a JSON (JavaScript Object Notation) script, to re-apply them later on this or any other dataset. To execute an extracted set of steps, click the `Apply` button.
 
-#### Transforming strings, numbers, dates and boolean
+### Transforming strings, numbers, dates and boolean
 
 > How do I transform different data types?
 
@@ -283,12 +287,12 @@ value.contains("test")
 That allows use to build more complex transformations, for example by carrying out a transformation _only if a test is successful_:
 
 ```
-if(value.contains("test"),"Test data",value)
+if(value.contains("test"),"replacement text",value)
 ```
 
-... replaces a cell value with the words "Test data" only if the value in the cell contains the string "test" anywhere.
+... replaces a cell value with the string "replacement text" only if the value in the cell contains the string "test" anywhere.
 
-#### Handling arrays
+### Handling arrays
 
 There is another inconsistency in our "Authors" column: a few names are using the order `<last name>, <first name>`, and all others use the `<first name> <last name>` order. We'd like to stick to the same order for all, but to do that, we need to talk about arrays.
 
@@ -360,7 +364,7 @@ To get the author name in the natural order, you can reverse the array and join 
 
 > For more elaborate array creation, we can use the `match()` function along with Regular Expressions. Regular Expressions, or "Regex", use a syntax to match pretty much any pattern of characters.
 
-### Reconciliation
+## Reconciliation
 
 We can associate one of our columns to an external database by using OpenRefine's reconciliation feature:
 
@@ -370,7 +374,7 @@ We can associate one of our columns to an external database by using OpenRefine'
 * The tool will automatically try to match the column to a Wikidata type, but we can specify exactly the one we want to use.
 * After checking the existing matches, and completing by hand the missing ones, we can add extra data to our project by using `Edit column > Add columns for reconciled values`. For example, try adding the headquarters location of the publishers into a new column.
 
-### Exporting the data and saving a project
+## Exporting the data and saving a project
 
 > How do I export transformed data?
 
@@ -419,7 +423,7 @@ Another dataset to play around with:
 * http://www.thomaspadilla.org/data/dataprep/authors-people.csv
 
 
-## Legal
+## Licence
 
 This lesson is based on a Library Carpentry lesson, available here: https://librarycarpentry.github.io/lc-open-refine/
 It is also released under a [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/). The following is a human-readable summary of
