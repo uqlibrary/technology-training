@@ -54,7 +54,7 @@ These sessions focus on dealing with geospatial data, using QGIS, the OpenStreet
 | QGIS: introduction to mapping | [md](QGIS/intro/QGIS_intro.md) | [html](https://demo.hedgedoc.org/s/B156o7z2V) | ... |
 | QGIS: raster analysis | [md](QGIS/raster/QGIS_raster.md) | [html](https://demo.hedgedoc.org/s/ryN5E-XuS) | ... |
 | QGIS: vector analysis | [md](QGIS/vector/QGIS_vector.md) | ... | ... |
-| QGIS: mobile mapping | [md](QGIS/mobile/QGIS_mobile.md) | [html](https://demo.hedgedoc.org/s/Bki4rlOAU) | ... |
+| QGIS: mobile mapping | [md](QGIS/mobile/QGIS_mobile.md) <sup>[source](QGIS/mobile/QGIS_mobile.qmd)</sup> | [html](https://demo.hedgedoc.org/s/Bki4rlOAU) | ... |
 | uMap: create quick interactive maps | [md](uMap/umap_intro.md) <sup>[source](uMap/umap_intro.qmd)</sup> | ... | ... |
 
 ### Other tools
