@@ -62,7 +62,7 @@ These sessions focus on dealing with geospatial data, using QGIS, the OpenStreet
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
 | Unix Shell: an introduction | [md](Shell/shell_intro.md) | [html](https://demo.hedgedoc.org/s/zjQhgaEuN) | ... |
-| Git version control for collaboration | [md](Git/git.md) | [html](https://demo.hedgedoc.org/s/HkJnjT9DH) | ... |
+| Git version control for collaboration | [md](Git/git.md) <sup>[source](Git/git.qmd)</sup> | [html](https://demo.hedgedoc.org/s/HkJnjT9DH) | ... |
 | OpenRefine: clean up and augment data | [md](OpenRefine/openrefine.md) <sup>[source](OpenRefine/openrefine.qmd)</sup> | [html](https://demo.hedgedoc.org/s/rJCXmqviH) | ... |
 | Audacity: introduction to audio editing | [md](Audacity/audacity.md) <sup>[source](Audacity/audacity.qmd)</sup> | [html](https://demo.hedgedoc.org/s/HkkITjw9L) | ... |
 | Text Analysis with Voyant Tools | [md](Voyant/voyant.md) <sup>[source](Voyant/voyant.qmd)</sup> | ... | ... |
