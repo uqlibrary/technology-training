@@ -1,6 +1,6 @@
-# OpenRefine: an introduction to dealing with messy data
+# OpenRefine: clean up and augment data
 UQ Library
-2024-09-12
+2024-09-16
 
 ## OpenRefine?
 
