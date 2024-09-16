@@ -50,7 +50,7 @@ These sessions focus on dealing with geospatial data, using QGIS, the OpenStreet
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
-| OpenStreetMap: contribute and use the data | [md](OSM/OpenStreetMap.md) | [html](https://demo.hedgedoc.org/s/PsREGQ2zQ) | ... |
+| OpenStreetMap: create and use spatial data | [md](OSM/OpenStreetMap.md) <sup>[source](OSM/OpenStreetMap.qmd)</sup> | [html](https://demo.hedgedoc.org/s/PsREGQ2zQ) | ... |
 | QGIS: introduction to mapping | [md](QGIS/intro/QGIS_intro.md) <sup>[source](QGIS/intro/QGIS_intro.qmd)</sup> | [html](https://demo.hedgedoc.org/s/B156o7z2V) | ... |
 | QGIS: raster analysis | [md](QGIS/raster/QGIS_raster.md) <sup>[source](QGIS/raster/QGIS_raster.qmd)</sup> | [html](https://demo.hedgedoc.org/s/ryN5E-XuS) | ... |
 | QGIS: vector analysis | [md](QGIS/vector/QGIS_vector.md) <sup>[source](QGIS/vector/QGIS_vector.qmd)</sup> | ... | ... |
