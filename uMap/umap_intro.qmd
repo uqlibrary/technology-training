@@ -1,0 +1,168 @@
+---
+title: "uMap: create quick interactive maps"
+format: gfm
+editor: source
+date: today
+author: UQ Library
+---
+
+## Introduction
+
+This session introduces **uMap**, an open source, web-based GIS tool useful for quickly creating interactive, shareable maps.
+
+## Contents
+
+What this lesson will teach you about:
+
+* Create a map
+* Change map background
+* Create different kinds of spatial data
+* Style the data
+* Manage data into separate layers
+* Customise data interaction
+* Save your map, share it and back it up
+* Modify editing permissions
+* Import external data
+
+## Create a map
+
+* Go to https://umap-project.org/
+* Click on "Create a map"
+* Choose an instance (i.e. a server that offers access to the software)
+
+No need for account, but it is useful to:
+
+* keep track of all the maps you have created
+* delete maps you don't need anymore
+* favourite other people's maps
+
+If you already have an OpenStreetMap account, you can use it (other providers include GitHub).
+
+## Give a title to the map
+
+Click on the "Untitled map" title at the top let, and let's call this one "My Brisbane" for example.
+
+## Change tilelayers
+
+"Tilelayers" are the different backgrounds you can use, also known as "basemaps".
+
+Click on the "Change tilelayers" icon in the right-hand-side bar and select a suitable choice. There are detailed ones, but you can also use a minimal one (for example "OSM Dark Matter") if you want viewers to really focus on your own data.
+
+## Centre the map
+
+Focus on your area of interest. For that, you can use the Search button in the left toolbar.
+
+Once you are happy with the visible range, click the "Save this center and zoom" button (icon with two arrows) in the right toolbar. The map will now always open centred on this location.
+
+## Create data
+
+In the right toolbar, click "add marker" to add point data to the map, and click somewhere on the map. Let's say this is your place of study or work.
+
+A "Feature properties" panel opens, in which many options can be changed for the data you placed on the map. For example, try changing the name, description, colour, shape and symbol.
+
+## Styling
+
+Now, place a second point on the map, for example your favourite place to hang out. Notice that it uses the default style again?
+
+To make all new points follow a particular style, you can use the "Map advanced properties" button on the right (the cog icon) and go to "Defaut shape properties". Here, you can define what newly created data looks like on the map. And if you want to, you can reset the first marker to the default style by using the "Clear" buttons in its Shape properties section.
+
+Now add a different kind of feature: click on "Draw a polygon" on the right toolbar (shortcut is Ctrl + P). Click to create the several nodes that define an area, for example around the UQ lakes, and double-click for the last node. You can drag the polygon to move it, and make it more detailed by adding extra nodes in the middle of segments.
+
+Polygons can be styled with different properties: notice it has options like opacity, stroke, fill colour and fill opacity that markers did not have.
+
+## Layers
+
+The points and the polygon you created are all part of the same **layer**, "Layer 1". (You can see this information at the top of the Feature properties panel.)
+
+Depending on the project, you might need several layers to organise your data. This allows to make some layers visible while others are hidden, style them differently, export them as separate files, and define in which order they are rendered.
+
+Click on "Manage layers" on the right, and then click on the Edit button (pencil icon) for Layer 1. We can give it a name (for example, "Points of interest"), and make the whole layer use a consistent style (just like we did for the whole project before). Any property you set here will be used by default when adding data to this layer.
+
+Now go back to "Manage layers" (there a left arrow at the top of the panel) and create a new one with "Add a layer". Name it "Areas", and modify the UQ Lakes feature so it belongs to this new layer.
+
+Notes that the "Manage layers" panel allows you to drag and drop the layers to control in which order they are rendered, which is particularly useful for more complex projects.
+
+## Save your work and share it
+
+Click the "Save" button at the top right of the screen to save your map and give it a unique URL. You can now share this link with others so they can view and explore your map.
+
+Note that if you don't have an account, the only way to find your map again if by using this exact URL, so keep it safe! The dialog allows you to send yourself the link as an email.
+
+With this URL, the map opens in View mode: we can pan it, click on markers to view more information... Keep in mind that anyone with the link can see your map.
+
+You can also click on "Edit" to go back to modifying it: that's because your session is still active. However, once this link is opened on e.g. another computer, the "Edit" button won't be there. To go back to editing, either use an account, or save a "secret edit link".
+
+Once the project is saved, you can go back and forth between View and Edit modes.
+
+## Permisions
+
+Click on the "Update permissions and editors" button on the right (the key icon). Here you can see the "secret edit link". Share this with other editors you want to collaborate with, and save it so you can go back to editing it yourself (if you don't have an account).
+
+This is also were you can change the "Who can edit" value to "Everyone can edit": in this mode, the map is fully collaborative and can be edited by anyone with the public link.
+
+> Note: if your map is saved in your account, the distinction between View link and Edit link does not exist.
+
+## Different feature types
+
+We added points and polygons to the map, but spatial data can also take the form of paths.
+
+Try now to add a "polyline", to trace a route for example. Make sure it is part of the "Places of interest" layer.
+
+You can even create complex "multi" features by using the "Add a polygon" and "Add a polyline" buttons when editing polygon or polyline features.
+
+## Import data
+
+We have created data interactively on the map, but it is possible to import a dataset from a different source.
+
+This dataset contains observations of the Australian White Ibis (_Threskiornis molucca_) around the centre of Brisbane: https://github.com/uqlibrary/technology-training/raw/master/uMap/2024-08-15_ibis-brisbane-filtered.csv
+
+After downloading it, you can import with the following steps:
+
+1. Click "Import data" button at the bottom of the right toolbar
+1. Browse to the CSV file
+1. Give the new layer a name
+1. Click "Import data"
+
+Alternatively, you paste the URL directly in the "Choose data" section, which is especially useful if you know the resource will be updated in the future.
+
+In the right toolbar, click "Edit map name and caption" (the "i" icon) and add this citation in the Credits:
+
+> iNaturalist community. Observations of Threskiornis molucca from Brisbane, Australia. Exported from https://www.inaturalist.org on 2024-08-15.
+
+The default "Drop" marker for the Ibis ocurrence data is not ideal, because of the high number of observations. In the layer's properties, Shape properties > Icon shape: you can change it to "Circle", which is already an improvement. However, with a lot of overlapping points, one might like to use alternative visualisations in the "Type of layer" dropdown:
+
+* Clustered: groups points together by proximity, with a number showing how many are grouped. The groups can be clicked to be expanded.
+* Heatmap: a colour gradient depicts the density of points. As expected, the most intensely coloured area is in the City Botanic Gardens. To reveal other areas, we can play with the "Heatmap radius" setting.
+
+Notice in the "Advanced actions" (at the bottom of the Layer panel) that it is possible to clone a layer. For this dataset, it might make sense to overlay a layer of "Categorised" points, so each unique occurence can be seen and interacted with, and one of the properties can be visualised with colours. Let's name this copy "Ibis observation", and the other "Ibis density". "Ibis observation" can now be categorised by e.g. licence or quality.
+
+## Interaction options
+
+For the "Ibis observation" layer, the default interaction popup is not very informative. In the layer's properties panel, select "Interaction options > Popup content style" and change it to "Table". Save and view the map: now the popup shows all data associated to the data point, including the direct link to the iNaturalist observation.
+
+To go further, one can define a template to use data from the table, for example to build a sentence that adapts to each point. (Layer panel > Interaction options > Popup content template)
+
+## Labels
+
+We can add extra polygons to our "Areas" layer to highlight areas of interest, for example around the Mt Coot-tha Botanic Gardens, and the South Bank food court.
+
+To always display a label for those features, we can go to: Layer properties panel > Interaction options > Display label > define > always.
+
+## Export
+
+To guarantee that no data is lost, make sure to export your data and / or project regularly. There are various options depending on how much you want to export:
+
+* To export a single layer's data, go to: Layer properties panel > Advanced actions > Download. You can copy the text displayed, and save it as a .json file (the format is geojson).
+* To export the visible layers' data, go to the left toolbar's "Share and Download" panel. Several formats are available: geojson, gpx, kml, csv. For example, you can import all layers in one go into QGIS with a geojson export.
+* To export the full project, use "full backup" in the same panel, which downloads a ".umap" archive that can later on be imported back into uMap.
+* From your account dashboard, you can also export all maps at once.
+
+## Embed into a website or article
+
+The "Share and Download" panel also provides the code to embed the interactive map into a website or blog article, using an iframe element.
+
+## Resources
+
+To learn more, consult the [uMap guide](https://wiki.openstreetmap.org/wiki/UMap/Guide) on the OpenStreetMap wiki. A [new version](https://discover.umap-project.org/) is in development.
+
+If you are interested in the technical aspects of hosting the software, use the [uMap technical documentation](https://docs.umap-project.org/en/stable/).
