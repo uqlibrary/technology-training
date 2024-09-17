@@ -1,9 +1,13 @@
 ---
-title: "Introduction to scientific programming"
-author: "Stéphane Guillou"
-date: "6 December 2018"
-output: github_document
-always_allow_html: yes
+title: "Introduction to R for Humanities"
+format:
+  gfm:
+    toc: true
+    toc-depth: 2
+editor: source
+date: today
+author: UQ Library
+prefer-html: true
 ---
 
 ```{r setup, include=FALSE}
@@ -269,14 +273,7 @@ You can create a script from the File > New File > R Script.
 
 We are going to work on a dataset of ten books from Project Gutenberg. We want to get some numbers on them, and to search for the frequency of some terms. But we want to make sure that we **automate the process**, as we are likely to do that on many more books.
 
-The data archive is located at https://cloudstor.aarnet.edu.au/plus/s/rqOEQQCjcwBv36x/download and we can use the following commands to download and unzip it:
-
-```{r}
-download.file(url = "https://cloudstor.aarnet.edu.au/plus/s/O4XHRi4VqiaAmMK/download",
-              destfile = "data.zip")
-unzip("data.zip")
-```
-
+The data archive is located at https://github.com/uqlibrary/technology-training/blob/master/intro_to_programming/data.zip. Download it and unzip it into your project directory.
 
 ### Import a book
 

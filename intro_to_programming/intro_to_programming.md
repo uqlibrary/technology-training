@@ -1,72 +1,112 @@
-Introduction to scientific programming
-================
-Stéphane Guillou
-6 December 2018
+# Introduction to R for Humanities
+UQ Library
+2024-09-17
 
-Welcome!
---------
+- [Welcome!](#welcome)
+- [Installation](#installation)
+- [Introduction](#introduction)
+- [Programming with R](#programming-with-r)
+- [An example project](#an-example-project)
+- [Experiment with code!](#experiment-with-code)
+- [Other tools](#other-tools)
+- [What next?](#what-next)
+
+## Welcome!
 
 This workshop assumes no prior technical knowledge and focuses on:
 
--   using a language interactively in a Command Line Interface
--   introducing concepts and tools central to scientific programming
--   working with source code efficiently
--   automating tasks and enhancing reproducibility with small programs
+- using a language interactively in a Command Line Interface
+- introducing concepts and tools central to scientific programming
+- working with source code efficiently
+- automating tasks and enhancing reproducibility with small programs
 
-This seminar will focus on the R language for a hands-on practice and extensive examples, but other languages will be presented, highlighting the differences between options.
+This seminar will focus on the R language for a hands-on practice and
+extensive examples, but other languages will be presented, highlighting
+the differences between options.
 
-The best way to learn is to practise, so we will quickly get into coding by all typing and executing the same commands. This is called "live-coding".
+The best way to learn is to practise, so we will quickly get into coding
+by all typing and executing the same commands. This is called
+“live-coding”.
 
-Installation
-------------
+## Installation
 
-Today, we will use R and RStudio. They are available on the library's training computers, but if you want to use your own laptop, please follow the instructions here: <https://gitlab.com/stragu/CDS/blob/master/R/Installation.md>
+Today, we will use R and RStudio. They are available on the library’s
+training computers, but if you want to use your own laptop, please
+follow the instructions here:
+https://gitlab.com/stragu/CDS/blob/master/R/Installation.md
 
-Introduction
-------------
+## Introduction
 
-Let's start by adding our names and some info about us in our collaborative pad.
+Let’s start by adding our names and some info about us in our
+collaborative pad.
 
-See how we can use some code to format our document? This is called **Markdown**, which is a concise language designed to easily create HTML documents. We are already coding!
+See how we can use some code to format our document? This is called
+**Markdown**, which is a concise language designed to easily create HTML
+documents. We are already coding!
 
 ### Why programming?
 
-Programming allows you to use a programming language to build programs and **execute tasks**. There are many programs around, both Open Source and proprietary, that researchers can use to execute tasks by using a graphical user interface – or **GUI** – and clicking on buttons. You might however find that the programs you have been recommended do not help you with the specific task that you want to achieve, or at least do not do it efficiently.
+Programming allows you to use a programming language to build programs
+and **execute tasks**. There are many programs around, both Open Source
+and proprietary, that researchers can use to execute tasks by using a
+graphical user interface – or **GUI** – and clicking on buttons. You
+might however find that the programs you have been recommended do not
+help you with the specific task that you want to achieve, or at least do
+not do it efficiently.
 
-Programming allows you to **automate** tasks by, for example, using loops to repeat a task many times, and creating functions to avoid writing the same code many times over.
+Programming allows you to **automate** tasks by, for example, using
+loops to repeat a task many times, and creating functions to avoid
+writing the same code many times over.
 
-Another added benefit to programming is that you can **share** your code with a team or with peers, and include it in a publication, in order to increase **reproducibility**.
+Another added benefit to programming is that you can **share** your code
+with a team or with peers, and include it in a publication, in order to
+increase **reproducibility**.
 
-Finally, because of the text-based nature of your program, you can use tools to keep track of **version history** and of **authorship** when collaborating with others.
+Finally, because of the text-based nature of your program, you can use
+tools to keep track of **version history** and of **authorship** when
+collaborating with others.
 
 ### What language?
 
-There are many languages you can use. They differ with their syntax, what they were designed for, and the size of the community that is actively using them.
+There are many languages you can use. They differ with their syntax,
+what they were designed for, and the size of the community that is
+actively using them.
 
-In scientific computing, **R** and **Python** are two very popular languages. R was designed as a language for statistical analysis to be used interactively, whereas Python is more generalist.
+In scientific computing, **R** and **Python** are two very popular
+languages. R was designed as a language for statistical analysis to be
+used interactively, whereas Python is more generalist.
 
 ### GUI vs CLI
 
-A **GUI** gives the user visual elements to interact with the program, for example a button to click on in order to do a task.
+A **GUI** gives the user visual elements to interact with the program,
+for example a button to click on in order to do a task.
 
-A command-line interface, or **CLI**, takes an input (a command), executes it and sometimes prints some output.
+A command-line interface, or **CLI**, takes an input (a command),
+executes it and sometimes prints some output.
 
-Languages like R and Python can be used interactively in a command-line interface, which allows us to experiment and quickly get some results. However, if we need to create more complex series of steps for our data processing, it becomes more comfortable to work with **scripts**.
+Languages like R and Python can be used interactively in a command-line
+interface, which allows us to experiment and quickly get some results.
+However, if we need to create more complex series of steps for our data
+processing, it becomes more comfortable to work with **scripts**.
 
 ### IDE
 
-An integrated development environment, or **IDE**, is a program that allows to write code more comfortably. Code is only text, and can therefore always be written in the most simple text editor, but an IDE makes it easier to work with code, test it, execute it, and sometimes find help and visualise output.
+An integrated development environment, or **IDE**, is a program that
+allows to write code more comfortably. Code is only text, and can
+therefore always be written in the most simple text editor, but an IDE
+makes it easier to work with code, test it, execute it, and sometimes
+find help and visualise output.
 
 RStudio is an IDE primarily designed to work on R code.
 
-Programming with R
-------------------
+## Programming with R
 
 ### Getting to know R
 
-Let's open RStudio and start using the R language interactively.
+Let’s open RStudio and start using the R language interactively.
 
-The most simple thing we can do with R is using it as a calculator, with the help of **binary operators**.
+The most simple thing we can do with R is using it as a calculator, with
+the help of **binary operators**.
 
 For example, try executing the following commands:
 
@@ -78,15 +118,18 @@ R can be used like a calculator. Try the following commands:
 
 ### Objects
 
-We can store data by creating objects, and assigning values to them with the **assignement operator** `<-`:
+We can store data by creating objects, and assigning values to them with
+the **assignement operator** `<-`:
 
     num1 <- 42
     num2 <- x / 9
     str1 <- "Hello world!"
 
-You can use the shortcut <kbd>Alt</kbd> + <kbd>-</kbd> to type the assignement operator quicker.
+You can use the shortcut <kbd>Alt</kbd> + <kbd>-</kbd> to type the
+assignement operator quicker.
 
-> Different objects have different classes and will be handled differently.
+> Different objects have different classes and will be handled
+> differently.
 
 ### Using functions
 
@@ -94,7 +137,8 @@ An R function looks like this:
 
     <functionname>(<argument(s)>)
 
-In the console, we write a command and then evaluate it by pressing Enter.
+In the console, we write a command and then evaluate it by pressing
+Enter.
 
 For example, try running the following command:
 
@@ -105,15 +149,16 @@ For example, try running the following command:
 There are two main ways to find help about a function inside RStudio:
 
 1.  the shortcut command: `?functionname`
-2.  the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a function name
+2.  the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a
+    function name
 
 **Exercise 1** - Use the help pages to find out what these functions do:
 
--   `c()`
--   `sum()`
--   `rm()`
--   `length()`
--   `list.files()`
+- `c()`
+- `sum()`
+- `rm()`
+- `length()`
+- `list.files()`
 
 `c()` concatenates the arguments into a vector.
 
@@ -127,23 +172,29 @@ There are two main ways to find help about a function inside RStudio:
 
 `list.files()` lists all the files in a directory.
 
-Let's do some more complex operations by combining two functions:
+Let’s do some more complex operations by combining two functions:
 
-`ls()` lists the objects in the current R environment. For example, try running the `ls()` function after executing the command `num3 <- 42`.
+`ls()` lists the objects in the current R environment. For example, try
+running the `ls()` function after executing the command `num3 <- 42`.
 
-You can remove *all* the objects in the environment by using `ls()` as the value for the `list` argument:
+You can remove *all* the objects in the environment by using `ls()` as
+the value for the `list` argument:
 
     rm(list = ls())
 
-> Arguments can be named, or can be automatically matched if used in order.
+> Arguments can be named, or can be automatically matched if used in
+> order.
 
 ### Packages
 
-Base R contains quite a few functions, and you can already build most things from scratch.
+Base R contains quite a few functions, and you can already build most
+things from scratch.
 
-However, other people have already developped many functions for specific uses, and made them available to all via **packages**.
+However, other people have already developped many functions for
+specific uses, and made them available to all via **packages**.
 
-We can install packages with a command. For example, to install the package `praise`:
+We can install packages with a command. For example, to install the
+package `praise`:
 
 ``` r
 install.packages("praise")
@@ -156,7 +207,7 @@ library(praise) # load the package
 praise() # use a function
 ```
 
-    ## [1] "You are geometric!"
+    [1] "You are bee's knees!"
 
 ### Custom functions
 
@@ -168,9 +219,11 @@ greeting <- function(name) {
 }
 ```
 
-> Use <kbd>Shift</kbd> + <kbd>Enter</kbd> to go to the line without executing the command.
+> Use <kbd>Shift</kbd> + <kbd>Enter</kbd> to go to the line without
+> executing the command.
 
-If I try running my function without a value for the argument `name`, I will get an error.
+If I try running my function without a value for the argument `name`, I
+will get an error.
 
 I can include a default value if I want to:
 
@@ -194,7 +247,9 @@ for (i in 1:100) {
 
 A **logical operator** returns a **boolean**: TRUE or FALSE.
 
-Common ones are `==` for equality, `!=` for inequality, `>` for greater than, `<` for smaller than, `>=` for greater or equal, and `<=` for smaller or equal.
+Common ones are `==` for equality, `!=` for inequality, `>` for greater
+than, `<` for smaller than, `>=` for greater or equal, and `<=` for
+smaller or equal.
 
 Try those examples:
 
@@ -202,27 +257,28 @@ Try those examples:
 1 == 1
 ```
 
-    ## [1] TRUE
+    [1] TRUE
 
 ``` r
 1 != 1
 ```
 
-    ## [1] FALSE
+    [1] FALSE
 
 ``` r
 3 > 4
 ```
 
-    ## [1] FALSE
+    [1] FALSE
 
 ``` r
 7 <= c(7, 8, 6)
 ```
 
-    ## [1]  TRUE  TRUE FALSE
+    [1]  TRUE  TRUE FALSE
 
-With these tools, we can check for conditions, for example in an **`if` statement**:
+With these tools, we can check for conditions, for example in an **`if`
+statement**:
 
 ``` r
 number = rnorm(1)
@@ -233,7 +289,7 @@ if (number > 0) {
 }
 ```
 
-    ## [1] "Positive"
+    [1] "Negative"
 
 ### Indexing
 
@@ -244,7 +300,7 @@ fact <- c("People", "are", "alright")
 fact[1]
 ```
 
-    ## [1] "People"
+    [1] "People"
 
 ``` r
 fact[3] <- "hopeless"
@@ -252,46 +308,46 @@ fact[4] <- "right"
 fact[nchar(fact) < 7]
 ```
 
-    ## [1] "People" "are"    "right"
+    [1] "People" "are"    "right" 
 
 > Indexing in R starts at 1. Most other languages start at 0.
 
-An example project
-------------------
+## An example project
 
-Let's put what we just learned to use with a concrete example!
+Let’s put what we just learned to use with a concrete example!
 
 ### Creating a project
 
-File &gt; New Project &gt; New Directory &gt; New Project
+File \> New Project \> New Directory \> New Project
 
 ### Creating a script
 
-Working from a **script** is a lot more comfortable, and allows us to create a succession of steps to reproduce our process – in other words, a little program.
+Working from a **script** is a lot more comfortable, and allows us to
+create a succession of steps to reproduce our process – in other words,
+a little program.
 
 The RStudio source pane helps us writing code thanks to:
 
--   handy shortcuts
--   syntax highlighting
--   automatic indentation
--   feedback on code errors
--   commenting
+- handy shortcuts
+- syntax highlighting
+- automatic indentation
+- feedback on code errors
+- commenting
 
 After building a script, we can execute in one click of a button.
 
-You can create a script from the File &gt; New File &gt; R Script.
+You can create a script from the File \> New File \> R Script.
 
 ### Our data
 
-We are going to work on a dataset of ten books from Project Gutenberg. We want to get some numbers on them, and to search for the frequency of some terms. But we want to make sure that we **automate the process**, as we are likely to do that on many more books.
+We are going to work on a dataset of ten books from Project Gutenberg.
+We want to get some numbers on them, and to search for the frequency of
+some terms. But we want to make sure that we **automate the process**,
+as we are likely to do that on many more books.
 
-The data archive is located at <https://cloudstor.aarnet.edu.au/plus/s/rqOEQQCjcwBv36x/download> and we can use the following commands to download and unzip it:
-
-``` r
-download.file(url = "https://cloudstor.aarnet.edu.au/plus/s/O4XHRi4VqiaAmMK/download",
-              destfile = "data.zip")
-unzip("data.zip")
-```
+The data archive is located at
+https://github.com/uqlibrary/technology-training/blob/master/intro_to_programming/data.zip.
+Download it and unzip it into your project directory.
 
 ### Import a book
 
@@ -307,7 +363,8 @@ Anthem <- readLines("data/AynRand_Anthem.txt")
 library(stringr)
 ```
 
-> You can find a handy cheatsheet for this package here: <https://github.com/rstudio/cheatsheets/raw/master/strings.pdf>
+> You can find a handy cheatsheet for this package here:
+> https://github.com/rstudio/cheatsheets/raw/master/strings.pdf
 
 The books all have a header and a footer that we want to remove.
 
@@ -359,7 +416,8 @@ str_count(Anthem_clean, "\\w+")
 sum(str_count(Anthem_clean, "\\w+"))
 ```
 
-> **Regular expressions**, or **RegEx**, can be used to detect any pattern and create complex queries.
+> **Regular expressions**, or **RegEx**, can be used to detect any
+> pattern and create complex queries.
 
 And how many lines?
 
@@ -367,18 +425,19 @@ And how many lines?
 length(Anthem_clean)
 ```
 
-    ## [1] 1575
+    [1] 1575
 
 ### Creating functions
 
-We want to create functions so we can reuse the code easily, on any book.
+We want to create functions so we can reuse the code easily, on any
+book.
 
 We can separate our process in two steps:
 
 1.  Importing and cleaning the data
 2.  Analysing the data
 
-Let's start with the function to import and clean up a book:
+Let’s start with the function to import and clean up a book:
 
 ``` r
 import_clean <- function(file) {
@@ -394,7 +453,8 @@ import_clean <- function(file) {
 
 ##### Instructions
 
-There's one more step missing: removing the empty strings. Can you add it to the function?
+There’s one more step missing: removing the empty strings. Can you add
+it to the function?
 
 ##### Solution
 
@@ -411,13 +471,14 @@ import_clean <- function(file) {
 
 #### 
 
-Let's test our function:
+Let’s test our function:
 
 ``` r
 JaneEyre <- import_clean("data/CharlotteBronte_JaneEyre.txt")
 ```
 
-Now, let's create the function that analyses the data. It needs to output a list that contains our stats:
+Now, let’s create the function that analyses the data. It needs to
+output a list that contains our stats:
 
 ``` r
 book_stats <- function(book) {
@@ -435,7 +496,8 @@ book_stats <- function(book) {
 
 ##### Instructions
 
-We've got the characters, the words and the lines. How would you add the search term data to your function?
+We’ve got the characters, the words and the lines. How would you add the
+search term data to your function?
 
 ##### Solution
 
@@ -455,35 +517,37 @@ book_stats <- function(book, search_term) {
 
 #### 
 
-Let's test our second function on the book we just imported:
+Let’s test our second function on the book we just imported:
 
 ``` r
 book_stats(JaneEyre, "love")
 ```
 
-    ## $char_count
-    ## [1] 1009326
-    ## 
-    ## $word_count
-    ## [1] 189462
-    ## 
-    ## $line_count
-    ## [1] 16397
-    ## 
-    ## $term_count
-    ## [1] 235
+    $char_count
+    [1] 1009326
+
+    $word_count
+    [1] 189462
+
+    $line_count
+    [1] 16397
+
+    $term_count
+    [1] 235
 
 ### Loop through all files
 
-We will now use our functions on all our files, and store the data into a dataframe. But to save us some typing, we will use a loop.
+We will now use our functions on all our files, and store the data into
+a dataframe. But to save us some typing, we will use a loop.
 
-First, let's create an empty dataframe:
+First, let’s create an empty dataframe:
 
 ``` r
 data <- data.frame()
 ```
 
-Then, let build our `for` loop. We want to add an extra variable in there: the name of the file the data comes from.
+Then, let build our `for` loop. We want to add an extra variable in
+there: the name of the file the data comes from.
 
 ``` r
 for (filename in list.files("data")) {
@@ -508,16 +572,16 @@ View(data)
 library(dplyr)
 ```
 
-    ## 
-    ## Attaching package: 'dplyr'
 
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
+    Attaching package: 'dplyr'
 
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
+    The following objects are masked from 'package:stats':
+
+        filter, lag
+
+    The following objects are masked from 'package:base':
+
+        intersect, setdiff, setequal, union
 
 ``` r
 data <- data %>% 
@@ -541,13 +605,11 @@ ggplot(data,
   ylim(c(0, NA))
 ```
 
-![](intro_to_programming_files/figure-markdown_github/unnamed-chunk-29-1.png)
+![](intro_to_programming_files/figure-commonmark/unnamed-chunk-28-1.png)
 
-Experiment with code!
----------------------
+## Experiment with code!
 
-Other tools
------------
+## Other tools
 
 ### Python: another language
 
@@ -555,5 +617,4 @@ Other tools
 
 ### Bash: control a computer
 
-What next?
-----------
+## What next?

@@ -8,7 +8,7 @@ Other training resources are also available [on the Library website](https://web
 
 All programming sessions use the "live-coding" format in which the instructor and the attendees type and execute commands together. A collaborative online pad is used to list useful links, challenges, and to interact during the session.
 
-## Quick access to course resources
+## Quick access to session material
 
 ### R sessions
 
@@ -68,13 +68,13 @@ These sessions focus on dealing with geospatial data, using QGIS, uMap, the Open
 | Text Analysis with Voyant Tools | [md](Voyant/voyant.md) <sup>[source](Voyant/voyant.qmd)</sup> | ... | ... |
 | Overleaf: write and collaborate on LaTeX documents | [pdf](https://web.library.uq.edu.au/files/145715/2021-12-02_Overleaf_write_articles_with_LaTeX.pdf) <sup>[source](LaTeX/intro/main.tex)</sup> | ... | ... |
 
-### One-off sessions
+### Archive
 
-Some sessions are not run regularly, but files can also be hosted here.
+The following sessions are not currently maintained.
 
 | Title | Course notes | Live collaborative pad |
 |:-|:-:|:-:|
-| Introduction to scientific programming | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.Rmd)</sup> | [html](https://cryptpad.fr/code/#/2/code/edit/Op8PvBdGbBxBO9efXUuEYGlB/) |
+| Introduction to R for Humanities | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.qmd)</sup> | [html](https://cryptpad.fr/code/#/2/code/edit/Op8PvBdGbBxBO9efXUuEYGlB/) |
 
 ### Files hosted here
 
