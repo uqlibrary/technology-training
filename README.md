@@ -6,7 +6,7 @@ Other training resources are also available [on the Library website](https://web
 
 ## Format
 
-All programming sessions use the "live-coding" format in which the instructor and the attendees type and execute commands together. A collaborative online pad is used to list useful links, challenges, and to interact during the session.
+All programming sessions use the "live-coding" format in which the instructor and the attendees type and execute commands together. A collaborative online pad (e.g. [Etherpad](https://github.com/ether/etherpad-lite/wiki/Sites-That-Run-Etherpad), [CryptPad](https://cryptpad.fr/code) and [HedgeDoc](https://demo.hedgedoc.org)) can be used to list useful links, challenges, and to interact during the session.
 
 ## Quick access to session material
 
@@ -75,13 +75,6 @@ The following sessions are not currently maintained.
 | Title | Course notes | Live collaborative pad |
 |:-|:-:|:-:|
 | Introduction to R for Humanities | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.qmd)</sup> | [html](https://cryptpad.fr/code/#/2/code/edit/Op8PvBdGbBxBO9efXUuEYGlB/) |
-
-### Files hosted here
-
-Files available for each course, hosted in this repository:
-
-* **Markdown material** that the instructor can use to teach, and that attendees can refer to after the course;
-* A **HTML pad export** that can be used to initialise a collaborative pad to use during sessions ([Etherpad](https://etherpad.wikimedia.org), [CryptPad](https://cryptpad.fr/code) and [HedgeDoc](https://demo.hedgedoc.org) are recommended to publish).
 
 ## Licence
 
