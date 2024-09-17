@@ -1,11 +1,12 @@
 ---
-title: "RStats Introduction: ANOVA and linear regression"
-author: "UQ Library"
-date: "(`r Sys.Date()`)"
-output:
-  github_document:
-    df_print: tibble
+title: "R statistics: ANOVA and linear regression"
+format:
+  gfm:
     toc: true
+    toc-depth: 2
+editor: source
+date: today
+author: UQ Library
 ---
 
 ```{r setup, include=FALSE}
@@ -61,7 +62,6 @@ library(readr)       # for importing data
 library(dplyr) # data manipulation package
 # install.packages("ggplot2")
 library(ggplot2) # data visualization
-
 # install.packages("car")
 library(car)         # Companion to Applied Regression package
 # install.packages("performance")
@@ -324,12 +324,16 @@ This section is modified from the first [Tidymodels article](https://www.tidymod
 ```{r tidymodel packages, message=FALSE}
 # install.packages("tidymodels")
 library(tidymodels) # for parsnip package and rest of tidymodels
-
+# install.packages("dotwhisker")
+# dotwhiskers was archived from CRAN in 2024, see:
+# https://github.com/fsolt/dotwhisker/issues/115
+# if unavailable, can be installed from GitHub:
+# remotes::install_github('fsolt/dotwhisker')
 library(dotwhisker)# for visualizing regression results
 # install.packages("parsnip")
 library(parsnip)
-# install.packages("ggplot2")
 ```
+
 ### Build and fit a model
 
 Let's apply a standard two-way analysis of variance (ANOVA) model to the dataset as we did before. For this kind of model, ordinary least squares is a good initial approach.  

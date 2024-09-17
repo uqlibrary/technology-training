@@ -1,6 +1,22 @@
-R data visualisation with RStudio: heatmaps
-================
-2022-06-15
+# R data visualisation: heatmaps
+UQ Library
+2024-09-17
+
+- [What are we going to learn?](#what-are-we-going-to-learn)
+- [Disclaimer](#disclaimer)
+- [Open RStudio](#open-rstudio)
+- [Essential shortcuts](#essential-shortcuts)
+- [R Project](#r-project)
+- [Method 1: the base `heatmap()`
+  function](#method-1-the-base-heatmap-function)
+- [Method 2: `gplots::heatmap.2()`](#method-2-gplotsheatmap2)
+- [Method 3: `pheatmap::pheatmap()`](#method-3-pheatmappheatmap)
+- [Summary of first three methods](#summary-of-first-three-methods)
+- [Method 4: a dataframe in ggplot2](#method-4-a-dataframe-in-ggplot2)
+- [(optional) Method 5:
+  `ComplexHeatmap::Heatmap`](#optional-method-5-complexheatmapheatmap)
+- [Close R project](#close-r-project)
+- [Further resources](#further-resources)
 
 A **heatmap** is a way of visualising a table of numbers, where you
 substitute the numbers with colored cells. It’s useful for finding highs
@@ -12,11 +28,11 @@ in four options here.
 
 During this session, you will:
 
--   Learn how to produce a simple heatmap with the base function
-    `heatmap()`;
--   Learn about alternatives to produce more complex heatmaps, like
-    `heatmap.2()` and `pheatmap()`;
--   Learn how to produce a rudimentary heatmap with the ggplot2 package.
+- Learn how to produce a simple heatmap with the base function
+  `heatmap()`;
+- Learn about alternatives to produce more complex heatmaps, like
+  `heatmap.2()` and `pheatmap()`;
+- Learn how to produce a rudimentary heatmap with the ggplot2 package.
 
 ## Disclaimer
 
@@ -29,60 +45,57 @@ RStudio before.
 > instructions](https://github.com/uqlibrary/technology-training/blob/master/R/Installation.md)
 > are available if you don’t have R and RStudio installed already.
 
--   On your own computer:
-    -   Open RStudio
-    -   Make sure you have a working internet connection
--   On Library computers:
-    -   Log in with your UQ username and password
-    -   Make sure you have a working internet connection
-    -   Open the ZENworks application
-    -   Look for the letter “R”
-    -   Double click on RStudio which will install both R and RStudio
+- On your own computer:
+  - Open RStudio
+  - Make sure you have a working internet connection
+- On Library computers:
+  - Log in with your UQ username and password
+  - Make sure you have a working internet connection
+  - Open the ZENworks application
+  - Look for the letter “R”
+  - Double click on RStudio which will install both R and RStudio
 
 ## Essential shortcuts
 
--   function or dataset help: press <kbd>F1</kbd> with your cursor
-    anywhere in a function name.
--   execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
--   assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
+- function or dataset help: press <kbd>F1</kbd> with your cursor
+  anywhere in a function name.
+- execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+- assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
-## Material
-
-### R Project
+## R Project
 
 Everything we write today will be saved in your script, so please
 remember to create your project on your H drive (or USB stick) if you
 use the University computers, so you can go back to it after the
 session.
 
--   Create a new project:
-    -   Click the “New project” menu icon
-    -   Click “New Directory”
-    -   Click “New Project”
-    -   In “Directory name”, type the name of your project,
-        e.g. “heatmaps”
-    -   Browse and select a folder where to locate your project (for
-        example, an “r_projects” directory where all your projects live)
-    -   Click the “Create Project” button
--   Create new folders with the following commands:
+- Create a new project:
+  - Click the “New project” menu icon
+  - Click “New Directory”
+  - Click “New Project”
+  - In “Directory name”, type the name of your project, e.g. “heatmaps”
+  - Browse and select a folder where to locate your project (for
+    example, an “r_projects” directory where all your projects live)
+  - Click the “Create Project” button
+- Create new folders with the following commands:
 
 ``` r
 dir.create("scripts")
 dir.create("plots")
 ```
 
--   Create a new R script called “heatmaps.R” in the “scripts” folder:
+- Create a new R script called “heatmaps.R” in the “scripts” folder:
 
 ``` r
 file.create("scripts/heatmaps.R")
 file.edit("scripts/heatmaps.R")
 ```
 
-### Method 1: the base `heatmap()` function
+## Method 1: the base `heatmap()` function
 
 As a first example, we will use a built-in dataset called `mtcars`.
 
-#### Explore the data
+### Explore the data
 
 ``` r
 ?mtcars
@@ -92,20 +105,7 @@ head(mtcars)
 View(mtcars)
 ```
 
-#### Try to make a heatmap
-``` r
-heatmap(mtcars)
-```
-We received an error.
-We can find out how to resolve this by looking at the heatmap documentation.
-
-``` r
-?heatmap
-```
-
-We need to do a little more data preparation before we can visualise this dataset as a heatmap.
-
-#### Prepare data
+### Prepare data
 
 The data is a dataframe, but it has to be a **numeric matrix** to make
 your heatmap. Dataframes can contain variables with different data
@@ -115,16 +115,16 @@ classes, whereas matrices only contain one data class.
 class(mtcars)
 ```
 
-    ## [1] "data.frame"
+    [1] "data.frame"
 
 ``` r
 mtcars_matrix <- data.matrix(mtcars) # convert a DF to a numeric matrix
 class(mtcars_matrix)
 ```
 
-    ## [1] "matrix" "array"
+    [1] "matrix" "array" 
 
-#### Visualise
+### Visualise
 
 We are now going to use the `heatmap()` function to create our first
 heatmap:
@@ -133,7 +133,7 @@ heatmap:
 heatmap(mtcars_matrix)
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-5-1.png)
 
 Does it look like what you expected?
 
@@ -152,12 +152,12 @@ in each variable, which are in columns.
 heatmap(mtcars_matrix, scale = "column")
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-7-1.png)
 
 We can now see the high (red) and low (white) values in each variable,
 and visualise groups of similar cars.
 
-#### Colours
+### Colours
 
 With versions of R up to 3.5, the default heatmap palette was
 `heat.colors()`, which is not the most intuitive as it goes from red for
@@ -178,12 +178,12 @@ heatmap(mtcars_matrix,
         col = cm.colors(n = 15))
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-8-1.png)
 
 You can try other functions, like `terrain.colors()` or `hcl.colors()`
 (in R \> 3.6), and you can reverse them with the `rev = TRUE` argument.
 
-#### Challenge 1: Remove dendrograms
+### Challenge 1: Remove dendrograms
 
 Does it make sense to have both columns and rows for this dataset?
 
@@ -199,12 +199,12 @@ heatmap(mtcars_matrix,
         Colv = NA)
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-9-1.png)
 
 > If dendrograms are removed, the data won’t be reorganised according to
 > the clustering method.
 
-#### Clean the environment
+### Clean the environment
 
 We can start with a fresh environment, using:
 
@@ -212,7 +212,7 @@ We can start with a fresh environment, using:
 rm(list = ls())
 ```
 
-### Method 2: `gplots::heatmap.2()`
+## Method 2: `gplots::heatmap.2()`
 
 If you don’t have the gplots package yet, use
 `install.packages("gplots")`.
@@ -221,21 +221,21 @@ If you don’t have the gplots package yet, use
 library(gplots)
 ```
 
-    ## 
-    ## Attaching package: 'gplots'
 
-    ## The following object is masked from 'package:stats':
-    ## 
-    ##     lowess
+    Attaching package: 'gplots'
+
+    The following object is masked from 'package:stats':
+
+        lowess
+
+This gplots heatmap function provides a number of extensions to the
+standard R heatmap function.
 
 ``` r
 ?heatmap.2
 ```
 
-This gplots heatmap function provides a number of extensions to the
-standard R heatmap function.
-
-#### Protein data example
+### Protein data example
 
 This dataset contains observations for 63 proteins in three control
 experiments and three experiments where cells are treated with a growth
@@ -273,14 +273,14 @@ first example.
 class(rawdata)
 ```
 
-    ## [1] "data.frame"
+    [1] "data.frame"
 
 ``` r
 data_matrix <- data.matrix(rawdata)
 class(data_matrix)
 ```
 
-    ## [1] "matrix" "array"
+    [1] "matrix" "array" 
 
 We can now visualise the data with `heatmap.2()`:
 
@@ -288,7 +288,7 @@ We can now visualise the data with `heatmap.2()`:
 heatmap.2(data_matrix)
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-17-1.png)
 
 > The `scale` argument in `heatmap.2()` is by default set to `"none"`!
 
@@ -300,7 +300,7 @@ heatmap.2(data_matrix,
           scale = "row")
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-18-1.png)
 
 We can now see each protein’s response to treatments.
 
@@ -328,17 +328,17 @@ data_scaled_t <- scale(t(data_matrix))
 data_scaled <- t(data_scaled_t)
 ```
 
-*Step 6: create heatmaps*
+Let’s visualise it once more:
 
 ``` r
 heatmap.2(data_scaled)
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-21-1.png)
 
 We can now see clear groups.
 
-#### More control over colours
+### More control over colours
 
 Let’s create a new palette function:
 
@@ -356,7 +356,7 @@ heatmap.2(data_scaled,
           col = my_palette(25))         # use my colour scheme with 25 levels
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-23-1.png)
 
 Fix a few things and add a few extras:
 
@@ -372,11 +372,11 @@ heatmap.2(data_scaled,
           cexCol = 0.80)            # amend column font
 ```
 
-    ## Warning in heatmap.2(data_scaled, Colv = NA, trace = "none", col =
-    ## my_palette(25), : Discrepancy: Colv is FALSE, while dendrogram is `both'.
-    ## Omitting column dendogram.
+    Warning in heatmap.2(data_scaled, Colv = NA, trace = "none", col =
+    my_palette(25), : Discrepancy: Colv is FALSE, while dendrogram is `both'.
+    Omitting column dendogram.
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-24-1.png)
 
 If you want to remove a dendrogram but keep the clustering:
 
@@ -392,7 +392,7 @@ heatmap.2(data_scaled,
           cexCol = 0.80)
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-25-1.png)
 
 Clean up the environment with:
 
@@ -400,7 +400,7 @@ Clean up the environment with:
 rm(list = ls())
 ```
 
-### Method 3: `pheatmap::pheatmap()`
+## Method 3: `pheatmap::pheatmap()`
 
 If you don’t have it already, install pheatmap with
 `install.packages("pheatmap")`.
@@ -440,7 +440,7 @@ pheatmap(d,
          display_numbers = TRUE)
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-30-1.png)
 
 > By default, the `scale` argument is set to `"none"`. If you do scale
 > the data, the clustering will take it into account (i.e. the
@@ -456,7 +456,7 @@ pheatmap(d,
          scale = "row")
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-31-1.png)
 
 You can save your plot with an extra argument:
 
@@ -475,7 +475,7 @@ Clean up your environment with:
 rm(list = ls())
 ```
 
-### Summary of first three methods
+## Summary of first three methods
 
 The first three methods differ in their default settings and in the
 order of the processing steps:
@@ -484,7 +484,7 @@ order of the processing steps:
     gplots::heatmap.2():  cluster -> scale (none) -> colour
     pheatmap::pheatmap(): scale (none) -> cluster -> colour
 
-### Method 4: a dataframe in ggplot2
+## Method 4: a dataframe in ggplot2
 
 If you want to stick to the ggplot2 package for all your data
 visualisation, there is a way to create a simple heatmap (without
@@ -528,7 +528,7 @@ ggplot(esoph_sub, aes(x = alcgp,
        y = "Tobacco consumption")
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-36-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-37-1.png)
 
 This ggplot2 method does not allow to create dendrograms.
 
@@ -538,7 +538,7 @@ Clean up your environment with:
 rm(list = ls())
 ```
 
-### (optional) Method 5: `ComplexHeatmap::Heatmap`
+## (optional) Method 5: `ComplexHeatmap::Heatmap`
 
 This extra method come from a different repository than the official
 CRAN repositories: the [Bioconductor](https://www.bioconductor.org)
@@ -558,52 +558,54 @@ BiocManager is used to install Bioconductor packages.
 library(ComplexHeatmap)
 ```
 
-    ## Loading required package: grid
+    Loading required package: grid
 
-    ## ========================================
-    ## ComplexHeatmap version 2.12.0
-    ## Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
-    ## Github page: https://github.com/jokergoo/ComplexHeatmap
-    ## Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
-    ## 
-    ## If you use it in published research, please cite:
-    ## Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional 
-    ##   genomic data. Bioinformatics 2016.
-    ## 
-    ## The new InteractiveComplexHeatmap package can directly export static 
-    ## complex heatmaps into an interactive Shiny app with zero effort. Have a try!
-    ## 
-    ## This message can be suppressed by:
-    ##   suppressPackageStartupMessages(library(ComplexHeatmap))
-    ## ========================================
-    ## ! pheatmap() has been masked by ComplexHeatmap::pheatmap(). Most of the arguments
-    ##    in the original pheatmap() are identically supported in the new function. You 
-    ##    can still use the original function by explicitly calling pheatmap::pheatmap().
+    ========================================
+    ComplexHeatmap version 2.20.0
+    Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
+    Github page: https://github.com/jokergoo/ComplexHeatmap
+    Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
 
-    ## 
-    ## Attaching package: 'ComplexHeatmap'
+    If you use it in published research, please cite either one:
+    - Gu, Z. Complex Heatmap Visualization. iMeta 2022.
+    - Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional 
+        genomic data. Bioinformatics 2016.
 
-    ## The following object is masked from 'package:pheatmap':
-    ## 
-    ##     pheatmap
+
+    The new InteractiveComplexHeatmap package can directly export static 
+    complex heatmaps into an interactive Shiny app with zero effort. Have a try!
+
+    This message can be suppressed by:
+      suppressPackageStartupMessages(library(ComplexHeatmap))
+    ========================================
+    ! pheatmap() has been masked by ComplexHeatmap::pheatmap(). Most of the arguments
+       in the original pheatmap() are identically supported in the new function. You 
+       can still use the original function by explicitly calling pheatmap::pheatmap().
+
+
+    Attaching package: 'ComplexHeatmap'
+
+    The following object is masked from 'package:pheatmap':
+
+        pheatmap
 
 ``` r
 library(circlize) # for the colorRamp2() function
 ```
 
-    ## ========================================
-    ## circlize version 0.4.15
-    ## CRAN page: https://cran.r-project.org/package=circlize
-    ## Github page: https://github.com/jokergoo/circlize
-    ## Documentation: https://jokergoo.github.io/circlize_book/book/
-    ## 
-    ## If you use it in published research, please cite:
-    ## Gu, Z. circlize implements and enhances circular visualization
-    ##   in R. Bioinformatics 2014.
-    ## 
-    ## This message can be suppressed by:
-    ##   suppressPackageStartupMessages(library(circlize))
-    ## ========================================
+    ========================================
+    circlize version 0.4.16
+    CRAN page: https://cran.r-project.org/package=circlize
+    Github page: https://github.com/jokergoo/circlize
+    Documentation: https://jokergoo.github.io/circlize_book/book/
+
+    If you use it in published research, please cite:
+    Gu, Z. circlize implements and enhances circular visualization
+      in R. Bioinformatics 2014.
+
+    This message can be suppressed by:
+      suppressPackageStartupMessages(library(circlize))
+    ========================================
 
 How is the `Heatmap()` function different to the base `heatmap()`?
 
@@ -644,7 +646,7 @@ colnames(mat) <- paste0("C", 1:10)
 Heatmap(mat)
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-42-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-43-1.png)
 
 Modify the colour and the labels, remove dendrograms (and don’t cluster
 the data):
@@ -658,7 +660,7 @@ Heatmap(mat,
         heatmap_legend_param = list(title = "Values"))
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-43-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-44-1.png)
 
 The `cluster_` arguments can take external clustering information, which
 means you can use any type of clustering method.
@@ -678,9 +680,9 @@ Heatmap(mat_with_na,
         heatmap_legend_param = list(title = "Values"))
 ```
 
-    ## Warning: NA exists in the matrix, calculating distance by removing NA values.
+    Warning: NA exists in the matrix, calculating distance by removing NA values.
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-44-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-45-1.png)
 
 `Heatmap()` automatically removes NA values to calculate the distance.
 
@@ -695,7 +697,7 @@ Heatmap(mat,
         column_dend_side = "bottom")
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-45-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-46-1.png)
 
 To separate clusters, we can use the `km` argument, which allows k-means
 clustering on rows.
@@ -710,7 +712,7 @@ Heatmap(mat,
         km = 2)
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-46-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-47-1.png)
 
 We can add options, save the base plot as an object and then slightly
 modify if with the `draw()` function:
@@ -732,7 +734,7 @@ h1 <- Heatmap(mat,
 draw(h1, heatmap_legend_side = "left")
 ```
 
-![](heatmaps_intermediate_files/figure-gfm/unnamed-chunk-47-1.png)<!-- -->
+![](heatmaps_intermediate_files/figure-commonmark/unnamed-chunk-48-1.png)
 
 Clean my environment with:
 
@@ -747,20 +749,20 @@ your script contains all the steps required to generate your data and
 visualisations, it is best practice to not save your workspace: you can
 execute the whole script when you go back to your project.
 
-## Important links
+## Further resources
 
--   For heatmaps:
-    -   a more in-depth example with pheatmap:
-        <http://slowkow.com/notes/pheatmap-tutorial/>
-    -   Leanne Wicken’s dataset with heatmap.2 and an interactive
-        heatmap with d3heatmap: <https://rpubs.com/ab604/98032>
-    -   a heatmap gallery: <https://www.r-graph-gallery.com/heatmap>
--   More heatmap packages:
-    -   Full reference on **ComplexHeatmap**:
-        <https://jokergoo.github.io/ComplexHeatmap-reference/book/>
-    -   **tidyHeatmap**, built on ComplexHeatmap but for tidy data:
-        <https://github.com/stemangiola/tidyHeatmap#tidyheatmap>
-    -   **iheatmapr**, for richer interactive heatmaps:
-        <https://docs.ropensci.org/iheatmapr/>
--   Our [compilation of R
-    resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md)
+- For heatmaps:
+  - a more in-depth example with pheatmap:
+    <http://slowkow.com/notes/pheatmap-tutorial/>
+  - Leanne Wicken’s dataset with heatmap.2 and an interactive heatmap
+    with d3heatmap: <https://rpubs.com/ab604/98032>
+  - a heatmap gallery: <https://www.r-graph-gallery.com/heatmap>
+- More heatmap packages:
+  - Full reference on **ComplexHeatmap**:
+    <https://jokergoo.github.io/ComplexHeatmap-reference/book/>
+  - **tidyHeatmap**, built on ComplexHeatmap but for tidy data:
+    <https://github.com/stemangiola/tidyHeatmap#tidyheatmap>
+  - **iheatmapr**, for richer interactive heatmaps:
+    <https://docs.ropensci.org/iheatmapr/>
+- Our [compilation of R
+  resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md)

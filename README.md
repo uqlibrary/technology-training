@@ -29,11 +29,11 @@ We also offer these more specialised sessions (run less regularly, but feel free
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
-| R data visualisation with RStudio: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps/heatmaps_intermediate.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/Hk6tO-kyS#) | [YT](https://www.youtube.com/watch?v=V-IRkO4NIHU&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=5) |
-| R advanced: packaging and sharing functions | [md](R/packaging/packaging.md) <sup>[source](R/packaging/packaging.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/ryCzbvgXB) | ... |
-| R advanced: webapps with Shiny | [md](R/shiny/shiny.md) <sup>[source](R/shiny/shiny.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/S19FIXxg8) | ... |
-| RStats Introduction: ANOVA and linear regression | [md](R/ANOVA-lm/anova-lm.md) <sup>[source](R/ANOVA=lm/anova-lm.Rmd)</sup> | - | ... |
-| RStats: Working with and analysing time series data | [md](R/timeseries/time_series.md) <sup>[source](R/timeseries/time_series.md)</sup> | - | ... |
+| R data visualisation: heatmaps | [md](R/heatmaps/heatmaps_intermediate.md) <sup>[source](R/heatmaps/heatmaps_intermediate.qmd)</sup> | [html](https://demo.hedgedoc.org/s/Hk6tO-kyS#) | [YT](https://www.youtube.com/watch?v=V-IRkO4NIHU&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=5) |
+| R advanced: packaging and sharing functions | [md](R/packaging/packaging.md) <sup>[source](R/packaging/packaging.qmd)</sup> | [html](https://demo.hedgedoc.org/s/ryCzbvgXB) | ... |
+| R advanced: webapps with Shiny | [md](R/shiny/shiny.md) <sup>[source](R/shiny/shiny.qmd)</sup> | [html](https://demo.hedgedoc.org/s/S19FIXxg8) | ... |
+| R statistics: ANOVA and linear regression | [md](R/ANOVA-lm/anova-lm.md) <sup>[source](R/ANOVA-lm/anova-lm.qmd)</sup> | - | ... |
+| R statistics: time series | [md](R/timeseries/time_series.md) <sup>[source](R/timeseries/time_series.qmd)</sup> | - | ... |
 
 ### Python sessions
 

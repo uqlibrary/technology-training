@@ -1,8 +1,12 @@
 ---
-title: 'R advanced: packaging and sharing functions'
-author: "UQ Library"
-date: "`r Sys.Date()`"
-output: github_document
+title: "R advanced: packaging and sharing functions"
+format:
+  gfm:
+    toc: true
+    toc-depth: 2
+editor: source
+date: today
+author: UQ Library
 ---
 
 ```{r setup, include=FALSE}
@@ -90,6 +94,12 @@ We will use a custom function that downloads the data. Because the data is provi
 2. unzip it into a directory (with `untar()`)
 
 Open the "get_acorn.R" file from the Files panel, and look at the code it contains:
+
+<!--
+Note for maintainers: the two following chunks are not executed when rendering the document, to avoid
+repeatedly (and slowly) downloading data from BOM.
+To render, first run the two following chunks locally to get the data. Then render.
+-->
 
 ```{r}
 get_acorn <- function(dest) {

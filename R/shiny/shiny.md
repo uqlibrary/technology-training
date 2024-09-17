@@ -1,7 +1,20 @@
-R advanced: webapps with Shiny
-================
+# R advanced: webapps with Shiny
 UQ Library
-2021-04-30
+2024-09-17
+
+- [Shiny webapps](#shiny-webapps)
+  - [Setting up](#setting-up)
+  - [Create a new app](#create-a-new-app)
+  - [Creating a minimal skeleton](#creating-a-minimal-skeleton)
+  - [Prepare the data](#prepare-the-data)
+  - [Interactive tables](#interactive-tables)
+  - [Challenge 1: restore an “all months”
+    option?](#challenge-1-restore-an-all-months-option)
+  - [Theming](#theming)
+  - [Challenge 2: make the plot
+    interactive](#challenge-2-make-the-plot-interactive)
+- [Publishing a Shiny app](#publishing-a-shiny-app)
+- [Useful links](#useful-links)
 
 ## Shiny webapps
 
@@ -9,8 +22,8 @@ Shiny is a package that allows to create a web application with R code.
 
 A Shiny app requires two main elements:
 
-  - a user interface (UI)
-  - a server
+- a user interface (UI)
+- a server
 
 Let’s build an app from scratch, using our ACORN data and functions.
 
@@ -25,11 +38,11 @@ visualisation.
 We will first download our base project that contains custom functions
 to get our data ready.
 
-  - Download the [project
-    archive](https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R/packaging),
-    and extract it wherever you’d like to store your project.
-  - Open the .Rproj file
-  - Create a new script: “New File \> R Script”
+- Download the [project
+  archive](https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R/packaging),
+  and extract it wherever you’d like to store your project.
+- Open the .Rproj file
+- Create a new script: “New File \> R Script”
 
 #### Get the data
 
@@ -66,9 +79,9 @@ example.
 
 For our app to work, we need three sections:
 
-  - define a UI: what users see
-  - define a server: what happens in the background
-  - define how the app is run
+- define a UI: what users see
+- define a server: what happens in the background
+- define how the app is run
 
 Back in the app.R file, we can start with this empty skeleton:
 
@@ -190,9 +203,9 @@ shinyApp(ui = ui, server = server)
 
 Again, we have to:
 
-  - Define how the plot is generated on the server
-  - Save the plot as an output, using the right `render*` function
-  - Show the plot in the UI with the right `*Output` function
+- Define how the plot is generated on the server
+- Save the plot as an output, using the right `render*` function
+- Show the plot in the UI with the right `*Output` function
 
 #### User input
 
@@ -244,7 +257,7 @@ shinyApp(ui = ui, server = server)
 How could we give the option to go back to the full-year view?
 
 Hint: have a look at `?selectInput`, or find other ideas on this list:
-<https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/>
+https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/
 
 One solution could be:
 
@@ -446,13 +459,13 @@ You can use ShinyApps.io, which offers free or paid accounts.
 
 We also have access to Nectar (National eResearch Collaboration Tools
 and Resources project), in which we can request a virtual machine and
-deploy a Shiny server: <https://nectar.org.au/>
+deploy a Shiny server: https://nectar.org.au/
 
 ## Useful links
 
-  - Official Shiny tutorial: <https://shiny.rstudio.com/tutorial/>
-  - Shiny examples:
-      - <https://shiny.rstudio.com/gallery/>
-      - <https://www.showmeshiny.com/>
-  - Shiny cheatsheet:
-    <https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf>
+- Official Shiny tutorial: https://shiny.rstudio.com/tutorial/
+- Shiny examples:
+  - https://shiny.rstudio.com/gallery/
+  - https://www.showmeshiny.com/
+- Shiny cheatsheet:
+  https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf

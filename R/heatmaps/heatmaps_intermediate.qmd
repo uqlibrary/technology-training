@@ -1,8 +1,12 @@
 ---
-title: "R data visualisation with RStudio: heatmaps"
-date: "`r Sys.Date()`"
-output:
-  github_document: default
+title: "R data visualisation: heatmaps"
+format:
+  gfm:
+    toc: true
+    toc-depth: 2
+editor: source
+date: today
+author: UQ Library
 ---
 
 A **heatmap** is a way of visualising a table of numbers, where you substitute the numbers with colored cells. It’s useful for finding highs and lows, and see patterns more clearly. There are many functions available in R to create this kind of visualisations, but we will focus in four options here.
@@ -39,9 +43,7 @@ We will assume you are an R intermediate user and that you have used RStudio bef
 -   execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
 -   assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
-## Material
-
-### R Project
+## R Project
 
 Everything we write today will be saved in your script, so please remember to create your project on your H drive (or USB stick) if you use the University computers, so you can go back to it after the session.
 
@@ -66,11 +68,11 @@ file.create("scripts/heatmaps.R")
 file.edit("scripts/heatmaps.R")
 ```
 
-### Method 1: the base `heatmap()` function
+## Method 1: the base `heatmap()` function
 
 As a first example, we will use a built-in dataset called `mtcars`.
 
-#### Explore the data
+### Explore the data
 
 ```{r eval=FALSE}
 ?mtcars
@@ -80,7 +82,7 @@ head(mtcars)
 View(mtcars)
 ```
 
-#### Prepare data
+### Prepare data
 
 The data is a dataframe, but it has to be a **numeric matrix** to make your heatmap. Dataframes can contain variables with different data classes, whereas matrices only contain one data class.
 
@@ -90,7 +92,7 @@ mtcars_matrix <- data.matrix(mtcars) # convert a DF to a numeric matrix
 class(mtcars_matrix)
 ```
 
-#### Visualise
+### Visualise
 
 We are now going to use the `heatmap()` function to create our first heatmap:
 
@@ -102,7 +104,7 @@ Does it look like what you expected?
 
 Look at the function's help page, and read the description of the `scale` argument in particular:
 
-```{r}
+```{r eval=FALSE}
 ?heatmap
 ```
 
@@ -114,7 +116,7 @@ heatmap(mtcars_matrix, scale = "column")
 
 We can now see the high (red) and low (white) values in each variable, and visualise groups of similar cars.
 
-#### Colours
+### Colours
 
 With versions of R up to 3.5, the default heatmap palette was `heat.colors()`, which is not the most intuitive as it goes from red for low values to white for high values.
 
@@ -130,7 +132,7 @@ heatmap(mtcars_matrix,
 
 You can try other functions, like `terrain.colors()` or `hcl.colors()` (in R \> 3.6), and you can reverse them with the `rev = TRUE` argument.
 
-#### Challenge 1: Remove dendrograms
+### Challenge 1: Remove dendrograms
 
 Does it make sense to have both columns and rows for this dataset?
 
@@ -147,7 +149,7 @@ heatmap(mtcars_matrix,
 
 > If dendrograms are removed, the data won't be reorganised according to the clustering method.
 
-#### Clean the environment
+### Clean the environment
 
 We can start with a fresh environment, using:
 
@@ -155,18 +157,21 @@ We can start with a fresh environment, using:
 rm(list = ls())
 ```
 
-### Method 2: `gplots::heatmap.2()`
+## Method 2: `gplots::heatmap.2()`
 
 If you don't have the gplots package yet, use `install.packages("gplots")`.
 
 ```{r results='hide'}
 library(gplots)
-?heatmap.2
 ```
 
 This gplots heatmap function provides a number of extensions to the standard R heatmap function.
 
-#### Protein data example
+```{r eval=FALSE}
+?heatmap.2
+```
+
+### Protein data example
 
 This dataset contains observations for 63 proteins in three control experiments and three experiments where cells are treated with a growth factor. We need to import it from the web:
 
@@ -235,7 +240,7 @@ data_scaled_t <- scale(t(data_matrix))
 data_scaled <- t(data_scaled_t)
 ```
 
-*Step 6: create heatmaps*
+Let's visualise it once more:
 
 ```{r}
 heatmap.2(data_scaled)
@@ -243,7 +248,7 @@ heatmap.2(data_scaled)
 
 We can now see clear groups.
 
-#### More control over colours
+### More control over colours
 
 Let's create a new palette function:
 
@@ -295,7 +300,7 @@ Clean up the environment with:
 rm(list = ls())
 ```
 
-### Method 3: `pheatmap::pheatmap()`
+## Method 3: `pheatmap::pheatmap()`
 
 If you don't have it already, install pheatmap with `install.packages("pheatmap")`.
 
@@ -361,7 +366,7 @@ Clean up your environment with:
 rm(list = ls())
 ```
 
-### Summary of first three methods
+## Summary of first three methods
 
 The first three methods differ in their default settings and in the order of the processing steps:
 
@@ -369,7 +374,7 @@ The first three methods differ in their default settings and in the order of the
     gplots::heatmap.2():  cluster -> scale (none) -> colour
     pheatmap::pheatmap(): scale (none) -> cluster -> colour
 
-### Method 4: a dataframe in ggplot2
+## Method 4: a dataframe in ggplot2
 
 If you want to stick to the ggplot2 package for all your data visualisation, there is a way to create a simple heatmap (without clustering). So far, we have seen methods that make use of data matrices; however, ggplot2 deals with dataframes.
 
@@ -416,7 +421,7 @@ Clean up your environment with:
 rm(list = ls())
 ```
 
-### (optional) Method 5: `ComplexHeatmap::Heatmap`
+## (optional) Method 5: `ComplexHeatmap::Heatmap`
 
 This extra method come from a different repository than the official CRAN repositories: the [Bioconductor](https://www.bioconductor.org) project.
 
@@ -552,7 +557,7 @@ rm(list = ls())
 
 When closing RStudio, you should be prompted to save your workspace. If your script contains all the steps required to generate your data and visualisations, it is best practice to not save your workspace: you can execute the whole script when you go back to your project.
 
-## Important links
+## Further resources
 
 -   For heatmaps:
     -   a more in-depth example with pheatmap: <http://slowkow.com/notes/pheatmap-tutorial/>

@@ -1,7 +1,14 @@
-R advanced: packaging and sharing functions
-================
+# R advanced: packaging and sharing functions
 UQ Library
-2021-04-23
+2024-09-17
+
+- [Setting up](#setting-up)
+- [How to build a function](#how-to-build-a-function)
+- [Our example ACORN data](#our-example-acorn-data)
+- [Making functions more resilient](#making-functions-more-resilient)
+- [Packaging functions](#packaging-functions)
+- [Useful links](#useful-links)
+- [Extras](#extras)
 
 The strength of the R programming language lies in the endless
 possibilities custom functions can bring, and a community of users who
@@ -12,12 +19,12 @@ learn about creating, packaging and sharing functions.
 
 In this session, you will learn about:
 
-  - creating new custom functions
-  - packaging your functions into a cohesive collection
-  - properly documenting your code
-  - versioning your code
-  - using online services to share your package
-  - using RStudio features that make life easier
+- creating new custom functions
+- packaging your functions into a cohesive collection
+- properly documenting your code
+- versioning your code
+- using online services to share your package
+- using RStudio features that make life easier
 
 ## Setting up
 
@@ -26,7 +33,7 @@ In this session, you will learn about:
 So we can get straight into the interesting stuff, we have an R project
 that already contains relevant custom functions. You can download it
 with this link:
-<https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R/packaging>
+https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R%2packaging
 
 Unzip this archive, and open the .Rproj file to open the project in
 RStudio.
@@ -65,10 +72,10 @@ convert it to human years.
 
 We need to:
 
-  - give the function a name (just like when we create an object)
-  - specify which arguments are available when the function is used
-  - define what happens when the function is called, in between the
-    curly braces `{}`
+- give the function a name (just like when we create an object)
+- specify which arguments are available when the function is used
+- define what happens when the function is called, in between the curly
+  braces `{}`
 
 After executing this block of code, we have defined our function, and we
 can see it listed in the Environment panel. We can now use it just like
@@ -78,7 +85,7 @@ any other function:
 human_age(12)
 ```
 
-    ## [1] 84
+    [1] 84
 
 As you can see, functions will by default return the last evaluated
 element.
@@ -89,7 +96,7 @@ Let’s have a look at our pre-defined functions now.
 
 The data that we want to deal with comes from the Bureau of Meteorology
 website. You can find more information about it here:
-<http://www.bom.gov.au/climate/data/acorn-sat/#tabs=Data-and-networks>
+http://www.bom.gov.au/climate/data/acorn-sat/#tabs=Data-and-networks
 
 This project provides temperature data for 112 Australian weather
 stations. We want to use the maximum daily temperature data, which means
@@ -104,7 +111,7 @@ our function:
 1.  download the archive from the relevant URL (with `download.file()`)
 2.  unzip it into a directory (with `untar()`)
 
-Open the “get\_acorn.R” file from the Files panel, and look at the code
+Open the “get_acorn.R” file from the Files panel, and look at the code
 it contains:
 
 ``` r
@@ -128,11 +135,10 @@ not exist, it will be created. If it already exist, it will move on to
 the next step without executing the `dir.create(dest)` command.
 
 To have access to this new funtion, make sure you execute the whole
-block of code. Back in our script, we can now load in, and then call our new function to
+block of code. Back in our script, we can now call our new function to
 get the data:
 
 ``` r
-source("get_acorn.R") # source another R script
 get_acorn(dest = "acorn_sat_v2_daily_tmax")
 ```
 
@@ -152,20 +158,20 @@ library(tidyverse)
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv")
 ```
 
-    ## # A tibble: 28,398 x 4
-    ##    date       `maximum temperature (degC)` `site number` `site name`
-    ##    <date>                            <dbl> <chr>         <chr>      
-    ##  1 NA                                 NA   001019        KALUMBURU  
-    ##  2 1941-09-01                         29.8 <NA>          <NA>       
-    ##  3 1941-09-02                         29.8 <NA>          <NA>       
-    ##  4 1941-09-03                         29.3 <NA>          <NA>       
-    ##  5 1941-09-04                         37.1 <NA>          <NA>       
-    ##  6 1941-09-05                         30.9 <NA>          <NA>       
-    ##  7 1941-09-06                         NA   <NA>          <NA>       
-    ##  8 1941-09-07                         NA   <NA>          <NA>       
-    ##  9 1941-09-08                         32   <NA>          <NA>       
-    ## 10 1941-09-09                         32.7 <NA>          <NA>       
-    ## # ... with 28,388 more rows
+    # A tibble: 28,398 × 4
+       date       `maximum temperature (degC)` `site number` `site name`
+       <date>                            <dbl> <chr>         <chr>      
+     1 NA                                 NA   001019        KALUMBURU  
+     2 1941-09-01                         29.8 <NA>          <NA>       
+     3 1941-09-02                         29.8 <NA>          <NA>       
+     4 1941-09-03                         29.3 <NA>          <NA>       
+     5 1941-09-04                         37.1 <NA>          <NA>       
+     6 1941-09-05                         30.9 <NA>          <NA>       
+     7 1941-09-06                         NA   <NA>          <NA>       
+     8 1941-09-07                         NA   <NA>          <NA>       
+     9 1941-09-08                         32   <NA>          <NA>       
+    10 1941-09-09                         32.7 <NA>          <NA>       
+    # ℹ 28,388 more rows
 
 Looks like we need to remove the first row, which we can do by piping an
 extra `slice()` step:
@@ -175,20 +181,20 @@ read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
   slice(-1) # remove the first row
 ```
 
-    ## # A tibble: 28,397 x 4
-    ##    date       `maximum temperature (degC)` `site number` `site name`
-    ##    <date>                            <dbl> <chr>         <chr>      
-    ##  1 1941-09-01                         29.8 <NA>          <NA>       
-    ##  2 1941-09-02                         29.8 <NA>          <NA>       
-    ##  3 1941-09-03                         29.3 <NA>          <NA>       
-    ##  4 1941-09-04                         37.1 <NA>          <NA>       
-    ##  5 1941-09-05                         30.9 <NA>          <NA>       
-    ##  6 1941-09-06                         NA   <NA>          <NA>       
-    ##  7 1941-09-07                         NA   <NA>          <NA>       
-    ##  8 1941-09-08                         32   <NA>          <NA>       
-    ##  9 1941-09-09                         32.7 <NA>          <NA>       
-    ## 10 1941-09-10                         33.4 <NA>          <NA>       
-    ## # ... with 28,387 more rows
+    # A tibble: 28,397 × 4
+       date       `maximum temperature (degC)` `site number` `site name`
+       <date>                            <dbl> <chr>         <chr>      
+     1 1941-09-01                         29.8 <NA>          <NA>       
+     2 1941-09-02                         29.8 <NA>          <NA>       
+     3 1941-09-03                         29.3 <NA>          <NA>       
+     4 1941-09-04                         37.1 <NA>          <NA>       
+     5 1941-09-05                         30.9 <NA>          <NA>       
+     6 1941-09-06                         NA   <NA>          <NA>       
+     7 1941-09-07                         NA   <NA>          <NA>       
+     8 1941-09-08                         32   <NA>          <NA>       
+     9 1941-09-09                         32.7 <NA>          <NA>       
+    10 1941-09-10                         33.4 <NA>          <NA>       
+    # ℹ 28,387 more rows
 
 We also want to remove the useless columns, and rename the maximum
 temperature variable, which can be done in one go with the `select()`
@@ -200,24 +206,24 @@ read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
   select(date, max.temp = 2) # only keep two variables
 ```
 
-    ## # A tibble: 28,397 x 2
-    ##    date       max.temp
-    ##    <date>        <dbl>
-    ##  1 1941-09-01     29.8
-    ##  2 1941-09-02     29.8
-    ##  3 1941-09-03     29.3
-    ##  4 1941-09-04     37.1
-    ##  5 1941-09-05     30.9
-    ##  6 1941-09-06     NA  
-    ##  7 1941-09-07     NA  
-    ##  8 1941-09-08     32  
-    ##  9 1941-09-09     32.7
-    ## 10 1941-09-10     33.4
-    ## # ... with 28,387 more rows
+    # A tibble: 28,397 × 2
+       date       max.temp
+       <date>        <dbl>
+     1 1941-09-01     29.8
+     2 1941-09-02     29.8
+     3 1941-09-03     29.3
+     4 1941-09-04     37.1
+     5 1941-09-05     30.9
+     6 1941-09-06     NA  
+     7 1941-09-07     NA  
+     8 1941-09-08     32  
+     9 1941-09-09     32.7
+    10 1941-09-10     33.4
+    # ℹ 28,387 more rows
 
 This is probably the data we want to end up with when reading a file
 
-Have a look at the function defined in “read\_station.R”:
+Have a look at the function defined in “read_station.R”:
 
 ``` r
 read_station <- function(file) {
@@ -242,24 +248,23 @@ use the “Source” button at the top right of the source panel.
 Back in our script, we can now test it on our first file:
 
 ``` r
-source("read_station.R") # source the R script
 read_station("acorn_sat_v2_daily_tmax/tmax.002012.daily.csv")
 ```
 
-    ## # A tibble: 39,811 x 3
-    ##    date       max.temp filename                                     
-    ##    <date>        <dbl> <chr>                                        
-    ##  1 1910-01-01     40.5 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    ##  2 1910-01-02     40.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    ##  3 1910-01-03     40.5 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    ##  4 1910-01-04     36.2 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    ##  5 1910-01-05     40.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    ##  6 1910-01-06     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    ##  7 1910-01-07     40.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    ##  8 1910-01-08     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    ##  9 1910-01-09     37.6 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    ## 10 1910-01-10     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    ## # ... with 39,801 more rows
+    # A tibble: 39,811 × 3
+       date       max.temp filename                                     
+       <date>        <dbl> <chr>                                        
+     1 1910-01-01     40.5 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
+     2 1910-01-02     40.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
+     3 1910-01-03     40.5 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
+     4 1910-01-04     36.2 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
+     5 1910-01-05     40.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
+     6 1910-01-06     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
+     7 1910-01-07     40.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
+     8 1910-01-08     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
+     9 1910-01-09     37.6 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
+    10 1910-01-10     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
+    # ℹ 39,801 more rows
 
 > It is often useful to define functions in a separate script to the
 > data analysis script. Know that you can then “source” those custom
@@ -289,7 +294,7 @@ We now have close to 4 million rows in our final dataframe `all_tmax`.
 
 We might also want to create a function from the two previous steps, so
 we only have to provide the name of the directory where the CSV files
-are located. That’s what we have in the “merge\_acorn.R” file:
+are located. That’s what we have in the “merge_acorn.R” file:
 
 ``` r
 merge_acorn <- function(dir) {
@@ -303,7 +308,6 @@ merge_acorn <- function(dir) {
 Let’s source this function, and try it in our script:
 
 ``` r
-source("merge_acorn.R") # source the R script
 all_tmax <- merge_acorn("acorn_sat_v2_daily_tmax")
 ```
 
@@ -376,9 +380,9 @@ ggplot(mean_max, aes(x = year, y = max.temp)) +
   labs(y = "Yearly max temp average (°C)")
 ```
 
-![](packaging_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](packaging_files/figure-commonmark/unnamed-chunk-19-1.png)
 
-We now want to share our useful functions with the World\!
+We now want to share our useful functions with the World!
 
 ## Packaging functions
 
@@ -387,8 +391,8 @@ We now want to share our useful functions with the World\!
 
 To prepare for packaging our functions, we would ideally have them in
 separate scripts named after the function they define, which is already
-the case for our three functions: “get\_acorn.R”, “read\_station.R” and
-“merge\_acorn.R”.
+the case for our three functions: “get_acorn.R”, “read_station.R” and
+“merge_acorn.R”.
 
 Now, let’s create a new project for our package, to keep things tidy:
 File \> New Project… \> New Directory \> R Package.
@@ -400,14 +404,14 @@ our package.
 
 We end up with a basic package structure:
 
-  - DESCRIPTION
-  - man
-  - NAMESPACE
-  - R
+- DESCRIPTION
+- man
+- NAMESPACE
+- R
 
 Let’s go through those main components.
 
-### 1\. Description
+### 1. Description
 
 This is the general description of the what the package does, who
 developed and maintains it, what it needs to work, and what licence it
@@ -436,10 +440,8 @@ what extra packages are needed for our package to work.
 
 GPL or MIT are common licences for R packages. They are Open Source and
 allow others to reuse your code, which is the norm in the R ecosystem.
-Here is a useful site for choosing the best license for you:
-https://choosealicense.com/ 
 
-### 2\. NAMESPACE
+### 2. NAMESPACE
 
 The NAMESPACE file lists the functions available to the user when the
 package is loaded with `library()`.
@@ -447,7 +449,7 @@ package is loaded with `library()`.
 By default, it uses a regular expression that will match anything with a
 name that starts with one or more letters (in the R directory).
 
-### 3\. R
+### 3. R
 
 This is where our function definitions go. If you haven’t imported the
 three scripts when creating the package project, copy and paste them in
@@ -478,16 +480,16 @@ code. For example, for the `read_station()` function:
     #' read_station("path/to/file.csv")
     #' }
 
-  - up the top, the first sentence is the title, and the following
-    paragraph gives a description. A third section can be used to give
-    more details.
-  - `@export` can be used as is to populate the NAMESPACE file with this
-    function
-  - we added the `@import` and `@importFrom` tags to specify precisely
-    what package or functions need to be imported for our function to
-    work.
-  - `\dontrun{}` can be used for examples that will not work, or that
-    shouldn’t be executed for a variety of reasons.
+- up the top, the first sentence is the title, and the following
+  paragraph gives a description. A third section can be used to give
+  more details.
+- `@export` can be used as is to populate the NAMESPACE file with this
+  function
+- we added the `@import` and `@importFrom` tags to specify precisely
+  what package or functions need to be imported for our function to
+  work.
+- `\dontrun{}` can be used for examples that will not work, or that
+  shouldn’t be executed for a variety of reasons.
 
 > Pressing <kbd>Return</kbd> inside the Roxygen skeleton will
 > automatically prepend the necessary comment characters `#'`
@@ -529,9 +531,6 @@ through all the steps.
 
 Notice any error, warning or note?
 
-Another way that we can check our code is by using the package [testthat](https://testthat.r-lib.org/).
-This is a package which will help you set up processes to comprehensively test your code and is especially helpful when you're maintaining a package, and need to check that it still runs the same after making some updates.
-
 ### Building and installing
 
 We can also install our package on our system.
@@ -543,8 +542,8 @@ it whenever you need the functions when you work on another project.
 However, if you want to save a copy and share it with others, you can
 build the package:
 
-  - On Windows: Build \> Build Binary Package
-  - On Linux or macOS: Build \> Build Source Package
+- On Windows: Build \> Build Binary Package
+- On Linux or macOS: Build \> Build Source Package
 
 The resulting archive is what you can share with colleagues and friends
 who want to try your package on their computer.
@@ -569,8 +568,8 @@ be loaded whenever they want to use its functions.
 As a general rule, it is best to stick to a minimum of dependencies, so
 the package:
 
-  - requires less maintenance
-  - is lighter to install
+- requires less maintenance
+- is lighter to install
 
 For function names, try to avoid dots, and use underscores instead
 (tidystyle).
@@ -581,7 +580,7 @@ We can then try to publish on CRAN, or other repositories, making sure
 that you follow the guidelines / requirements.
 
 In order to publish on CRAN, we have to follow more stringent policies:
-<https://cran.r-project.org/web/packages/policies.html>
+https://cran.r-project.org/web/packages/policies.html
 
 ### Using version control
 
@@ -596,20 +595,11 @@ use “Tools \> Version Control \> Project Setup…”, and create a new Git
 repository. We can then use the Git tab to save snapshots of our files.
 
 You can then host your code on Gitlab or GitHub to make it accessible to
-others. See for example: <https://github.com/Lchiffon/wordcloud2>
+others. See for example: https://github.com/Lchiffon/wordcloud2
 
-If you have Git installed on your computer and you have a Github account, you can try creating a new repository, and then following the steps it provides to push your R project from the R terminal.
-
-The package [usethis](https://usethis.r-lib.org/) provides many useful functions to setup packages,
+The package usethis provides many useful functions to setup packages,
 including a `use_github()` function to quickly create a remote
 repository, and a `use_readme_*()` to add a readme file for the project.
-
-For example, we can create a readme md with:
-
-``` r
-usethis::use_readme_md()
-```
-
 
 Others will then be able to install your package from your remote
 repository with:
@@ -621,14 +611,14 @@ devtools::install_gitlab("username/myPackage")
 
 ## Useful links
 
-  - *R Packages*, by Jenny Bryan and Hadley Wickham:
-    <http://r-pkgs.had.co.nz/>
-  - Full official guide for packaging:
-    <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
-  - What to lookout for when publishing to CRAN:
-    <https://cran.r-project.org/web/packages/policies.html>
-  - Package development cheatsheet:
-    <https://github.com/rstudio/cheatsheets/blob/main/package-development.pdf>
+- *R Packages*, by Jenny Bryan and Hadley Wickham:
+  http://r-pkgs.had.co.nz/
+- Full official guide for packaging:
+  https://cran.r-project.org/doc/manuals/r-release/R-exts.html
+- What to lookout for when publishing to CRAN:
+  https://cran.r-project.org/web/packages/policies.html
+- Package development cheatsheet:
+  https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf
 
 ## Extras
 
