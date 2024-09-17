@@ -1,6 +1,6 @@
 # QGIS: raster analysis
 UQ Library
-2024-09-16
+2024-09-17
 
 ## Setting up
 
@@ -18,13 +18,14 @@ panel. If that’s not the case, go to `Project > Properties > General`
 and set `Project home` to the same folder. This dialogue is where we can
 also give the project a title.
 
-We need to install a plugin so that certain features work go to
-`Plugins > Manage and Install Plugins...` and `Search...` for
+We need to install a plugin so we can access certain geoprocessing tools
+(the built-in SAGA provider has been [removed in version
+3.30](https://changelog.qgis.org/en/qgis/version/3.30/#processing-drop-unmainted-saga-provider-from-qgis-)).
+Go to `Plugins > Manage and Install Plugins...` and `Search...` for
 “**SAGA**”. From the list on options choose **Processing Saga NextGen
 Provider** then in the bottom right, click `Install Plugin`. You might
 also need to install SAGA (version 9 or above) on your computer, if not
-already available. (This has been needed since QGIS 3.22 where the
-functionality with SAGA began to degrade.)
+already available.
 
 Let’s now add an OpenStreetMap basemap to locate ourselves on the globe:
 `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and
