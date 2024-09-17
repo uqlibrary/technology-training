@@ -1,7 +1,6 @@
-R with RStudio: getting started
-================
+# R with RStudio: getting started
 UQ Library
-2024-09-11
+2024-09-17
 
 - [R + RStudio](#r--rstudio)
 - [Installation](#installation)
@@ -117,25 +116,25 @@ following commands:
 10 - 2
 ```
 
-    ## [1] 8
+    [1] 8
 
 ``` r
 3 * 4
 ```
 
-    ## [1] 12
+    [1] 12
 
 ``` r
 2 + 10 / 5
 ```
 
-    ## [1] 4
+    [1] 4
 
 ``` r
 11^6
 ```
 
-    ## [1] 1771561
+    [1] 1771561
 
 Those symbols are called “binary operators”: we can use them to
 multiply, divide, add, subtract and exponentiate. Once we execute the
@@ -152,7 +151,7 @@ num2 <- num1 / 9
 num2
 ```
 
-    ## [1] 4.666667
+    [1] 4.666667
 
 We can also store text data:
 
@@ -161,7 +160,7 @@ sentence <- "Hello World!"
 sentence
 ```
 
-    ## [1] "Hello World!"
+    [1] "Hello World!"
 
 You should now see your objects listed in you **environment pane** (top
 right).
@@ -284,7 +283,7 @@ For example, try running the following command:
 round(num2)
 ```
 
-    ## [1] 5
+    [1] 5
 
 The `round()` function rounds a number to the closest integer. The only
 argument we give it is `num2`, the number we want to round.
@@ -328,7 +327,7 @@ now:
 round(num2, digits = 2)
 ```
 
-    ## [1] 4.67
+    [1] 4.67
 
 We can change the default behaviour of the function by telling it how
 many digits we want after the decimal point, using the argument
@@ -339,7 +338,7 @@ them:
 round(num2, 2)
 ```
 
-    ## [1] 4.67
+    [1] 4.67
 
 To group values together in a single object, use the `c()` function.
 
@@ -360,7 +359,7 @@ We can now reuse this vector, and calculate their human age:
 ages * 7
 ```
 
-    ## [1] 28 70 14 NA 21
+    [1] 28 70 14 NA 21
 
 R can create visualisations with functions too. Try a bar plot of your
 dogs’ ages with the `barplot()` function:
@@ -369,7 +368,7 @@ dogs’ ages with the `barplot()` function:
 barplot(ages)
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](rstudio_intro_files/figure-commonmark/unnamed-chunk-10-1.png)
 
 We can customise the plot with a title and some colours, for example:
 
@@ -377,7 +376,7 @@ We can customise the plot with a title and some colours, for example:
 barplot(ages, main = "How old are my dogs?", col = "pink")
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](rstudio_intro_files/figure-commonmark/unnamed-chunk-11-1.png)
 
 #### Challenge 1 – Finding help
 
@@ -396,9 +395,9 @@ replicate values. For example, if you find something very funny:
 rep.int("Ha!", 30)
 ```
 
-    ##  [1] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
-    ## [13] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
-    ## [25] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
+     [1] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
+    [13] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
+    [25] "Ha!" "Ha!" "Ha!" "Ha!" "Ha!" "Ha!"
 
 The next function, `mean()`, returns the mean of a vector of numbers:
 
@@ -406,7 +405,7 @@ The next function, `mean()`, returns the mean of a vector of numbers:
 mean(ages)
 ```
 
-    ## [1] NA
+    [1] NA
 
 What happened there?
 
@@ -418,7 +417,7 @@ use an extra argument: `na.rm`, which stands for “remove NAs”.
 mean(ages, na.rm = TRUE)
 ```
 
-    ## [1] 4.75
+    [1] 4.75
 
 > In our last command, if we hadn’t named the `na.rm` argument, R would
 > have understood `TRUE` to be the value for the `trim` argument!
@@ -520,13 +519,13 @@ first few lines only, we can use the `head()` function:
 head(gapminder)
 ```
 
-    ##       country year      pop continent lifeExp gdpPercap
-    ## 1 Afghanistan 1952  8425333      Asia  28.801  779.4453
-    ## 2 Afghanistan 1957  9240934      Asia  30.332  820.8530
-    ## 3 Afghanistan 1962 10267083      Asia  31.997  853.1007
-    ## 4 Afghanistan 1967 11537966      Asia  34.020  836.1971
-    ## 5 Afghanistan 1972 13079460      Asia  36.088  739.9811
-    ## 6 Afghanistan 1977 14880372      Asia  38.438  786.1134
+          country year      pop continent lifeExp gdpPercap
+    1 Afghanistan 1952  8425333      Asia  28.801  779.4453
+    2 Afghanistan 1957  9240934      Asia  30.332  820.8530
+    3 Afghanistan 1962 10267083      Asia  31.997  853.1007
+    4 Afghanistan 1967 11537966      Asia  34.020  836.1971
+    5 Afghanistan 1972 13079460      Asia  36.088  739.9811
+    6 Afghanistan 1977 14880372      Asia  38.438  786.1134
 
 Now let’s use a few functions to learn more about our dataset:
 
@@ -534,31 +533,31 @@ Now let’s use a few functions to learn more about our dataset:
 class(gapminder) # what kind of object is it stored as?
 ```
 
-    ## [1] "data.frame"
+    [1] "data.frame"
 
 ``` r
 nrow(gapminder) # how many rows?
 ```
 
-    ## [1] 1704
+    [1] 1704
 
 ``` r
 ncol(gapminder) # how many columns?
 ```
 
-    ## [1] 6
+    [1] 6
 
 ``` r
 dim(gapminder) # rows and columns
 ```
 
-    ## [1] 1704    6
+    [1] 1704    6
 
 ``` r
 names(gapminder) # variable names
 ```
 
-    ## [1] "country"   "year"      "pop"       "continent" "lifeExp"   "gdpPercap"
+    [1] "country"   "year"      "pop"       "continent" "lifeExp"   "gdpPercap"
 
 All the information we just saw (and more) is available with one single
 function:
@@ -567,13 +566,13 @@ function:
 str(gapminder) # general structure
 ```
 
-    ## 'data.frame':    1704 obs. of  6 variables:
-    ##  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
-    ##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
-    ##  $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...
-    ##  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
-    ##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
-    ##  $ gdpPercap: num  779 821 853 836 740 ...
+    'data.frame':   1704 obs. of  6 variables:
+     $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+     $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+     $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...
+     $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+     $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+     $ gdpPercap: num  779 821 853 836 740 ...
 
 > The RStudio’s environment panel already shows us some of that
 > information (click on the blue arrow next to the object name).
@@ -596,20 +595,20 @@ To see summary statistics for each of our variables, you can use the
 summary(gapminder)
 ```
 
-    ##    country               year           pop             continent        
-    ##  Length:1704        Min.   :1952   Min.   :6.001e+04   Length:1704       
-    ##  Class :character   1st Qu.:1966   1st Qu.:2.794e+06   Class :character  
-    ##  Mode  :character   Median :1980   Median :7.024e+06   Mode  :character  
-    ##                     Mean   :1980   Mean   :2.960e+07                     
-    ##                     3rd Qu.:1993   3rd Qu.:1.959e+07                     
-    ##                     Max.   :2007   Max.   :1.319e+09                     
-    ##     lifeExp        gdpPercap       
-    ##  Min.   :23.60   Min.   :   241.2  
-    ##  1st Qu.:48.20   1st Qu.:  1202.1  
-    ##  Median :60.71   Median :  3531.8  
-    ##  Mean   :59.47   Mean   :  7215.3  
-    ##  3rd Qu.:70.85   3rd Qu.:  9325.5  
-    ##  Max.   :82.60   Max.   :113523.1
+       country               year           pop             continent        
+     Length:1704        Min.   :1952   Min.   :6.001e+04   Length:1704       
+     Class :character   1st Qu.:1966   1st Qu.:2.794e+06   Class :character  
+     Mode  :character   Median :1980   Median :7.024e+06   Mode  :character  
+                        Mean   :1980   Mean   :2.960e+07                     
+                        3rd Qu.:1993   3rd Qu.:1.959e+07                     
+                        Max.   :2007   Max.   :1.319e+09                     
+        lifeExp        gdpPercap       
+     Min.   :23.60   Min.   :   241.2  
+     1st Qu.:48.20   1st Qu.:  1202.1  
+     Median :60.71   Median :  3531.8  
+     Mean   :59.47   Mean   :  7215.3  
+     3rd Qu.:70.85   3rd Qu.:  9325.5  
+     Max.   :82.60   Max.   :113523.1  
 
 Notice how categorical and numerical variables are handled differently?
 
@@ -622,7 +621,7 @@ plot(gapminder$gdpPercap, gapminder$lifeExp,
      ylab = "Life expectancy (years)")
 ```
 
-![](rstudio_intro_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](rstudio_intro_files/figure-commonmark/unnamed-chunk-23-1.png)
 
 > For more on visualisations, we will dive into the ggplot2 package
 > during two of our other R sessions.
@@ -635,24 +634,24 @@ linear_model <- lm(gapminder$lifeExp ~ gapminder$gdpPercap)
 summary(linear_model)
 ```
 
-    ## 
-    ## Call:
-    ## lm(formula = gapminder$lifeExp ~ gapminder$gdpPercap)
-    ## 
-    ## Residuals:
-    ##     Min      1Q  Median      3Q     Max 
-    ## -82.754  -7.758   2.176   8.225  18.426 
-    ## 
-    ## Coefficients:
-    ##                      Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)         5.396e+01  3.150e-01  171.29   <2e-16 ***
-    ## gapminder$gdpPercap 7.649e-04  2.579e-05   29.66   <2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Residual standard error: 10.49 on 1702 degrees of freedom
-    ## Multiple R-squared:  0.3407, Adjusted R-squared:  0.3403 
-    ## F-statistic: 879.6 on 1 and 1702 DF,  p-value: < 2.2e-16
+
+    Call:
+    lm(formula = gapminder$lifeExp ~ gapminder$gdpPercap)
+
+    Residuals:
+        Min      1Q  Median      3Q     Max 
+    -82.754  -7.758   2.176   8.225  18.426 
+
+    Coefficients:
+                         Estimate Std. Error t value Pr(>|t|)    
+    (Intercept)         5.396e+01  3.150e-01  171.29   <2e-16 ***
+    gapminder$gdpPercap 7.649e-04  2.579e-05   29.66   <2e-16 ***
+    ---
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+    Residual standard error: 10.49 on 1702 degrees of freedom
+    Multiple R-squared:  0.3407,    Adjusted R-squared:  0.3403 
+    F-statistic: 879.6 on 1 and 1702 DF,  p-value: < 2.2e-16
 
 The P-value suggests that there is a strong relationship between the
 two.

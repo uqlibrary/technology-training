@@ -1,8 +1,12 @@
 ---
-title: "R data visualisation with RStudio and ggplot2: introduction"
-output: github_document
-author: "UQ Library"
-date: "`r Sys.Date()`"
+title: "R ggplot2: introductory data visualisation"
+format:
+  gfm:
+    toc: true
+    toc-depth: 2
+editor: source
+date: today
+author: UQ Library
 ---
 
 ## What are we going to learn?
@@ -38,15 +42,13 @@ Remember some of the most commonly used RStudio shortcuts:
 * execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
 * assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
-## Material
-
-### Installing ggplot2
+## Installing ggplot2
 
 We first need to make sure we have the **ggplot2 package** available on our computer. We can use the "Install" button in the "Packages" pane, or we can execute this command in the console: `install.packages("ggplot2")`
 
 You only need to install a package once, but you need to load it every time you start a new R session.
 
-### Setting up a project
+## Setting up a project
 
 > Everything we write today will be saved in your R project. Please remember to save it on your H drive or USB if you are using a Library computer.
 
@@ -75,7 +77,7 @@ library(ggplot2)
 
 > Remember to use <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute a command from the script.
 
-### Finding help
+## Finding help
 
 We are going to work with different datasets that come with the ggplot2 package. For any dataset or function doubts that you might have, don't forget the two main ways to bring up a help page:
 
@@ -88,7 +90,7 @@ The R package ggplot2 was developed by Hadley Wickham with the objective of crea
 
 It is now part of the group of data science packages called Tidyverse.
 
-### The components of the Grammar of Graphics
+## The components of the Grammar of Graphics
 
 The Grammar of Graphics is based on the idea that you can build every graph from the same few components.
 
@@ -105,7 +107,7 @@ The components are:
 
 In this introductory session, we will mainly focus on the **data**, the **mapping**, the **statistics**, the **geometries** and the **theme**.
 
-### ggplot2's three essential components
+## ggplot2's three essential components
 
 In ggplot2, the 3 main components that we usually have to provide are:
 
@@ -150,7 +152,7 @@ Here, we don't need to specify what variable is associated to the y axis, as the
 
 > In ggplot2, each geometry has default statistics, so we often don't need to specify which stats we want to use. We could use a `stat_*()` function instead of a `geom_*()` function, but most people start with the geometry (and let ggplot2 pick the default statistics that are applied).
 
-### Line plots
+## Line plots
 
 Let's have a look at another dataset: the `economics` dataset from the US. Learn more about it with `?economics`, and have a peak at its structure with:
 
@@ -173,7 +175,7 @@ Let's go through our essential elements once more:
 * The `aes()` function groups our **mappings of aesthetics to variables**;
 * The `geom_<...>()` function specifies what **geometric element** we want to use.
 
-### Scatterplots
+## Scatterplots
 
 Scatterplots are often used to look at the relationship between two variables. Let's try it with a new dataset: `mpg` (which stands for "miles per gallon"), a dataset about fuel efficiency of different models of cars.
 
@@ -222,7 +224,7 @@ The plot shows a negative relationship between engine size (`displ`) and fuel ef
 
 However, we can see some outliers. We need to find out more about our data.
 
-### Adding aesthetics
+## Adding aesthetics
 
 We can highlight the "class" factor by adding a new aesthetic:
 
@@ -238,7 +240,7 @@ It seems that two-seaters are more fuel efficient than other cars with a similar
 
 We now know how to create a simple scatterplot, and how to visualise extra variables. But how can we better represent a correlation?
 
-### Trend lines
+## Trend lines
 
 A trend line can be created with the `geom_smooth()` function:
 
@@ -262,7 +264,7 @@ ggplot(mpg,
     geom_smooth(method = "lm")
 ```
 
-### Layering
+## Layering
 
 A trend line is usually displayed on top of the scatterplot. How can we combine several layers? We can string them with the `+` operator:
 
@@ -276,7 +278,7 @@ ggplot(mpg,
 
 > The order of the functions matters: the points will be drawn before the trend line, which is probably what you're after.
 
-### The `colour` aesthetic
+## The `colour` aesthetic
 
 We can once again add some information to our visualisation by mapping the `class` variable to the `colour` aesthetic:
 
@@ -305,7 +307,7 @@ What would happen if you moved the `colour = class` aesthetic from the geometry 
 Different geometries can also have their own mappings that overwrite the defaults.
 If you place mappings in a geom function, ggplot2 will treat them as local mappings for the layer. It will use these mappings to extend or overwrite the global mappings for that layer only. This makes it possible to display different aesthetics in different layers.
 
-### Saving a plot
+## Saving a plot
 
 Like your visualisation? You can export it with the "Export" menu in the "Plots" pane.
 
@@ -379,7 +381,7 @@ ggplot(economics,
 
 The [early 1980s recession](https://en.wikipedia.org/wiki/Early_1980s_recession) now seems to have had a more significant impact on unemployment than the [Global Financial Crisis](https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%9308) of 2007-2008.
 
-### Bar charts and ordered factors
+## Bar charts and ordered factors
 
 Let's use the `diamonds` dataset now.
 The `diamonds` dataset comes with ggplot2 and contains information about ~54,000 diamonds, including the price, carat, colour, clarity, and cut quality of each diamond.
@@ -426,7 +428,7 @@ ggplot(diamonds,
 
 If you are curious about what colour names exist in R, you can use the `colours()` function.
 
-#### Change labels
+### Change labels
 
 We can also modify labels with the `labs()` function to make our plot more self-explanatory:
 
@@ -449,7 +451,7 @@ It can edit the title, the subtitle, the x and y axes labels, and the caption.
 
 > Remember that captions and titles are better sorted out in the publication itself, especially for accessibility reasons (e.g. to help with screen readers).
 
-#### Horizontal bar charts
+### Horizontal bar charts
 
 For a horizontal bar chart, we can map the `cut` variable to the `y` aesthetic instead of `x`. But remember to also change your labels around!
 
@@ -464,7 +466,7 @@ ggplot(diamonds,
 
 This is particularly helpful when long category names overlap under the x axis.
 
-#### Built-in themes
+### Built-in themes
 
 The `theme()` function allows us to really get into the details of our plot's look, but some `theme_*()` functions make it easy to apply a built-in theme, like `theme_bw()`:
 

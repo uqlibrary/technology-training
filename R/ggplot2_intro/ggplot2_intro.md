@@ -1,7 +1,28 @@
-R ggplot2: introductory data visualisation
-================
+# R ggplot2: introductory data visualisation
 UQ Library
-2022-03-23
+2024-09-17
+
+- [What are we going to learn?](#what-are-we-going-to-learn)
+- [Open RStudio](#open-rstudio)
+- [Essential shortcuts](#essential-shortcuts)
+- [Installing ggplot2](#installing-ggplot2)
+- [Setting up a project](#setting-up-a-project)
+- [Finding help](#finding-help)
+- [The components of the Grammar of
+  Graphics](#the-components-of-the-grammar-of-graphics)
+- [ggplot2’s three essential
+  components](#ggplot2s-three-essential-components)
+- [Line plots](#line-plots)
+- [Scatterplots](#scatterplots)
+- [Adding aesthetics](#adding-aesthetics)
+- [Trend lines](#trend-lines)
+- [Layering](#layering)
+- [The `colour` aesthetic](#the-colour-aesthetic)
+- [Saving a plot](#saving-a-plot)
+- [Bar charts and ordered factors](#bar-charts-and-ordered-factors)
+- [Play time!](#play-time)
+- [Close project](#close-project)
+- [Useful links](#useful-links)
 
 ## What are we going to learn?
 
@@ -10,40 +31,38 @@ are new to the ggplot2 package.
 
 During this session, you will:
 
--   Have a visualisation package installed (ggplot2)
--   Learn how to explore data visually
--   Learn about the 3 essential ggplot2 components
--   Use different kinds of visualisations
--   Layer several visualisations
--   Learn how to customise a plot with colours, labels and themes.
+- Have a visualisation package installed (ggplot2)
+- Learn how to explore data visually
+- Learn about the 3 essential ggplot2 components
+- Use different kinds of visualisations
+- Layer several visualisations
+- Learn how to customise a plot with colours, labels and themes.
 
 ## Open RStudio
 
--   If you are using your own laptop please open RStudio
-    -   If you need theme, we have [installation
-        instruction](/R/Installation.md#r--rstudio-installation-instructions)
-    -   Make sure you have a working Internet connection
--   On the Library computers (the first time takes about 10 min):
-    -   Log in with your UQ username and password (use your student
-        account if you have both a staff and student account)
-    -   Make sure you have a working Internet connection
-    -   Open the ZENworks application
-    -   Look for RStudio
-    -   Double-click on RStudio which will install both R and RStudio,
-        and open RStudio
+- If you are using your own laptop please open RStudio
+  - If you need theme, we have [installation
+    instruction](/R/Installation.md#r--rstudio-installation-instructions)
+  - Make sure you have a working Internet connection
+- On the Library computers (the first time takes about 10 min):
+  - Log in with your UQ username and password (use your student account
+    if you have both a staff and student account)
+  - Make sure you have a working Internet connection
+  - Open the ZENworks application
+  - Look for RStudio
+  - Double-click on RStudio which will install both R and RStudio, and
+    open RStudio
 
 ## Essential shortcuts
 
 Remember some of the most commonly used RStudio shortcuts:
 
--   function or dataset help: press <kbd>F1</kbd> with your cursor
-    anywhere in a function name.
--   execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
--   assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
+- function or dataset help: press <kbd>F1</kbd> with your cursor
+  anywhere in a function name.
+- execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+- assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
-## Material
-
-### Installing ggplot2
+## Installing ggplot2
 
 We first need to make sure we have the **ggplot2 package** available on
 our computer. We can use the “Install” button in the “Packages” pane, or
@@ -53,7 +72,7 @@ we can execute this command in the console:
 You only need to install a package once, but you need to load it every
 time you start a new R session.
 
-### Setting up a project
+## Setting up a project
 
 > Everything we write today will be saved in your R project. Please
 > remember to save it on your H drive or USB if you are using a Library
@@ -61,30 +80,30 @@ time you start a new R session.
 
 Let’s create a new **R project** to keep everything tidy:
 
--   Click the “File” menu button (top left corner), then “New Project”
--   Click “New Directory”
--   Click “New Project”
--   In “Directory name”, type the name of your project,
-    e.g. “ggplot2_intro”
--   Select the folder where to locate your project: e.g. a
-    `Documents/RProjects` folder, which you can create if it doesn’t
-    exist yet.
--   Click the “Create Project” button
--   Create a folder to store our plots:
-    -   `dir.create("plots")`
+- Click the “File” menu button (top left corner), then “New Project”
+- Click “New Directory”
+- Click “New Project”
+- In “Directory name”, type the name of your project,
+  e.g. “ggplot2_intro”
+- Select the folder where to locate your project: e.g. a
+  `Documents/RProjects` folder, which you can create if it doesn’t exist
+  yet.
+- Click the “Create Project” button
+- Create a folder to store our plots:
+  - `dir.create("plots")`
 
 We will write ggplot2 code more comfortably in a **script**:
 
--   Menu: Top left corner, click the green “plus” symbol, or press the
-    shortcut (for Windows/Linux)
-    <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> or (for Mac)
-    <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an
-    “Untitled1” file.
--   Go to “File \> Save” or press (for Windows/Linux)
-    <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac)
-    <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save
-    your file and the name of the new file.
--   Call your file “process.R”
+- Menu: Top left corner, click the green “plus” symbol, or press the
+  shortcut (for Windows/Linux)
+  <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> or (for Mac)
+  <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an
+  “Untitled1” file.
+- Go to “File \> Save” or press (for Windows/Linux)
+  <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>S</kbd>.
+  This will ask where you want to save your file and the name of the new
+  file.
+- Call your file “process.R”
 
 We can straight away **load the package** by adding this command to our
 script and executing it:
@@ -96,7 +115,7 @@ library(ggplot2)
 > Remember to use <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute a command
 > from the script.
 
-### Finding help
+## Finding help
 
 We are going to work with different datasets that come with the ggplot2
 package. For any dataset or function doubts that you might have, don’t
@@ -115,26 +134,26 @@ Wilkinson (first edition published in 1999).
 
 It is now part of the group of data science packages called Tidyverse.
 
-### The components of the Grammar of Graphics
+## The components of the Grammar of Graphics
 
 The Grammar of Graphics is based on the idea that you can build every
 graph from the same few components.
 
 The components are:
 
--   Data
--   Mapping
--   Statistics
--   Scales
--   Geometries
--   Facets
--   Coordinates
--   Theme
+- Data
+- Mapping
+- Statistics
+- Scales
+- Geometries
+- Facets
+- Coordinates
+- Theme
 
 In this introductory session, we will mainly focus on the **data**, the
 **mapping**, the **statistics**, the **geometries** and the **theme**.
 
-### ggplot2’s three essential components
+## ggplot2’s three essential components
 
 In ggplot2, the 3 main components that we usually have to provide are:
 
@@ -154,7 +173,7 @@ Let’s start with specifying where the **data** comes from in the
 ggplot(data = msleep)
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-2-1.png)
 
 This is not very interesting. We need to tell ggplot2 *what* we want to
 visualise, by **mapping** *aesthetic elements* (like our axes) to
@@ -167,7 +186,7 @@ ggplot(data = msleep,
        mapping = aes(x = conservation))
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-3-1.png)
 
 ggplot2 has done what we asked it to do: the conservation variable is on
 the x axis. But nothing is shown on the plot area, because we haven’t
@@ -179,7 +198,7 @@ ggplot(data = msleep,
   geom_bar()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-4-1.png)
 
 Now we have a useful plot: we can see that a lot of animals in this
 dataset don’t have a conservation status, and that “least concern” is
@@ -203,7 +222,7 @@ applied automatically to the data.
 > the geometry (and let ggplot2 pick the default statistics that are
 > applied).
 
-### Line plots
+## Line plots
 
 Let’s have a look at another dataset: the `economics` dataset from the
 US. Learn more about it with `?economics`, and have a peak at its
@@ -213,13 +232,13 @@ structure with:
 str(economics)
 ```
 
-    ## spec_tbl_df [574 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
-    ##  $ date    : Date[1:574], format: "1967-07-01" "1967-08-01" ...
-    ##  $ pce     : num [1:574] 507 510 516 512 517 ...
-    ##  $ pop     : num [1:574] 198712 198911 199113 199311 199498 ...
-    ##  $ psavert : num [1:574] 12.6 12.6 11.9 12.9 12.8 11.8 11.7 12.3 11.7 12.3 ...
-    ##  $ uempmed : num [1:574] 4.5 4.7 4.6 4.9 4.7 4.8 5.1 4.5 4.1 4.6 ...
-    ##  $ unemploy: num [1:574] 2944 2945 2958 3143 3066 ...
+    spc_tbl_ [574 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+     $ date    : Date[1:574], format: "1967-07-01" "1967-08-01" ...
+     $ pce     : num [1:574] 507 510 516 512 517 ...
+     $ pop     : num [1:574] 198712 198911 199113 199311 199498 ...
+     $ psavert : num [1:574] 12.6 12.6 11.9 12.9 12.8 11.8 11.7 12.3 11.7 12.3 ...
+     $ uempmed : num [1:574] 4.5 4.7 4.6 4.9 4.7 4.8 5.1 4.5 4.1 4.6 ...
+     $ unemploy: num [1:574] 2944 2945 2958 3143 3066 ...
 
 Do you think that unemployment is stable over the years? Let’s have a
 look with a line plot, often used to visualise time series:
@@ -231,19 +250,19 @@ ggplot(data = economics,
     geom_line()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-6-1.png)
 
 Let’s go through our essential elements once more:
 
--   The `ggplot()` function initialises a ggplot object. In it, we
-    declare the **input data frame** and specify the set of plot
-    aesthetics used throughout all layers of our plot;
--   The `aes()` function groups our **mappings of aesthetics to
-    variables**;
--   The `geom_<...>()` function specifies what **geometric element** we
-    want to use.
+- The `ggplot()` function initialises a ggplot object. In it, we declare
+  the **input data frame** and specify the set of plot aesthetics used
+  throughout all layers of our plot;
+- The `aes()` function groups our **mappings of aesthetics to
+  variables**;
+- The `geom_<...>()` function specifies what **geometric element** we
+  want to use.
 
-### Scatterplots
+## Scatterplots
 
 Scatterplots are often used to look at the relationship between two
 variables. Let’s try it with a new dataset: `mpg` (which stands for
@@ -260,8 +279,8 @@ engines?
 
 We can focus on two variables:
 
--   `displ`: a car’s engine size, in litres.
--   `hwy`: a car’s fuel efficiency on the highway, in miles per gallon.
+- `displ`: a car’s engine size, in litres.
+- `hwy`: a car’s fuel efficiency on the highway, in miles per gallon.
 
 For the geometry, we now have use “points”:
 
@@ -272,12 +291,11 @@ ggplot(data = mpg,
     geom_point()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-8-1.png)
 
 Notice how the points seem to be aligned on a grid? That’s because the
-data was rounded. 
-
-Another way to display the data is to use the “count” geometry, which makes the dots bigger when data
+data was rounded. If we want to better visualise the density of points,
+we can use the “count” geometry, which makes the dots bigger when data
 points have the same `x` and `y` values:
 
 ``` r
@@ -287,7 +305,7 @@ ggplot(data = mpg,
     geom_count()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-9-1.png)
 
 Alternatively, we can avoid overlapping of points by using the “jitter”
 geometry, which gives the points a little shake:
@@ -299,7 +317,7 @@ ggplot(data = mpg,
     geom_jitter()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-10-1.png)
 
 Even though the position of the dots does not match exactly the original
 `x` and `y` values, it does help visualise densities better.
@@ -312,7 +330,7 @@ and engine size?
 However, we can see some outliers. We need to find out more about our
 data.
 
-### Adding aesthetics
+## Adding aesthetics
 
 We can highlight the “class” factor by adding a new aesthetic:
 
@@ -324,7 +342,7 @@ ggplot(data = mpg,
     geom_jitter()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-11-1.png)
 
 It seems that two-seaters are more fuel efficient than other cars with a
 similar engine size, which can be explained by the lower weight of the
@@ -333,20 +351,20 @@ car. The general trend starts to make more sense!
 We now know how to create a simple scatterplot, and how to visualise
 extra variables. But how can we better represent a correlation?
 
-### Trend lines
+## Trend lines
 
 A trend line can be created with the `geom_smooth()` function:
 
 ``` r
 ggplot(mpg,
-       aes(displ,
-           hwy)) +
+       aes(x = displ,
+           y = hwy)) +
     geom_smooth()
 ```
 
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-12-1.png)
 
 > We stopped using the argument names because we know in which order
 > they appear: first the data, then the mapping of aesthetics. Let’s
@@ -364,51 +382,51 @@ your function:
 
 ``` r
 ggplot(mpg,
-       aes(displ,
-           hwy)) +
+       aes(x = displ,
+           y = hwy)) +
     geom_smooth(method = "lm")
 ```
 
-    ## `geom_smooth()` using formula 'y ~ x'
+    `geom_smooth()` using formula = 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-13-1.png)
 
-### Layering
+## Layering
 
 A trend line is usually displayed on top of the scatterplot. How can we
 combine several layers? We can string them with the `+` operator:
 
 ``` r
 ggplot(mpg,
-       aes(displ,
-           hwy)) + 
+       aes(x = displ,
+           y = hwy)) + 
     geom_point() +
     geom_smooth()
 ```
 
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-14-1.png)
 
 > The order of the functions matters: the points will be drawn before
 > the trend line, which is probably what you’re after.
 
-### The `colour` aesthetic
+## The `colour` aesthetic
 
 We can once again add some information to our visualisation by mapping
 the `class` variable to the `colour` aesthetic:
 
 ``` r
 ggplot(mpg,
-       aes(displ,
-           hwy)) + 
+       aes(x = displ,
+           y = hwy)) + 
     geom_point(aes(colour = class)) + 
     geom_smooth()
 ```
 
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-15-1.png)
 
 **Challenge 1 – where should aesthetics be defined?**
 
@@ -416,8 +434,8 @@ Take the last plot we created:
 
 ``` r
 ggplot(mpg,
-       aes(displ,
-           hwy)) + 
+       aes(x = displ,
+           y = hwy)) + 
     geom_point(aes(colour = class)) + 
     geom_smooth()
 ```
@@ -431,33 +449,21 @@ them as local mappings for the layer. It will use these mappings to
 extend or overwrite the global mappings for that layer only. This makes
 it possible to display different aesthetics in different layers.
 
-## Assigning a plot to a variable
-
-We just created multiple trendlines with slightly different geometries. When you're wanting to create multiple geometries from the same data and mapping settings, one shortcut you can use is to assign the data and mapping to a variable, and then add a geometry to the variable. The code below will create the same output as our original graph. This can be a helpful way of simplifying your code.
-
-``` r
-p < -ggplot(mpg,
-       aes(displ,
-           hwy))
-         
-p + geom_smooth()
-```
-
-### Saving a plot
+## Saving a plot
 
 Like your visualisation? You can export it with the “Export” menu in the
 “Plots” pane.
 
--   Building a document or a slideshow? You can copy it straight to your
-    clipboard, and paste it into it.
--   A PDF is a good, quick option to export an easily shareable file
-    with vector graphics. Try for example the “A5” size, the “Landscape”
-    orientation, and save it into your “plots” directory.
--   More options are available in the “Save as image…” option. PNG is a
-    good compressed format for graphics, but if you want to further
-    customise your visualisation in a different program, use SVG or EPS,
-    which are vector formats. (Try to open an SVG file in
-    [Inkscape](https://inkscape.org/) for example.)
+- Building a document or a slideshow? You can copy it straight to your
+  clipboard, and paste it into it.
+- A PDF is a good, quick option to export an easily shareable file with
+  vector graphics. Try for example the “A5” size, the “Landscape”
+  orientation, and save it into your “plots” directory.
+- More options are available in the “Save as image…” option. PNG is a
+  good compressed format for graphics, but if you want to further
+  customise your visualisation in a different program, use SVG or EPS,
+  which are vector formats. (Try to open an SVG file in
+  [Inkscape](https://inkscape.org/) for example.)
 
 To save the last plot with a command, you can use the `ggsave()`
 function:
@@ -467,7 +473,7 @@ ggsave(filename = "plots/fuel_efficiency.png")
 ```
 
 This is great to automate the export process for each plot in your
-script, but `ggsave()` also has extra options, like setting the resolution or "dots per inch" (DPI),
+script, but `ggsave()` also has extra options, like setting the DPI,
 which is useful for getting the right resolution for a specific use. For
 example, to export a plot for your presentation:
 
@@ -512,14 +518,14 @@ ggplot(economics,
     geom_smooth()
 ```
 
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-20-1.png)
 
 > See how the legend changes depending on the type of data mapped to the
 > `colour` aesthetic? (i.e. categorical vs continuous)
 
-Alternativelly, we could make the trendline
+This default “trend line” is not particularly useful. We could make it
 follow the data more closely by using the `span` argument. The closer to
 0, the closer to the data the smoother will be:
 
@@ -531,9 +537,9 @@ ggplot(economics,
     geom_smooth(span = 0.1)
 ```
 
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-21-1.png)
 
 You can now see why this is called a “smoother”: we can fit a smooth
 curve to data that varies a lot.
@@ -550,20 +556,21 @@ ggplot(economics,
     geom_smooth(span = 0.1)
 ```
 
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-22-1.png)
 
-This visualisation is uysefuk for comparing the impact of the [early 1980s
-recession](https://en.wikipedia.org/wiki/Early_1980s_recession) and the
+The [early 1980s
+recession](https://en.wikipedia.org/wiki/Early_1980s_recession) now
+seems to have had a more significant impact on unemployment than the
 [Global Financial
 Crisis](https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%9308)
 of 2007-2008.
 
-### Bar charts and ordered factors
+## Bar charts and ordered factors
 
 Let’s use the `diamonds` dataset now. The `diamonds` dataset comes with
-ggplot2 and contains information about \~54,000 diamonds, including the
+ggplot2 and contains information about ~54,000 diamonds, including the
 price, carat, colour, clarity, and cut quality of each diamond.
 
 Let’s have a look at the data:
@@ -584,7 +591,7 @@ ggplot(diamonds,
     geom_bar()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-24-1.png)
 
 The chart shows that more diamonds are available with high quality cuts
 than with low quality cuts.
@@ -596,8 +603,8 @@ console:
 head(diamonds$cut)
 ```
 
-    ## [1] Ideal     Premium   Good      Premium   Good      Very Good
-    ## Levels: Fair < Good < Very Good < Premium < Ideal
+    [1] Ideal     Premium   Good      Premium   Good      Very Good
+    Levels: Fair < Good < Very Good < Premium < Ideal
 
 See how ggplot2 respects that order in the bar chart?
 
@@ -615,12 +622,12 @@ ggplot(diamonds,
     geom_bar(fill = "tomato")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-26-1.png)
 
 If you are curious about what colour names exist in R, you can use the
 `colours()` function.
 
-#### Change labels
+### Change labels
 
 We can also modify labels with the `labs()` function to make our plot
 more self-explanatory:
@@ -634,7 +641,7 @@ ggplot(diamonds,
          y = "Number of diamonds")
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-27-1.png)
 
 Let’s have a look at what `labs()` can do:
 
@@ -649,7 +656,7 @@ caption.
 > publication itself, especially for accessibility reasons (e.g. to help
 > with screen readers).
 
-#### Horizontal bar charts
+### Horizontal bar charts
 
 For a horizontal bar chart, we can map the `cut` variable to the `y`
 aesthetic instead of `x`. But remember to also change your labels
@@ -664,12 +671,12 @@ ggplot(diamonds,
        x = "Number of diamonds") # ...and here!
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-29-1.png)
 
 This is particularly helpful when long category names overlap under the
 x axis.
 
-#### Built-in themes
+### Built-in themes
 
 The `theme()` function allows us to really get into the details of our
 plot’s look, but some `theme_*()` functions make it easy to apply a
@@ -685,7 +692,7 @@ ggplot(diamonds,
   theme_bw()
 ```
 
-![](ggplot2_intro_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+![](ggplot2_intro_files/figure-commonmark/unnamed-chunk-30-1.png)
 
 Try `theme_minimal()` as well, and if you want more options, install the
 `ggthemes` package!
@@ -708,23 +715,21 @@ all the necessary commands in your script.
 
 ## Useful links
 
--   For ggplot2:
-    -   [ggplot2
-        cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
-    -   Official [ggplot2
-        documentation](https://docs.ggplot2.org/current/)
-    -   Official [ggplot2 website](https://ggplot2.tidyverse.org/)
-    -   [Chapter on data
-        visualisation](https://r4ds.had.co.nz/data-visualisation.html)
-        in the book *R for Data Science*
-    -   [From Data to Viz](https://www.data-to-viz.com/), a website to
-        explore different visualisations and the code that generates
-        them
-    -   Selva Prabhakaran’s [*r-statistics.co* section on
-        ggplot2](https://r-statistics.co/ggplot2-Tutorial-With-R.html)
-    -   [Coding Club’s data visualisation
-        tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html)
-    -   [Cookbook for R graphs](https://www.cookbook-r.com/Graphs/)
-    -   [STHDA’s ggplot2
-        essentials](https://www.sthda.com/english/wiki/ggplot2-essentials)
--   Our compilation of [general R resources](/R/usefullinks.md)
+- For ggplot2:
+  - [ggplot2
+    cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
+  - Official [ggplot2 documentation](https://docs.ggplot2.org/current/)
+  - Official [ggplot2 website](https://ggplot2.tidyverse.org/)
+  - [Chapter on data
+    visualisation](https://r4ds.had.co.nz/data-visualisation.html) in
+    the book *R for Data Science*
+  - [From Data to Viz](https://www.data-to-viz.com/), a website to
+    explore different visualisations and the code that generates them
+  - Selva Prabhakaran’s [*r-statistics.co* section on
+    ggplot2](https://r-statistics.co/ggplot2-Tutorial-With-R.html)
+  - [Coding Club’s data visualisation
+    tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html)
+  - [Cookbook for R graphs](https://www.cookbook-r.com/Graphs/)
+  - [STHDA’s ggplot2
+    essentials](https://www.sthda.com/english/wiki/ggplot2-essentials)
+- Our compilation of [general R resources](/R/usefullinks.md)

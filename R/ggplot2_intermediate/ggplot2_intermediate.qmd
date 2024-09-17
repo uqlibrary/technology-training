@@ -1,8 +1,12 @@
 ---
-title: "R data visualisation with RStudio and ggplot2: intermediate"
-output: github_document
-date: "`r Sys.Date()`"
-always_allow_html: true
+title: "R ggplot2: intermediate data visualisation"
+format:
+  gfm:
+    toc: true
+    toc-depth: 2
+editor: source
+date: today
+author: UQ Library
 ---
 
 ## Essential shortcuts
@@ -44,9 +48,7 @@ During this hands-on session, you will:
 -   further modify themes
 -   make a plot interactive
 
-## Material
-
-### Setting up
+## Setting up
 
 **Install ggplot2** if you don't already have it, with: `install.packages("ggplot2")`
 
@@ -77,9 +79,9 @@ Finally, make sure you **load ggplot2** so we can use its functions:
 library(ggplot2)
 ```
 
-### Import data
+## Import data
 
-#### Challenge 1 – import data
+### Challenge 1 – import data
 
 Our data is located at <https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv>
 
@@ -103,7 +105,7 @@ summary(gapminder) # summary statistics for each variable
 
 The Environment pane gives you an overview of the variables.
 
-### Explore data visually
+## Explore data visually
 
 Let's start with a question: how do Gross Domestic Product (GDP) and life expectancy relate?
 
@@ -122,7 +124,7 @@ Remember that the 3 main elements of a ggplot2 visualisation are:
 -   the *mapping of aesthetics to variables*
 -   the *geometry*
 
-### Aesthetics available
+## Aesthetics available
 
 So far we have been using the `x` and `y` aesthetics. There are more available, depending on the geometry that you are using.
 
@@ -142,7 +144,7 @@ ggplot(data = gapminder,
   geom_smooth()
 ```
 
-#### Challenge 2 - save our plot
+### Challenge 2 - save our plot
 
 How can we save our scatter plot to the 'plots' directory we created using a function?
 
@@ -152,9 +154,9 @@ ggsave(filename = "plots/gdpPercap_v_lifeExp.png", width = 7, height = 4)
 
 > Remember that the `ggsave` function saves the last plot.
 
-### Modifying scales
+## Modifying scales
 
-#### More control over colours
+### More control over colours
 
 This plot uses the default discrete palette.
 
@@ -224,7 +226,7 @@ You can find [visual lists](https://r-charts.com/colors/) of all the R colours, 
 
 > That was a lot of options about colours, but know that in some cases, the most straight-forward way to make your visualisations readable by most is to use symbols instead of colours. In ggplot2, you would use the `shape` aesthetic.
 
-#### Axis scale modifiers
+### Axis scale modifiers
 
 We could further modify our plot to make it more readable. For example, we can use a different x axis scale to distribute the data differently:
 
@@ -244,7 +246,7 @@ p +
 
 > You can use the scientific notation `1e5` to mean "a 1 followed by 5 zeros".
 
-### Zooming in
+## Zooming in
 
 We might want to focus on the left hand side part of our original plot:
 
@@ -272,7 +274,7 @@ p +
 
 The Cartesian coordinate system is the default one in ggplot2. You could change the coordinate system to `coord_polar()` for circular visualisations, or to `coord_map()` to visualise spatial data.
 
-### Interactive plots
+## Interactive plots
 
 The plotly package brings the power of the Plotly javascript library to R. Install it with `install.packages(plotly)`, and you'll then be able to convert a ggplot2 visualisation into an interactive HTML visualisation with one single function!
 
@@ -302,9 +304,9 @@ ggplotly(p)
 
 > You can export the visualisation as a HTML page for sharing with others.
 
-### Histograms
+## Histograms
 
-#### Challenge 3 – histogram of life expectancy
+### Challenge 3 – histogram of life expectancy
 
 Search for the histogram geometry function, and plot the life expectancy. How can we modify the bars?
 
@@ -383,7 +385,7 @@ ggplot(gapminder,
                  position = "dodge")
 ```
 
-### Faceting
+## Faceting
 
 An even more readable representation could use **faceting**:
 
@@ -399,7 +401,7 @@ We have to wrap the variable(s) we want to facet by into the `vars()` function.
 
 > Faceting is a great way to add yet another variable to your visualisation, instead of using another aesthetic.
 
-### Theming
+## Theming
 
 The legend is probably superfluous. We want to keep the colours, but we use the `theme()` function to customise the look of our plot and remove the legend:
 
@@ -424,7 +426,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-### A more refined facetted example
+## A more refined facetted example
 
 This extra example gives an idea of how a refined ggplot2 visualisation might be constructed. It represents 4 different variables, using the larger diamonds data set.
 
@@ -454,7 +456,7 @@ In this visualisation:
 * a built-in theme is used
 * a label clarifies the unit of measurement
 
-### Boxplots
+## Boxplots
 
 A simple boxplot can help visualise a distribution in categories:
 
@@ -463,7 +465,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
 
-#### Challenge 4 – code comprehension
+### Challenge 4 – code comprehension
 
 What do you think this extra line might do to our boxplots?
 
@@ -477,7 +479,7 @@ This is useful if the x labels get too cramped on the x axis: you can rotate the
 
 > Try turning this plot into an interactive visualisation to see stats easily!
 
-### Summarise data and plot
+## Summarise data and plot
 
 Let's try summarising the average and standard deviation of life expectancy by continent from the gapminder data and piping it directly into a ggplot. We will need to install/load dplyr for this.
 
@@ -500,7 +502,7 @@ gapminder %>%
        y = "Life Expectancy in Years")
 ```
 
-### Plot from mutliple summarised dataframes 
+## Plot from multiple summarised dataframes 
 
 In ggplot2, multiple data frames can be plotted on the same plot. For example, let's say we wanted to make a bar graph of total population by year with the gapminder data set colored by continent and also include the standard deviation of the total population per year at the top of each column as an error bar? This may or may not make the most sense in terms of representing the data, but we will do it here as an exercise.
 
@@ -544,7 +546,7 @@ ggplot(data = cont_ave, aes(x = year,
    theme(panel.grid = element_blank()) # remove the grid lines
 ```
 
-### Close project
+## Close project
 
 Closing RStudio will ask you if you want to save your workspace and scripts. Saving your workspace is usually not recommended if you have all the necessary commands in your script.
 

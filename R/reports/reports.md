@@ -1,7 +1,20 @@
-R reproducible reports with R Markdown and knitr
-================
-Stéphane Guillou
-2022-05-13
+# R reproducible reports with R Markdown
+UQ Library
+2024-09-17
+
+- [Setting up](#setting-up)
+- [What are we going to learn?](#what-are-we-going-to-learn)
+- [Create a project and an R Markdown
+  file](#create-a-project-and-an-r-markdown-file)
+- [R Markdown and knitting](#r-markdown-and-knitting)
+- [Editing the document](#editing-the-document)
+- [Errors when knitting](#errors-when-knitting)
+- [Tidy the data](#tidy-the-data)
+- [Inline code](#inline-code)
+- [Visualisation](#visualisation)
+- [Update the report](#update-the-report)
+- [Output formats](#output-formats)
+- [Useful links](#useful-links)
 
 ## Setting up
 
@@ -9,14 +22,14 @@ Stéphane Guillou
 > [installation
 > instructions](/R/Installation.md#r--rstudio-installation-instructions)
 
--   If you are using your own laptop please open RStudio
-    -   Make sure you have a working Internet connection
--   On the Library’s training computers:
-    -   Log in with your UQ username and password
-    -   Make sure you have a working Internet connection
-    -   Open the ZENworks application
-    -   Look for “RStudio”
-    -   Double click on RStudio, which will install both R and RStudio
+- If you are using your own laptop please open RStudio
+  - Make sure you have a working Internet connection
+- On the Library’s training computers:
+  - Log in with your UQ username and password
+  - Make sure you have a working Internet connection
+  - Open the ZENworks application
+  - Look for “RStudio”
+  - Double click on RStudio, which will install both R and RStudio
 
 With RStudio open, let’s make sure we have the necessary packages
 installed by running this command (this might take a few minutes):
@@ -59,11 +72,11 @@ See how the document is already populated with a template? Scroll
 through and have a look at how it is structured. The three main elements
 are:
 
--   a **YAML header** at the top, between the `---` tags;
--   **Markdown** sections, where we can write prose, format text and add
-    headers;
--   and **code chunks**, in between ```` ``` ```` where we can write R
-    code.
+- a **YAML header** at the top, between the `---` tags;
+- **Markdown** sections, where we can write prose, format text and add
+  headers;
+- and **code chunks**, in between ```` ``` ```` where we can write R
+  code.
 
 But before we edit this document, let’s go straight to the **“knit”
 button** at the top of the source panel. Clicking that button will
@@ -73,20 +86,6 @@ a separate window when it is finished.
 
 See how the document contains a title, headers, code input and output,
 and explanations?
-
-### Working directory
-
-Note that the **working directory** for an R Markdown document will be
-the .Rmd file’s location by default (and not necessarily the working
-directory of the R project your are in). That is why it is a good idea
-to save your R Markdown file at the top of your R Project directory if
-you want consistency between your scripts and your R Markdown file.
-
-In our example, we will load a CSV file from the Internet, but if we had a
-data file stored locally, it is important to keep that in mind.
-
-> You can change the default behaviour by using the Knit dropdown menu
-> and choosing an option in “Knit directory”.
 
 ## Editing the document
 
@@ -115,8 +114,8 @@ Notice how we used a `[text](link)` syntax to add a link to a website?
 
 We can also style our text by surrounding with other tags:
 
--   `**` for **bold**
--   `*` for *italic*
+- `**` for **bold**
+- `*` for *italic*
 
 Try to style your text, and add a header of level 3 for a section on
 “importing the data”. Knit the document to see if it works!
@@ -140,8 +139,6 @@ knit the whole document every time you want to test your code.
 
 Now, try to knit the document and see what it looks like.
 
-Note that you can insert an r chunk by using the Ctrl+Alt+I (or Cmd+Alt+I on Mac).
-
 #### Challenge 2
 
 Inside a new chunk, add some code to import the dataset located
@@ -155,40 +152,44 @@ ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training
 > Clicking “Knit” will automatically save your .Rmd file as well as the
 > HTML output.
 
-### Data Tables
-
 Now, we can add a chunk to show the data, by including this code in it:
 
 ``` r
 ghg
 ```
 
-    ## # A tibble: 28 × 8
-    ##     year `Agriculture, …` `Forestry - Ch…` Mining Manufacturing `Electricity, …`
-    ##    <dbl>            <dbl>            <dbl>  <dbl>         <dbl>            <dbl>
-    ##  1  1990             286.            -19.1   44.6          68.0             148.
-    ##  2  1991             266.            -14.8   46.1          67.9             150.
-    ##  3  1992             197.            -19.7   48.5          68.1             153.
-    ##  4  1993             178.            -21.1   48.8          68.5             152.
-    ##  5  1994             168.            -17.6   46.7          68.3             153.
-    ##  6  1995             144.            -18.3   48.7          68.1             159.
-    ##  7  1996             148.            -18.1   51.0          66.2             161.
-    ##  8  1997             156.            -22.6   54.4          66.9             166.
-    ##  9  1998             140.            -22.5   55.4          67.5             178.
-    ## 10  1999             151.            -22.0   53.0          68.8             184.
-    ## # … with 18 more rows, and 2 more variables:
-    ## #   `Services, Construction and Transport` <dbl>, Residential <dbl>
+    # A tibble: 28 × 8
+        year Agriculture, Forestry and…¹ Forestry - Changes i…² Mining Manufacturing
+       <dbl>                       <dbl>                  <dbl>  <dbl>         <dbl>
+     1  1990                        286.                  -19.1   44.6          68.0
+     2  1991                        266.                  -14.8   46.1          67.9
+     3  1992                        197.                  -19.7   48.5          68.1
+     4  1993                        178.                  -21.1   48.8          68.5
+     5  1994                        168.                  -17.6   46.7          68.3
+     6  1995                        144.                  -18.3   48.7          68.1
+     7  1996                        148.                  -18.1   51.0          66.2
+     8  1997                        156.                  -22.6   54.4          66.9
+     9  1998                        140.                  -22.5   55.4          67.5
+    10  1999                        151.                  -22.0   53.0          68.8
+    # ℹ 18 more rows
+    # ℹ abbreviated names: ¹​`Agriculture, Forestry and Fishing`,
+    #   ²​`Forestry - Changes in Inventories`
+    # ℹ 3 more variables: `Electricity, Gas, Water and Waste Services` <dbl>,
+    #   `Services, Construction and Transport` <dbl>, Residential <dbl>
 
-However, we can see that this isn't the prettiest way to display our data. Fortunately **knitr** has a function to create a nicely formatted table, kable() - a knitr table.
-Let's pipe the dataframe into a kable now, but also reduce the number of rows displayed.
+### Working directory
 
-``` r
-ghg %>% head(5) %>% knitr::kable()
-```
+Note that the **working directory** for an R Markdown document will be
+the .Rmd file’s location by default (and not necessarily the working
+directory of the R project your are in). That is why it is a good idea
+to save your R Markdown file at the top of your R Project directory if
+you want consistency between your scripts and your R Markdown file.
 
-![image](https://user-images.githubusercontent.com/67612228/215646554-ccae9e88-c437-4d11-837d-4055cc65f20e.png)
+In our example, we load a CSV file from the Internet, but if we had a
+data file stored locally, it is important to keep that in mind.
 
-Much nicer!
+> You can change the default behaviour by using the Knit dropdown menu
+> and choosing an option in “Knit directory”.
 
 ### Chunk options
 
@@ -230,8 +231,8 @@ Here is an example of a chunk you might use to change default options:
 
 That would make sure that, by default:
 
--   The code is shown, but
--   the messages and warnings are hidden.
+- The code is shown, but
+- the messages and warnings are hidden.
 
 ## Errors when knitting
 
@@ -245,6 +246,18 @@ the R Markdown console?
 
 Double-click on the error message to jump the problem.
 
+## Tidy the data
+
+Let’s keep populating our report with more code. Our data is not
+respecting the tidy data principles, so let’s fix that first with a
+tidyr function:
+
+``` r
+ghg_tidy <- pivot_longer(ghg,
+                         -year,
+                         names_to = "sector",
+                         values_to = "emissions")
+```
 
 ## Inline code
 
@@ -264,21 +277,6 @@ with this one:
 
 Now, try knitting the report again.
 
-
-## Tidy the data
-
-Let’s keep populating our report with more code. Our data is not
-respecting the tidy data principles, so let’s fix that first with a
-tidyr function:
-
-``` r
-ghg_tidy <- pivot_longer(ghg,
-                         -year,
-                         names_to = "sector",
-                         values_to = "emissions")
-```
-
-
 ## Visualisation
 
 We can also include a visualisation using, for example, ggplot2:
@@ -289,7 +287,7 @@ ggplot(ghg_tidy, aes(x = year, y = emissions, colour = sector)) +
   ylab("emissions (Mt CO2e)")
 ```
 
-![](reports_files/figure-gfm/viz-1.png)<!-- -->
+![](reports_files/figure-commonmark/viz-1.png)
 
 > If you want to hide the code that created an output, like for this
 > plot, you can add the option `echo=FALSE` to it.
@@ -307,16 +305,6 @@ ggplotly(p)
 This will work in a HTML document, but will most likely fail in other
 output formats.
 
-> We can make it check the output type before exporting so that we ensure that our plot will display regardless, by choosing the regular ggplot for everything except html.
-
-``` r 
-if (knitr::is_html_output() ) { 
-	library(plotly)
-	ggplotly(p) } 
-else { 
-	p }
-```
-
 If you want to change the size of your visualisations, you can tweak the
 width and height with chunk options. However, you make that consistent
 for all your figures, by using an extra default option in the setup
@@ -324,9 +312,6 @@ chunk (the one that contains the `{r setup, include=FALSE}` header, at
 the top of the document). For example:
 
     knitr::opts_chunk$set(fig.width = 8)
-    
-> Note that those units are in inches, we can use metric using the unit() function from ggplot2
-> `knitr::opts_chunk$set(fig.width = unit(10, "cm")`
 
 ## Update the report
 
@@ -352,20 +337,20 @@ conclusions!)
 
 The benefits of using HTML documents are multiple:
 
--   figures won’t break the flow of the document by jumping to the next
-    page and leaving a large blank space;
--   you can include interactive visualisations making use of the latest
-    HTML features;
--   they can be directly integrated into a website.
+- figures won’t break the flow of the document by jumping to the next
+  page and leaving a large blank space;
+- you can include interactive visualisations making use of the latest
+  HTML features;
+- they can be directly integrated into a website.
 
 However, other output formats are available. Here are some examples:
 
--   `pdf_document` for a non-editable, widespread, portable format
--   `word_document` and `odt_document` to open and edit with Microsoft
-    Word and LibreOffice Writer
--   `md_document` for a Markdown file that can easily be published on
-    GitHub or GitLab
--   and more, including for creating slides.
+- `pdf_document` for a non-editable, widespread, portable format
+- `word_document` and `odt_document` to open and edit with Microsoft
+  Word and LibreOffice Writer
+- `md_document` for a Markdown file that can easily be published on
+  GitHub or GitLab
+- and more, including for creating slides.
 
 ### Knitting to PDF
 
@@ -383,28 +368,21 @@ tinytex::install_tinytex()
 ```
 
 After this, try to change your YAML header’s `output` value to
-`pdf_document`, then add `always_allow_html: yes` and knit it.
-
-## Switching to the visual editor
-At the top of the Rmd editor window, you have the option to switch between **Source** and **Visual**.
-If you change to the visual editor, you will see that the document now formats itself to be slightly more like the final output. This includes creating the code boxes, and showing text formatting, such as bold and italics.
-
-You can also use this much more easily insert tables and other items without having to code so much by hand.
+`pdf_document` and knit it.
 
 ## Useful links
 
 Related to R Markdown and knitr:
 
--   *[R Markdown
-    Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)*, by Yihui
-    Xie and Christophe Dervieux
--   [Official R Markdown website](https://rmarkdown.rstudio.com/) by
-    RStudio
-    -   [Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
-    -   [Documentation](https://rmarkdown.rstudio.com/docs/)
--   [R Markdown
-    cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
--   [Simple Markdown guide from GitHub (which also uses Markdown)](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+- *[R Markdown
+  Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)*, by Yihui
+  Xie and Christophe Dervieux
+- [Official R Markdown website](https://rmarkdown.rstudio.com/) by
+  RStudio
+  - [Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
+  - [Documentation](https://rmarkdown.rstudio.com/docs/)
+- [R Markdown
+  cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
 
 We also have a [list of recommended R
 resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md#what-next).

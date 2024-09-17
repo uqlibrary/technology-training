@@ -18,12 +18,12 @@ This is the Library's **regular R cycle**:
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
-| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) <sup>[source](R/rstudio_intro/rstudio_intro.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rkfyJemYE) | [YT](https://www.youtube.com/watch?v=BICccwBynJc&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=1) |
-| R dplyr: preparing data for analysis | [md](R/dplyr/dplyr.md) <sup>[source](R/dplyr/dplyr.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/HyyLCm3KN) | [YT](https://www.youtube.com/watch?v=vqvsyaaqJUk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2) |
-| R ggplot2: introductory data visualisation | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rJIPr0vi4) | [YT](https://www.youtube.com/watch?v=LoeBgXSJWTw&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=3) |
-| R ggplot2: intermediate data visualisation | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/rJLdcW-24) | [YT](https://www.youtube.com/watch?v=zzXCkYR84M0&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=4) |
-| R tidyverse: loops and data tidying | [md](R/tidyverse_next_steps/tidyverse_next_steps.md) <sup>[source](R/tidyverse_next_steps/tidyverse_next_steps.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/BkQCcmiOV) | [YT](https://www.youtube.com/watch?v=2TZYeFcJQIk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=6) |
-| R reproducible reports with R Markdown and knitr | [md](R/reports/reports.md) <sup>[source](R/reports/reports.Rmd)</sup> | [html](https://demo.hedgedoc.org/s/S1Aka1waI) | ... |
+| R with RStudio: getting started | [md](R/rstudio_intro/rstudio_intro.md) <sup>[source](R/rstudio_intro/rstudio_intro.qmd)</sup> | [html](https://demo.hedgedoc.org/s/rkfyJemYE) | [YT](https://www.youtube.com/watch?v=BICccwBynJc&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=1) |
+| R dplyr: preparing data for analysis | [md](R/dplyr/dplyr.md) <sup>[source](R/dplyr/dplyr.qmd)</sup> | [html](https://demo.hedgedoc.org/s/HyyLCm3KN) | [YT](https://www.youtube.com/watch?v=vqvsyaaqJUk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=2) |
+| R ggplot2: introductory data visualisation | [md](R/ggplot2_intro/ggplot2_intro.md) <sup>[source](R/ggplot2_intro/ggplot2_intro.qmd)</sup> | [html](https://demo.hedgedoc.org/s/rJIPr0vi4) | [YT](https://www.youtube.com/watch?v=LoeBgXSJWTw&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=3) |
+| R ggplot2: intermediate data visualisation | [md](R/ggplot2_intermediate/ggplot2_intermediate.md) <sup>[source](R/ggplot2_intermediate/ggplot2_intermediate.qmd)</sup> | [html](https://demo.hedgedoc.org/s/rJLdcW-24) | [YT](https://www.youtube.com/watch?v=zzXCkYR84M0&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=4) |
+| R tidyverse: loops and data tidying | [md](R/tidyverse_next_steps/tidyverse_next_steps.md) <sup>[source](R/tidyverse_next_steps/tidyverse_next_steps.qmd)</sup> | [html](https://demo.hedgedoc.org/s/BkQCcmiOV) | [YT](https://www.youtube.com/watch?v=2TZYeFcJQIk&list=PLmDEaZ20fWqCypV7S-trCPtVefHk4e0bU&index=6) |
+| R reproducible reports with R Markdown | [md](R/reports/reports.md) <sup>[source](R/reports/reports.qmd)</sup> | [html](https://demo.hedgedoc.org/s/S1Aka1waI) | ... |
 
 We also offer these more specialised sessions (run less regularly, but feel free to ask us to schedule one of them):
 

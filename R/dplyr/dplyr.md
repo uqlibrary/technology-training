@@ -1,29 +1,12 @@
-R data manipulation with RStudio and dplyr
-================
+# R dplyr: preparing data for analysis
 UQ Library
-(2024-09-11)
+2024-09-17
 
 - [What are we going to learn?](#what-are-we-going-to-learn)
 - [Keep in mind](#keep-in-mind)
-  - [Help](#help)
 - [Open RStudio](#open-rstudio)
 - [Setting up](#setting-up)
-  - [Install the dplyr package](#install-the-dplyr-package)
-  - [New project](#new-project)
-  - [Create a script](#create-a-script)
-  - [Introducing our data](#introducing-our-data)
 - [Basic dplyr verbs](#basic-dplyr-verbs)
-  - [1. Pick variables with `select()`](#1-pick-variables-with-select)
-  - [2. Pick observations with
-    `filter()`](#2-pick-observations-with-filter)
-  - [3. Reorder observations with
-    `arrange()`](#3-reorder-observations-with-arrange)
-  - [4. Create new variables with
-    `mutate()`](#4-create-new-variables-with-mutate)
-  - [5. Collapse to a single value with
-    `summarise()`](#5-collapse-to-a-single-value-with-summarise)
-  - [6. Change the scope with
-    `group_by()`](#6-change-the-scope-with-group_by)
 - [More examples](#more-examples)
 - [Close project](#close-project)
 - [What next?](#what-next)
@@ -143,13 +126,13 @@ syntax: `gapminder$year`. For example, try these:
 class(gapminder$country) # what kind of data?
 ```
 
-    ## [1] "character"
+    [1] "character"
 
 ``` r
 range(gapminder$year) # what is the time range?
 ```
 
-    ## [1] 1952 2007
+    [1] 1952 2007
 
 ## Basic dplyr verbs
 
@@ -183,16 +166,16 @@ Let’s load the `dplyr` package to access its functions:
 library(dplyr)
 ```
 
-    ## 
-    ## Attaching package: 'dplyr'
 
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
+    Attaching package: 'dplyr'
 
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
+    The following objects are masked from 'package:stats':
+
+        filter, lag
+
+    The following objects are masked from 'package:base':
+
+        intersect, setdiff, setequal, union
 
 > You only need to install a package once (with `install.packages()`),
 > but you need to reload it every time you start a new R session (with
@@ -226,7 +209,7 @@ using the `-` character in front of a variable name:
 names(select(gapminder, -continent))
 ```
 
-    ## [1] "country"   "year"      "pop"       "lifeExp"   "gdpPercap"
+    [1] "country"   "year"      "pop"       "lifeExp"   "gdpPercap"
 
 There are also a lot of helper functions to select columns according to
 a logic. For example, to only keep the columns that have “a” in their
@@ -236,7 +219,7 @@ names:
 names(select(gapminder, contains("a")))
 ```
 
-    ## [1] "year"      "gdpPercap"
+    [1] "year"      "gdpPercap"
 
 ### 2. Pick observations with `filter()`
 
@@ -265,31 +248,31 @@ You can compare any kind of data For example:
 1 == 1
 ```
 
-    ## [1] TRUE
+    [1] TRUE
 
 ``` r
 1 == 2
 ```
 
-    ## [1] FALSE
+    [1] FALSE
 
 ``` r
 1 != 2
 ```
 
-    ## [1] TRUE
+    [1] TRUE
 
 ``` r
 1 > 0
 ```
 
-    ## [1] TRUE
+    [1] TRUE
 
 ``` r
 "money" == "happiness"
 ```
 
-    ## [1] FALSE
+    [1] FALSE
 
 When R executes these commands, it answers `TRUE` of `FALSE`, as if
 asked a yes/no question. These `TRUE` and `FALSE` values are called
@@ -302,7 +285,7 @@ one value to three others:
 1 == c(1, 2, 3, 1, 3)
 ```
 
-    ## [1]  TRUE FALSE FALSE  TRUE FALSE
+    [1]  TRUE FALSE FALSE  TRUE FALSE
 
 This kind of operation results in a logical vector with a logical value
 for each element. This is exactly what we will use to filter our rows.
@@ -315,21 +298,21 @@ australia <- filter(gapminder, country == "Australia")
 australia
 ```
 
-    ## # A tibble: 12 × 6
-    ##    country    year      pop continent lifeExp gdpPercap
-    ##    <chr>     <int>    <dbl> <chr>       <dbl>     <dbl>
-    ##  1 Australia  1952  8691212 Oceania      69.1    10040.
-    ##  2 Australia  1957  9712569 Oceania      70.3    10950.
-    ##  3 Australia  1962 10794968 Oceania      70.9    12217.
-    ##  4 Australia  1967 11872264 Oceania      71.1    14526.
-    ##  5 Australia  1972 13177000 Oceania      71.9    16789.
-    ##  6 Australia  1977 14074100 Oceania      73.5    18334.
-    ##  7 Australia  1982 15184200 Oceania      74.7    19477.
-    ##  8 Australia  1987 16257249 Oceania      76.3    21889.
-    ##  9 Australia  1992 17481977 Oceania      77.6    23425.
-    ## 10 Australia  1997 18565243 Oceania      78.8    26998.
-    ## 11 Australia  2002 19546792 Oceania      80.4    30688.
-    ## 12 Australia  2007 20434176 Oceania      81.2    34435.
+    # A tibble: 12 × 6
+       country    year      pop continent lifeExp gdpPercap
+       <chr>     <int>    <dbl> <chr>       <dbl>     <dbl>
+     1 Australia  1952  8691212 Oceania      69.1    10040.
+     2 Australia  1957  9712569 Oceania      70.3    10950.
+     3 Australia  1962 10794968 Oceania      70.9    12217.
+     4 Australia  1967 11872264 Oceania      71.1    14526.
+     5 Australia  1972 13177000 Oceania      71.9    16789.
+     6 Australia  1977 14074100 Oceania      73.5    18334.
+     7 Australia  1982 15184200 Oceania      74.7    19477.
+     8 Australia  1987 16257249 Oceania      76.3    21889.
+     9 Australia  1992 17481977 Oceania      77.6    23425.
+    10 Australia  1997 18565243 Oceania      78.8    26998.
+    11 Australia  2002 19546792 Oceania      80.4    30688.
+    12 Australia  2007 20434176 Oceania      81.2    34435.
 
 The function compares the value “Australia” to all the values in the
 `country` variable, and only keeps the rows that have `TRUE` as an
@@ -343,7 +326,7 @@ life81 <- filter(gapminder, lifeExp > 81)
 dim(life81)
 ```
 
-    ## [1] 7 6
+    [1] 7 6
 
 ### 3. Reorder observations with `arrange()`
 
@@ -354,16 +337,16 @@ ascending order:
 arrange(life81, lifeExp)
 ```
 
-    ## # A tibble: 7 × 6
-    ##   country          year       pop continent lifeExp gdpPercap
-    ##   <chr>           <int>     <dbl> <chr>       <dbl>     <dbl>
-    ## 1 Australia        2007  20434176 Oceania      81.2    34435.
-    ## 2 Hong Kong China  2002   6762476 Asia         81.5    30209.
-    ## 3 Switzerland      2007   7554661 Europe       81.7    37506.
-    ## 4 Iceland          2007    301931 Europe       81.8    36181.
-    ## 5 Japan            2002 127065841 Asia         82      28605.
-    ## 6 Hong Kong China  2007   6980412 Asia         82.2    39725.
-    ## 7 Japan            2007 127467972 Asia         82.6    31656.
+    # A tibble: 7 × 6
+      country          year       pop continent lifeExp gdpPercap
+      <chr>           <int>     <dbl> <chr>       <dbl>     <dbl>
+    1 Australia        2007  20434176 Oceania      81.2    34435.
+    2 Hong Kong China  2002   6762476 Asia         81.5    30209.
+    3 Switzerland      2007   7554661 Europe       81.7    37506.
+    4 Iceland          2007    301931 Europe       81.8    36181.
+    5 Japan            2002 127065841 Asia         82      28605.
+    6 Hong Kong China  2007   6980412 Asia         82.2    39725.
+    7 Japan            2007 127467972 Asia         82.6    31656.
 
 If we want to have a look at the entries with highest life expectancy
 first, we can use the `desc()` function (for “descending”):
@@ -372,16 +355,16 @@ first, we can use the `desc()` function (for “descending”):
 arrange(life81, desc(lifeExp))
 ```
 
-    ## # A tibble: 7 × 6
-    ##   country          year       pop continent lifeExp gdpPercap
-    ##   <chr>           <int>     <dbl> <chr>       <dbl>     <dbl>
-    ## 1 Japan            2007 127467972 Asia         82.6    31656.
-    ## 2 Hong Kong China  2007   6980412 Asia         82.2    39725.
-    ## 3 Japan            2002 127065841 Asia         82      28605.
-    ## 4 Iceland          2007    301931 Europe       81.8    36181.
-    ## 5 Switzerland      2007   7554661 Europe       81.7    37506.
-    ## 6 Hong Kong China  2002   6762476 Asia         81.5    30209.
-    ## 7 Australia        2007  20434176 Oceania      81.2    34435.
+    # A tibble: 7 × 6
+      country          year       pop continent lifeExp gdpPercap
+      <chr>           <int>     <dbl> <chr>       <dbl>     <dbl>
+    1 Japan            2007 127467972 Asia         82.6    31656.
+    2 Hong Kong China  2007   6980412 Asia         82.2    39725.
+    3 Japan            2002 127065841 Asia         82      28605.
+    4 Iceland          2007    301931 Europe       81.8    36181.
+    5 Switzerland      2007   7554661 Europe       81.7    37506.
+    6 Hong Kong China  2002   6762476 Asia         81.5    30209.
+    7 Australia        2007  20434176 Oceania      81.2    34435.
 
 We could also use the `-` shortcut, which only works for numerical data:
 
@@ -415,7 +398,7 @@ For example, this command:
 round(1.23, digits = 1)
 ```
 
-    ## [1] 1.2
+    [1] 1.2
 
 … is equivalent to:
 
@@ -423,7 +406,7 @@ round(1.23, digits = 1)
 1.23 %>% round(digits = 1)
 ```
 
-    ## [1] 1.2
+    [1] 1.2
 
 Here’s another example with the `filter()` verb:
 
@@ -432,20 +415,20 @@ gapminder %>%
   filter(country != "France")
 ```
 
-    ## # A tibble: 1,692 × 6
-    ##    country      year      pop continent lifeExp gdpPercap
-    ##    <chr>       <int>    <dbl> <chr>       <dbl>     <dbl>
-    ##  1 Afghanistan  1952  8425333 Asia         28.8      779.
-    ##  2 Afghanistan  1957  9240934 Asia         30.3      821.
-    ##  3 Afghanistan  1962 10267083 Asia         32.0      853.
-    ##  4 Afghanistan  1967 11537966 Asia         34.0      836.
-    ##  5 Afghanistan  1972 13079460 Asia         36.1      740.
-    ##  6 Afghanistan  1977 14880372 Asia         38.4      786.
-    ##  7 Afghanistan  1982 12881816 Asia         39.9      978.
-    ##  8 Afghanistan  1987 13867957 Asia         40.8      852.
-    ##  9 Afghanistan  1992 16317921 Asia         41.7      649.
-    ## 10 Afghanistan  1997 22227415 Asia         41.8      635.
-    ## # ℹ 1,682 more rows
+    # A tibble: 1,692 × 6
+       country      year      pop continent lifeExp gdpPercap
+       <chr>       <int>    <dbl> <chr>       <dbl>     <dbl>
+     1 Afghanistan  1952  8425333 Asia         28.8      779.
+     2 Afghanistan  1957  9240934 Asia         30.3      821.
+     3 Afghanistan  1962 10267083 Asia         32.0      853.
+     4 Afghanistan  1967 11537966 Asia         34.0      836.
+     5 Afghanistan  1972 13079460 Asia         36.1      740.
+     6 Afghanistan  1977 14880372 Asia         38.4      786.
+     7 Afghanistan  1982 12881816 Asia         39.9      978.
+     8 Afghanistan  1987 13867957 Asia         40.8      852.
+     9 Afghanistan  1992 16317921 Asia         41.7      649.
+    10 Afghanistan  1997 22227415 Asia         41.8      635.
+    # ℹ 1,682 more rows
 
 … becomes:
 
@@ -453,20 +436,20 @@ gapminder %>%
 filter(gapminder, country != "France")
 ```
 
-    ## # A tibble: 1,692 × 6
-    ##    country      year      pop continent lifeExp gdpPercap
-    ##    <chr>       <int>    <dbl> <chr>       <dbl>     <dbl>
-    ##  1 Afghanistan  1952  8425333 Asia         28.8      779.
-    ##  2 Afghanistan  1957  9240934 Asia         30.3      821.
-    ##  3 Afghanistan  1962 10267083 Asia         32.0      853.
-    ##  4 Afghanistan  1967 11537966 Asia         34.0      836.
-    ##  5 Afghanistan  1972 13079460 Asia         36.1      740.
-    ##  6 Afghanistan  1977 14880372 Asia         38.4      786.
-    ##  7 Afghanistan  1982 12881816 Asia         39.9      978.
-    ##  8 Afghanistan  1987 13867957 Asia         40.8      852.
-    ##  9 Afghanistan  1992 16317921 Asia         41.7      649.
-    ## 10 Afghanistan  1997 22227415 Asia         41.8      635.
-    ## # ℹ 1,682 more rows
+    # A tibble: 1,692 × 6
+       country      year      pop continent lifeExp gdpPercap
+       <chr>       <int>    <dbl> <chr>       <dbl>     <dbl>
+     1 Afghanistan  1952  8425333 Asia         28.8      779.
+     2 Afghanistan  1957  9240934 Asia         30.3      821.
+     3 Afghanistan  1962 10267083 Asia         32.0      853.
+     4 Afghanistan  1967 11537966 Asia         34.0      836.
+     5 Afghanistan  1972 13079460 Asia         36.1      740.
+     6 Afghanistan  1977 14880372 Asia         38.4      786.
+     7 Afghanistan  1982 12881816 Asia         39.9      978.
+     8 Afghanistan  1987 13867957 Asia         40.8      852.
+     9 Afghanistan  1992 16317921 Asia         41.7      649.
+    10 Afghanistan  1997 22227415 Asia         41.8      635.
+    # ℹ 1,682 more rows
 
 To do what we did previously in one single command, using the pipe:
 
@@ -476,16 +459,16 @@ gapminder %>%
   arrange(-lifeExp)
 ```
 
-    ## # A tibble: 7 × 6
-    ##   country          year       pop continent lifeExp gdpPercap
-    ##   <chr>           <int>     <dbl> <chr>       <dbl>     <dbl>
-    ## 1 Japan            2007 127467972 Asia         82.6    31656.
-    ## 2 Hong Kong China  2007   6980412 Asia         82.2    39725.
-    ## 3 Japan            2002 127065841 Asia         82      28605.
-    ## 4 Iceland          2007    301931 Europe       81.8    36181.
-    ## 5 Switzerland      2007   7554661 Europe       81.7    37506.
-    ## 6 Hong Kong China  2002   6762476 Asia         81.5    30209.
-    ## 7 Australia        2007  20434176 Oceania      81.2    34435.
+    # A tibble: 7 × 6
+      country          year       pop continent lifeExp gdpPercap
+      <chr>           <int>     <dbl> <chr>       <dbl>     <dbl>
+    1 Japan            2007 127467972 Asia         82.6    31656.
+    2 Hong Kong China  2007   6980412 Asia         82.2    39725.
+    3 Japan            2002 127065841 Asia         82      28605.
+    4 Iceland          2007    301931 Europe       81.8    36181.
+    5 Switzerland      2007   7554661 Europe       81.7    37506.
+    6 Hong Kong China  2002   6762476 Asia         81.5    30209.
+    7 Australia        2007  20434176 Oceania      81.2    34435.
 
 The pipe operator can be read as “then” and makes the code a lot **more
 readable** than when nesting functions into each other, and avoids the
@@ -526,20 +509,20 @@ gapminder %>%
     select(gdpPercap, pop)
 ```
 
-    ## # A tibble: 1,704 × 2
-    ##    gdpPercap      pop
-    ##        <dbl>    <dbl>
-    ##  1      779.  8425333
-    ##  2      821.  9240934
-    ##  3      853. 10267083
-    ##  4      836. 11537966
-    ##  5      740. 13079460
-    ##  6      786. 14880372
-    ##  7      978. 12881816
-    ##  8      852. 13867957
-    ##  9      649. 16317921
-    ## 10      635. 22227415
-    ## # ℹ 1,694 more rows
+    # A tibble: 1,704 × 2
+       gdpPercap      pop
+           <dbl>    <dbl>
+     1      779.  8425333
+     2      821.  9240934
+     3      853. 10267083
+     4      836. 11537966
+     5      740. 13079460
+     6      786. 14880372
+     7      978. 12881816
+     8      852. 13867957
+     9      649. 16317921
+    10      635. 22227415
+    # ℹ 1,694 more rows
 
 How do you think we could combine them to add something new to our
 dataset?
@@ -559,21 +542,21 @@ gap_gdp <- gapminder %>%
 dim(gap_gdp)
 ```
 
-    ## [1] 1704    7
+    [1] 1704    7
 
 ``` r
 head(gap_gdp)
 ```
 
-    ## # A tibble: 6 × 7
-    ##   country      year      pop continent lifeExp gdpPercap          gdp
-    ##   <chr>       <int>    <dbl> <chr>       <dbl>     <dbl>        <dbl>
-    ## 1 Afghanistan  1952  8425333 Asia         28.8      779.  6567086330.
-    ## 2 Afghanistan  1957  9240934 Asia         30.3      821.  7585448670.
-    ## 3 Afghanistan  1962 10267083 Asia         32.0      853.  8758855797.
-    ## 4 Afghanistan  1967 11537966 Asia         34.0      836.  9648014150.
-    ## 5 Afghanistan  1972 13079460 Asia         36.1      740.  9678553274.
-    ## 6 Afghanistan  1977 14880372 Asia         38.4      786. 11697659231.
+    # A tibble: 6 × 7
+      country      year      pop continent lifeExp gdpPercap          gdp
+      <chr>       <int>    <dbl> <chr>       <dbl>     <dbl>        <dbl>
+    1 Afghanistan  1952  8425333 Asia         28.8      779.  6567086330.
+    2 Afghanistan  1957  9240934 Asia         30.3      821.  7585448670.
+    3 Afghanistan  1962 10267083 Asia         32.0      853.  8758855797.
+    4 Afghanistan  1967 11537966 Asia         34.0      836.  9648014150.
+    5 Afghanistan  1972 13079460 Asia         36.1      740.  9678553274.
+    6 Afghanistan  1977 14880372 Asia         38.4      786. 11697659231.
 
 You can reuse a variable computed by ‘mutate()’ straight away. For
 example, we also want a more readable version of our new variable, in
@@ -595,10 +578,10 @@ gapminder %>%
   summarise(meanLE = mean(lifeExp))
 ```
 
-    ## # A tibble: 1 × 1
-    ##   meanLE
-    ##    <dbl>
-    ## 1   59.5
+    # A tibble: 1 × 1
+      meanLE
+       <dbl>
+    1   59.5
 
 However, a single-value summary is not particularly interesting.
 `summarise()` becomes more powerful when used with `group_by()`.
@@ -615,20 +598,20 @@ gapminder %>%
     group_by(continent)
 ```
 
-    ## # A tibble: 1,704 × 6
-    ##    country      year      pop continent lifeExp gdpPercap
-    ##    <chr>       <int>    <dbl> <chr>       <dbl>     <dbl>
-    ##  1 Afghanistan  1952  8425333 Asia         28.8      779.
-    ##  2 Afghanistan  1957  9240934 Asia         30.3      821.
-    ##  3 Afghanistan  1962 10267083 Asia         32.0      853.
-    ##  4 Afghanistan  1967 11537966 Asia         34.0      836.
-    ##  5 Afghanistan  1972 13079460 Asia         36.1      740.
-    ##  6 Afghanistan  1977 14880372 Asia         38.4      786.
-    ##  7 Afghanistan  1982 12881816 Asia         39.9      978.
-    ##  8 Afghanistan  1987 13867957 Asia         40.8      852.
-    ##  9 Afghanistan  1992 16317921 Asia         41.7      649.
-    ## 10 Afghanistan  1997 22227415 Asia         41.8      635.
-    ## # ℹ 1,694 more rows
+    # A tibble: 1,704 × 6
+       country      year      pop continent lifeExp gdpPercap
+       <chr>       <int>    <dbl> <chr>       <dbl>     <dbl>
+     1 Afghanistan  1952  8425333 Asia         28.8      779.
+     2 Afghanistan  1957  9240934 Asia         30.3      821.
+     3 Afghanistan  1962 10267083 Asia         32.0      853.
+     4 Afghanistan  1967 11537966 Asia         34.0      836.
+     5 Afghanistan  1972 13079460 Asia         36.1      740.
+     6 Afghanistan  1977 14880372 Asia         38.4      786.
+     7 Afghanistan  1982 12881816 Asia         39.9      978.
+     8 Afghanistan  1987 13867957 Asia         40.8      852.
+     9 Afghanistan  1992 16317921 Asia         41.7      649.
+    10 Afghanistan  1997 22227415 Asia         41.8      635.
+    # ℹ 1,694 more rows
 
 The data in the cells is the same, the size of the object is the same.
 However, the dataframe was converted to a **tibble**, because a
@@ -644,14 +627,14 @@ gapminder %>%
   summarise(meanLE = mean(lifeExp))
 ```
 
-    ## # A tibble: 5 × 2
-    ##   continent meanLE
-    ##   <chr>      <dbl>
-    ## 1 Africa      48.9
-    ## 2 Americas    64.7
-    ## 3 Asia        60.1
-    ## 4 Europe      71.9
-    ## 5 Oceania     74.3
+    # A tibble: 5 × 2
+      continent meanLE
+      <chr>      <dbl>
+    1 Africa      48.9
+    2 Americas    64.7
+    3 Asia        60.1
+    4 Europe      71.9
+    5 Oceania     74.3
 
 We now have the summary computed for each continent.
 
@@ -665,14 +648,14 @@ gapminder %>%
     summarise(pop = sum(pop))
 ```
 
-    ## # A tibble: 5 × 2
-    ##   continent        pop
-    ##   <chr>          <dbl>
-    ## 1 Africa     929539692
-    ## 2 Americas   898871184
-    ## 3 Asia      3811953827
-    ## 4 Europe     586098529
-    ## 5 Oceania     24549947
+    # A tibble: 5 × 2
+      continent        pop
+      <chr>          <dbl>
+    1 Africa     929539692
+    2 Americas   898871184
+    3 Asia      3811953827
+    4 Europe     586098529
+    5 Oceania     24549947
 
 #### Challenge 4 – max life expectancy per country
 
@@ -687,20 +670,20 @@ gapminder %>%
     summarise(maxLE = max(lifeExp))
 ```
 
-    ## # A tibble: 142 × 2
-    ##    country     maxLE
-    ##    <chr>       <dbl>
-    ##  1 Afghanistan  43.8
-    ##  2 Albania      76.4
-    ##  3 Algeria      72.3
-    ##  4 Angola       42.7
-    ##  5 Argentina    75.3
-    ##  6 Australia    81.2
-    ##  7 Austria      79.8
-    ##  8 Bahrain      75.6
-    ##  9 Bangladesh   64.1
-    ## 10 Belgium      79.4
-    ## # ℹ 132 more rows
+    # A tibble: 142 × 2
+       country     maxLE
+       <chr>       <dbl>
+     1 Afghanistan  43.8
+     2 Albania      76.4
+     3 Algeria      72.3
+     4 Angola       42.7
+     5 Argentina    75.3
+     6 Australia    81.2
+     7 Austria      79.8
+     8 Bahrain      75.6
+     9 Bangladesh   64.1
+    10 Belgium      79.4
+    # ℹ 132 more rows
 
 ## More examples
 
@@ -720,18 +703,18 @@ starwars %>%
   filter(n > 1) # the mean of a single value is not worth reporting
 ```
 
-    ## # A tibble: 9 × 3
-    ##   species      n  mass
-    ##   <chr>    <int> <dbl>
-    ## 1 Droid        6  69.8
-    ## 2 Gungan       3  74  
-    ## 3 Human       35  81.3
-    ## 4 Kaminoan     2  88  
-    ## 5 Mirialan     2  53.1
-    ## 6 Twi'lek      2  55  
-    ## 7 Wookiee      2 124  
-    ## 8 Zabrak       2  80  
-    ## 9 <NA>         4  81
+    # A tibble: 9 × 3
+      species      n  mass
+      <chr>    <int> <dbl>
+    1 Droid        6  69.8
+    2 Gungan       3  74  
+    3 Human       35  81.3
+    4 Kaminoan     2  88  
+    5 Mirialan     2  53.1
+    6 Twi'lek      2  55  
+    7 Wookiee      2 124  
+    8 Zabrak       2  80  
+    9 <NA>         4  81  
 
 An example of data manipulation and data visualisation in the same
 command with gapminder:
@@ -751,10 +734,10 @@ gapminder %>%
   geom_line()
 ```
 
-    ## `summarise()` has grouped output by 'continent'. You can override using the
-    ## `.groups` argument.
+    `summarise()` has grouped output by 'continent'. You can override using the
+    `.groups` argument.
 
-![](dplyr_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
+![](dplyr_files/figure-commonmark/unnamed-chunk-31-1.png)
 
 And another example, using using our gapminder dataset:
 
@@ -781,13 +764,10 @@ gapminder %>%
            color="black", size= 5 , angle=90) # add labels to colored lines
 ```
 
-    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `linewidth` instead.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
+    Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+    ℹ Please use `linewidth` instead.
 
-![](dplyr_files/figure-gfm/unnamed-chunk-32-1.png)<!-- -->
+![](dplyr_files/figure-commonmark/unnamed-chunk-32-1.png)
 
 ## Close project
 
