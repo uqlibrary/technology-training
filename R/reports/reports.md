@@ -370,6 +370,7 @@ the `format` value in your YAML header:
   Writer
 - `gfm` for a Markdown file that can easily be published on GitHub or
   GitLab
+- `dashboard` for a card-based dashboard
 - and [more](https://quarto.org/docs/output-formats/all-formats.html),
   including for creating slides.
 
@@ -394,15 +395,12 @@ render it.
 
 Related to R Markdown and knitr:
 
-- *[R Markdown
-  Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)*, by Yihui
-  Xie and Christophe Dervieux
-- [Official R Markdown website](https://rmarkdown.rstudio.com/) by
-  RStudio
-  - [Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
-  - [Documentation](https://rmarkdown.rstudio.com/docs/)
-- [R Markdown
-  cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
+- [Official Quarto website](https://quarto.org/)
+  - [Tutorial](https://quarto.org/docs/get-started/hello/rstudio.html)
+  - [Guide](https://quarto.org/docs/guide/)
+  - [Options Reference](https://quarto.org/docs/reference/)
+  - [Blog](https://quarto.org/docs/blog/)
+- [Quarto Cheatsheet](https://rstudio.github.io/cheatsheets/quarto.pdf)
 
-We also have a [list of recommended R
+We also have a general [list of recommended R
 resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md#what-next).
