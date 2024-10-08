@@ -1,6 +1,6 @@
 # UQ Library technology training resources
 
-Here you will find resources related to R, Python, LaTeX, Bash, Git, OpenStreetMap, QGIS, uMap, OpenRefine, Audacity and Voyant Tools training sessions held at the UQ Library.
+Here you will find resources related to R, Python, LaTeX, Bash, Git, OpenStreetMap, QGIS, uMap, OpenRefine, Audacity and Voyant Tools [training sessions held at the UQ Library](https://web.library.uq.edu.au/library-services/training).
 
 Other training resources are also available [on the Library website](https://web.library.uq.edu.au/library-services/training/software-training-resources).
 
