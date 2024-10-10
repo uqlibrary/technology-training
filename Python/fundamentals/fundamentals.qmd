@@ -262,6 +262,7 @@ In this first activity, write a program which takes an age in years and outputs 
 $$\text{Age (minutes)} = \text{Age (years)} \times 365 \times 24 \times 60$$
 
 Steps
+
 * Store the age in years in a variable
 * Calculate the age in minutes
 * Print a message with the output
@@ -277,25 +278,28 @@ number = int(input("Pick a number: "))
 
 Here, `input` asks the user to pick a number. After the user (you) types something into the console and presses <kbd>enter</kbd>, it is saved by Python in the variable `number`. Note that we need to put the input inside an `int( ... )` function to turn it into a number.
 
-::: {.callout-tip title="Solution" collapse="true"}
-We have three lines of code corresponding to the steps above:
-
-```{python}
-#| eval: false
-### Age in minutes calculator
+<details>
+  <summary>Solution</summary>
   
-# Prompt user for age
-age_years = int(input("What is your age: "))
+  We have three lines of code corresponding to the steps above:
+  
+  ```{python}
+  #| eval: false
+  ### Age in minutes calculator
+    
+  # Prompt user for age
+  age_years = int(input("What is your age: "))
 
-# Calculate age in mins
-age_mins = age_years * 365 * 24 * 60
+  # Calculate age in mins
+  age_mins = age_years * 365 * 24 * 60
 
-# Print result
-print("You have lived for" + age_mins + "minutes!")
-```
-:::
+  # Print result
+  print("You have lived for" + age_mins + "minutes!")
+  ```
+</details>
 
 ## Conditionals
+
 Funnelling code through different blocks based on conditions is a fundamental element of all programming, and achieved in Python with conditionals. The most important is the `if` statement, which checks a condition and runs the **indented** code block if it returns `True`:
 
 ```{python}

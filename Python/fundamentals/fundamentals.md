@@ -380,8 +380,11 @@ outputs how many minutes they’ve lived for. Note that
 
 $$\text{Age (minutes)} = \text{Age (years)} \times 365 \times 24 \times 60$$
 
-Steps \* Store the age in years in a variable \* Calculate the age in
-minutes \* Print a message with the output
+Steps
+
+- Store the age in years in a variable
+- Calculate the age in minutes
+- Print a message with the output
 
 ### Stage 2
 
@@ -397,24 +400,29 @@ something into the console and presses <kbd>enter</kbd>, it is saved by
 Python in the variable `number`. Note that we need to put the input
 inside an `int( ... )` function to turn it into a number.
 
-> [!TIP]
->
-> ### Solution
->
-> We have three lines of code corresponding to the steps above:
->
-> ``` python
-> ### Age in minutes calculator
->   
-> # Prompt user for age
-> age_years = int(input("What is your age: "))
->
-> # Calculate age in mins
-> age_mins = age_years * 365 * 24 * 60
->
-> # Print result
-> print("You have lived for" + age_mins + "minutes!")
-> ```
+<details>
+<summary>
+Solution
+</summary>
+
+We have three lines of code corresponding to the steps above:
+
+``` python
+### Age in minutes calculator
+  
+# Prompt user for age
+age_years = int(input("What is your age: "))
+
+# Calculate age in mins
+age_mins = age_years * 365 * 24 * 60
+
+# Print result
+print("You have lived for" + age_mins + "minutes!")
+```
+
+:::
+
+</details>
 
 ## Conditionals
 
