@@ -82,9 +82,9 @@ To add a **heading**, we can start a line with `##`: this will be a heading of l
 We are going to deal with greenhouse gas emissions for Australia, so let's add a header and some text about the source of the data and how to import it. For example:
 
 ```
-## National Greenhouse Gas Inventory data
+## National Greenhouse Gas data
 
-Our data comes from the NGA, and is released under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) licence. The latest release can be found on [this page](https://www.industry.gov.au/data-and-publications/national-inventory-reports)
+Our data is extracted from the _National Inventory by Economic Sector_ dataset, which is part of the _National Greenhouse Accounts_, and is released under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) licence. The latest release can be found on [this page](https://www.dcceew.gov.au/climate-change/publications/national-greenhouse-accounts-2022/national-inventory-by-economic-sector-2022).
 
 The values are reported in Mt CO<sub>2</sub>-e.
 ```
@@ -116,10 +116,10 @@ Now, try to render the document and see what it looks like.
 
 #### Challenge 2
 
-Inside a new chunk, add some code to import the dataset located [here](https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2017.csv) into an object called `ghg`.
+Inside a new chunk, add some code to import the dataset located [here](https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2019.csv) into an object called `ghg`.
 
 ```{r import, message=FALSE, warning=FALSE}
-ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2017.csv")
+ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2019.csv")
 ```
 
 > Clicking "Render" will automatically save your `.qmd` file as well as the HTML output.
@@ -205,7 +205,7 @@ ghg_tidy <- pivot_longer(ghg,
 
 We can also **include code that will be executed *inside* Markdown text**. For example, you can write the following sentence:
 
-> The dataset contains GHG emissions for the period `` `{{r}} min(ghg$year)` `` to `` `{{r}} max(ghg$year)` ``. The maximum GHG emissions recorded for the mining sector is `` `{{r}} round(max(ghg$Mining), 2)` ``.
+> The dataset contains GHG emissions for the period `` `{{r}} min(ghg$year)` `` to `` `{{r}} max(ghg$year)` ``. The maximum GHG emissions recorded for the mining sector is `` `{{r}} round(max(ghg$Mining), 2)` `` Mt CO<sub>2</sub>-e.
 
 ## Visualisation
 
@@ -245,7 +245,7 @@ format:
 We have an updated version of the dataset. The only thing we need to do to update the whole report is point the data import code to the new file, at the top of our document, changing the year to "2019":
 
 ```{r import_new, echo=TRUE, eval=FALSE}
-ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2019.csv")
+ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2022.csv")
 ```
 
 Rendering again will update all the objects and visualisations for us! This is the power of reproducible reports in R.

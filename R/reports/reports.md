@@ -1,6 +1,6 @@
 # R reproducible reports with Quarto
 UQ Library
-2024-10-08
+2024-10-10
 
 - [Setting up](#setting-up)
 - [What are we going to learn?](#what-are-we-going-to-learn)
@@ -123,9 +123,9 @@ We are going to deal with greenhouse gas emissions for Australia, so
 let’s add a header and some text about the source of the data and how to
 import it. For example:
 
-    ## National Greenhouse Gas Inventory data
+    ## National Greenhouse Gas data
 
-    Our data comes from the NGA, and is released under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) licence. The latest release can be found on [this page](https://www.industry.gov.au/data-and-publications/national-inventory-reports)
+    Our data is extracted from the _National Inventory by Economic Sector_ dataset, which is part of the _National Greenhouse Accounts_, and is released under a [CC-BY](https://creativecommons.org/licenses/by/4.0/) licence. The latest release can be found on [this page](https://www.dcceew.gov.au/climate-change/publications/national-greenhouse-accounts-2022/national-inventory-by-economic-sector-2022).
 
     The values are reported in Mt CO<sub>2</sub>-e.
 
@@ -163,11 +163,11 @@ Now, try to render the document and see what it looks like.
 #### Challenge 2
 
 Inside a new chunk, add some code to import the dataset located
-[here](https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2017.csv)
+[here](https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2019.csv)
 into an object called `ghg`.
 
 ``` r
-ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2017.csv")
+ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2019.csv")
 ```
 
 > Clicking “Render” will automatically save your `.qmd` file as well as
@@ -179,20 +179,20 @@ Now, we can add a chunk to show the data, by including this code in it:
 ghg
 ```
 
-    # A tibble: 28 × 8
+    # A tibble: 30 × 8
         year Agriculture, Forestry and…¹ Forestry - Changes i…² Mining Manufacturing
        <dbl>                       <dbl>                  <dbl>  <dbl>         <dbl>
-     1  1990                        286.                  -19.1   44.6          68.0
-     2  1991                        266.                  -14.8   46.1          67.9
-     3  1992                        197.                  -19.7   48.5          68.1
-     4  1993                        178.                  -21.1   48.8          68.5
-     5  1994                        168.                  -17.6   46.7          68.3
-     6  1995                        144.                  -18.3   48.7          68.1
-     7  1996                        148.                  -18.1   51.0          66.2
-     8  1997                        156.                  -22.6   54.4          66.9
-     9  1998                        140.                  -22.5   55.4          67.5
-    10  1999                        151.                  -22.0   53.0          68.8
-    # ℹ 18 more rows
+     1  1990                        292.                 -14.1    46.2          67.3
+     2  1991                        272.                  -7.10   46.9          67.2
+     3  1992                        203.                 -15.1    49.0          67.4
+     4  1993                        184.                 -19.4    49.7          67.7
+     5  1994                        174.                  -7.75   47.9          67.9
+     6  1995                        149.                 -12.3    50.1          67.7
+     7  1996                        151.                 -18.0    51.6          65.9
+     8  1997                        159.                 -21.1    55.2          66.6
+     9  1998                        144.                 -16.3    57.0          67.1
+    10  1999                        152.                 -16.4    54.8          68.4
+    # ℹ 20 more rows
     # ℹ abbreviated names: ¹​`Agriculture, Forestry and Fishing`,
     #   ²​`Forestry - Changes in Inventories`
     # ℹ 3 more variables: `Electricity, Gas, Water and Waste Services` <dbl>,
@@ -294,7 +294,7 @@ text**. For example, you can write the following sentence:
 > The dataset contains GHG emissions for the period
 > `` `{r} min(ghg$year)` `` to `` `{r} max(ghg$year)` ``. The maximum
 > GHG emissions recorded for the mining sector is
-> `` `{r} round(max(ghg$Mining), 2)` ``.
+> `` `{r} round(max(ghg$Mining), 2)` `` Mt CO<sub>2</sub>-e.
 
 ## Visualisation
 
@@ -341,7 +341,7 @@ to update the whole report is point the data import code to the new
 file, at the top of our document, changing the year to “2019”:
 
 ``` r
-ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2019.csv")
+ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2022.csv")
 ```
 
 Rendering again will update all the objects and visualisations for us!
