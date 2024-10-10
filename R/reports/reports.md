@@ -146,7 +146,14 @@ Try to style your text, and add a heading of level 3 for a section on
 We can now add a **code chunk** to include some R code inside our
 reproducible document. To add a code chunk, click the “Insert a new code
 chunk” button at the top of the source panel, and click “R”. You can see
-that the language of the code chunk is defined at the top, with `{r}`.
+that the language of the code chunk is defined at the top, with `{r}`
+(but other languages, like Python, are also supported in Quarto).
+
+```` default
+```{r}
+code_goes_here
+```
+````
 
 Let’s import the Tidyverse, by including this code in the chunk:
 
@@ -213,18 +220,30 @@ data file stored locally, it is important to keep that in mind.
 
 Notice how our two first chunks show some messages as an output? We
 might want to remove that if it is not important and we don’t want to
-include it in the report. At the top of your chunk, you can **modify the
-options** like so:
+include it in the report. At the top of your chunk, you can use **code
+chunk options** like so:
+
+```` default
+```{r}
+#| option1: value
+#| option2: value
+code_goes_here
+```
+````
+
+For example, include this option to hide messages in the output:
 
     #| message: false
 
 The code will be executed and the output (if there is any) will be
 shown, but the messages won’t!
 
-There are many options to choose from, depending on what you want to do
-and show with your chunk of code. For example, to hide both messages and
-warnings, and only show the output of the code (without showing the
-underlying code), you can use these options, separated by commas:
+There are [various options to choose
+from](https://quarto.org/docs/computations/execution-options.html),
+depending on what you want to do and show with your chunk of code. For
+example, to hide both messages and warnings, and only show the output of
+the code (without showing the underlying code), you can use these
+options, separated by commas:
 
     #| message: false
     #| warning: false
@@ -236,7 +255,6 @@ report, but will be used in the console and can be used to navigate your
 script (with the dropdown menu at the bottom of the source panel). For
 example, for our first chunk:
 
-    {r}
     #| label: load-packages
     #| message: false
 
@@ -249,13 +267,16 @@ the document, to set default options you want to use for all you chunks.
 That is particularly useful if you want to define a default size for all
 your figures, for example.
 
-Here is an example of options you might use in your YAML header:
+Here is an example of “execute” options you might use in your YAML
+header:
 
+    ---
     title: "My Report"
     execute:
       echo: true
       message: false
       warning: false
+    ---
 
 That would make sure that, by default:
 
