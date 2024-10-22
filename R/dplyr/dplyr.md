@@ -783,7 +783,7 @@ commands stored in your script when you re-open your project.
 More on dplyr:
 
 - [dplyr
-  cheatsheet]([https://rstudio.github.io/cheatsheets/data-transformation.pdf])
+  cheatsheet](https://rstudio.github.io/cheatsheets/data-transformation.pdf)
 - *R for Data Science*, [chapter about
   dplyr](https://r4ds.hadley.nz/transform)
 
