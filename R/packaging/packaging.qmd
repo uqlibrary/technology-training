@@ -122,7 +122,7 @@ See the `if` statement? We are using `branching`: if the directory does not exis
 To have access to this new funtion, make sure you execute the whole block of code. Back in our script, we can now call our new function to get the data:
 
 ```{r}
-get_acorn(dest = "acorn_sat_v2_daily_tmax")
+get_acorn(dest = "acorn_data")
 ```
 
 We now have the 112 CSV files. How do we import and clean one single station's data?
@@ -135,13 +135,13 @@ The package readr provides a `read_csv()` function to import data from a CSV fil
 
 ```{r eval=TRUE}
 library(tidyverse)
-read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv")
+read_csv("acorn_data/tmax.001019.daily.csv")
 ```
 
 Looks like we need to fill down the station ID, then remove the first row, which we can do by piping extra `fill()` and `slice()` steps:
 
 ```{r eval=TRUE}
-read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
+read_csv("acorn_data/tmax.001019.daily.csv") %>%
   fill(3) %>% # fill down station ID
   slice(-1) # remove the first row
 ```
@@ -149,7 +149,7 @@ read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
 We also want to remove the superfluous column, and rename the maximum temperature variable, which can be done in one go with the `select()` function:
 
 ```{r eval=TRUE}
-read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
+read_csv("acorn_data/tmax.001019.daily.csv") %>%
     fill(3) %>% # fill down station ID
     slice(-1) %>%  # remove first row
     select(date, station = 3, max.temp = 2) # keep interesting columns
@@ -178,7 +178,7 @@ Make sure you define this function by executing the code. You can also use the "
 Back in our script, we can now test it on our first file:
 
 ```{r eval=TRUE}
-read_station("acorn_sat_v2_daily_tmax/tmax.002012.daily.csv")
+read_station("acorn_data/tmax.001019.daily.csv")
 ```
 
 > It is often useful to define functions in a separate script to the data analysis script. Know that you can then "source" those custom functions at the beginning of the analysis script thanks to the `source()` function.
@@ -190,7 +190,7 @@ We now want to iterate over all the files, and create a single merged dataframe.
 We can start with finding all the relevant files in the data directory:
 
 ```{r eval=TRUE}
-files <- list.files(path = "acorn_sat_v2_daily_tmax", # where to look
+files <- list.files(path = "acorn_data", # where to look
            pattern = "tmax*",                         # what to look for
            full.names = TRUE)                         # store full path
 ```
@@ -219,7 +219,7 @@ merge_acorn <- function(dir) {
 Let's source this function, and try it in our script:
 
 ```{r eval=TRUE, message=FALSE}
-all_tmax <- merge_acorn("acorn_sat_v2_daily_tmax")
+all_tmax <- merge_acorn("acorn_data")
 ```
 
 This does the same as before: we have a final merged dataset of all the max temperatures from ACORN.

@@ -146,7 +146,7 @@ block of code. Back in our script, we can now call our new function to
 get the data:
 
 ``` r
-get_acorn(dest = "acorn_sat_v2_daily_tmax")
+get_acorn(dest = "acorn_data")
 ```
 
 We now have the 112 CSV files. How do we import and clean one single
@@ -162,7 +162,7 @@ CSV files.
 
 ``` r
 library(tidyverse)
-read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv")
+read_csv("acorn_data/tmax.001019.daily.csv")
 ```
 
     # A tibble: 30,073 × 4
@@ -184,7 +184,7 @@ Looks like we need to fill down the station ID, then remove the first
 row, which we can do by piping extra `fill()` and `slice()` steps:
 
 ``` r
-read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
+read_csv("acorn_data/tmax.001019.daily.csv") %>%
   fill(3) %>% # fill down station ID
   slice(-1) # remove the first row
 ```
@@ -209,7 +209,7 @@ temperature variable, which can be done in one go with the `select()`
 function:
 
 ``` r
-read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
+read_csv("acorn_data/tmax.001019.daily.csv") %>%
     fill(3) %>% # fill down station ID
     slice(-1) %>%  # remove first row
     select(date, station = 3, max.temp = 2) # keep interesting columns
@@ -257,23 +257,23 @@ use the “Source” button at the top right of the source panel.
 Back in our script, we can now test it on our first file:
 
 ``` r
-read_station("acorn_sat_v2_daily_tmax/tmax.002012.daily.csv")
+read_station("acorn_data/tmax.001019.daily.csv")
 ```
 
-    # A tibble: 39,811 × 3
+    # A tibble: 30,072 × 3
        date       station max.temp
        <date>     <chr>      <dbl>
-     1 1910-01-01 002012      40.5
-     2 1910-01-02 002012      40.7
-     3 1910-01-03 002012      40.5
-     4 1910-01-04 002012      36.2
-     5 1910-01-05 002012      40.7
-     6 1910-01-06 002012      36.7
-     7 1910-01-07 002012      40.7
-     8 1910-01-08 002012      36.7
-     9 1910-01-09 002012      37.6
-    10 1910-01-10 002012      36.7
-    # ℹ 39,801 more rows
+     1 1941-09-01 001019      31.4
+     2 1941-09-02 001019      31.4
+     3 1941-09-03 001019      30.9
+     4 1941-09-04 001019      38.7
+     5 1941-09-05 001019      32.5
+     6 1941-09-06 001019      NA  
+     7 1941-09-07 001019      NA  
+     8 1941-09-08 001019      33.5
+     9 1941-09-09 001019      34.3
+    10 1941-09-10 001019      35.2
+    # ℹ 30,062 more rows
 
 > It is often useful to define functions in a separate script to the
 > data analysis script. Know that you can then “source” those custom
@@ -288,7 +288,7 @@ dataframe.
 We can start with finding all the relevant files in the data directory:
 
 ``` r
-files <- list.files(path = "acorn_sat_v2_daily_tmax", # where to look
+files <- list.files(path = "acorn_data", # where to look
            pattern = "tmax*",                         # what to look for
            full.names = TRUE)                         # store full path
 ```
@@ -317,7 +317,7 @@ merge_acorn <- function(dir) {
 Let’s source this function, and try it in our script:
 
 ``` r
-all_tmax <- merge_acorn("acorn_sat_v2_daily_tmax")
+all_tmax <- merge_acorn("acorn_data")
 ```
 
 This does the same as before: we have a final merged dataset of all the
