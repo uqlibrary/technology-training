@@ -184,8 +184,8 @@ Looks like we need to fill down the station ID, then remove the first
 row, which we can do by piping extra `fill()` and `slice()` steps:
 
 ``` r
-read_csv("acorn_data/tmax.001019.daily.csv") %>%
-  fill(3) %>% # fill down station ID
+read_csv("acorn_data/tmax.001019.daily.csv") |>
+  fill(3) |> # fill down station ID
   slice(-1) # remove the first row
 ```
 
@@ -209,9 +209,9 @@ temperature variable, which can be done in one go with the `select()`
 function:
 
 ``` r
-read_csv("acorn_data/tmax.001019.daily.csv") %>%
-    fill(3) %>% # fill down station ID
-    slice(-1) %>%  # remove first row
+read_csv("acorn_data/tmax.001019.daily.csv") |>
+    fill(3) |> # fill down station ID
+    slice(-1) |>  # remove first row
     select(date, station = 3, max.temp = 2) # keep interesting columns
 ```
 
@@ -237,9 +237,9 @@ Have a look at the function defined in “read_station.R”:
 ``` r
 read_station <- function(file) {
   read_csv(file, # read the CSV
-           show_col_types = FALSE) %>% # be more quiet
-    fill(3) %>% # fill down station ID
-    slice(-1) %>%  # remove first row
+           show_col_types = FALSE) |> # be more quiet
+    fill(3) |> # fill down station ID
+    slice(-1) |>  # remove first row
     select(date, station = 3, max.temp = 2) # keep interesting columns
 }
 ```
@@ -373,14 +373,14 @@ evolved over the years:
 
 ``` r
 library(lubridate)
-mean_max <- all_tmax %>% 
-  filter(!is.na(max.temp)) %>%               # remove NAs
-  group_by(station) %>% 
-  filter(any(year(date) == 1910)) %>%        # only keep stations that have data since 1910
-  group_by(station, year = year(date)) %>% 
-  filter(n() > 250) %>%                      # remove samples with too much missing data
-  summarise(max.temp = mean(max.temp)) %>%   # yearly mean max temperatures for each station
-  group_by(year) %>% 
+mean_max <- all_tmax |>
+  filter(!is.na(max.temp)) |>               # remove NAs
+  group_by(station) |> 
+  filter(any(year(date) == 1910)) |>        # only keep stations that have data since 1910
+  group_by(station, year = year(date)) |> 
+  filter(n() > 250) |>                      # remove samples with too much missing data
+  summarise(max.temp = mean(max.temp)) |>   # yearly mean max temperatures for each station
+  group_by(year) |> 
   summarise(max.temp = mean(max.temp))       # one yearly mean max temperature for all stations
 
 ggplot(mean_max, aes(x = year, y = max.temp)) +
@@ -643,7 +643,7 @@ save us a lot of typing.
 For example, we can do:
 
 ``` r
-mtcars %>% select(disp)
+mtcars |> select(disp)
 ```
 
 … but `disp` is not an existing object in our environment.
@@ -656,7 +656,7 @@ This might lead to issues, like:
 
 ``` r
 selector <- function(d, col) {
-  d %>% select(col)
+  d |> select(col)
 }
 ```
 
@@ -665,7 +665,7 @@ We need to quote-unquote:
 ``` r
 selector <- function(d, col) {
   col <- enquo(col) # do not evaluate yet!
-  d %>% select(!!col) # evaluate here only
+  d |> select(!!col) # evaluate here only
 }
 ```
 
@@ -674,7 +674,7 @@ For multiple arguments:
 ``` r
 selector <- function(d, ...) {
   col <- enquos(...)
-  d %>% select(!!!col)
+  d |> select(!!!col)
 }
 ```
 

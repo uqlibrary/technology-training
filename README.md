@@ -39,7 +39,7 @@ We also offer these more specialised sessions (run less regularly, but feel free
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
-| Python: the fundamentals | [md](Python/fundamentals/fundamentals.md) | [html](https://demo.hedgedoc.org/s/B1DWolwgB) | ... |
+| Python: the fundamentals | [md](Python/fundamentals/fundamentals.md) <sup>[source](Python/fundamentals/fundamentals.qmd)</sup> | [html](https://demo.hedgedoc.org/s/B1DWolwgB) | ... |
 | Python data transformation and visualisation with pandas | [md](Python/pandas/pandas.md) | [html](https://demo.hedgedoc.org/s/SJVpdtm_v) | ... |
 | Introduction to Python data visualisation with seaborn | [md](Python/seaborn_intro/seaborn_intro.md) | ... | ... |
 | Intermediate data visualisation in Python with seaborn | [md](Python/seaborn_intermediate/seaborn_intermediate.md) | ... | ... |
