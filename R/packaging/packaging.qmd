@@ -136,37 +136,40 @@ library(tidyverse)
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv")
 ```
 
-Looks like we need to remove the first row, which we can do by piping an extra `slice()` step:
+Looks like we need to fill down the station ID, then remove the first row, which we can do by piping extra `fill()` and `slice()` steps:
 
 ```{r eval=TRUE}
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
+  fill(3) %>% # fill down station ID
   slice(-1) # remove the first row
 ```
 
-We also want to remove the useless columns, and rename the maximum temperature variable, which can be done in one go with the `select()` function:
+We also want to remove the superfluous column, and rename the maximum temperature variable, which can be done in one go with the `select()` function:
 
 ```{r eval=TRUE}
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
-  slice(-1) %>% 
-  select(date, max.temp = 2) # only keep two variables
+    fill(3) %>% # fill down station ID
+    slice(-1) %>%  # remove first row
+    select(date, station = 3, max.temp = 2) # keep interesting columns
 ```
 
-This is probably the data we want to end up with when reading a file
+This is probably the data we want to end up with when reading a file.
 
 Have a look at the function defined in "read_station.R":
 
 ```{r eval=TRUE}
 read_station <- function(file) {
-  read_csv(file) %>% 
-    slice(-1) %>% 
-    select(date, max.temp = 2) %>% 
-    mutate(filename = file)
+  read_csv(file, # read the CSV
+           show_col_types = FALSE) %>% # be more quiet
+    fill(3) %>% # fill down station ID
+    slice(-1) %>%  # remove first row
+    select(date, station = 3, max.temp = 2) # keep interesting columns
 }
 ```
 
 This is pretty much the steps we used before, made into a function. The only argument is `file`, to provide the name of the file we want to read.
 
-Notice the last step in the function body: we also wanted to store the file name, so this information is available when we merge all the datasets. We can do that with the `mutate()` function.
+Note also the extra argument `show_col_types = FALSE` used to suppress noisy messages.
 
 Make sure you define this function by executing the code. You can also use the "Source" button at the top right of the source panel.
 
@@ -265,9 +268,9 @@ Now that we have very usable data, why not create a visualisation? For example, 
 library(lubridate)
 mean_max <- all_tmax %>% 
   filter(!is.na(max.temp)) %>%               # remove NAs
-  group_by(filename) %>% 
+  group_by(station) %>% 
   filter(any(year(date) == 1910)) %>%        # only keep stations that have data since 1910
-  group_by(filename, year = year(date)) %>% 
+  group_by(station, year = year(date)) %>% 
   filter(n() > 250) %>%                      # remove samples with too much missing data
   summarise(max.temp = mean(max.temp)) %>%   # yearly mean max temperatures for each station
   group_by(year) %>% 

@@ -1,6 +1,6 @@
 # R advanced: packaging and sharing functions
 UQ Library
-2024-09-17
+2024-10-22
 
 - [Setting up](#setting-up)
 - [How to build a function](#how-to-build-a-function)
@@ -114,6 +114,12 @@ our function:
 Open the “get_acorn.R” file from the Files panel, and look at the code
 it contains:
 
+<!--
+Note for maintainers: the two following chunks are not executed when rendering the document, to avoid
+repeatedly (and slowly) downloading data from BOM.
+To render, first run the two following chunks locally to get the data. Then render.
+-->
+
 ``` r
 get_acorn <- function(dest) {
   download.file(url = "ftp://ftp.bom.gov.au/anon/home/ncc/www/change/ACORN_SAT_daily/acorn_sat_v2_daily_tmax.tar.gz",
@@ -173,64 +179,67 @@ read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv")
     10 1941-09-09                         32.7 <NA>          <NA>       
     # ℹ 28,388 more rows
 
-Looks like we need to remove the first row, which we can do by piping an
-extra `slice()` step:
+Looks like we need to fill down the station ID, then remove the first
+row, which we can do by piping extra `fill()` and `slice()` steps:
 
 ``` r
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
+  fill(3) %>% # fill down station ID
   slice(-1) # remove the first row
 ```
 
     # A tibble: 28,397 × 4
        date       `maximum temperature (degC)` `site number` `site name`
        <date>                            <dbl> <chr>         <chr>      
-     1 1941-09-01                         29.8 <NA>          <NA>       
-     2 1941-09-02                         29.8 <NA>          <NA>       
-     3 1941-09-03                         29.3 <NA>          <NA>       
-     4 1941-09-04                         37.1 <NA>          <NA>       
-     5 1941-09-05                         30.9 <NA>          <NA>       
-     6 1941-09-06                         NA   <NA>          <NA>       
-     7 1941-09-07                         NA   <NA>          <NA>       
-     8 1941-09-08                         32   <NA>          <NA>       
-     9 1941-09-09                         32.7 <NA>          <NA>       
-    10 1941-09-10                         33.4 <NA>          <NA>       
+     1 1941-09-01                         29.8 001019        <NA>       
+     2 1941-09-02                         29.8 001019        <NA>       
+     3 1941-09-03                         29.3 001019        <NA>       
+     4 1941-09-04                         37.1 001019        <NA>       
+     5 1941-09-05                         30.9 001019        <NA>       
+     6 1941-09-06                         NA   001019        <NA>       
+     7 1941-09-07                         NA   001019        <NA>       
+     8 1941-09-08                         32   001019        <NA>       
+     9 1941-09-09                         32.7 001019        <NA>       
+    10 1941-09-10                         33.4 001019        <NA>       
     # ℹ 28,387 more rows
 
-We also want to remove the useless columns, and rename the maximum
+We also want to remove the superfluous column, and rename the maximum
 temperature variable, which can be done in one go with the `select()`
 function:
 
 ``` r
 read_csv("acorn_sat_v2_daily_tmax/tmax.001019.daily.csv") %>%
-  slice(-1) %>% 
-  select(date, max.temp = 2) # only keep two variables
+    fill(3) %>% # fill down station ID
+    slice(-1) %>%  # remove first row
+    select(date, station = 3, max.temp = 2) # keep interesting columns
 ```
 
-    # A tibble: 28,397 × 2
-       date       max.temp
-       <date>        <dbl>
-     1 1941-09-01     29.8
-     2 1941-09-02     29.8
-     3 1941-09-03     29.3
-     4 1941-09-04     37.1
-     5 1941-09-05     30.9
-     6 1941-09-06     NA  
-     7 1941-09-07     NA  
-     8 1941-09-08     32  
-     9 1941-09-09     32.7
-    10 1941-09-10     33.4
+    # A tibble: 28,397 × 3
+       date       station max.temp
+       <date>     <chr>      <dbl>
+     1 1941-09-01 001019      29.8
+     2 1941-09-02 001019      29.8
+     3 1941-09-03 001019      29.3
+     4 1941-09-04 001019      37.1
+     5 1941-09-05 001019      30.9
+     6 1941-09-06 001019      NA  
+     7 1941-09-07 001019      NA  
+     8 1941-09-08 001019      32  
+     9 1941-09-09 001019      32.7
+    10 1941-09-10 001019      33.4
     # ℹ 28,387 more rows
 
-This is probably the data we want to end up with when reading a file
+This is probably the data we want to end up with when reading a file.
 
 Have a look at the function defined in “read_station.R”:
 
 ``` r
 read_station <- function(file) {
-  read_csv(file) %>% 
-    slice(-1) %>% 
-    select(date, max.temp = 2) %>% 
-    mutate(filename = file)
+  read_csv(file, # read the CSV
+           show_col_types = FALSE) %>% # be more quiet
+    fill(3) %>% # fill down station ID
+    slice(-1) %>%  # remove first row
+    select(date, station = 3, max.temp = 2) # keep interesting columns
 }
 ```
 
@@ -238,9 +247,8 @@ This is pretty much the steps we used before, made into a function. The
 only argument is `file`, to provide the name of the file we want to
 read.
 
-Notice the last step in the function body: we also wanted to store the
-file name, so this information is available when we merge all the
-datasets. We can do that with the `mutate()` function.
+Note also the extra argument `show_col_types = FALSE` used to suppress
+noisy messages.
 
 Make sure you define this function by executing the code. You can also
 use the “Source” button at the top right of the source panel.
@@ -252,18 +260,18 @@ read_station("acorn_sat_v2_daily_tmax/tmax.002012.daily.csv")
 ```
 
     # A tibble: 39,811 × 3
-       date       max.temp filename                                     
-       <date>        <dbl> <chr>                                        
-     1 1910-01-01     40.5 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-     2 1910-01-02     40.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-     3 1910-01-03     40.5 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-     4 1910-01-04     36.2 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-     5 1910-01-05     40.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-     6 1910-01-06     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-     7 1910-01-07     40.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-     8 1910-01-08     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-     9 1910-01-09     37.6 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
-    10 1910-01-10     36.7 acorn_sat_v2_daily_tmax/tmax.002012.daily.csv
+       date       station max.temp
+       <date>     <chr>      <dbl>
+     1 1910-01-01 002012      40.5
+     2 1910-01-02 002012      40.7
+     3 1910-01-03 002012      40.5
+     4 1910-01-04 002012      36.2
+     5 1910-01-05 002012      40.7
+     6 1910-01-06 002012      36.7
+     7 1910-01-07 002012      40.7
+     8 1910-01-08 002012      36.7
+     9 1910-01-09 002012      37.6
+    10 1910-01-10 002012      36.7
     # ℹ 39,801 more rows
 
 > It is often useful to define functions in a separate script to the
@@ -366,9 +374,9 @@ evolved over the years:
 library(lubridate)
 mean_max <- all_tmax %>% 
   filter(!is.na(max.temp)) %>%               # remove NAs
-  group_by(filename) %>% 
+  group_by(station) %>% 
   filter(any(year(date) == 1910)) %>%        # only keep stations that have data since 1910
-  group_by(filename, year = year(date)) %>% 
+  group_by(station, year = year(date)) %>% 
   filter(n() > 250) %>%                      # remove samples with too much missing data
   summarise(max.temp = mean(max.temp)) %>%   # yearly mean max temperatures for each station
   group_by(year) %>% 
