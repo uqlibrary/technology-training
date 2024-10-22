@@ -31,9 +31,8 @@ In this session, you will learn about:
 ### Download the project
 
 So we can get straight into the interesting stuff, we have an R project
-that already contains relevant custom functions. You can download it
-with this link:
-https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R%2packaging
+that already contains relevant custom functions: [download the
+archive](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fuqlibrary%2Ftechnology-training%2Ftree%2Fmaster%2FR%2Fpackaging).
 
 Unzip this archive, and open the .Rproj file to open the project in
 RStudio.

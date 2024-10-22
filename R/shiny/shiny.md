@@ -1,6 +1,6 @@
 # R advanced: webapps with Shiny
 UQ Library
-2024-09-17
+2024-10-22
 
 - [Shiny webapps](#shiny-webapps)
   - [Setting up](#setting-up)
@@ -39,7 +39,7 @@ We will first download our base project that contains custom functions
 to get our data ready.
 
 - Download the [project
-  archive](https://gitlab.com/stragu/DSH/-/archive/master/DSH-master.zip?path=R/packaging),
+  archive](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fuqlibrary%2Ftechnology-training%2Ftree%2Fmaster%2FR%2Fpackaging),
   and extract it wherever you’d like to store your project.
 - Open the .Rproj file
 - Create a new script: “New File \> R Script”
