@@ -1,6 +1,6 @@
 # R advanced: packaging and sharing functions
 UQ Library
-2024-10-22
+2024-10-23
 
 - [Setting up](#setting-up)
 - [How to build a function](#how-to-build-a-function)
@@ -446,6 +446,11 @@ what extra packages are needed for our package to work.
 
 GPL or MIT are common licences for R packages. They are Open Source and
 allow others to reuse your code, which is the norm in the R ecosystem.
+However, they differ in how much can be done when creating a derivative:
+MIT is more “permissive” in that it allows creating closed source
+derivatives, whereas GPL is more “viral” in that only compatible open
+source licences can be used. To help you pick one, try the [“Choose a
+License” website](https://choosealicense.com/).
 
 ### 2. NAMESPACE
 
