@@ -587,11 +587,19 @@ For function names, try to avoid dots, and use underscores instead
 
 ### Publishing
 
-We can then try to publish on CRAN, or other repositories, making sure
-that you follow the guidelines / requirements.
+We can then try to publish our package, making sure that we follow the
+guidelines / requirements relevant to where we publish it.
 
-In order to publish on CRAN, we have to follow more stringent policies:
+In order to publish on CRAN, we have to follow stringent policies:
 https://cran.r-project.org/web/packages/policies.html
+
+Although CRAN is the main and default repository for the R ecosystem,
+other repositories and communities exist. For example,
+[Bioconductor](https://www.bioconductor.org/) hosts thousands of
+packages relevant to bioinformatics, and
+[ROpenSci](https://ropensci.org) supports a community around hundreds of
+peer-reviewed packages useful for querying and analysing various
+scientific data sources.
 
 ### Using version control
 
