@@ -1,6 +1,6 @@
 # R advanced: webapps with Shiny
 UQ Library
-2024-10-22
+2024-10-29
 
 - [Shiny webapps](#shiny-webapps)
   - [Setting up](#setting-up)
@@ -455,17 +455,24 @@ data.
 
 ## Publishing a Shiny app
 
-You can use ShinyApps.io, which offers free or paid accounts.
+You can use [ShinyApps.io](https://www.shinyapps.io/), which offers free
+or paid accounts. This is integrated into RStudio to easily deploy and
+updae your applications.
 
-We also have access to Nectar (National eResearch Collaboration Tools
-and Resources project), in which we can request a virtual machine and
-deploy a Shiny server: https://nectar.org.au/
+We also have access to ARDC’s
+[Nectar](https://dashboard.rc.nectar.org.au) (National eResearch
+Collaboration Tools and Resources project), in which we can request a
+virtual machine and deploy a Shiny server.
+
+Other options exist, see for example this [comparison
+table](https://hosting.analythium.io/assets/files/shiny-hosting-options.html).
 
 ## Useful links
 
-- Official Shiny tutorial: https://shiny.rstudio.com/tutorial/
-- Shiny examples:
-  - https://shiny.rstudio.com/gallery/
-  - https://www.showmeshiny.com/
-- Shiny cheatsheet:
-  https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf
+- [Official Shiny
+  tutorial](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html)
+- [Gallery of Shiny examples](https://shiny.posit.co/r/gallery/)
+- Hadley Wickham’s book *[Mastering
+  Shiny](https://mastering-shiny.org/index.html)*
+- [Shiny
+  cheatsheet](https://rstudio.github.io/cheatsheets/html/shiny.html)
