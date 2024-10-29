@@ -86,6 +86,9 @@ For our app to work, we need three sections:
 Back in the app.R file, we can start with this empty skeleton:
 
 ``` r
+# Load necessary packages
+library(shiny)
+
 # UI
 ui <- fluidPage()
 
@@ -103,12 +106,6 @@ Running it will show a blank page. Let’s add a title:
 ui <- fluidPage(
   titlePanel("ACORN data explorer")
 )
-
-# Server
-server <- function(input, output) {}
-
-# Run the application 
-shinyApp(ui = ui, server = server)
 ```
 
 ### Prepare the data
@@ -126,7 +123,7 @@ monthly <- all_stations %>%
     summarise(mean.max = mean(max.temp, na.rm = TRUE))
 ```
 
-Let’s save that object our app directory, so the app can find it:
+Let’s save that object into our app directory, so the app can find it:
 
 ``` r
 saveRDS(monthly, "myApp/monthly.rds")
@@ -137,27 +134,28 @@ This dataset will be the base of our Shiny app.
 ### Interactive tables
 
 We can now read that data file into our app, process it, and present it
-in an interactive table:
+in an interactive table, using the DT package:
 
 ``` r
 # Import data
 monthly <- readRDS("monthly.rds")
 
+# Load necessary packages
+library(shiny)
+library(DT)
+
 # Define UI
 ui <- fluidPage(
     titlePanel("ACORN data explorer"),
-    dataTableOutput("dt")
+    DTOutput("dt")
 )
 
 # Define server logic
 server <- function(input, output) {
-    output$dt <- renderDataTable({
+    output$dt <- renderDT({
         monthly
     })
 }
-
-# Run the application 
-shinyApp(ui = ui, server = server)
 ```
 
 Notice that we had to define an output in the server section (with a
@@ -169,22 +167,20 @@ Notice that we had to define an output in the server section (with a
 Now, for a different kind of output, let’s add a plot:
 
 ``` r
-# Import data
-monthly <- readRDS("monthly.rds")
-
 # Load necessary packages
-library(ggplot2)
+library(shiny)
+library(DT)
 
 # Define UI
 ui <- fluidPage(
     titlePanel("ACORN data explorer"),
     plotOutput("plot"),
-    dataTableOutput("dt")
+    DTOutput("dt")
 )
 
 # Define server logic
 server <- function(input, output) {
-    output$dt <- renderDataTable({
+    output$dt <- renderDT({
         monthly
     })
     
@@ -195,9 +191,6 @@ server <- function(input, output) {
             scale_fill_distiller(palette = "RdYlBu")
     })
 }
-
-# Run the application 
-shinyApp(ui = ui, server = server)
 ```
 
 Again, we have to:
@@ -212,10 +205,9 @@ How can we add some interaction? We could give the user control over
 which month they want to visualise by adding a slider:
 
 ``` r
-# Import data
-monthly <- readRDS("monthly.rds")
-
 # Load necessary packages
+library(shiny)
+library(DT)
 library(ggplot2)
 library(dplyr)
 
@@ -229,12 +221,12 @@ ui <- fluidPage(
                 max = 12,
                 value = 1),
     plotOutput("plot"),
-    dataTableOutput("dt")
+    DTOutput("dt")
 )
 
 # Define server logic
 server <- function(input, output) {
-    output$dt <- renderDataTable({
+    output$dt <- renderDT({
         monthly
     })
     
@@ -261,13 +253,6 @@ https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/
 One solution could be:
 
 ``` r
-# import data
-monthly <- readRDS("monthly.rds")
-
-# load necessary packages
-library(ggplot2)
-library(dplyr)
-
 # Define UI for application that draws a histogram
 ui <- fluidPage(
     titlePanel("ACORN data explorer"),
@@ -277,12 +262,12 @@ ui <- fluidPage(
                 1:12,
                 multiple = TRUE),
     plotOutput("plot"),
-    dataTableOutput("dt")
+    DTOutput("dt")
 )
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-    output$dt <- renderDataTable({
+    output$dt <- renderDT({
         monthly
     })
     
@@ -294,9 +279,6 @@ server <- function(input, output) {
             scale_fill_distiller(palette = "RdYlBu")
     })
 }
-
-# Run the application 
-shinyApp(ui = ui, server = server)
 ```
 
 ### Theming
@@ -305,10 +287,9 @@ To change the theme of the app, we can use the bslib package, and change
 the `theme` argument in `fluidPage()`:
 
 ``` r
-# import data
-monthly <- readRDS("monthly.rds")
-
-# load necessary packages
+# Load necessary packages
+library(shiny)
+library(DT)
 library(ggplot2)
 library(dplyr)
 library(bslib)
@@ -323,26 +304,8 @@ ui <- fluidPage(
                 1:12,
                 multiple = TRUE),
     plotOutput("plot"),
-    dataTableOutput("dt")
+    DTOutput("dt")
 )
-
-# Define server logic required to draw a histogram
-server <- function(input, output) {
-    output$dt <- renderDataTable({
-        monthly
-    })
-    
-    output$plot <- renderPlot({
-        monthly %>% 
-            filter(month %in% input$month) %>%
-            ggplot(aes(x = year, y = month, fill = mean.max)) +
-            geom_tile() +
-            scale_fill_distiller(palette = "RdYlBu")
-    })
-}
-
-# Run the application 
-shinyApp(ui = ui, server = server)
 ```
 
 You can see the different themes available with the
@@ -353,46 +316,14 @@ visualisation looks out of place: how can we also change the theme for
 ggplot2? Let’s use the convenient thematic package:
 
 ``` r
-# import data
-monthly <- readRDS("monthly.rds")
-
-# load necessary packages
+# Load necessary packages
+library(shiny)
+library(DT)
 library(ggplot2)
 library(dplyr)
 library(bslib)
 library(thematic)
 thematic_shiny()
-
-# Define UI for application that draws a histogram
-ui <- fluidPage(
-    theme = bs_theme(bootswatch = "solar"),
-    titlePanel("ACORN data explorer"),
-    # input slider for months
-    selectInput("month",
-                "Pick one or more months:",
-                1:12,
-                multiple = TRUE),
-    plotOutput("plot"),
-    dataTableOutput("dt")
-)
-
-# Define server logic required to draw a histogram
-server <- function(input, output) {
-    output$dt <- renderDataTable({
-        monthly
-    })
-    
-    output$plot <- renderPlot({
-        monthly %>% 
-            filter(month %in% input$month) %>%
-            ggplot(aes(x = year, y = month, fill = mean.max)) +
-            geom_tile() +
-            scale_fill_distiller(palette = "RdYlBu")
-    })
-}
-
-# Run the application 
-shinyApp(ui = ui, server = server)
 ```
 
 Now, the theme propagates to ggplot2 visualisations.
@@ -408,7 +339,9 @@ render and output functions.
 # import data
 monthly <- readRDS("monthly.rds")
 
-# load necessary packages
+# Load necessary packages
+library(shiny)
+library(DT)
 library(ggplot2)
 library(plotly)
 library(dplyr)
@@ -426,12 +359,12 @@ ui <- fluidPage(
                 1:12,
                 multiple = TRUE),
     plotlyOutput("plot"),
-    dataTableOutput("dt")
+    DTOutput("dt")
 )
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-    output$dt <- renderDataTable({
+    output$dt <- renderDT({
         monthly
     })
     
