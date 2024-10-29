@@ -103,7 +103,6 @@ Now, let's make sure we have the data ready to be used in our app. We don't want
 
 ```{r}
 # process for monthly average
-library(lubridate)
 monthly <- all_stations %>% 
     group_by(month = month(date),
              year = year(date)) %>% 

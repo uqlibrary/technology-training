@@ -120,7 +120,6 @@ script, let’s write:
 
 ``` r
 # process for monthly average
-library(lubridate)
 monthly <- all_stations %>% 
     group_by(month = month(date),
              year = year(date)) %>% 
