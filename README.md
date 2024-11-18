@@ -62,6 +62,7 @@ These sessions focus on dealing with geospatial data, using QGIS, uMap, the Open
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
 | Unix Shell: scripting and automating | [md](Shell/shell_intro.md) <sup>[source](Shell/shell_intro.qmd)</sup> | [html](https://demo.hedgedoc.org/s/zjQhgaEuN) | ... |
+| GitHub basics and analytics portfolio | [md](Git/GitHub/GitHub_intro.md) <sup>[source](Git/GitHub/GitHub_intro.qmd)</sup> | ... | ... |
 | Git version control for collaboration | [md](Git/git.md) <sup>[source](Git/git.qmd)</sup> | [html](https://demo.hedgedoc.org/s/HkJnjT9DH) | ... |
 | OpenRefine: clean up and augment data | [md](OpenRefine/openrefine.md) <sup>[source](OpenRefine/openrefine.qmd)</sup> | [html](https://demo.hedgedoc.org/s/rJCXmqviH) | ... |
 | Audacity: introduction to audio editing | [md](Audacity/audacity.md) <sup>[source](Audacity/audacity.qmd)</sup> | [html](https://demo.hedgedoc.org/s/HkkITjw9L) | ... |
