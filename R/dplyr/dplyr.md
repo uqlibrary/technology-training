@@ -1,6 +1,6 @@
 # R dplyr: preparing data for analysis
 UQ Library
-2024-10-23
+2024-11-27
 
 - [What are we going to learn?](#what-are-we-going-to-learn)
 - [Keep in mind](#keep-in-mind)
@@ -49,7 +49,7 @@ three ways of getting help in RStudio:
 
 - If you are using your own laptop please open RStudio
   - If you need them, we have [installation
-    instructions](.\R/Installation.md#r--rstudio-installation-instructions)
+    instructions](./R/Installation.md#r--rstudio-installation-instructions)
 - Make sure you have a working internet connection
 - On Library computers (the first time takes about 10 min.):
   - Log in with your UQ credentials (student account if you have two)
@@ -788,4 +788,4 @@ More on dplyr:
   dplyr](https://r4ds.hadley.nz/transform)
 
 For further R resources, look at [our compilation of
-resources](.\R/usefullinks.md#what-next).
+resources](./R/usefullinks.md#what-next).
