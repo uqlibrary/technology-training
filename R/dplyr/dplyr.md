@@ -49,7 +49,7 @@ three ways of getting help in RStudio:
 
 - If you are using your own laptop please open RStudio
   - If you need them, we have [installation
-    instructions](./R/Installation.md#r--rstudio-installation-instructions)
+    instructions](https://github.com/uqlibrary/technology-training/blob/master/R/Installation.md#r--rstudio-installation-instructions)
 - Make sure you have a working internet connection
 - On Library computers (the first time takes about 10 min.):
   - Log in with your UQ credentials (student account if you have two)
