@@ -372,16 +372,16 @@ The map functions automatically name the values in the resulting vector,
 which makes the result easier to read.
 
 Lets try a different type of output. Here, we want to find out which
-columns in the starwars dataset are of type “character”:
+columns in the starwars dataset are numeric variables:
 
 ``` r
-map_lgl(starwars, is_character)
+map_lgl(starwars, is.numeric)
 ```
 
           name     height       mass hair_color skin_color  eye_color birth_year 
-          TRUE      FALSE      FALSE       TRUE       TRUE       TRUE      FALSE 
+         FALSE       TRUE       TRUE      FALSE      FALSE      FALSE       TRUE 
            sex     gender  homeworld    species      films   vehicles  starships 
-          TRUE       TRUE       TRUE       TRUE      FALSE      FALSE      FALSE 
+         FALSE      FALSE      FALSE      FALSE      FALSE      FALSE      FALSE 
 
 If we don’t want to use the default behaviour of the mapped function, we
 can use extra arguments to pass to it. For example, for a trimmed mean:
