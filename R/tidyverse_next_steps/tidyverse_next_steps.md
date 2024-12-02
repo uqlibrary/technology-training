@@ -1,6 +1,6 @@
 # R tidyverse: loops and data tidying
 UQ Library
-2024-09-17
+2024-12-02
 
 - [Setting up](#setting-up)
 - [What are we going to learn?](#what-are-we-going-to-learn)
@@ -20,7 +20,7 @@ UQ Library
 ## Setting up
 
 > If needed, review the [installation
-> instructions](/R/Installation.md#r--rstudio-installation-instructions).
+> instructions](./R/Installation.md#r--rstudio-installation-instructions).
 
 - If you are using your own laptop please open RStudio
   - Make sure you have a working Internet connection
@@ -255,32 +255,52 @@ climate_tidy %>%
 
 ![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-10-1.png)
 
-Let’s have a look at the increase in *global* greenhouse gas emissions
-in KT:
-
-``` r
-climate_tidy %>% 
-  group_by(year) %>% 
-  summarise(CO2e = sum(EN.ATM.CO2E.KT, na.rm = TRUE)) %>% 
-  ggplot(aes(x = year, y = CO2e)) +
-  geom_point()
-```
-
-![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-11-1.png)
-
 #### Challenge 2
 
 Looks like our data is missing after 2008, so how can we remove that?
 
-We can add this extra step:
+One solution is to remove rows with missing data:
 
 ``` r
-climate_tidy %>% 
-  group_by(year) %>% 
-  summarise(CO2e = sum(EN.ATM.CO2E.KT, na.rm = TRUE)) %>%
-  filter(year < 2009) %>% 
-  ggplot(aes(x = year, y = CO2e)) +
-  geom_point()
+co2e_no_na <- climate_tidy |> 
+  filter(!is.na(EN.ATM.CO2E.KT))
+
+ggplot(co2e_no_na,
+       aes(x = year,
+           y = EN.ATM.CO2E.KT,
+           group = `Country name`)) +
+  geom_line()
+```
+
+![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-11-1.png)
+
+Alternatively, we could filter on the actual year. (Which would not be
+ideal if the data was to be updated in the future!)
+
+There are a lot of countries represented here. This kind of
+visualisation would benefit from focusing on a handful of countries
+we’re interested in, depending in what story we are telling. We can then
+overlay two line geometries: one for the whole dataset, and the other
+for our selection.
+
+``` r
+# find top 4 for 2008
+top4 <- co2e_no_na |> 
+  filter(year == 2008) |> 
+  arrange(desc(EN.ATM.CO2E.KT)) |>
+  pull(`Country name`) |> 
+  unique() |> 
+  head(4)
+# plot them on top of the rest
+ggplot(co2e_no_na,
+       aes(x = year,
+           y = EN.ATM.CO2E.KT,
+           group = `Country name`)) +
+  geom_line(colour = "darkgrey") +
+  geom_line(data = filter(co2e_no_na, `Country name` %in% top4),
+            mapping = aes(colour = `Country name`)) +
+  labs(y = "CO2-equivalent (KT)",
+       colour = "Top emitters")
 ```
 
 ![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-12-1.png)
@@ -681,6 +701,6 @@ ggplotly(pdif)
   - [tidyr](https://raw.githubusercontent.com/rstudio/cheatsheets/master/tidyr.pdf)
   - [purrr](https://raw.githubusercontent.com/rstudio/cheatsheets/master/purrr.pdf)
 - Explore our [recommended resources, online and around
-  UQ](/R/usefullinks.md#what-next)
+  UQ](./R/usefullinks.md#what-next)
 - [Tidy Data
   paper](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf)
