@@ -149,7 +149,7 @@ variable.
 climate_long <- pivot_longer(climate_raw,
                              `1990`:`2011`,
                              names_to = "year",
-                             values_to = "value") %>% 
+                             values_to = "value") |> 
   mutate(year = as.integer(year))
 ```
 
@@ -171,8 +171,8 @@ First, let’s keep a record of the correspondence between long
 descriptive variable names and their “code”, for later reference:
 
 ``` r
-codes <- climate_long %>% 
-  select(`Series code`, `Series name`) %>% 
+codes <- climate_long |> 
+  select(`Series code`, `Series name`) |> 
   unique()
 codes
 ```
@@ -193,8 +193,8 @@ Now, let’s widen the data (and remove some useless columns with
 `dplyr::select()`):
 
 ``` r
-climate_tidy <- climate_long %>% 
-  select(-`Series name`, -SCALE, -Decimals) %>% 
+climate_tidy <- climate_long |> 
+  select(-`Series name`, -SCALE, -Decimals) |> 
   pivot_wider(names_from = `Series code`,
               values_from = value)
 ```
@@ -221,7 +221,7 @@ groups <- c("Europe & Central Asia",
             "Sub-Saharan Africa",
             "Upper middle income",
             "World")
-climate_tidy <- climate_tidy %>% 
+climate_tidy <- climate_tidy |> 
   filter(!`Country name` %in% groups)
 ```
 
@@ -243,7 +243,7 @@ comfortably! For example, to visualise the increase in KT of
 CO<sup>2</sup>-equivalent for each country:
 
 ``` r
-climate_tidy %>% 
+climate_tidy |> 
   ggplot(aes(x = year,
              y = EN.ATM.CO2E.KT,
              group = `Country name`)) +
@@ -443,8 +443,8 @@ unique(mtcars$cyl)
     [1] 6 4 8
 
 ``` r
-mtcars %>% 
-  group_split(cyl) %>% # split into three dataframes
+mtcars |> 
+  group_split(cyl) |> # split into three dataframes
   map(summary) # applied to each dataframe
 ```
 
@@ -521,8 +521,8 @@ Using purrr functions with ggplot2 functions allows us to generate
 several plots in one command:
 
 ``` r
-mtcars %>% 
-  group_split(cyl) %>% 
+mtcars |> 
+  group_split(cyl) |> 
   map(~ ggplot(.x, aes(wt, mpg)) +
         geom_point() +
         geom_smooth() +
@@ -566,7 +566,7 @@ str(iris)
      $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 
 ``` r
-iris %>%
+iris |>
   map_dbl(mean) # warning, NA for Species
 ```
 
@@ -577,8 +577,8 @@ iris %>%
         5.843333     3.057333     3.758000     1.199333           NA 
 
 ``` r
-iris %>%
-  discard(is.factor) %>% 
+iris |>
+  discard(is.factor) |> 
   map_dbl(mean) # clean!
 ```
 
@@ -586,8 +586,8 @@ iris %>%
         5.843333     3.057333     3.758000     1.199333 
 
 ``` r
-starwars %>% 
-  keep(is.character) %>% 
+starwars |> 
+  keep(is.character) |> 
   map_int(~length(unique(.x)))
 ```
 
@@ -614,8 +614,8 @@ str(iris)
      $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 
 ``` r
-iris %>%
-  map_if(is.numeric, round) %>% 
+iris |>
+  map_if(is.numeric, round) |> 
   str()
 ```
 
@@ -634,13 +634,13 @@ one, we use functions from dplyr, purrr, stringr, tibble and ggplot2.
 
 ``` r
 # cumulative and yearly change in CO2 emissions dataset
-climate_cumul <- climate_tidy %>% 
-  arrange(`Country name`, year) %>% 
-  group_by(`Country name`) %>%
+climate_cumul <- climate_tidy |> 
+  arrange(`Country name`, year) |> 
+  group_by(`Country name`) |>
   mutate(cumul.CO2.KT = cumsum(EN.ATM.CO2E.KT),
-         dif.CO2.KT = EN.ATM.CO2E.KT - lag(EN.ATM.CO2E.KT)) %>%
-  map_at(vars(ends_with("KT")), ~ .x / 10^6) %>% 
-  as_tibble() %>%  # from list to tibble
+         dif.CO2.KT = EN.ATM.CO2E.KT - lag(EN.ATM.CO2E.KT)) |>
+  map_at(vars(ends_with("KT")), ~ .x / 10^6) |> 
+  as_tibble() |>  # from list to tibble
   rename_with(~ str_replace(.x, "KT", "PG"))
 ```
 
@@ -648,7 +648,7 @@ climate_cumul <- climate_tidy %>%
 
 ``` r
 # visualise cumulative change
-p <- climate_cumul %>%
+p <- climate_cumul |>
   ggplot() +
   aes(x = year,
       y = cumul.CO2.PG,
@@ -673,7 +673,7 @@ ggplotly(p)
 Plot the annual change in PG CO2 by country:
 
 ``` r
-pdif <- climate_cumul %>%
+pdif <- climate_cumul |>
   ggplot() +
   aes(x = year,
       y = dif.CO2.PG,
