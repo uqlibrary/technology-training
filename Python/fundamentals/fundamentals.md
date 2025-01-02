@@ -417,12 +417,14 @@ age_years = int(input("What is your age: "))
 age_mins = age_years * 365 * 24 * 60
 
 # Print result
-print("You have lived for" + age_mins + "minutes!")
+print("You have lived for" + str(age_mins) + "minutes!")
 ```
 
 :::
 
 </details>
+
+> We need to use `str()` because we can't concatenate strings with integers.
 
 ## Conditionals
 
