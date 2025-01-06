@@ -1,6 +1,6 @@
 # R ggplot2: intermediate data visualisation
 UQ Library
-2024-09-17
+2025-01-06
 
 - [Essential shortcuts](#essential-shortcuts)
 - [Open RStudio](#open-rstudio)
@@ -822,21 +822,24 @@ all the necessary commands in your script.
 
 ## Useful links
 
-- For ggplot2:
+- For visualisations:
   - [ggplot2
     cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
-  - Official [ggplot2 documentation](https://docs.ggplot2.org/current/)
+  - Official [ggplot2
+    documentation](https://ggplot2.tidyverse.org/reference/)
   - Official [ggplot2 website](https://ggplot2.tidyverse.org/)
   - [Chapter on data
-    visualisation](https://r4ds.had.co.nz/data-visualisation.html) in
-    the book *R for Data Science*
+    visualisation](https://r4ds.hadley.nz/data-visualize.html) in the
+    book *R for Data Science*
   - [From Data to Viz](https://www.data-to-viz.com/), a website to
     explore different visualisations and the code that generates them
   - Selva Prabhakaran’s [*r-statistics.co* section on
     ggplot2](https://r-statistics.co/ggplot2-Tutorial-With-R.html)
   - [Coding Club’s data visualisation
-    tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html)
-  - [Cookbook for R graphs](https://www.cookbook-r.com/Graphs/)
+    tutorial](https://ourcodingclub.github.io/tutorials/datavis/)
   - [STHDA’s ggplot2
     essentials](https://www.sthda.com/english/wiki/ggplot2-essentials)
-- Our compilation of [general R resources](/R/usefullinks.md)
+  - Lear more about plotly and exploratory data analysis with the book
+    *[Interactive web-based data visualization with R, plotly, and
+    shiny](https://plotly-r.com/)*
+- Our compilation of [general R resources](./R/usefullinks.md)
