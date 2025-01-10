@@ -106,7 +106,7 @@ The \textbf{contents} of the document are in between the \verb+\begin{document}+
 
 You can switch between the "Source" editor, which shows you the \LaTeX code, and the "Rich Text" editor, which is more similar to visual text editors we are used to, like Microsoft Word or LibreOffice Writer – although you will quickly find that the features of the Rich Text editor are very limiting.
 
-Try adding a new section to your document (with the "Insert Section Heading" button, and styling it with the "Rich Text" mode. See what the corresponding code looks like in the "Source" mode.
+Try adding a new section to your document (with the "Insert Section Heading" button), and styling it with the "Rich Text" mode. See what the corresponding code looks like in the "Source" mode.
 
 \subsection{Common tags}
 
@@ -251,9 +251,9 @@ Overleaf makes it easy to add a code template for figures by adding the opening 
 \begin{verbatim}
 \begin{figure}
     \centering
-    \includegraphics{}
+    \includegraphics[width=0.5\linewidth]{}
     \caption{Caption}
-    \label{fig:my_label}
+    \label{fig:enter-label}
 \end{figure}
 \end{verbatim}
 
@@ -261,6 +261,7 @@ This allows us to specify:
 
 \begin{itemize}
     \item The horizontal position of the figure
+    \item The width of the figure
     \item The name of the file
     \item The figure caption
     \item The label that will allow cross-referencing of the figure
@@ -278,9 +279,9 @@ As an example, the following code:
 
 \begin{tcolorbox}
 \begin{verbatim}
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{J_D_Story_1966.jpg}
+    \includegraphics[width=0.8\linewidth]{J_D_Story_1966.jpg}
     \caption{J D Story Administration building, UQ St Lucia (1966, Public Domain)}
     \label{fig:JD}
 \end{figure}
@@ -291,10 +292,12 @@ Results in the following figure:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{J_D_Story_1966.jpg}
+    \includegraphics[width=0.8\linewidth]{J_D_Story_1966.jpg}
     \caption{J D Story Administration building, UQ St Lucia (1966, Public Domain)}
     \label{fig:JD}
 \end{figure}
+
+Alternatively, you can insert a figure by using the "Insert Figure" button in the toolbar, or by copy-pasting it into the document. This opens a dialog that allows to choose the file's name and location, specify the width and turn caption and label on or off.
 
 Because a label was used, we can now reference the figure itself and the page it is on:
 
@@ -372,11 +375,11 @@ It is possible to give different rights to different collaborators: you could de
 
 The "Review" button at the top of the screen will open a side panel showing the \textbf{comments}. Select some text and add a comment to the document you are collaborating on. Others can then reply to your comment.
 
-This panel is also where tracked changes can be turned on. Changes will be shown in the same side panel as the comments. Collaborators can then accept or reject changes.
+This panel is also where \textbf{tracked changes} can be turned on. Changes will be shown in the same side panel as the comments. Collaborators can then accept or reject changes.
 
 \subsection{Chat}
 
-Finally, a \textbf{chat} function is available in Overleaf. You can open it with the top-right "Chat" button.
+Finally, a \textbf{chat} feature is available in Overleaf. You can open it with the top-right "Chat" button.
 
 \section{History}
 
@@ -388,7 +391,7 @@ Specific versions can also be \textbf{labelled}, which might be useful to help n
 
 To \textbf{export the document to PDF}, click on the "Download PDF" button above the compiled view panel.
 
-Overleaf integrates some guidance to publish on a selection of platforms. You can see the publishers available by clicking on the "Submit" button in the top toolbar.
+Overleaf integrates some guidance to \textbf{publish} on a selection of platforms. You can see the publishers available by clicking on the "Submit" button in the top toolbar.
 
 To make sure you can keep working on your document outside of Overleaf, or to submit the \textbf{source files} to a publisher, you will have to download the whole project, not just the compiled PDF. To do that, open the main menu (top right "Menu" button) and click on "Source". You will then be able to download a zip archive containing all your .tex files, images, references files and others.
 
@@ -408,7 +411,7 @@ Overleaf provides many \textbf{templates} to choose from, which makes it easier 
     \item In the template's description page, click "Open as template"
 \end{itemize}
 
-See for example the Beamer template offered in the UQ templates (\href{https://www.overleaf.com/learn/latex/Beamer}{Beamer documents} are used for creating presentation slides). This particular templates also demonstrates the use of a \LaTeX plotting package called \texttt{pgfplots}, which you can learn more about on \href{https://www.overleaf.com/learn/latex/Pgfplots_package}{Overleaf's pgfplots documentation}.
+See for example the Beamer template offered in the UQ templates (\href{https://www.overleaf.com/learn/latex/Beamer}{Beamer documents} are used for creating presentation slides). This particular template also demonstrates the use of a \LaTeX plotting package called \texttt{pgfplots}, which you can learn more about on \href{https://www.overleaf.com/learn/latex/Pgfplots_package}{Overleaf's pgfplots documentation}.
 
 \section{Account integrations}
 

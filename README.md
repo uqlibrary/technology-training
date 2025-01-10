@@ -67,7 +67,7 @@ These sessions focus on dealing with geospatial data, using QGIS, uMap, the Open
 | OpenRefine: clean up and augment data | [md](OpenRefine/openrefine.md) <sup>[source](OpenRefine/openrefine.qmd)</sup> | [html](https://demo.hedgedoc.org/s/rJCXmqviH) | ... |
 | Audacity: introduction to audio editing | [md](Audacity/audacity.md) <sup>[source](Audacity/audacity.qmd)</sup> | [html](https://demo.hedgedoc.org/s/HkkITjw9L) | ... |
 | Text Analysis with Voyant Tools | [md](Voyant/voyant.md) <sup>[source](Voyant/voyant.qmd)</sup> | ... | ... |
-| Overleaf: write and collaborate on LaTeX documents | [pdf](https://web.library.uq.edu.au/files/145715/2021-12-02_Overleaf_write_articles_with_LaTeX.pdf) <sup>[source](LaTeX/intro/main.tex)</sup> | ... | ... |
+| Overleaf: write and collaborate on LaTeX documents | [md](LaTeX/overleaf_latex.md) <sup>[source](LaTeX/overleaf_latex.qmd), [tex](LaTeX/intro/main.tex)</sup> | ... | ... |
 
 ### Archive
 
