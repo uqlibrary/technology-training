@@ -284,23 +284,23 @@ Here, `input` asks the user to pick a number. After the user (you) types somethi
 
 -->
 <details>
-  <summary>Solution</summary>
-  
-  We have three lines of code corresponding to the steps above:
-  
-  ```{python}
-  #| eval: false
-  ### Age in minutes calculator
-    
-  # Input age
-  age_years = 56
+<summary>Solution</summary>
 
-  # Calculate age in mins
-  age_mins = age_years * 365 * 24 * 60
+We have three lines of code corresponding to the steps above:
 
-  # Print result
-  print("You have lived for", str(age_mins), "minutes!")
-  ```
+```{python}
+#| eval: false
+### Age in minutes calculator
+  
+# Input age
+age_years = 56
+
+# Calculate age in mins
+age_mins = age_years * 365 * 24 * 60
+
+# Print result
+print("You have lived for", str(age_mins), "minutes!")
+```
 </details>
 
 ## Conditionals
@@ -331,18 +331,20 @@ if len(name) > 5:
 
 Here, we're checking if the length of `name` is greater than `5`. Note that `name + " is longer than 5!"` concatenates (combines) the strings together.
 
-> ### Advanced
->
-> Using `name + " is longer than 5!"` is a bit clunky, there is a better way to include variables in strings, called **f-strings**.
->
-> ```{python}
-> name = "your_name"
-> 
-> if len(name) > 5:
->     print(f"{name} is longer than 5 letters!")
-> ```
->
-> By putting `f` before `'` or `"`, Python will insert any code run between curly brackets `{ }` into the string. Here, running `name` just returns "apple".
+<blockquote>
+### Advanced
+
+Using `name + " is longer than 5!"` is a bit clunky, there is a better way to include variables in strings, called **f-strings**.
+```{python}
+name = "your_name"
+
+if len(name) > 5:
+  print(f"{name} is longer than 5 letters!")
+```
+
+By putting `f` before `'` or `"`, Python will insert any code run between curly brackets `{ }` into the string. Here, running `name` just returns "apple".
+
+</blockquote>
 
 ### `elif` and `else`
 
@@ -640,29 +642,29 @@ df
 ```
 <details>
 
-  <summary>Solution</summary>
+<summary>Solution</summary>
+
+One solution could be the following:
   
-  One solution could be the following:
-  
-  ```{python}
-  #| eval: false
+```{python}
+#| eval: false
 
-  # Import packages
-  import pandas as pd
-  import seaborn as sns
+# Import packages
+import pandas as pd
+import seaborn as sns
 
-  # Import data - don't forget to change the file path as you need
-  df = pd.read_csv("BMI_data.csv")
+# Import data - don't forget to change the file path as you need
+df = pd.read_csv("BMI_data.csv")
 
-  # Create a new column called Weight (lb) and store the weight in pounds
-  df["Weight (lb)"] = df["Weight"]*2.205
+# Create a new column called Weight (lb) and store the weight in pounds
+df["Weight (lb)"] = df["Weight"]*2.205
 
-  # Create BMI column
-  df["BMI"] = df["Weight"] / (df["Height"]**2)
+# Create BMI column
+df["BMI"] = df["Weight"] / (df["Height"]**2)
 
-  # Look at the data
-  df
-  ```
+# Look at the data
+df
+```
               
 </details>
 
@@ -671,21 +673,21 @@ df
 To visualise the data, we can use the **seaborn** module, with the function `sns.catplot( ... )`. Inside the function, we'll need to specify the `x` and `y` values, and if we specifically want a bar plot, `kind` as well. Use the `help()` documentation to see if you can visualise the data we just created. See if you can produce something like the following plot:
 
 ```{python}
-  #| echo: false
-  # Visualise
-  sns.catplot(data = df, x = names, y = "BMI", kind = "bar")
-  ```
+#| echo: false
+# Visualise
+sns.catplot(data = df, x = "Names", y = "BMI", kind = "bar")
+```
 <details>
-  <summary>Solution</summary>
+<summary>Solution</summary>
+
+The plot above is produced with the code
   
-  The plot above is produced with the code
-  
-  ```{python}
-  #| eval: false
-  # Visualise
-  sns.catplot(data = df, x = names, y = "BMI", kind = "bar")
-  ```
-              
+```{python}
+#| eval: false
+# Visualise
+sns.catplot(data = df, x = "Names", y = "BMI", kind = "bar")
+```
+            
 </details>
 
 

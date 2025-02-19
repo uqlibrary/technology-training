@@ -166,7 +166,7 @@ sentence + favNumber
     TypeError: can only concatenate str (not "int") to str
     [1;31m---------------------------------------------------------------------------[0m
     [1;31mTypeError[0m                                 Traceback (most recent call last)
-    Cell [1;32mIn[40], line 1[0m
+    Cell [1;32mIn[453], line 1[0m
     [1;32m----> 1[0m [43msentence[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[43mfavNumber[49m
 
     [1;31mTypeError[0m: can only concatenate str (not "int") to str
@@ -419,8 +419,6 @@ age_mins = age_years * 365 * 24 * 60
 print("You have lived for", str(age_mins), "minutes!")
 ```
 
-:::
-
 </details>
 
 ## Conditionals
@@ -461,18 +459,27 @@ Here, we’re checking if the length of `name` is greater than `5`. Note
 that `name + " is longer than 5!"` concatenates (combines) the strings
 together.
 
-> ### Advanced
->
-> Using `name + " is longer than 5!"` is a bit clunky, there is a better
-> way to include variables in strings, called **f-strings**.
->
-> \`\`\`{python} name = “your_name”
->
-> if len(name) \> 5: print(f”{name} is longer than 5 letters!“) \`\`\`
->
-> By putting `f` before `'` or `"`, Python will insert any code run
-> between curly brackets `{ }` into the string. Here, running `name`
-> just returns “apple”.
+<blockquote>
+
+### Advanced
+
+Using `name + " is longer than 5!"` is a bit clunky, there is a better
+way to include variables in strings, called **f-strings**.
+
+``` python
+name = "your_name"
+
+if len(name) > 5:
+  print(f"{name} is longer than 5 letters!")
+```
+
+    your_name is longer than 5 letters!
+
+By putting `f` before `'` or `"`, Python will insert any code run
+between curly brackets `{ }` into the string. Here, running `name` just
+returns “apple”.
+
+</blockquote>
 
 ### `elif` and `else`
 
@@ -580,11 +587,11 @@ from the start to the finish.
 ## Activity 2
 &#10;The second activity is a name comparer. Here, we will write code which identifies the letters in common between two names. 
 &#10;We'll need to use the command `in` for this activity. It checks whether a variable on the left exists inside a variable on the write, for example
-&#10;::: {.cell execution_count=25}
+&#10;::: {.cell execution_count=26}
 ``` {.python .cell-code}
 "app" in "apple"
 ```
-&#10;::: {.cell-output .cell-output-display execution_count=54}
+&#10;::: {.cell-output .cell-output-display execution_count=468}
 ```
 True
 ```
@@ -592,7 +599,7 @@ True
 :::
 &#10;
 will return `True`. We can use this for conditionals, like
-&#10;::: {.cell execution_count=26}
+&#10;::: {.cell execution_count=27}
 ``` {.python .cell-code}
 word = "apple"
 smaller = "app"
@@ -609,7 +616,7 @@ appcan be found insideapple
 :::
 &#10;
 We will also need to use a *method*. These are functions that only apply to certain variables, and we access them using dot `.` notation. Here, we will use the list method `.append`:
-&#10;::: {.cell execution_count=27}
+&#10;::: {.cell execution_count=28}
 ``` {.python .cell-code}
 a = [1, 2, 3]
 a.append(4)
@@ -634,7 +641,7 @@ The list `a` is originally just `[1, 2, 3]`, but after running `a.append(4)`, it
   <summary>Solution</summary>
   &#10;  One solution could be the following:
 &#10;
-  ::: {.cell execution_count=28}
+  ::: {.cell execution_count=29}
   ``` {.python .cell-code}
   # Name comparer
   &#10;  # Ask user for names
@@ -833,13 +840,13 @@ Once you’ve done these steps, you should see the following:
     }
 </style>
 
-|     | Unnamed: 0 | Height | Weight | Weight (lb) | BMI       |
-|-----|------------|--------|--------|-------------|-----------|
-| 0   | Alice      | 1.90   | 94     | 207.27      | 26.038781 |
-| 1   | Bob        | 1.81   | 102    | 224.91      | 31.134581 |
-| 2   | Charlie    | 1.87   | 108    | 238.14      | 30.884498 |
-| 3   | Dilsah     | 1.88   | 84     | 185.22      | 23.766410 |
-| 4   | Eliza      | 1.68   | 108    | 238.14      | 38.265306 |
+|     | Names   | Height | Weight | Weight (lb) | BMI       |
+|-----|---------|--------|--------|-------------|-----------|
+| 0   | Alice   | 1.90   | 94     | 207.27      | 26.038781 |
+| 1   | Bob     | 1.81   | 102    | 224.91      | 31.134581 |
+| 2   | Charlie | 1.87   | 108    | 238.14      | 30.884498 |
+| 3   | Dilsah  | 1.88   | 84     | 185.22      | 23.766410 |
+| 4   | Eliza   | 1.68   | 108    | 238.14      | 38.265306 |
 
 </div>
 <details>
@@ -849,19 +856,23 @@ Solution
 
 One solution could be the following:
 
-::: {.cell execution_count=40} \`\`\` {.python .cell-code} \# Import
-packages import pandas as pd import seaborn as sns
+``` python
+# Import packages
+import pandas as pd
+import seaborn as sns
 
-\# Import data - don’t forget to change the file path as you need df =
-pd.read_csv(“BMI_data.csv”)
+# Import data - don't forget to change the file path as you need
+df = pd.read_csv("BMI_data.csv")
 
-\# Create a new column called Weight (lb) and store the weight in pounds
-df\[“Weight (lb)”\] = df\[“Weight”\]\*2.205
+# Create a new column called Weight (lb) and store the weight in pounds
+df["Weight (lb)"] = df["Weight"]*2.205
 
-\# Create BMI column df\[“BMI”\] = df\[“Weight”\] /
-(df\[“Height”\]\*\*2)
+# Create BMI column
+df["BMI"] = df["Weight"] / (df["Height"]**2)
 
-\# Look at the data df \`\`\` :::
+# Look at the data
+df
+```
 
 </details>
 
@@ -874,8 +885,7 @@ specify the `x` and `y` values, and if we specifically want a bar plot,
 visualise the data we just created. See if you can produce something
 like the following plot:
 
-\#\| echo: false \# Visualise sns.catplot(data = df, x = names, y =
-“BMI”, kind = “bar”) \`\`\`
+![](fundamentals_files/figure-commonmark/cell-43-output-1.png)
 
 <details>
 <summary>
@@ -884,10 +894,9 @@ Solution
 
 The plot above is produced with the code
 
-``` {python}
-  #| eval: false
-  # Visualise
-  sns.catplot(data = df, x = names, y = "BMI", kind = "bar")
+``` python
+# Visualise
+sns.catplot(data = df, x = "Names", y = "BMI", kind = "bar")
 ```
 
 </details>
