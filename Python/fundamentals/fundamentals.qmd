@@ -255,8 +255,6 @@ For a comprehensive manual, go to the [official online documentation](https://do
 
 ## Activity 1
 
-### Stage 1
-
 In this first activity, write a program which takes an age in years and outputs how many minutes they've lived for. Note that
 
 $$\text{Age (minutes)} = \text{Age (years)} \times 365 \times 24 \times 60$$
@@ -267,6 +265,12 @@ Steps
 * Calculate the age in minutes
 * Print a message with the output
 
+> Note: if you want to print a number (e.g. the age), the easiest way is to send multiple arguments to the print function. For example,
+> ```{python}
+> print("The first number is", 1)
+> ```
+
+<!--
 ### Stage 2
 
 Next, we'll get the user to provide the age themselves. To prompt the user for to submit a value, we need to use a new command: `input`.
@@ -278,6 +282,7 @@ number = int(input("Pick a number: "))
 
 Here, `input` asks the user to pick a number. After the user (you) types something into the console and presses <kbd>enter</kbd>, it is saved by Python in the variable `number`. Note that we need to put the input inside an `int( ... )` function to turn it into a number.
 
+-->
 <details>
   <summary>Solution</summary>
   
@@ -287,18 +292,16 @@ Here, `input` asks the user to pick a number. After the user (you) types somethi
   #| eval: false
   ### Age in minutes calculator
     
-  # Prompt user for age
-  age_years = int(input("What is your age: "))
+  # Input age
+  age_years = 56
 
   # Calculate age in mins
   age_mins = age_years * 365 * 24 * 60
 
   # Print result
-  print("You have lived for" + str(age_mins) + "minutes!")
+  print("You have lived for", str(age_mins), "minutes!")
   ```
 </details>
-
-> We need to use `str()` because we can't concatenate strings with integers.
 
 ## Conditionals
 
@@ -411,6 +414,7 @@ for element in myList:
 
 These work a bit differently. Each time the loop runs, a variable (here called `element`) stores one of the values in the container (here called `myList`). The loop runs once for each element in the container, working from the start to the finish.
 
+<!--
 ## Activity 2
 
 The second activity is a name comparer. Here, we will write code which identifies the letters in common between two names. 
@@ -483,6 +487,7 @@ All together, for this activity we will need to
   ```
               
 </details>
+-->
 
 ## Packages
 
@@ -566,7 +571,7 @@ Some popular packages include
 | Requests | `pip/conda install requests` | `import requests` | Make HTTP (internet) **requests**. |
 | Beautiful Soup | `pip/conda install beautifulsoup4` | `from bs4 import BeautifulSoup` | Collect HTML data from websites. | 
 
-## Activity 3
+## Activity 2
 
 In this final activity, we're going to create some sample data and visualise it.
 
@@ -583,15 +588,16 @@ import seaborn as sns
 
 ### Part 1: Importing and modifying the data
 
-The first challenge in this activity is bringing in the data. To do this, we use the `pd.read_csv()` function, specifying the file path as the first argument (this can be a URL), and store it in a variable (typically `df`).
+The first challenge in this activity is bringing in the data. To do this, we use the `pd.read_csv()` function, specifying the file path as the first argument (this can be a URL), and store it in a variable (typically `df`). For example,
 
-Today's data is five (random) people's height and weight. You can download it [here](https://github.com/uqlibrary/technology-training/blob/ef2d1e8eb721606a928ce140cdbebb12645f812e/Python/fundamentals/fundamentals.md).
+```{python}
+#| eval: false
+df = pd.read_csv("insert_filepath_here")
+```
 
-Next, you'll need to compute the each person's BMI. The code below demonstrates how to create a new column (converting weight into pounds). You should do the same, but use the formula
+Today's data is five (random) people's height and weight. You can download it [here](BMI_data.csv).
 
-$$ BMI = \frac{Weight}{(Height)^2} $$
-
-> Remember, `5**2` is $5^2$
+Next, you'll need to compute the each person's BMI. First, we'll need to convert the weights from kilograms to pounds:
 
 ```{python}
 #| eval: false
@@ -599,23 +605,57 @@ $$ BMI = \frac{Weight}{(Height)^2} $$
 df["Weight (lb)"] = df["Weight"]*2.205
 ```
 
+To compute the BMIs, make another new column and use the following formula to calculate the BMI.
+
+$$ BMI = \frac{Weight}{(Height)^2} $$
+
+It should look something like
+```{python}
+#| eval: false
+df["BMI"] = ...
+```
+
+> Hint: $x^2$ is `x**32`
+
 Once you've done these steps, you should see the following:
 
-![image](https://github.com/uqlibrary/technology-training/assets/118239146/ea32aa49-a679-4bd2-b525-d9044b6d1279)
+```{python}
+#| echo: false
 
+# Import packages
+import pandas as pd
+import seaborn as sns
+
+# Import data - don't forget to change the file path as you need
+df = pd.read_csv("BMI_data.csv")
+
+# Create a new column called Weight (lb) and store the weight in pounds
+df["Weight (lb)"] = df["Weight"]*2.205
+
+# Create BMI column
+df["BMI"] = df["Weight"] / (df["Height"]**2)
+
+# Look at the data
+df
+```
 <details>
+
   <summary>Solution</summary>
   
   One solution could be the following:
   
   ```{python}
   #| eval: false
+
   # Import packages
   import pandas as pd
   import seaborn as sns
-  
+
   # Import data - don't forget to change the file path as you need
   df = pd.read_csv("BMI_data.csv")
+
+  # Create a new column called Weight (lb) and store the weight in pounds
+  df["Weight (lb)"] = df["Weight"]*2.205
 
   # Create BMI column
   df["BMI"] = df["Weight"] / (df["Height"]**2)
@@ -630,8 +670,11 @@ Once you've done these steps, you should see the following:
 
 To visualise the data, we can use the **seaborn** module, with the function `sns.catplot( ... )`. Inside the function, we'll need to specify the `x` and `y` values, and if we specifically want a bar plot, `kind` as well. Use the `help()` documentation to see if you can visualise the data we just created. See if you can produce something like the following plot:
 
-![image](https://github.com/uqlibrary/technology-training/assets/118239146/e85ece7e-0186-4599-9d2b-cbb137bcd981)
-
+```{python}
+  #| echo: false
+  # Visualise
+  sns.catplot(data = df, x = names, y = "BMI", kind = "bar")
+  ```
 <details>
   <summary>Solution</summary>
   

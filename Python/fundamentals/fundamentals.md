@@ -166,7 +166,7 @@ sentence + favNumber
     TypeError: can only concatenate str (not "int") to str
     [1;31m---------------------------------------------------------------------------[0m
     [1;31mTypeError[0m                                 Traceback (most recent call last)
-    Cell [1;32mIn[9], line 1[0m
+    Cell [1;32mIn[40], line 1[0m
     [1;32m----> 1[0m [43msentence[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[43mfavNumber[49m
 
     [1;31mTypeError[0m: can only concatenate str (not "int") to str
@@ -373,8 +373,6 @@ great Q&A community](https://stackoverflow.com/questions/tagged/python).
 
 ## Activity 1
 
-### Stage 1
-
 In this first activity, write a program which takes an age in years and
 outputs how many minutes they’ve lived for. Note that
 
@@ -386,20 +384,21 @@ Steps
 - Calculate the age in minutes
 - Print a message with the output
 
+> Note: if you want to print a number (e.g. the age), the easiest way is
+> to send multiple arguments to the print function. For example,
+> `{python} print("The first number is", 1)`
+
+<!--
 ### Stage 2
-
-Next, we’ll get the user to provide the age themselves. To prompt the
-user for to submit a value, we need to use a new command: `input`.
-
-``` python
+&#10;Next, we'll get the user to provide the age themselves. To prompt the user for to submit a value, we need to use a new command: `input`.
+&#10;::: {.cell execution_count=17}
+``` {.python .cell-code}
 number = int(input("Pick a number: "))
 ```
-
-Here, `input` asks the user to pick a number. After the user (you) types
-something into the console and presses <kbd>enter</kbd>, it is saved by
-Python in the variable `number`. Note that we need to put the input
-inside an `int( ... )` function to turn it into a number.
-
+:::
+&#10;
+Here, `input` asks the user to pick a number. After the user (you) types something into the console and presses <kbd>enter</kbd>, it is saved by Python in the variable `number`. Note that we need to put the input inside an `int( ... )` function to turn it into a number.
+&#10;-->
 <details>
 <summary>
 Solution
@@ -410,21 +409,19 @@ We have three lines of code corresponding to the steps above:
 ``` python
 ### Age in minutes calculator
   
-# Prompt user for age
-age_years = int(input("What is your age: "))
+# Input age
+age_years = 56
 
 # Calculate age in mins
 age_mins = age_years * 365 * 24 * 60
 
 # Print result
-print("You have lived for" + str(age_mins) + "minutes!")
+print("You have lived for", str(age_mins), "minutes!")
 ```
 
 :::
 
 </details>
-
-> We need to use `str()` because we can't concatenate strings with integers.
 
 ## Conditionals
 
@@ -579,96 +576,86 @@ called `element`) stores one of the values in the container (here called
 `myList`). The loop runs once for each element in the container, working
 from the start to the finish.
 
+<!--
 ## Activity 2
-
-The second activity is a name comparer. Here, we will write code which
-identifies the letters in common between two names.
-
-We’ll need to use the command `in` for this activity. It checks whether
-a variable on the left exists inside a variable on the write, for
-example
-
-``` python
+&#10;The second activity is a name comparer. Here, we will write code which identifies the letters in common between two names. 
+&#10;We'll need to use the command `in` for this activity. It checks whether a variable on the left exists inside a variable on the write, for example
+&#10;::: {.cell execution_count=25}
+``` {.python .cell-code}
 "app" in "apple"
 ```
-
-    True
-
+&#10;::: {.cell-output .cell-output-display execution_count=54}
+```
+True
+```
+:::
+:::
+&#10;
 will return `True`. We can use this for conditionals, like
-
-``` python
+&#10;::: {.cell execution_count=26}
+``` {.python .cell-code}
 word = "apple"
 smaller = "app"
-
-if smaller in word:
+&#10;if smaller in word:
     print(smaller + "can be found inside" + word)
 else:
     print(smaller + "is not inside" + word)
 ```
-
-    appcan be found insideapple
-
-We will also need to use a *method*. These are functions that only apply
-to certain variables, and we access them using dot `.` notation. Here,
-we will use the list method `.append`:
-
-``` python
+&#10;::: {.cell-output .cell-output-stdout}
+```
+appcan be found insideapple
+```
+:::
+:::
+&#10;
+We will also need to use a *method*. These are functions that only apply to certain variables, and we access them using dot `.` notation. Here, we will use the list method `.append`:
+&#10;::: {.cell execution_count=27}
+``` {.python .cell-code}
 a = [1, 2, 3]
 a.append(4)
 print(a)
 ```
-
-    [1, 2, 3, 4]
-
-The list `a` is originally just `[1, 2, 3]`, but after running
-`a.append(4)`, it appends the element 4 to the end, making it
-`[1, 2, 3, 4]`.
-
-All together, for this activity we will need to
-
-- Ask the user for their first name using `input( ... )`
-- Ask the user for their last/second name using `input( ... )`
-- Initialise a list of common letters using `common = []` (this will let
-  us append to it later)
-- Use a `for` loop to iterate through the each letter in the first name
-- Use an `if` statement to check if each letter is inside the
-  last/second name
-- Print a message stating the common letters
-
-<details>
-<summary>
-Solution
-</summary>
-
-One solution could be the following:
-
-``` python
-# Name comparer
-
-# Ask user for names
-firstname = input("What is your first name? ")
-surname = input("What is your surname? ")
-
-# Initialise list of common letters
-common = [] 
-
-# Loop through each letter in first name
-for letter in firstname:
-  
-    # Check if the letter is in the second word
-    if letter in surname:
-      
-        # Add it to the list of common letters
-        common.append(letter)
-        
-# Print final list of letters
-print("The letter(s) in common between your names are: ")
-print(common)
+&#10;::: {.cell-output .cell-output-stdout}
 ```
-
+[1, 2, 3, 4]
+```
 :::
-
+:::
+&#10;
+The list `a` is originally just `[1, 2, 3]`, but after running `a.append(4)`, it appends the element 4 to the end, making it `[1, 2, 3, 4]`.
+&#10;All together, for this activity we will need to 
+&#10;- Ask the user for their first name using `input( ... )`
+- Ask the user for their last/second name using `input( ... )`
+- Initialise a list of common letters using `common = []` (this will let us append to it later)
+- Use a `for` loop to iterate through the each letter in the first name
+- Use an `if` statement to check if each letter is inside the last/second name
+- Print a message stating the common letters
+&#10;<details>
+  <summary>Solution</summary>
+  &#10;  One solution could be the following:
+&#10;
+  ::: {.cell execution_count=28}
+  ``` {.python .cell-code}
+  # Name comparer
+  &#10;  # Ask user for names
+  firstname = input("What is your first name? ")
+  surname = input("What is your surname? ")
+  &#10;  # Initialise list of common letters
+  common = [] 
+  &#10;  # Loop through each letter in first name
+  for letter in firstname:
+    &#10;      # Check if the letter is in the second word
+      if letter in surname:
+        &#10;          # Add it to the list of common letters
+          common.append(letter)
+          &#10;  # Print final list of letters
+  print("The letter(s) in common between your names are: ")
+  print(common)
+  ```
+  :::
+  &#10;  
 </details>
+-->
 
 ## Packages
 
@@ -777,7 +764,7 @@ Some popular packages include
 | Requests | `pip/conda install requests` | `import requests` | Make HTTP (internet) **requests**. |
 | Beautiful Soup | `pip/conda install beautifulsoup4` | `from bs4 import BeautifulSoup` | Collect HTML data from websites. |
 
-## Activity 3
+## Activity 2
 
 In this final activity, we’re going to create some sample data and
 visualise it.
@@ -801,29 +788,60 @@ import seaborn as sns
 The first challenge in this activity is bringing in the data. To do
 this, we use the `pd.read_csv()` function, specifying the file path as
 the first argument (this can be a URL), and store it in a variable
-(typically `df`).
+(typically `df`). For example,
+
+``` python
+df = pd.read_csv("insert_filepath_here")
+```
 
 Today’s data is five (random) people’s height and weight. You can
-download it
-[here](https://github.com/uqlibrary/technology-training/blob/ef2d1e8eb721606a928ce140cdbebb12645f812e/Python/fundamentals/fundamentals.md).
+download it [here](BMI_data.csv).
 
-Next, you’ll need to compute the each person’s BMI. The code below
-demonstrates how to create a new column (converting weight into pounds).
-You should do the same, but use the formula
-
-$$ BMI = \frac{Weight}{(Height)^2} $$
-
-> Remember, `5**2` is $5^2$
+Next, you’ll need to compute the each person’s BMI. First, we’ll need to
+convert the weights from kilograms to pounds:
 
 ``` python
 # Create a new column called Weight (lb) and store the weight in pounds
 df["Weight (lb)"] = df["Weight"]*2.205
 ```
 
+To compute the BMIs, make another new column and use the following
+formula to calculate the BMI.
+
+$$ BMI = \frac{Weight}{(Height)^2} $$
+
+It should look something like
+
+``` python
+df["BMI"] = ...
+```
+
+> Hint: $x^2$ is `x**32`
+
 Once you’ve done these steps, you should see the following:
 
-![image](https://github.com/uqlibrary/technology-training/assets/118239146/ea32aa49-a679-4bd2-b525-d9044b6d1279.png)
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 
+|     | Unnamed: 0 | Height | Weight | Weight (lb) | BMI       |
+|-----|------------|--------|--------|-------------|-----------|
+| 0   | Alice      | 1.90   | 94     | 207.27      | 26.038781 |
+| 1   | Bob        | 1.81   | 102    | 224.91      | 31.134581 |
+| 2   | Charlie    | 1.87   | 108    | 238.14      | 30.884498 |
+| 3   | Dilsah     | 1.88   | 84     | 185.22      | 23.766410 |
+| 4   | Eliza      | 1.68   | 108    | 238.14      | 38.265306 |
+
+</div>
 <details>
 <summary>
 Solution
@@ -831,22 +849,19 @@ Solution
 
 One solution could be the following:
 
-``` python
-# Import packages
-import pandas as pd
-import seaborn as sns
+::: {.cell execution_count=40} \`\`\` {.python .cell-code} \# Import
+packages import pandas as pd import seaborn as sns
 
-# Import data - don't forget to change the file path as you need
-df = pd.read_csv("BMI_data.csv")
+\# Import data - don’t forget to change the file path as you need df =
+pd.read_csv(“BMI_data.csv”)
 
-# Create BMI column
-df["BMI"] = df["Weight"] / (df["Height"]**2)
+\# Create a new column called Weight (lb) and store the weight in pounds
+df\[“Weight (lb)”\] = df\[“Weight”\]\*2.205
 
-# Look at the data
-df
-```
+\# Create BMI column df\[“BMI”\] = df\[“Weight”\] /
+(df\[“Height”\]\*\*2)
 
-:::
+\# Look at the data df \`\`\` :::
 
 </details>
 
@@ -859,7 +874,8 @@ specify the `x` and `y` values, and if we specifically want a bar plot,
 visualise the data we just created. See if you can produce something
 like the following plot:
 
-![image](https://github.com/uqlibrary/technology-training/assets/118239146/e85ece7e-0186-4599-9d2b-cbb137bcd981.png)
+\#\| echo: false \# Visualise sns.catplot(data = df, x = names, y =
+“BMI”, kind = “bar”) \`\`\`
 
 <details>
 <summary>
@@ -868,12 +884,11 @@ Solution
 
 The plot above is produced with the code
 
-``` python
-# Visualise
-sns.catplot(data = df, x = names, y = "BMI", kind = "bar")
+``` {python}
+  #| eval: false
+  # Visualise
+  sns.catplot(data = df, x = names, y = "BMI", kind = "bar")
 ```
-
-:::
 
 </details>
 
