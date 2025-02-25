@@ -17,7 +17,7 @@ author: UQ Library
 
 ## Open RStudio
 
-On library computers:
+On Library computers:
 
 -   Log in with your UQ username and password (use your student credentials if you are both staff and student)
 -   Make sure you have a working internet connection
@@ -287,7 +287,7 @@ ggplotly(p)
 
 You can now identify single points, zoom into your plot, and show/hide categories. However, the pop-up does not tell us which country the point corresponds to. That's because we don't mention the `country` variable in our code. Let's reveal that information by slightly modifying the `p` object:
 
-```{r}
+```{r eval=FALSE}
 p <- ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp,
@@ -299,6 +299,18 @@ p <- ggplot(data = gapminder,
 The interactive version now tells us which country each point correspond to:
 
 ```{r eval=FALSE}
+ggplotly(p)
+```
+
+To add yet another variable to the visualisation, we can animate the plot but associating the `frame` aesthetic with the `year` variable. This adds a slider and a "Play" button under the visualisation.
+
+```{r eval=FALSE}
+p <- ggplot(data = gapminder,
+       mapping = aes(x = gdpPercap,
+                     y = lifeExp,
+                     label = country,
+                     frame = year)) + # one frame per year
+  geom_point(aes(colour = continent))
 ggplotly(p)
 ```
 
@@ -359,7 +371,7 @@ ggplot(gapminder,
                  position = "fill")
 ```
 
-You might have noticed that the y-axis is still labeled 'count' when it has changed to a proportion. We can modify the y-axis labels to percent using the scales package which is loaded with the ggplot2 package. 
+You might have noticed that the y-axis is still labeled 'count' when it has changed to a proportion. We can modify the y-axis labels to percent using the `percent()` function from the scales package.
 
 We can also modify the y-axis labels with the `labs()` function.
 
@@ -371,7 +383,7 @@ ggplot(gapminder,
            fill = continent)) +
   geom_histogram(bins = 10,
                  position = "fill") +
-  scale_y_continuous(labels = scales::percent) +
+  scale_y_continuous(labels = percent) +
   labs(y = "Percent")
 ```
 
@@ -410,7 +422,7 @@ ggplot(gapminder,
        aes(x = lifeExp,
            fill = continent)) +
   geom_histogram(bins = 40) +
-  facet_wrap(~ continent) +
+  facet_wrap(vars(continent)) +
   theme(legend.position = "none")
 ```
 
@@ -421,7 +433,7 @@ ggplot(gapminder,
        aes(x = lifeExp,
            fill = continent)) +
   geom_histogram(bins = 40) +
-  facet_wrap(~ continent) +
+  facet_wrap(vars(continent)) +
   theme_minimal() + # before customising the legend!
   theme(legend.position = "none")
 ```
@@ -437,11 +449,11 @@ ggplot(diamonds,
   geom_point(aes(colour = color),
              alpha = 0.5,
              size = 0.5) +
-  scale_color_brewer(palette = "Spectral") +
+  scale_colour_viridis_d(option = "turbo") +
   geom_smooth(se = FALSE,
               linetype = "dashed",
               colour = "black",
-              size = 0.5) +
+              linewidth = 0.5) +
   facet_wrap(vars(cut)) +
   theme_minimal() +
   labs(y = "price (USD)")
@@ -451,8 +463,8 @@ In this visualisation:
 
 * 4 different variables are represented, thanks to both aesthetics and facets
 * two geometries are layered on top of each other to represent a relationship
-* both geometries are customised to make the plot readable (important here, since there are close to 54000 rows of data)
-* the default the colour scale is replaced
+* both geometries are customised to make the plot readable (important here, since there are close to 54,000 rows of data)
+* the default colour scale is replaced
 * a built-in theme is used
 * a label clarifies the unit of measurement
 

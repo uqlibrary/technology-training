@@ -1,6 +1,6 @@
 # R ggplot2: intermediate data visualisation
 UQ Library
-2025-01-06
+2025-02-25
 
 - [Essential shortcuts](#essential-shortcuts)
 - [Open RStudio](#open-rstudio)
@@ -33,7 +33,7 @@ UQ Library
 
 ## Open RStudio
 
-On library computers:
+On Library computers:
 
 - Log in with your UQ username and password (use your student
   credentials if you are both staff and student)
@@ -442,6 +442,20 @@ to:
 ggplotly(p)
 ```
 
+To add yet another variable to the visualisation, we can animate the
+plot but associating the `frame` aesthetic with the `year` variable.
+This adds a slider and a “Play” button under the visualisation.
+
+``` r
+p <- ggplot(data = gapminder,
+       mapping = aes(x = gdpPercap,
+                     y = lifeExp,
+                     label = country,
+                     frame = year)) + # one frame per year
+  geom_point(aes(colour = continent))
+ggplotly(p)
+```
+
 > You can export the visualisation as a HTML page for sharing with
 > others.
 
@@ -459,7 +473,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
 
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-23-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-24-1.png)
 
 > **Saving some typing:** remember we can omit the names of the
 > arguments if we use them in order? Being explicit about the **argument
@@ -475,7 +489,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(binwidth = 1)
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-24-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-25-1.png)
 
 Here, each bar contains one year of life expectancy.
 
@@ -486,7 +500,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-25-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-26-1.png)
 
 Now, let’s colour the bins by continent. Instinctively, you could try
 the `colour` aesthetic:
@@ -496,7 +510,7 @@ ggplot(gapminder, aes(x = lifeExp, colour = continent)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-26-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-27-1.png)
 
 …but it only colours the outline of the rectangles!
 
@@ -508,7 +522,7 @@ ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
   geom_histogram(bins = 10)
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-27-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-28-1.png)
 
 Colouring our bins allows us to experiment with the geometry’s
 **position**. The histogram geometry uses the “stack” position by
@@ -523,11 +537,11 @@ ggplot(gapminder,
                  position = "fill")
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-28-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-29-1.png)
 
 You might have noticed that the y-axis is still labeled ‘count’ when it
 has changed to a proportion. We can modify the y-axis labels to percent
-using the scales package which is loaded with the ggplot2 package.
+using the `percent()` function from the scales package.
 
 We can also modify the y-axis labels with the `labs()` function.
 
@@ -539,11 +553,11 @@ ggplot(gapminder,
            fill = continent)) +
   geom_histogram(bins = 10,
                  position = "fill") +
-  scale_y_continuous(labels = scales::percent) +
+  scale_y_continuous(labels = percent) +
   labs(y = "Percent")
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-29-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-30-1.png)
 
 We can also make the bars “dodge” each other:
 
@@ -555,7 +569,7 @@ ggplot(gapminder,
                  position = "dodge")
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-30-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-31-1.png)
 
 ## Faceting
 
@@ -569,7 +583,7 @@ ggplot(gapminder,
   facet_wrap(vars(continent))
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-31-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-32-1.png)
 
 We have to wrap the variable(s) we want to facet by into the `vars()`
 function.
@@ -588,11 +602,11 @@ ggplot(gapminder,
        aes(x = lifeExp,
            fill = continent)) +
   geom_histogram(bins = 40) +
-  facet_wrap(~ continent) +
+  facet_wrap(vars(continent)) +
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-32-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-33-1.png)
 
 If you use a pre-built theme function, make sure you place it before
 customising the legend. Otherwise it will bring the legend back!
@@ -602,12 +616,12 @@ ggplot(gapminder,
        aes(x = lifeExp,
            fill = continent)) +
   geom_histogram(bins = 40) +
-  facet_wrap(~ continent) +
+  facet_wrap(vars(continent)) +
   theme_minimal() + # before customising the legend!
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-33-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-34-1.png)
 
 ## A more refined facetted example
 
@@ -622,22 +636,19 @@ ggplot(diamonds,
   geom_point(aes(colour = color),
              alpha = 0.5,
              size = 0.5) +
-  scale_color_brewer(palette = "Spectral") +
+  scale_colour_viridis_d(option = "turbo") +
   geom_smooth(se = FALSE,
               linetype = "dashed",
               colour = "black",
-              size = 0.5) +
+              linewidth = 0.5) +
   facet_wrap(vars(cut)) +
   theme_minimal() +
   labs(y = "price (USD)")
 ```
 
-    Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-    ℹ Please use `linewidth` instead.
-
     `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-34-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-35-1.png)
 
 In this visualisation:
 
@@ -646,8 +657,8 @@ In this visualisation:
 - two geometries are layered on top of each other to represent a
   relationship
 - both geometries are customised to make the plot readable (important
-  here, since there are close to 54000 rows of data)
-- the default the colour scale is replaced
+  here, since there are close to 54,000 rows of data)
+- the default colour scale is replaced
 - a built-in theme is used
 - a label clarifies the unit of measurement
 
@@ -660,7 +671,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-35-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-36-1.png)
 
 ### Challenge 4 – code comprehension
 
@@ -672,7 +683,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-36-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-37-1.png)
 
 This is useful if the x labels get too cramped on the x axis: you can
 rotate them to whatever angle you want.
@@ -718,7 +729,7 @@ gapminder %>%
        y = "Life Expectancy in Years")
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-37-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-38-1.png)
 
 ## Plot from multiple summarised dataframes
 
@@ -812,7 +823,7 @@ ggplot(data = cont_ave, aes(x = year,
    theme(panel.grid = element_blank()) # remove the grid lines
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-39-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-40-1.png)
 
 ## Close project
 
