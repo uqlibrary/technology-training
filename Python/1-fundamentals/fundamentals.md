@@ -79,13 +79,13 @@ To create a variable, we choose its name (e.g. `favNumber`) and assign
 (`=`) it a value (e.g. `42`):
 
 ``` python
-favNumber = 42
+example_int = 42
 ```
 
 You can then retrieve the value by running the variable name on its own:
 
 ``` python
-favNumber
+example_int
 ```
 
     42
@@ -94,16 +94,16 @@ Let’s create more variables. We can use the variable names in place of
 their values, so we can perform maths:
 
 ``` python
-otherNumber = 5.678
-prod1 = favNumber * otherNumber
+example_float = 5.678
+example_int * example_float
 ```
 
+    238.476
+
 So far, we’ve only looked at numbers. If you click on the “variable
-explorer” tab, you should see two variables like these:
+explorer” tab, you should see two variables.
 
-![image](https://github.com/uqlibrary/technology-training/assets/118239146/f8e3a769-69b0-43df-a0f3-c8b00d307eaf.png)
-
-Notice that the “Type” of `favNumber` is `int`, while the other is
+Notice that the “Type” of `example_int` is `int`, while the other is
 `float`. These are different **variable types** and can operate
 differently. `int` means integer, and corresponds to whole numbers,
 while `float` stands for floating point number, meaning decimals. You
@@ -116,7 +116,7 @@ or 0 (True or False), representing a single binary unit (bit). Don’t be
 fooled by the words, these work like numbers: `True + True` gives `2`.
 
 ``` python
-myBool = True
+example_bool = True
 ```
 
 > In Python, the boolean values `True` and `False` **must** begin with a
@@ -130,15 +130,15 @@ example, **strings** store a sequence of characters and are created with
 quotation marks `'<insert string>'` or `"<insert string>"`:
 
 ``` python
-sentence = 'Hello world!'
+example_string = 'Hello world!'
 ```
 
 We can also create **lists**, which will store several variables (not
 necessarily of the same type). We need to use square brackets for that:
 
 ``` python
-myList = [38, 3, 54, 17, 7]
-diverse = [3, 'Hi!', 9.0]
+example_list = [38, 3, 54, 17, 7]
+diverse_list = [3, 'Hi!', 9.0]
 ```
 
 Lists are very flexible as they can contain any number of items, and any
@@ -150,9 +150,9 @@ Operations on sequences are a bit different to numbers. We can still use
 than perform arithmetic.
 
 ``` python
-sentence + ' How are you?'
-myList + diverse
-3 * myList
+example_string + ' How are you?'
+example_list + diverse_list
+3 * example_list
 ```
 
     [38, 3, 54, 17, 7, 38, 3, 54, 17, 7, 38, 3, 54, 17, 7]
@@ -160,14 +160,14 @@ myList + diverse
 However, depending on the variable, some operations won’t work:
 
 ``` python
-sentence + favNumber
+example_string + example_int
 ```
 
     TypeError: can only concatenate str (not "int") to str
     [1;31m---------------------------------------------------------------------------[0m
     [1;31mTypeError[0m                                 Traceback (most recent call last)
-    Cell [1;32mIn[453], line 1[0m
-    [1;32m----> 1[0m [43msentence[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[43mfavNumber[49m
+    Cell [1;32mIn[43], line 1[0m
+    [1;32m----> 1[0m [43mexample_string[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[43mexample_int[49m
 
     [1;31mTypeError[0m: can only concatenate str (not "int") to str
 
@@ -203,9 +203,9 @@ We can access part of a sequence by **indexing**. Sequences are ordered,
 the third 2 and so on. For example, see what these commands return:
 
 ``` python
-sentence[0]
-sentence[6]
-myList[4]
+example_string[0]
+example_string[6]
+example_list[4]
 ```
 
     7
@@ -215,7 +215,7 @@ Simple slices specify a range to slice, from the first index to the
 last, **but not including the last**. For example:
 
 ``` python
-myList[0:4]
+example_list[0:4]
 ```
 
     [38, 3, 54, 17]
@@ -248,11 +248,10 @@ something like this:
 Try typing a line of code in your new script, such as
 
 ``` python
-a = "hello!"
-a
+1 + 1
 ```
 
-    'hello!'
+    2
 
 Press <kbd>F9</kbd> to run each line, or
 <kbd>ctrl</kbd>+<kbd>enter</kbd> for the whole script. You should see
@@ -274,14 +273,15 @@ verbs of Python, because they do things to and with our variables. Here
 are a few examples of built-in functions:
 
 ``` python
-len(myList)
-min(myList)
-max(myList)
-sum(myList)
-round(otherNumber)
+example_list = [1,2,3,4]
+len(example_list)
+min(example_list)
+max(example_list)
+sum(example_list)
+round(5.123)
 ```
 
-    6
+    5
 
 Functions always have parentheses after their name, and they can take
 one or several **arguments**, or none at all, depending on what they can
@@ -291,10 +291,10 @@ Here, we use two arguments to modify the default behaviour of the
 `round()` function:
 
 ``` python
-round(otherNumber, 2)
+round(5.123, 2)
 ```
 
-    5.68
+    5.12
 
 > Notice how Spyder gives you hints about the available arguments after
 > typing the function name?
@@ -386,7 +386,7 @@ Steps
 
 > Note: if you want to print a number (e.g. the age), the easiest way is
 > to send multiple arguments to the print function. For example,
-> `{python} print("The first number is", 1)`
+> `print("The first number is", 1)`
 
 <!--
 ### Stage 2
@@ -568,15 +568,16 @@ while a < 10:
 `for` loops iterate through a variable, like a list:
 
 ``` python
-myList = [1,2,3]
+example_list = [1,2,3,4]
 
-for element in myList:
+for element in example_list:
     print(element)
 ```
 
     1
     2
     3
+    4
 
 These work a bit differently. Each time the loop runs, a variable (here
 called `element`) stores one of the values in the container (here called
@@ -591,7 +592,7 @@ from the start to the finish.
 ``` {.python .cell-code}
 "app" in "apple"
 ```
-&#10;::: {.cell-output .cell-output-display execution_count=468}
+&#10;::: {.cell-output .cell-output-display execution_count=58}
 ```
 True
 ```
@@ -758,6 +759,18 @@ installed `numpy`, which is a popular numerical package.
 import numpy as np
 ```
 
+Numpy is useful for its arrays, which allow you to apply mathematics to
+lists. For example, we can multiply each element in the array by $4$
+with
+
+``` python
+example_list = [1,2,3,4]
+example_array = np.array(example_list)
+example_array * 4
+```
+
+    array([ 4,  8, 12, 16])
+
 Some popular packages include
 
 | Package | Install command | Import command | Description |
@@ -802,10 +815,18 @@ df = pd.read_csv("insert_filepath_here")
 ```
 
 Today’s data is five (random) people’s height and weight. You can
-download it [here](BMI_data.csv).
+download it [here](BMI_data.csv) - just click the three dots in the top
+right and press “download”.
 
-Next, you’ll need to compute the each person’s BMI. First, we’ll need to
-convert the weights from kilograms to pounds:
+1.  Download the data
+2.  Move the data into your project folder
+3.  Read it in with `df = pd.read_csv("insert_filepath_here")`
+
+Next, you’ll need to compute each person’s BMI, and store it in a new
+column. For reference, we access columns by indexing based on their
+name, e.g. `df["Weight"]` is the Weight column. To make a new column, we
+pretend that it already exists and assign into it. For example, to
+convert from kilograms to pounds,
 
 ``` python
 # Create a new column called Weight (lb) and store the weight in pounds
@@ -885,7 +906,16 @@ specify the `x` and `y` values, and if we specifically want a bar plot,
 visualise the data we just created. See if you can produce something
 like the following plot:
 
-![](fundamentals_files/figure-commonmark/cell-43-output-1.png)
+![](fundamentals_files/figure-commonmark/cell-44-output-1.png)
+
+You’ll need to start with
+
+``` python
+sns.catplot(data = df, x = ...)
+```
+
+> Hint: You only need to use the `data =`, `x =`, `y =` and `kind =`
+> parameters, so try figure out what they require!
 
 <details>
 <summary>

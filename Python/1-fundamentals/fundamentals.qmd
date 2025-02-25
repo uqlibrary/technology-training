@@ -60,34 +60,32 @@ Most programming languages are like spoken language in that they have nouns and 
 To create a variable, we choose its name (e.g. `favNumber`) and assign (`=`) it a value (e.g. `42`):
 
 ```{python}
-favNumber = 42
+example_int = 42
 ```
 
 You can then retrieve the value by running the variable name on its own:
 
 ```{python}
-favNumber
+example_int
 ```
 
 Let's create more variables. We can use the variable names in place of their values, so we can perform maths:
 
 ```{python}
-otherNumber = 5.678
-prod1 = favNumber * otherNumber
+example_float = 5.678
+example_int * example_float
 ```
 
-So far, we've only looked at numbers. If you click on the "variable explorer" tab, you should see two variables like these:
+So far, we've only looked at numbers. If you click on the "variable explorer" tab, you should see two variables.
 
-![image](https://github.com/uqlibrary/technology-training/assets/118239146/f8e3a769-69b0-43df-a0f3-c8b00d307eaf)
-
-Notice that the "Type" of `favNumber` is `int`, while the other is `float`. These are different **variable types** and can operate differently. `int` means integer, and corresponds to whole numbers, while `float` stands for floating point number, meaning decimals. You may occasionally encounter errors where you can only use one type.
+Notice that the "Type" of `example_int` is `int`, while the other is `float`. These are different **variable types** and can operate differently. `int` means integer, and corresponds to whole numbers, while `float` stands for floating point number, meaning decimals. You may occasionally encounter errors where you can only use one type.
 
 ### Booleans
 
 Even simpler than integers is the **boolean** type. These are either 1 or 0 (True or False), representing a single binary unit (bit). Don't be fooled by the words, these work like numbers: `True + True` gives `2`.
 
 ```{python}
-myBool = True
+example_bool = True
 ```
 
 > In Python, the boolean values `True` and `False` **must** begin with a capital letter.
@@ -97,14 +95,14 @@ myBool = True
 Let's look at variable types which aren't (necessarily) numbers. **Sequences** are variables which store more than one data point. For example, **strings** store a sequence of characters and are created with quotation marks `'<insert string>' ` or `"<insert string>"`:
 
 ```{python}
-sentence = 'Hello world!'
+example_string = 'Hello world!'
 ```
 
 We can also create **lists**, which will store several variables (not necessarily of the same type). We need to use square brackets for that:
 
 ```{python}
-myList = [38, 3, 54, 17, 7]
-diverse = [3, 'Hi!', 9.0]
+example_list = [38, 3, 54, 17, 7]
+diverse_list = [3, 'Hi!', 9.0]
 ```
 
 Lists are very flexible as they can contain any number of items, and any type of data. You can even nest lists inside a list, which makes for a very flexible data type.
@@ -112,16 +110,16 @@ Lists are very flexible as they can contain any number of items, and any type of
 Operations on sequences are a bit different to numbers. We can still use `+` and `*`, but they will concatenate (append) and duplicate, rather than perform arithmetic.
 
 ```{python}
-sentence + ' How are you?'
-myList + diverse
-3 * myList
+example_string + ' How are you?'
+example_list + diverse_list
+3 * example_list
 ```
 
 However, depending on the variable, some operations won't work:
 
 ```{python}
 #| error: true
-sentence + favNumber
+example_string + example_int
 ```
 
 There are other data types like tuples, dictionaries and sets, but we won't look at those in this session. Here's a summary of the ones we've covered:
@@ -146,15 +144,15 @@ yields `1`, converting a **boolean** into an **integer**. These commands are **f
 We can access part of a sequence by **indexing**. Sequences are ordered, **starting at 0**, so the first element has index 0, the second index 1, the third 2 and so on. For example, see what these commands return:
 
 ```{python}
-sentence[0]
-sentence[6]
-myList[4]
+example_string[0]
+example_string[6]
+example_list[4]
 ```
 
 If you want more than one element in a sequence, you can **slice**. Simple slices specify a range to slice, from the first index to the last, **but not including the last**. For example:
 
 ```{python}
-myList[0:4]
+example_list[0:4]
 ```
 
 That command returns elements from position 0 up to - but not including! - position 4.
@@ -177,8 +175,7 @@ You should now see a script on the left panel in Spyder, looking something like 
 
 Try typing a line of code in your new script, such as
 ```{python}
-a = "hello!"
-a
+1 + 1
 ```
 Press <kbd>F9</kbd> to run each line, or <kbd>ctrl</kbd>+<kbd>enter</kbd> for the whole script. You should see something like the following appear in the **console** (depending on how you ran it):
 
@@ -191,11 +188,12 @@ We'll work out of a script for the rest of the session. Don't forget to save you
 **Functions** are little programs that do specific jobs. These are the verbs of Python, because they do things to and with our variables. Here are a few examples of built-in functions:
 
 ```{python}
-len(myList)
-min(myList)
-max(myList)
-sum(myList)
-round(otherNumber)
+example_list = [1,2,3,4]
+len(example_list)
+min(example_list)
+max(example_list)
+sum(example_list)
+round(5.123)
 ```
 
 Functions always have parentheses after their name, and they can take one or several **arguments**, or none at all, depending on what they can do, and how the user wants to use them.
@@ -203,7 +201,7 @@ Functions always have parentheses after their name, and they can take one or sev
 Here, we use two arguments to modify the default behaviour of the `round()` function:
 
 ```{python}
-round(otherNumber, 2)
+round(5.123, 2)
 ```
 
 > Notice how Spyder gives you hints about the available arguments after typing the function name?
@@ -406,9 +404,9 @@ while a < 10:
 `for` loops iterate through a variable, like a list:
 
 ```{python}
-myList = [1,2,3]
+example_list = [1,2,3,4]
 
-for element in myList:
+for element in example_list:
     print(element)
 ```
 
@@ -558,6 +556,14 @@ Once installed, you can import these modules as before. Here, we've installed `n
 import numpy as np
 ```
 
+Numpy is useful for its arrays, which allow you to apply mathematics to lists. For example, we can multiply each element in the array by $4$ with
+
+```{python}
+example_list = [1,2,3,4]
+example_array = np.array(example_list)
+example_array * 4
+```
+
 Some popular packages include
 
 | Package | Install command | Import command | Description |
@@ -597,7 +603,11 @@ df = pd.read_csv("insert_filepath_here")
 
 Today's data is five (random) people's height and weight. You can download it [here](BMI_data.csv) - just click the three dots in the top right and press "download".
 
-Next, you'll need to compute the each person's BMI. First, we'll need to convert the weights from kilograms to pounds:
+1. Download the data
+2. Move the data into your project folder
+3. Read it in with `df = pd.read_csv("insert_filepath_here")`
+
+Next, you'll need to compute each person's BMI, and store it in a new column. For reference, we access columns by indexing based on their name, e.g. `df["Weight"]` is the Weight column. To make a new column, we pretend that it already exists and assign into it. For example, to convert from kilograms to pounds,
 
 ```{python}
 #| eval: false
@@ -638,6 +648,7 @@ df["BMI"] = df["Weight"] / (df["Height"]**2)
 # Look at the data
 df
 ```
+
 <details>
 
 <summary>Solution</summary>
@@ -675,7 +686,18 @@ To visualise the data, we can use the **seaborn** module, with the function `sns
 # Visualise
 sns.catplot(data = df, x = "Names", y = "BMI", kind = "bar")
 ```
+
+You'll need to start with
+
+```{python}
+#| eval: false
+sns.catplot(data = df, x = ...)
+```
+
+> Hint: You only need to use the `data = `, `x = `, `y = ` and `kind = ` parameters, so try figure out what they require!
+
 <details>
+
 <summary>Solution</summary>
 
 The plot above is produced with the code
