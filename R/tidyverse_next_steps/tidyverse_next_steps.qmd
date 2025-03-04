@@ -99,15 +99,22 @@ You can use `View()` to explore your dataset. We can see that it doesn't respect
 
 To go from wide format to long format, we can use the tidyr function `pivot_longer()`. Here, we want to gather all the columns titled with a year: we store the data in a "value" variable, and the years in a "year" variable.
 
+```{r eval=FALSE}
+climate_long <- pivot_longer(climate_raw,
+                             `1990`:`2011`,
+                             names_to = "year",
+                             values_to = "value")
+```
+
+Column names are stored as character by default, so we also use an extra argument to convert the type for the year column from character to integer:
+
 ```{r}
 climate_long <- pivot_longer(climate_raw,
                              `1990`:`2011`,
                              names_to = "year",
-                             values_to = "value") |> 
-  mutate(year = as.integer(year))
+                             values_to = "value",
+                             names_transform = as.integer)
 ```
-
-We add a `mutate()` step to convert the type fo the year column from character to integer.
 
 This is better, but there is still an issue: our `value` variable contains many different indicators (i.e. entirely different units).
 
@@ -202,7 +209,7 @@ ggplot(co2e_no_na,
 
 Alternatively, we could filter on the actual year. (Which would not be ideal if the data was to be updated in the future!)
 
-There are a lot of countries represented here. This kind of visualisation would benefit from focusing on a handful of countries we're interested in, depending in what story we are telling. We can then overlay two line geometries: one for the whole dataset, and the other for our selection.
+There are a lot of countries represented here. This kind of visualisation would benefit from focusing on a handful of countries we're interested in, depending on what story we are telling. We can then overlay two line geometries: one for the whole dataset, and the other for our selection.
 
 ```{r}
 # find top 4 for 2008
@@ -210,7 +217,6 @@ top4 <- co2e_no_na |>
   filter(year == 2008) |> 
   arrange(desc(EN.ATM.CO2E.KT)) |>
   pull(`Country name`) |> 
-  unique() |> 
   head(4)
 # plot them on top of the rest
 ggplot(co2e_no_na,
@@ -286,7 +292,9 @@ map_dbl(mtcars, mean, trim = 0.2)
 Just like most functions in the Tidyverse, the first argument is the data that we want to process (which means we can use the pipe). The second argument is the name of the function we want to apply, but it can also be a custom formula. For example:
 
 ```{r}
-map_dbl(mtcars, ~ round(mean(.x)))
+# round the mean to closest integer
+map_int(mtcars, ~ round(mean(.x)))
+# is the maximum more than three times the minimum?
 map_lgl(mtcars, ~ max(.x) > 3 * min(.x))
 ```
 

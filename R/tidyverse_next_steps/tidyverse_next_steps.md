@@ -1,6 +1,6 @@
 # R tidyverse: loops and data tidying
 UQ Library
-2024-12-02
+2025-03-04
 
 - [Setting up](#setting-up)
 - [What are we going to learn?](#what-are-we-going-to-learn)
@@ -69,8 +69,8 @@ library(tidyverse)
     ✔ dplyr     1.1.4     ✔ readr     2.1.5
     ✔ forcats   1.0.0     ✔ stringr   1.5.1
     ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-    ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-    ✔ purrr     1.0.2     
+    ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+    ✔ purrr     1.0.4     
     ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ✖ dplyr::filter() masks stats::filter()
     ✖ dplyr::lag()    masks stats::lag()
@@ -149,12 +149,20 @@ variable.
 climate_long <- pivot_longer(climate_raw,
                              `1990`:`2011`,
                              names_to = "year",
-                             values_to = "value") |> 
-  mutate(year = as.integer(year))
+                             values_to = "value")
 ```
 
-We add a `mutate()` step to convert the type fo the year column from
-character to integer.
+Column names are stored as character by default, so we also use an extra
+argument to convert the type for the year column from character to
+integer:
+
+``` r
+climate_long <- pivot_longer(climate_raw,
+                             `1990`:`2011`,
+                             names_to = "year",
+                             values_to = "value",
+                             names_transform = as.integer)
+```
 
 This is better, but there is still an issue: our `value` variable
 contains many different indicators (i.e. entirely different units).
@@ -253,7 +261,7 @@ climate_tidy |>
     Warning: Removed 1091 rows containing missing values or values outside the scale range
     (`geom_line()`).
 
-![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-10-1.png)
+![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-11-1.png)
 
 #### Challenge 2
 
@@ -272,14 +280,14 @@ ggplot(co2e_no_na,
   geom_line()
 ```
 
-![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-11-1.png)
+![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-12-1.png)
 
 Alternatively, we could filter on the actual year. (Which would not be
 ideal if the data was to be updated in the future!)
 
 There are a lot of countries represented here. This kind of
 visualisation would benefit from focusing on a handful of countries
-we’re interested in, depending in what story we are telling. We can then
+we’re interested in, depending on what story we are telling. We can then
 overlay two line geometries: one for the whole dataset, and the other
 for our selection.
 
@@ -289,7 +297,6 @@ top4 <- co2e_no_na |>
   filter(year == 2008) |> 
   arrange(desc(EN.ATM.CO2E.KT)) |>
   pull(`Country name`) |> 
-  unique() |> 
   head(4)
 # plot them on top of the rest
 ggplot(co2e_no_na,
@@ -303,7 +310,7 @@ ggplot(co2e_no_na,
        colour = "Top emitters")
 ```
 
-![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-12-1.png)
+![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-13-1.png)
 
 ## Functional programming
 
@@ -401,13 +408,15 @@ second argument is the name of the function we want to apply, but it can
 also be a custom formula. For example:
 
 ``` r
-map_dbl(mtcars, ~ round(mean(.x)))
+# round the mean to closest integer
+map_int(mtcars, ~ round(mean(.x)))
 ```
 
      mpg  cyl disp   hp drat   wt qsec   vs   am gear carb 
       20    6  231  147    4    3   18    0    0    4    3 
 
 ``` r
+# is the maximum more than three times the minimum?
 map_lgl(mtcars, ~ max(.x) > 3 * min(.x))
 ```
 
@@ -533,21 +542,21 @@ mtcars |>
 
     `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-20-1.png)
+![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-21-1.png)
 
 
     [[2]]
 
     `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-20-2.png)
+![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-21-2.png)
 
 
     [[3]]
 
     `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-20-3.png)
+![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-21-3.png)
 
 ### Predicate functions
 
@@ -661,7 +670,7 @@ p
     Warning: Removed 1541 rows containing missing values or values outside the scale range
     (`geom_line()`).
 
-![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-23-1.png)
+![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-24-1.png)
 
 If you want to create an interactive visualisation, you can use plotly:
 
@@ -686,7 +695,7 @@ pdif
     Warning: Removed 1292 rows containing missing values or values outside the scale range
     (`geom_line()`).
 
-![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-25-1.png)
+![](tidyverse_next_steps_files/figure-commonmark/unnamed-chunk-26-1.png)
 
 ``` r
 # interactive plot
