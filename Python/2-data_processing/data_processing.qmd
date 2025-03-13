@@ -13,6 +13,19 @@ In this second workshop we will cover
 
 This hands-on course -- directed at intermediate users -- looks at using the **pandas** module to transform and visualise tabular data.
 
+Table of contents
+
+- [Setup/intro](#setting-up)
+- [Initial exploration](#initial-look-at-the-data)
+- [Accessing and filtering data](#accessing-and-filtering-data)
+- [Basic statistics](#basic-statistics)
+- [Activity 1](#activity-1)
+- [Adding and removing columns](#adding-and-removing-columns)
+- [Summaries and grouping](#summaries)
+- [Exporting data](#exporting-results)
+- [Activity 2](#activity-2)
+- [Conclusion](#conclusion)
+
 ## Setting up
 
 ### Scripts and projects
@@ -266,7 +279,7 @@ df[df["height_cm"] == df["height_cm"].max()]
 because we are looking for the row in `df["height_cm"]` (the whole column) that has the value `df["height_cm"].max()`.
 
 
-## Challenge
+## Activity 1
 Run the following lines:
 
 ```{python}
@@ -293,7 +306,6 @@ df = df[df["positions"] != "Missing"]
 </details>
 
 If that was too quick try to reduce your dataset to $\le 3$ variables (columns) and $\le 100$ rows using conditions by filtering down to a particular subset of your data. Make sure you keep the **age** and **height_cm** columns.
-
 
 ## Adding and removing columns
 Sometimes we need to add new columns. It's the same process as overwriting existing columns - let's make a new column called "zeroes" where every row is 0
@@ -373,7 +385,59 @@ avg_height_by_age.to_csv("data/avg_height_by_age.csv")
 
 This will save the dataframe to a .csv file and place it in the data folder.
 
-## Resources
+## Activity 2
+Now that you've explored our "Players" dataset, why not try something larger? Download the [gapminder](data/gapminder.csv) dataset and explore. Try to use the following three techniques:
+
+1. Filter the data by a condition
+2. Aggregate over a particular variable
+3. Visualise your result
+
+For step 3., you'll either want to reduce your data to two columns and use `.plot()`, or specify your axes with `.plot(x = "x_variable", y = "y_variable").
+
+
+<details>
+
+<summary>Solution</summary>
+
+One possible solution with aggregation is
+
+```{python}
+# Import the data
+gapminder = pd.read_csv("data/gapminder.csv")
+
+# Select specific columns
+subset = gapminder[["continent", "year", "pop"]]
+
+# Max pop per continent of all time
+continents = subset.groupby("continent").agg("max")
+
+continents.plot(y = "pop", kind = "bar")
+```
+
+</details>
+
+## Conclusion
+
+Today we looked at a lot of Python features, so don't worry if they haven't all sunk in. Programming is best learned through practice, so keep at it! Here's a rundown of the concepts we covered
+
+| Concept | Desctiption |
+| --- | --- |
+| **Importing data** | The `pandas` package provides the `pd.read_...` functions to import data, like `pd.read_csv()`. Save it in a variable. | 
+| **Accessing and filtering rows and columns** | Use square brackets for basic accessing and filtering, e.g. `df["column_a"]` or `df[df["column_b"] > 5]`. |
+| **Basic statistics** | A number of basic statistical functions can be applied to columns, e.g. `df["column_a"].max()`. | 
+| **Adding and removing columns** | Add columns by pretending they're already there and assigning into them, `df["new_column"] = ... `, and remove them with `df = df.drop(columns = [...])`.
+| **Summaries and grouping** | Use `df.groupby("variable_a").agg("statistic_b")` to aggregate over your data. |
+| **Exporting** | Use `df.to_csv("file_path")` to export your data | 
+
+### Next session
+
+Thanks for completing this introductory session to Python! You're now ready for our next session, [Introductory visualisation](https://github.com/uqlibrary/technology-training/blob/master/Python/seaborn_intro/seaborn_intro.md), which looks at using the **seaborn** package for making visualisations.
+
+Before you go, don't forget to check out the [Python User Group](bit.ly/uqpug), a gathering of Python users at UQ.
+
+Finally, if you need any support or have any other questions, shoot us an email at [training@library.uq.edu.au](training@library.uq.edu.au).
+
+### Resources
 
 -   [Official pandas documentation](https://pandas.pydata.org/)
     -   [Getting started](https://pandas.pydata.org/docs/getting_started/index.html)
