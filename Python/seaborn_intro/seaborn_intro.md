@@ -458,7 +458,7 @@ flights_plot = sns.relplot(data = flights,
                            kind = "line")
                            
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
-flights_plot._legend.set_title("Month")
+flights_plot.legend.set(title = "Month") 
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208799969-d422da48-03d3-4d44-88d7-58cb374442ef.png)
@@ -492,7 +492,7 @@ flights_plot = sns.relplot(data = flights,
                            kind = "line")
                            
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
-flights_plot._legend.set_title("Month")
+flights_plot.legend.set(title = "Month") 
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208799766-544cb451-6bee-4ab4-8665-23d551c2f665.png)
@@ -521,7 +521,7 @@ flights_plot = sns.relplot(data = flights,
                            kind = "line")
                            
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
-flights_plot._legend.set_title("Month")
+flights_plot.legend.set(title = "Month") 
 ```
 
 ![image](https://user-images.githubusercontent.com/118239146/208800930-e0fca77f-fd59-4e32-be2f-03d10ed26c70.png)
@@ -583,7 +583,7 @@ flights_plot = sns.relplot(data = flights,
                            kind = "line")
                            
 flights_plot.set(xlabel = "Year", ylabel = "Passengers", title = "Passengers per year since 1949")
-flights_plot._legend.set_title("Month")
+flights_plot.legend.set(title = "Month") 
 
 flights_plot.savefig("flights.png")
 ```
