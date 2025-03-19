@@ -1,6 +1,6 @@
 # R reproducible reports with Quarto
 UQ Library
-2024-10-10
+2025-03-19
 
 - [Setting up](#setting-up)
 - [What are we going to learn?](#what-are-we-going-to-learn)
@@ -21,7 +21,7 @@ UQ Library
 
 > If you don’t have R and RStudio installed already, we have
 > [installation
-> instructions](.\R/Installation.md#r--rstudio-installation-instructions)
+> instructions](./R/Installation.md#r--rstudio-installation-instructions)
 
 - If you are using your own laptop please open RStudio
   - Make sure you have a working Internet connection
@@ -359,7 +359,7 @@ option in the YAML header. For example:
 
 We have an updated version of the dataset. The only thing we need to do
 to update the whole report is point the data import code to the new
-file, at the top of our document, changing the year to “2019”:
+file, at the top of our document, changing the year to “2022”:
 
 ``` r
 ghg <- read_csv("https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/reports/aus_ghg_2022.csv")
