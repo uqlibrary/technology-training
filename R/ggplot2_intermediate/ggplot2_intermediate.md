@@ -585,9 +585,22 @@ ggplot(gapminder,
 
 ![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-31-1.png)
 
+This “dodged” version reads similarly to a density plot (although the
+number of countries per continent does not influence the size):
+
+``` r
+ggplot(gapminder,
+       aes(x = lifeExp,
+           colour = continent)) +
+  geom_density()
+```
+
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-32-1.png)
+
 ## Faceting
 
-An even more readable representation could use **faceting**:
+An even more readable representation of the dodged histogram could use
+**faceting**:
 
 ``` r
 ggplot(gapminder,
@@ -597,13 +610,15 @@ ggplot(gapminder,
   facet_wrap(vars(continent))
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-32-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-33-1.png)
 
 We have to wrap the variable(s) we want to facet by into the `vars()`
 function.
 
 > Faceting is a great way to add yet another variable to your
-> visualisation, instead of using another aesthetic.
+> visualisation, instead of using another aesthetic. We can now compare
+> distributions across labelled panels, with the axes using the same
+> ranges by default.
 
 ## Theming
 
@@ -620,7 +635,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-33-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-34-1.png)
 
 If you use a pre-built theme function, make sure you place it before
 customising the legend. Otherwise it will bring the legend back!
@@ -635,7 +650,7 @@ ggplot(gapminder,
   theme(legend.position = "none")
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-34-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-35-1.png)
 
 ## A more refined facetted example
 
@@ -662,7 +677,7 @@ ggplot(diamonds,
 
     `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-35-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-36-1.png)
 
 In this visualisation:
 
@@ -685,7 +700,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-36-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-37-1.png)
 
 ### Challenge 4 – code comprehension
 
@@ -697,7 +712,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-37-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-38-1.png)
 
 This is useful if the x labels get too cramped on the x axis: you can
 rotate them to whatever angle you want.
@@ -743,7 +758,7 @@ gapminder %>%
        y = "Life Expectancy in Years")
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-38-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-39-1.png)
 
 ## Plot from multiple summarised dataframes
 
@@ -837,7 +852,7 @@ ggplot(data = cont_ave, aes(x = year,
    theme(panel.grid = element_blank()) # remove the grid lines
 ```
 
-![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-40-1.png)
+![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-41-1.png)
 
 ## Close project
 

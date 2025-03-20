@@ -408,9 +408,18 @@ ggplot(gapminder,
                  position = "dodge")
 ```
 
+This "dodged" version reads similarly to a density plot (although the number of countries per continent does not influence the size):
+
+```{r}
+ggplot(gapminder,
+       aes(x = lifeExp,
+           colour = continent)) +
+  geom_density()
+```
+
 ## Faceting
 
-An even more readable representation could use **faceting**:
+An even more readable representation of the dodged histogram could use **faceting**:
 
 ```{r}
 ggplot(gapminder,
@@ -422,7 +431,7 @@ ggplot(gapminder,
 
 We have to wrap the variable(s) we want to facet by into the `vars()` function.
 
-> Faceting is a great way to add yet another variable to your visualisation, instead of using another aesthetic.
+> Faceting is a great way to add yet another variable to your visualisation, instead of using another aesthetic. We can now compare distributions across labelled panels, with the axes using the same ranges by default.
 
 ## Theming
 
