@@ -1,6 +1,6 @@
 # R ggplot2: intermediate data visualisation
 UQ Library
-2025-02-25
+2025-03-20
 
 - [Essential shortcuts](#essential-shortcuts)
 - [Open RStudio](#open-rstudio)
@@ -338,6 +338,9 @@ p +
 
 ![](ggplot2_intermediate_files/figure-commonmark/unnamed-chunk-15-1.png)
 
+It is possible to use various transformations with the
+`scale_x_continuous()` function’s `tranform` argument.
+
 We can also further customise a scale with breaks and labels:
 
 ``` r
@@ -413,9 +416,17 @@ R. Install it with `install.packages(plotly)`, and you’ll then be able
 to convert a ggplot2 visualisation into an interactive HTML
 visualisation with one single function!
 
-Let’s reuse our original plot object, and feed it to `ggplotly()`:
+Let’s reuse our original plot object with some modification, and feed it
+to `ggplotly()`:
 
 ``` r
+p <- ggplot(data = gapminder,
+       mapping = aes(x = gdpPercap,
+                     y = lifeExp,
+                     colour = continent)) + # move the colour aesthetic
+  geom_point() +
+  # remove trend line
+  scale_x_log10() # spread the data on the x axis
 library(plotly)
 ggplotly(p)
 ```
@@ -430,9 +441,10 @@ object:
 p <- ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp,
+                     colour = continent,
                      label = country)) + # one extra aesthetic for an extra variable
-  geom_point(aes(colour = continent)) +
-  geom_smooth()
+  geom_point() +
+  scale_x_log10()
 ```
 
 The interactive version now tells us which country each point correspond
@@ -443,16 +455,18 @@ ggplotly(p)
 ```
 
 To add yet another variable to the visualisation, we can animate the
-plot but associating the `frame` aesthetic with the `year` variable.
+plot b\< associating the `frame` aesthetic with the `year` variable.
 This adds a slider and a “Play” button under the visualisation.
 
 ``` r
 p <- ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp,
+                     colour = continent,
                      label = country,
                      frame = year)) + # one frame per year
-  geom_point(aes(colour = continent))
+  geom_point() +
+  scale_x_log10()
 ggplotly(p)
 ```
 
