@@ -3,42 +3,140 @@
 
 In this third workshop we will cover
 
+- Using Jupyter notebooks
 - Simple visualisations with seaborn
 - Making modifications with matplotlib
-- Matplotlib from scratch
-- Interactive visualisations with plotly
 
 ## Setting up
 
-### Scripts and projects
+### Jupyter Notebooks
 
-Recall that we typically write code in scripts and store them in a
-project. We’ll do the same here.
+For these next two sessions, we’ll depart from Spyder and move to a
+different tool: [Jupyter Notebooks](https://jupyter.org/). These
+interactive files allow you to type formatted code (markdown) and Python
+cells interchangebly.
 
-1.  Create / open a project. If you made one last week, feel free to
-    continue working there. Otherwise, press `Projects > New project...`
-    and name your project, perhaps “python_data_processing”.
-2.  Create a new script with <kbd>ctrl</kbd>+<kbd>N</kbd>,
-    `File > New file...` or the new file button.
+#### Opening Jupyter
 
-### Importing data and packages
+**If you installed Spyder via Anaconda**
 
-To perform our visualisations, we’ll work from two modules: `seaborn`
-and `matplotlib`. Bring them in as follows:
+Then you’ve already got it! Open the application “Jupyter” on your
+computer. Alternatively, open a command prompt / shell and type
+`jupyter notebook`.
+
+**If you installed Spyder manually**
+
+Then you’ll probably need to get it. The simplest way is via a pip
+install.
+
+1.  Open a command prompt / shell
+2.  Type `pip install jupyterlab`
+3.  Once it’s finished, type `jupyter notebook` in your shell
+
+**If you can’t install it**
+
+If you’re having issues with the installation, can’t get it to work or
+don’t want to, you can use [Google Colab](https://colab.google/)
+instead. Just sign in with your Google account and you gain access to a
+cloud-hosted notebook. Note that everything will save to your Google
+Drive.
+
+#### Creating a notebook
+
+Once you’ve opened Jupyter/Colab,
+
+1.  Navigate to a folder on your computer where you’d like to save
+    today’s files. We suggest the project folder you’ve been using for
+    the past two sessions.
+2.  Press `New` -\> `Notebook` to create your notebook. Select Python3
+    when prompted.
+
+#### Using notebooks
+
+The fundamental building block of jupyter notebooks is the **cell**.
+This is the block you can currently write in:
+
+![](visualisation_files/figure-commonmark/cell_demo.png)
+
+I can type Python code into this cell and run it:
 
 ``` python
-import seaborn as sns
+print("This is a cell!")
+```
+
+    This is a cell!
+
+It’s currently a code cell
+
+![image.png](visualisation_files/figure-commonmark/ab845159-2-image.png)
+
+If I change it to [markdown](https://www.markdownguide.org/)
+
+![image-2.png](visualisation_files/figure-commonmark/ab845159-1-image-2.png)
+
+I can type formatted text. This isn’t a markdown course, but in the cell
+below we’ve demonstrated a few things you can do. Double click on the
+cell to see the raw text
+
+------------------------------------------------------------------------
+
+Headings with hashtags (#):
+
+``` markdown
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+```
+
+------------------------------------------------------------------------
+
+Italics, bold and strong with asterisks (\*)
+
+``` markdown
+*Italics*
+
+**Bold**
+
+***Strong***
+```
+
+------------------------------------------------------------------------
+
+Ordered lists with (1.), Unordered with (\*) or (-) or (.). Use indents
+for levels
+
+``` markdown
+1. Level 1
+2. Level 1
+   1. Level 2
+      1. Level 3
+   2. Level 2
+
+- Level 1
+
+* Level 1
+  - Level 2
+  - Level 2
+    - Level 3
+```
+
+------------------------------------------------------------------------
+
+### Importing tools and data
+
+``` python
+import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 ```
 
 For this workshop we’ll be working from the “Players2024.csv” dataset,
 which we should bring in with pandas:
 
 ``` python
-import seaborn as sns
-import matplotlib.pyplot as plt
-import pandas as pd
-
 df = pd.read_csv("data/Players2024.csv")
 ```
 
@@ -473,6 +571,8 @@ sns.lineplot(data = inner_ages, x = "age", y = "height_cm", hue = "positions")
 plt.savefig("plots/first_saved_plot.png")
 ```
 
+![](visualisation_files/figure-commonmark/cell-27-output-1.png)
+
 ### Making modifications
 
 #### Titles
@@ -491,7 +591,7 @@ sns.lineplot(data = inner_ages, x = "age", y = "height_cm", hue = "positions")
 plt.ylabel("Height (cm)")
 ```
 
-    Text(4.8166666666666655, 0.5, 'Height (cm)')
+    Text(4.944444444444445, 0.5, 'Height (cm)')
 
 ![](visualisation_files/figure-commonmark/cell-28-output-2.png)
 
@@ -703,7 +803,7 @@ sns.scatterplot( ... ) # Axes-level scatter plot
 |----|----|----|
 | Histogram | `sns.displot( ... , kind = "hist", ... )` | Can be univariate (`x` only) or bivariate (`x` and `y`) |
 | Kernel Density Estimate | `sns.displot( ... , kind = "kde" , ... )` | Can be univariate (`x` only) or bivariate (`x` and `y`) |
-| ECDF\* | `sns.displot( ... , kind = "ecdf", ... )` |  |
+| ECDF\* | `sns.displot( ... , kind = "ecdf", ... )` | . |
 | Rug Plot | `sns.displot( ... , rug = True , ... )` | Combine with another `sns.displot`, plots marginal distributions |
 
 > \*Empirical Cumulative Distribution Functions
@@ -713,7 +813,7 @@ sns.scatterplot( ... ) # Axes-level scatter plot
 | Plot Name | Code | Notes |
 |----|----|----|
 | Strip Plot | `sns.catplot( ... , kind = "strip" , ... )` | Like a scatterplot for categorical data |
-| Swarm Plot | `sns.catplot( ... , kind = "swarm" , ... )` |  |
+| Swarm Plot | `sns.catplot( ... , kind = "swarm" , ... )` | . |
 | Box Plot | `sns.catplot( ... , kind = "box" , ... )` | One variable is always interpreted categorically |
 | Violin Plot | `sns.catplot( ... , kind = "violin" , ... )` | One variable is always interpreted categorically |
 | Enhanced Box Plot | `sns.catplot( ... , kind = "boxen", ... )` | A box plot with additional quantiles |
@@ -726,11 +826,11 @@ sns.scatterplot( ... ) # Axes-level scatter plot
 | Plot Name     | Code                    | Notes                                |
 |---------------|-------------------------|--------------------------------------|
 | Pair Plot     | `sns.pairplot( ... )`   | A form of facetting                  |
-| Joint Plot    | `sns.jointplot( ... )`  |                                      |
-| Regressions   | `sns.lmplot( ... )`     |                                      |
+| Joint Plot    | `sns.jointplot( ... )`  | .                                    |
+| Regressions   | `sns.lmplot( ... )`     | .                                    |
 | Residual Plot | `sns.residplot( ... )`  | The residuals of a linear regression |
-| Heatmap       | `sns.heatmap( ... )`    |                                      |
-| Clustermap    | `sns.clustermap( ... )` |                                      |
+| Heatmap       | `sns.heatmap( ... )`    | .                                    |
+| Clustermap    | `sns.clustermap( ... )` | .                                    |
 
 ## Resources
 
