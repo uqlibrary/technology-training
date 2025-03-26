@@ -89,8 +89,16 @@ import seaborn as sns
 import statsmodels.formula.api as smf
 ```
 
-We’ll be working from our “Players2024” dataset again. To bring it in
-and clean it up,
+We’ll be working from our “Players2024” dataset again. If you don’t have
+it yet,
+
+1.  [Download the
+    dataset](https://uqpug.github.io/datasets/Players2024.csv).
+2.  Create a folder in **in the same location as your script** called
+    “data”.
+3.  Save the dataset there.
+
+To bring it in and clean it up,
 
 ``` python
 df = pd.read_csv("data/Players2024.csv")

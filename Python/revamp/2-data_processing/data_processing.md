@@ -69,7 +69,8 @@ To make life easy, we should set up our workspace well.
 
 1.  Open your project folder using your file explorer, and create a new
     folder called “data”.
-2.  [Download the data for today’s session](data/Players2024.csv)
+2.  [Download the data for today’s
+    session](https://uqpug.github.io/datasets/Players2024.csv)
 3.  Move the file into your new “data” folder
 4.  Next, open your project in Spyder, and create a new script called
     “analysis.py”.
@@ -520,9 +521,6 @@ df[df["height_cm"] == df["height_cm"].max()]
 
 </div>
 
-because we are looking for the row in `df["height_cm"]` (the whole
-column) that has the value `df["height_cm"].max()`.
-
 ## Activity 1
 
 Run the following lines:
@@ -664,7 +662,8 @@ folder.
 ## Activity 2
 
 Now that you’ve explored our “Players” dataset, why not try something
-larger? Download the [gapminder](data/gapminder.csv) dataset and
+larger? Download the
+[gapminder](https://uqpug.github.io/datasets/gapminder.csv) dataset and
 explore. Try to use the following three techniques:
 
 1.  Filter the data by a condition
@@ -672,8 +671,8 @@ explore. Try to use the following three techniques:
 3.  Visualise your result
 
 For step 3., you’ll either want to reduce your data to two columns and
-use `.plot()`, or specify your axes with \`.plot(x = “x_variable”, y =
-“y_variable”).
+use `.plot()`, or specify your axes with
+`.plot(x = "x_variable", y = "y_variable")`.
 
 <details>
 <summary>
@@ -717,7 +716,7 @@ keep at it! Here’s a rundown of the concepts we covered
 ### Next session
 
 Thanks for completing this introductory session to Python! You’re now
-ready for our next session, [Introductory
+ready for our next session, [introductory
 visualisation](https://github.com/uqlibrary/technology-training/blob/master/Python/seaborn_intro/seaborn_intro.md),
 which looks at using the **seaborn** package for making visualisations.
 

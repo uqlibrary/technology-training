@@ -1,4 +1,4 @@
-# Python training (3 of 4): visualisation
+# Python training (3 of 4): introduction to visualisations
 
 
 In this third workshop we will cover
@@ -133,8 +133,16 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 ```
 
-For this workshop we’ll be working from the “Players2024.csv” dataset,
-which we should bring in with pandas:
+For this workshop we’ll be working from the “Players2024.csv” dataset.
+If you don’t have it yet,
+
+1.  [Download the
+    dataset](https://uqpug.github.io/datasets/Players2024.csv).
+2.  Create a folder in **in the same location as your script** called
+    “data”.
+3.  Save the dataset there.
+
+We should then bring it in with pandas:
 
 ``` python
 df = pd.read_csv("data/Players2024.csv")

@@ -7,18 +7,16 @@ analyse and visualise data.
 
 ## Table of Contents
 
-- [Setup](#setup)
-- [Introduction](#introducing-python-and-spyder)
+- [Setup/Intro](#setup)
 - [Variables](#variables)
-- [Scripts](#scripts)
+- [Scripts](#scripts-and-projects)
 - [Functions](#functions)
 - [Finding help](#finding-help)
 - [Activity 1](#activity-1)
 - [Conditionals (`if`, `elif` and `else`)](#conditionals)
 - [Loops (`while` and `for`)](#loops)
-- [Activity 2](#activity-2)
 - [Packages/Modules](#packages)
-- [Activity 3](#activity-3)
+- [Activity 2](#activity-2)
 - [Conclusion](#conclusion-and-saving-your-work)
 
 ## Setup
@@ -166,7 +164,7 @@ example_string + example_int
     TypeError: can only concatenate str (not "int") to str
     [1;31m---------------------------------------------------------------------------[0m
     [1;31mTypeError[0m                                 Traceback (most recent call last)
-    Cell [1;32mIn[43], line 1[0m
+    Cell [1;32mIn[9], line 1[0m
     [1;32m----> 1[0m [43mexample_string[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[43mexample_int[49m
 
     [1;31mTypeError[0m: can only concatenate str (not "int") to str
@@ -223,22 +221,27 @@ example_list[0:4]
 That command returns elements from position 0 up to - but not
 including! - position 4.
 
-## Scripts
+## Scripts and Projects
 
 So far, we’ve been working in the console, our direct line to the
 computer. However, it is often more convenient to use a **script**.
 These are simple text files which store code and run when we choose.
-They are useful to - write code more comfortably, - store clearly
-defined steps in chronological order, - share a process with peers
-easily, and - make your work reproducible
+They are useful to
+
+- write code more comfortably,
+- store clearly defined steps in chronological order,
+- share a process with peers easily, and
+- make your work reproducible
 
 Let’s create a folder system to store our script in by creating a
-**project**. - Press `Projects > New project...` and name your project,
-perhaps “python_fundamentals”. - Create a new script with
-<kbd>ctrl</kbd>+<kbd>N</kbd>, `File > New file...` or the new file
-button
-![image](https://github.com/uqlibrary/technology-training/assets/118239146/584d4955-2085-4b95-b03c-f4af9f2c3070.png)
-.
+**project**.
+
+- Press `Projects > New project...` and name your project, perhaps
+  “python_fundamentals”.
+- Create a new script with <kbd>ctrl</kbd>+<kbd>N</kbd>,
+  `File > New file...` or the new file button
+  ![image](https://github.com/uqlibrary/technology-training/assets/118239146/584d4955-2085-4b95-b03c-f4af9f2c3070.png)
+  .
 
 You should now see a script on the left panel in Spyder, looking
 something like this:
@@ -525,66 +528,59 @@ else:
 You can only have one `if` and `else` statement, but as many `elif`s as
 you’d like.
 
-## Loops
-
-For programming to speed up repetitive tasks we need to use loops. These
-run a code block multiple times, and there are two types: `while` and
-`for` loops.
-
-### `while` loops
-
-`while` loops run the code block until the condition is `False`, with
-similar syntax to `if` statements:
-
-``` python
+<!--
+&#10;## Loops
+&#10;For programming to speed up repetitive tasks we need to use loops. These run a code block multiple times, and there are two types: `while` and `for` loops.
+&#10;### `while` loops
+&#10;`while` loops run the code block until the condition is `False`, with similar syntax to `if` statements:
+&#10;::: {.cell execution_count=24}
+``` {.python .cell-code}
 a = 0
-
-while a < 10:
+&#10;while a < 10:
     print(a)
     a = a + 1
 ```
-
-    0
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    9
-
+&#10;::: {.cell-output .cell-output-stdout}
+```
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+:::
+:::
+&#10;
 > **WARNING**
->
-> `while` loops can cause an infinite loop to occur if the condition is
-> never `False`. If this happens, press <kbd>ctrl</kbd>+<kbd>C</kbd> or
-> the red square in the console to stop the code.
->
-> ![image](https://github.com/uqlibrary/technology-training/assets/118239146/a8ba8293-c64b-4994-9869-074a6d12e0a0.png)
-
-### `for` loops
-
-`for` loops iterate through a variable, like a list:
-
-``` python
+> 
+> `while` loops can cause an infinite loop to occur if the condition is never `False`. If this happens, press <kbd>ctrl</kbd>+<kbd>C</kbd> or the red square in the console to stop the code.
+> 
+> ![image](https://github.com/uqlibrary/technology-training/assets/118239146/a8ba8293-c64b-4994-9869-074a6d12e0a0)
+&#10;### `for` loops
+&#10;`for` loops iterate through a variable, like a list:
+&#10;::: {.cell execution_count=25}
+``` {.python .cell-code}
 example_list = [1,2,3,4]
-
-for element in example_list:
+&#10;for element in example_list:
     print(element)
 ```
-
-    1
-    2
-    3
-    4
-
-These work a bit differently. Each time the loop runs, a variable (here
-called `element`) stores one of the values in the container (here called
-`myList`). The loop runs once for each element in the container, working
-from the start to the finish.
-
-<!--
+&#10;::: {.cell-output .cell-output-stdout}
+```
+1
+2
+3
+4
+```
+:::
+:::
+&#10;
+These work a bit differently. Each time the loop runs, a variable (here called `element`) stores one of the values in the container (here called `myList`). The loop runs once for each element in the container, working from the start to the finish.
+&#10;
 ## Activity 2
 &#10;The second activity is a name comparer. Here, we will write code which identifies the letters in common between two names. 
 &#10;We'll need to use the command `in` for this activity. It checks whether a variable on the left exists inside a variable on the write, for example
@@ -592,7 +588,7 @@ from the start to the finish.
 ``` {.python .cell-code}
 "app" in "apple"
 ```
-&#10;::: {.cell-output .cell-output-display execution_count=58}
+&#10;::: {.cell-output .cell-output-display execution_count=24}
 ```
 True
 ```
@@ -803,11 +799,9 @@ import seaborn as sns
 > haven’t installed it yet. See [above](#External-packages) for
 > information on how to do so.
 
-### Part 1: Importing and modifying the data
-
-The first challenge in this activity is bringing in the data. To do
-this, we use the `pd.read_csv()` function, specifying the file path as
-the first argument (this can be a URL), and store it in a variable
+Before we begin this activity we should bring in the data. To do this,
+we use the `pd.read_csv()` function, specifying the file path as the
+first argument (this can be a URL), and store it in a variable
 (typically `df`). For example,
 
 ``` python
@@ -815,18 +809,19 @@ df = pd.read_csv("insert_filepath_here")
 ```
 
 Today’s data is five (random) people’s height and weight. You can
-download it [here](BMI_data.csv) - just click the three dots in the top
-right and press “download”.
+download it [here](https://uqpug.github.io/datasets/BMI_data.csv).
 
 1.  Download the data
 2.  Move the data into your project folder
-3.  Read it in with `df = pd.read_csv("insert_filepath_here")`
+3.  Read it in with `df = pd.read_csv("BMI_data.csv")`
 
-Next, you’ll need to compute each person’s BMI, and store it in a new
-column. For reference, we access columns by indexing based on their
-name, e.g. `df["Weight"]` is the Weight column. To make a new column, we
-pretend that it already exists and assign into it. For example, to
-convert from kilograms to pounds,
+### Part 1: Modifying the data
+
+For the first part of the challenge, you’ll need to compute each
+person’s BMI, and store it in a new column. For reference, we access
+columns by indexing based on their name, e.g. `df["Weight"]` is the
+Weight column. To make a new column, we pretend that it already exists
+and assign into it. For example, to convert from kilograms to pounds,
 
 ``` python
 # Create a new column called Weight (lb) and store the weight in pounds
@@ -836,7 +831,7 @@ df["Weight (lb)"] = df["Weight"]*2.205
 To compute the BMIs, make another new column and use the following
 formula to calculate the BMI.
 
-$$ BMI = \frac{Weight}{(Height)^2} $$
+$$ \text{BMI} = \frac{\text{Weight (kg)}}{(\text{Height (cm)})^2} $$
 
 It should look something like
 
@@ -844,7 +839,7 @@ It should look something like
 df["BMI"] = ...
 ```
 
-> Hint: $x^2$ is `x**32`
+> Hint: $x^2$ is `x**2`
 
 Once you’ve done these steps, you should see the following:
 
@@ -885,7 +880,7 @@ import seaborn as sns
 # Import data - don't forget to change the file path as you need
 df = pd.read_csv("BMI_data.csv")
 
-# Create a new column called Weight (lb) and store the weight in pounds
+# Example - create a new column called Weight (lb) and store the weight in pounds
 df["Weight (lb)"] = df["Weight"]*2.205
 
 # Create BMI column
