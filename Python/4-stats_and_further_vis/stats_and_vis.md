@@ -669,7 +669,7 @@ summaries.
 
 Let’s perform the same linear regression as before, looking at the “age”
 and “height variables”. Our thinking is that players’ heights dictate
-how long they can play, so we’ll make $x = \text{height\_cm}$ and
+how long they can play, so we’ll make $x = \text{height}$ and
 $y = \text{age}$.
 
 The first step is to make the set up the variables. We’ll use the
@@ -758,7 +758,7 @@ df["gk"] = df["gk"].astype(int)
 
 Now, we can model this column with height. Specifically,
 
-$$ \text{gk} \sim \text{height\_cm}$$
+$$ \text{gk} \sim \text{height}$$
 
 Start by making the model with the function `smf.glm()`. We need to
 specify the family of distributions; they all live in `sm.families`,
