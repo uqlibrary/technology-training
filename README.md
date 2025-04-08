@@ -1,8 +1,8 @@
 # UQ Library technology training resources
 
-Here you will find resources related to R, Python, LaTeX, Bash, Git, OpenStreetMap, QGIS, uMap, OpenRefine, Audacity and Voyant Tools [training sessions held at the UQ Library](https://web.library.uq.edu.au/library-services/training).
+This repository hosts manuals and resources related to R, Python, LaTeX, Bash, Git, OpenStreetMap, QGIS, uMap, OpenRefine, Audacity and Voyant Tools [training sessions held at the UQ Library](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=).
 
-Other training resources are also available [on the Library website](https://web.library.uq.edu.au/library-services/training/software-training-resources).
+Training resources related to other tools are available [on the Library website](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources).
 
 ## Format
 
@@ -39,10 +39,10 @@ We also offer these more specialised sessions (run less regularly, but feel free
 
 | Title | Course notes | Live collaborative pad | Video |
 |:-|:-:|:-:|:-:|
-| Python: the fundamentals | [md](Python/fundamentals/fundamentals.md) <sup>[source](Python/fundamentals/fundamentals.qmd)</sup> | [html](https://demo.hedgedoc.org/s/B1DWolwgB) | ... |
-| Python data transformation and visualisation with pandas | [md](Python/pandas/pandas.md) | [html](https://demo.hedgedoc.org/s/SJVpdtm_v) | ... |
-| Introduction to Python data visualisation with seaborn | [md](Python/seaborn_intro/seaborn_intro.md) | ... | ... |
-| Intermediate data visualisation in Python with seaborn | [md](Python/seaborn_intermediate/seaborn_intermediate.md) | ... | ... |
+| Python: the fundamentals | [md](Python/1-fundamentals/fundamentals.md) <sup>[source](Python/1-fundamentals/fundamentals.qmd)</sup> | [html](https://demo.hedgedoc.org/s/B1DWolwgB) | ... |
+| Python: data processing | [md](Python/2-data_processing/data_processing.md) <sup>[source](Python/2-data_processing/data_processing.qmd)</sup> | [html](https://demo.hedgedoc.org/s/SJVpdtm_v) | ... |
+| Python: introduction to visualisations | [md](Python/3-intro_visualisation/visualisation.md) | ... | ... |
+| Python: statistics and further visualisation | [md](Python/4-stats_and_further_vis/stats_and_vis.md) | ... | ... |
 
 ### GIS sessions
 
