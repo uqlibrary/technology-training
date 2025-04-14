@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="UQ Library">
+<meta name="dcterms.date" content="2025-04-14">
+
+<title>R ggplot2: intermediate data visualisation – UQ Library Technology Training</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a28a051c20ad7d36adc289d6063fc6a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">UQ Library Technology Training</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/uqlibrary/technology-training" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../R/rstudio_intro/rstudio_intro.html">R with RStudio</a></li><li class="breadcrumb-item"><a href="../../R/ggplot2_intermediate/ggplot2_intermediate.html">R ggplot2: intermediate data visualisation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Audacity/audacity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Audacity</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">GIS</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../OSM/OpenStreetMap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OpenStreetMap: create and use spatial data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/intro/QGIS_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">QGIS: Introduction to mapping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/raster/QGIS_raster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">QGIS: raster analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/vector/QGIS_vector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">QGIS: Vector Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/mobile/QGIS_mobile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">QGIS: Mobile Mapping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../uMap/umap_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">uMap: create quick interactive maps</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Git</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Git/git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git version control for collaboration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Git/GitHub/GitHub_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub Basics + Creating Analytics Projects Portfolios</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../LaTeX/overleaf_latex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LaTeX with Overleaf</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../OpenRefine/openrefine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OpenRefine</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Python/1-fundamentals/fundamentals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python training (1 of 4): The fundamentals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Python/2-data_processing/data_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python training (2 of 4): data processing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">R with RStudio</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/rstudio_intro/rstudio_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R with RStudio: getting started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/dplyr/dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R dplyr: preparing data for analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/ggplot2_intro/ggplot2_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R ggplot2: introductory data visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/ggplot2_intermediate/ggplot2_intermediate.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">R ggplot2: intermediate data visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/tidyverse_next_steps/tidyverse_next_steps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R tidyverse: loops and data tidying</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/reports/reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R reproducible reports with Quarto</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/heatmaps/heatmaps_intermediate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R data visualisation: heatmaps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/shiny/shiny.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R advanced: webapps with Shiny</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/packaging/packaging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R advanced: packaging and sharing functions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Shell/shell_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unix Shell</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Voyant/voyant.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Voyant Tools</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#essential-shortcuts" id="toc-essential-shortcuts" class="nav-link active" data-scroll-target="#essential-shortcuts">Essential shortcuts</a></li>
+  <li><a href="#open-rstudio" id="toc-open-rstudio" class="nav-link" data-scroll-target="#open-rstudio">Open RStudio</a></li>
+  <li><a href="#disclaimer" id="toc-disclaimer" class="nav-link" data-scroll-target="#disclaimer">Disclaimer</a></li>
+  <li><a href="#what-are-we-going-to-learn" id="toc-what-are-we-going-to-learn" class="nav-link" data-scroll-target="#what-are-we-going-to-learn">What are we going to learn?</a></li>
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link" data-scroll-target="#setting-up">Setting up</a></li>
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import data</a>
+  <ul class="collapse">
+  <li><a href="#challenge-1-import-data" id="toc-challenge-1-import-data" class="nav-link" data-scroll-target="#challenge-1-import-data">Challenge 1 – import data</a></li>
+  </ul></li>
+  <li><a href="#explore-data-visually" id="toc-explore-data-visually" class="nav-link" data-scroll-target="#explore-data-visually">Explore data visually</a></li>
+  <li><a href="#aesthetics-available" id="toc-aesthetics-available" class="nav-link" data-scroll-target="#aesthetics-available">Aesthetics available</a>
+  <ul class="collapse">
+  <li><a href="#challenge-2---save-our-plot" id="toc-challenge-2---save-our-plot" class="nav-link" data-scroll-target="#challenge-2---save-our-plot">Challenge 2 - save our plot</a></li>
+  </ul></li>
+  <li><a href="#modifying-scales" id="toc-modifying-scales" class="nav-link" data-scroll-target="#modifying-scales">Modifying scales</a>
+  <ul class="collapse">
+  <li><a href="#more-control-over-colours" id="toc-more-control-over-colours" class="nav-link" data-scroll-target="#more-control-over-colours">More control over colours</a></li>
+  <li><a href="#axis-scale-modifiers" id="toc-axis-scale-modifiers" class="nav-link" data-scroll-target="#axis-scale-modifiers">Axis scale modifiers</a></li>
+  </ul></li>
+  <li><a href="#zooming-in" id="toc-zooming-in" class="nav-link" data-scroll-target="#zooming-in">Zooming in</a></li>
+  <li><a href="#interactive-plots" id="toc-interactive-plots" class="nav-link" data-scroll-target="#interactive-plots">Interactive plots</a></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">Histograms</a>
+  <ul class="collapse">
+  <li><a href="#challenge-3-histogram-of-life-expectancy" id="toc-challenge-3-histogram-of-life-expectancy" class="nav-link" data-scroll-target="#challenge-3-histogram-of-life-expectancy">Challenge 3 – histogram of life expectancy</a></li>
+  </ul></li>
+  <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting">Faceting</a></li>
+  <li><a href="#theming" id="toc-theming" class="nav-link" data-scroll-target="#theming">Theming</a></li>
+  <li><a href="#a-more-refined-facetted-example" id="toc-a-more-refined-facetted-example" class="nav-link" data-scroll-target="#a-more-refined-facetted-example">A more refined facetted example</a></li>
+  <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots">Boxplots</a>
+  <ul class="collapse">
+  <li><a href="#challenge-4-code-comprehension" id="toc-challenge-4-code-comprehension" class="nav-link" data-scroll-target="#challenge-4-code-comprehension">Challenge 4 – code comprehension</a></li>
+  </ul></li>
+  <li><a href="#summarise-data-and-plot" id="toc-summarise-data-and-plot" class="nav-link" data-scroll-target="#summarise-data-and-plot">Summarise data and plot</a></li>
+  <li><a href="#plot-from-multiple-summarised-dataframes" id="toc-plot-from-multiple-summarised-dataframes" class="nav-link" data-scroll-target="#plot-from-multiple-summarised-dataframes">Plot from multiple summarised dataframes</a></li>
+  <li><a href="#close-project" id="toc-close-project" class="nav-link" data-scroll-target="#close-project">Close project</a></li>
+  <li><a href="#useful-links" id="toc-useful-links" class="nav-link" data-scroll-target="#useful-links">Useful links</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../R/rstudio_intro/rstudio_intro.html">R with RStudio</a></li><li class="breadcrumb-item"><a href="../../R/ggplot2_intermediate/ggplot2_intermediate.html">R ggplot2: intermediate data visualisation</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">R ggplot2: intermediate data visualisation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>UQ Library </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 14, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="essential-shortcuts" class="level2">
+<h2 class="anchored" data-anchor-id="essential-shortcuts">Essential shortcuts</h2>
+<ul>
+<li>function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in a function name.</li>
+<li>execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd></li>
+<li>assignment operator (<code>&lt;-</code>): <kbd>Alt</kbd> + <kbd>-</kbd></li>
+</ul>
+</section>
+<section id="open-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="open-rstudio">Open RStudio</h2>
+<p>On Library computers:</p>
+<ul>
+<li>Log in with your UQ username and password (use your student credentials if you are both staff and student)</li>
+<li>Make sure you have a working internet connection</li>
+<li>Go to search the magnifying glass (bottom left)</li>
+<li>Open the ZENworks application</li>
+<li>Look for the letter R</li>
+<li>Double click on RStudio which will install both R and RStudio</li>
+</ul>
+<p>If you are using your own laptop:</p>
+<ul>
+<li>Make sure you have a working internet connection</li>
+<li>Open RStudio</li>
+</ul>
+</section>
+<section id="disclaimer" class="level2">
+<h2 class="anchored" data-anchor-id="disclaimer">Disclaimer</h2>
+<p>We will assume you are an R intermediate user and that you have used ggplot2 before.</p>
+</section>
+<section id="what-are-we-going-to-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-we-going-to-learn">What are we going to learn?</h2>
+<p>During this hands-on session, you will:</p>
+<ul>
+<li>install a tool for picking colours</li>
+<li>customise scales and ranges</li>
+<li>divide a visualisation into facets</li>
+<li>explore new geometries</li>
+<li>modify statistical transformations</li>
+<li>adjust a geometry’s position</li>
+<li>further modify themes</li>
+<li>make a plot interactive</li>
+</ul>
+</section>
+<section id="setting-up" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
+<p><strong>Install ggplot2</strong> if you don’t already have it, with: <code>install.packages("ggplot2")</code></p>
+<p><strong>Create a new project</strong> to keep everything nicely contained in one directory:</p>
+<ul>
+<li>Click the “Create a project” button (top left cube icon)</li>
+<li>Click “New Directory”</li>
+<li>Click “New Project” (“Empty project” if you have an older version of RStudio)</li>
+<li>In “Directory name”, type the name of your project, e.g.&nbsp;“ggplot2_intermediate”</li>
+<li>Select the folder where to locate your project: e.g.&nbsp;<code>Documents/RProjects</code>, which you can create if it doesn’t exist yet. You can use your H drive at UQ to make sure you can find it again.</li>
+<li>Click the “Create Project” button</li>
+</ul>
+<p>Let’s also create a “plots” folder to store exports:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"plots"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Create a <strong>new script</strong> (File &gt; New File &gt; R Script) and add a few comments to give context:</p>
+<pre><code># Description : ggplot2 intermediate with gapminder data
+# Author: &lt;your name&gt;
+# Date: &lt;today's date&gt;</code></pre>
+<p>Finally, make sure you <strong>load ggplot2</strong> so we can use its functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="import-data" class="level2">
+<h2 class="anchored" data-anchor-id="import-data">Import data</h2>
+<section id="challenge-1-import-data" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-1-import-data">Challenge 1 – import data</h3>
+<p>Our data is located at <a href="https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv" class="uri">https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv</a></p>
+<p>Using the following syntax, how can you read the online CSV data into an R object?</p>
+<pre><code>gapminder &lt;- ...</code></pre>
+<p>You have to use the <code>read.csv()</code> function, which can take a URL:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you are not familiar with the dataset, <code>View()</code> and <code>summary()</code> can help you explore it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(gapminder)    <span class="co"># view as a separate spreadsheet</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gapminder) <span class="co"># summary statistics for each variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The Environment pane gives you an overview of the variables.</p>
+</section>
+</section>
+<section id="explore-data-visually" class="level2">
+<h2 class="anchored" data-anchor-id="explore-data-visually">Explore data visually</h2>
+<p>Let’s start with a question: how do Gross Domestic Product (GDP) and life expectancy relate?</p>
+<p>We can make a simple plot with the basics of ggplot2:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Remember that the 3 main elements of a ggplot2 visualisation are:</p>
+<ul>
+<li>the <em>data</em></li>
+<li>the <em>mapping of aesthetics to variables</em></li>
+<li>the <em>geometry</em></li>
+</ul>
+</section>
+<section id="aesthetics-available" class="level2">
+<h2 class="anchored" data-anchor-id="aesthetics-available">Aesthetics available</h2>
+<p>So far we have been using the <code>x</code> and <code>y</code> aesthetics. There are more available, depending on the geometry that you are using.</p>
+<p>Here are some common examples:</p>
+<ul>
+<li>To change the <em>shape</em> based on a variable, use <code>shape = &lt;discrete variable&gt;</code> inside the <code>aes()</code> call.</li>
+<li>If you want to change the size of the geometric object, you can use the <code>size = &lt;continuous variable&gt;</code> argument.</li>
+<li>Similarly, to change the <em>colour</em> based on a variable, use <code>colour = &lt;variable&gt;</code> and <code>fill = &lt;variable&gt;</code> inside the <code>aes()</code> call.</li>
+</ul>
+<p>Let’s modify our plot to colour the points according to the continent variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> continent)) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="challenge-2---save-our-plot" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-2---save-our-plot">Challenge 2 - save our plot</h3>
+<p>How can we save our scatter plot to the ‘plots’ directory we created using a function?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"plots/gdpPercap_v_lifeExp.png"</span>, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Remember that the <code>ggsave</code> function saves the last plot.</p>
+</blockquote>
+</section>
+</section>
+<section id="modifying-scales" class="level2">
+<h2 class="anchored" data-anchor-id="modifying-scales">Modifying scales</h2>
+<section id="more-control-over-colours" class="level3">
+<h3 class="anchored" data-anchor-id="more-control-over-colours">More control over colours</h3>
+<p>This plot uses the default discrete palette.</p>
+<blockquote class="blockquote">
+<p><strong>Saving some typing</strong>: We will keep modifying this plot. To reuse the constant base of our plot (the <code>ggplot()</code> call and the point geometry), we can create an object:</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> gapminder,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> continent)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can use other palettes than the default one. ggplot2 provides extra functions to modify colour scales. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Viridis is a collection of palettes that are designed to be accessible (i.e.&nbsp;perceptually uniform in colour or black and white, and perceivable for various forms of colour blindness). The structure of the function name is <code>scale_&lt;aesthetic&gt;_viridis_&lt;datatype&gt;()</code>, the different data types being <strong>d</strong>iscrete, <strong>c</strong>ontinuous or <strong>b</strong>inned.</p>
+<p>Another collection of palettes is the ColorBrewer collection:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can see the palettes available by looking at the help page of <code>scale_colour_brewer()</code>, under the header “Palettes”. However, the names alone might not be enough to picture them, so head to <a href="http://colorbrewer2.org/" class="uri">http://colorbrewer2.org/</a> to find the one that you like. Importantly, the website allows you to tick the options “colorblind safe” and “print friendly”… which would rule out all the qualitative palettes for our 5 continents!</p>
+<p>A useful package that introduces many palettes for ggplot2 is the colorspace package, which promotes the <a href="https://colorspace.r-forge.r-project.org/articles/color_spaces.html#human-color-vision-and-the-hcl-color-model-1">Hue-Chroma-Luminance (HCL) colour space</a>. This colour space is perceptually-based, which means it is particularly suited for human perception of colours.</p>
+<p>For colorspace, the function names are structured as follows: <code>scale_&lt;aesthetic&gt;_&lt;datatype&gt;_&lt;colorscale&gt;()</code></p>
+<p>Let’s first use an alternative qualitative palette:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(colorspace)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_discrete_qualitative</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is the default ggplot2 palette! Which means ggplot2 already use a HCL palette. But having the colorspace package loaded, we can now see all the palettes available:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hcl_palettes</span>(<span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s try a different one:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_discrete_sequential</span>(<span class="st">"Batlow"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Finally, to use a custom palette, we can use the ggplot2 function <code>scale_colour_manual()</code> and provide a list of colour names.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"lightblue"</span>, <span class="st">"pink"</span>, <span class="st">"purple"</span>, <span class="st">"black"</span>, <span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can list all the R colour names with the function <code>colours()</code>, which prints out a list of their names, but know that you are not limited to these 657 values: you can also use HEX values, which is particularly useful if you have to respect a colour scheme you were given.</p>
+<p>You can find <a href="https://r-charts.com/colors/">visual lists</a> of all the R colours, but there is a way to pick colours more comfortably: we can use the colourpicker package, which adds a handy add-in to RStudio. Install it and use the new “Addins &gt; Colour Picker” tool to create a vector of colours for your custom palette.</p>
+<blockquote class="blockquote">
+<p>That was a lot of options about colours, but know that in some cases, the most straight-forward way to make your visualisations readable by most is to use symbols instead of colours. In ggplot2, you would use the <code>shape</code> aesthetic.</p>
+</blockquote>
+</section>
+<section id="axis-scale-modifiers" class="level3">
+<h3 class="anchored" data-anchor-id="axis-scale-modifiers">Axis scale modifiers</h3>
+<p>We could further modify our plot to make it more readable. For example, we can use a different x axis scale to distribute the data differently:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It is possible to use various transformations with the <code>scale_x_continuous()</code> function’s <code>tranform</code> argument.</p>
+<p>We can also further customise a scale with breaks and labels:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">5e2</span>, <span class="fl">1e3</span>, <span class="fl">1e4</span>, <span class="fl">1e5</span>),</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"500"</span>, <span class="st">"1 k"</span>, <span class="st">"10 k"</span>, <span class="st">"100 k"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>You can use the scientific notation <code>1e5</code> to mean “a 1 followed by 5 zeros”.</p>
+</blockquote>
+</section>
+</section>
+<section id="zooming-in" class="level2">
+<h2 class="anchored" data-anchor-id="zooming-in">Zooming in</h2>
+<p>We might want to focus on the left hand side part of our original plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To zoom in, we might want to change our axis limits by using <code>ylim()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">6e4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 5 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 5 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice the warning message? ggplot2 informs us that it couldn’t represent part of the data because of the axis limits.</p>
+<p>The method we use works for our point geometry, but is problematic for other shapes that could disappear entirely or change their appearance because they are based on different data: we are actually <strong>clipping</strong> our visualisation! Notice how the trend line now looks different?</p>
+<p>A better way to focus on one part of the plot would be to modify the <strong>coordinate system</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">6e4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The Cartesian coordinate system is the default one in ggplot2. You could change the coordinate system to <code>coord_polar()</code> for circular visualisations, or to <code>coord_map()</code> to visualise spatial data.</p>
+</section>
+<section id="interactive-plots" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-plots">Interactive plots</h2>
+<p>The plotly package brings the power of the Plotly javascript library to R. Install it with <code>install.packages(plotly)</code>, and you’ll then be able to convert a ggplot2 visualisation into an interactive HTML visualisation with one single function!</p>
+<p>Let’s reuse our original plot object with some modification, and feed it to <code>ggplotly()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> gapminder,</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> lifeExp,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">colour =</span> continent)) <span class="sc">+</span> <span class="co"># move the colour aesthetic</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove trend line</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="co"># spread the data on the x axis</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can now identify single points, zoom into your plot, and show/hide categories. However, the pop-up does not tell us which country the point corresponds to. That’s because we don’t mention the <code>country</code> variable in our code. Let’s reveal that information by slightly modifying the <code>p</code> object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> gapminder,</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> lifeExp,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">colour =</span> continent,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">label =</span> country)) <span class="sc">+</span> <span class="co"># one extra aesthetic for an extra variable</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The interactive version now tells us which country each point correspond to:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To add yet another variable to the visualisation, we can animate the plot b&lt; associating the <code>frame</code> aesthetic with the <code>year</code> variable. This adds a slider and a “Play” button under the visualisation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> gapminder,</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> lifeExp,</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">colour =</span> continent,</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">label =</span> country,</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">frame =</span> year)) <span class="sc">+</span> <span class="co"># one frame per year</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>You can export the visualisation as a HTML page for sharing with others.</p>
+</blockquote>
+</section>
+<section id="histograms" class="level2">
+<h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
+<section id="challenge-3-histogram-of-life-expectancy" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-3-histogram-of-life-expectancy">Challenge 3 – histogram of life expectancy</h3>
+<p>Search for the histogram geometry function, and plot the life expectancy. How can we modify the bars?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(<span class="at">x =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="co"># by default, bins = 30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Saving some typing:</strong> remember we can omit the names of the arguments if we use them in order? Being explicit about the <strong>argument names</strong> is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like <code>data =</code> and <code>mapping =</code> (as long as they are used in the right order!).</p>
+</blockquote>
+<p>Let’s change the bin width:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(<span class="at">x =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here, each bar contains one year of life expectancy.</p>
+<p>We can also change the number of bins:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(<span class="at">x =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, let’s colour the bins by continent. Instinctively, you could try the <code>colour</code> aesthetic:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(<span class="at">x =</span> lifeExp, <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>…but it only colours the outline of the rectangles!</p>
+<p>Some aesthetics will work better with some geometries than others. We have to use the <code>fill</code> aesthetic to colour the areas instead:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(<span class="at">x =</span> lifeExp, <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Colouring our bins allows us to experiment with the geometry’s <strong>position</strong>. The histogram geometry uses the “stack” position by default. It might convey different information if we make it use ratios instead, using the <code>position = "fill"</code> argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> lifeExp,</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>,</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You might have noticed that the y-axis is still labeled ‘count’ when it has changed to a proportion. We can modify the y-axis labels to percent using the <code>percent()</code> function from the scales package.</p>
+<p>We can also modify the y-axis labels with the <code>labs()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> lifeExp,</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>,</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> percent) <span class="sc">+</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Percent"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can also make the bars “dodge” each other:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> lifeExp,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This “dodged” version reads similarly to a density plot (although the number of countries per continent does not influence the size):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> lifeExp,</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="faceting" class="level2">
+<h2 class="anchored" data-anchor-id="faceting">Faceting</h2>
+<p>An even more readable representation of the dodged histogram could use <strong>faceting</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> lifeExp,</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>) <span class="sc">+</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(continent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We have to wrap the variable(s) we want to facet by into the <code>vars()</code> function.</p>
+<blockquote class="blockquote">
+<p>Faceting is a great way to add yet another variable to your visualisation, instead of using another aesthetic. We can now compare distributions across labelled panels, with the axes using the same ranges by default.</p>
+</blockquote>
+</section>
+<section id="theming" class="level2">
+<h2 class="anchored" data-anchor-id="theming">Theming</h2>
+<p>The legend is probably superfluous. We want to keep the colours, but we use the <code>theme()</code> function to customise the look of our plot and remove the legend:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> lifeExp,</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>) <span class="sc">+</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(continent)) <span class="sc">+</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you use a pre-built theme function, make sure you place it before customising the legend. Otherwise it will bring the legend back!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> lifeExp,</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(continent)) <span class="sc">+</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="co"># before customising the legend!</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="a-more-refined-facetted-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-more-refined-facetted-example">A more refined facetted example</h2>
+<p>This extra example gives an idea of how a refined ggplot2 visualisation might be constructed. It represents 4 different variables, using the larger diamonds data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds,</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> carat,</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> color),</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_d</span>(<span class="at">option =</span> <span class="st">"turbo"</span>) <span class="sc">+</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(cut)) <span class="sc">+</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"price (USD)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this visualisation:</p>
+<ul>
+<li>4 different variables are represented, thanks to both aesthetics and facets</li>
+<li>two geometries are layered on top of each other to represent a relationship</li>
+<li>both geometries are customised to make the plot readable (important here, since there are close to 54,000 rows of data)</li>
+<li>the default colour scale is replaced</li>
+<li>a built-in theme is used</li>
+<li>a label clarifies the unit of measurement</li>
+</ul>
+</section>
+<section id="boxplots" class="level2">
+<h2 class="anchored" data-anchor-id="boxplots">Boxplots</h2>
+<p>A simple boxplot can help visualise a distribution in categories:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="challenge-4-code-comprehension" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-4-code-comprehension">Challenge 4 – code comprehension</h3>
+<p>What do you think this extra line might do to our boxplots?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is useful if the x labels get too cramped on the x axis: you can rotate them to whatever angle you want.</p>
+<blockquote class="blockquote">
+<p>Try turning this plot into an interactive visualisation to see stats easily!</p>
+</blockquote>
+</section>
+</section>
+<section id="summarise-data-and-plot" class="level2">
+<h2 class="anchored" data-anchor-id="summarise-data-and-plot">Summarise data and plot</h2>
+<p>Let’s try summarising the average and standard deviation of life expectancy by continent from the gapminder data and piping it directly into a ggplot. We will need to install/load dplyr for this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dplyr")</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">aveLE =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sdLE =</span> <span class="fu">sd</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> aveLE)) <span class="sc">+</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>,</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"tomato"</span>) <span class="sc">+</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> aveLE <span class="sc">-</span> sdLE,</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> aveLE <span class="sc">+</span> sdLE),</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Continent"</span>,</span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Life Expectancy in Years"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-from-multiple-summarised-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="plot-from-multiple-summarised-dataframes">Plot from multiple summarised dataframes</h2>
+<p>In ggplot2, multiple data frames can be plotted on the same plot. For example, let’s say we wanted to make a bar graph of total population by year with the gapminder data set colored by continent and also include the standard deviation of the total population per year at the top of each column as an error bar? This may or may not make the most sense in terms of representing the data, but we will do it here as an exercise.</p>
+<ol type="1">
+<li>summarise the data by year to calculate the standard deviation</li>
+<li>summarise the data by continent and year for the filled columns</li>
+<li>plot the continent data and add the error bars from the first summary</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> <span class="co"># group by year</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarise</span>(<span class="at">tot =</span> <span class="fu">sum</span>(pop), <span class="co"># sum the population for every year</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">SD =</span> <span class="fu">sd</span>(pop))</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["tot"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SD"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1952","2":"2406957151","3":"58100863"},{"1":"1957","2":"2664404580","3":"65504285"},{"1":"1962","2":"2899782974","3":"69788650"},{"1":"1967","2":"3217478384","3":"78375481"},{"1":"1972","2":"3576977158","3":"88646817"},{"1":"1977","2":"3930045807","3":"97481091"},{"1":"1982","2":"4289436840","3":"105098650"},{"1":"1987","2":"4691477418","3":"114756180"},{"1":"1992","2":"5110710260","3":"124502589"},{"1":"1997","2":"5515204472","3":"133417391"},{"1":"2002","2":"5886977579","3":"140848283"},{"1":"2007","2":"6251013179","3":"147621398"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>cont_ave <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">totalpop =</span> <span class="fu">sum</span>(pop)) <span class="sc">%&gt;%</span> </span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'continent'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>cont_ave</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["continent"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["totalpop"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Africa","2":"1952","3":"237640501"},{"1":"Africa","2":"1957","3":"264837738"},{"1":"Africa","2":"1962","3":"296516865"},{"1":"Africa","2":"1967","3":"335289489"},{"1":"Africa","2":"1972","3":"379879541"},{"1":"Africa","2":"1977","3":"433061021"},{"1":"Africa","2":"1982","3":"499348587"},{"1":"Africa","2":"1987","3":"574834110"},{"1":"Africa","2":"1992","3":"659081517"},{"1":"Africa","2":"1997","3":"743832984"},{"1":"Africa","2":"2002","3":"833723916"},{"1":"Africa","2":"2007","3":"929539692"},{"1":"Americas","2":"1952","3":"345152446"},{"1":"Americas","2":"1957","3":"386953916"},{"1":"Americas","2":"1962","3":"433270254"},{"1":"Americas","2":"1967","3":"480746623"},{"1":"Americas","2":"1972","3":"529384210"},{"1":"Americas","2":"1977","3":"578067699"},{"1":"Americas","2":"1982","3":"630290920"},{"1":"Americas","2":"1987","3":"682753971"},{"1":"Americas","2":"1992","3":"739274104"},{"1":"Americas","2":"1997","3":"796900410"},{"1":"Americas","2":"2002","3":"849772762"},{"1":"Americas","2":"2007","3":"898871184"},{"1":"Asia","2":"1952","3":"1395357352"},{"1":"Asia","2":"1957","3":"1562780599"},{"1":"Asia","2":"1962","3":"1696357182"},{"1":"Asia","2":"1967","3":"1905662900"},{"1":"Asia","2":"1972","3":"2150972248"},{"1":"Asia","2":"1977","3":"2384513556"},{"1":"Asia","2":"1982","3":"2610135582"},{"1":"Asia","2":"1987","3":"2871220762"},{"1":"Asia","2":"1992","3":"3133292191"},{"1":"Asia","2":"1997","3":"3383285500"},{"1":"Asia","2":"2002","3":"3601802203"},{"1":"Asia","2":"2007","3":"3811953827"},{"1":"Europe","2":"1952","3":"418120846"},{"1":"Europe","2":"1957","3":"437890351"},{"1":"Europe","2":"1962","3":"460355155"},{"1":"Europe","2":"1967","3":"481178958"},{"1":"Europe","2":"1972","3":"500635059"},{"1":"Europe","2":"1977","3":"517164531"},{"1":"Europe","2":"1982","3":"531266901"},{"1":"Europe","2":"1987","3":"543094160"},{"1":"Europe","2":"1992","3":"558142797"},{"1":"Europe","2":"1997","3":"568944148"},{"1":"Europe","2":"2002","3":"578223869"},{"1":"Europe","2":"2007","3":"586098529"},{"1":"Oceania","2":"1952","3":"10686006"},{"1":"Oceania","2":"1957","3":"11941976"},{"1":"Oceania","2":"1962","3":"13283518"},{"1":"Oceania","2":"1967","3":"14600414"},{"1":"Oceania","2":"1972","3":"16106100"},{"1":"Oceania","2":"1977","3":"17239000"},{"1":"Oceania","2":"1982","3":"18394850"},{"1":"Oceania","2":"1987","3":"19574415"},{"1":"Oceania","2":"1992","3":"20919651"},{"1":"Oceania","2":"1997","3":"22241430"},{"1":"Oceania","2":"2002","3":"23454829"},{"1":"Oceania","2":"2007","3":"24549947"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>When specifying a data set outside of the main <code>ggplot()</code> function - the <code>data =</code> argument must be used. The other functions <code>geom_bar()</code> etc. assume the first argument is <code>mapping = aes()</code> unless the data argument is explicitly defined.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cont_ave, <span class="fu">aes</span>(<span class="at">x =</span> year, </span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> totalpop)) <span class="sc">+</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> continent),</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> <span class="co"># default is `stat = count` like a histogram</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data =</span> total, <span class="co"># must use `data = ` to specify a new data set being used</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">y =</span> tot, <span class="co"># the y from the ggplot(aes()) is inherited, update</span></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ymin =</span> tot <span class="sc">-</span> SD, <span class="co"># error bar arguments</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ymax =</span> tot <span class="sc">+</span> SD),</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1952</span>, <span class="at">to =</span> <span class="dv">2007</span>, <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">+</span> <span class="co"># use seq to get years from 1952 - 2007 every 5 yrs to label every column</span></span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">2e9</span>, <span class="fl">4e9</span>, <span class="fl">6e9</span>), <span class="co"># keep the same breaks</span></span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"2"</span>, <span class="st">"4"</span>, <span class="st">"6"</span>)) <span class="sc">+</span> <span class="co"># relabel so number represent billions</span></span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, </span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Population in Billions"</span>, <span class="co"># rename units in billions</span></span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> <span class="st">"Continent"</span>) <span class="sc">+</span> <span class="co"># relabel legend from the 'fill' in the geom_bar</span></span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme_dark</span>() <span class="sc">+</span> <span class="co"># different theme </span></span>
+<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="co"># remove the grid lines</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intermediate_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="close-project" class="level2">
+<h2 class="anchored" data-anchor-id="close-project">Close project</h2>
+<p>Closing RStudio will ask you if you want to save your workspace and scripts. Saving your workspace is usually not recommended if you have all the necessary commands in your script.</p>
+</section>
+<section id="useful-links" class="level2">
+<h2 class="anchored" data-anchor-id="useful-links">Useful links</h2>
+<ul>
+<li>For visualisations:
+<ul>
+<li><a href="https://www.rstudio.org/links/data_visualization_cheat_sheet">ggplot2 cheatsheet</a></li>
+<li>Official <a href="https://ggplot2.tidyverse.org/reference/">ggplot2 documentation</a></li>
+<li>Official <a href="https://ggplot2.tidyverse.org/">ggplot2 website</a></li>
+<li><a href="https://r4ds.hadley.nz/data-visualize.html">Chapter on data visualisation</a> in the book <em>R for Data Science</em></li>
+<li><a href="https://www.data-to-viz.com/">From Data to Viz</a>, a website to explore different visualisations and the code that generates them</li>
+<li>Selva Prabhakaran’s <a href="https://r-statistics.co/ggplot2-Tutorial-With-R.html"><em>r-statistics.co</em> section on ggplot2</a></li>
+<li><a href="https://ourcodingclub.github.io/tutorials/datavis/">Coding Club’s data visualisation tutorial</a></li>
+<li><a href="https://www.sthda.com/english/wiki/ggplot2-essentials">STHDA’s ggplot2 essentials</a></li>
+<li>Lear more about plotly and exploratory data analysis with the book <em><a href="https://plotly-r.com/">Interactive web-based data visualization with R, plotly, and shiny</a></em></li>
+</ul></li>
+<li>Our compilation of <a href="../../R/usefullinks.md">general R resources</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/uqlibrary\.github\.io\/technology-training\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
