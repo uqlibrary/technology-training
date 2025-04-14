@@ -1,0 +1,72 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "!Course_contributions/"
+    - "!intro_to_programming"
+    - "!Toolbox"
+    - "!R/ANOVA-lm"
+    - "!R/timeseries"
+    - "!R/UQ R User Group"
+
+website:
+  title: "UQ Library Technology Training"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      # - about.qmd
+    tools:
+      - icon: github
+        href: https://github.com/uqlibrary/technology-training
+  sidebar:
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
+      - text: "Audacity"
+        href: Audacity/audacity.qmd
+      - section: "GIS"
+        contents:
+          - OSM/OpenStreetMap.qmd
+          - QGIS/intro/QGIS_intro.qmd
+          - QGIS/raster/QGIS_raster.qmd
+          - QGIS/vector/QGIS_vector.qmd
+          - QGIS/mobile/QGIS_mobile.qmd
+          - uMap/umap_intro.qmd
+      - section: "Git"
+        contents:
+          - Git/git.qmd
+          - Git/GitHub/GitHub_intro.qmd
+      - text: "LaTeX with Overleaf"
+        href: LaTeX/overleaf_latex.qmd
+      - text: "OpenRefine"
+        href: OpenRefine/openrefine.qmd
+      - section: "Python"
+        contents:
+          - Python/1-fundamentals/fundamentals.qmd
+          - Python/2-data_processing/data_processing.qmd
+        # - Python/3-intro_visualisation
+        # - Python/4-stats_and_further_vis
+      - section: "R with RStudio"
+        contents:
+          - R/rstudio_intro/rstudio_intro.qmd
+          - R/dplyr/dplyr.qmd
+          - R/ggplot2_intro/ggplot2_intro.qmd
+          - R/ggplot2_intermediate/ggplot2_intermediate.qmd
+          - R/tidyverse_next_steps/tidyverse_next_steps.qmd
+          - R/reports/reports.qmd
+          - R/heatmaps/heatmaps_intermediate.qmd
+          - R/shiny/shiny.qmd
+          - R/packaging/packaging.qmd
+      - text: "Unix Shell"
+        href: Shell/shell_intro.qmd
+      - text: "Voyant Tools"
+        href: Voyant/voyant.qmd
+
+format:
+  html:
+    theme: pulse
+    css: styles.css
+    toc: true
+    df-print: paged
