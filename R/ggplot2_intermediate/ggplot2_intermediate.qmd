@@ -277,7 +277,7 @@ The plotly package brings the power of the Plotly javascript library to R. Insta
 
 Let's reuse our original plot object with some modification, and feed it to `ggplotly()`:
 
-```{r eval=FALSE}
+```{r}
 p <- ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp,
@@ -291,7 +291,7 @@ ggplotly(p)
 
 You can now identify single points, zoom into your plot, and show/hide categories. However, the pop-up does not tell us which country the point corresponds to. That's because we don't mention the `country` variable in our code. Let's reveal that information by slightly modifying the `p` object:
 
-```{r eval=FALSE}
+```{r}
 p <- ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp,
@@ -303,13 +303,13 @@ p <- ggplot(data = gapminder,
 
 The interactive version now tells us which country each point correspond to:
 
-```{r eval=FALSE}
+```{r}
 ggplotly(p)
 ```
 
 To add yet another variable to the visualisation, we can animate the plot b< associating the `frame` aesthetic with the `year` variable. This adds a slider and a "Play" button under the visualisation.
 
-```{r eval=FALSE}
+```{r}
 p <- ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp,
