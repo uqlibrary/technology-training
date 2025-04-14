@@ -45,7 +45,7 @@ The part of the operating system responsible for managing files and directories 
 
 To navigate our file system in the shell, let's learn a few useful commands. Type the following command and press enter:
 
-```shell
+```bash
 pwd
 ```
 
@@ -53,7 +53,7 @@ pwd
 
 Now, try this command:
 
-```shell
+```bash
 ls
 ```
 
@@ -61,13 +61,13 @@ ls
 
 Commands can often take extra parameters, called **flags** (also called "options"). We can add the flag `-a` (for "**a**ll") to our `ls` command in order to also list hidden elements:
 
-```shell
+```bash
 ls -a
 ```
 
 To find out more about a particular command, including what flags exist for it, use the `--help` flag after it, like so:
 
-```shell
+```bash
 ls --help
 ```
 
@@ -75,13 +75,13 @@ ls --help
 
 To look at the contents of a different directory, we can specify it by adding the directory's name as an **argument**:
 
-```shell
+```bash
 ls Desktop
 ```
 
 As you can see, a command can take both flags and arguments. For example, the command:
 
-```shell
+```bash
 ls -lh Documents
 ```
 
@@ -89,7 +89,7 @@ ls -lh Documents
 
 To navigate into our data directory, we'll use a new command called `cd` for "**c**hange **d**irectory".
 
-```shell
+```bash
 cd Desktop
 cd data-shell
 cd data
@@ -97,7 +97,7 @@ cd data
 
 We just navigated down three levels of directories, one at a time, starting from our home directory. It is also possible to do that in one command:
 
-```shell
+```bash
 cd Desktop/data-shell/data
 ```
 
@@ -105,7 +105,7 @@ You can always check where you are currently with `pwd`, and have a look at wher
 
 I you want to go back to the `data-shell` directory, there is a shortcut to move up to the parent directory:
 
-```shell
+```bash
 cd ..
 ```
 
@@ -115,7 +115,7 @@ Similarly, the shortcut to specify the current working directory is a single dot
 
 We have been using **relative paths** so far, always referring to where we currently are in the file system, but we can also specify **absolute paths** by using a leading `/`, which represents the root directory (i.e. the highest in your file system). For example, you can always use one of the following commands to go to the `data-shell` folder, wherever you are (replace "username" by your user name):
 
-```shell
+```bash
 cd /Users/username/Desktop/data-shell
 cd /home/username/Desktop/data-shell
 ```
@@ -128,7 +128,7 @@ We now know how to explore files and directories, but how do we create, modify a
 
 In the `data-shell` directory, let's create a new directory called `thesis` thanks to the `mkdir` command (for "**m**a**k**e **dir**ectory"):
 
-```shell
+```bash
 cd ../..
 mkdir thesis
 ```
@@ -139,13 +139,13 @@ Using `ls` will now list the newly created directory.
 
 We can check that the new directory is in fact empty:
 
-```shell
+```bash
 ls thesis
 ```
 
 Let's move into it and create a new text file called `draft.txt` using a text editor called Nano:
 
-```shell
+```bash
 cd thesis
 nano draft.txt
 ```
@@ -160,13 +160,13 @@ cat
 
 If you are not happy with your work, you can remove the file with the `rm` command, but beware: in the shell, **deleting is forever**! There is no rubbish bin.
 
-```shell
+```bash
 rm draft.txt
 ```
 
 Let’s re-create that file and then move up one directory to `/Users/username/Desktop/data-shell` using `cd ..`:
 
-```shell
+```bash
 nano draft.txt
 ls
 cd ..
@@ -174,7 +174,7 @@ cd ..
 
 If we try to delete the `thesis` directory, we get an error message:
 
-```shell
+```bash
 rm thesis
 ```
 
@@ -182,20 +182,20 @@ This happens because `rm` by default only works on files, not directories.
 
 To really get rid of `thesis` we must also delete the file `draft.txt`. We can do this with the [recursive](https://en.wikipedia.org/wiki/Recursion) flag for `rm`:
 
-```shell
+```bash
 rm -r thesis
 ```
 
 > Removing the files in a directory recursively can be a very dangerous operation. If we’re concerned about what we might be deleting we can add the “interactive” flag `-i` to `rm` which will ask us for confirmation before each step.
 
-```shell
+```bash
 rm -ri thesis
 ```
 > This removes everything in the directory, then the directory itself, asking at each step for you to confirm the deletion. Type "y" and press <kbd>Enter</kbd> to confirm.
 
 Let's create the directory and file one more time:
 
-```shell
+```bash
 mkdir thesis
 nano thesis/draft.txt
 ls thesis
@@ -203,7 +203,7 @@ ls thesis
 
 The name of our new file is not very informative. We can change it with the `mv` command (for "move"):
 
-```shell
+```bash
 mv thesis/draft.txt thesis/quotes.txt
 ```
 
@@ -213,27 +213,27 @@ The first argument tells `mv` what we’re “moving”, while the second is whe
 
 Let's move `quotes.txt` into the current working directory, by using the `.` shortcut:
 
-```shell
+```bash
 mv thesis/quotes.txt .
 ```
 
 We can now check that thesis is empty, and that `quotes.txt` exists in the current directory:
 
-```shell
+```bash
 ls thesis
 ls quotes.txt
 ```
 
 The `cp` command **c**o**p**ies a file. Let's copy the file into the `thesis` directory, with a new name, and check that the original file and the copy both exist:
 
-```shell
+```bash
 cp quotes.txt thesis/quotations.txt
 ls quotes.txt thesis/quotations.txt
 ```
 
 Now, let's delete the original file and check with `ls` that it is actually gone:
 
-```shell
+```bash
 rm quotes.txt
 ls quotes.txt
 ```
@@ -244,7 +244,7 @@ ls quotes.txt
 
 In the `molecules` directory, let's use the `wc` command (for "**w**ord **c**ount"):
 
-```shell
+```bash
 cd molecules
 wc *.pdb
 ```
@@ -255,7 +255,7 @@ Notice how the output has three numbers for each file? They are the number of li
 
 To figure out which file is the shortest, we can first **redirect** the number of lines into a new file thanks to `>`, so we can reuse it later on:
 
-```shell
+```bash
 wc -l *.pdb > lengths.txt
 ```
 
@@ -263,13 +263,13 @@ This creates the file, or overwrites it if it already exists. `>>` on the other 
 
 The `sort` command will print the alphabetically sorted data to screen. Using the `-n` flag will sort it numerically instead:
 
-```shell
+```bash
 sort -n lengths.txt
 ```
 
 We now know that the top line is the shortest file. However, intermediate files make a long process complicated to follow, and clutter your hard drive. We can instead run two commands together:
 
-```shell
+```bash
 wc -l *.pdb | sort -n
 ```
 
@@ -277,7 +277,7 @@ The vertical bar, `|`, is called a **pipe**. It tells the shell we want to use t
 
 `head` and `tail` will respectively show the beginning and the end of some text. It is possile to overwrite the default of 10 lines with a flag that specifies how many lines we want returned. Let's use `head` in our process to only show the first line of the sorted text:
 
-```shell
+```bash
 wc -l *.pdb | sort -n | head -1
 ```
 
@@ -293,13 +293,13 @@ Nelle has run samples through the assay machines and created 17 files located in
 
 To check the consistency of her data, she types:
 
-```shell
+```bash
 wc -l *.txt | sort -n | head -5
 ```
 
 One file seems to be 60 lines shorter than the others. Before re-running that sample, she checks if other files have _too much_ data:
 
-```shell
+```bash
 wc -l *.txt | sort -n | tail -5
 ```
 
@@ -307,13 +307,13 @@ wc -l *.txt | sort -n | tail -5
 
 The numbers look good, but the "Z" in there is not expected: everything should be marked either "A" or "B", by convention. To find others, she types:
 
-```shell
+```bash
 ls *Z.txt
 ```
 
 Those two files do not match with any depth she recorded, and she therefore won't use them in her analysis. In case she still might need them later on, she won't delete them; in the future, she might instead select the files she wants with a wildcard expression, like in this example:
 
-```shell
+```bash
 ls *[AB].txt
 ```
 
@@ -327,7 +327,7 @@ This will match all files ending in `A.txt` or `B.txt`.
 
 In the `creatures` directory (reached with `cd ../../creatures`), using the following command to create backups of our data files will throw an error:
 
-```shell
+```bash
 cp *.dat backup-*.dat
 ```
 
@@ -337,7 +337,7 @@ The way around that is to use a loop, to do some operation _once for each elemen
 
 To solve our file copying problem we can use this loop:
 
-```shell
+```bash
 for filename in *.dat
 do
     cp $filename backup-$filename
@@ -354,7 +354,7 @@ When running this loop, the shell does the following:
 
 You can check that your loop will do what you expect it to do beforehand, by prefixing the command in the loop body with `echo`:
 
-```shell
+```bash
 for filename in *.dat
 do
     echo cp $filename original-$filename
@@ -372,7 +372,7 @@ Nelle now wants to calculate stats on her data files with her lab's program call
 
 Located in the `north-pacific-gyre/2012-07-03`, she designs the following loop:
 
-```shell
+```bash
 for datafile in NENE*[AB].txt
     do bash goostats $datafile stats-$datafile
 done
@@ -382,7 +382,7 @@ done
 
 When she runs it, the shell seems stalled and nothing gets printed to the screen. She kills the running command with <kbd>Ctrl</kbd> + <kbd>C</kbd>`, uses the up arrow to edit the command and adds an `echo` line to the loop body in order to know which file is being processed:
 
-```shell
+```bash
 for datafile in NENE*[AB].txt; do echo $datafile; bash goostats $datafile stats-$datafile; done
 ```
 
@@ -392,7 +392,7 @@ It looks like processing her whole dataset (1518 files) will take about two hour
 
 Here is another example of how useful a loop can be: to create a logical directory structure. Say a researcher wants to organise experiments measuring reaction rate constants with different compounds and different temperatures. They could use a **nested loop** like this one:
 
-```shell
+```bash
 for species in cubane ethane methane butane
 do
     for temperature in 25 30 37 40 50 60
@@ -412,13 +412,13 @@ We are finally ready to see what makes the shell such a powerful programming env
 
 To store her analytics and make them reproducible, Nelle creates a script. She create a new file with Nano:
 
-```shell
+```bash
 nano do-stats.sh
 ```
 
 ... and write the following inside it:
 
-```shell
+```bash
 for datafile in NENE*[AB].txt
 do
     echo $datafile
@@ -430,13 +430,13 @@ done
 
 Nelle can now run her script with:
 
-```shell
+```bash
 bash do-stats.sh
 ```
 
 This works well, but what if she wants to make her script more versatile, so the user can decide what the data files are? She modifies the script:
 
-```shell
+```bash
 # Calculate stats for data files.
 # Usage: bash do-stats.sh file(s)_to_process
 for datafile in "$@"
@@ -462,7 +462,7 @@ Her script now lets her decide what files to process, but she has to remember to
 
 `grep` (for "global / regular expression / print") is a command that finds and prints lines in files that match a pattern. To test this, we are going to work on a file that contains three haikus. To have a look at it, run the following commands:
 
-```shell
+```bash
 cd
 cd Desktop/data-shell/writing
 cat haiku.txt
@@ -470,7 +470,7 @@ cat haiku.txt
 
 To find lines that contatin the word "not", run the following:
 
-```shell
+```bash
 grep not haiku.txt
 ```
 
@@ -478,7 +478,7 @@ The output is the three lines in the file that contain the letters "not".
 
 If we look for the pattern "The":
 
-```shell
+```bash
 grep The haiku.txt
 ```
 
@@ -486,32 +486,32 @@ grep The haiku.txt
 
 To restrict to lines containing "The" on its own, we can use the `-w` flag (for "word"):
 
-```shell
+```bash
 grep -w The haiku.txt
 ```
 
 We can also search for a phrase:
 
-```shell
+```bash
 grep -w "is not" haiku.txt
 ```
 
 We don't have to use quotes for patterns without spaces, but we still can do that to be consistent.
 Another useful flag is `-n` (for line **n**umber):
 
-```shell
+```bash
 grep -n "it" haiku.txt
 ```
 
 We can also combine flags with this command. Let's add the `-i` flag to make the search case-insensitive:
 
-```shell
+```bash
 grep -nwi "the" haiku.txt
 ```
 
 We can also in**v**ert our search with the `-v` flag, i.e. to output the lines that do _not_ contain the pattern "the":
 
-```shell
+```bash
 grep -nwv "the" haiku.txt
 ```
 
@@ -519,7 +519,7 @@ The are many more flags available for `grep`. You can see a full list with the c
 
 `grep`'s real power comes from the fact that patterns can contain **regular expressions**. Regular expressions are both complex and powerful. For example, you can search for lines that have an "o" in the second position:
 
-```shell
+```bash
 grep -E '^.o' haiku.txt
 ```
 
@@ -527,7 +527,7 @@ We use quotes and the `-E` flag (for "extended regular expression") to prevent t
 
 Let's try to analyse a bigger file, like the text from _Little Women_ by Louisa May Alcott. We want to figure out which of the four sisters in the book (Jo, Meg, Beth and Amy) is the most mentioned, something we can achieve with a `for` loop and `grep`:
 
-```shell
+```bash
 cd data
 for sis in Jo Meg Beth Amy
 do
@@ -540,40 +540,40 @@ We use the `-o` flag (for "only matching") in order to account for multiple occu
 
 While `grep` finds lines in files, the `find` command finds files themselves. Let's move into the `writing` directory and test it:
 
-```shell
+```bash
 cd ..
 find .
 ```
 
 When given the current working directory as the only argument, `find`'s output is the names of every file and directory under the current working directory. We can start filtering the output with the `-type` flag. `d` is for directory, and `f` is for files:
 
-```shell
+```bash
 find . -type d
 find . -type f
 ```
 
 We can also match by name:
 
-```shell
+```bash
 find . -name *.txt
 ```
 
 The issue here is that the shell expanded the wildcard _before_ running the command. To find _all_ the text files in the directory tree, we have to use quotes:
 
-```shell
+```bash
 find . -name '*.txt'
 ```
 
 If we want to combine find with other commands, we might need a different method than building a pipeline. For example, to count the lines in each one of the found files, one would intuitively try the following:
 
-```shell
+```bash
 find . -name '*.txt' | wc -l
 ```
 
 ... which would only return the number of files `find` found.
 In order to pass each of the found files as separate arguments, we can use the following syntax instead:
 
-```shell
+```bash
 wc -l $(find . -name '*.txt')
 ```
 
@@ -581,7 +581,7 @@ When the shell executes this command, it first expands whatever is inside `$()` 
 
 Here is an example combining `grep` and `find`:
 
-```shell
+```bash
 grep "FE" $(find .. -name '*.pdb')
 ```
 
