@@ -100,10 +100,10 @@ If you would like to develop on top of this, please cite the source as mentioned
  quarto preview <path/to/the_source.qmd>
  ```
  
- 3. Once you are happy with the changes, publish the new version (making sure to point to the file that was modified, so you don't re-build the whole website):
+ 3. Once you are happy with the changes, publish them:
  
  ```
- quarto publish <path/to/the_source.qmd>
+ quarto publish gh-pages
  ```
  
  4. And don't forget to commit and push your changes to this repository.
