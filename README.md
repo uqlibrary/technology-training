@@ -1,6 +1,8 @@
 # UQ Library technology training resources
 
-This repository hosts manuals and resources related to R, Python, LaTeX, Bash, Git, OpenStreetMap, QGIS, uMap, OpenRefine, Audacity and Voyant Tools [training sessions held at the UQ Library](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=).
+Source code the UQ Library Technology Training website, as well as repository of resources.
+
+We offer R, Python, LaTeX, Bash, Git, OpenStreetMap, QGIS, uMap, OpenRefine, Audacity and Voyant Tools [training sessions held at the UQ Library](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=).
 
 Training resources related to other tools are available [on the Library website](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources).
 
@@ -83,11 +85,28 @@ All of the information on this repository (https://github.com/uqlibrary/technolo
 
 Part of this repository is based on [Paula Andrea Martinez](https://orcid.org/0000-0002-8990-1985)'s work [available under the same CC-By-4.0 licence](https://github.com/orchid00/CDS).
 
+If you would like to develop on top of this, please cite the source as mentioned above, and conserve the git history if possible (so authors are credited).
+
 ## Contributing
 
- You can [raise an issue](https://github.com/uqlibrary/technology-training/issues) or submit a change in this repository if you spot something that needs fixing. If you would like to develop on top of this, please cite the source as mentioned above, and conserve the git history if possible (so authors are credited).
+ You can [raise an issue](https://github.com/uqlibrary/technology-training/issues) or submit a change in this repository if you spot something that needs fixing.
 
- To modify lesson materials, check if it has a source file - usually a Quarto (`qmd`) file. If it exists, edit the source file to then render its output (instead of directly editing the markdown output, for example).
+ To modify lesson materials:
+ 
+ 1. Modify the corresponding Quarto (`qmd`) file.
+ 2. Preview the rendered page locally to see the changes:
+ 
+ ```
+ quarto preview <path/to/the_source.qmd>
+ ```
+ 
+ 3. Once you are happy with the changes, publish the new version (making sure to point to the file that was modified, so you don't re-build the whole website):
+ 
+ ```
+ quarto publish <path/to/the_source.qmd>
+ ```
+ 
+ 4. And don't forget to commit and push your changes to this repository.
 
  If you have questions about contributing to the material, please contact the UQ Library.
 
