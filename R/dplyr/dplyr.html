@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-04-14">
+<meta name="dcterms.date" content="2025-04-24">
 
 <title>R dplyr: preparing data for analysis – UQ Library Technology Training</title>
 <style>
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../R/rstudio_intro/rstudio_intro.html">R with RStudio</a></li><li class="breadcrumb-item"><a href="../../R/dplyr/dplyr.html">R dplyr: preparing data for analysis</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../R/rstudio_intro/rstudio_intro.html">R with RStudio</a></li><li class="breadcrumb-item"><a href="../../R/dplyr/dplyr.html">2. dplyr: data transformation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">GIS</span></a>
+ <span class="menu-text">Git</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -185,61 +185,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../OSM/OpenStreetMap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OpenStreetMap: create and use spatial data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../QGIS/intro/QGIS_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">QGIS: Introduction to mapping</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../QGIS/raster/QGIS_raster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">QGIS: raster analysis</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../QGIS/vector/QGIS_vector.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">QGIS: Vector Analysis</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../QGIS/mobile/QGIS_mobile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">QGIS: Mobile Mapping</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../uMap/umap_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">uMap: create quick interactive maps</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Git</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../Git/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git version control for collaboration</span></a>
+ <span class="menu-text">Git from the command line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Git/GitHub/GitHub_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Basics + Creating Analytics Projects Portfolios</span></a>
+ <span class="menu-text">GitHub and portfolios</span></a>
   </div>
 </li>
       </ul>
@@ -256,10 +209,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">OpenRefine</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../OSM/OpenStreetMap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OpenStreetMap</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Python/1-fundamentals/fundamentals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Fundamentals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Python/2-data_processing/data_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Data processing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">Python</span></a>
+ <span class="menu-text">QGIS</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -267,14 +249,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Python/1-fundamentals/fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python training (1 of 4): The fundamentals</span></a>
+  <a href="../../QGIS/intro/QGIS_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Python/2-data_processing/data_processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python training (2 of 4): data processing</span></a>
+  <a href="../../QGIS/raster/QGIS_raster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Raster analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/vector/QGIS_vector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Vector analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/mobile/QGIS_mobile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Mobile mapping</span></a>
   </div>
 </li>
       </ul>
@@ -291,59 +285,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/rstudio_intro/rstudio_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R with RStudio: getting started</span></a>
+ <span class="menu-text">1. Getting started</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/dplyr/dplyr.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">R dplyr: preparing data for analysis</span></a>
+ <span class="menu-text">2. dplyr: data transformation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/ggplot2_intro/ggplot2_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R ggplot2: introductory data visualisation</span></a>
+ <span class="menu-text">3. ggplot2: introduction to visualisation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/ggplot2_intermediate/ggplot2_intermediate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R ggplot2: intermediate data visualisation</span></a>
+ <span class="menu-text">4. ggplot2: intermediate visualisation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/tidyverse_next_steps/tidyverse_next_steps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R tidyverse: loops and data tidying</span></a>
+ <span class="menu-text">5. tidyr and purrr: tidying and loops</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/reports/reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R reproducible reports with Quarto</span></a>
+ <span class="menu-text">6. Quarto: reproducible publishing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/heatmaps/heatmaps_intermediate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R data visualisation: heatmaps</span></a>
+ <span class="menu-text">7. Heatmaps</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/shiny/shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R advanced: webapps with Shiny</span></a>
+ <span class="menu-text">8. Shiny web apps</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/packaging/packaging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R advanced: packaging and sharing functions</span></a>
+ <span class="menu-text">9. Functions and packaging</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../uMap/umap_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">uMap</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Shell/shell_intro.html" class="sidebar-item-text sidebar-link">
@@ -397,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../R/rstudio_intro/rstudio_intro.html">R with RStudio</a></li><li class="breadcrumb-item"><a href="../../R/dplyr/dplyr.html">R dplyr: preparing data for analysis</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../R/rstudio_intro/rstudio_intro.html">R with RStudio</a></li><li class="breadcrumb-item"><a href="../../R/dplyr/dplyr.html">2. dplyr: data transformation</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">R dplyr: preparing data for analysis</h1>
 </div>
@@ -416,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 14, 2025</p>
+      <p class="date">April 24, 2025</p>
     </div>
   </div>
   
@@ -482,9 +482,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="install-the-dplyr-package" class="level3">
 <h3 class="anchored" data-anchor-id="install-the-dplyr-package">Install the dplyr package</h3>
 <p>If you don’t have it already, you can install dplyr with the command: <code>install.packages("dplyr")</code></p>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>At home, you can install the whole “<a href="https://www.tidyverse.org/">tidyverse</a>”, a meta-package useful for data science: <code>install.packages("tidyverse")</code></p>
-</blockquote>
+</div>
+</div>
 </section>
 <section id="new-project" class="level3">
 <h3 class="anchored" data-anchor-id="new-project">New project</h3>
@@ -501,15 +511,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="create-a-script">Create a script</h3>
 <p>We will use a script to write code more comfortably.</p>
 <ul>
-<li>Menu: Top left corner, click the green “plus” symbol, or press the shortcut (for Windows/Linux) <kbd>Ctrl</kbd>+Shift+N or (for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an “Untitled1” file.</li>
+<li>Menu: Top left corner, click the green “plus” symbol, or press the shortcut (for Windows/Linux) <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an “Untitled1” file.</li>
 <li>Go to “File &gt; Save” or press (for Windows/Linux) <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save your file and the name of the new file.</li>
 <li>Call your file “process.R”</li>
 </ul>
 </section>
 <section id="introducing-our-data" class="level3">
 <h3 class="anchored" data-anchor-id="introducing-our-data">Introducing our data</h3>
-<section id="challenge-1-import-data" class="level4">
-<h4 class="anchored" data-anchor-id="challenge-1-import-data">Challenge 1 – import data</h4>
 <p>Let’s import and explore our data.</p>
 <ol type="1">
 <li>read the data into an object called “gapminder”, using <code>read.csv()</code>:</li>
@@ -517,9 +525,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<blockquote class="blockquote">
-<p>Remember you can use <kbd>Ctrl</kbd>+<kbd>shift</kbd> to execute a command from the script.</p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember you can use <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute a command from the script.</p>
+</div>
+</div>
 <ol start="2" type="1">
 <li>Explore the gapminder dataset using <code>dim()</code> and <code>str()</code></li>
 </ol>
@@ -537,12 +555,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-</section>
 <section id="basic-dplyr-verbs" class="level2">
 <h2 class="anchored" data-anchor-id="basic-dplyr-verbs">Basic dplyr verbs</h2>
 <p>The R package <code>dplyr</code> was developed by Hadley Wickham for data manipulation.</p>
 <p>The book <a href="https://r4ds.hadley.nz/"><em>R for Data Science</em></a> introduces the package as follows:</p>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+dplyr essentials
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>You are going to learn the five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:</p>
 <ul>
 <li>Pick variables by their names with <code>select()</code></li>
@@ -552,7 +578,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Collapse many values down to a single summary with <code>summarise()</code></li>
 </ul>
 <p>These can all be used in conjunction with <code>group_by()</code> which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the main <strong>verbs for a language of data manipulation</strong>.</p>
-</blockquote>
+</div>
+</div>
 <p>To use the verbs to their full extent, we will need <strong>pipes</strong> and <strong>logical operators</strong>, which we will introduce as we go.</p>
 <p>Let’s load the <code>dplyr</code> package to access its functions:</p>
 <div class="cell">
@@ -572,9 +599,19 @@ Attaching package: 'dplyr'</code></pre>
     intersect, setdiff, setequal, union</code></pre>
 </div>
 </div>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>You only need to install a package once (with <code>install.packages()</code>), but you need to reload it every time you start a new R session (with <code>library()</code>).</p>
-</blockquote>
+</div>
+</div>
 <section id="pick-variables-with-select" class="level3">
 <h3 class="anchored" data-anchor-id="pick-variables-with-select">1. Pick variables with <code>select()</code></h3>
 <p><code>select()</code> allows us to pick variables (i.e.&nbsp;columns) from the dataset. For example, to only keep the data about year, country and GDP per capita:</p>
@@ -588,18 +625,21 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <p>If you have many variables but only want to remove a small number, it might be better to deselect instead of selecting. You can do that by using the <code>-</code> character in front of a variable name:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">select</span>(gapminder, <span class="sc">-</span>continent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "country"   "year"      "pop"       "lifeExp"   "gdpPercap"</code></pre>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gap_remove <span class="ot">&lt;-</span> <span class="fu">select</span>(gapminder, <span class="sc">-</span>continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>There are also a lot of helper functions to select columns according to a logic. For example, to only keep the columns that have “a” in their names:</p>
+<p>You can also select a range of columns, by specifying the first and last column names with the <code>:</code> character in between:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">select</span>(gapminder, <span class="fu">contains</span>(<span class="st">"a"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "year"      "gdpPercap"</code></pre>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gap_range <span class="ot">&lt;-</span> <span class="fu">select</span>(gapminder, country<span class="sc">:</span>continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>And if you know the position of the columns but not the names, you can also use indices:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gap_indices <span class="ot">&lt;-</span> <span class="fu">select</span>(gapminder, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>There are many helper functions to select columns according to a logic. For example, to only keep the columns that have “a” in their names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gap_a <span class="ot">&lt;-</span> <span class="fu">select</span>(gapminder, <span class="fu">contains</span>(<span class="st">"a"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To see more helper operators and functions, look at the <code>select()</code> help page: <code>?select</code></p>
 </section>
 <section id="pick-observations-with-filter" class="level3">
 <h3 class="anchored" data-anchor-id="pick-observations-with-filter">2. Pick observations with <code>filter()</code></h3>
@@ -613,9 +653,19 @@ Attaching package: 'dplyr'</code></pre>
 <li><code>&gt;=</code>: greater or equal</li>
 <li><code>&lt;=</code>: smaller or equal</li>
 </ul>
-<blockquote class="blockquote">
-<p>Remember: <code>=</code> is used to pass on a value to an argument, whereas <code>==</code> is used to check for equality. Using <code>=</code> instead of <code>==</code> for a logical statment is one of the most common errors and R will give you a reminder in the console when this happens.</p>
-</blockquote>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember: <code>=</code> is used to pass on a value to an argument, whereas <code>==</code> is used to check for equality. Using <code>=</code> instead of <code>==</code> for a logical statement is one of the most common errors and R will give you a reminder in the console when this happens.</p>
+</div>
+</div>
 <p>You can compare any kind of data For example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -640,9 +690,20 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 </div>
 <p>When R executes these commands, it answers <code>TRUE</code> of <code>FALSE</code>, as if asked a yes/no question. These <code>TRUE</code> and <code>FALSE</code> values are called <strong>logical values</strong>.</p>
+<p>To see if a value is part of a set of values, you can use the <code>%in%</code> operator:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="st">"apple"</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"pear"</span>, <span class="st">"apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="st">"mango"</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"pear"</span>, <span class="st">"apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
 <p>Note that we can compare a single value to many. For example, compare one value to three others:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE FALSE  TRUE FALSE</code></pre>
 </div>
@@ -650,8 +711,8 @@ Attaching package: 'dplyr'</code></pre>
 <p>This kind of operation results in a logical vector with a logical value for each element. This is exactly what we will use to filter our rows.</p>
 <p>For example, to filter the observations for Australia, we can use the following condition:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>australia <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, country <span class="sc">==</span> <span class="st">"Australia"</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>australia</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>australia <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, country <span class="sc">==</span> <span class="st">"Australia"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>australia</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -663,8 +724,8 @@ Attaching package: 'dplyr'</code></pre>
 <p>The function compares the value “Australia” to all the values in the <code>country</code> variable, and only keeps the rows that have <code>TRUE</code> as an answer.</p>
 <p>Now, let’s filter the rows that have a life expectancy <code>lifeExp</code> greater than 81 years:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>life81 <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, lifeExp <span class="sc">&gt;</span> <span class="dv">81</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(life81)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>life81 <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, lifeExp <span class="sc">&gt;</span> <span class="dv">81</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(life81)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7 6</code></pre>
 </div>
@@ -674,7 +735,7 @@ Attaching package: 'dplyr'</code></pre>
 <h3 class="anchored" data-anchor-id="reorder-observations-with-arrange">3. Reorder observations with <code>arrange()</code></h3>
 <p><code>arrange()</code> will reorder our rows according to a variable, by default in ascending order:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(life81, lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(life81, lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -685,7 +746,7 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <p>If we want to have a look at the entries with highest life expectancy first, we can use the <code>desc()</code> function (for “descending”):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(life81, <span class="fu">desc</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(life81, <span class="fu">desc</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -696,35 +757,35 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <p>We could also use the <code>-</code> shortcut, which only works for numerical data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(life81, <span class="sc">-</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(life81, <span class="sc">-</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="the-pipe-operator" class="level4">
 <h4 class="anchored" data-anchor-id="the-pipe-operator">The pipe operator</h4>
 <p>What if we wanted to get that result in one single command, without an intermediate <code>life81</code> object?</p>
 <p>We could nest the commands into each other, the first step as the first argument of the second step:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">filter</span>(gapminder, lifeExp <span class="sc">&gt;</span> <span class="dv">81</span>), <span class="sc">-</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">filter</span>(gapminder, lifeExp <span class="sc">&gt;</span> <span class="dv">81</span>), <span class="sc">-</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>… but this becomes very hard to read, very quickly. (Imagine with 3 steps or more!)</p>
 <p>We can make our code more readable and avoid creating useless intermediate objects by <strong>piping</strong> commands into each other. The pipe operator <code>%&gt;%</code> <strong>strings commands together</strong>, using the left side’s output as the first argument of the right side function.</p>
 <p>For example, this command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">1.23</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">1.23</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.2</code></pre>
 </div>
 </div>
 <p>… is equivalent to:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.23</span> <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.23</span> <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.2</code></pre>
 </div>
 </div>
 <p>Here’s another example with the <code>filter()</code> verb:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">!=</span> <span class="st">"France"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">!=</span> <span class="st">"France"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -735,7 +796,7 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <p>… becomes:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(gapminder, country <span class="sc">!=</span> <span class="st">"France"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(gapminder, country <span class="sc">!=</span> <span class="st">"France"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -746,9 +807,9 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <p>To do what we did previously in one single command, using the pipe:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lifeExp <span class="sc">&gt;</span> <span class="dv">81</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lifeExp <span class="sc">&gt;</span> <span class="dv">81</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -759,17 +820,42 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <p>The pipe operator can be read as “then” and makes the code a lot <strong>more readable</strong> than when nesting functions into each other, and avoids the creation of several intermediate objects. It is also easier to troubleshoot as it makes it easy to execute the pipeline step by step.</p>
 <p>From now on, we’ll use the pipe syntax as a default.</p>
-<blockquote class="blockquote">
-<p>Note that this material uses the <code>magrittr</code> pipe. The <code>magrittr</code> package is the one that introduced the pipe operator to the R world, and <code>dplyr</code> automatically imports this useful operator when it is loaded. However, the pipe being such a widespread and popular concept in programming and data science, it ended up making it into Base R (the “native” pipe) in 2021 with the release of R 4.1, using a different operator: <code>|&gt;</code>. You can switch your pipe shortcut to the native pipe in <code>Tools &gt; Global options &gt; Code &gt; Use native pipe operator</code>.</p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This material uses the <code>magrittr</code> pipe. The <code>magrittr</code> package is the one that introduced the pipe operator to the R world, and <code>dplyr</code> automatically imports this useful operator when it is loaded. However, the pipe being such a widespread and popular concept in programming and data science, it ended up making it into Base R (the “native” pipe) in 2021 with the release of R 4.1, using a different operator: <code>|&gt;</code>. You can switch your pipe shortcut to the native pipe in <code>Tools &gt; Global options &gt; Code &gt; Use native pipe operator</code>.</p>
+</div>
+</div>
 </section>
-<section id="challenge-2-a-tiny-dataset" class="level4">
-<h4 class="anchored" data-anchor-id="challenge-2-a-tiny-dataset">Challenge 2 – a tiny dataset</h4>
-<p>Only keep the 2002 life expectancy observation for Eritrea and remove the superfluous variables.</p>
+<section id="challenge-1-a-tiny-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="challenge-1-a-tiny-dataset">Challenge 1 – a tiny dataset</h4>
+<p>Use some of the functions we learned about to keep the 2002 life expectancy observation for Eritrea and remove the superfluous variables.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>eritrea_2002 <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(year, country, lifeExp) <span class="sc">%&gt;%</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Eritrea"</span>, year <span class="sc">==</span> <span class="dv">2002</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>eritrea_2002 <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(year, country, lifeExp) <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Eritrea"</span>, year <span class="sc">==</span> <span class="dv">2002</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -778,8 +864,8 @@ Attaching package: 'dplyr'</code></pre>
 <p>Have a look at what the verb <code>mutate()</code> can do with <code>?mutate</code>.</p>
 <p>Let’s see what the two following variables can be used for:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(gdpPercap, pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(gdpPercap, pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -789,32 +875,35 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 </div>
 <p>How do you think we could combine them to add something new to our dataset?</p>
-<section id="challenge-3-mutate-the-gdp" class="level4">
-<h4 class="anchored" data-anchor-id="challenge-3-mutate-the-gdp">Challenge 3 – mutate the GDP</h4>
+<section id="challenge-2-mutate-the-gdp" class="level4">
+<h4 class="anchored" data-anchor-id="challenge-2-mutate-the-gdp">Challenge 2 – mutate the GDP</h4>
 <p>Use <code>mutate()</code> to create a <code>gdp</code> variable.</p>
 <p>Name your new dataset <code>gap_gdp</code>. When finished, <code>dim(gap_gdp)</code> should result in <code>1704 7</code>.</p>
 <p>Hint: use the <code>*</code> operator within <code>mutate()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>gap_gdp <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gdp =</span> gdpPercap <span class="sc">*</span> pop)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(gap_gdp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1704    7</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gap_gdp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["pop"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["continent"],"name":[4],"type":["chr"],"align":["left"]},{"label":["lifeExp"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["gdpPercap"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["gdp"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Afghanistan","2":"1952","3":"8425333","4":"Asia","5":"28.801","6":"779.4453","7":"6567086330","_rn_":"1"},{"1":"Afghanistan","2":"1957","3":"9240934","4":"Asia","5":"30.332","6":"820.8530","7":"7585448670","_rn_":"2"},{"1":"Afghanistan","2":"1962","3":"10267083","4":"Asia","5":"31.997","6":"853.1007","7":"8758855797","_rn_":"3"},{"1":"Afghanistan","2":"1967","3":"11537966","4":"Asia","5":"34.020","6":"836.1971","7":"9648014150","_rn_":"4"},{"1":"Afghanistan","2":"1972","3":"13079460","4":"Asia","5":"36.088","6":"739.9811","7":"9678553274","_rn_":"5"},{"1":"Afghanistan","2":"1977","3":"14880372","4":"Asia","5":"38.438","6":"786.1134","7":"11697659231","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>gap_gdp <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gdp =</span> gdpPercap <span class="sc">*</span> pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 </div>
 <p>You can reuse a variable computed by ‘mutate()’ straight away. For example, we also want a more readable version of our new variable, in billion dollars:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>gap_gdp <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gdp =</span> gdpPercap <span class="sc">*</span> pop,</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">gdpBil =</span> gdp <span class="sc">/</span> <span class="fl">1e9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>gap_gdp <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gdp =</span> gdpPercap <span class="sc">*</span> pop,</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">gdpBil =</span> gdp <span class="sc">/</span> <span class="fl">1e9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -822,8 +911,8 @@ Attaching package: 'dplyr'</code></pre>
 <h3 class="anchored" data-anchor-id="collapse-to-a-single-value-with-summarise">5. Collapse to a single value with <code>summarise()</code></h3>
 <p><code>summarise()</code> collapses many values down to a single summary. For example, to find the mean life expectancy for the whole dataset:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanLE =</span> <span class="fu">mean</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanLE =</span> <span class="fu">mean</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -839,8 +928,8 @@ Attaching package: 'dplyr'</code></pre>
 <p><code>group_by()</code> changes the scope of the following function(s) from operating on the entire dataset to operating on it group-by-group.</p>
 <p>See the effect of the grouping step:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -852,9 +941,9 @@ Attaching package: 'dplyr'</code></pre>
 <p>The data in the cells is the same, the size of the object is the same. However, the dataframe was converted to a <strong>tibble</strong>, because a dataframe is not capable of storing grouping information.</p>
 <p>Using the <code>group_by()</code> function before summarising makes things more interesting. Let’s re-run the previous command, with the intermediate grouping step:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanLE =</span> <span class="fu">mean</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanLE =</span> <span class="fu">mean</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -866,10 +955,10 @@ Attaching package: 'dplyr'</code></pre>
 <p>We now have the summary computed for each continent.</p>
 <p>Similarly, to find out the total population per continent in 2007, we can do the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">sum</span>(pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">sum</span>(pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -878,19 +967,34 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 </div>
 </div>
-<section id="challenge-4-max-life-expectancy-per-country" class="level4">
-<h4 class="anchored" data-anchor-id="challenge-4-max-life-expectancy-per-country">Challenge 4 – max life expectancy per country</h4>
+<section id="challenge-3-max-life-expectancy-per-country" class="level4">
+<h4 class="anchored" data-anchor-id="challenge-3-max-life-expectancy-per-country">Challenge 3 – max life expectancy per country</h4>
 <p>Group by country, and find out the maximum life expectancy ever recorded for each one.</p>
 <p>Hint: <code>?max</code></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">maxLE =</span> <span class="fu">max</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">maxLE =</span> <span class="fu">max</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["maxLE"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Afghanistan","2":"43.828"},{"1":"Albania","2":"76.423"},{"1":"Algeria","2":"72.301"},{"1":"Angola","2":"42.731"},{"1":"Argentina","2":"75.320"},{"1":"Australia","2":"81.235"},{"1":"Austria","2":"79.829"},{"1":"Bahrain","2":"75.635"},{"1":"Bangladesh","2":"64.062"},{"1":"Belgium","2":"79.441"},{"1":"Benin","2":"56.728"},{"1":"Bolivia","2":"65.554"},{"1":"Bosnia and Herzegovina","2":"74.852"},{"1":"Botswana","2":"63.622"},{"1":"Brazil","2":"72.390"},{"1":"Bulgaria","2":"73.005"},{"1":"Burkina Faso","2":"52.295"},{"1":"Burundi","2":"49.580"},{"1":"Cambodia","2":"59.723"},{"1":"Cameroon","2":"54.985"},{"1":"Canada","2":"80.653"},{"1":"Central African Republic","2":"50.485"},{"1":"Chad","2":"51.724"},{"1":"Chile","2":"78.553"},{"1":"China","2":"72.961"},{"1":"Colombia","2":"72.889"},{"1":"Comoros","2":"65.152"},{"1":"Congo Dem. Rep.","2":"47.804"},{"1":"Congo Rep.","2":"57.470"},{"1":"Costa Rica","2":"78.782"},{"1":"Cote d'Ivoire","2":"54.655"},{"1":"Croatia","2":"75.748"},{"1":"Cuba","2":"78.273"},{"1":"Czech Republic","2":"76.486"},{"1":"Denmark","2":"78.332"},{"1":"Djibouti","2":"54.791"},{"1":"Dominican Republic","2":"72.235"},{"1":"Ecuador","2":"74.994"},{"1":"Egypt","2":"71.338"},{"1":"El Salvador","2":"71.878"},{"1":"Equatorial Guinea","2":"51.579"},{"1":"Eritrea","2":"58.040"},{"1":"Ethiopia","2":"52.947"},{"1":"Finland","2":"79.313"},{"1":"France","2":"80.657"},{"1":"Gabon","2":"61.366"},{"1":"Gambia","2":"59.448"},{"1":"Germany","2":"79.406"},{"1":"Ghana","2":"60.022"},{"1":"Greece","2":"79.483"},{"1":"Guatemala","2":"70.259"},{"1":"Guinea","2":"56.007"},{"1":"Guinea-Bissau","2":"46.388"},{"1":"Haiti","2":"60.916"},{"1":"Honduras","2":"70.198"},{"1":"Hong Kong China","2":"82.208"},{"1":"Hungary","2":"73.338"},{"1":"Iceland","2":"81.757"},{"1":"India","2":"64.698"},{"1":"Indonesia","2":"70.650"},{"1":"Iran","2":"70.964"},{"1":"Iraq","2":"65.044"},{"1":"Ireland","2":"78.885"},{"1":"Israel","2":"80.745"},{"1":"Italy","2":"80.546"},{"1":"Jamaica","2":"72.567"},{"1":"Japan","2":"82.603"},{"1":"Jordan","2":"72.535"},{"1":"Kenya","2":"59.339"},{"1":"Korea Dem. Rep.","2":"70.647"},{"1":"Korea Rep.","2":"78.623"},{"1":"Kuwait","2":"77.588"},{"1":"Lebanon","2":"71.993"},{"1":"Lesotho","2":"59.685"},{"1":"Liberia","2":"46.027"},{"1":"Libya","2":"73.952"},{"1":"Madagascar","2":"59.443"},{"1":"Malawi","2":"49.420"},{"1":"Malaysia","2":"74.241"},{"1":"Mali","2":"54.467"},{"1":"Mauritania","2":"64.164"},{"1":"Mauritius","2":"72.801"},{"1":"Mexico","2":"76.195"},{"1":"Mongolia","2":"66.803"},{"1":"Montenegro","2":"75.445"},{"1":"Morocco","2":"71.164"},{"1":"Mozambique","2":"46.344"},{"1":"Myanmar","2":"62.069"},{"1":"Namibia","2":"61.999"},{"1":"Nepal","2":"63.785"},{"1":"Netherlands","2":"79.762"},{"1":"New Zealand","2":"80.204"},{"1":"Nicaragua","2":"72.899"},{"1":"Niger","2":"56.867"},{"1":"Nigeria","2":"47.472"},{"1":"Norway","2":"80.196"},{"1":"Oman","2":"75.640"},{"1":"Pakistan","2":"65.483"},{"1":"Panama","2":"75.537"},{"1":"Paraguay","2":"71.752"},{"1":"Peru","2":"71.421"},{"1":"Philippines","2":"71.688"},{"1":"Poland","2":"75.563"},{"1":"Portugal","2":"78.098"},{"1":"Puerto Rico","2":"78.746"},{"1":"Reunion","2":"76.442"},{"1":"Romania","2":"72.476"},{"1":"Rwanda","2":"46.242"},{"1":"Sao Tome and Principe","2":"65.528"},{"1":"Saudi Arabia","2":"72.777"},{"1":"Senegal","2":"63.062"},{"1":"Serbia","2":"74.002"},{"1":"Sierra Leone","2":"42.568"},{"1":"Singapore","2":"79.972"},{"1":"Slovak Republic","2":"74.663"},{"1":"Slovenia","2":"77.926"},{"1":"Somalia","2":"48.159"},{"1":"South Africa","2":"61.888"},{"1":"Spain","2":"80.941"},{"1":"Sri Lanka","2":"72.396"},{"1":"Sudan","2":"58.556"},{"1":"Swaziland","2":"58.474"},{"1":"Sweden","2":"80.884"},{"1":"Switzerland","2":"81.701"},{"1":"Syria","2":"74.143"},{"1":"Taiwan","2":"78.400"},{"1":"Tanzania","2":"52.517"},{"1":"Thailand","2":"70.616"},{"1":"Togo","2":"58.420"},{"1":"Trinidad and Tobago","2":"69.862"},{"1":"Tunisia","2":"73.923"},{"1":"Turkey","2":"71.777"},{"1":"Uganda","2":"51.542"},{"1":"United Kingdom","2":"79.425"},{"1":"United States","2":"78.242"},{"1":"Uruguay","2":"76.384"},{"1":"Venezuela","2":"73.747"},{"1":"Vietnam","2":"74.249"},{"1":"West Bank and Gaza","2":"73.422"},{"1":"Yemen Rep.","2":"62.698"},{"1":"Zambia","2":"51.821"},{"1":"Zimbabwe","2":"62.351"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -902,13 +1006,13 @@ Attaching package: 'dplyr'</code></pre>
 <p>Another example of a summary, with a the starwars data set that dplyr provides:</p>
 <p>Grouping by species, summarise the number of characters per species and find the mean mass. Only for species groups with more than 1 character.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(), <span class="co"># this counts the number of rows in each group</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="co"># the mean of a single value is not worth reporting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(), <span class="co"># this counts the number of rows in each group</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="co"># the mean of a single value is not worth reporting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -920,15 +1024,15 @@ Attaching package: 'dplyr'</code></pre>
 <p>An example of data manipulation and data visualisation in the same command with gapminder:</p>
 <p>Summarise the gapminder population data into total population per continent per year and plot coloured by continent.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># increase in population per continent</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span> </span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">sum</span>(pop)) <span class="sc">%&gt;%</span> </span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year,</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> pop,</span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># increase in population per continent</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">sum</span>(pop)) <span class="sc">%&gt;%</span> </span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year,</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> pop,</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'continent'. You can override using the
 `.groups` argument.</code></pre>
@@ -936,7 +1040,7 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="dplyr_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="dplyr_files/figure-html/pop-increase-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -944,23 +1048,23 @@ Attaching package: 'dplyr'</code></pre>
 <p>And another example, using using our gapminder dataset:</p>
 <p>Let’s say we want to calulate the variation (range) in life expectancy per country and plot the top and bottom 10 countries?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">maxLifeExp =</span> <span class="fu">max</span>(lifeExp),</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">minLifeExp =</span> <span class="fu">min</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dif =</span> maxLifeExp <span class="sc">-</span> minLifeExp) <span class="sc">%&gt;%</span>  <span class="co"># new col with difference betwen max/min lifeExp</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(dif)) <span class="sc">%&gt;%</span>  <span class="co"># arrange by dif, descending order for the next step</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, (<span class="fu">nrow</span>(.)<span class="sc">-</span><span class="dv">10</span>)<span class="sc">:</span><span class="fu">nrow</span>(.)) <span class="sc">%&gt;%</span>  <span class="co"># slice top 10 rows and bottom 10 rows</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(country, dif), <span class="at">y =</span> dif)) <span class="sc">+</span></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="co"># flip the x and y axis for a horizontal bar chart</span></span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Country"</span>,</span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Difference in Life Expectancy"</span>) <span class="sc">+</span> <span class="co"># prettier labels for axes (which have been flipped) </span></span>
-<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">11.5</span>, <span class="at">xend =</span> <span class="fl">21.5</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"purple"</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">xend =</span> <span class="dv">11</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"green"</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">16</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">40</span>), </span>
-<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">c</span>(<span class="st">"Smallest 10"</span>, <span class="st">"Largest 10"</span>) ,</span>
-<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span> <span class="dv">5</span> , <span class="at">angle=</span><span class="dv">90</span>) <span class="co"># add labels to colored lines</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">maxLifeExp =</span> <span class="fu">max</span>(lifeExp),</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">minLifeExp =</span> <span class="fu">min</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dif =</span> maxLifeExp <span class="sc">-</span> minLifeExp) <span class="sc">%&gt;%</span>  <span class="co"># new col with difference betwen max/min lifeExp</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(dif)) <span class="sc">%&gt;%</span>  <span class="co"># arrange by dif, descending order for the next step</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, (<span class="fu">nrow</span>(.)<span class="sc">-</span><span class="dv">10</span>)<span class="sc">:</span><span class="fu">nrow</span>(.)) <span class="sc">%&gt;%</span>  <span class="co"># slice top 10 rows and bottom 10 rows</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(country, dif), <span class="at">y =</span> dif)) <span class="sc">+</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="co"># flip the x and y axis for a horizontal bar chart</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Country"</span>,</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Difference in Life Expectancy"</span>) <span class="sc">+</span> <span class="co"># prettier labels for axes (which have been flipped) </span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">11.5</span>, <span class="at">xend =</span> <span class="fl">21.5</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"purple"</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">xend =</span> <span class="dv">11</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"green"</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">16</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">40</span>), </span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">c</span>(<span class="st">"Smallest 10"</span>, <span class="st">"Largest 10"</span>) ,</span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span> <span class="dv">5</span> , <span class="at">angle=</span><span class="dv">90</span>) <span class="co"># add labels to colored lines</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ℹ Please use `linewidth` instead.</code></pre>
@@ -968,7 +1072,7 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="dplyr_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="dplyr_files/figure-html/life-exp-var-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

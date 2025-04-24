@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-04-14">
+<meta name="dcterms.date" content="2025-04-24">
 
 <title>QGIS: raster analysis – UQ Library Technology Training</title>
 <style>
@@ -106,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../OSM/OpenStreetMap.html">GIS</a></li><li class="breadcrumb-item"><a href="../../QGIS/raster/QGIS_raster.html">QGIS: raster analysis</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../QGIS/intro/QGIS_intro.html">QGIS</a></li><li class="breadcrumb-item"><a href="../../QGIS/raster/QGIS_raster.html">2. Raster analysis</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -140,70 +140,23 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">GIS</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../OSM/OpenStreetMap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OpenStreetMap: create and use spatial data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../QGIS/intro/QGIS_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">QGIS: Introduction to mapping</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../QGIS/raster/QGIS_raster.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">QGIS: raster analysis</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../QGIS/vector/QGIS_vector.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">QGIS: Vector Analysis</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../QGIS/mobile/QGIS_mobile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">QGIS: Mobile Mapping</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../uMap/umap_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">uMap: create quick interactive maps</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Git</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Git/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git version control for collaboration</span></a>
+ <span class="menu-text">Git from the command line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Git/GitHub/GitHub_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Basics + Creating Analytics Projects Portfolios</span></a>
+ <span class="menu-text">GitHub and portfolios</span></a>
   </div>
 </li>
       </ul>
@@ -220,25 +173,66 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">OpenRefine</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../OSM/OpenStreetMap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OpenStreetMap</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Python/1-fundamentals/fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python training (1 of 4): The fundamentals</span></a>
+ <span class="menu-text">1. Fundamentals</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Python/2-data_processing/data_processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python training (2 of 4): data processing</span></a>
+ <span class="menu-text">2. Data processing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">QGIS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/intro/QGIS_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/raster/QGIS_raster.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2. Raster analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/vector/QGIS_vector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Vector analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/mobile/QGIS_mobile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Mobile mapping</span></a>
   </div>
 </li>
       </ul>
@@ -255,59 +249,65 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/rstudio_intro/rstudio_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R with RStudio: getting started</span></a>
+ <span class="menu-text">1. Getting started</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/dplyr/dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R dplyr: preparing data for analysis</span></a>
+ <span class="menu-text">2. dplyr: data transformation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/ggplot2_intro/ggplot2_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R ggplot2: introductory data visualisation</span></a>
+ <span class="menu-text">3. ggplot2: introduction to visualisation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/ggplot2_intermediate/ggplot2_intermediate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R ggplot2: intermediate data visualisation</span></a>
+ <span class="menu-text">4. ggplot2: intermediate visualisation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/tidyverse_next_steps/tidyverse_next_steps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R tidyverse: loops and data tidying</span></a>
+ <span class="menu-text">5. tidyr and purrr: tidying and loops</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/reports/reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R reproducible reports with Quarto</span></a>
+ <span class="menu-text">6. Quarto: reproducible publishing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/heatmaps/heatmaps_intermediate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R data visualisation: heatmaps</span></a>
+ <span class="menu-text">7. Heatmaps</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/shiny/shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R advanced: webapps with Shiny</span></a>
+ <span class="menu-text">8. Shiny web apps</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/packaging/packaging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R advanced: packaging and sharing functions</span></a>
+ <span class="menu-text">9. Functions and packaging</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../uMap/umap_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">uMap</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Shell/shell_intro.html" class="sidebar-item-text sidebar-link">
@@ -348,7 +348,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../OSM/OpenStreetMap.html">GIS</a></li><li class="breadcrumb-item"><a href="../../QGIS/raster/QGIS_raster.html">QGIS: raster analysis</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../QGIS/intro/QGIS_intro.html">QGIS</a></li><li class="breadcrumb-item"><a href="../../QGIS/raster/QGIS_raster.html">2. Raster analysis</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">QGIS: raster analysis</h1>
 </div>
@@ -367,7 +367,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 14, 2025</p>
+      <p class="date">April 24, 2025</p>
     </div>
   </div>
   
