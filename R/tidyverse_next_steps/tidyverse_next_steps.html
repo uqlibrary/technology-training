@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-04-24">
+<meta name="dcterms.date" content="2025-04-28">
 
 <title>R tidyverse: loops and data tidying – UQ Library Technology Training</title>
 <style>
@@ -130,6 +130,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Orientation/orientation.html"> 
+<span class="menu-text">O-Week</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -142,12 +146,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../R/rstudio_intro/rstudio_intro.html">R with RStudio</a></li><li class="breadcrumb-item"><a href="../../R/tidyverse_next_steps/tidyverse_next_steps.html">5. tidyr and purrr: tidying and loops</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../R/installation.html">R with RStudio</a></li><li class="breadcrumb-item"><a href="../../R/tidyverse_next_steps/tidyverse_next_steps.html">5. tidyr and purrr: tidying and loops</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
@@ -155,13 +156,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Acrobat/acrobat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acrobat</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Audacity/audacity.html" class="sidebar-item-text sidebar-link">
@@ -172,6 +174,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../Excel/excel.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Excel</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../GenAI/genai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GenAI</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -205,6 +213,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../NVivo/nvivo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NVivo</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../OpenRefine/openrefine.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">OpenRefine</span></a>
   </div>
@@ -213,6 +227,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../OSM/OpenStreetMap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">OpenStreetMap</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Photoshop/photoshop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Photoshop</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../PowerPoint/powerpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PowerPoint</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Premiere_Pro/premiere_pro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Premiere Pro</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -274,14 +306,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Qualtrics</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a href="../../R/installation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R with RStudio</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../R/rstudio_intro/rstudio_intro.html" class="sidebar-item-text sidebar-link">
@@ -356,6 +392,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Voyant Tools</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Word/word.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Word</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -390,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../R/rstudio_intro/rstudio_intro.html">R with RStudio</a></li><li class="breadcrumb-item"><a href="../../R/tidyverse_next_steps/tidyverse_next_steps.html">5. tidyr and purrr: tidying and loops</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../R/installation.html">R with RStudio</a></li><li class="breadcrumb-item"><a href="../../R/tidyverse_next_steps/tidyverse_next_steps.html">5. tidyr and purrr: tidying and loops</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">R tidyverse: loops and data tidying</h1>
 </div>
@@ -409,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 24, 2025</p>
+      <p class="date">April 28, 2025</p>
     </div>
   </div>
   
