@@ -1,1 +1,60 @@
 /* css styles */
+
+
+
+
+/* Styles to set dark mode */
+:root {
+    --body-bg: #faf9f8;
+    --text-color: #222222;
+    --link-color: #48206c;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --body-bg: #222222;
+        --text-color: #faf9f8;
+        --sidebar-text-color: #adadad !important;
+        --sidebar-border: 1px solid #434343;
+        --link-color: #be94ff;
+        --bs-link-hover-color: #be94ff;
+    }
+}
+
+body {
+    background: var(--body-bg);
+    color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-color);
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a.active {
+  color: var(--link-color) !important;
+  border-left: 1px solid var(--link-color) !important;
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a:hover{
+  color: var(--link-color) !important;
+  border-left: 1px solid var(--link-color) !important;
+}
+
+nav.sidebar.sidebar-navigation:not(.rollup) {
+    background: var(--body-bg);
+    color: var(--sidebar-text-color);
+    border-right: var(--sidebar-border) !important;
+}
+
+div.sidebar-item-container{
+    background: var(--body-bg);
+    color: var(--sidebar-text-color);
+}
+
+div.sidebar-item-container .active{
+    color: var(--link-color);
+}
