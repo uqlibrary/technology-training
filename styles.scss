@@ -10,6 +10,7 @@ $primary: #48206c; // navbar colour
     --body-bg: #faf9f8; // background colour
     --text-color: #222222; // text colour
     --link-color: #48206c; // link colour
+    --code-bg: #e7eaec; // code background colour
 }
 
 //dark mode colors
@@ -21,8 +22,89 @@ $primary: #48206c; // navbar colour
         --sidebar-border: 1px solid #434343; // sidebar border colour and weight
         --link-color: #be94ff; // link colour
         --bs-link-hover-color: #be94ff; // link hover colour
+        --warning-bg: #432d09;
+        --code-bg: #373737; // code background colour
+        --code-ot: #00e0e0;
+        --code-fu: #ffa07a;
+        --code-st: #abe338;
+        --code-dv: #d4d0ab;
+        --code-ot: #00e0e0;
+        --code-co: #f8f8f2;
     }
 }
+
+code {
+  border-radius: .25rem;
+}
+
+div.callout-note.callout {
+	border-left-color: var(--bs-link-hover-color);
+}
+
+div.callout-note.callout-style-default > .callout-header {
+	background-color: $primary;
+}
+
+.callout.callout-style-default {
+	border-left: 5px solid;
+	border-right: var(--sidebar-border);
+	border-top: var(--sidebar-border);
+	border-bottom: var(--sidebar-border);
+}
+
+div.callout-warning.callout-style-default > .callout-header {
+	background-color: var(--warning-bg);
+}
+
+div.sourceCode {
+	background-color: var(--code-bg);
+	border: 1px solid var(--code-bg);
+	border-radius: .25rem;
+}
+
+pre {
+	color: var(--text-color);
+}
+
+pre > code.sourceCode > span {
+	color: var(--text-color);
+}
+
+code span.ot {
+  color: var(--code-ot);
+  font-style: inherit;
+}
+
+code span.fu {
+  color: var(--code-fu);
+}
+
+code span.st {
+	color: var(--code-st);
+}
+
+code span.sc {
+	color: var(--code-st);
+}
+
+code span.dv {
+	color: var(--code-dv);
+}
+
+code span.fl {
+	color: var(--code-dv);
+	font-style: inherit;
+}
+
+code span.at {
+	color: var(--code-ot);
+}
+
+code span.co {
+	color: var(--code-co);
+	font-style: italic;
+}
+
 
 body {
     background: var(--body-bg);
@@ -37,12 +119,12 @@ a:hover {
   color: var(--link-color);
 }
 
-.sidebar nav[role="doc-toc"] ul > li > a.active {
+.sidebar nav[role="doc-toc"] ul > li > a.active, .sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
   color: var(--link-color) !important;
   border-left: 1px solid var(--link-color) !important;
 }
 
-.sidebar nav[role="doc-toc"] ul > li > a:hover{
+.sidebar nav[role="doc-toc"] ul > li > a:hover, .sidebar nav[role="doc-toc"] ul > li > ul > li > a:hover{
   color: var(--link-color) !important;
   border-left: 1px solid var(--link-color) !important;
 }
