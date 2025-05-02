@@ -9,8 +9,20 @@ $primary: #48206c; // navbar colour
 :root {
     --body-bg: #faf9f8; // background colour
     --text-color: #222222; // text colour
+    --grey-text: #5E5E5E;
     --link-color: #48206c; // link colour
     --code-bg: #e7eaec; // code background colour
+    --callout-header: #be94ff;
+    --sidebar-border: 1px solid rgba(0,0,0,.05);; // sidebar border colour and weight
+    --warning-bg: #fdf7eb;
+    --code-text: #003B4F;
+    --code-ot: #003B4F;
+    --code-fu: #4758AB;
+    --code-st: #20794D;
+    --code-sc: #5E5E5E;
+    --code-dv: #AD0000;
+    --code-co: #5E5E5E;
+
 }
 
 //dark mode colors
@@ -18,18 +30,21 @@ $primary: #48206c; // navbar colour
     :root {
         --body-bg: #222222; // background colour
         --text-color: #faf9f8; // text colour
+        --grey-text: #5E5E5E;
         --sidebar-text-color: #adadad !important;  // sidebar link colour
         --sidebar-border: 1px solid #434343; // sidebar border colour and weight
         --link-color: #be94ff; // link colour
         --bs-link-hover-color: #be94ff; // link hover colour
         --warning-bg: #432d09;
         --code-bg: #373737; // code background colour
+        --code-text: #faf9f8;
         --code-ot: #00e0e0;
         --code-fu: #ffa07a;
         --code-st: #abe338;
+        --code-sc: #abe338;
         --code-dv: #d4d0ab;
-        --code-ot: #00e0e0;
         --code-co: #f8f8f2;
+        --callout-header: #48206c;
     }
 }
 
@@ -42,7 +57,7 @@ div.callout-note.callout {
 }
 
 div.callout-note.callout-style-default > .callout-header {
-	background-color: $primary;
+	background-color: var(--callout-header);
 }
 
 .callout.callout-style-default {
@@ -56,6 +71,12 @@ div.callout-warning.callout-style-default > .callout-header {
 	background-color: var(--warning-bg);
 }
 
+div.callout-tip.callout {
+	margin-top: -1px;
+	color: var(--grey-text);
+}
+
+
 div.sourceCode {
 	background-color: var(--code-bg);
 	border: 1px solid var(--code-bg);
@@ -63,11 +84,11 @@ div.sourceCode {
 }
 
 pre {
-	color: var(--text-color);
+	color: var(--code-text);
 }
 
 pre > code.sourceCode > span {
-	color: var(--text-color);
+	color: var(--code-text);
 }
 
 code span.ot {
@@ -84,7 +105,7 @@ code span.st {
 }
 
 code span.sc {
-	color: var(--code-st);
+	color: var(--code-sc);
 }
 
 code span.dv {
