@@ -959,7 +959,7 @@
     "text": "This is an intermediate level tutorial. Before completing this tutorial, we recommend our QGIS: Introduction to Mapping tutorial. This tutorial is designed for QGIS 3.22. If you need to install it on your computer, got to the QGIS website.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -971,7 +971,7 @@
     "text": "This is an intermediate level tutorial. Before completing this tutorial, we recommend our QGIS: Introduction to Mapping tutorial. This tutorial is designed for QGIS 3.22. If you need to install it on your computer, got to the QGIS website.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -983,7 +983,7 @@
     "text": "What is Vector Data?\nVector data is made up of points, lines, and/or polygons. They are made up of precise points with individual coordinates. Vector data is best contrasted with Raster data which has a grid of values evenly spaced apart, connected to one coordinate. Rasters are efficient at displaying large amounts of data, where vector data is very precise.\nThe Map School has some useful explainers of what Vector data is: https://mapschool.io/",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -995,7 +995,7 @@
     "text": "What are we doing today?\nTo look at vector data, we’re going to use the example of koala populations and protected areas, and use some analyses to see how they interact. The QLD Government has set koala protection as a priority for the State, but how do their priorities match up with the data? We can use QGIS and spatial analysis to ask questions of the data.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1007,7 +1007,7 @@
     "text": "Gather some data\nWe’re going to explore a number of different online spatial data repositories. Please download the full dataset here, and extract it into the qgis_vector folder you created earlier.\nI will quickly show you where all of this data came from.\n\nOnline Community Spatial Repositories\n\nKoala Sighting Data (encounters)\nIf we’re looking at Koalas, we should get some occurence/sighting data.\nWe’re getting our species observation data today from the Atlas of Living Australia. This is an Australia Biodiversity occurence database. It pulls data from a variety of different sources, including government data, individual collectors and community groups. This means that this data will contain sampling bias and will often simply represent encounters, rather than using robust sampling and collection methods. So, while we need to use this data with caution, it’s still a useful dataset!\nYou need to create an account and request the exact dataset you need, so to speed things up today, we’ve provided the data already cleaned and processed the data in the download link above.\nSome similar online repositories include the Global Biodiversity Information Facility (GBIF) and iNaturalist\n\n\nCleaning and processing the ALA data\nWhat do we mean by processed? Well, the ALA dataset has 206 columns by default. This means that each occurence has 206 associated cells, and when multiplied by ~200,000 sightings, our data gets huge (&gt;300mb!). To save time (and storage space!) today we have already deleted 200 of those columns (bring the dataset down to 15mb).\n\n\n\nQLD Government Spatial Data\nWe’ve seen the QSpatial data portalin previous sessions, and today we will be getting two lots of data from here.\n\nKoala Priority Areas\nKoala Priority Areas are areas in SEQ which have been identified as key areas for conservation as part of the South East Queensland Koala Conservation Strategy 2019-2024. https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={E4CCDBA7-11AB-45DD-A064-BDBC02899204}\nLet’s get a resource to compare with these QLD government priority areas…\n\n\n\nFederal Environment Data\n\nProtected Areas\nThe Federal Environment Department has a variety of spatial different datasets that you can browse through. Today we are going to be using the Collaborative Australian Protected Areas Database (CAPAD) 2020, which is a compilation of government, Indigenous and privately protected areas for Australia. http://www.environment.gov.au/fed/catalog/search/resource/details.page?uuid=%7B4448CACD-9DA8-43D1-A48F-48149FD5FCFD%7D\nFinally let’s get some data to put all of our protected areas and observations into context…\n\n\n\nAustralian Bureau of Statistics Data\nThe ABS is a huge source of data, however, it can be a bit difficult to find that data, and use it in a spatial context.\n\nDigital Boundary Files - SA2 - Suburb data\nThe ABS has a variety of ways that it splits its data up. These digital boundaries are very useful for classifying data. They generally classify all of Australia into discrete Statistical Areas. Level 1 are the smallest, and Level 4 are the coarsest. (notably, the site below also has non-ABS Structures/boundary files such as Electoral areas and Postcodes). Today we are going to use the Stastical Area 2 data, which effectively represent suburbs. https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files\n#### Population Data The ABS have a lot of data, today we will be using population data. Thye proivde it in excel format, as shapefiles (by SA2 and LGAs), and as population grid raster files. Today we will be using the ESRI Grid format. https://www.abs.gov.au/statistics/people/population/regional-population/latest-release#data-download",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1019,7 +1019,7 @@
     "text": "Setting Up\nOpen QGIS and create a new project with Project &gt; New. Let’s start by saving our project: Project &gt; Save. We should create a new folder, let’s call it “qgis_vector”. This where our project and all the saved data will live. Folder structure is very important for keeping you data tidy, but also for ease of sharing your project with others. You simply need to zip the project folder if you need to share it. We can save our .qgz project file here, named “qgis_vector_map” for example. I also recommend creating a Data folder, for all of your downloaded data. And creating a Products folder, for all the things we create today. Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.\nIn QGIS 3.10 and above this will automatically set the project home too. To do this manually, you can go to Project &gt; Properties &gt; General and set Project home to the same folder. This is where we can also give the project a title.\nLet’s also add an OpenStreetMap basemap to locate ourselves on the globe: Browser panel &gt; XYZ Tiles &gt; OpenStreetMap (double-click, or drag and drop into the Layers panel).",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1031,7 +1031,7 @@
     "text": "Set the Project Projection\nWe need to choose the projection for our current session of QGIS. Today we will be focusing on South East Queensland (SEQ), so we will choose GDA2020 / MGA zone 56. We will go into projections in more detail soon.\n\nGo to Project &gt; Properties select the CRS tab.\nIn the filter section, type “GDA2020 56”\nFrom the Coordinate Reference System list, select EPSG:7856 - GDA2020 / MGA zone 56\n\n\nYou will notice that the OpenStreetMap basemap looks very warped, except for the East Coast of Australia. This is because the projection we have selected is very focused on reducing distortion within the bounds of the projection’s area (Eastern Australia).",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1043,7 +1043,7 @@
     "text": "Load in our data\nFor most of our data, we will simply be able to double click on it in the Project Home folder within the Browser window. When you load in this data, QGIS will give you a warning that your Project Projection is different to the data you’re importing. Simply click cancel on this window. We will be fixing this issue later. Make sure your Project Projection remains as EPSG:7856. Load in: * SA2_ERP_2021.gpkg (suburb data) * CAPAD2020_terrestrial_QLD.gpkg (Protected Areas) * koala_priority_area.gpkg\nBut what about the Koala Encounters location data? We need to handle this differently, as it is currently not in a spatial format, but in a csv file.\n\nImporting CSV data\n\nGo to Layer &gt; Add Layer &gt; Add Delimited Text Layer...\nClick the three dots ... next to the File name field, navigate to the project folder, and select koala_reduced\nThis should automatically identify decimalLongitude and the X field, and decimalLatitude as the Y field.\nClick Add",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1055,7 +1055,7 @@
     "text": "Projections\n\nWhat are projections?\nTo turn the geoid/spheroid shape the of Earth into a flat map, we need to squish, stretch, and distort the map to make it flat. The mathematical equations used to do this are what we’re talking about when we day projections. Imagine it like a soccer ball, we have to squash it to make it flat, and it’s not going to look nice and square like our maps do. So we pull and stretch it to make it flat. There will always be some kind of distrortion, such as the Mercator Projection making Greenland look large, and Africa look smaller than it really is.\n\n\nWhy are they important to us?\nWell, when we make these distortions, we have to compromise somewhere, and that means our lengths, or size or direction will be different to what it really is. To avoid this kind of distortion, often local projections are used. There are fewer compromises needed when focused on a small area. By using a local projection, we don’t need to worry about keeping Greenland looking the right shape if we’re focused on Brisbane. Going back to Soccer balls, if we cut out a single panel from the ball, it will be much easier to make that flat.\nThe trouble with using data of different projections is that they might be slightly off around the edges, giving us different total areas in a polygon, or showing a point outside a boundary, when it’s really inside. To avoid this, it’s often best to convert all of your data to using the same projection.\nToday we’re going to use a suitable local projection: EPSG:7856 - GDA2020 / MGA zone 56\n\n\nReproject\nFor each of our layers, do the following: * Go to Vector &gt; Data Management Tools &gt; Reproject Layer... * Choose the layer in Input layer * Set the Target CRS to EPSG:7856 - GDA2020 / MGA zone 56 * Click the three dots ... next to the Reprojected section, and click Save to File… * Navigate to your vector_data folder and save the file there. For example, save SA2_ERP_2021 as SA2_Reprojected * Click Run",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1067,7 +1067,7 @@
     "text": "Subset our SA2 data down to SEQ - Select features using an expression\nThe following code will allow you to select the SA2 features that are in SEQ.\n\nRight click on the reprojected SA2 layer, and select Open Attribute Table\nFrom the Attribute Table that opens, click the Select features using an expression button: \nIn the Select by Expression window that opens, paste the code from below into the Expression field, and then click Select Features in the bottom right of the window.\n\n \"GCCSA_name_2021\"  =  'Greater Brisbane' \nOR\n \"SA4_name_2021\" =  'Gold Coast' \n OR\n \"SA4_name_2021\" =  'Sunshine Coast' \n  OR\n \"SA4_name_2021\" =  'Toowoomba' \n\nClose the Select by Expression window and Attribute Table\nYou should see the SEQ SA2 areas highlighted in yellow.\nTo permanently save this selection, right click on the reprojected SA2 layer, and select Export &gt; Save Selected Features As...\nSave your file as SA2_SEQ\nMake sure the CRS stays as EPSG:7856 - GDA2020 / MGA zone 56, then click OK",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1079,7 +1079,7 @@
     "text": "Analysis: Spatial Overlaps\nLet’s find out how much of our Koala Priority areas are already under federally recognised protection. To do this we will use the Intersection tool. This tool is similar to the Clip tool, but rather than just cutting out the overlapping area, it also combines the Attribute Tables of the two layers.\n\nIntersection\n\nGo to Vector &gt; Geoprocessing Tools &gt; Intersection\nUnder Input Layer select CAPAD2020_terrestrial_QLD\nUnder Overlay Layer select koala_priority_area\nClick Run\n\nWe get an error Feature (26) from “CAPAD2020_terrestrial_QLD” has invalid geometry. This is caused by little issues in the polygon layer. Sometimes when polygons are drawn or exported out from other areas, they will create errors, and sometimes little slither polygons on the edges. We can investigate the source of these errors using the Check validity tool, but for today, we’re simply going to fix them with the Fix Geometries tool from the Processing Toolbox.\n\n\nFix Geometries\n\nOpen the Processing Toolbox by clicking the cog icon from the top menu  (alternatively go to View &gt; Panels &gt; Processing Toolbox\nIn the Processing Toolbox window Search for “Fix geometries”\nDouble-click on the Fix geometries option\nIn the Fix Geometries window, select CAPAD2020_terrestrial_QLD from the Input layer options, then click Run\n\nYou can now re-run the Intersection tool with the resulting Fixed Geometries layer (instead of the CAPAD2020_terrestrial_QLD layer)\n\n\nField Calculator\nWe can use the Field Calculator to calculate the area of our polygon.\nSelect Intersection from the Layers panel, and the click the Open Field Calculator button \nIn the Field calculator window, type the following code into the Expression tab:\nsum($area)\n\n$area will give us the area of a single polygon - we could use this to create a new field in our Attribute Table based on area if we wanted to\nsum() will add together the area for every polygon in that layer.\nBelow the text box, you will see a field titled Preview:, the value following that contains the results of our expression. Copy that number.\nClick Cancel\n\nDo the same Field Calculator steps for the original koala_priority_area.\nYou can now use the Field calculator to determine the percentage of the Koala Priority area which is currently protected. 1506573200.936991 / 5776218019.211894 = 26%\nOnly 26%! Let’s look into this further. Perhaps our dataset is missing some new conservation areas.\nLet’s turn on the OpenStreetMap to see if we can see anything missing here. Let’s have a look at the dense collection of koala sightings near Springwood and the Daisy Hill Conservation Park. We can see that there are some protected bushlands in this area that aren’t in our CAPAD2020 dataset. It may be that these aren’t strict enough conservation areas, or our dataset may be out of date. Regardless, this gives us a good opportunity to use an important tool in GIS: Digitisation.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1091,7 +1091,7 @@
     "text": "Map Digitisation\nYou may often need to create your own points, lines, and polygons when digitising satellite data, or simply highlighting a particular area. Let’s use the OpenStreeMap (in Browser, scroll down to XYZ Tiles, and double-click on OpenStreetMap) and digitise the Emu Street Bushland Refuge (you can quickly navigate here by changing your Scale to 1:10000 and Coordinate to 518271.26,6948896.93) * Go to Layer &gt; Create Layer &gt; New GeoPackage Layer... * Click the three dots ... next to the Database section * Navigate to your vector_data folder and save the file as ESBR_polygon * From Geometry type select MultiPolygon * Make sure the CRS is set to EPSG:7856 - GDA2020 / MGA zone 56 * Leave the other fields blank for now and click OK\nWe now have a brand new layer that we can add polygons to. * Select the new ESBR_polygon layer and then click the Toggle Editing pencil  from the top menu (or go to Layer &gt; Toggle Edititng * On your keyboard, press Ctrl + . to start adding a new polygon * Zoom in to a corner of the area you want to create the polygon, and then Left click to start drawing your polygon ()You can use the mouse wheel to zoom in, and also press on the mouse wheel to navigate) * Continue adding points to your polygon until your return back to the start, Right click to stop digitising and create your polygon. * Leave the fid as Autogenerate and click OK * To save what you’ve done, click the Save Layer Edits button next to the Toggle Editing button * To finish editing your layer click the Toggle Editing button again\nYou now know how to digitise a polygon, but the same steps apply for creating a point or a line layer. We created a new layer here, and you can also do the same steps to edit a pre-exisitng layer too.\nDespite these missing Refuge area polygons, you can still see that there are a lot of koalas which are found outside of protected areas. Infact, most sightings seem to occur outside of protected areas! Is this poor protected area management, or might our data be biased by when and where people are more likely to encounter koalas?",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1103,7 +1103,7 @@
     "text": "Analysis: How do koalas and people overlap?\n\nCount Points in Polygons\nEarlier we lookied at overlap between polygons, we can also look at points in polygon. Let’s use the Count Points in Polygons tool to quickly count the number of points from a particular layer inside a polygon. We could look at a few things here, we could look at koala sightings in protected areas or in the priority areas, but let’s try to get an idea of how people and koala sightings overlap. You would expect there to be more koalas where there are fewer people, but perhaps our data is skewed by population levels.\nLet’s determine how many koalas are inside of each SA2 suburb. * Go to Vector &gt; Analysis Tools &gt; Count Points in Polygons... * In the Polygons field select SA2_SEQ * In the Points  field select koala_reduced * In the Count field name field type in something like NUM_KOALAS * Click the three dots ... next to the Count section, and click Save to File… * Navigate to your vector_data folder and save the file as SA2_SEQ_koalas * Click Run You will have a new layer, you can look at the Attribute Table for this layer to see the number of koala sightings in each suburb * Let’s double click on that layer and change the Symbology to Graduated * Set the Value to NUM_KOALAS * Choose a Color ramp of your liking * Click Classify * Then click OK\nWe can go further and use the Field Calculator to compare this to the current population in that area, and create a new field * Click on the Field Calculator icon * Under Create a new field set the Output field name to KOALAS_PP and set the Output field type to Decimal number (real) (we need to choose this option to ensure that we have decimals in our output) * In the Expression tab enter \"NUM_KOALAS\" / \"ERP_2021\" * ClickOK * Try changing the value in *Symbology to KOALA_PP instead.\nWe can now see how koala populations compare with human populations.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1115,7 +1115,7 @@
     "text": "Wrap up\nToday we explored projections, looked at a variety of data sources, questioned the quality of our data, used the Intersection tool, the Field Calculator, digitised a map, and used polygon point counts.\nAfter running these tests and analyses, do we feel that there is adequate protection and conservation areas for koalas in QLD? How might you show this?\nHow might you use these tools in your own analysis?",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1127,7 +1127,7 @@
     "text": "Stretch goals\n\nExport a Map\nUse the data and summary statistics to export a useful map from this data.\n\n\nHeatmaps\nTry changing the Symbology of the koala_reduced point dataset to the Heatmap option or even the Point Cluster option.\nCompare the Heatmap from Symbology with one that you can create with the Heatmap (Kernel Density Estimation) tool from the Processing Toolbox\n\n\nUse Zonal Statistics to calculate values from Rasters\nYou can use the Zonal statistics tool from the Processing Toolbox to count the number of raster squares, sum together all of the values, and find the average value from a raster that overlaps with a chosen polygon.\n\n\nVector to Raster conversion\nConvert a species distribution point dataset to a raster image",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "3. Vector analysis"
     ]
   },
@@ -1139,7 +1139,7 @@
     "text": "This tutorial is designed for QGIS 3.22. If you need to install it on your computer, got to the QGIS website.\nOpen QGIS and create a new project with Project &gt; New. Let’s straight away save our project: Project &gt; Save. We should create a new folder, let’s call it “qgis_mobile”. This where our project and all the saved data will live. Folder structure is very important for keeping you data tidy, but also for ease of sharing your project with others. You simply need to zip the project folder if you need to share it. We can save our .qgz project file here, named “qgis_mobile_map” for example. I also recommend creating a Data folder, for all of your downloaded data. And creating a Products folder, for all the things we create today. Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.\nIn QGIS 3.10 and above this will automatically set the project home too. To do this manually, you can go to Project &gt; Properties &gt; General and set Project home to the same folder. This is where we can also give the project a title.\nLet’s also add an OpenStreetMap basemap to locate ourselves on the globe: Browser panel &gt; XYZ Tiles &gt; OpenStreetMap (double-click, or drag and drop into the Layers panel).",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1151,7 +1151,7 @@
     "text": "This tutorial is designed for QGIS 3.22. If you need to install it on your computer, got to the QGIS website.\nOpen QGIS and create a new project with Project &gt; New. Let’s straight away save our project: Project &gt; Save. We should create a new folder, let’s call it “qgis_mobile”. This where our project and all the saved data will live. Folder structure is very important for keeping you data tidy, but also for ease of sharing your project with others. You simply need to zip the project folder if you need to share it. We can save our .qgz project file here, named “qgis_mobile_map” for example. I also recommend creating a Data folder, for all of your downloaded data. And creating a Products folder, for all the things we create today. Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.\nIn QGIS 3.10 and above this will automatically set the project home too. To do this manually, you can go to Project &gt; Properties &gt; General and set Project home to the same folder. This is where we can also give the project a title.\nLet’s also add an OpenStreetMap basemap to locate ourselves on the globe: Browser panel &gt; XYZ Tiles &gt; OpenStreetMap (double-click, or drag and drop into the Layers panel).",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1163,7 +1163,7 @@
     "text": "Install Avenza Maps on your phone\nAvenza Maps is a mobile based offline mapping app you can use on your smartphone.\nFor Android Devices: https://play.google.com/store/apps/details?id=com.Avenza&hl=en_AU\nFor Apple Devices: https://apps.apple.com/au/app/avenza-maps/id388424049\nThere are alternatives to Avenza Maps out there, such as QField or Input (MerginMaps) which are specifically created for use with QGIS on your mobile. However, we will be using Avenza today for its simplicity.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1175,7 +1175,7 @@
     "text": "Get some data\nWe’re going to explore a number of different online spatial data repositories.\n\nDEM\nA Digital Elevation Model (DEM) is a common example of raster data, i.e. grid data that contains a value in each cell (a bit like the pixels in a coloured picture).\nFor this tutorial, we are using a DEM sourced from ELVIS - Geoscience Australia’s ELeVation Information System.\n\nGo to http://www.ga.gov.au/elvis/\nSearch for “St Lucia” in the Location Search search box and select the first result\nClick Order Data\nChoose “Draw” and “Box” and then click the Draw button\nClick on the map to start drawing a rectangle around your desired area\nThen click Search\nThe right panel will show you all the different datasets available in that area\nWe want the QLD Government 1 Metre DEM, click the down arrow on the right\nAs you hover over the different options, they will highlight a red box on the map, select all that overlap the area you’re interested in (note that there may be data from different years here)\nWhen you have the data you want, scroll to the bottom of the Order Data window\nSelect your industry, enter your email, tick the reCAPTCHA, and click the Order Datasets button\nYou should receive an email within 5 minutes, download the files from the link in the email, extract the folder to your project folder, and add them to your map.\n\n\n\nAerial Imagery\nThere are a few places you can aquire aerial photography, today we will look at two sources, one is freely available Government Data from QImagery, the other is accessible from using your UQ credentials.\n\nGo to https://qimagery.information.qld.gov.au/\nRead and tick the “I acknowledge I have read and agree to the Terms & Conditions” box, and click Get Started\nClick the Search button, select ‘locality, town or city’ and search for “St Lucia” in the “Enter search term” search box and select the first result\nIt will zoom to your selected location then click the newly appeared Search button\nFrom here you can select from a wide array of images of QLD over many years.\nClick one of the drop-downs and hover over the options to see where those images are located. Preview the image by clicking View.\nYou can then download your desired images by clicking “Download” and selecting TIFF (georeferenced)\nMove the TIFF file(s) to your project folder, and open them in QGIS\n\nIf you want even higher resolution maps, there are restricted options available. Your particular study area may have maps available such as the Sunshine Coast MyMaps service, CSIRO’s Norfolk Island Data Portal or other CSIRO spatial products. It’s worth exploring to discover what various local council and government resources are available. As a UQ student, you also have access to very high resoltuion imagery from NearMap. You can even access an array of imagery going back in time.\n\nGo to the UQ NearMap Portal\nEnter your UQ Student (@student.uq.edu.au) or Staff (@uq.edu.au) email address, with the appropriate domain selected. Click “Invite me”.\nYou should receive an email soon after, click the “Accept Invitation” button, and go through the account setup process.\nGo to Login and enter your email address, click “Next” and enter your password.\nFrom the top right select MapBrowser.\nType “St Lucia, QLD” in the search box, press enter\nYou can click the date down the bottom to look at different snapshots in time, and even compare maps side-by-side.\nTo save imagery from NearMap, simply click the “Exports” button on the left handside (it is an image icon)\nFrom the menu that appears change the “Export type” to “Georeferenced image”\nFrom “Projection” choose GDA2020 / MGA zone 56\nYou can increase and decrease the size of the bounding box by adjusting its corners, a smaller box means you can have a finer resolution, down to 0.075m. If we select all of UQ St Lucia in one go, the highest resolution we can have is 0.299m.\nOnce you’re happy with your selection click Download Files\nMove the downloaded zip file to your project folder, and open them in QGIS\n\n\n\nLot Plans\nYou can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial. I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from our Github site.\n\nTo access data from QLD Spatial go to https://qldspatial.information.qld.gov.au/\nSearch for “property boundaries” and select the “property boundaries Queensland” option.\nYou could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop here, just press the three dots and download.\nMove the downloaded zip file to your project folder, and open the shapefile in QGIS\n\n\n\nQueensland Globe\nAnother way to access QSpatial Data is using the Queensland Globe portal.\n\nTo access data from Queensland Globe go to https://qldglobe.information.qld.gov.au\nAccept the T&Cs.\nClick Search, Select Locality (Suburb) within a Local Government Area, and search for the location you want and select it from the list.\nClick Layers, click Add Layers + here you can scroll through and filter different layer types\nWe want to tick the box next to Planning Cadastre &gt; Land Parcels &gt; Land Parcel (you may need to zoom in to see certain layers)\nTo export data click the Wrench Icon in the top right, and then click the Identify icon (i)\nUse the triangular Identify Polygon tool to select and area of interest. Double click when you’ve finished selecting your area.\nThe Layers menu will now show your selection. You can download all, or sections, of your selection.\nI will choose Land Parcel and then Download as a shp file.\nNote: You may need to disable other layers for this to work correctly. I needed to turn off the Transportation layer to prevent roads from being included in my selection.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1187,7 +1187,7 @@
     "text": "Import our data\nIf you have saved your data into your Data folder within your project folder qgis_mobile, it should appear in Project Home. You can import it into your project’s layers by double-clicking on the data there.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1199,7 +1199,7 @@
     "text": "Create a buffer to clip our data\nWe now want to only keep data that is relevant to the St Lucia campus. To achieve that, we need a mask to clip data.\nWe first need to select the lots that are relevant by using the “Select Feature by area or single click” (in the toolbar), clicking on the lots one by one (or drawing a rectangle around them) with the Shift key pressed.\nWe can now create a buffer:\n\nGo to Vector &gt; Geoprocessing Tools &gt; Buffer\nChoose “Brisbane_lot_plans” as the Input Layer, and tick the Selected features only box\nThere are many settings we can change to edit the shape of the buffer, but let’s leave most of these as the defaults for now.\nWe can choose the distance that we want to create a buffer away from our vector. You’ll note that the distance is currently in degrees, as the layer projection is EPSG:4283 GDA94, a geographic coordinate system. This might cause issues.\nIf you click Run. Your buffer won’t look very good. We need to convert our layer to a local projected coordinate system.\n\nLet’s reproject the layer for better results:\n\nGo to Vector &gt; Data Management Tools &gt; Reproject Layer\nChoose “Brisbane_lot_plans” as the Input Layer, and tick the Selected features only box\nWe want to choose a local projected coordinate system such as GDA94 / MGA zone 56 or GDA2020 / MGA zone 56. This will convert our measurements to metres instead of degrees, and by choosing an Australian projection, it reduces distortion.\nClick “Run”\nThe new scratch layer will look the same, but it now has a different projection.\n\nLet’s create that buffer again.\n\nSelect the relevant lots\nGo to Vector &gt; Geoprocessing Tools &gt; Buffer\nThis time choose “Reprojected” as the Input Layer\nYou’ll notice the distance is now in metres. For this instance, I want a larger buffer of 50 m.\nWhen you click “Run”, your buffer should be a good distance away from the original boundary.\n\nNow we can Dissolve those polygons together:\n\nGo to `Vector &gt; Geoprocessing Tools &gt; Dissolve\nChoose “Buffered” as the Input Layer.\nLet’s save this one to file, rather than a temporary file. Click “…” next to “[Create Temporary Layer]”, then “Save to file”, and save it as something like UQ Boundary to your project folder.\n\n\nNote the Buffer tool has a “dissolve” option, but it’s important to know that there are many tools available.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1211,7 +1211,7 @@
     "text": "Combine our DEMs\nSee the visible line between the raster tiles? That is because the separate raster files have different maximum and minimum values, so use different shades for different elevations. We have to merge them to make sure they use the same colour scale.\nTo do that, we use the Raster &gt; Miscellaneous &gt; Merge... tool to create one single layer from them.\n\nFirst, select all DEM layers for the “Input layers”\nMake sure the option “Place each input file into a separate band” is unchecked, as we want to end up with one single-band layer\nWe can save the output on disk instead of only creating a temporary file (for example, name it St_Lucia_DEM_merged and save it inside your project directory)\nClick “Run”\n\n\nYou will need to have Saga installed for this to work.\n\nWe can now remove the original DEM raster files.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1223,7 +1223,7 @@
     "text": "Clip the DEM\nWe now use Raster &gt; Extraction &gt; Clip Raster by Mask Layer to focus on our area of interest.\n\nMake sure the virtual raster output DEM is selected in the Input layer\nSet the Mask Layer to “UQ_Boundary”\nScroll down to “Clipped (mask)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_DEM to your project folder.\nAnother way to clip would be to use Extent\nMake sure the virtual raster output DEM is selected in the Input layer\nNavigate to Raster &gt; Extraction &gt; Clip Raster by Extent\nNext to “Clipping extent” click ... &gt; Calculate from Layer &gt; UQ_Boundary\nScroll down to “Clipped (extent)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_DEM to your project folder.\n\nIf you don’t save to file directly, remember two things:\n\nrename your clipped layer so it is more descriptive than the generic “Clipped (extent)”\nyou are currently using a temporary, scratch layer. It will be discarded if you exit QGIS. It is very useful for temporary intermediate files, but it can be safer to save copies of your intermediate data while you work, just in case! You can right-click on the layer and use Export &gt; Save As..",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1235,7 +1235,7 @@
     "text": "Save your project\nIt’s not essential at this stage, it’s just a good reminder to save your work regularly so you don’t lose things when things go wrong.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1247,7 +1247,7 @@
     "text": "Clip the Aerial Imagery\nWe can repeat the same process as above to clip the Aerial Imagery.\nNow, clip the converted aerial imagery:\n\nGo to Raster &gt; Extraction &gt; Clip Raster by Extent\nMake sure St_Lucia_Aerial is selected in the Input layer\nSet the Mask Layer to “UQ_Boundary”\nYou may need to define the Source and Target CRS to ensure that it all runs smoothly\nScroll down to “Clipped (mask)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_Aerial_clipped to your project folder.\n\nWe can now clean up our project by removing the original and intermediate layers we won’t need.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1259,7 +1259,7 @@
     "text": "Change the symbology\nWe can style our DEM with a terrain colour palette:\n\ndouble-click on the clipped DEM layer\ngo to the “Symbology” tab\nchange the Render type to “Singleband pseudocolor”\nby default, it uses the min/max values, which is what we want\nwe can change the “Color ramp” to something more suitable with the drop-down menu and Create new color ramp... &gt; Catalog: cpt-city &gt; Topography &gt; Elevation, for example.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1271,7 +1271,7 @@
     "text": "Add a hillshade\nAdding a hillshade makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.\n\nGo to Raster &gt; Analysis &gt; Hillshade....\nEnsure the Input Layer is your clipped DEM “St_Lucia_DEM”\nScroll down to “Hillshade” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_DEM_Hillshade to your project folder.\nClick Run",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1283,7 +1283,7 @@
     "text": "Create Contours\nAdding a contour makes your elevation even more evident and can also be used to quickly show elevation on other layers\n\nGo to Raster &gt; Extraction &gt; Contour....\nEnsure the Input Layer is your clipped DEM “St_Lucia_DEM”\nFor Interval between contour lines, the default is 10 m, which won’t be greatly noticeable at UQ where the highest point is 25 m. However, the finer the contour lines, the longer it will take to process. I will choose 5 m.\nScroll down to “Contours” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_Contours_5m to your project folder.\nClick Run",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1295,7 +1295,7 @@
     "text": "Exporting to Avenza Maps\nClick on Show Layout Manager in the toolbar or use Project &gt; Layout Manager. Create a new layout called “Avenza”. We can now see the Layout window.\nNormally we would add many elements to our layout if we were exporting it for print such as the map, a legend, a scale bar, a north arrow…\nIn this case however, we are simply interested in our map. Let’s add the map to the canvas:\n\nGo to the Layout tab, scroll down to ‘Resize Layout to Content’, click ‘Resize layout’\nBefore we export, let’s turn off any layers we aren’t using in QGIS to save space\nClick the Refresh View button up the top\nNow we are ready to export.\nGo to ‘Layout &gt; Export as PDF…’ and save your map.\nThe ‘PDF Export Options’ window will open\nTick the ‘Create Geospatial PDF (GeoPDF)’ box\nClick ‘Save’\n\nYou can repeat this process with the DEM and Hillshade to export out another kind of map.\nNow you simply need to export the pdf file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.\nWhen you first open Avenza Maps it will ask you to create an account, but you can import up to three maps without doing so, you can avoid creating an account by selecting the ‘x’ in the top right corner. * Allow Avenza Maps to access your device location * Select the orange ‘+’ in the bottom right and select ‘Download or import a map’ * Choose ‘From Storage Locations’ (if requested, give Avenza Maps the permissions to access your files) * Do the same for the other map, if you created one. * Once it has been imported, tap on the map. * You can now move the map around with your finger, and pinching to zoom. * Tapping the placemark icon in the bottom left will add a placemark in the middle of the crosshairs. * Tapping the 3 dots in the bottom right will allow you to add GPS tracking and draw and measure distances.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -1307,7 +1307,7 @@
     "text": "QField\nQField is another Android based GIS app.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "4. Mobile mapping"
     ]
   },
@@ -2800,7 +2800,7 @@
     "text": "This tutorial is designed for QGIS 3.34. If you need to install it on your computer, got to the QGIS website.\nThe data for this session can be downloaded from our GitHub page, click the three dots and download.\n\n\n\nScreenshot of three-dot menu on GitHub\n\n\nOnce downloaded, extract the archive.\n\nSome of our data comes from Natural Earth: http://www.naturalearthdata.com/\n\nOpen QGIS and create a new project with Project &gt; New. Let’s straight away save our project: Project &gt; Save, and save it into the extracted folder.\nLet’s set the project home too: Project &gt; Properties &gt; General and set Project home to the same folder. This is where we can also give the project a title.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2812,7 +2812,7 @@
     "text": "This tutorial is designed for QGIS 3.34. If you need to install it on your computer, got to the QGIS website.\nThe data for this session can be downloaded from our GitHub page, click the three dots and download.\n\n\n\nScreenshot of three-dot menu on GitHub\n\n\nOnce downloaded, extract the archive.\n\nSome of our data comes from Natural Earth: http://www.naturalearthdata.com/\n\nOpen QGIS and create a new project with Project &gt; New. Let’s straight away save our project: Project &gt; Save, and save it into the extracted folder.\nLet’s set the project home too: Project &gt; Properties &gt; General and set Project home to the same folder. This is where we can also give the project a title.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2824,7 +2824,7 @@
     "text": "Interface\nThe main elements of the interface are:\n\nthe Browser panel, to navigate our file system and data sources\nthe Layers panel, to organise the different layers that compose our map\nthe Canvas, where we see the map.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2836,7 +2836,7 @@
     "text": "Load layers\n\nBasemap\nWe can straight away load an OpenStreetMap basemap to have a background: in the Browser panel, XYZ Tiles &gt; OpenStreetMap.\n\n\nControls\nThe default mouse mode is Pan Map, which allows to drag the map around. We can use the mouse wheel to zoom in and out, and press the Ctrl key to use more precision.\n\n\nVector data\nTo add our own data: Layer &gt; Add Layer &gt; Add Vector Layer..., choose the “ne_50m_admin_1_states_provinces” file, and click “Add”. It is now in your Layers panel.\nYou can also use the Project Home directory in the browser to add another layer: try loading the “populated places” and “rivers” shapefiles (format .shp), by drag-and-dropping or double-clicking.\nAll layers are visible in the “Layers” panel, with the most recently loaded by default at the top. Layers are rendered as they are listed, which means the top ones will cover the bottom ones. Make sure you optimise the order for your map!\nYou can also turn the layer visibility on and off from this panel with the tick box.\n\n\nLearn about the data\nYou can open the attribute table to see tabular data contained in each layer. (Right-click on a layer and use “Open Attribute Table”. Alternatively, use the top toolbar button or use F6.)\nYou can also use the Identify Features tool in the top toolbar. This allows you to learn about specific features included in the currently selected layer.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2848,7 +2848,7 @@
     "text": "Subset the data\nWe currently have data from all around the World, which you can confirm by using the Zoom Full button. However, we want to focus on Australia exclusively.\nTo remove the useless regions, we can do the following:\n\nSelect the “admin” layer\nUse the Select Features button, and draw a rectangle around Australia, so all the region appear in yellow\nRight-click on the layer and use Export &gt; Save Selected Features As...\nName the new file “australia_admin” in your project directory, and click OK.\n\nThe new layer is loaded to the map by default.\nNow that we have we have a layer with only the administrative regions for Australia, we can use that as an overlay layer to clip the rivers. Follow these steps:\n\nSelect the layer to clip\nUse the Vector &gt; Geoprocessing Tools &gt; Clip... tool\nUse the “australia_admin” layer as the overlay.\nClick “Run”\n\n\nIf you get an error about invalid geometries, you might have to use the Fix geometries tool on the Australian shapefile first (found in the Processing Toolbox).\n\nNotice how the clipped layers don’t have a descriptive name? Make sure you rename them.\nYou can now hide the original layers and confirm that you have only Australian data visible in the canvas by using the Zoom Full button.\n\nChallenge: can you do the same for the Cities? Do you notice anything strange? How can we fix that?",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2860,7 +2860,7 @@
     "text": "Change the symbology\nOur vector layers are assigned a random colour when we load them. We now want to make them look better.\nDouble-click on the “admin” layer and use Symbology &gt; Color to change to a better colour. Click Apply. We can also go into more details about the border (colour, width, type of line…) by clicking on Simple fill.\nWe can make more complex fills by adding an extra “symbol layer”, and layering different kinds of fill styles. Try this with both polygons and lines. For example, style the rivers so they look like water (the topo hydrology preset is a good start).\nNow try to change the point symbology of our “populated places” layer: we don’t have to stick to Simple marker. Try for example the different icons available with Symbol layer type &gt; SVG marker or Font marker selected.\n\nThe Properties dialog is quite large and makes it difficult to see the changes in symbology. You can use the “Layer Styling Panel” (button in the Layers panel, or F7 shortcut) to use a side panel instead, with the “Live update” option on by default.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2872,7 +2872,7 @@
     "text": "Classify vector data\n\nAdd labels\nHave a look at the attribute table for our “populated places” layer. What could we use to label our points?\nDouble-click on the “populated places” layer: Labels &gt; Single labels. You can also use the Layer Labelling Options button to open the sidebar, which allows you to “Live update” the map when you change a setting.\nChoose Value &gt; Name to label with the city names. In the “Text” tab, we can change the look of our labels: amend the size, the colour, the font… We can also add a text buffer with the “Buffer tab” to make them more readable.\nThe placement tab allows us to fine-tune the placement of the labels in reference to the points. The default mode is “Cartographic”, and we can increase the distance to the symbol used. If we want the label to cover the point, we can use Mode &gt; Offset from point and use the middle quadrant. We might also want to set the layer’s Symbology to “No Symbols”.\nWhat if you want to label lines? It’s a good idea to change the default Placement from Parallel to Curved so the labels follow the shape of the lines. You can try it on the rivers. If the labels don’t show, increaseing the Distance might help.\n\nIf labels appear several times on the same line, you can try using Rendering &gt; Merge connected lines to avoid duplicate labels. You can also make it neater with the feature Suppress labelling of features smaller than, so QGIS doesn’t try to render labels for tiny features.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2884,7 +2884,7 @@
     "text": "Tabular data\nQGIS can deal with plain tabular data. For example, try importing the file HDI.ods: it doesn’t contain any coordinates, but we can still store it as a layer and use it in our project. You can see the data it contains by opening its attribute table.\nHow can we add the Human Development Index (HDI) data to our existing “admin” shapefile?\n\nJoining tabular data\nTo add the HDI data to our region shapefile, we can go the the “admin” layer’s properties, use the Joins tab and click the green + to create a new join. We can then choose the HDI data as the Join layer, and define what common field between the two tables we will merge on: the ISO_3166_2 code in our case.\nYou can now see the joined data highlighted in green in the Fields tab, click “OK”, and check the actual values in the “admin” layer’s attribute table.\n\n\nClassifying the symbology\nWhat if we want to colour according to a variable? Depending on the type of variable, we can choose “Categorised” (for categorical data) or “Graduated” (for continuous data).\nWe can now use the joined data to change the symbology of our regions according to the HDI:\n\nClick on the Layer Styling Panel button\nChange from “Single Symbol” to “Graduated”\nUse the HDI column\nPick a relevant colour ramp\nClick “classify”\n\nDepending on the data that you deal with, different “Modes” will be more or less useful to create a good colour key. Try “Natural Breaks (Jenks)” for example.\n\nData Defined Symbology with the Assistant Tool\nStill using a continuous numerical variable, we can change the size of the “populated places” symbols according to population. Use the Data defined override dropdown next to the Size box, and use the Assistant... to define the scale: set the “Source” to pop_max and click the “Fetch value range from layer” button. If the “Size from” value is too small, we can amend it.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2896,7 +2896,7 @@
     "text": "Save styles\nWe can save styles with right-click &gt; Styles &gt; Add, which creates a new one and saves the previous version.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2908,7 +2908,7 @@
     "text": "Add a raster layer\n\n\nIt’s likely worth skipping this Solaran raster data section, but expand this if you want to include it in today’s session\n\nThe solaran file is average solar exposure data from the Australian Bureau of Meteorology. It is a text file that contains data organised in a grid: it is raster data.\nTry loading the solaran.txt file: data about average solar exposure. What is the difference with the other files? What kind of layer is it imported as? What can you do to make it easier to read?\nWhen importing data, QGIS might find everything it needs in the file(s) and add the layer as expect with only a drag-and-drop. Other times, we might have to be more specific by using the proper data type in the Layer &gt; Data Source Manager and using the right settings.\nIn our case, we can import the solaran file with Data Source Manager &gt; Raster, provide the path to the file in Source, and click Add. The file does not contain CRS information, which means we have to specify it in the following dialogue: WGS 84 (EPSG:4326).\n\nStyle a raster layer\nThis layer is a single-band raster layer, which gets coloured automatically in greyscale. We can change that in the symbology, set the Render type as “Singleband pseudocolor”, use the Color ramp called “Spectral”, and use the Color ramp drop-down menu to “Invert Color Ramp” in order to make the colouring more intuitive (i.e. red for high values and blue for low values).\n\nTo learn more about rasters, have a look at our Raster Analysis course",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2920,7 +2920,7 @@
     "text": "Plugins\nA wealth of plugins is available: Plugins &gt; Manage and Install Plugins.... Try for example to install QuickMapServices, to easily access many sources of raster data.\nThe plugin should automatically open a side panel in which you can search for terms. For example, search for “satellite” and add the ESRI satellite imagery to your project.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2932,7 +2932,7 @@
     "text": "Create a layout to export\nClick on Show Layout Manager in the toolbar. Create a new layout called “Default”. We can now see the Layout window.\nWe can now add elements to our layout: the map, a legend, a scale bar, a north arrow, text boxes for a title and data sources… In order to create a nice printout, or export in a variety of formats. You can select these from the left-hand-side toolbar, or by going to the Add Item menu up the top.\nThe layout manager allows us to save several different layouts, one for each output we want to generate. Even if we change our map data, we can reuse the same layouts and export an updated map.\n\nIf you need to zoom in on the Map you’ve added, you’ll need to change your edit tool the the Move item content tool by clicking it in the sidebar, going to Edit &gt; Move content, or by pressing C on your keyboard. If you’re having trouble zooming in exactly where you want to on the map, you can try the following: * Go back to your project window * Right click on the layer that covers the full extent of your area of interest and select Zoom to Layer(s) * Navigate back to the layout manager window, select your map from the Items tab, and click ont he Item Properties tab. * Click the Set Map Extent to Match Main Canvas Extent button  * Your map should zoom to match the extent your zoomed to in the project window.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2944,7 +2944,7 @@
     "text": "Saving your project\nNotice the little icon next to some of your layers? We previously created “temporary scratch layers”. This is useful if you keep processing data and creating new layers that you want to discard afterwards. In our case, we do want to keep the “cities” and “rivers” layers, so we need to save them to a file. If we try to close QGIS with scratch layers loaded, it will give you a warning that they will be lost in the process.\nYou can click on the scratch layer icon to save the file. In the dialog, we can give the layers a File name (in our project’s home directory) and click OK.\nYou can save your project with the floppy disk icon, or using Ctrl + S, and the project should be visible in a list when you re-open QGIS again.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "1. Introduction"
     ]
   },
@@ -2956,7 +2956,7 @@
     "text": "This tutorial is designed for QGIS 3.34. If you need to install it on your computer, got to the QGIS website.\nOpen QGIS and create a new project with Project &gt; New. Let’s straight away save our project: Project &gt; Save. We should create a new folder, where our project and all the saved data will live, named “qgis_raster_intro” for example.\nSaving the project should automatically set the project home to the same location: you should see a green Project Home icon in the Browser panel. If that’s not the case, go to Project &gt; Properties &gt; General and set Project home to the same folder. This dialogue is where we can also give the project a title.\nWe need to install a plugin so we can access certain geoprocessing tools (the built-in SAGA provider has been removed in version 3.30). Go to Plugins &gt; Manage and Install Plugins... and Search... for “SAGA”. From the list on options choose Processing Saga NextGen Provider then in the bottom right, click Install Plugin. You might also need to install SAGA (version 9 or above) on your computer, if not already available.\nLet’s now add an OpenStreetMap basemap to locate ourselves on the globe: Browser panel &gt; XYZ Tiles &gt; OpenStreetMap (double-click, or drag and drop into the Layers panel).",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -2968,7 +2968,7 @@
     "text": "This tutorial is designed for QGIS 3.34. If you need to install it on your computer, got to the QGIS website.\nOpen QGIS and create a new project with Project &gt; New. Let’s straight away save our project: Project &gt; Save. We should create a new folder, where our project and all the saved data will live, named “qgis_raster_intro” for example.\nSaving the project should automatically set the project home to the same location: you should see a green Project Home icon in the Browser panel. If that’s not the case, go to Project &gt; Properties &gt; General and set Project home to the same folder. This dialogue is where we can also give the project a title.\nWe need to install a plugin so we can access certain geoprocessing tools (the built-in SAGA provider has been removed in version 3.30). Go to Plugins &gt; Manage and Install Plugins... and Search... for “SAGA”. From the list on options choose Processing Saga NextGen Provider then in the bottom right, click Install Plugin. You might also need to install SAGA (version 9 or above) on your computer, if not already available.\nLet’s now add an OpenStreetMap basemap to locate ourselves on the globe: Browser panel &gt; XYZ Tiles &gt; OpenStreetMap (double-click, or drag and drop into the Layers panel).",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -2980,7 +2980,7 @@
     "text": "Get some elevation data\nA Digital Elevation Model (DEM) is a common example of raster data, i.e. grid data that contains a value in each cell (a bit like the pixels in a coloured picture).\nFor this tutorial, we are using a DEM sourced from the USGS website.\n\nGo to https://earthexplorer.usgs.gov/\nClick the World Features box, and then search for “Brisbane” in the “Feature Name” search box\nClick Show and select the first result\nZoom onto an area of interest around Brisbane and click “Use Map”\nClick the “Data Sets” button and then Digital Elevation &gt; SRTM, select “SRTM 1 Arc-Second Global” and click “Results”\n\n“SRTM” stands for “Shuttle Radar Topography Mission”. It provides global elevation data collected in 2000 by the space shuttle Endeavour.\nOur area covers two separate raster files. We can click on the foot icon to see the footprint of each file, and the picture icon to see what the DEM looks like.\nUse the download button to download each file into your project directory. You will need a login for that, which is free but can take a bit of time. You can instead download the two raster files as an archive from our Github repository here. Click the three dots to download.\n\n\n\nScreenshot of three-dot menu on GitHub",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -2992,7 +2992,7 @@
     "text": "Merge the two DEM layers\nIf you downloaded the archive, make sure you place it into the project directory so you can find it in “Project Home” and easily load the raster files: from the Browser panel, we can go into the data archive and drag and drop each .tif file into the Layers panel.\nSee the visible line between the two raster tiles? That is because the two separate raster files have different maximum and minimum values, so use different shades for different elevations. We have to merge them to make sure they use the same colour scale.\nTo do that, we use the Raster &gt; Miscellaneous &gt; Merge... tool to create one single layer from them.\n\nFirst, select both DEM layers for the “Input layers”\nMake sure the option “Place each input file into a separate band” is off, as we want to end up with one single-band layer\nWe can save the output on disk instead of only creating a temporary file (for example, name it SRTM_DEM_merged and save it inside your project directory)\nClick “Run”\n\n\nYou will need to have GDAL installed for this to work.\n\nWe can now remove the two original raster files.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -3004,7 +3004,7 @@
     "text": "Reproject the DEM\nIn the merged layer’s Properties (Right click &gt; Properties... &gt; Source), we can see that the Coordinate Reference System (CRS) in use is EPSG:4326 - WGS 84. It is the one that QGIS detected when opening the file. This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). A good PRS for around Brisbane/Meanjin is “EPSG:7856 - GDA2020 / MGA zone 56”. We can’t change that here, we instead will need to use the Warp (Reproject) tool.\n\nUse the tool Raster &gt; Projections &gt; Warp (Reproject)\nuse the merged layer as an input\npick “EPSG:7856 - GDA2020 / MGA zone 56” as the Target CRS\n\nyou may need to click the Select CRS button \nuntick No CRS\nuse the filter to search for “7856”\nYou should be able to find “EPSG:7856 - GDA2020 / MGA zone 56” under Predefined Coordinate Reference Systems\n\n\n\nIf you want to learn more about the static datum GDA2020 (for “Geocentric Datum of Australia 2020”), an upgrade from the previous, less precise GDA94, head to the ICSM website.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -3016,7 +3016,7 @@
     "text": "Clip the DEM\nWe now use Raster &gt; Extraction &gt; Clip Raster by Extent to focus on a smaller area of interest.\nMake sure the DEM is selected in the Input layer, and set the clip extent with ... &gt; Draw on Canvas. We want to select an area that is inland, and contains both some of the D’Aguilar National Park, and a section of the Brisbane river (you can untick the DEM in the Layers panel to reveal the basemap).\nIf you don’t save to file directly, remember two things:\n\nrename your clipped layer so it is more descriptive than the generic “Clipped (extent)”\nyou are currently using a temporary, scratch layer. It will be discarded if you exit QGIS. It is very useful for temporary intermediate files, but it can be safer to save copies of your intermediate data while you work, just in case! You can right-click on the layer and use Export &gt; Save As..",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -3028,7 +3028,7 @@
     "text": "Change the symbology\nWe can style our DEM with a terrain colour palette:\n\ndouble-click on the clipped DEM layer\ngo to the “Symbology” tab\nchange the Render type to “Singleband pseudocolor”\nby default, it uses the min/max values, which is what we want\nwe can change the “Color ramp” to something more suitable with the drop-down menu and Create new color ramp... &gt; Catalog: cpt-city &gt; Topography &gt; Elevation, for example.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -3040,7 +3040,7 @@
     "text": "Add a hillshade\nAdding a hillshade makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.\n\nRight-click on the DEM layer and “Duplicate layer”\nRename the duplicated layer “hillshade”\nOpen the Symbology menu for the hillshade layer\nChange the “Render type” to “Hillshade”\nThe defaults should work well, but you can play with the settings, like the Altitude and the Azimuth\nMake sure you apply some transparency to the pseudocolour DEM, and place the hillshade layer underneath (in Properties &gt; Symbology &gt; Transparency)\nDown the bottom of the window under Resampling change the Zoomed: in and out from “Nearest Neighbour” to “Cubic” (this will remove some of the grid-like patterns you might see in your Hillshade layer otherwise)\n\n\nAnother method is to use the hillshade tool instead of the symbology: Raster &gt; Analysis &gt; Hillshade....",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -3052,7 +3052,7 @@
     "text": "Create a watershed layer\nUsing the Strahler tool, we can create a watershed raster that shows where water would flow according to the DEM.\nOpen the Processing Toolbox (cog icon) and try using the SAGA Next Gen tool called “Strahler order” using the clipped DEM as an input (a temporary file is fine for now).\nLook at the result. It looks like there are few issues with our data. You may get a question mark symbol  next to your data, when hovered over it will say “There is no coordinate reference system set!”. To resolve this, issue, simply left-click on the question mark symbol and assign “EPSG:7856 - GDA2020 / MGA zone 56” as the CRS.\nHowever there is still another issue with our data. A common problem with DEMs is that they have sinks and spikes that will make further analyses more difficult. This will mean the analysis is unable to best find where the water would flow. To resolve this, we need to use another tool to smooth out our raster before using the Strahler order tool.\nWe can use the “Fill sinks (Wang & Liu)” tool to fill the sinks in our clipped DEM.\n\nWhen we do that, we might have to play with the “Minimum slope” value. A value of 0.01 degrees should work well if the layer was reprojected to a suitable Projected Reference System.\nAs an output, we only need to tick the “Filled DEM” (first one in the list), which we can also save to file. You can however keep the “Watershed Basins” output to check that your minimum slope is high enough.\n\nIf we re-run the Strahler order tool on the filled DEM, we will be able to see more useful data.\nWe can now colour the layer with “Singleband pseudocolor” to highlight the bigger streams. A palette that goes from white (for low values) to a dark colour (for high values) should work well.\n\nTo filter out the noise of the smaller streams and highlight the major streams in the network, we can use the Raster &gt; Raster Calculator tool and use a formula like: \"name_of_layer@1\" &gt;= 6 (the value will depend on how many levels exist in the Strahler layer). We need to save to file to be able to do that (name it “strahler_filtered”, for example). This will assign the value 1 to the cells matching the condition, and 0 to what is under the limit.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -3064,7 +3064,7 @@
     "text": "Channel network and drainage basin\nAnother analysis we can do is use the “Channel network and drainage basins” tool to calculate the flow direction, channels and drainage basins.\n\nMake sure you run this tool on the filled DEM.\nWe might have to change the threshold to a higher one if the output includes too many small basins and channels. The middle point of your previous Strahler order values is a usually a good default.\n\nAs an output, we only want to load (and save to file) the two non-optional outputs:\n\nChannels\nDrainage basins (shapefile) (to differentiate the two “Drainage basins” options, you can check what format it saves the file as)\n\nThis is an example of creating vector data from raster data!\nWe can now play with the symbology for those elements. For example:\n\nTry using different colours for each basin, by classifying by ID, or remove the fill (Simple fill &gt; Fill Style &gt; No Brush) so you can see the colours of the elevation colours underneath. You can also make the borders more obvious by changing the width of the stroke.\nChange the colour of the channels.\n\nChange the symbol from “Single Symbol” to Graduated.\nSet the Value to “Order”\nChoose an appropriate colour ramp\nChange the Mode down the bottom of the window to “Equal Interval”\nClick Apply\n\nYou can also further differentiate minor channels from major ones by using a “Data defined override” for the Width value:\n\nClick on the bar next to Symbol \nClick on the “Data defined override” icon  next to the Width field\nUse the “Assistant”\n“Source” needs to be the column “ORDER” (which corresponds to the Strahler order)\nClick the double-arrow icon to “Fetch value range from layer”\nChange the “Size from” and “to” values to suitable values",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -3076,7 +3076,7 @@
     "text": "3D maps\nA 3D viewer is integrated in QGIS: View &gt; 3D Map Views &gt; New 3D Map View\nIn the 3D map window, make sure to first:\n\nClick the Options wrench icon, choose Configure &gt; Terrain, set the “Type” to “DEM (Raster layer)”, and set the “Elevation” to your clipped DEM.\nExaggerate the relief with the “Vertical scale” setting (try 3).\n\nTo see the 3D effect, you will have to use your Ctrl or Shift keys on your keyboard while panning with the mouse to change the angle of view.\nTo avoid seeing gaps in the rendering, you can go back to your Terrain options and set the “Tile resolution” and “Skirt height” to higher values.\n\nA useful plugin for 3D maps is qgis2threeJS, which might be handy to add a 3D map to a website.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -3088,7 +3088,7 @@
     "text": "Exporting\nUse the Layout Manager to create a new layout, and insert both a 2D map and a 3D map.\nWhen inserting the 3D map, it will tell you that the “scene is not set”. You will have to import the 3D scene settings from your view: Item Properties &gt; Scene Settings &gt; Copy Scene Settings from a 3D View... and then select your 3D map from the drop-down.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
@@ -3100,7 +3100,7 @@
     "text": "Saving your project\nNotice the little icon next to some of your layers? We previously created “temporary scratch layers”. This is useful if you keep processing data and creating new layers that you want to discard afterwards. In our case, we do want to keep the “cities” and “rivers” layers, so we need to save them to a file. If we try to close QGIS with scratch layers loaded, it will give you a warning that they will be lost in the process.\nYou can click on the scratch layer icon to save the file. In the dialog, we can give the layers a File name (in our project’s home directory) and click OK.\nYou can save your project with the floppy disk icon, or using Ctrl + S, and the project should be visible in a list as soon as you open QGIS again.",
     "crumbs": [
       "Home",
-      "![](/images/QGIS.svg){width=20} QGIS",
+      "![](/images/qgis.svg){width=20} QGIS",
       "2. Raster analysis"
     ]
   },
