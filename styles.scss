@@ -22,6 +22,8 @@ $primary: #48206c; // navbar colour
     --code-sc: #5E5E5E;
     --code-dv: #AD0000;
     --code-co: #5E5E5E;
+    --code-callout: #5E5E5E;
+    --code-callout-bg: #f3f3f4;
 
 }
 
@@ -45,16 +47,18 @@ $primary: #48206c; // navbar colour
         --code-dv: #d4d0ab;
         --code-co: #f8f8f2;
         --callout-header: #48206c;
+        --code-callout: #40D64A;
+        --code-callout-bg: #262626;
     }
 }
 
 code {
   border-radius: .25rem;
-  color: var(--link-color);
+  color: var(--code-callout);
 }
 
 p code:not(.sourceCode), li code:not(.sourceCode), td code:not(.sourceCode) {
-	background-color: var(--body-bg);
+	background-color: var(--code-callout-bg);
 }
 
 div.callout-note.callout {
