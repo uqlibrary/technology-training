@@ -28,8 +28,8 @@ $primary: #48206c; // navbar colour
 //dark mode colors
 @media (prefers-color-scheme: dark) {
     :root {
-        --body-bg: #222222; // background colour
-        --text-color: #faf9f8; // text colour
+        --body-bg: #181818; // background colour
+        --text-color: #DDD; // text colour
         --grey-text: #5E5E5E;
         --sidebar-text-color: #adadad !important;  // sidebar link colour
         --sidebar-border: 1px solid #434343; // sidebar border colour and weight
@@ -50,6 +50,11 @@ $primary: #48206c; // navbar colour
 
 code {
   border-radius: .25rem;
+  color: var(--link-color);
+}
+
+p code:not(.sourceCode), li code:not(.sourceCode), td code:not(.sourceCode) {
+	background-color: var(--body-bg);
 }
 
 div.callout-note.callout {
