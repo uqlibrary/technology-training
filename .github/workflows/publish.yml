@@ -37,6 +37,9 @@ jobs:
       - name: Install ragg dependencies for tidyverse
         run: sudo apt install libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
 
+      - name: Install futher dependencies (see run \#1)
+        run: sudo apt install libcurl4-openssl-dev libx11-dev pandoc
+
       - name: Install R
         uses: r-lib/actions/setup-r@v2
         with:
