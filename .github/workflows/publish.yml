@@ -1,0 +1,60 @@
+on:
+  workflow_dispatch:
+  # Uncomment when ready to go - 
+  # push:
+  #   branches: website
+
+name: Quarto Publish
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install Python and Dependencies
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+
+      # The following are possibly unnecessary, but were required on my WSL environment
+      - name: Install ComplexHeatmap dependency
+        run: sudo apt install libpng-dev
+
+      - name: Install tidyverse dependencies
+        run: sudo apt install libfontconfig1-dev libfreetype6-dev libxml2-dev
+
+      - name: Install textshaping dependencies for tidyverse
+        run: sudo apt install libharfbuzz-dev libfribidi-dev
+
+      - name: Install ragg dependencies for tidyverse
+        run: sudo apt install libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+
+      - name: Install R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.5.0'
+
+      - name: Install R Dependencies
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          cache-version: 1
+
+      - name: Test render
+        uses: quarto-dev/quarto-actions/render@v2
+
+      # - name: Render and Publish
+      #   uses: quarto-dev/quarto-actions/publish@v2
+      #   with:
+      #     target: gh-pages
+      #   env:
+      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
