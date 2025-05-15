@@ -831,7 +831,7 @@ df["Weight (lb)"] = df["Weight"]*2.205
 To compute the BMIs, make another new column and use the following
 formula to calculate the BMI.
 
-$$ \text{BMI} = \frac{\text{Weight (kg)}}{(\text{Height (cm)})^2} $$
+$$ \text{BMI} = \frac{\text{Weight (kg)}}{(\text{Height (m)})^2} $$
 
 It should look something like
 
