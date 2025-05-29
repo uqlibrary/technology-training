@@ -95,13 +95,15 @@ If you would like to develop on top of this, please cite the source as mentioned
  
 ### Uploading binary files (e.g. `.pdf`, `.docx`, `.xlsx` etc.)
 
-1. Go to the appropriate folder
+Binary files are usually kept in a separate "assets" repository.
+
+1. Go to the appropriate folder [in the assets repository](https://github.com/uqlibrary/technology-training-assets)
 2. Press "Add file" > "Upload files"
 3. Choose the file, include an appropriate message (e.g. "Updated excel notes") and press "Commit changes"
 
 To *update* a file, **make sure the file name and location are the same**. Otherwise, the website will still link to the old file.
 
-If you've used a new name, or are uploading a new file, you will need to update the website by changing the corresponding `.qmd` file's link.
+If you've used a new name, or are uploading a new file, you will also need to update the website by changing the corresponding `.qmd` file's link.
 
 ### Updating the website
 
