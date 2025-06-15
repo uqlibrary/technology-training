@@ -2,6 +2,8 @@ on:
   schedule:
   - cron: '23 23 * * 1,5'
   workflow_dispatch:
+  push:
+    branches: master
 
 name: Check cache
 
@@ -13,6 +15,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          ref: website
 
       - name: Install Python and Dependencies
         uses: actions/setup-python@v5
