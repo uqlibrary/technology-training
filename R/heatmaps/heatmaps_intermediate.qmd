@@ -1,9 +1,5 @@
 ---
 title: "R data visualisation: heatmaps"
-format:
-  gfm:
-    toc: true
-    toc-depth: 2
 editor: source
 date: today
 author: UQ Library
@@ -29,10 +25,10 @@ We will assume you are an R intermediate user and that you have used RStudio bef
 
 -   On your own computer:
     -   Open RStudio
-    -   Make sure you have a working internet connection
+    -   Make sure you have a working Internet connection
 -   On Library computers:
     -   Log in with your UQ username and password
-    -   Make sure you have a working internet connection
+    -   Make sure you have a working Internet connection
     -   Open the ZENworks application
     -   Look for the letter "R"
     -   Double click on RStudio which will install both R and RStudio
@@ -56,14 +52,18 @@ Everything we write today will be saved in your script, so please remember to cr
     -   Click the "Create Project" button
 -   Create new folders with the following commands:
 
-```{r eval=FALSE}
+```{r}
+#| label: directories
+#| eval: false
 dir.create("scripts")
 dir.create("plots")
 ```
 
 -   Create a new R script called "heatmaps.R" in the "scripts" folder:
 
-```{r eval=FALSE}
+```{r}
+#| label: files
+#| eval: false
 file.create("scripts/heatmaps.R")
 file.edit("scripts/heatmaps.R")
 ```
@@ -74,7 +74,9 @@ As a first example, we will use a built-in dataset called `mtcars`.
 
 ### Explore the data
 
-```{r eval=FALSE}
+```{r}
+#| label: mtcars-explore
+#| eval: false
 ?mtcars
 dim(mtcars)
 str(mtcars)
@@ -87,6 +89,7 @@ View(mtcars)
 The data is a dataframe, but it has to be a **numeric matrix** to make your heatmap. Dataframes can contain variables with different data classes, whereas matrices only contain one data class.
 
 ```{r}
+#| label: mtcars-matrix
 class(mtcars)
 mtcars_matrix <- data.matrix(mtcars) # convert a DF to a numeric matrix
 class(mtcars_matrix)
@@ -97,6 +100,7 @@ class(mtcars_matrix)
 We are now going to use the `heatmap()` function to create our first heatmap:
 
 ```{r}
+#| label: heatmap
 heatmap(mtcars_matrix)
 ```
 
@@ -104,13 +108,16 @@ Does it look like what you expected?
 
 Look at the function's help page, and read the description of the `scale` argument in particular:
 
-```{r eval=FALSE}
+```{r}
+#| label: heatmap-help
+#| eval: false
 ?heatmap
 ```
 
 **Scale** is important: the values should be centered and scaled in either rows or columns. In our case, we want to visualise highs and lows in each variable, which are in columns.
 
 ```{r}
+#| label: heatmap-scale
 heatmap(mtcars_matrix, scale = "column")
 ```
 
@@ -125,6 +132,7 @@ Since R 3.6, the default palette is "YlOrRd", which stand for "Yellow, Orange, R
 You can however replace the default palette and use different colours, and different numbers of levels. For example, in the palette function `cm.colors(n)`, n is the number of levels (\>= 1) contained in the cyan-to-magenta palette. This function can be used in the `col` argument:
 
 ```{r}
+#| label: heatmap-cm
 heatmap(mtcars_matrix,
         scale = "column",
         col = cm.colors(n = 15))
@@ -141,6 +149,7 @@ Look at the help documentation for `heatmap` to see if the dendrograms can be re
 > Hint: see the `Rowv` and `Colv` arguments.
 
 ```{r}
+#| label: heatmap-dendro
 heatmap(mtcars_matrix,
         scale = "column",
         col = cm.colors(15),
@@ -154,6 +163,7 @@ heatmap(mtcars_matrix,
 We can start with a fresh environment, using:
 
 ```{r}
+#| label: heatmap-clean
 rm(list = ls())
 ```
 
@@ -161,13 +171,18 @@ rm(list = ls())
 
 If you don't have the gplots package yet, use `install.packages("gplots")`.
 
-```{r results='hide'}
+```{r}
+#| label: gplots-load
+#| message: false
+#| warning: false
 library(gplots)
 ```
 
 This gplots heatmap function provides a number of extensions to the standard R heatmap function.
 
-```{r eval=FALSE}
+```{r}
+#| label: heatmap2-help
+#| eval: false
 ?heatmap.2
 ```
 
@@ -176,12 +191,15 @@ This gplots heatmap function provides a number of extensions to the standard R h
 This dataset contains observations for 63 proteins in three control experiments and three experiments where cells are treated with a growth factor. We need to import it from the web:
 
 ```{r}
+#| label: read-prot
 rawdata <- read.csv("https://raw.githubusercontent.com/ab604/heatmap/master/leanne_testdata.csv")
 ```
 
 We can then explore the data:
 
-```{r eval=FALSE}
+```{r}
+#| label: prot-explore
+#| eval: false
 str(rawdata)
 head(rawdata)
 View(rawdata)
@@ -192,23 +210,26 @@ It’s important to note that a lot of visualisations involve gathering and prep
 Here, we need to remove useless columns, and we also want to rename them for clarity.
 
 ```{r}
-rawdata <- rawdata[ , 2:7] # remove superfluous columns
-colnames(rawdata) <- c(paste("Control", 1:3, sep = "_"), 
+#| label: prot-select
+prot_data <- rawdata[ , 2:7] # remove superfluous columns
+colnames(prot_data) <- c(paste("Control", 1:3, sep = "_"), 
                        paste("Treatment", 1:3, sep = "_"))
 ```
 
 We also need to convert the dataframe to a matrix, just like in our first example.
 
 ```{r}
+#| label: prot-matrix
 class(rawdata)
-data_matrix <- data.matrix(rawdata)
-class(data_matrix)
+prot_matrix <- data.matrix(prot_data)
+class(prot_matrix)
 ```
 
 We can now visualise the data with `heatmap.2()`:
 
 ```{r}
-heatmap.2(data_matrix)
+#| label: heatmap2
+heatmap.2(prot_matrix)
 ```
 
 > The `scale` argument in `heatmap.2()` is by default set to `"none"`!
@@ -216,7 +237,8 @@ heatmap.2(data_matrix)
 For a more informative visualisation, we can scale the data for each protein:
 
 ```{r}
-heatmap.2(data_matrix,
+#| label: heatmap2-scale
+heatmap.2(prot_matrix,
           scale = "row")
 ```
 
@@ -227,23 +249,25 @@ We can now see each protein's response to treatments.
 With `heatmap.2()`, if we want to cluster rows according to the scaled data, we have to scale it *prior* to generating the heatmap.
 
 ```{r eval=FALSE}
+#| label: scale-help
 ?scale
 ```
 
 `scale()` is a function that centres and scales the *columns* of a numeric matrix. We **transpose** the matrix with `t()` to then **centre and scale** each protein's data (i.e. the rows) with `scale()`. Finally, we transpose the data back to the original form.
 
 ```{r results='hide'}
-# Scale and centre data for each protein,
-# but transpose first so it operates on rows
-data_scaled_t <- scale(t(data_matrix))
-# transpose back to original form
-data_scaled <- t(data_scaled_t)
+#| label: pre-scale
+prot_scaled <- prot_matrix |> 
+  t() |> 
+  scale() |> 
+  t()
 ```
 
 Let's visualise it once more:
 
 ```{r}
-heatmap.2(data_scaled)
+#| label: heatmap2-scaled
+heatmap.2(prot_scaled)
 ```
 
 We can now see clear groups.
@@ -253,6 +277,7 @@ We can now see clear groups.
 Let's create a new palette function:
 
 ```{r}
+#| label: custom-palette
 my_palette <- colorRampPalette(c("blue",
                                  "white",
                                  "red")) # from low to high
@@ -261,7 +286,8 @@ my_palette <- colorRampPalette(c("blue",
 Now, we can use it and further customise our heatmap:
 
 ```{r}
-heatmap.2(data_scaled,
+#| label: heatmap2-colour
+heatmap.2(prot_scaled,
           trace = "none",               # turn off trace lines from heatmap
           col = my_palette(25))         # use my colour scheme with 25 levels
 ```
@@ -269,34 +295,38 @@ heatmap.2(data_scaled,
 Fix a few things and add a few extras:
 
 ```{r}
-heatmap.2(data_scaled,
-          Colv = NA,                # no clustering on columns
+#| label: heatmap2-custom
+heatmap.2(prot_scaled,
+          Colv = FALSE,               # no clustering on columns
           trace = "none",
           col = my_palette(25),
-          main = "A good title",    # add title
-          margins = c(6, 4),        # more space from border
-          keysize = 2,              # make key and histogram bigger
-          cexRow = 0.40,            # amend row font
-          cexCol = 0.80)            # amend column font
+          main = "Protein abundance", # add title
+          margins = c(6, 3),          # more space from border
+          keysize = 2,                # make key and histogram bigger
+          cexRow = 0.4,               # amend row font
+          cexCol = 0.8)               # amend column font
 ```
 
-If you want to remove a dendrogram but keep the clustering:
+To suppress the warning, you can also specify which dendrogram you want to show:
 
 ```{r}
-heatmap.2(data_scaled,
+#| label: heatmap2-dendro
+heatmap.2(prot_scaled,
+          Colv = FALSE,
           dendrogram = "row",     # only show the row dendrogram
           trace = "none",
           col = my_palette(25),
-          main = "A good title",
-          margins = c(6, 4),
+          main = "Protein abundance",
+          margins = c(6, 3),
           keysize = 2,
-          cexRow = 0.40,
-          cexCol = 0.80)
+          cexRow = 0.4,
+          cexCol = 0.8)
 ```
 
 Clean up the environment with:
 
 ```{r}
+#| label: heatmap2-clean
 rm(list = ls())
 ```
 
@@ -307,12 +337,15 @@ If you don't have it already, install pheatmap with `install.packages("pheatmap"
 Load the required package with:
 
 ```{r}
+#| label: ph-load
 library(pheatmap)
 ```
 
 How does `pheatmap()` (which stands for "pretty heatmap") differ from other functions?
 
-```{r eval=FALSE}
+```{r}
+#| label: ph-help
+#| eval: false
 ?pheatmap
 ```
 
@@ -321,7 +354,8 @@ How does `pheatmap()` (which stands for "pretty heatmap") differ from other func
 Create a data matrix from pseudo-random numbers:
 
 ```{r}
-d <- matrix(rnorm(25), 5, 5)
+#| label: ph-random-data
+d <- matrix(rnorm(25), nrow = 5)
 colnames(d) <- paste0("Treatment", 1:5)
 rownames(d) <- paste0("Gene", 1:5)
 ```
@@ -329,17 +363,26 @@ rownames(d) <- paste0("Gene", 1:5)
 Try it out:
 
 ```{r}
+#| label: ph
+pheatmap(d)
+```
+
+By default, pheatmap adapts to the available space. You can however fix the size of the cells, for example to squares:
+
+```{r}
+#| label: ph-custom
 pheatmap(d, 
          main = "Pretty heatmap",
-         cellwidth =  50,
+         cellwidth =  30,
          cellheight = 30,
-         fontsize = 12,
+         fontsize = 10,
          display_numbers = TRUE)
 ```
 
 > By default, the `scale` argument is set to `"none"`. If you do scale the data, the clustering will take it into account (i.e. the clustering happens *after* the scaling).
 
 ```{r}
+#| label: ph-scale
 pheatmap(d, 
          main = "Pretty heatmap",
          cellwidth =  50,
@@ -351,7 +394,9 @@ pheatmap(d,
 
 You can save your plot with an extra argument:
 
-```{r eval=FALSE}
+```{r}
+#| label: ph-save
+#| eval: false
 pheatmap(d, 
          main = "Pretty heatmap",
          cellwidth =  50,
@@ -363,6 +408,7 @@ pheatmap(d,
 Clean up your environment with:
 
 ```{r}
+#| label: ph-clean
 rm(list = ls())
 ```
 
@@ -376,48 +422,54 @@ The first three methods differ in their default settings and in the order of the
 
 ## Method 4: a dataframe in ggplot2
 
-If you want to stick to the ggplot2 package for all your data visualisation, there is a way to create a simple heatmap (without clustering). So far, we have seen methods that make use of data matrices; however, ggplot2 deals with dataframes.
+If you want to stick to the ggplot2 package for all your data visualisation, there is a way to create a simple heatmap (without clustering). So far, we have seen methods that make use of data matrices; however, ggplot2 deals with dataframes that contain "tidy data".
 
 If you don't have ggplot2 installed on your system, you can do that with the command `install.packages("ggplot2")`.
 
 Load the necessary library:
 
 ```{r}
+#| label: gg-load
 library(ggplot2)
 ```
 
-We are using a built-in dataset about oesophageal cancer occurence: `esoph`.
+We are using a built-in dataset about oesophageal cancer occurrence: `esoph`.
 
-```{r eval=FALSE}
+```{r}
+#| label: esoph-help
+#| eval: false
 ?esoph
 ```
 
 Let's subset the data we want to look at, i.e. only 55-64 year-olds:
 
 ```{r}
+#| label: esoph-subset
 esoph_sub <- subset(esoph, agegp == "55-64")
 ```
 
 Create a basic heatmap from the dataframe:
 
 ```{r}
+#| label: gg
 ggplot(esoph_sub, aes(x = alcgp,
                       y = tobgp,
                       fill = ncases / (ncases + ncontrols))) +
-  geom_tile(colour = "white") + # grid colour
+  geom_tile() +
   scale_fill_gradient(low = "white",
-                      high = "steelblue") +
+                      high = "darkred") +
   theme_minimal() +
   labs(fill = "Cancer freq.",
        x = "Alcohol consumption",
        y = "Tobacco consumption")
 ```
 
-This ggplot2 method does not allow to create dendrograms.
+This ggplot2 method does not allow to create dendrograms. However, other packages are based on ggplot2 and support dendrograms. (Search for "heatmap" in the [ggplot2 extension gallery](https://exts.ggplot2.tidyverse.org/gallery/).)
 
 Clean up your environment with:
 
 ```{r}
+#| label: gg-clean
 rm(list = ls())
 ```
 
@@ -432,6 +484,7 @@ The package we use is the ComplexHeatmap package, which is fully documented [her
 BiocManager is used to install Bioconductor packages.
 
 ```{r}
+#| label: ch-load
 # install.packages("BiocManager")
 # BiocManager::install("ComplexHeatmap")
 library(ComplexHeatmap)
@@ -440,7 +493,9 @@ library(circlize) # for the colorRamp2() function
 
 How is the `Heatmap()` function different to the base `heatmap()`?
 
-```{r eval=FALSE}
+```{r}
+#| label: ch-help
+#| eval: false
 ?Heatmap
 ```
 
@@ -451,6 +506,7 @@ Create a data matrix:
 > See this [StackOverflow article](https://stackoverflow.com/questions/13605271/reasons-for-using-the-set-seed-function) on the importance of setting a seed.
 
 ```{r}
+#| label: ch-random
 set.seed(123)
 mat <- cbind(rbind(matrix(rnorm(16, -1), 4),
                    matrix(rnorm(32, 1), 8)),
@@ -461,6 +517,7 @@ mat <- cbind(rbind(matrix(rnorm(16, -1), 4),
 Permute the rows and columns:
 
 ```{r}
+#| label: ch-permute
 mat <- mat[sample(nrow(mat),
                   nrow(mat)),
            sample(ncol(mat),
@@ -472,12 +529,14 @@ colnames(mat) <- paste0("C", 1:10)
 *Step 3: make a heatmap*
 
 ```{r}
+#| label: ch
 Heatmap(mat)
 ```
 
 Modify the colour and the labels, remove dendrograms (and don't cluster the data):
 
 ```{r}
+#| label: ch-custom
 Heatmap(mat, 
         col = colorRamp2(c(-3, 0, 3),
                          c("brown", "white", "yellow")), 
@@ -491,6 +550,7 @@ The `cluster_` arguments can take external clustering information, which means y
 Now, let's see how this function deals with missing values:
 
 ```{r}
+#| label: ch-missing
 mat_with_na <- mat
 mat_with_na[sample(c(TRUE, FALSE),
                    nrow(mat)*ncol(mat),
@@ -508,6 +568,7 @@ Heatmap(mat_with_na,
 We can also reorganise dendrograms and labels:
 
 ```{r}
+#| label: ch-dendro
 Heatmap(mat, 
         name = "abundance", 
         row_names_side = "left", 
@@ -519,6 +580,7 @@ Heatmap(mat,
 To separate clusters, we can use the `km` argument, which allows k-means clustering on rows.
 
 ```{r}
+#| label: ch-km
 Heatmap(mat, 
         name = "abundance", 
         row_names_side = "left", 
@@ -531,6 +593,7 @@ Heatmap(mat,
 We can add options, save the base plot as an object and then slightly modify if with the `draw()` function:
 
 ```{r}
+#| label: ch-draw
 h1 <- Heatmap(mat, 
         name = "abundance", 
         col = topo.colors(50),
@@ -550,6 +613,7 @@ draw(h1, heatmap_legend_side = "left")
 Clean my environment with:
 
 ```{r}
+#| label: ch-clean
 rm(list = ls())
 ```
 
@@ -559,12 +623,13 @@ When closing RStudio, you should be prompted to save your workspace. If your scr
 
 ## Further resources
 
--   For heatmaps:
-    -   a more in-depth example with pheatmap: <http://slowkow.com/notes/pheatmap-tutorial/>
-    -   Leanne Wicken's dataset with heatmap.2 and an interactive heatmap with d3heatmap: <https://rpubs.com/ab604/98032>
-    -   a heatmap gallery: <https://www.r-graph-gallery.com/heatmap>
+-   More on R heatmaps:
+    - a more in-depth [example with pheatmap](https://slowkow.com/notes/pheatmap-tutorial/)
+    - [Leanne Wicken's dataset with heatmap.2 and an interactive heatmap with d3heatmap](https://rpubs.com/ab604/98032)
+    - the [R Graph Gallery of heatmaps](https://www.r-graph-gallery.com/heatmap)
 -   More heatmap packages:
-    -   Full reference on **ComplexHeatmap**: <https://jokergoo.github.io/ComplexHeatmap-reference/book/>
-    -   **tidyHeatmap**, built on ComplexHeatmap but for tidy data: <https://github.com/stemangiola/tidyHeatmap#tidyheatmap>
-    -   **iheatmapr**, for richer interactive heatmaps: <https://docs.ropensci.org/iheatmapr/>
+    - [Full reference on **ComplexHeatmap**](https://jokergoo.github.io/ComplexHeatmap-reference/book/)
+    - [**tidyHeatmap**](https://github.com/stemangiola/tidyHeatmap#tidyheatmap), built on ComplexHeatmap but for tidy data
+    - [**iheatmapr**](https://docs.ropensci.org/iheatmapr/), for richer interactive heatmaps
+    - Search for "heatmap" in the [ggplot2 extension gallery](https://exts.ggplot2.tidyverse.org/gallery/)
 -   Our [compilation of R resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md)

@@ -1,0 +1,181 @@
+/*-- scss:defaults --*/
+
+$primary: #48206c; // navbar colour
+
+
+/*-- scss:rules --*/
+
+// light mode colors
+:root {
+    --body-bg: #faf9f8; // background colour
+    --text-color: #222222; // text colour
+    --grey-text: #5E5E5E;
+    --link-color: #48206c; // link colour
+    --code-bg: #e7eaec; // code background colour
+    --callout-header: #be94ff;
+    --sidebar-border: 1px solid rgba(0,0,0,.05);; // sidebar border colour and weight
+    --warning-bg: #fdf7eb;
+    --code-text: #003B4F;
+    --code-ot: #003B4F;
+    --code-fu: #4758AB;
+    --code-st: #20794D;
+    --code-sc: #5E5E5E;
+    --code-dv: #AD0000;
+    --code-co: #5E5E5E;
+    --code-callout: #5E5E5E;
+    --code-callout-bg: #f3f3f4;
+
+}
+
+//dark mode colors
+@media (prefers-color-scheme: dark) {
+    :root {
+        --body-bg: #181818; // background colour
+        --text-color: #DDD; // text colour
+        --grey-text: #5E5E5E;
+        --sidebar-text-color: #adadad !important;  // sidebar link colour
+        --sidebar-border: 0px solid #373737; // sidebar border colour and weight
+        --link-color: #be94ff; // link colour
+        --bs-link-hover-color: #be94ff; // link hover colour
+        --warning-bg: #432d09;
+        --code-bg: #373737; // code background colour
+        --code-text: #faf9f8;
+        --code-ot: #00e0e0;
+        --code-cf: #7DC1FF;
+        --code-fu: #ffa07a;
+        --code-st: #abe338;
+        --code-sc: #abe338;
+        --code-dv: #d4d0ab;
+        --code-co: #f8f8f2;
+        --callout-header: #48206c;
+        --code-callout: #40D64A;
+        --code-callout-bg: #262626;
+    }
+}
+
+code {
+  border-radius: .25rem;
+  color: var(--code-callout);
+}
+
+p code:not(.sourceCode), li code:not(.sourceCode), td code:not(.sourceCode) {
+	background-color: var(--code-callout-bg);
+}
+
+div.callout-note.callout {
+	border-left-color: var(--bs-link-hover-color);
+}
+
+div.callout-note.callout-style-default > .callout-header {
+	background-color: var(--callout-header);
+}
+
+.callout.callout-style-default {
+	border-left: 5px solid;
+	border-right: var(--sidebar-border);
+	border-top: var(--sidebar-border);
+	border-bottom: var(--sidebar-border);
+}
+
+div.callout-warning.callout-style-default > .callout-header {
+	background-color: var(--warning-bg);
+}
+
+div.callout-tip.callout {
+	margin-top: -1px;
+	color: var(--grey-text);
+}
+
+
+div.sourceCode {
+	background-color: var(--code-bg);
+	border: 1px solid var(--code-bg);
+	border-radius: .25rem;
+}
+
+pre {
+	color: var(--code-text);
+}
+
+pre > code.sourceCode > span {
+	color: var(--code-text);
+}
+
+code span.ot {
+  color: var(--code-ot);
+  font-style: inherit;
+}
+
+code span.cf {
+  color: var(--code-cf);
+  font-style: inherit;
+}
+
+code span.fu {
+  color: var(--code-fu);
+}
+
+code span.st {
+	color: var(--code-st);
+}
+
+code span.sc {
+	color: var(--code-sc);
+}
+
+code span.dv {
+	color: var(--code-dv);
+}
+
+code span.fl {
+	color: var(--code-dv);
+	font-style: inherit;
+}
+
+code span.at {
+	color: var(--code-ot);
+}
+
+code span.co {
+	color: var(--code-co);
+	font-style: italic;
+}
+
+
+body {
+    background: var(--body-bg);
+    color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-color);
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a.active, .sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
+  color: var(--link-color) !important;
+  border-left: 1px solid var(--link-color) !important;
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a:hover, .sidebar nav[role="doc-toc"] ul > li > ul > li > a:hover{
+  color: var(--link-color) !important;
+  border-left: 1px solid var(--link-color) !important;
+}
+
+nav.sidebar.sidebar-navigation:not(.rollup) {
+    background: var(--body-bg);
+    color: var(--sidebar-text-color);
+    border-right: var(--sidebar-border) !important;
+}
+
+div.sidebar-item-container{
+    background: var(--body-bg);
+    color: var(--sidebar-text-color);
+}
+
+div.sidebar-item-container .active{
+    color: var(--link-color);
+}

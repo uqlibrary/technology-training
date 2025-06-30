@@ -1,10 +1,5 @@
 ---
 title: "R dplyr: preparing data for analysis"
-format:
-  gfm:
-    toc: true
-    toc-depth: 2
-    df-print: tibble
 editor: source
 date: today
 author: UQ Library
@@ -56,7 +51,9 @@ For any dataset or function doubts that you might have, don't forget the three w
 
 If you don't have it already, you can install dplyr with the command: `install.packages("dplyr")`
 
-> At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)", a meta-package useful for data science: `install.packages("tidyverse")`
+::: {.callout-note}
+At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)", a meta-package useful for data science: `install.packages("tidyverse")`
+:::
 
 ### New project
 
@@ -71,23 +68,24 @@ If you don't have it already, you can install dplyr with the command: `install.p
 
 We will use a script to write code more comfortably.
 
--   Menu: Top left corner, click the green "plus" symbol, or press the shortcut (for Windows/Linux) <kbd>Ctrl</kbd>+Shift</kbd>+N</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an "Untitled1" file.
+-   Menu: Top left corner, click the green "plus" symbol, or press the shortcut (for Windows/Linux) <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an "Untitled1" file.
 -   Go to "File \> Save" or press (for Windows/Linux) <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save your file and the name of the new file.
 -   Call your file "process.R"
 
 ### Introducing our data
-
-#### Challenge 1 – import data
 
 Let's import and explore our data.
 
 1.  read the data into an object called "gapminder", using `read.csv()`:
 
 ```{r}
+#| label: import-data
 gapminder <- read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
 
-> Remember you can use <kbd>Ctrl</kbd>+<kbd>shift</kbd> to execute a command from the script.
+::: {.callout-note}
+ Remember you can use <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute a command from the script.
+:::
 
 2.  Explore the gapminder dataset using `dim()` and `str()`
 
@@ -96,6 +94,7 @@ How can we get the dataframe's variable names? There are two ways: `names(gapmin
 To return one specific column in the dataframe, you can use the dollar syntax: `gapminder$year`. For example, try these:
 
 ```{r}
+#| label: explore-columns
 class(gapminder$country) # what kind of data?
 range(gapminder$year) # what is the time range?
 ```
@@ -106,31 +105,38 @@ The R package `dplyr` was developed by Hadley Wickham for data manipulation.
 
 The book [*R for Data Science*](https://r4ds.hadley.nz/) introduces the package as follows:
 
-> You are going to learn the five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:
->
-> -   Pick variables by their names with `select()`
-> -   Pick observations by their values with `filter()`
-> -   Reorder the rows with `arrange()`
-> -   Create new variables with functions of existing variables with `mutate()`
-> -   Collapse many values down to a single summary with `summarise()`
->
-> These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the main **verbs for a language of data manipulation**.
+::: {.callout-note}
+## dplyr essentials
+You are going to learn the five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:
+
+-   Pick variables by their names with `select()`
+-   Pick observations by their values with `filter()`
+-   Reorder the rows with `arrange()`
+-   Create new variables with functions of existing variables with `mutate()`
+-   Collapse many values down to a single summary with `summarise()`
+
+These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the main **verbs for a language of data manipulation**.
+:::
 
 To use the verbs to their full extent, we will need **pipes** and **logical operators**, which we will introduce as we go.
 
 Let's load the `dplyr` package to access its functions:
 
 ```{r}
+#| label: load-package
 library(dplyr)
 ```
 
-> You only need to install a package once (with `install.packages()`), but you need to reload it every time you start a new R session (with `library()`).
+::: {.callout-note}
+You only need to install a package once (with `install.packages()`), but you need to reload it every time you start a new R session (with `library()`).
+:::
 
 ### 1. Pick variables with `select()`
 
 `select()` allows us to pick variables (i.e. columns) from the dataset. For example, to only keep the data about year, country and GDP per capita:
 
 ```{r}
+#| label: select-names
 gap_small <- select(gapminder, year, country, gdpPercap)
 ```
 
@@ -139,20 +145,39 @@ The first argument refers to the dataframe that is being transformed, and the fo
 You can also rename columns in the same command:
 
 ```{r}
+#| label: select-rename
 gap_small <- select(gapminder, year, country, gdpPerPerson = gdpPercap)
 ```
 
 If you have many variables but only want to remove a small number, it might be better to deselect instead of selecting. You can do that by using the `-` character in front of a variable name:
 
 ```{r}
-names(select(gapminder, -continent))
+#| label: deselect
+gap_remove <- select(gapminder, -continent)
 ```
 
-There are also a lot of helper functions to select columns according to a logic. For example, to only keep the columns that have "a" in their names:
+You can also select a range of columns, by specifying the first and last column names with the `:` character in between:
 
 ```{r}
-names(select(gapminder, contains("a")))
+#| label: select-range
+gap_range <- select(gapminder, country:continent)
 ```
+
+And if you know the position of the columns but not the names, you can also use indices:
+
+```{r}
+#| label: select-indices
+gap_indices <- select(gapminder, 1:3, 5)
+```
+
+There are many helper functions to select columns according to a logic. For example, to only keep the columns that have "a" in their names:
+
+```{r}
+#| label: select-contains
+gap_a <- select(gapminder, contains("a"))
+```
+
+To see more helper operators and functions, look at the `select()` help page: `?select`
 
 ### 2. Pick observations with `filter()`
 
@@ -167,11 +192,14 @@ The `filter()` function allows use to pick observations depending on one or seve
 -   `>=`: greater or equal
 -   `<=`: smaller or equal
 
-> Remember: `=` is used to pass on a value to an argument, whereas `==` is used to check for equality. Using `=` instead of `==` for a logical statment is one of the most common errors and R will give you a reminder in the console when this happens.
+::: {.callout-warning}
+Remember: `=` is used to pass on a value to an argument, whereas `==` is used to check for equality. Using `=` instead of `==` for a logical statement is one of the most common errors and R will give you a reminder in the console when this happens.
+:::
 
 You can compare any kind of data For example:
 
 ```{r}
+#| label: logicals
 1 == 1
 1 == 2
 1 != 2
@@ -181,9 +209,18 @@ You can compare any kind of data For example:
 
 When R executes these commands, it answers `TRUE` of `FALSE`, as if asked a yes/no question. These `TRUE` and `FALSE` values are called **logical values**.
 
+To see if a value is part of a set of values, you can use the `%in%` operator:
+
+```{r}
+#| label: logical-in
+"apple" %in% c("pear", "apple")
+"mango" %in% c("pear", "apple")
+```
+
 Note that we can compare a single value to many. For example, compare one value to three others:
 
 ```{r}
+#| label: logical-vector
 1 == c(1, 2, 3, 1, 3)
 ```
 
@@ -192,6 +229,7 @@ This kind of operation results in a logical vector with a logical value for each
 For example, to filter the observations for Australia, we can use the following condition:
 
 ```{r}
+#| label: filter-australia
 australia <- filter(gapminder, country == "Australia")
 australia
 ```
@@ -201,6 +239,7 @@ The function compares the value "Australia" to all the values in the `country` v
 Now, let's filter the rows that have a life expectancy `lifeExp` greater than 81 years:
 
 ```{r}
+#| label: filter-life81
 life81 <- filter(gapminder, lifeExp > 81)
 dim(life81)
 ```
@@ -210,18 +249,21 @@ dim(life81)
 `arrange()` will reorder our rows according to a variable, by default in ascending order:
 
 ```{r}
+#| label: arrange
 arrange(life81, lifeExp)
 ```
 
 If we want to have a look at the entries with highest life expectancy first, we can use the `desc()` function (for "descending"):
 
 ```{r}
+#| label: arrange-desc
 arrange(life81, desc(lifeExp))
 ```
 
 We could also use the `-` shortcut, which only works for numerical data:
 
 ```{r eval=FALSE}
+#| label: arrange-minus
 arrange(life81, -lifeExp)
 ```
 
@@ -232,6 +274,7 @@ What if we wanted to get that result in one single command, without an intermedi
 We could nest the commands into each other, the first step as the first argument of the second step:
 
 ```{r eval=FALSE}
+#| label: nesting
 arrange(filter(gapminder, lifeExp > 81), -lifeExp)
 ```
 
@@ -242,18 +285,21 @@ We can make our code more readable and avoid creating useless intermediate objec
 For example, this command:
 
 ```{r}
+#| label: round
 round(1.23, digits = 1)
 ```
 
 ... is equivalent to:
 
 ```{r}
+#| label: round-pipe
 1.23 %>% round(digits = 1)
 ```
 
 Here's another example with the `filter()` verb:
 
 ```{r}
+#| label: no-france-pipe
 gapminder %>%
   filter(country != "France")
 ```
@@ -261,12 +307,14 @@ gapminder %>%
 ... becomes:
 
 ```{r}
+#| label: no-france-no-pipe
 filter(gapminder, country != "France")
 ```
 
 To do what we did previously in one single command, using the pipe:
 
 ```{r}
+#| label: process-with-pipe
 gapminder %>% 
   filter(lifeExp > 81) %>% 
   arrange(-lifeExp)
@@ -277,17 +325,23 @@ The pipe operator can be read as "then" and makes the code a lot **more readable
 
 From now on, we'll use the pipe syntax as a default.
 
-> Note that this material uses the `magrittr` pipe. The `magrittr` package is the one that introduced the pipe operator to the R world, and `dplyr` automatically imports this useful operator when it is loaded. However, the pipe being such a widespread and popular concept in programming and data science, it ended up making it into Base R (the "native" pipe) in 2021 with the release of R 4.1, using a different operator: `|>`. You can switch your pipe shortcut to the native pipe in `Tools > Global options > Code > Use native pipe operator`.
+::: {.callout-note}
+This material uses the `magrittr` pipe. The `magrittr` package is the one that introduced the pipe operator to the R world, and `dplyr` automatically imports this useful operator when it is loaded. However, the pipe being such a widespread and popular concept in programming and data science, it ended up making it into Base R (the "native" pipe) in 2021 with the release of R 4.1, using a different operator: `|>`. You can switch your pipe shortcut to the native pipe in `Tools > Global options > Code > Use native pipe operator`.
+:::
 
-#### Challenge 2 – a tiny dataset
+#### Challenge 1 – a tiny dataset
 
-Only keep the 2002 life expectancy observation for Eritrea and remove the superfluous variables.
+Use some of the functions we learned about to keep the 2002 life expectancy observation for Eritrea and remove the superfluous variables.
 
+::: {.callout-tip collapse="true"}
+## Solution
 ```{r}
+#| label: eritrea-challenge
 eritrea_2002 <- gapminder %>%
     select(year, country, lifeExp) %>%
     filter(country == "Eritrea", year == 2002)
 ```
+:::
 
 ### 4. Create new variables with `mutate()`
 
@@ -296,13 +350,14 @@ Have a look at what the verb `mutate()` can do with `?mutate`.
 Let's see what the two following variables can be used for:
 
 ```{r}
+#| label: gdp-pop
 gapminder %>%
     select(gdpPercap, pop)
 ```
 
 How do you think we could combine them to add something new to our dataset?
 
-#### Challenge 3 – mutate the GDP
+#### Challenge 2 – mutate the GDP
 
 Use `mutate()` to create a `gdp` variable.
 
@@ -310,16 +365,19 @@ Name your new dataset `gap_gdp`. When finished, `dim(gap_gdp)` should result in 
 
 Hint: use the `*` operator within `mutate()`.
 
+::: {.callout-tip collapse="true"}
+## Solution
 ```{r}
+#| label: mutate-gdp
 gap_gdp <- gapminder %>%
     mutate(gdp = gdpPercap * pop)
-dim(gap_gdp)
-head(gap_gdp)
 ```
+:::
 
 You can reuse a variable computed by 'mutate()' straight away. For example, we also want a more readable version of our new variable, in billion dollars:
 
 ```{r}
+#| label: mutate-gdp-bil
 gap_gdp <- gapminder %>%
     mutate(gdp = gdpPercap * pop,
            gdpBil = gdp / 1e9)
@@ -330,6 +388,7 @@ gap_gdp <- gapminder %>%
 `summarise()` collapses many values down to a single summary. For example, to find the mean life expectancy for the whole dataset:
 
 ```{r}
+#| label: summarise
 gapminder %>%
   summarise(meanLE = mean(lifeExp))
 ```
@@ -343,6 +402,7 @@ However, a single-value summary is not particularly interesting. `summarise()` b
 See the effect of the grouping step:
 
 ```{r}
+#| label: group-by
 gapminder %>%
     group_by(continent)
 ```
@@ -352,6 +412,7 @@ The data in the cells is the same, the size of the object is the same. However, 
 Using the `group_by()` function before summarising makes things more interesting. Let's re-run the previous command, with the intermediate grouping step:
 
 ```{r}
+#| label: group-by-summarise
 gapminder %>%
   group_by(continent) %>% 
   summarise(meanLE = mean(lifeExp))
@@ -362,23 +423,28 @@ We now have the summary computed for each continent.
 Similarly, to find out the total population per continent in 2007, we can do the following:
 
 ```{r}
+#| label: pop-2007
 gapminder %>% 
     filter(year == 2007) %>%
     group_by(continent) %>%
     summarise(pop = sum(pop))
 ```
 
-#### Challenge 4 – max life expectancy per country
+#### Challenge 3 – max life expectancy per country
 
 Group by country, and find out the maximum life expectancy ever recorded for each one.
 
 Hint: `?max`
 
+::: {.callout-tip collapse="true"}
+## Solution
 ```{r}
+#| label: challenge-max-lif-exp
 gapminder %>% 
     group_by(country) %>%
     summarise(maxLE = max(lifeExp))
 ```
+:::
 
 ## More examples
 
@@ -387,6 +453,7 @@ Another example of a summary, with a the starwars data set that dplyr provides:
 Grouping by species, summarise the number of characters per species and find the mean mass. Only for species groups with more than 1 character.
 
 ```{r}
+#| label: starwars
 starwars %>%
   group_by(species) %>%
   summarise(
@@ -401,6 +468,7 @@ An example of data manipulation and data visualisation in the same command with 
 Summarise the gapminder population data into total population per continent per year and plot coloured by continent.
 
 ```{r}
+#| label: pop-increase
 # increase in population per continent
 library(ggplot2)
 gapminder %>% 
@@ -417,6 +485,7 @@ And another example, using using our gapminder dataset:
 Let's say we want to calulate the variation (range) in life expectancy per country and plot the top and bottom 10 countries?
 
 ```{r}
+#| label: life-exp-var
 gapminder %>% 
   group_by(country) %>% 
   summarise(maxLifeExp = max(lifeExp),

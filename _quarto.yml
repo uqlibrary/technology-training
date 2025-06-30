@@ -1,0 +1,138 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "*.ipynb"
+    - "!Course_contributions/"
+    - "!intro_to_programming"
+    - "!Toolbox"
+    - "!R/ANOVA-lm"
+    - "!R/timeseries"
+    - "!R/UQ R User Group"
+    - "!Python/archive"
+
+website:
+  title: "UQ Library Technology Training"
+  navbar:
+    search: true
+    left:
+      - href: index.qmd
+        text: "Home"
+      - href: Orientation/orientation.qmd
+        text: "O-Week"
+      - text: "User Groups"
+        menu:
+        - href: https://uqrug.netlify.app/
+          text: "UQ R User Group"
+        - href: https://uqpug.github.io/
+          text: "UQ Python User Group"
+      - text: "Training Intensives"
+        menu:
+        - href: https://camwest5.github.io/r-training-intensive/
+          text: "R with RStudio"
+        - href: https://camwest5.github.io/python-training-intensive/
+          text: "Python for Data Analysis"
+      
+    tools:
+      - icon: github
+        href: https://github.com/uqlibrary/technology-training
+  
+  sidebar:
+    collapse-level: 1
+    contents:
+      - text: "![](/images/acrobat.svg){width=20} Acrobat"
+        href: Acrobat/acrobat.qmd
+      - text: "![](/images/audacity.svg){width=20} Audacity"
+        href: Audacity/audacity.qmd
+      - text: "![](/images/excel.svg){width=20} Excel"
+        href: Excel/excel.qmd
+      - text: "![](/images/ChatGPT_logo.svg){width=20} GenAI"
+        href: GenAI/genai.qmd
+      - section: "![](/images/git.svg){width=20} Git"
+        contents:
+          - text: "Git from the command line"
+            href: Git/git.qmd
+          - text: "GitHub and portfolios"
+            href: Git/GitHub/GitHub_intro.qmd
+      - text: "![](/images/overleaf.svg){width=20} LaTeX with Overleaf"
+        href: LaTeX/overleaf_latex.qmd
+      - text: "![](/images/loop.svg){width=20} Loop"
+        href: Loop/loop.qmd
+      - text: "![](/images/nvivo.png){width=20} NVivo"
+        href: NVivo/nvivo.qmd
+      - text: "![](/images/openrefine.svg){width=20} OpenRefine"
+        href: OpenRefine/openrefine.qmd
+      - text: "![](/images/openstreetmap.svg){width=20} OpenStreetMap"
+        href: OSM/OpenStreetMap.qmd
+      - text: "![](/images/photoshop.svg){width=20} Photoshop"
+        href: Photoshop/photoshop.qmd
+      - text: "![](/images/powerpoint.svg){width=20} PowerPoint"
+        href: PowerPoint/powerpoint.qmd
+      - text: "![](/images/premiere_pro.svg){width=20} Premiere Pro"
+        href: Premiere_Pro/premiere_pro.qmd
+      - section: "![](/images/python.svg){width=20} Python"
+        contents:
+          - text: "1. Fundamentals"
+            href: Python/1-fundamentals/fundamentals.qmd
+          - text: "2. Data processing"
+            href: Python/2-data_processing/data_processing.qmd
+          - text: "3. Visualisation"
+            href: Python/3-intro_visualisation/visualisation.ipynb
+          - text: "4. Statistics and more visualisations"
+            href: Python/4-stats_and_further_vis/stats_and_vis.ipynb
+      - section: "![](/images/QGIS.svg){width=20} QGIS"
+        contents:
+          - text: "1. Introduction"
+            href: QGIS/intro/QGIS_intro.qmd
+          - text: "2. Raster analysis"
+            href: QGIS/raster/QGIS_raster.qmd
+          - text: "3. Vector analysis"
+            href: QGIS/vector/QGIS_vector.qmd
+          - text: "4. Mobile mapping"
+            href: QGIS/mobile/QGIS_mobile.qmd
+      - text: "![](/images/XM.svg){width=20} Qualtrics"
+        href: Qualtrics/qualtrics.qmd
+      - section: "![](/images/R.svg){width=20} R with RStudio"
+        contents:
+          - text: "0. Installing R and RStudio"
+            href: R/installation.qmd
+          - text: "1. Getting started"
+            href: R/rstudio_intro/rstudio_intro.qmd
+          - text: "2. dplyr: data transformation"
+            href: R/dplyr/dplyr.qmd
+          - text: "3. ggplot2: introduction to visualisation"
+            href: R/ggplot2_intro/ggplot2_intro.qmd
+          - text: "4. ggplot2: intermediate visualisation"
+            href: R/ggplot2_intermediate/ggplot2_intermediate.qmd
+          - text: "5. tidyr and purrr: tidying and loops"
+            href: R/tidyverse_next_steps/tidyverse_next_steps.qmd
+          - text: "6. Quarto: reproducible publishing"
+            href: R/reports/reports.qmd
+          - text: "7. Heatmaps"
+            href: R/heatmaps/heatmaps_intermediate.qmd
+          - text: "8. Shiny web apps"
+            href: R/shiny/shiny.qmd
+          - text: "9. Functions and packaging"
+            href: R/packaging/packaging.qmd
+      - text: "![](/images/uMap.svg){width=20} uMap"
+        href: uMap/umap_intro.qmd
+      - text: "![](/images/bash.svg){width=20} Unix Shell"
+        href: Shell/shell_intro.qmd
+      - text: "![](/images/voyant.png){width=20} Voyant Tools"
+        href: Voyant/voyant.qmd
+      - text: "![](/images/word.svg){width=20} Word"
+        href: Word/word.qmd
+
+format:
+  html:
+    theme: 
+      - pulse
+      - styles.scss
+    toc: true
+    df-print: paged
+    grid:
+      body-width: 1200px
+      sidebar-width: 225px
+execute:
+  # only re-render if there is a code change
+  freeze: auto
