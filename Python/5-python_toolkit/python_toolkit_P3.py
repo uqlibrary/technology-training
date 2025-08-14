@@ -20,7 +20,10 @@ if len(files_in_texts) != 5:
 files_in_texts = os.listdir("texts")
 
 for text_path in files_in_texts:
-    words = reader.read_book_words(f"texts/{text_path}") 
+    title = text_path[:-4]
+
+    contents = reader.read_book(f"texts/{text_path}")
+    words = contents.split()
 
     unique_words = set(words)
 
@@ -29,8 +32,18 @@ for text_path in files_in_texts:
     ratio = unique_word_count / word_count
 
     print()
-    print(f"There are {word_count} words in {text_path[:-4]}.")
-    print(f"There are {unique_word_count} different words in {text_path[:-4]}.")
+    print(f"There are {word_count} words in {title}.")
+    print(f"There are {unique_word_count} different words in {title}.")
     print(f"The unique word ratio is {unique_word_count / word_count}")
 
-    files_in_texts = os.listdir("texts")
+    # Remove front/end matter and save clean files
+    start_message = "*** START OF THE PROJECT GUTENBERG EBOOK"
+    end_message = "*** END OF THE PROJECT GUTENBERG EBOOK"
+
+    start = contents.find(start_message)
+    end = contents.find(end_message)
+
+    clean_text = contents[start:end]
+
+    with open(f"{title}_clean.txt", "w", encoding = "utf-8") as file:
+        file.write(clean_text)

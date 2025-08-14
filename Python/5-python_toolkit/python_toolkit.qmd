@@ -107,13 +107,15 @@ In the first part of this workshop, we'll learn to use Python's building blocks 
 - Conditionals `if` and `else`
 - Error handling with `raise`
 
+### Using `os` to check the working directory
+
 We'll begin by diving into an unusual starting point: the `os` module. Python comes with a built in module called `os` (short for operating system) which allows you to interact with your computer. Let's start by importing it
 
 ```{python}
 import os
 ```
 
-:::{.callout-tip collapse="true"}
+:::{#os .callout-tip collapse="true"}
 # The `os` module
 
 The `os` module is a built-in Python module that enables interfacing with the operating system. Some popular uses, which aren't looked at in this workshop, are
@@ -184,7 +186,7 @@ os.chdir(r"path/to/script.py")
 Make sure you include the `r` before the path. This tells Python it's a *raw* string and won't misinterpret the backslashes.
 :::
 
-:::{.callout-tip collapse="true"}
+:::{#fstrings .callout-tip collapse="true"}
 
 # f-strings
 
@@ -194,6 +196,8 @@ You can include executed code within strings by prepending them with the letter 
 f"This is an f-string, showing that 1 + 1 = {1 + 1}"
 ```
 :::
+
+### Managing folders and paths with conditionals
 
 Now that we've printed a welcome message, let's use another function, to ensure that we've got the folder "texts" in our working directory. The function lives in a *submodule* of `os`, called `os.paths`, and the function is `exists()`.
 
@@ -278,7 +282,7 @@ else:
     print("The folder /texts/ does not exist.")
 ```
 
-:::{.callout-tip collapse="true"}
+:::{#conditionals .callout-tip collapse="true"}
 # Conditionals: `if`, `elif` and `else`
 
 The keywords `if`, `elif`, and `else` together constitute the conditionals that Python supports. These allow you to only run code based on certain conditions.
@@ -355,7 +359,7 @@ else:
     raise FileNotFoundError("Cannot find the folder /texts/.")
 ```
 
-:::{.callout-tip collapse="true"}
+:::{#raise .callout-tip collapse="true"}
 # Raising exceptions with `raise`
 
 The `raise` keyword allows you to raise exceptions (errors) in Python. These stop the execution and print an error message.
@@ -501,6 +505,7 @@ if len(files_in_texts) != 5:
 
 :::
 
+### Reading and manipulating text files
 
 We'll start by reading the first file, *Macbeth.txt* into Python. Make sure to include the snippets in part 2 *below* the code from part 1.
 
@@ -520,7 +525,7 @@ with open("texts/Macbeth.txt", encoding = "utf-8") as file:
     contents = file.read()
 ```
 
-:::{.callout-tip collapse="true"}
+:::{#file-io .callout-tip collapse="true"}
 # File input/output
 
 Reading and writing files in Python takes a few steps. Essentially, Python forms a connection to a file with the `open()` function which automatically closes if we do this inside a `with ... as ...` block. 
@@ -554,7 +559,7 @@ First, we need to apply a *string method* to separate the words in the text. Met
 with open("texts/Macbeth.txt", encoding = "utf-8") as file:
     contents = file.read()
 
-words = macbeth.split()
+words = contents.split()
 ```
 
 :::{.callout-tip collapse="true"}
@@ -603,7 +608,7 @@ To work out the unique number of words, we can convert our list to a different v
 
 We can convert a variable to another type by using its type as a function, e.g. `int()`, `str()`, `list()`. Here, we'll need `set()`. Then we can use `len()` again to determine its size.
 
-1. Create a *set* of unique words with `set(macbeth_words)`
+1. Create a *set* of unique words with `set(words)`
 2. Find the count of unique words with `len()`
 3. Print an additional message
 
@@ -707,6 +712,8 @@ print(f"There are {unique_word_count} different words in Macbeth.")
 print(f"The unique word ratio is {unique_word_count / word_count}")
 ```
 
+### Using loops to automate the process
+
 Now that we've analysed *one* of the texts, let's do the same for all five.
 
 The brute force approach is to copy the code five times and adjust it.
@@ -745,10 +752,10 @@ print(f"The unique word ratio is {unique_word_count / word_count}")
 files_in_texts = os.listdir("texts")
 
 for text_path in files_in_texts:
-    print(text)
+    print(text_path)
 ```
 
-:::{.callout-tip}
+:::{#loops .callout-tip collapse="true"}
 # `for` loops
 
 To iterate through an object, running the same code on each element, Python offers the `for` loop.
@@ -810,7 +817,6 @@ First, let's just place the analysis inside the loop. This will run once for eac
 
 ```{python}
 #### Part 2 ####
-
 files_in_texts = os.listdir("texts")
 
 for text_path in files_in_texts:
@@ -830,14 +836,15 @@ for text_path in files_in_texts:
     print(f"The unique word ratio is {unique_word_count / word_count}")
 ```
 
+Notice that the final `files_in_texts = os.listdir("texts")` has been removed because it's superfluous.
+
 Now we can use the `text` variable, which changes on each iteration of the loop, in place of the file path. Specifically, we'll make the change
 
-`"texts/Macbeth.txt"` $\rightarrow$ `f"texts/{text_path}"
+`"texts/Macbeth.txt"` $\rightarrow$ `f"texts/{text_path}"`
 
 
 ```{python}
 #### Part 2 ####
-
 files_in_texts = os.listdir("texts")
 
 for text_path in files_in_texts:
@@ -868,7 +875,7 @@ for text_path in files_in_texts:
         contents = file.read()
 
     words = contents.split()
-    unique_words = set(macbeth_words)
+    unique_words = set(words)
 
     word_count = len(words)
     unique_word_count = len(unique_words)
@@ -878,36 +885,182 @@ for text_path in files_in_texts:
     print(f"There are {word_count} words in {text_path}.")
     print(f"There are {unique_word_count} different words in {text_path}.")
     print(f"The unique word ratio is {unique_word_count / word_count}")
-
-    files_in_texts = os.listdir("texts")
 ```
 
-Finally, if you want to remove the trailing `.txt` on the messages, you can *slice* the string with square brackets. Specifically, the slice `text_path[:-4]` means slice from the start until the fourth-last character.
+Finally, let's remove the trailing `.txt` on the messages by extracting the text's title from its path. To do this, *slice* the string with square brackets: `title = text_path[:-4]`. In this case, we slice from the start of the path *up to the fourth last character*.
+
+:::{#slicing .callout-tip collapse="true"}
+# Indexing and Slicing
+
+**Indexing**
+
+To extract a substring from a string (or a subset of a list) use square brackets and specify the *position* of the elements you want. For example, to pick out the first letter in the following string,
+
+```{python}
+example_string = "apple"
+```
+
+you specify the position of the first element, which is `0` (in Python, count from 0):
+
+```{python}
+example_string[0] # First element
+```
+
+If you want the second element, use `1`:
+
+```{python}
+example_string[1] # Second element
+```
+
+If you want to count *from the end*, use negatives:
+
+```{python}
+example_string[-1] # Last element
+```
+
+**Slicing**
+
+What if you want multiple elements? You *slice* by specifying the start and end indices between a colon:
+
+```{python}
+example_string[1:3] # Elements 1 and 2
+```
+
+Notice that it *includes* the first index but *excludes* the second.
+
+To start at the beginning, just leave the first index out:
+
+```{python}
+example_string[:3] # Elements 0, 1 and 2
+```
+
+To go to the end, leave the second index out:
+
+```{python}
+example_string[2:] # Elements 2, 3, ..., -1
+```
+
+Finally, you can combine negative indexing with slicing. For example, to go *up to the last element*:
+
+```{python}
+example_string[:-1]
+```
+
+In sum:
+
+| Code | 0 | 1 | 2 | 3 | 4 |
+| ---: | --- | --- | --- | --- | --- |
+| `example_string` | `"a"` | `"p"` | `"p"` | `"l"` | `"e"` | 
+| `example_string[0]` | `"a"` | | | | |
+| `example_string[2]` | | | `"p"` | | |
+| `example_string[-1]` | | | | | `"e"` |
+| `example_string[1:3]` | | `"p"` | `"p"` | | | 
+| `example_string[:3]` | `"a"` | `"p"` | `"p"` | | | 
+| `example_string[2:]` | | | `"p"` | `"l"` | `"e"` |
+| `example_string[:-1]` | `"a"` | `"p"` | `"p"` | `"l"` | |
+:::
 
 ```{python}
 #### Part 2 ####
 files_in_texts = os.listdir("texts")
 
 for text_path in files_in_texts:
+    title = text_path[:-4] # <-- extract the title
+
     with open(f"texts/{text_path}", encoding = "utf-8") as file:
         contents = file.read()
 
     words = contents.split()
-    unique_words = set(macbeth_words)
+    unique_words = set(words)
 
     word_count = len(words)
     unique_word_count = len(unique_words)
     ratio = unique_word_count / word_count
 
     print()
-    print(f"There are {word_count} words in {text_path[:-4]}.")
-    print(f"There are {unique_word_count} different words in {text_path[:-4]}.")
+    print(f"There are {word_count} words in {title}.") # <-- include in message
+    print(f"There are {unique_word_count} different words in {title}.") # <-- include in message
     print(f"The unique word ratio is {unique_word_count / word_count}")
 
-    files_in_texts = os.listdir("texts")
 ```
 
-All together, with the code from Part 1, we can remove the duplicate `files_in_texts = os.listdir("texts")`, so all together: 
+### Activity 2
+
+If you open one of the files, you'll notice that there is front and end matter which isn't from the original texts. Let's remove them and save the cleaned texts. To do so, we'll need to use two skills:
+
+- Slicing
+- Writing to files
+
+#### Part 1: Clean the texts
+To remove the front/end matter, notice that the original texts all begin after the string 
+
+`*** START OF THE PROJECT GUTENBERG EBOOK` 
+
+and end before 
+
+`*** END OF THE PROJECT GUTENBERG EBOOK`. 
+
+To clean the text,
+
+1. Use the function `contents.find(...)` to find the index corresponding to the keys,
+
+```python
+start_index = contents.find(...)
+end_index = contents.find(...)
+```
+
+2. Slice the text between those two indices and save it in a variable.
+
+#### Part 2: Write the strings to files
+Writing strings to a file is similar to reading. We'll start by creating a `with ... as ...` block pointing to the new file path:
+
+```python
+with open(f"{title}_clean.txt", "w", encoding = "utf-8") as file:
+    ...
+```
+
+Then use `file.write(...)` to write the cleaned string to the *new* file.
+
+:::{.callout-note collapse="true"}
+# Solution
+
+The following code is a possible solution to the problem.
+
+```{python}
+#### Part 2 ####
+files_in_texts = os.listdir("texts")
+
+for text_path in files_in_texts:
+    
+    # ...
+    # ...
+    # ...
+
+    # Remove front/end matter and save clean files
+    start_message = "*** START OF THE PROJECT GUTENBERG EBOOK"
+    end_message = "*** END OF THE PROJECT GUTENBERG EBOOK"
+
+    start = contents.find(start_message)
+    end = contents.find(end_message)
+
+    clean_text = contents[start:end]
+
+    with open(f"{title}_clean.txt", "w", encoding = "utf-8") as file:
+        file.write(clean_text)
+```
+:::
+
+## Part 3 (extension): Making it modular
+
+In this final (optional) part we take a look making our code modular. In Python, you can do this in two ways:
+
+- Within the script, with **functions**
+- Outside the script, with **modules**.
+
+:::{.callout-note collapse="false"}
+# Code from Parts 1 and 2
+
+Before beginning, just check that your code is up to date:
 
 ```{python}
 import os
@@ -931,6 +1084,9 @@ if len(files_in_texts) != 5:
 files_in_texts = os.listdir("texts")
 
 for text_path in files_in_texts:
+    
+    title = text_path[:-4]
+
     with open(f"texts/{text_path}", encoding = "utf-8") as file:
         contents = file.read()
 
@@ -942,19 +1098,24 @@ for text_path in files_in_texts:
     ratio = unique_word_count / word_count
 
     print()
-    print(f"There are {word_count} words in {text_path[:-4]}.")
-    print(f"There are {unique_word_count} different words in {text_path[:-4]}.")
+    print(f"There are {word_count} words in {title}.")
+    print(f"There are {unique_word_count} different words in {title}.")
     print(f"The unique word ratio is {unique_word_count / word_count}")
 
-    files_in_texts = os.listdir("texts")
+    # Remove front/end matter and save clean files
+    start_message = "*** START OF THE PROJECT GUTENBERG EBOOK"
+    end_message = "*** END OF THE PROJECT GUTENBERG EBOOK"
+
+    start = contents.find(start_message) + len(start_message)
+    end = contents.find(end_message)
+
+    clean_text = contents[start:end]
+
+    with open(f"{title}_clean.txt", "w", encoding = "utf-8") as file:
+        file.write(clean_text)
 ```
 
-## Part 3 (extension): Making it modular
-
-In this final (optional) part we take a look making our code modular. In Python, you can do this in two ways:
-
-- Within the script, with **functions**
-- Outside the script, with **modules**.
+:::
 
 ### Modularity *within the script*: functions
 
@@ -965,7 +1126,7 @@ We'll start with functions. Functions are like a *script within a script* - a se
 
 Every time we've used a function, like `print(...)`, `len(...)`, etc., we have performed function calls. However, we need to write new definitions to make our *own* functions.
 
-Let's make a new function now, `read_book_words(...)`, which reads a text file and returns a list of its words, like we do in the loop
+Let's make a new function now, `read_book(...)`, which reads a text file and returns the contents as a string, like we do in the loop
 
 We'll start by defining our function. Do this at the top of your script, just after the import statements. Functions definitions have the following syntax:
 
@@ -984,7 +1145,7 @@ Let's set it up, without including any code yet, with a single input variable `p
 ```{python}
 import os
 
-def read_book_words(path):
+def read_book(path):
     return 
 ```
 
@@ -1089,11 +1250,11 @@ Now, let's include the code that we previously used to read the file and split t
 ```{python}
 import os
 
-def read_book_words(path):  
+def read_book(path):  
     with open(path, encoding = "utf-8") as file:
         contents = file.read()
     
-    return contents.split()
+    return contents
 ```
 
 :::{.callout-tip collapse="true"}
@@ -1106,6 +1267,12 @@ Finally, let's replace code within the loop with a simple *function call* to our
 
 ```{python}
 import os
+
+def read_book(path):  
+    with open(path, encoding = "utf-8") as file:
+        contents = file.read()
+    
+    return contents
 
 print("Running the Python Toolkit Program")
 print(f"The current working directory is {os.getcwd()}")
@@ -1123,10 +1290,11 @@ if len(files_in_texts) != 5:
     raise FileNotFoundError("Incorrect number of files in /texts/.")
 
 #### Part 2 ####
-files_in_texts = os.listdir("texts")
-
 for text_path in files_in_texts:
-    words = read_book_words(f"texts/{text_path}")   # <-- Custom function call
+    title = text_path[:-4]
+
+    contents = read_book(f"texts/{text_path}")   # <-- Custom function call
+    words = contents.split()
 
     unique_words = set(words)
 
@@ -1135,11 +1303,21 @@ for text_path in files_in_texts:
     ratio = unique_word_count / word_count
 
     print()
-    print(f"There are {word_count} words in {text_path[:-4]}.")
-    print(f"There are {unique_word_count} different words in {text_path[:-4]}.")
+    print(f"There are {word_count} words in {title}.")
+    print(f"There are {unique_word_count} different words in {title}.")
     print(f"The unique word ratio is {unique_word_count / word_count}")
 
-    files_in_texts = os.listdir("texts")
+    # Remove front/end matter and save clean files
+    start_message = "*** START OF THE PROJECT GUTENBERG EBOOK"
+    end_message = "*** END OF THE PROJECT GUTENBERG EBOOK"
+
+    start = contents.find(start_message) + len(start_message)
+    end = contents.find(end_message)
+
+    clean_text = contents[start:end]
+
+    with open(f"{title}_clean.txt", "w", encoding = "utf-8") as file:
+        file.write(clean_text)
 ```
 
 ### Modularity *beyond the script*: modules
@@ -1159,7 +1337,7 @@ def read_book_words(path):
     with open(path, encoding = "utf-8") as file:
         contents = file.read()
     
-    return contents.split()
+    return contents
 ```
 
 Finally, we should reflect the changes in our original script.
@@ -1194,7 +1372,10 @@ if len(files_in_texts) != 5:
 files_in_texts = os.listdir("texts")
 
 for text_path in files_in_texts:
-    words = reader.read_book_words(f"texts/{text_path}") 
+    title = text_path[:-4]
+
+    contents = reader.read_book(f"texts/{text_path}")
+    words = contents.split()
 
     unique_words = set(words)
 
@@ -1203,9 +1384,105 @@ for text_path in files_in_texts:
     ratio = unique_word_count / word_count
 
     print()
-    print(f"There are {word_count} words in {text_path[:-4]}.")
-    print(f"There are {unique_word_count} different words in {text_path[:-4]}.")
+    print(f"There are {word_count} words in {title}.")
+    print(f"There are {unique_word_count} different words in {title}.")
     print(f"The unique word ratio is {unique_word_count / word_count}")
 
-    files_in_texts = os.listdir("texts")
+    # Remove front/end matter and save clean files
+    start_message = "*** START OF THE PROJECT GUTENBERG EBOOK"
+    end_message = "*** END OF THE PROJECT GUTENBERG EBOOK"
+
+    start = contents.find(start_message)
+    end = contents.find(end_message)
+
+    clean_text = contents[start:end]
+
+    with open(f"{title}_clean.txt", "w", encoding = "utf-8") as file:
+        file.write(clean_text)
 ```
+
+## Conclusion and Summary
+
+This is a big workshop, and we've covered a lot of content! See the summary table below for details on the topics covered. Each is linked to the notes in the workshop.
+
+<!-- Resources ??? -->
+If you have any further questions, don't hesistate to contact us at [training@library.uq.edu.au](mailto:training@library.uq.edu.au).
+
+<!-- 
+To make substantial changes to the table below, or write new ones, use 
+https://www.tablesgenerator.com/text_tables 
+with "Use reStructuredText syntax" ticked
+
+Alternatively, see https://quarto.org/docs/authoring/tables.html#grid-tables
+-->
++-------------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Topic                               | Code                                  | Description                                                                                                                                                     |
++=====================================+=======================================+=================================================================================================================================================================+
+| [The `os` module](#os)              | ```python                             | A built-in module which enables interacting with your operating system.                                                                                         |
+|                                     | import os                             |                                                                                                                                                                 |
+|                                     | os.getwd()                            |                                                                                                                                                                 |
+|                                     | os.chdir()                            |                                                                                                                                                                 |
+|                                     | os.listdir()                          |                                                                                                                                                                 |
+|                                     | ```                                   |                                                                                                                                                                 |
++-------------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [f-strings](#fstrings)              | ```python                             | Formatted strings, which behave like normal strings except that code within curly brackets `{...}` is **executed**.                                             |
+|                                     | f"1+1 = {1+1}"                        |                                                                                                                                                                 |
+|                                     | ```                                   |                                                                                                                                                                 |
++-------------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [Conditionals](#conditionals)       | <i>                                   | Sections of code which only run if a condition is true.                                                                                                         |
+|                                     | ```python                             |                                                                                                                                                                 |
+|                                     | if <condition1>:                      | Always start with `if`.                                                                                                                                         |
+|                                     |     ...                               |                                                                                                                                                                 |
+|                                     | elif <condition2>:                    | Use `elif` to check additional conditions (only if the first fail).                                                                                             |
+|                                     |     ....                              |                                                                                                                                                                 |
+|                                     | else:                                 | Use `else` to catch everything that fails all conditions.                                                                                                       |
+|                                     |     ....                              |                                                                                                                                                                 |
+|                                     | ```                                   |                                                                                                                                                                 |
+|                                     | </i>                                  |                                                                                                                                                                 |
++-------------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [Raising exceptions](#raise)        | ```python                             | A way to manually trigger error messages and stop the program. Replace `...` with an errortype, e.g. `KeyError`, `ValueError`.                                  |
+|                                     | raise ...Error("error_message")       |                                                                                                                                                                 |
+|                                     | ```                                   |                                                                                                                                                                 |
++-------------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [File input/output](#file-io)       | <i>                                   | Read and write to files with the `open()` function and `with ... as ...` blocks.                                                                                |
+|                                     | ```python                             |                                                                                                                                                                 |
+|                                     | with open(...) as <placeholder>:      | Most files use the `utf-8` encoding, which *isn't* set by default.                                                                                              |
+|                                     |     ...                               |                                                                                                                                                                 |
+|                                     | ```                                   | Send the `"w"` parameter to write to a file, and leave it out to read.                                                                                          |
+|                                     | </i>                                  |                                                                                                                                                                 |
+|                                     |                                       |                                                                                                                                                                 |
+|                                     | ```python                             |                                                                                                                                                                 |
+|                                     | open("path", encoding = "utf-8")      |                                                                                                                                                                 |
+|                                     | open("path", "w",                     |                                                                                                                                                                 |
+|                                     |      encoding = "utf-8")              |                                                                                                                                                                 |
+|                                     | ```                                   |                                                                                                                                                                 |
++-------------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [Loops](#loops)                     | <i>                                   | Run sections of code multiple times with a loop.                                                                                                                |
+|                                     | ```python                             |                                                                                                                                                                 |
+|                                     | for <placeholder> in <iterable>:      | `for` loops run once for each element in an iterable object (e.g. a list). Each iteration stores the current element in what you specify for *`<placeholder>`*. |
+|                                     |    ...                                |                                                                                                                                                                 |
+|                                     | ```                                   | `while` loops run until *`<condition>`* is `False`. If it never becomes `False`, the loop runs indefinitely, and will eventually crash your program.            |
+|                                     |                                       |                                                                                                                                                                 |
+|                                     | ```python                             |                                                                                                                                                                 |
+|                                     | while <condition>:                    |                                                                                                                                                                 |
+|                                     |    ...                                |                                                                                                                                                                 |
+|                                     | ```                                   |                                                                                                                                                                 |
++-------------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [Indexing and slicing](#slicing)    | ```python                             | Access individual elements of a string or list by indexing and slicing with square brackets.                                                                    |
+|                                     | example_string[1:4]                   |                                                                                                                                                                 |
+|                                     | ```                                   |                                                                                                                                                                 |
++-------------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Custom functions                    | <i>                                   | Store sections of code away in functions to run them at a later point.                                                                                          |
+|                                     | ```python                             |                                                                                                                                                                 |
+| Custom modules                      | def function_name(input1, input2):    | 1. Write a function definition with `def ...` which contains the code                                                                                           |
+|                                     |    ...                                | 2. Call the function to use it with specific inputs                                                                                                             |
+|                                     |    return ...                         |                                                                                                                                                                 |
+|                                     |                                       | You can store the functions in a separate script and import that script as a module.                                                                            |
+|                                     | function_name(a, b)                   |                                                                                                                                                                 |
+|                                     | ```                                   |                                                                                                                                                                 |
+|                                     | </i>                                  |                                                                                                                                                                 |
+|                                     |                                       |                                                                                                                                                                 |
+|                                     | ```python                             |                                                                                                                                                                 |
+|                                     | import module                         |                                                                                                                                                                 |
+|                                     | ```                                   |                                                                                                                                                                 |
++-------------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
