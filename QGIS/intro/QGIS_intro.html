@@ -459,10 +459,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#classifying-the-symbology" id="toc-classifying-the-symbology" class="nav-link" data-scroll-target="#classifying-the-symbology">Classifying the symbology</a></li>
   </ul></li>
   <li><a href="#save-styles" id="toc-save-styles" class="nav-link" data-scroll-target="#save-styles">Save styles</a></li>
-  <li><a href="#add-a-raster-layer" id="toc-add-a-raster-layer" class="nav-link" data-scroll-target="#add-a-raster-layer">Add a raster layer</a>
-  <ul class="collapse">
-  <li><a href="#style-a-raster-layer" id="toc-style-a-raster-layer" class="nav-link" data-scroll-target="#style-a-raster-layer">Style a raster layer</a></li>
-  </ul></li>
+  <li><a href="#add-a-raster-layer" id="toc-add-a-raster-layer" class="nav-link" data-scroll-target="#add-a-raster-layer">Add a raster layer</a></li>
   <li><a href="#plugins" id="toc-plugins" class="nav-link" data-scroll-target="#plugins">Plugins</a></li>
   <li><a href="#create-a-layout-to-export" id="toc-create-a-layout-to-export" class="nav-link" data-scroll-target="#create-a-layout-to-export">Create a layout to export</a></li>
   <li><a href="#saving-your-project" id="toc-saving-your-project" class="nav-link" data-scroll-target="#saving-your-project">Saving your project</a></li>
@@ -630,10 +627,18 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="add-a-raster-layer" class="level2">
 <h2 class="anchored" data-anchor-id="add-a-raster-layer">Add a raster layer</h2>
-<details>
-<summary>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
 It’s likely worth skipping this Solaran raster data section, but expand this if you want to include it in today’s session
-</summary>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>The solaran file is average solar exposure data from the Australian Bureau of Meteorology. It is a text file that contains data organised in a grid: it is <strong>raster data</strong>.</p>
 <p>Try loading the <code>solaran.txt</code> file: data about average solar exposure. What is the difference with the other files? What kind of layer is it imported as? What can you do to make it easier to read?</p>
 <p>When importing data, QGIS might find everything it needs in the file(s) and add the layer as expect with only a drag-and-drop. Other times, we might have to be more specific by using the proper data type in the <code>Layer &gt; Data Source Manager</code> and using the right settings.</p>
@@ -644,9 +649,11 @@ It’s likely worth skipping this Solaran raster data section, but expand this i
 <blockquote class="blockquote">
 <p>To learn more about rasters, have a look at our <a href="https://github.com/uqlibrary/technology-training/blob/master/QGIS/raster/QGIS_raster.md">Raster Analysis</a> course</p>
 </blockquote>
-</section></details>
 </section>
-
+</div>
+</div>
+</div>
+</section>
 <section id="plugins" class="level2">
 <h2 class="anchored" data-anchor-id="plugins">Plugins</h2>
 <p>A wealth of plugins is available: <code>Plugins &gt; Manage and Install Plugins...</code>. Try for example to install QuickMapServices, to easily access many sources of raster data.</p>
