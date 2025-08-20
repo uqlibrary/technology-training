@@ -276,9 +276,8 @@ Notice anything odd? There's some dubious data - remove the dodgy entries.
 
 > Hint: Nobody is 17cm tall, and we don't want to keep anyone with the "Missing" position either
 
-<details>
-
-<summary>Solution</summary>
+:::{.callout-note collapse="true"}
+# Solution
 
 ```{python}
 # Remove rows with unreasonable heights
@@ -288,7 +287,7 @@ df = df[df["height_cm"] > 100]
 df = df[df["positions"] != "Missing"]
 ```
 
-</details>
+:::
 
 If that was too quick try to reduce your dataset to $\le 3$ variables (columns) and $\le 100$ rows using conditions by filtering down to a particular subset of your data. Make sure you keep the **age** and **height_cm** columns.
 
@@ -380,9 +379,8 @@ Now that you've explored our "Players" dataset, why not try something larger? Do
 For step 3., you'll either want to reduce your data to two columns and use `.plot()`, or specify your axes with `.plot(x = "x_variable", y = "y_variable")`.
 
 
-<details>
-
-<summary>Solution</summary>
+:::{.callout-note collapse="true"}
+# Solution
 
 One possible solution with aggregation is
 
@@ -399,7 +397,7 @@ continents = subset.groupby("continent").agg("max")
 continents.plot(y = "pop", kind = "bar")
 ```
 
-</details>
+:::
 
 ## Conclusion
 
