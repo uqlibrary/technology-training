@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6a12955a447637d35aa2e050d2b377a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-f72604ae842096918317ffcad8d38a32.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -438,7 +438,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a></li>
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a>
+  <ul class="collapse">
+  <li><a href="#folder-structure" id="toc-folder-structure" class="nav-link" data-scroll-target="#folder-structure">Folder Structure</a></li>
+  <li><a href="#data-download" id="toc-data-download" class="nav-link" data-scroll-target="#data-download">Data Download</a></li>
+  </ul></li>
   <li><a href="#interface" id="toc-interface" class="nav-link" data-scroll-target="#interface">Interface</a></li>
   <li><a href="#load-layers" id="toc-load-layers" class="nav-link" data-scroll-target="#load-layers">Load layers</a>
   <ul class="collapse">
@@ -448,6 +452,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#learn-about-the-data" id="toc-learn-about-the-data" class="nav-link" data-scroll-target="#learn-about-the-data">Learn about the data</a></li>
   </ul></li>
   <li><a href="#subset-the-data" id="toc-subset-the-data" class="nav-link" data-scroll-target="#subset-the-data">Subset the data</a></li>
+  <li><a href="#saving-your-project" id="toc-saving-your-project" class="nav-link" data-scroll-target="#saving-your-project">Saving your project</a></li>
   <li><a href="#change-the-symbology" id="toc-change-the-symbology" class="nav-link" data-scroll-target="#change-the-symbology">Change the symbology</a></li>
   <li><a href="#classify-vector-data" id="toc-classify-vector-data" class="nav-link" data-scroll-target="#classify-vector-data">Classify vector data</a>
   <ul class="collapse">
@@ -462,7 +467,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#add-a-raster-layer" id="toc-add-a-raster-layer" class="nav-link" data-scroll-target="#add-a-raster-layer">Add a raster layer</a></li>
   <li><a href="#plugins" id="toc-plugins" class="nav-link" data-scroll-target="#plugins">Plugins</a></li>
   <li><a href="#create-a-layout-to-export" id="toc-create-a-layout-to-export" class="nav-link" data-scroll-target="#create-a-layout-to-export">Create a layout to export</a></li>
-  <li><a href="#saving-your-project" id="toc-saving-your-project" class="nav-link" data-scroll-target="#saving-your-project">Saving your project</a></li>
   </ul>
 </nav>
     </div>
@@ -502,14 +506,38 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="setting-up" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
-<p>This tutorial is designed for <strong>QGIS 3.34</strong>. If you need to install it on your computer, got to the <a href="https://qgis.org/download/">QGIS website</a>.</p>
+<p>This tutorial is designed for <strong>QGIS 3.40</strong>. If you need to install it on your computer, got to the <a href="https://qgis.org/en/site/forusers/download.html">QGIS website</a>.</p>
+<section id="folder-structure" class="level3">
+<h3 class="anchored" data-anchor-id="folder-structure">Folder Structure</h3>
+<p>We will start by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.</p>
+<ul>
+<li><p>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>.</p></li>
+<li><p>Let’s now <strong>save</strong> our project: <code>Project &gt; Save</code>.</p></li>
+<li><p>Navigate to where you want to save your project, and create a new folder, let’s call it “qgis_mobile”.</p></li>
+<li><p>Inside that folder, create these folders:</p>
+<ul>
+<li><p>“data” - for all the data we will use to make our maps, split into:</p>
+<ul>
+<li><p>“raw” - raw data from your research or the internet</p></li>
+<li><p>“processed” - any data you’ve modified</p></li>
+</ul></li>
+<li><p>“output” - for any maps or images we export</p></li>
+<li><p>“temp” - this isn’t <em>necessary</em>, but when you’re playing around and testing, it stops things getting messy.</p></li>
+</ul></li>
+<li><p>Finally, let’s save our .qgz project file inside the “qgis_mobile” folder, named “qgis_mobile_map.qgz”</p></li>
+</ul>
+<p>Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.</p>
+<p><img src="folder.png" class="img-fluid"></p>
+<p>This might feel unnecessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.</p>
+</section>
+<section id="data-download" class="level3">
+<h3 class="anchored" data-anchor-id="data-download">Data Download</h3>
 <p>The <strong>data</strong> for this session can be directly downloaded from <a href="https://github.com/uqlibrary/technology-training-assets/raw/master/QGIS/intro/QGIS_Intro_Data.zip">this link</a>.</p>
-<p>Once downloaded, extract the archive.</p>
+<p>Once downloaded, extract the archive into your <strong>raw</strong> folder within your <strong>data</strong> folder.</p>
 <blockquote class="blockquote">
-<p>Some of our data comes from Natural Earth: http://www.naturalearthdata.com/</p>
+<p>Some of our data comes from Natural Earth: <a href="http://www.naturalearthdata.com/" class="uri">http://www.naturalearthdata.com/</a></p>
 </blockquote>
-<p>Open QGIS and create a new project with <code>Project &gt; New</code>. Let’s straight away <strong>save</strong> our project: <code>Project &gt; Save</code>, and save it into the extracted folder.</p>
-<p>Let’s set the <strong>project home</strong> too: <code>Project &gt; Properties &gt; General</code> and set <code>Project home</code> to the same folder. This is where we can also give the project a title.</p>
+</section>
 </section>
 <section id="interface" class="level2">
 <h2 class="anchored" data-anchor-id="interface">Interface</h2>
@@ -556,7 +584,7 @@ ul.task-list li input[type="checkbox"] {
 <p>The new layer is loaded to the map by default.</p>
 <p>Now that we have we have a layer with only the administrative regions for Australia, we can use that as an overlay layer to clip the rivers. Follow these steps:</p>
 <ol type="1">
-<li>Select the layer to clip</li>
+<li>Select the layer you want to clip, in this case <strong>ne_10m_rivers_lake_centerlines</strong></li>
 <li>Use the <code>Vector &gt; Geoprocessing Tools &gt; Clip...</code> tool</li>
 <li>Use the “australia_admin” layer as the overlay.</li>
 <li>Click “Run”</li>
@@ -564,16 +592,23 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>If you get an error about invalid geometries, you might have to use the <code>Fix geometries</code> tool on the Australian shapefile first (found in the Processing Toolbox).</p>
 </blockquote>
-<p>Notice how the clipped layers don’t have a descriptive name? Make sure you rename them.</p>
+<p>Notice how the clipped layers don’t have a descriptive name? Make sure you rename them. Let’s changed <strong>Clipped</strong> to <strong>australia_rivers_10m</strong></p>
 <p>You can now hide the original layers and confirm that you have only Australian data visible in the canvas by using the <code>Zoom Full</code> button.</p>
 <blockquote class="blockquote">
 <p><strong>Challenge</strong>: can you do the same for the Cities? Do you notice anything strange? How can we fix that?</p>
 </blockquote>
 </section>
+<section id="saving-your-project" class="level2">
+<h2 class="anchored" data-anchor-id="saving-your-project">Saving your project</h2>
+<p>It’s always a good idea to regularly save your progress.</p>
+<p>And! Notice the little icon next to some of your layers? We previously created “temporary scratch layers”, they’re basically temp files that will disappear when we close QGIS. This is useful if you keep processing data and creating new layers that you want to discard afterwards. In our case, we do want to keep the “cities” and “rivers” layers, so we need to save them to a file. If we try to close QGIS with scratch layers loaded, it will give you a warning that they will be lost in the process.</p>
+<p>You can click on the scratch layer icon to save the file. In the dialog, we can give the layers a <code>File name</code> (in our project’s home directory) and click OK.</p>
+<p>You can save your project with the floppy disk icon, or using <kbd>Ctrl</kbd> + <kbd>S</kbd>, and the project should be visible in a list when you re-open QGIS again.</p>
+</section>
 <section id="change-the-symbology" class="level2">
 <h2 class="anchored" data-anchor-id="change-the-symbology">Change the symbology</h2>
 <p>Our vector layers are assigned a random colour when we load them. We now want to make them look better.</p>
-<p>Double-click on the “admin” layer and use <code>Symbology &gt; Color</code> to change to a better colour. Click <code>Apply</code>. We can also go into more details about the border (colour, width, type of line…) by clicking on <code>Simple fill</code>.</p>
+<p>Double-click on the “admin” layer to open the <code>Layer Properties</code> click the <img src="symbology.png" class="img-fluid"> <code>Symbology</code> tab, and use <code>Color</code> to change to a better colour. Click <code>Apply</code>. We can also go into more details about the border (colour, width, type of line…) by clicking on <code>Simple fill</code>.</p>
 <p>We can make more complex fills by adding an extra “symbol layer”, and layering different kinds of fill styles. Try this with both polygons and lines. For example, style the rivers so they look like water (the <code>topo hydrology</code> preset is a good start).</p>
 <p>Now try to change the point symbology of our “populated places” layer: we don’t have to stick to <code>Simple marker</code>. Try for example the different icons available with <code>Symbol layer type &gt; SVG marker</code> or <code>Font marker</code> selected.</p>
 <blockquote class="blockquote">
@@ -667,12 +702,6 @@ It’s likely worth skipping this Solaran raster data section, but expand this i
 <blockquote class="blockquote">
 <p>If you need to zoom in on the Map you’ve added, you’ll need to change your edit tool the the <strong>Move item content</strong> tool by clicking it in the sidebar, going to <code>Edit &gt; Move content</code>, or by pressing <code>C</code> on your keyboard. If you’re having trouble zooming in exactly where you want to on the map, you can try the following: * Go back to your project window * Right click on the layer that covers the full extent of your area of interest and select <code>Zoom to Layer(s)</code> * Navigate back to the layout manager window, select your map from the <code>Items</code> tab, and click ont he <code>Item Properties</code> tab. * Click the <strong>Set Map Extent to Match Main Canvas Extent</strong> button <img src="https://user-images.githubusercontent.com/67612228/197666779-fa1adbec-f934-4644-b6c5-57c9fd9a0541.png" class="img-fluid" alt="image"> * Your map should zoom to match the extent your zoomed to in the project window.</p>
 </blockquote>
-</section>
-<section id="saving-your-project" class="level2">
-<h2 class="anchored" data-anchor-id="saving-your-project">Saving your project</h2>
-<p>Notice the little icon next to some of your layers? We previously created “temporary scratch layers”. This is useful if you keep processing data and creating new layers that you want to discard afterwards. In our case, we do want to keep the “cities” and “rivers” layers, so we need to save them to a file. If we try to close QGIS with scratch layers loaded, it will give you a warning that they will be lost in the process.</p>
-<p>You can click on the scratch layer icon to save the file. In the dialog, we can give the layers a <code>File name</code> (in our project’s home directory) and click OK.</p>
-<p>You can save your project with the floppy disk icon, or using <kbd>Ctrl</kbd> + <kbd>S</kbd>, and the project should be visible in a list when you re-open QGIS again.</p>
 
 
 </section>

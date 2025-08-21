@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6a12955a447637d35aa2e050d2b377a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-f72604ae842096918317ffcad8d38a32.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -438,8 +438,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a></li>
-  <li><a href="#install-avenza-maps-on-your-phone" id="toc-install-avenza-maps-on-your-phone" class="nav-link" data-scroll-target="#install-avenza-maps-on-your-phone">Install Avenza Maps on your phone</a></li>
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a>
+  <ul class="collapse">
+  <li><a href="#install-qfield-and-avenza-maps-on-your-phone" id="toc-install-qfield-and-avenza-maps-on-your-phone" class="nav-link" data-scroll-target="#install-qfield-and-avenza-maps-on-your-phone">Install QField and Avenza Maps on your phone</a>
+  <ul class="collapse">
+  <li><a href="#qfield" id="toc-qfield" class="nav-link" data-scroll-target="#qfield">QField</a></li>
+  <li><a href="#avenza" id="toc-avenza" class="nav-link" data-scroll-target="#avenza">Avenza</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#get-some-data" id="toc-get-some-data" class="nav-link" data-scroll-target="#get-some-data">Get some data</a>
   <ul class="collapse">
   <li><a href="#dem" id="toc-dem" class="nav-link" data-scroll-target="#dem">DEM</a></li>
@@ -447,7 +453,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#lot-plans" id="toc-lot-plans" class="nav-link" data-scroll-target="#lot-plans">Lot Plans</a></li>
   <li><a href="#queensland-globe" id="toc-queensland-globe" class="nav-link" data-scroll-target="#queensland-globe">Queensland Globe</a></li>
   </ul></li>
-  <li><a href="#import-our-data" id="toc-import-our-data" class="nav-link" data-scroll-target="#import-our-data">Import our data</a></li>
+  <li><a href="#import-and-process-our-data" id="toc-import-and-process-our-data" class="nav-link" data-scroll-target="#import-and-process-our-data">Import and process our data</a>
+  <ul class="collapse">
   <li><a href="#create-a-buffer-to-clip-our-data" id="toc-create-a-buffer-to-clip-our-data" class="nav-link" data-scroll-target="#create-a-buffer-to-clip-our-data">Create a buffer to clip our data</a></li>
   <li><a href="#combine-our-dems" id="toc-combine-our-dems" class="nav-link" data-scroll-target="#combine-our-dems">Combine our DEMs</a></li>
   <li><a href="#clip-the-dem" id="toc-clip-the-dem" class="nav-link" data-scroll-target="#clip-the-dem">Clip the DEM</a></li>
@@ -457,7 +464,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#add-a-hillshade" id="toc-add-a-hillshade" class="nav-link" data-scroll-target="#add-a-hillshade">Add a hillshade</a></li>
   <li><a href="#create-contours" id="toc-create-contours" class="nav-link" data-scroll-target="#create-contours">Create Contours</a></li>
   <li><a href="#exporting-to-avenza-maps" id="toc-exporting-to-avenza-maps" class="nav-link" data-scroll-target="#exporting-to-avenza-maps">Exporting to Avenza Maps</a></li>
-  <li><a href="#qfield" id="toc-qfield" class="nav-link" data-scroll-target="#qfield">QField</a></li>
+  <li><a href="#qfield-1" id="toc-qfield-1" class="nav-link" data-scroll-target="#qfield-1">QField</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -495,22 +503,50 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="setting-up" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
-<p>This tutorial is designed for <strong>QGIS 3.22</strong>. If you need to install it on your computer, got to the <a href="https://qgis.org/en/site/forusers/download.html">QGIS website</a>.</p>
-<p>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>. Let’s straight away <strong>save</strong> our project: <code>Project &gt; Save</code>. We should create a new folder, let’s call it “qgis_mobile”. This where our project and all the saved data will live. Folder structure is very important for keeping you data tidy, but also for ease of sharing your project with others. You simply need to zip the project folder if you need to share it. We can save our .qgz project file here, named “qgis_mobile_map” for example. I also recommend creating a Data folder, for all of your downloaded data. And creating a Products folder, for all the things we create today. Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.</p>
-<p>In QGIS 3.10 and above this will automatically set the <strong>project home</strong> too. To do this manually, you can go to <code>Project &gt; Properties &gt; General</code> and set <code>Project home</code> to the same folder. This is where we can also give the project a title.</p>
-<p>Let’s also add an OpenStreetMap basemap to locate ourselves on the globe: <code>Browser panel &gt; XYZ Tiles &gt; OpenStreetMap</code> (double-click, or drag and drop into the Layers panel).</p>
+<section id="setting-up" class="level1">
+<h1>Setting up</h1>
+<p>This tutorial is designed for <strong>QGIS 3.40</strong>. If you need to install it on your computer, got to the <a href="https://qgis.org/en/site/forusers/download.html">QGIS website</a>.</p>
+<p>We will start by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.</p>
+<ul>
+<li><p>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>.</p></li>
+<li><p>Let’s now <strong>save</strong> our project: <code>Project &gt; Save</code>.</p></li>
+<li><p>Create a new folder, let’s call it “qgis_mobile”.</p></li>
+<li><p>Inside that folder, create these folders:</p>
+<ul>
+<li><p>“data” - for all the data we will use to make our maps, split into:</p>
+<ul>
+<li><p>“raw” - raw data from your research or the internet</p></li>
+<li><p>“processed” - any data you’ve modified</p></li>
+</ul></li>
+<li><p>“output” - for any maps or images we export</p></li>
+<li><p>“temp” - this isn’t <em>necessary</em>, but when you’re playing around and testing, it stops things getting messy.</p></li>
+</ul></li>
+<li><p>Finally, let’s save our .qgz project file here, named “qgis_mobile_map.qgz”</p></li>
+</ul>
+<p>Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.</p>
+<p><img src="folder.png" class="img-fluid"></p>
+<p>This might seem necessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.</p>
+<p>Let’s finally add an OpenStreetMap basemap to locate ourselves on the globe:</p>
+<ul>
+<li><code>Browser panel &gt; XYZ Tiles &gt; OpenStreetMap</code> (double-click, or drag and drop into the Layers panel).</li>
+</ul>
+<section id="install-qfield-and-avenza-maps-on-your-phone" class="level2">
+<h2 class="anchored" data-anchor-id="install-qfield-and-avenza-maps-on-your-phone">Install QField and Avenza Maps on your phone</h2>
+<p>QField and Avenza Maps are a mobile based offline mapping tools you can use on your smartphone.</p>
+<section id="qfield" class="level3">
+<h3 class="anchored" data-anchor-id="qfield">QField</h3>
+<p>QField plugs directly in to QGIS, and allows you to link a QGIS project with your mobile phone for data collection.</p>
+<p><a href="https://play.google.com/store/apps/details?id=ch.opengis.qfield">Android Download</a> <a href="https://apps.apple.com/app/qfield-for-qgis/id1531726814">iOS Download</a></p>
 </section>
-<section id="install-avenza-maps-on-your-phone" class="level2">
-<h2 class="anchored" data-anchor-id="install-avenza-maps-on-your-phone">Install Avenza Maps on your phone</h2>
-<p>Avenza Maps is a mobile based offline mapping app you can use on your smartphone.</p>
-<p>For Android Devices: https://play.google.com/store/apps/details?id=com.Avenza&amp;hl=en_AU</p>
-<p>For Apple Devices: https://apps.apple.com/au/app/avenza-maps/id388424049</p>
-<p>There are alternatives to Avenza Maps out there, such as <a href="https://qfield.org/">QField</a> or <a href="https://merginmaps.com/features">Input (MerginMaps)</a> which are specifically created for use with QGIS on your mobile. However, we will be using Avenza today for its simplicity.</p>
+<section id="avenza" class="level3">
+<h3 class="anchored" data-anchor-id="avenza">Avenza</h3>
+<p>For Avenza Maps you just need to add a GeoPDF and you can collect data on it. It’s less functional than QField, but it’s a great fallback tool. <a href="https://play.google.com/store/apps/details?id=com.Avenza&amp;hl=en_AU">Android Download</a> <a href="https://apps.apple.com/app/avenza-maps/id388424049">iOS Download</a></p>
+<p>There are alternatives out there, such as <a href="https://merginmaps.com/features">Input (MerginMaps)</a>.</p>
 </section>
-<section id="get-some-data" class="level2">
-<h2 class="anchored" data-anchor-id="get-some-data">Get some data</h2>
+</section>
+</section>
+<section id="get-some-data" class="level1">
+<h1>Get some data</h1>
 <p>We’re going to explore a number of different online spatial data repositories.</p>
 <section id="dem" class="level3">
 <h3 class="anchored" data-anchor-id="dem">DEM</h3>
@@ -588,27 +624,34 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="import-our-data" class="level2">
-<h2 class="anchored" data-anchor-id="import-our-data">Import our data</h2>
-<p>If you have saved your data into your <strong>Data</strong> folder within your project folder <strong>qgis_mobile</strong>, it should appear in Project Home. You can import it into your project’s layers by double-clicking on the data there.</p>
-</section>
+<section id="import-and-process-our-data" class="level1">
+<h1>Import and process our data</h1>
+<p>If you have saved your data into your <strong>data</strong> folder within your project folder <strong>qgis_mobile</strong>, it should appear in Project Home. You can import it into your project’s layers by double-clicking on the data there.</p>
 <section id="create-a-buffer-to-clip-our-data" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-buffer-to-clip-our-data">Create a buffer to clip our data</h2>
 <p>We now want to only keep data that is relevant to the St Lucia campus. To achieve that, we need a mask to clip data.</p>
-<p>We first need to select the lots that are relevant by using the “Select Feature by area or single click” (in the toolbar), clicking on the lots one by one (or drawing a rectangle around them) with the Shift key pressed.</p>
+<p>We first need to select the lots that are relevant to us: - Use the “Select Feature by area or single click” (in the toolbar) - Click on the lots one by one (or draw a rectangle around them) with the Shift key pressed.</p>
 <p>We can now create a buffer:</p>
 <ul>
-<li>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></li>
-<li>Choose “Brisbane_lot_plans” as the Input Layer, and tick the <strong>Selected features only</strong> box</li>
-<li>There are many settings we can change to edit the shape of the buffer, but let’s leave most of these as the defaults for now.</li>
-<li>We can choose the distance that we want to create a buffer away from our vector. You’ll note that the distance is currently in degrees, as the layer projection is EPSG:4283 GDA94, a geographic coordinate system. This might cause issues.</li>
-<li>If you click Run. Your buffer won’t look very good. We need to convert our layer to a local projected coordinate system.</li>
+<li><p>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></p>
+<ul>
+<li>There are many settings we can change to edit the shape of the buffer, but we will leave most of these as the defaults for now.</li>
+</ul></li>
+<li><p>Choose “Brisbane_lot_plans” as the Input Layer, and tick the <strong>Selected features only</strong> box</p></li>
+<li><p>We next want to choose distance that we want to create a buffer away from our vector.</p>
+<ul>
+<li>You’ll note that the distance is currently in <strong>degrees</strong>. This is because the layer projection is EPSG:4283 GDA94, a geographic coordinate system. This might cause issues.</li>
+</ul></li>
+<li><p>If you click Run. Your buffer won’t look very good.</p>
+<ul>
+<li>We first need to convert our layer to a local projected coordinate system.</li>
+</ul></li>
 </ul>
 <p>Let’s reproject the layer for better results:</p>
 <ul>
 <li>Go to <code>Vector &gt; Data Management Tools &gt; Reproject Layer</code></li>
 <li>Choose “Brisbane_lot_plans” as the Input Layer, and tick the <strong>Selected features only</strong> box</li>
-<li>We want to choose a local projected coordinate system such as GDA94 / MGA zone 56 or GDA2020 / MGA zone 56. This will convert our measurements to metres instead of degrees, and by choosing an Australian projection, it reduces distortion.</li>
+<li>Choose a local projected coordinate system such as GDA94 / MGA zone 56 or GDA2020 / MGA zone 56. This will convert our measurements to metres instead of degrees, and by choosing an Australian projection, it reduces distortion.</li>
 <li>Click “Run”</li>
 <li>The new scratch layer will look the same, but it now has a different projection.</li>
 </ul>
@@ -622,9 +665,13 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Now we can Dissolve those polygons together:</p>
 <ul>
-<li>Go to `Vector &gt; Geoprocessing Tools &gt; Dissolve</li>
+<li>Go to <code>Vector &gt; Geoprocessing Tools &gt; Dissolve</code></li>
 <li>Choose “Buffered” as the Input Layer.</li>
-<li>Let’s save this one to file, rather than a temporary file. Click “…” next to “[Create Temporary Layer]”, then “Save to file”, and save it as something like <strong>UQ Boundary</strong> to your project folder.</li>
+<li>Let’s save this one to file, rather than a temporary file.
+<ul>
+<li>Click “…” next to “[Create Temporary Layer]”,</li>
+<li>Then “Save to file”, and save it as <strong>UQ Boundary</strong> to your products folder.</li>
+</ul></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Note</strong> the Buffer tool has a “dissolve” option, but it’s important to know that there are many tools available.</p>
@@ -732,11 +779,12 @@ ul.task-list li input[type="checkbox"] {
 <p>Now you simply need to export the pdf file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.</p>
 <p>When you first open Avenza Maps it will ask you to create an account, but you can import up to three maps without doing so, you can avoid creating an account by selecting the ‘x’ in the top right corner. * Allow Avenza Maps to access your device location * Select the orange ‘+’ in the bottom right and select ‘Download or import a map’ * Choose ‘From Storage Locations’ (if requested, give Avenza Maps the permissions to access your files) * Do the same for the other map, if you created one. * Once it has been imported, tap on the map. * You can now move the map around with your finger, and pinching to zoom. * Tapping the placemark icon in the bottom left will add a placemark in the middle of the crosshairs. * Tapping the 3 dots in the bottom right will allow you to add GPS tracking and draw and measure distances.</p>
 </section>
-<section id="qfield" class="level2">
-<h2 class="anchored" data-anchor-id="qfield">QField</h2>
+<section id="qfield-1" class="level2">
+<h2 class="anchored" data-anchor-id="qfield-1">QField</h2>
 <p>QField is another Android based GIS app.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
