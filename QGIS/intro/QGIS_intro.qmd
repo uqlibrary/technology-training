@@ -1,13 +1,47 @@
 ---
 title: "QGIS: Introduction to mapping"
 editor: source
+  markdown: 
+    wrap: 72
 date: today
 author: UQ Library
 ---
 
 ## Setting up
 
-This tutorial is designed for **QGIS 3.34**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/download/).
+This tutorial is designed for **QGIS 3.40**. If you need to install it on your computer, got to the [QGIS website](https://qgis.org/en/site/forusers/download.html).
+
+We will start by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.
+
+-   Open QGIS and create a **new project** with `Project > New`.
+
+-   Let's now **save** our project: `Project > Save`.
+
+-   Create a new folder, let's call it "qgis_mobile".
+
+-   Inside that folder, create these folders:
+
+    -   "data" - for all the data we will use to make our maps, split into:
+
+        -   "raw" - raw data from your research or the internet
+        
+        -   "processed" - any data you've modified
+
+    -   "output" - for any maps or images we export
+    
+    -   "temp" - this isn't *necessary*, but when you're playing around and testing, it stops things getting messy.
+
+-   Finally, let's save our .qgz project file here, named "qgis_mobile_map.qgz"
+
+Your .qgz file should always be in the highest level folder, so it's only looking down into folders for data, not back out.
+
+![](folder.png)
+
+This might seem necessary now, but things quickly get out of control and hard to find if you don't have a good folder structure.
+
+Let's finally add an OpenStreetMap basemap to locate ourselves on the globe:
+
+-   `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
 
 The **data** for this session can be directly downloaded from [this link](https://github.com/uqlibrary/technology-training-assets/raw/master/QGIS/intro/QGIS_Intro_Data.zip).
 
@@ -15,8 +49,7 @@ Once downloaded, extract the archive.
 
 > Some of our data comes from Natural Earth: http://www.naturalearthdata.com/
 
-Open QGIS and create a new project with `Project > New`.
-Let's straight away **save** our project: `Project > Save`, and save it into the extracted folder.
+Open QGIS and create a new project with `Project > New`. Let's straight away **save** our project: `Project > Save`, and save it into the extracted folder.
 
 Let's set the **project home** too: `Project > Properties > General` and set `Project home` to the same folder. This is where we can also give the project a title.
 
@@ -24,9 +57,9 @@ Let's set the **project home** too: `Project > Properties > General` and set `Pr
 
 The main elements of the interface are:
 
-* the `Browser` panel, to navigate our file system and data sources
-* the `Layers` panel, to organise the different layers that compose our map
-* the `Canvas`, where we see the map.
+-   the `Browser` panel, to navigate our file system and data sources
+-   the `Layers` panel, to organise the different layers that compose our map
+-   the `Canvas`, where we see the map.
 
 ## Load layers
 
@@ -60,19 +93,19 @@ We currently have data from all around the World, which you can confirm by using
 
 To remove the useless regions, we can do the following:
 
-1. Select the "admin" layer
-1. Use the `Select Features` button, and draw a rectangle around Australia, so all the region appear in yellow
-1. Right-click on the layer and use `Export > Save Selected Features As...`
-1. Name the new file "australia_admin" in your project directory, and click OK.
+1.  Select the "admin" layer
+2.  Use the `Select Features` button, and draw a rectangle around Australia, so all the region appear in yellow
+3.  Right-click on the layer and use `Export > Save Selected Features As...`
+4.  Name the new file "australia_admin" in your project directory, and click OK.
 
 The new layer is loaded to the map by default.
 
 Now that we have we have a layer with only the administrative regions for Australia, we can use that as an overlay layer to clip the rivers. Follow these steps:
 
-1. Select the layer to clip
-1. Use the `Vector > Geoprocessing Tools > Clip...` tool
-1. Use the "australia_admin" layer as the overlay.
-1. Click "Run"
+1.  Select the layer to clip
+2.  Use the `Vector > Geoprocessing Tools > Clip...` tool
+3.  Use the "australia_admin" layer as the overlay.
+4.  Click "Run"
 
 > If you get an error about invalid geometries, you might have to use the `Fix geometries` tool on the Australian shapefile first (found in the Processing Toolbox).
 
@@ -86,8 +119,7 @@ You can now hide the original layers and confirm that you have only Australian d
 
 Our vector layers are assigned a random colour when we load them. We now want to make them look better.
 
-Double-click on the "admin" layer and use `Symbology > Color` to change to a better colour. Click `Apply`.
-We can also go into more details about the border (colour, width, type of line...) by clicking on `Simple fill`.
+Double-click on the "admin" layer and use `Symbology > Color` to change to a better colour. Click `Apply`. We can also go into more details about the border (colour, width, type of line...) by clicking on `Simple fill`.
 
 We can make more complex fills by adding an extra "symbol layer", and layering different kinds of fill styles. Try this with both polygons and lines. For example, style the rivers so they look like water (the `topo hydrology` preset is a good start).
 
@@ -129,11 +161,11 @@ What if we want to colour according to a variable? Depending on the type of vari
 
 We can now use the joined data to change the symbology of our regions according to the HDI:
 
-1. Click on the `Layer Styling Panel` button
-1. Change from "Single Symbol" to "Graduated"
-1. Use the HDI column
-1. Pick a relevant colour ramp
-1. Click "classify"
+1.  Click on the `Layer Styling Panel` button
+2.  Change from "Single Symbol" to "Graduated"
+3.  Use the HDI column
+4.  Pick a relevant colour ramp
+5.  Click "classify"
 
 Depending on the data that you deal with, different "Modes" will be more or less useful to create a good colour key. Try "Natural Breaks (Jenks)" for example.
 
@@ -146,9 +178,11 @@ Still using a continuous numerical variable, we can change the size of the "popu
 We can save styles with `right-click > Styles > Add`, which creates a new one and saves the previous version.
 
 ## Add a raster layer
+
 <details>
-  
-<summary> It's likely worth skipping this Solaran raster data section, but expand this if you want to include it in today's session </summary>
+
+<summary>It's likely worth skipping this Solaran raster data section, but expand this if you want to include it in today's session</summary>
+
 The solaran file is average solar exposure data from the Australian Bureau of Meteorology. It is a text file that contains data organised in a grid: it is **raster data**.
 
 Try loading the `solaran.txt` file: data about average solar exposure. What is the difference with the other files? What kind of layer is it imported as? What can you do to make it easier to read?
@@ -161,7 +195,8 @@ In our case, we can import the solaran file with `Data Source Manager > Raster`,
 
 This layer is a single-band raster layer, which gets coloured automatically in greyscale. We can change that in the symbology, set the `Render type` as "Singleband pseudocolor", use the `Color ramp` called "Spectral", and use the `Color ramp` drop-down menu to "Invert Color Ramp" in order to make the colouring more intuitive (i.e. red for high values and blue for low values).
 
-> To learn more about rasters, have a look at our [Raster Analysis](https://github.com/uqlibrary/technology-training/blob/master/QGIS/raster/QGIS_raster.md) course 
+> To learn more about rasters, have a look at our [Raster Analysis](https://github.com/uqlibrary/technology-training/blob/master/QGIS/raster/QGIS_raster.md) course
+
 </details>
 
 ## Plugins
@@ -178,14 +213,7 @@ We can now add elements to our layout: the map, a legend, a scale bar, a north a
 
 The layout manager allows us to save several different layouts, one for each output we want to generate. Even if we change our map data, we can reuse the same layouts and export an updated map.
 
-> If you need to zoom in on the Map you've added, you'll need to change your edit tool the the **Move item content** tool by clicking it in the sidebar, going to `Edit > Move content`, or by pressing `C` on your keyboard. 
-> If you're having trouble zooming in exactly where you want to on the map, you can try the following:
-> * Go back to your project window
-> * Right click on the layer that covers the full extent of your area of interest and select `Zoom to Layer(s)`
-> * Navigate back to the layout manager window, select your map from the `Items` tab, and click ont he `Item Properties` tab.
-> * Click the **Set Map Extent to Match Main Canvas Extent** button ![image](https://user-images.githubusercontent.com/67612228/197666779-fa1adbec-f934-4644-b6c5-57c9fd9a0541.png)
-> * Your map should zoom to match the extent your zoomed to in the project window.
-
+> If you need to zoom in on the Map you've added, you'll need to change your edit tool the the **Move item content** tool by clicking it in the sidebar, going to `Edit > Move content`, or by pressing `C` on your keyboard. If you're having trouble zooming in exactly where you want to on the map, you can try the following: \* Go back to your project window \* Right click on the layer that covers the full extent of your area of interest and select `Zoom to Layer(s)` \* Navigate back to the layout manager window, select your map from the `Items` tab, and click ont he `Item Properties` tab. \* Click the **Set Map Extent to Match Main Canvas Extent** button ![image](https://user-images.githubusercontent.com/67612228/197666779-fa1adbec-f934-4644-b6c5-57c9fd9a0541.png) \* Your map should zoom to match the extent your zoomed to in the project window.
 
 ## Saving your project
 
