@@ -13,13 +13,15 @@ This tutorial is designed for **QGIS 3.40**. If you need to install it on your c
 
 We will start by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.
 
-:::::: columns
-::: {.column width="60%"}
 -   Open QGIS and create a **new project** with `Project > New`.
 
 -   Let's now **save** our project: `Project > Save`.
 
 -   Navigate to where you want to save your project, and create a new folder, let's call it "**qgis_intro**".
+
+
+:::::: columns
+::: {.column width="60%"}
 
 -   Inside that folder, create these folders:
 
@@ -36,12 +38,16 @@ We will start by creating a good folder structure to work within. This folder is
 -   Finally, let's save our .qgz project file inside the "**qgis_intro**" folder, named "qgis_intro_map.qgz"
 :::
 
-::: {.column width="10%"}
+::: {.column width="5%"}
 <!-- empty column to create gap -->
 :::
 
 ::: {.column width="30%"}
 ![](folder.png)
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
 :::
 ::::::
 
@@ -165,7 +171,7 @@ How can we add the Human Development Index (HDI) data to our existing "admin" sh
 
 ### Joining tabular data
 
-To add the HDI data to our region shapefile, we can go the the "admin" layer's properties, use the ![](join.png) `Joins` tab and click the green + ![](symbologyAdd.png) to create a new join. We can then choose the HDI data as the `Join layer`, and define what common field between the two tables we will merge on: the ISO_3166_2 code in our case.
+To add the HDI data to our region shapefile, we can go the the "admin" layer's properties, use the ![](join.png) `Joins` tab and click the `Add new join` button ![](symbologyAdd.png) to create a new join. We can then choose the HDI data as the `Join layer`, and define what common field between the two tables we will merge on: the ISO_3166_2 code in our case.
 
 You can now see the joined data highlighted in green in the ![](mSourceFields.png)`Fields` tab, click "OK", and check the actual values in the "admin" layer's attribute table.
 
