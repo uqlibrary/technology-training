@@ -461,12 +461,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#tabular-data" id="toc-tabular-data" class="nav-link" data-scroll-target="#tabular-data">Tabular data</a>
   <ul class="collapse">
   <li><a href="#joining-tabular-data" id="toc-joining-tabular-data" class="nav-link" data-scroll-target="#joining-tabular-data">Joining tabular data</a></li>
+  </ul></li>
+  <li><a href="#save-styles" id="toc-save-styles" class="nav-link" data-scroll-target="#save-styles">Save styles</a>
+  <ul class="collapse">
   <li><a href="#classifying-the-symbology" id="toc-classifying-the-symbology" class="nav-link" data-scroll-target="#classifying-the-symbology">Classifying the symbology</a></li>
   </ul></li>
-  <li><a href="#save-styles" id="toc-save-styles" class="nav-link" data-scroll-target="#save-styles">Save styles</a></li>
   <li><a href="#add-a-raster-layer" id="toc-add-a-raster-layer" class="nav-link" data-scroll-target="#add-a-raster-layer">Add a raster layer</a></li>
   <li><a href="#plugins" id="toc-plugins" class="nav-link" data-scroll-target="#plugins">Plugins</a></li>
   <li><a href="#create-a-layout-to-export" id="toc-create-a-layout-to-export" class="nav-link" data-scroll-target="#create-a-layout-to-export">Create a layout to export</a></li>
+  <li><a href="#feedback" id="toc-feedback" class="nav-link" data-scroll-target="#feedback">Feedback</a></li>
   </ul>
 </nav>
     </div>
@@ -620,13 +623,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="add-labels" class="level3">
 <h3 class="anchored" data-anchor-id="add-labels">Add labels</h3>
 <p>Have a look at the attribute table for our “populated places” layer. What could we use to <strong>label</strong> our points?</p>
-<p>Double-click on the “populated places” layer: <code>Labels &gt; Single labels</code>. You can also use the <code>Layer Labelling Options</code> button to open the sidebar, which allows you to “Live update” the map when you change a setting.</p>
+<p>Double-click on the “populated places” layer: <img src="labelingSingle.png" class="img-fluid"> <code>Labels</code> and then click <code>No Labels &gt; Single labels</code>. You can also use the <code>Layer Labelling Options</code> button to open the sidebar, which allows you to “Live update” the map when you change a setting.</p>
 <p>Choose <code>Value &gt; Name</code> to label with the city names. In the “Text” tab, we can change the look of our labels: amend the size, the colour, the font… We can also add a text buffer with the “Buffer tab” to make them more readable.</p>
 <p>The placement tab allows us to fine-tune the placement of the labels in reference to the points. The default mode is “Cartographic”, and we can increase the distance to the symbol used. If we want the label to cover the point, we can use <code>Mode &gt; Offset from point</code> and use the middle quadrant. We might also want to set the layer’s Symbology to “No Symbols”.</p>
-<p>What if you want to label lines? It’s a good idea to change the default <code>Placement</code> from <code>Parallel</code> to <code>Curved</code> so the labels follow the shape of the lines. You can try it on the rivers. If the labels don’t show, increaseing the Distance might help.</p>
+<section id="label-lines" class="level4">
+<h4 class="anchored" data-anchor-id="label-lines">Label Lines</h4>
+<p>What if you want to label lines? It could be a good idea to change the default <code>Placement</code> from <code>Parallel</code> to <code>Curved</code> so the labels follow the shape of the lines. You can try it on the rivers. If the labels don’t show, increasing the Overrun Distance by a small amount might help.</p>
 <blockquote class="blockquote">
 <p>If labels appear several times on the same line, you can try using <code>Rendering &gt; Merge connected lines to avoid duplicate labels</code>. You can also make it neater with the feature <code>Suppress labelling of features smaller than</code>, so QGIS doesn’t try to render labels for tiny features.</p>
 </blockquote>
+</section>
 </section>
 </section>
 <section id="tabular-data" class="level2">
@@ -635,9 +641,13 @@ ul.task-list li input[type="checkbox"] {
 <p>How can we add the Human Development Index (HDI) data to our existing “admin” shapefile?</p>
 <section id="joining-tabular-data" class="level3">
 <h3 class="anchored" data-anchor-id="joining-tabular-data">Joining tabular data</h3>
-<p>To add the HDI data to our region shapefile, we can go the the “admin” layer’s properties, use the <code>Joins</code> tab and click the green <code>+</code> to create a new join. We can then choose the HDI data as the <code>Join layer</code>, and define what common field between the two tables we will merge on: the ISO_3166_2 code in our case.</p>
-<p>You can now see the joined data highlighted in green in the <code>Fields</code> tab, click “OK”, and check the actual values in the “admin” layer’s attribute table.</p>
+<p>To add the HDI data to our region shapefile, we can go the the “admin” layer’s properties, use the <img src="join.png" class="img-fluid"> <code>Joins</code> tab and click the green + <img src="symbologyAdd.png" class="img-fluid"> to create a new join. We can then choose the HDI data as the <code>Join layer</code>, and define what common field between the two tables we will merge on: the ISO_3166_2 code in our case.</p>
+<p>You can now see the joined data highlighted in green in the <img src="mSourceFields.png" class="img-fluid"><code>Fields</code> tab, click “OK”, and check the actual values in the “admin” layer’s attribute table.</p>
 </section>
+</section>
+<section id="save-styles" class="level2">
+<h2 class="anchored" data-anchor-id="save-styles">Save styles</h2>
+<p>We can save styles with <code>right-click &gt; Styles &gt; Add</code>, which creates a new one and saves the previous version.</p>
 <section id="classifying-the-symbology" class="level3">
 <h3 class="anchored" data-anchor-id="classifying-the-symbology">Classifying the symbology</h3>
 <p>What if we want to colour according to a variable? Depending on the type of variable, we can choose “Categorised” (for categorical data) or “Graduated” (for continuous data).</p>
@@ -655,10 +665,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Still using a continuous numerical variable, we can change the size of the “populated places” symbols according to population. Use the <code>Data defined override</code> dropdown next to the Size box, and use the <code>Assistant...</code> to define the scale: set the “Source” to <code>pop_max</code> and click the “Fetch value range from layer” button. If the “Size from” value is too small, we can amend it.</p>
 </section>
 </section>
-</section>
-<section id="save-styles" class="level2">
-<h2 class="anchored" data-anchor-id="save-styles">Save styles</h2>
-<p>We can save styles with <code>right-click &gt; Styles &gt; Add</code>, which creates a new one and saves the previous version.</p>
 </section>
 <section id="add-a-raster-layer" class="level2">
 <h2 class="anchored" data-anchor-id="add-a-raster-layer">Add a raster layer</h2>
@@ -702,6 +708,10 @@ It’s likely worth skipping this Solaran raster data section, but expand this i
 <blockquote class="blockquote">
 <p>If you need to zoom in on the Map you’ve added, you’ll need to change your edit tool the the <strong>Move item content</strong> tool by clicking it in the sidebar, going to <code>Edit &gt; Move content</code>, or by pressing <code>C</code> on your keyboard. If you’re having trouble zooming in exactly where you want to on the map, you can try the following: * Go back to your project window * Right click on the layer that covers the full extent of your area of interest and select <code>Zoom to Layer(s)</code> * Navigate back to the layout manager window, select your map from the <code>Items</code> tab, and click ont he <code>Item Properties</code> tab. * Click the <strong>Set Map Extent to Match Main Canvas Extent</strong> button <img src="https://user-images.githubusercontent.com/67612228/197666779-fa1adbec-f934-4644-b6c5-57c9fd9a0541.png" class="img-fluid" alt="image"> * Your map should zoom to match the extent your zoomed to in the project window.</p>
 </blockquote>
+</section>
+<section id="feedback" class="level2">
+<h2 class="anchored" data-anchor-id="feedback">Feedback</h2>
+<p>Please visit our website to <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources">provide feedback</a> and find upcoming training courses we have on offer.</p>
 
 
 </section>
