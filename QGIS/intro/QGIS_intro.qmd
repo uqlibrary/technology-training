@@ -13,31 +13,39 @@ This tutorial is designed for **QGIS 3.40**. If you need to install it on your c
 
 We will start by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.
 
+:::::: columns
+::: {.column width="60%"}
 -   Open QGIS and create a **new project** with `Project > New`.
 
 -   Let's now **save** our project: `Project > Save`.
 
--   Navigate to where you want to save your project, and create a new folder, let's call it "qgis_mobile".
+-   Navigate to where you want to save your project, and create a new folder, let's call it "**qgis_intro**".
 
 -   Inside that folder, create these folders:
 
-    -   "data" - for all the data we will use to make our maps, split into:
+    -   "**data**" - for all the data we will use to make our maps, split into:
 
-        -   "raw" - raw data from your research or the internet
+        -   "**raw**" - raw data from your research or the internet
 
-        -   "processed" - any data you've modified
+        -   "**processed**" - any data you've modified
 
-    -   "output" - for any maps or images we export
+    -   "**output**" - for any maps or images we export
 
-    -   "temp" - this isn't *necessary*, but when you're playing around and testing, it stops things getting messy.
+    -   "**temp**" - this folder isn't necessary, but when you're playing around and testing, it stops things getting messy.
 
--   Finally, let's save our .qgz project file inside the "qgis_mobile" folder, named "qgis_mobile_map.qgz"
+-   Finally, let's save our .qgz project file inside the "**qgis_intro**" folder, named "qgis_intro_map.qgz"
+:::
 
-Your .qgz file should always be in the highest level folder, so it's only looking down into folders for data, not back out.
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
 
+::: {.column width="30%"}
 ![](folder.png)
+:::
+::::::
 
-This might feel unnecessary now, but things quickly get out of control and hard to find if you don't have a good folder structure.
+Your .qgz file should always be in the highest level folder, so it's only looking down into folders for data, not back out. This might feel unnecessary now, but things quickly get out of control and hard to find if you don't have a good folder structure.
 
 ### Data Download
 
@@ -161,7 +169,6 @@ To add the HDI data to our region shapefile, we can go the the "admin" layer's p
 
 You can now see the joined data highlighted in green in the ![](mSourceFields.png)`Fields` tab, click "OK", and check the actual values in the "admin" layer's attribute table.
 
-
 ## Save styles
 
 We can save styles with `right-click > Styles > Add`, which creates a new one and saves the previous version.
@@ -219,7 +226,6 @@ We can now add elements to our layout: the map, a legend, a scale bar, a north a
 The layout manager allows us to save several different layouts, one for each output we want to generate. Even if we change our map data, we can reuse the same layouts and export an updated map.
 
 > If you need to zoom in on the Map you've added, you'll need to change your edit tool the the **Move item content** tool by clicking it in the sidebar, going to `Edit > Move content`, or by pressing `C` on your keyboard. If you're having trouble zooming in exactly where you want to on the map, you can try the following: \* Go back to your project window \* Right click on the layer that covers the full extent of your area of interest and select `Zoom to Layer(s)` \* Navigate back to the layout manager window, select your map from the `Items` tab, and click ont he `Item Properties` tab. \* Click the **Set Map Extent to Match Main Canvas Extent** button ![image](https://user-images.githubusercontent.com/67612228/197666779-fa1adbec-f934-4644-b6c5-57c9fd9a0541.png) \* Your map should zoom to match the extent your zoomed to in the project window.
-
 
 ## Feedback
 
