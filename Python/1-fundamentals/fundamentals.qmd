@@ -264,8 +264,9 @@ number = int(input("Pick a number: "))
 Here, `input` asks the user to pick a number. After the user (you) types something into the console and presses <kbd>enter</kbd>, it is saved by Python in the variable `number`. Note that we need to put the input inside an `int( ... )` function to turn it into a number.
 
 -->
-<details>
-<summary>Solution</summary>
+
+:::{.callout-note collapse="true"}
+# Solution
 
 We have three lines of code corresponding to the steps above:
 
@@ -282,7 +283,7 @@ age_mins = age_years * 365 * 24 * 60
 # Print result
 print("You have lived for", str(age_mins), "minutes!")
 ```
-</details>
+:::
 
 ## Conditionals
 
@@ -636,9 +637,9 @@ df["BMI"] = df["Weight"] / (df["Height"]**2)
 df
 ```
 
-<details>
 
-<summary>Solution</summary>
+:::{.callout-note collapse="true"}
+# Solution
 
 One solution could be the following:
   
@@ -662,7 +663,7 @@ df["BMI"] = df["Weight"] / (df["Height"]**2)
 df
 ```
               
-</details>
+:::
 
 ### Part 2: Visualisation
 
@@ -683,9 +684,8 @@ sns.catplot(data = df, x = ...)
 
 > Hint: You only need to use the `data = `, `x = `, `y = ` and `kind = ` parameters, so try figure out what they require!
 
-<details>
-
-<summary>Solution</summary>
+:::{.callout-note collapse="true"}
+# Solution
 
 The plot above is produced with the code
   
@@ -695,8 +695,8 @@ The plot above is produced with the code
 sns.catplot(data = df, x = "Names", y = "BMI", kind = "bar")
 ```
             
-</details>
 
+:::
 
 ## Conclusion and saving your work
 
