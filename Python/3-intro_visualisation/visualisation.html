@@ -1029,18 +1029,35 @@ Solution
 <li><code>hue_order</code></li>
 <li><code>legend</code></li>
 </ul>
-<p>Using those parameters, create a scatter plot for age vs height (like above), which has a different plot for each position, and also a different colour. Make sure that there are at most <strong>two</strong> columns of plots, that there is <strong>no</strong> legend, and that the colours follow the order</p>
+<p>Using those parameters, create a scatter plot for age vs height (like above), which meets the following conditions:</p>
+<ul>
+<li>Separate the plots for each position.</li>
+<li>Apply a different colour to each position.</li>
+<li>Arrange the plots in <strong>two</strong> columns</li>
+<li>Remove the legend</li>
+<li>Manually order the colours:
 <ol type="1">
 <li>Attack</li>
 <li>Midfield</li>
 <li>Defender</li>
 <li>Goalkeeper</li>
-</ol>
-<blockquote class="blockquote">
-<p>Hint: for the ordering, you might want to make a list with the desired order, e.g.&nbsp;<code>order = ["Attack", "Midfield", ... ]</code></p>
-</blockquote>
+</ol></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For the ordering, you might want to make a list with the desired order, e.g.&nbsp;<code>order = ["Attack", "Midfield", ... ]</code></p>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1049,7 +1066,7 @@ Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="b1598848-8db7-4cf0-91bf-7485d4a94338" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> [<span class="st">"Attack"</span>, <span class="st">"Midfield"</span>, <span class="st">"Defender"</span>, <span class="st">"Goalkeeper"</span>]</span>
@@ -1136,14 +1153,14 @@ Solution
 <p>Make sure you run the above line <strong>at the same time</strong> as your plotting function. You can either * Highlight <strong>all</strong> the code and press <kbd>F9</kbd> * Make a cell with <code>#%%</code> and press <kbd>ctrl</kbd> + <kbd>enter</kbd></p>
 </blockquote>
 <p>We can also change the legend title to “positions” with <code>plt.legend()</code></p>
-<div id="fe4c9f04-5f7b-4346-8ecf-cd2d904e2df0" class="cell" data-execution_count="63">
+<div id="fe4c9f04-5f7b-4346-8ecf-cd2d904e2df0" class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting functions</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Customisation</span></span>
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"positions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1153,14 +1170,14 @@ Solution
 </div>
 </div>
 <p>And its location with <code>loc = "lower left"</code></p>
-<div id="1036102c-eeec-4923-9360-1c98aa0b107f" class="cell" data-execution_count="64">
+<div id="1036102c-eeec-4923-9360-1c98aa0b107f" class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting functions</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Customisation</span></span>
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"positions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1170,7 +1187,7 @@ Solution
 </div>
 </div>
 <p>And give the whole plot a title with <code>plt.title()</code></p>
-<div id="6f210f41-d4b5-4cfa-b6a8-16b7e7ca103e" class="cell" data-execution_count="65">
+<div id="6f210f41-d4b5-4cfa-b6a8-16b7e7ca103e" class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1179,8 +1196,8 @@ Solution
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"positions"</span>)</span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Players' heights vs ages"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="65">
 <pre><code>Text(0.5, 1.0, "Players' heights vs ages")</code></pre>
 </div>
@@ -1197,7 +1214,7 @@ Solution
 <section id="annotations" class="level3">
 <h3 class="anchored" data-anchor-id="annotations">Annotations</h3>
 <p>You might want to annotate your plot with text and arrows. Text is simple with the <code>plt.text()</code> function; we just need to specify its coordinates and the contents.</p>
-<div id="7305318b-3491-462e-9d0b-35fa275af02a" class="cell" data-execution_count="66">
+<div id="7305318b-3491-462e-9d0b-35fa275af02a" class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1206,8 +1223,8 @@ Solution
 <span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
 <span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"positions"</span>)</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Players' heights vs ages"</span>)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
 <span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
 <span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1226,7 +1243,7 @@ Solution
 <p>The characters <code>\n</code> mean ‘new line’</p>
 </blockquote>
 <p>We could annotate with arrows too. This is more complex, using the <code>plt.annotate()</code> function:</p>
-<div id="7c4336a0-4bd8-4af0-8d74-561b486bcbde" class="cell" data-execution_count="67">
+<div id="7c4336a0-4bd8-4af0-8d74-561b486bcbde" class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1235,8 +1252,8 @@ Solution
 <span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
 <span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"positions"</span>)</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Players' heights vs ages"</span>)</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
 <span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
 <span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span>
@@ -1262,7 +1279,7 @@ Solution
 <section id="axis-limits" class="level3">
 <h3 class="anchored" data-anchor-id="axis-limits">Axis limits</h3>
 <p>The last feature we’ll look at is editing axis limits. Let’s try to make more room in the bottom left for the legend with the functions <code>plt.xlim()</code> and <code>plt.ylim()</code></p>
-<div id="16832c43-0f27-4caf-8437-b05cea47eef1" class="cell" data-execution_count="68">
+<div id="16832c43-0f27-4caf-8437-b05cea47eef1" class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1271,8 +1288,8 @@ Solution
 <span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
 <span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"positions"</span>, loc <span class="op">=</span> <span class="st">"lower left"</span>)</span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Players' heights vs ages"</span>)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>, loc <span class="op">=</span> <span class="st">"lower left"</span>)</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
 <span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
 <span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span>
