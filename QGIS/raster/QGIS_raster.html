@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-08-21">
+<meta name="dcterms.date" content="2025-08-28">
 
 <title>QGIS: raster analysis – UQ Library Technology Training</title>
 <style>
@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5a387585666b1f4b7593d48a93810122.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-26378f3b1abb1c4cc3ecb7fbe6d0cdb7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -439,9 +439,9 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a></li>
+  <li><a href="#install-the-saga-plugin" id="toc-install-the-saga-plugin" class="nav-link" data-scroll-target="#install-the-saga-plugin">Install the SAGA Plugin</a></li>
   <li><a href="#get-some-elevation-data" id="toc-get-some-elevation-data" class="nav-link" data-scroll-target="#get-some-elevation-data">Get some elevation data</a></li>
   <li><a href="#merge-the-two-dem-layers" id="toc-merge-the-two-dem-layers" class="nav-link" data-scroll-target="#merge-the-two-dem-layers">Merge the two DEM layers</a></li>
-  <li><a href="#reproject-the-dem" id="toc-reproject-the-dem" class="nav-link" data-scroll-target="#reproject-the-dem">Reproject the DEM</a></li>
   <li><a href="#clip-the-dem" id="toc-clip-the-dem" class="nav-link" data-scroll-target="#clip-the-dem">Clip the DEM</a></li>
   <li><a href="#change-the-symbology" id="toc-change-the-symbology" class="nav-link" data-scroll-target="#change-the-symbology">Change the symbology</a></li>
   <li><a href="#add-a-hillshade" id="toc-add-a-hillshade" class="nav-link" data-scroll-target="#add-a-hillshade">Add a hillshade</a></li>
@@ -475,7 +475,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 21, 2025</p>
+      <p class="date">August 28, 2025</p>
     </div>
   </div>
   
@@ -489,18 +489,42 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="setting-up" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
-<p>This tutorial is designed for <strong>QGIS 3.34</strong>. If you need to install it on your computer, got to the <a href="https://qgis.org/download/">QGIS website</a>.</p>
-<p>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>. Let’s straight away <strong>save</strong> our project: <code>Project &gt; Save</code>. We should create a new folder, where our project and all the saved data will live, named “qgis_raster_intro” for example.</p>
-<p>Saving the project should automatically set the <strong>project home</strong> to the same location: you should see a green Project Home icon in the Browser panel. If that’s not the case, go to <code>Project &gt; Properties &gt; General</code> and set <code>Project home</code> to the same folder. This dialogue is where we can also give the project a title.</p>
+<p>This tutorial is designed for <strong>QGIS 3.40</strong>. If you need to install it on your computer, got to the <a href="https://qgis.org/en/site/forusers/download.html">QGIS website</a>.</p>
+<p>We will start by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.</p>
+<ul>
+<li><p>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>.</p></li>
+<li><p>Let’s now <strong>save</strong> our project: <code>Project &gt; Save</code>.</p></li>
+<li><p>Create a new folder, let’s call it “qgis_raster”.</p></li>
+<li><p>Inside that folder, create these folders:</p>
+<ul>
+<li><p>“data” - for all the data we will use to make our maps, split into:</p>
+<ul>
+<li><p>“raw” - raw data from your research or the internet</p></li>
+<li><p>“processed” - any data you’ve modified</p></li>
+</ul></li>
+<li><p>“output” - for any maps or images we export</p></li>
+<li><p>“temp” - this isn’t <em>necessary</em>, but when you’re playing around and testing, it stops things getting messy.</p></li>
+</ul></li>
+<li><p>Finally, let’s save our .qgz project file here, named “qgis_raster_map.qgz”</p></li>
+</ul>
+<p>Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.</p>
+<p><img src="folder.png" class="img-fluid"></p>
+<p>This might seem necessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.</p>
+<p>Let’s finally add an OpenStreetMap basemap to locate ourselves on the globe:</p>
+<ul>
+<li><code>Browser panel &gt; XYZ Tiles &gt; OpenStreetMap</code> (double-click, or drag and drop into the Layers panel).</li>
+</ul>
+</section>
+<section id="install-the-saga-plugin" class="level2">
+<h2 class="anchored" data-anchor-id="install-the-saga-plugin">Install the SAGA Plugin</h2>
 <p>We need to install a plugin so we can access certain geoprocessing tools (the built-in SAGA provider has been <a href="https://changelog.qgis.org/en/qgis/version/3.30/#processing-drop-unmainted-saga-provider-from-qgis-">removed in version 3.30</a>). Go to <code>Plugins &gt; Manage and Install Plugins...</code> and <code>Search...</code> for “<strong>SAGA</strong>”. From the list on options choose <strong>Processing Saga NextGen Provider</strong> then in the bottom right, click <code>Install Plugin</code>. You might also need to install SAGA (version 9 or above) on your computer, if not already available.</p>
-<p>Let’s now add an OpenStreetMap basemap to locate ourselves on the globe: <code>Browser panel &gt; XYZ Tiles &gt; OpenStreetMap</code> (double-click, or drag and drop into the Layers panel).</p>
 </section>
 <section id="get-some-elevation-data" class="level2">
 <h2 class="anchored" data-anchor-id="get-some-elevation-data">Get some elevation data</h2>
 <p>A Digital Elevation Model (DEM) is a common example of <strong>raster data</strong>, i.e.&nbsp;grid data that contains a value in each cell (a bit like the pixels in a coloured picture).</p>
 <p>For this tutorial, we are using a DEM sourced from the USGS website.</p>
 <ul>
-<li>Go to https://earthexplorer.usgs.gov/</li>
+<li>Go to <a href="https://earthexplorer.usgs.gov/">https://earthexplorer.usgs.gov/</a></li>
 <li>Click the World Features box, and then search for “Brisbane” in the “Feature Name” search box</li>
 <li>Click Show and select the first result</li>
 <li>Zoom onto an area of interest around Brisbane and click “Use Map”</li>
@@ -531,24 +555,6 @@ ul.task-list li input[type="checkbox"] {
 <p>You will need to have GDAL installed for this to work.</p>
 </blockquote>
 <p>We can now remove the two original raster files.</p>
-</section>
-<section id="reproject-the-dem" class="level2">
-<h2 class="anchored" data-anchor-id="reproject-the-dem">Reproject the DEM</h2>
-<p>In the merged layer’s Properties (<code>Right click &gt; Properties... &gt; Source</code>), we can see that the Coordinate Reference System (CRS) in use is <a href="https://epsg.io/4326">EPSG:4326 - WGS 84</a>. It is the one that QGIS detected when opening the file. This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). A good PRS for around Brisbane/Meanjin is “<a href="https://epsg.io/7856">EPSG:7856 - GDA2020 / MGA zone 56</a>”. We can’t change that here, we instead will need to use the <strong>Warp (Reproject)</strong> tool.</p>
-<ul>
-<li>Use the tool <code>Raster &gt; Projections &gt; Warp (Reproject)</code></li>
-<li>use the merged layer as an input</li>
-<li>pick “EPSG:7856 - GDA2020 / MGA zone 56” as the Target CRS
-<ul>
-<li>you may need to click the Select CRS button <img src="https://user-images.githubusercontent.com/67612228/197653760-a9df4671-5852-499c-a085-3d995489599a.png" class="img-fluid" alt="image"></li>
-<li>untick No CRS</li>
-<li>use the filter to search for “7856”</li>
-<li>You should be able to find “EPSG:7856 - GDA2020 / MGA zone 56” under <strong>Predefined Coordinate Reference Systems</strong></li>
-</ul></li>
-</ul>
-<blockquote class="blockquote">
-<p>If you want to learn more about the static datum GDA2020 (for “Geocentric Datum of Australia 2020”), an upgrade from the previous, less precise GDA94, head to the <a href="https://www.icsm.gov.au/gda2020">ICSM website</a>.</p>
-</blockquote>
 </section>
 <section id="clip-the-dem" class="level2">
 <h2 class="anchored" data-anchor-id="clip-the-dem">Clip the DEM</h2>
