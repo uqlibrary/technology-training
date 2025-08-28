@@ -5,13 +5,9 @@ date: today
 author: UQ Library
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ## Setting up
 
-> If needed, review the [installation instructions](/R/Installation.md#r--rstudio-installation-instructions).
+> If needed, review the [installation instructions](/R/installation.qmd).
 
 * If you are using your own laptop please open RStudio
     + Make sure you have a working Internet connection
@@ -24,7 +20,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 With RStudio open, let's make sure we have the necessary packages installed by running this command (this might take a few minutes):
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
+#| label: install
 install.packages("tidyverse")
 ```
 
@@ -48,6 +46,7 @@ We also want to work more comfortably by typing our code in a script. You can us
 We can use one single command to load the 8 core Tidyverse packages:
 
 ```{r}
+#| label: load-tidyverse
 library(tidyverse)
 ```
 
@@ -71,7 +70,9 @@ We are using a [dataset from the World Bank](https://datacatalog.worldbank.org/d
 
 Let's download the file:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
+#| label: download
 # download data, save locally
 download.file(url = "https://raw.githubusercontent.com/uqlibrary/technology-training/master/R/tidyverse_next_steps/data_wb_climate.csv",
               destfile = "data_wb_climate.csv")
@@ -80,6 +81,7 @@ download.file(url = "https://raw.githubusercontent.com/uqlibrary/technology-trai
 ... and read the data into an object:
 
 ```{r}
+#| label: read
 # read CSV into an object
 climate_raw <- read_csv("data_wb_climate.csv",
                     na = "..")
@@ -95,7 +97,9 @@ You can use `View()` to explore your dataset. We can see that it doesn't respect
 
 To go from wide format to long format, we can use the tidyr function `pivot_longer()`. Here, we want to gather all the columns titled with a year: we store the data in a "value" variable, and the years in a "year" variable.
 
-```{r eval=FALSE}
+```{r}
+#| label: lengthen
+#| eval: false
 climate_long <- pivot_longer(climate_raw,
                              `1990`:`2011`,
                              names_to = "year",
@@ -105,11 +109,25 @@ climate_long <- pivot_longer(climate_raw,
 Column names are stored as character by default, so we also use an extra argument to convert the type for the year column from character to integer:
 
 ```{r}
+#| label: transform-names
+#| eval: false
 climate_long <- pivot_longer(climate_raw,
                              `1990`:`2011`,
                              names_to = "year",
                              values_to = "value",
                              names_transform = as.integer)
+```
+
+We had to use backticks to refer to our year columns because they are numbers. We have to do the same for columns with spaces in their names, so let's replace those spaces with dots:
+
+```{r}
+#| label: rename
+climate_long <- pivot_longer(climate_raw,
+                             `1990`:`2011`,
+                             names_to = "year",
+                             values_to = "value",
+                             names_transform = as.integer) |> 
+  rename_with(make.names)
 ```
 
 This is better, but there is still an issue: our `value` variable contains many different indicators (i.e. entirely different units).
@@ -123,8 +141,9 @@ We have single observations spread across several rows, so we should spread the 
 First, let's keep a record of the correspondence between long descriptive variable names and their "code", for later reference:
 
 ```{r}
+#| label: codebook
 codes <- climate_long |> 
-  select(`Series code`, `Series name`) |> 
+  select(Series.code, Series.name) |> 
   unique()
 codes
 ```
@@ -134,9 +153,10 @@ This will be our key to variable details, or "code book", for future reference.
 Now, let's widen the data (and remove some useless columns with `dplyr::select()`):
 
 ```{r}
+#| label: widen
 climate_tidy <- climate_long |> 
-  select(-`Series name`, -SCALE, -Decimals) |> 
-  pivot_wider(names_from = `Series code`,
+  select(-Series.name, -SCALE, -Decimals) |> 
+  pivot_wider(names_from = Series.code,
               values_from = value)
 ```
 
@@ -147,6 +167,7 @@ There's one more cleaning step we need to apply.
 Have a look at this block of code. What do you think it does?
 
 ```{r}
+#| label: remove-groups
 groups <- c("Europe & Central Asia",
             "East Asia & Pacific",
             "Euro area",
@@ -163,15 +184,17 @@ groups <- c("Europe & Central Asia",
             "Upper middle income",
             "World")
 climate_tidy <- climate_tidy |> 
-  filter(!`Country name` %in% groups)
+  filter(!Country.name %in% groups)
 ```
 
 Turns out this dataset contains grouped data as well as unique countries. Here, we created a vector of group names, and removed them from the data by using dplyr's `filter()` function (inverting the filter with `!`).
 
 We can now check that we've only got single countries left:
 
-```{r eval=FALSE}
-unique(climate_tidy$`Country name`)
+```{r}
+#| label: check-unique
+#| eval: false
+unique(climate_tidy$Country.name)
 ```
 
 ### Visualising
@@ -179,10 +202,11 @@ unique(climate_tidy$`Country name`)
 Now that we have clean, tidy data, we can process and visualise it more comfortably! For example, to visualise the increase in KT of CO<sup>2</sup>-equivalent for each country:
 
 ```{r}
+#| label: vis
 climate_tidy |> 
   ggplot(aes(x = year,
              y = EN.ATM.CO2E.KT,
-             group = `Country name`)) +
+             group = Country.name)) +
   geom_line()
 ```
 
@@ -193,13 +217,14 @@ Looks like our data is missing after 2008, so how can we remove that?
 One solution is to remove rows with missing data:
 
 ```{r}
+#| label: drop
 co2e_no_na <- climate_tidy |> 
-  filter(!is.na(EN.ATM.CO2E.KT))
+  drop_na(EN.ATM.CO2E.KT)
 
 ggplot(co2e_no_na,
        aes(x = year,
            y = EN.ATM.CO2E.KT,
-           group = `Country name`)) +
+           group = Country.name)) +
   geom_line()
 ```
 
@@ -208,20 +233,20 @@ Alternatively, we could filter on the actual year. (Which would not be ideal if 
 There are a lot of countries represented here. This kind of visualisation would benefit from focusing on a handful of countries we're interested in, depending on what story we are telling. We can then overlay two line geometries: one for the whole dataset, and the other for our selection.
 
 ```{r}
+#| label: top-4
 # find top 4 for 2008
-top4 <- co2e_no_na |> 
-  filter(year == 2008) |> 
-  arrange(desc(EN.ATM.CO2E.KT)) |>
-  pull(`Country name`) |> 
-  head(4)
+top4 <- co2e_no_na |>
+  filter(year == 2008) |>
+  slice_max(EN.ATM.CO2E.KT, n = 4)
+
 # plot them on top of the rest
 ggplot(co2e_no_na,
        aes(x = year,
            y = EN.ATM.CO2E.KT,
-           group = `Country name`)) +
+           group = Country.name)) +
   geom_line(colour = "darkgrey") +
-  geom_line(data = filter(co2e_no_na, `Country name` %in% top4),
-            mapping = aes(colour = `Country name`)) +
+  geom_line(data = filter(co2e_no_na, Country.name %in% top4$Country.name),
+            mapping = aes(colour = Country.name)) +
   labs(y = "CO2-equivalent (KT)",
        colour = "Top emitters")
 ```
@@ -240,6 +265,7 @@ You can iterate over elements by using:
 Imagine we want to find out the median value for each variable in the `mtcars` dataset. Here is an example of a for loop:
 
 ```{r}
+#| label: for-loop
 output <- vector("double", ncol(mtcars))
 for (i in seq_along(mtcars)) {
   output[[i]] <- median(mtcars[[i]])
@@ -266,6 +292,7 @@ At purrr's core, there is the map family:
 For example, to do a similar operation to our previous for loop:
 
 ```{r}
+#| label: map-median
 map_dbl(mtcars, median)
 ```
 
@@ -273,57 +300,63 @@ A lot leaner, right?
 
 The map functions automatically name the values in the resulting vector, which makes the result easier to read.
 
-Lets try a different type of output. Here, we want to find out which columns in the starwars dataset are numeric variables:
+Lets try a different type of output. Here, we want to find out which columns in the World Bank dataset are numeric variables:
 
 ```{r}
-map_lgl(starwars, is.numeric)
+#| label: map-numeric
+map_lgl(climate_tidy, is.numeric)
 ```
 
 If we don't want to use the default behaviour of the mapped function, we can use extra arguments to pass to it. For example, for a trimmed mean:
 
 ```{r}
+#| label: map-pass-on
 map_dbl(mtcars, mean, trim = 0.2)
 ```
 
-Just like most functions in the Tidyverse, the first argument is the data that we want to process (which means we can use the pipe). The second argument is the name of the function we want to apply, but it can also be a custom formula. For example:
+Just like most functions in the Tidyverse, the first argument is the data that we want to process (which means we can use the pipe). The second argument is the name of the function we want to apply, but it can also be a custom anonymous function. For example:
 
 ```{r}
+#| label: anonymous-fun
 # round the mean to closest integer
-map_int(mtcars, ~ round(mean(.x)))
+map_int(mtcars, \(x) round(mean(x)))
 # is the maximum more than three times the minimum?
-map_lgl(mtcars, ~ max(.x) > 3 * min(.x))
+map_lgl(mtcars, \(x) max(x) > 3 * min(x))
 ```
 
-We have to use the tilde `~` to introduce a custom formula, and `.x` to place the element being processed.
+We have to use the shorthand backslash syntax `\(x)` to introduce a custom anonymous function, and the argument `x` to place the element being processed.
 
 #### Challenge 3: custom formula
 
 How can we find out the number of unique values in each variable of the `starwars` data.frame?
 
 ```{r}
-map_int(starwars, ~ length(unique(.x)))
+#| label: nb-unique
+map_int(starwars, \(x) length(unique(x)))
 ```
 
 ### Splitting
 
-To split a dataset and apply an operation to separate parts, we can use the `group_split()` function:
+To split a dataset and map an operation to separate parts, we can use the `group_split()` function:
 
 ```{r}
+#| label: group-split
 unique(mtcars$cyl)
 mtcars |> 
   group_split(cyl) |> # split into three dataframes
-  map(summary) # applied to each dataframe
+  map(summary) # mapped to each dataframe
 ```
 
 Using purrr functions with ggplot2 functions allows us to generate several plots in one command:
 
 ```{r}
+#| label: map-ggplot
 mtcars |> 
   group_split(cyl) |> 
-  map(~ ggplot(.x, aes(wt, mpg)) +
+  map(\(x) ggplot(x, aes(wt, mpg)) +
         geom_point() +
         geom_smooth() +
-        labs(title = paste(.x$cyl, "cylinders"))) # give a title
+        labs(title = paste(x$cyl, "cylinders"))) # give a title
 ```
 
 ### Predicate functions
@@ -331,6 +364,7 @@ mtcars |>
 Purrr also contains functions that check for a condition, so we can set up conditions before iterating.
 
 ```{r}
+#| label: discard-keep
 str(iris)
 iris |>
   map_dbl(mean) # warning, NA for Species
@@ -339,7 +373,7 @@ iris |>
   map_dbl(mean) # clean!
 starwars |> 
   keep(is.character) |> 
-  map_int(~length(unique(.x)))
+  map_int(\(x) length(unique(x)))
 ```
 
 `is.factor()` and `is.character()` are examples of "predicate functions".
@@ -347,33 +381,37 @@ starwars |>
 To return everything, but apply a function only if a condition is met, we can use `map_if()`:
 
 ```{r}
-str(iris)
-iris |>
+#| label: map-if
+climate_tidy |>
   map_if(is.numeric, round) |> 
   str()
 ```
 
 This results in a list in which the elements are rounded only if they store numeric data.
 
-Now, let's see a more involved example with our climate dataset. In this one, we use functions from dplyr, purrr, stringr, tibble and ggplot2.
+## Using the Tidyverse packages together
+
+Now, let's create another visualisation with our climate dataset. In this one, we use functions from 4 packages: tidyr, dplyr, stringr and ggplot2.
 
 ```{r}
+#| label: vis-cumulative
 # cumulative and yearly change in CO2 emissions dataset
 climate_cumul <- climate_tidy |> 
-  arrange(`Country name`, year) |> 
-  group_by(`Country name`) |>
+  drop_na(EN.ATM.CO2E.KT) |> 
+  arrange(Country.name, year) |> 
+  group_by(Country.name) |>
   mutate(cumul.CO2.KT = cumsum(EN.ATM.CO2E.KT),
          dif.CO2.KT = EN.ATM.CO2E.KT - lag(EN.ATM.CO2E.KT)) |>
-  map_at(vars(ends_with("KT")), ~ .x / 10^6) |> 
-  as_tibble() |>  # from list to tibble
-  rename_with(~ str_replace(.x, "KT", "PG"))
+  ungroup() |> 
+  mutate(across(ends_with("KT"), \(x) x / 10^6)) |> 
+  rename_with(\(x) str_replace(x, "KT", "PG"))
 
 # visualise cumulative change
 p <- climate_cumul |>
   ggplot() +
   aes(x = year,
       y = cumul.CO2.PG,
-      colour = `Country name`) +
+      colour = Country.name) +
   geom_line() +
   theme(legend.position = "none")
 p
@@ -381,7 +419,9 @@ p
 
 If you want to create an interactive visualisation, you can use plotly:
 
-```{r eval=F}
+```{r}
+#| label: interactive
+#| warning: false
 library(plotly)
 ggplotly(p)
 ```
@@ -389,23 +429,21 @@ ggplotly(p)
 Plot the annual change in PG CO2 by country:
 
 ```{r}
+#| label: interactive-change
 pdif <- climate_cumul |>
   ggplot() +
   aes(x = year,
       y = dif.CO2.PG,
-      colour = `Country name`) +
+      colour = Country.name) +
   geom_line() +
   theme(legend.position = "none")
-pdif
-```
-```{r eval=F}
 # interactive plot
 ggplotly(pdif)
 ```
 
 ## What next
 
-* [Chapter on iteration](https://r4ds.had.co.nz/iteration.html) in the book _R for Data Science_
+* [Chapter on iteration](https://r4ds.hadley.nz/iteration.html) in the book _R for Data Science_
 * Cheatsheets:
     * [tidyr](https://raw.githubusercontent.com/rstudio/cheatsheets/master/tidyr.pdf)
     * [purrr](https://raw.githubusercontent.com/rstudio/cheatsheets/master/purrr.pdf)
