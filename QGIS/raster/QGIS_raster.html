@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-08-28">
+<meta name="dcterms.date" content="2025-08-29">
 
 <title>QGIS: raster analysis – UQ Library Technology Training</title>
 <style>
@@ -442,6 +442,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#install-the-saga-plugin" id="toc-install-the-saga-plugin" class="nav-link" data-scroll-target="#install-the-saga-plugin">Install the SAGA Plugin</a></li>
   <li><a href="#get-some-elevation-data" id="toc-get-some-elevation-data" class="nav-link" data-scroll-target="#get-some-elevation-data">Get some elevation data</a></li>
   <li><a href="#merge-the-two-dem-layers" id="toc-merge-the-two-dem-layers" class="nav-link" data-scroll-target="#merge-the-two-dem-layers">Merge the two DEM layers</a></li>
+  <li><a href="#reproject-the-dem" id="toc-reproject-the-dem" class="nav-link" data-scroll-target="#reproject-the-dem">Reproject the DEM</a></li>
   <li><a href="#clip-the-dem" id="toc-clip-the-dem" class="nav-link" data-scroll-target="#clip-the-dem">Clip the DEM</a></li>
   <li><a href="#change-the-symbology" id="toc-change-the-symbology" class="nav-link" data-scroll-target="#change-the-symbology">Change the symbology</a></li>
   <li><a href="#add-a-hillshade" id="toc-add-a-hillshade" class="nav-link" data-scroll-target="#add-a-hillshade">Add a hillshade</a></li>
@@ -475,7 +476,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 28, 2025</p>
+      <p class="date">August 29, 2025</p>
     </div>
   </div>
   
@@ -524,7 +525,7 @@ ul.task-list li input[type="checkbox"] {
 <p>A Digital Elevation Model (DEM) is a common example of <strong>raster data</strong>, i.e.&nbsp;grid data that contains a value in each cell (a bit like the pixels in a coloured picture).</p>
 <p>For this tutorial, we are using a DEM sourced from the USGS website.</p>
 <ul>
-<li>Go to <a href="https://earthexplorer.usgs.gov/">https://earthexplorer.usgs.gov/</a></li>
+<li>Go to https://earthexplorer.usgs.gov/</li>
 <li>Click the World Features box, and then search for “Brisbane” in the “Feature Name” search box</li>
 <li>Click Show and select the first result</li>
 <li>Zoom onto an area of interest around Brisbane and click “Use Map”</li>
@@ -555,6 +556,24 @@ ul.task-list li input[type="checkbox"] {
 <p>You will need to have GDAL installed for this to work.</p>
 </blockquote>
 <p>We can now remove the two original raster files.</p>
+</section>
+<section id="reproject-the-dem" class="level2">
+<h2 class="anchored" data-anchor-id="reproject-the-dem">Reproject the DEM</h2>
+<p>In the merged layer’s Properties (<code>Right click &gt; Properties... &gt; Source</code>), we can see that the Coordinate Reference System (CRS) in use is <a href="https://epsg.io/4326">EPSG:4326 - WGS 84</a>. It is the one that QGIS detected when opening the file. This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). A good PRS for around Brisbane/Meanjin is “<a href="https://epsg.io/7856">EPSG:7856 - GDA2020 / MGA zone 56</a>”. We can’t change that here, we instead will need to use the <strong>Warp (Reproject)</strong> tool.</p>
+<ul>
+<li>Use the tool <code>Raster &gt; Projections &gt; Warp (Reproject)</code></li>
+<li>use the merged layer as an input</li>
+<li>pick “EPSG:7856 - GDA2020 / MGA zone 56” as the Target CRS
+<ul>
+<li>you may need to click the Select CRS button <img src="https://user-images.githubusercontent.com/67612228/197653760-a9df4671-5852-499c-a085-3d995489599a.png" class="img-fluid" alt="image"></li>
+<li>untick No CRS</li>
+<li>use the filter to search for “7856”</li>
+<li>You should be able to find “EPSG:7856 - GDA2020 / MGA zone 56” under <strong>Predefined Coordinate Reference Systems</strong></li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p>If you want to learn more about the static datum GDA2020 (for “Geocentric Datum of Australia 2020”), an upgrade from the previous, less precise GDA94, head to the <a href="https://www.icsm.gov.au/gda2020">ICSM website</a>.</p>
+</blockquote>
 </section>
 <section id="clip-the-dem" class="level2">
 <h2 class="anchored" data-anchor-id="clip-the-dem">Clip the DEM</h2>
