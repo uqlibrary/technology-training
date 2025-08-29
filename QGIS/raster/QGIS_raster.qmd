@@ -148,16 +148,18 @@ We can use the "Fill sinks (Wang & Liu)" tool to **fill the sinks** in our clipp
 
 If we **re-run the Strahler order tool** on the filled DEM, we will be able to see more useful data.
 
-We can now colour the layer with "Singleband pseudocolor" to highlight the bigger streams. A palette that goes from white (for low values) to a dark colour (for high values) should work well.
+We can now colour the layer with "Singleband pseudocolor" to highlight the bigger streams. A palette that goes from white (for low values) to a dark colour (for high values) should work well. You can also set the smaller streams to be transparent to filter them out.
 
-> To filter out the noise of the smaller streams and **highlight the major streams** in the network, we can use the `Raster > Raster Calculator` tool and use a formula like: `"name_of_layer@1" >= 6` (the value will depend on how many levels exist in the Strahler layer). We need to save to file to be able to do that (name it "strahler_filtered", for example). This will assign the value 1 to the cells matching the condition, and 0 to what is under the limit.
+> Another way to filter out the noise of the smaller streams and **highlight the major streams** in the network, we can use the `Raster > Raster Calculator` tool and use a formula like: `"name_of_layer@1" >= 6` (the value will depend on how many levels exist in the Strahler layer). We need to save to file to be able to do that (name it "strahler_filtered", for example). This will assign the value 1 to the cells matching the condition, and 0 to what is under the limit.
 
 ## Channel network and drainage basin
 
 Another analysis we can do is use the "Channel network and drainage basins" tool to calculate the **flow direction, channels and drainage basins**.
 
 -   Make sure you run this tool on the filled DEM.
--   We might have to change the threshold to a higher one if the output includes too many small basins and channels. The middle point of your previous Strahler order values is a usually a good default.
+-   We might have to change the threshold to a higher one if the output includes too many small basins and channels. As the threshold is related to the Strahler order number, the middle point of your previous Strahler order values is a usually a good default.
+
+You might want to play with different threshold values depending on what you're looking for. If you want to look at the main drainage basins of a region, you need to set the threshold higher. If you want to find all the small channels, you need to set the threshold lower. It's worth trying a few options to find what works best for your dataset and the story you're trying to tell.
 
 As an output, we only want to load (and save to file) the two non-optional outputs:
 
@@ -182,6 +184,24 @@ We can now play with the **symbology** for those elements. For example:
     -   "Source" needs to be the column "ORDER" (which corresponds to the Strahler order)
     -   Click the double-arrow icon to "Fetch value range from layer"
     -   Change the "Size from" and "to" values to suitable values
+
+## Viewshed
+
+If you want to know what can be seen from a certain point in a landscape you can use a DEM to perform a Viewshed Analysis.
+
+Open the Processing Toolbox (cog icon) and search for the GDAL tool called "**Viewshed**".
+
+-   **Input Layer**: Choose your **Reprojected DEM** layer
+-   Click the three dots next to **Observer location** to select a point on the map
+-   **Observer height, DEM units**: 1.6 (the average human eye height is around 1.6m, choose a height you think might be appropriate)
+-   **Target height, DEM units**: 1 (this means that the points around the observer will be obscured by any surface that is higher than 1m. If you want to know what *ground* your observer will see, choose something closer to 0)
+-   **Maximum distance from observer to compute visibility**: 5000 (5km is the distance you can see on flat ground due to the curvature of the earth, this would change if you were higher up, for which you can find [calculators and a formula](https://www.omnicalculator.com/physics/distance-to-horizon))
+
+This will produce a black and white raster showing what can be seen, and what can't. Go to the Layer **Styling Menu**, and change it to **Singleband Pseudocolor**, change the **Mode** to **Equal Interval**, and set the **Classes** to **2**. Change one of the Colors to transparent to highlight either what can be see, or what cannot.
+
+As an extra feature. You can do the reverse analysis with a Viewshed. That is, you could use this to know what landmarks are visible in a landscape. Set the Observer Height to that of a building or tree in the landscape, and the Target Height to be that of people in the landscape, and you'll know where it can be seen from.
+
+If you want to get more sophisticated with your Viewshed analyses, there is, of course, a plugin called **Visibility Analysis** which will allow you to use one or multiple points as observers, take in account of the Earth's curvature, see what vector points can see other vector points, and more.
 
 ## 3D maps
 
