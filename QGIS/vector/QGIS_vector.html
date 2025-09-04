@@ -9,7 +9,7 @@
 <meta name="author" content="UQ Library">
 <meta name="dcterms.date" content="2025-09-04">
 
-<title>QGIS: Vector Analysis – UQ Library Technology Training</title>
+<title>QGIS: raster analysis – UQ Library Technology Training</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d52711145bdaeb4d27123df9569f2e1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81ee99c8a0c68a2615d5aff7db8f2ba6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -473,17 +473,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting Started</a></li>
-  <li><a href="#what-is-vector-data" id="toc-what-is-vector-data" class="nav-link" data-scroll-target="#what-is-vector-data">What is Vector Data?</a></li>
+  <li><a href="#what-is-vector-data" id="toc-what-is-vector-data" class="nav-link active" data-scroll-target="#what-is-vector-data">What is Vector Data?</a></li>
   <li><a href="#what-are-we-doing-today" id="toc-what-are-we-doing-today" class="nav-link" data-scroll-target="#what-are-we-doing-today">What are we doing today?</a></li>
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link" data-scroll-target="#setting-up">Setting Up</a></li>
   <li><a href="#gather-some-data" id="toc-gather-some-data" class="nav-link" data-scroll-target="#gather-some-data">Gather some data</a>
   <ul class="collapse">
   <li><a href="#online-community-spatial-repositories" id="toc-online-community-spatial-repositories" class="nav-link" data-scroll-target="#online-community-spatial-repositories">Online Community Spatial Repositories</a></li>
   <li><a href="#qld-government-spatial-data" id="toc-qld-government-spatial-data" class="nav-link" data-scroll-target="#qld-government-spatial-data">QLD Government Spatial Data</a></li>
   <li><a href="#federal-environment-data" id="toc-federal-environment-data" class="nav-link" data-scroll-target="#federal-environment-data">Federal Environment Data</a></li>
   <li><a href="#australian-bureau-of-statistics-data" id="toc-australian-bureau-of-statistics-data" class="nav-link" data-scroll-target="#australian-bureau-of-statistics-data">Australian Bureau of Statistics Data</a></li>
+  <li><a href="#data-summary" id="toc-data-summary" class="nav-link" data-scroll-target="#data-summary">Data Summary</a></li>
   </ul></li>
-  <li><a href="#setting-up" id="toc-setting-up" class="nav-link" data-scroll-target="#setting-up">Setting Up</a></li>
   <li><a href="#set-the-project-projection" id="toc-set-the-project-projection" class="nav-link" data-scroll-target="#set-the-project-projection">Set the Project Projection</a></li>
   <li><a href="#load-in-our-data" id="toc-load-in-our-data" class="nav-link" data-scroll-target="#load-in-our-data">Load in our data</a>
   <ul class="collapse">
@@ -492,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#projections" id="toc-projections" class="nav-link" data-scroll-target="#projections">Projections</a>
   <ul class="collapse">
   <li><a href="#what-are-projections" id="toc-what-are-projections" class="nav-link" data-scroll-target="#what-are-projections">What are projections?</a></li>
-  <li><a href="#why-are-they-important-to-us" id="toc-why-are-they-important-to-us" class="nav-link" data-scroll-target="#why-are-they-important-to-us">Why are they important to us?</a></li>
+  <li><a href="#why-are-projections-important-to-us" id="toc-why-are-projections-important-to-us" class="nav-link" data-scroll-target="#why-are-projections-important-to-us">Why are projections important to us?</a></li>
   <li><a href="#reproject" id="toc-reproject" class="nav-link" data-scroll-target="#reproject">Reproject</a></li>
   </ul></li>
   <li><a href="#subset-our-sa2-data-down-to-seq---select-features-using-an-expression" id="toc-subset-our-sa2-data-down-to-seq---select-features-using-an-expression" class="nav-link" data-scroll-target="#subset-our-sa2-data-down-to-seq---select-features-using-an-expression">Subset our SA2 data down to SEQ - Select features using an expression</a></li>
@@ -523,7 +523,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../QGIS/intro/QGIS_intro.html"><img src="../../images/QGIS.svg" class="img-fluid" width="20"> QGIS</a></li><li class="breadcrumb-item"><a href="../../QGIS/vector/QGIS_vector.html">3. Vector analysis</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">QGIS: Vector Analysis</h1>
+<h1 class="title">QGIS: raster analysis</h1>
 </div>
 
 
@@ -552,8 +552,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="getting-started" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
+<section id="what-is-vector-data" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-vector-data">What is Vector Data?</h2>
+<p>Vector data is made up of points, lines, and/or polygons. They are made up of precise points with individual coordinates. Vector data is best contrasted with Raster data which has a grid of values evenly spaced apart, connected to one coordinate. Rasters are efficient at displaying large amounts of data, where vector data is very precise.</p>
+<p>The <a href="https://mapschool.io/">Map School</a> has some useful explainers of what Vector data is.</p>
+</section>
+<section id="what-are-we-doing-today" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-we-doing-today">What are we doing today?</h2>
+<p>To look at vector data, we’re going to use the example of koala populations and protected areas, and use some analyses to see how they interact. The QLD Government has set koala protection as a priority for the State, but how do their priorities match up with the data? We can use QGIS and spatial analysis to ask questions of the data.</p>
+</section>
+<section id="setting-up" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up">Setting Up</h2>
 <p>This is an intermediate level tutorial. Before completing this tutorial, we recommend our <a href="QGIS/intro/QGIS_intro.qmd">QGIS: Introduction to Mapping</a> tutorial. This tutorial is designed for <strong>QGIS 3.40</strong>. If you need to install it on your computer, go to the <a href="https://qgis.org/download/">QGIS website</a>.</p>
 <p>We will start as always by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.</p>
 <ul>
@@ -568,6 +577,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>“processed” - any data you’ve modified</p></li>
 </ul></li>
 <li><p>“output” - for any maps or images we export</p></li>
+<li><p>“temp” - this isn’t <em>necessary</em>, but when you’re playing around and testing, it stops things getting messy.</p></li>
 </ul></li>
 <li><p>Finally, let’s save our .qgz project file here, named “qgis_vector_map.qgz”</p></li>
 </ul>
@@ -579,18 +589,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>Browser panel &gt; XYZ Tiles &gt; OpenStreetMap</code> (double-click, or drag and drop into the Layers panel).</li>
 </ul>
 </section>
-<section id="what-is-vector-data" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-vector-data">What is Vector Data?</h2>
-<p>Vector data is made up of points, lines, and/or polygons. They are made up of precise points with individual coordinates. Vector data is best contrasted with Raster data which has a grid of values evenly spaced apart, connected to one coordinate. Rasters are efficient at displaying large amounts of data, where vector data is very precise.</p>
-<p>The Map School has some useful explainers of what Vector data is: https://mapschool.io/</p>
-</section>
-<section id="what-are-we-doing-today" class="level2">
-<h2 class="anchored" data-anchor-id="what-are-we-doing-today">What are we doing today?</h2>
-<p>To look at vector data, we’re going to use the example of koala populations and protected areas, and use some analyses to see how they interact. The QLD Government has set koala protection as a priority for the State, but how do their priorities match up with the data? We can use QGIS and spatial analysis to ask questions of the data.</p>
-</section>
 <section id="gather-some-data" class="level2">
 <h2 class="anchored" data-anchor-id="gather-some-data">Gather some data</h2>
-<p>We’re going to explore a number of different online spatial data repositories. Please <a href="https://uq.sharepoint.com/:u:/r/teams/mign1tba/Shared%20Documents/General/QGIS_Vector_Data.zip?csf=1&amp;web=1&amp;e=uHHc3u">download the full dataset here</a>, and extract it into the qgis_vector folder you created earlier.</p>
+<p>We’re going to explore a number of different online spatial data repositories. Please <a href="https://github.com/uqlibrary/technology-training-assets/raw/refs/heads/master/QGIS/vector/vector_data.zip">download the full dataset here</a>, and extract it into the qgis_vector folder you created earlier.</p>
 <p>I will quickly show you where all of this data came from.</p>
 <section id="online-community-spatial-repositories" class="level3">
 <h3 class="anchored" data-anchor-id="online-community-spatial-repositories">Online Community Spatial Repositories</h3>
@@ -608,10 +609,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="qld-government-spatial-data" class="level3">
 <h3 class="anchored" data-anchor-id="qld-government-spatial-data">QLD Government Spatial Data</h3>
-<p>We’ve seen the <a href="https://qldspatial.information.qld.gov.au/catalogue/custom/index.page">QSpatial data portal</a>in previous sessions, and today we will be getting two lots of data from here.</p>
+<p>We’ve seen the <a href="https://qldspatial.information.qld.gov.au/catalogue/custom/index.page">QSpatial data portal</a> in previous sessions, and today we will be getting two lots of data from here.</p>
 <section id="koala-priority-areas" class="level4">
 <h4 class="anchored" data-anchor-id="koala-priority-areas">Koala Priority Areas</h4>
-<p>Koala Priority Areas are areas in SEQ which have been identified as key areas for conservation as part of the South East Queensland Koala Conservation Strategy 2019-2024. https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={E4CCDBA7-11AB-45DD-A064-BDBC02899204}</p>
+<p>Koala Priority Areas are areas in SEQ which have been identified as key areas for conservation as part of the South East Queensland Koala Conservation Strategy 2019-2024. You can search for “Koala Priority Areas” in QSpatial, or by going <a href="https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid=%7BE4CCDBA7-11AB-45DD-A064-BDBC02899204%7D">directly to the data</a>.</p>
 <p>Let’s get a resource to compare with these QLD government priority areas…</p>
 </section>
 </section>
@@ -619,7 +620,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="federal-environment-data">Federal Environment Data</h3>
 <section id="protected-areas" class="level4">
 <h4 class="anchored" data-anchor-id="protected-areas">Protected Areas</h4>
-<p>The Federal Environment Department has a variety of <a href="http://www.environment.gov.au/fed/catalog/main/home.page">spatial different datasets that you can browse through</a>. Today we are going to be using the Collaborative Australian Protected Areas Database (CAPAD) 2020, which is a compilation of government, Indigenous and privately protected areas for Australia. http://www.environment.gov.au/fed/catalog/search/resource/details.page?uuid=%7B4448CACD-9DA8-43D1-A48F-48149FD5FCFD%7D</p>
+<p>The Federal Environment Department has a variety of <a href="http://www.environment.gov.au/fed/catalog/main/home.page">different spatial datasets that you can browse through</a>. Today we are going to be using the Collaborative Australian Protected Areas Database (CAPAD) 2020, which is a compilation of government, Indigenous and privately protected areas for Australia. You can search for “CAPAD” in on the Environment Department website, or by going <a href="http://www.environment.gov.au/fed/catalog/search/resource/details.page?uuid=%7B4448CACD-9DA8-43D1-A48F-48149FD5FCFD%7D">directly to the data</a>.</p>
 <p>Finally let’s get some data to put all of our protected areas and observations into context…</p>
 </section>
 </section>
@@ -628,16 +629,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The ABS is a huge source of data, however, it can be a bit difficult to find that data, and use it in a spatial context.</p>
 <section id="digital-boundary-files---sa2---suburb-data" class="level4">
 <h4 class="anchored" data-anchor-id="digital-boundary-files---sa2---suburb-data">Digital Boundary Files - SA2 - Suburb data</h4>
-<p>The ABS has a variety of ways that it splits its data up. These digital boundaries are very useful for classifying data. They generally classify all of Australia into discrete Statistical Areas. Level 1 are the smallest, and Level 4 are the coarsest. (notably, the site below also has non-ABS Structures/boundary files such as Electoral areas and Postcodes). Today we are going to use the Stastical Area 2 data, which effectively represent suburbs. https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files</p>
-<p>#### Population Data The ABS have a lot of data, today we will be using population data. Thye proivde it in excel format, as shapefiles (by SA2 and LGAs), and as population grid raster files. Today we will be using the ESRI Grid format. https://www.abs.gov.au/statistics/people/population/regional-population/latest-release#data-download</p>
+<p>The ABS has a variety of ways that it splits its data up. These <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files">Digital Boundary Files</a> are very useful for classifying data. They generally classify all of Australia into discrete Statistical Areas. Level 1 are the smallest, and Level 4 are the coarsest. (notably, the link above also has non-ABS Structures/boundary files such as Electoral areas and Postcodes). Today we are going to use the Statistical Area 2 data, which effectively represent suburbs, but we can take it a little further with more ABS data.</p>
+<section id="population-data" class="level5">
+<h5 class="anchored" data-anchor-id="population-data">Population Data</h5>
+<p>The ABS have a lot of useful data, today we will be using their population data. They provide it in excel format, as GeoPackages (by SA2 and LGAs), and as population grid raster files. Today we will be using their SA2 <a href="https://www.abs.gov.au/statistics/people/population/regional-population/latest-release#data-download">GeoPackages</a>. This means we have our digital boundaries, and population in one!</p>
+<blockquote class="blockquote">
+<p>In the zip file of today’s data we have already trimmed it down to just QLD to save on file size</p>
+</blockquote>
 </section>
 </section>
 </section>
-<section id="setting-up" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up">Setting Up</h2>
-<p>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>. Let’s start by saving our project: <code>Project &gt; Save</code>. We should create a new folder, let’s call it “qgis_vector”. This where our project and all the saved data will live. Folder structure is very important for keeping you data tidy, but also for ease of sharing your project with others. You simply need to zip the project folder if you need to share it. We can save our .qgz project file here, named “qgis_vector_map” for example. I also recommend creating a Data folder, for all of your downloaded data. And creating a Products folder, for all the things we create today. Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.</p>
-<p>In QGIS 3.10 and above this will automatically set the <strong>project home</strong> too. To do this manually, you can go to <code>Project &gt; Properties &gt; General</code> and set <code>Project home</code> to the same folder. This is where we can also give the project a title.</p>
-<p>Let’s also add an OpenStreetMap basemap to locate ourselves on the globe: <code>Browser panel &gt; XYZ Tiles &gt; OpenStreetMap</code> (double-click, or drag and drop into the Layers panel).</p>
+<section id="data-summary" class="level3">
+<h3 class="anchored" data-anchor-id="data-summary">Data Summary</h3>
+<p>You should have:</p>
+<ul>
+<li>Point data for analysis
+<ul>
+<li>Koala Sightings</li>
+</ul></li>
+<li>Boundary Files to spatially categorise our data
+<ul>
+<li>Koala Priority Areas</li>
+<li>Protected Areas</li>
+<li>SA2 Areas (with human population)</li>
+</ul></li>
+</ul>
+</section>
 </section>
 <section id="set-the-project-projection" class="level2">
 <h2 class="anchored" data-anchor-id="set-the-project-projection">Set the Project Projection</h2>
@@ -653,57 +670,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="load-in-our-data" class="level2">
 <h2 class="anchored" data-anchor-id="load-in-our-data">Load in our data</h2>
-<p>For most of our data, we will simply be able to double click on it in the Project Home folder within the Browser window. When you load in this data, QGIS will give you a warning that your Project Projection is different to the data you’re importing. Simply click cancel on this window. We will be fixing this issue later. Make sure your Project Projection remains as EPSG:7856. Load in: * SA2_ERP_2021.gpkg (suburb data) * CAPAD2020_terrestrial_QLD.gpkg (Protected Areas) * koala_priority_area.gpkg</p>
+<p>For most of our data, we will simply be able to double click on it in the Project Home folder within the Browser window. When you load in this data, QGIS will give you a warning that your Project Projection is different to the data you’re importing. Simply click cancel on this window. We will be fixing this issue later. Make sure your Project Projection remains as EPSG:7856.</p>
+<p>Load in:</p>
+<ul>
+<li><p>SA2_ERP_2021_QLD.gpkg (suburb data)</p></li>
+<li><p>CAPAD2020_terrestrial_QLD.gpkg (Protected Areas)</p></li>
+<li><p>koala_priority_area.gpkg</p></li>
+</ul>
 <p>But what about the Koala Encounters location data? We need to handle this differently, as it is currently not in a spatial format, but in a csv file.</p>
 <section id="importing-csv-data" class="level3">
 <h3 class="anchored" data-anchor-id="importing-csv-data">Importing CSV data</h3>
 <ul>
 <li>Go to <code>Layer &gt; Add Layer &gt; Add Delimited Text Layer...</code></li>
 <li>Click the three dots <code>...</code> next to the <strong>File name</strong> field, navigate to the project folder, and select <code>koala_reduced</code></li>
+<li>Click the Geometry Definition drop down
+<ul>
 <li>This should automatically identify decimalLongitude and the X field, and decimalLatitude as the Y field.</li>
+<li>You may need to set the Geometry CRS. For this data from the ALA it is EPSG:4326 - WGS84</li>
+</ul></li>
 <li>Click <code>Add</code></li>
 </ul>
+<blockquote class="blockquote">
+<p>It’s usually the case that data like this is in EPSG:4326 - WGS84, as that is the standard used by most GPS units and Google Maps. However, it’s still worth checking those details on the website you’ve downloaded it from. If your data doesn’t come with a predefined projection, and the spatial portal doesn’t specify, but it uses a Google Maps style interface, it’s probably using EPSG:4326 - WGS84</p>
+</blockquote>
 </section>
 </section>
 <section id="projections" class="level2">
 <h2 class="anchored" data-anchor-id="projections">Projections</h2>
 <section id="what-are-projections" class="level3">
 <h3 class="anchored" data-anchor-id="what-are-projections">What are projections?</h3>
-<p>To turn the geoid/spheroid shape the of Earth into a flat map, we need to squish, stretch, and distort the map to make it flat. The mathematical equations used to do this are what we’re talking about when we day projections. Imagine it like a soccer ball, we have to squash it to make it flat, and it’s not going to look nice and square like our maps do. So we pull and stretch it to make it flat. There will always be some kind of distrortion, such as the Mercator Projection making Greenland look large, and Africa look smaller than it really is.</p>
+<p>To turn the geoid/spheroid shape the of Earth into a flat map, we need to squish, stretch, and distort the map to make it flat. The mathematical equations used to do this are what we’re talking about when we say “<strong>projections</strong>”. Imagine it like a soccer ball, if we have to squash it to make it flat, it’s not going to look nice and square like our maps do. So we pull and stretch it to make it flat and rectangular. There will always be some kind of distortion when we stretch our map like this. This is why the Mercator Projection makes Greenland look large, and Africa look smaller than it really is.</p>
 </section>
-<section id="why-are-they-important-to-us" class="level3">
-<h3 class="anchored" data-anchor-id="why-are-they-important-to-us">Why are they important to us?</h3>
+<section id="why-are-projections-important-to-us" class="level3">
+<h3 class="anchored" data-anchor-id="why-are-projections-important-to-us">Why are projections important to us?</h3>
 <p>Well, when we make these distortions, we have to compromise somewhere, and that means our lengths, or size or direction will be different to what it really is. To avoid this kind of distortion, often local projections are used. There are fewer compromises needed when focused on a small area. By using a local projection, we don’t need to worry about keeping Greenland looking the right shape if we’re focused on Brisbane. Going back to Soccer balls, if we cut out a single panel from the ball, it will be much easier to make that flat.</p>
 <p>The trouble with using data of different projections is that they might be slightly off around the edges, giving us different total areas in a polygon, or showing a point outside a boundary, when it’s really inside. To avoid this, it’s often best to convert all of your data to using the same projection.</p>
 <p>Today we’re going to use a suitable local projection: EPSG:7856 - GDA2020 / MGA zone 56</p>
 </section>
 <section id="reproject" class="level3">
 <h3 class="anchored" data-anchor-id="reproject">Reproject</h3>
-<p>For each of our layers, do the following: * Go to <code>Vector &gt; Data Management Tools &gt; Reproject Layer...</code> * Choose the layer in <code>Input layer</code> * Set the Target CRS to <code>EPSG:7856 - GDA2020 / MGA zone 56</code> * Click the three dots <code>...</code> next to the <code>Reprojected</code> section, and click <strong>Save to File…</strong> * Navigate to your <strong>vector_data</strong> folder and save the file there. For example, save <strong>SA2_ERP_2021</strong> as <strong>SA2_Reprojected</strong> * Click <code>Run</code></p>
+<p>For each of our layers, do the following:</p>
+<ul>
+<li><p>Go to <code>Vector &gt; Data Management Tools &gt; Reproject Layer...</code></p></li>
+<li><p>Choose the layer in <code>Input layer</code></p></li>
+<li><p>Set the Target CRS to <code>EPSG:7856 - GDA2020 / MGA zone 56</code></p>
+<ul>
+<li>If that option isn’t available, click <img src="projection.png" class="img-fluid"> (Select CRS), and type “GDA2020 56” into the filter, the option should now appear under the <strong>Predefined Coordinate Reference Systems</strong> section.</li>
+</ul></li>
+<li><p>Click the three dots <code>...</code> next to the <code>Reprojected</code> section, and click <strong>Save to File…</strong></p></li>
+<li><p>Navigate to your <code>data &gt; processed</code> folder and save the file there. For example, save <strong>SA2_ERP_2021</strong> as <strong>SA2_Reproj</strong>, <strong>CAPAD2020_terrestrial_QLD</strong> as <strong>CAPAD_Reproj</strong>, <strong>koala_reduced</strong> as <strong>Koalas_Reproj</strong> and <strong>koala_priority_area</strong> as <strong>KPA_Reproj</strong></p></li>
+<li><p>Click <code>Run</code></p></li>
+</ul>
+<p>You won’t notice any difference, as QGIS is helpfully doing “on the fly projections” to make the layers sit nicely together. But now that you’ve reprojected your data, you can safely do your analyses.</p>
 </section>
 </section>
 <section id="subset-our-sa2-data-down-to-seq---select-features-using-an-expression" class="level2">
 <h2 class="anchored" data-anchor-id="subset-our-sa2-data-down-to-seq---select-features-using-an-expression">Subset our SA2 data down to SEQ - Select features using an expression</h2>
 <p>The following code will allow you to select the SA2 features that are in SEQ.</p>
 <ul>
-<li>Right click on the reprojected SA2 layer, and select <strong>Open Attribute Table</strong></li>
+<li>Right click on the reprojected SA2 layer, and select <strong>Open Attribute Table</strong>
+<ul>
+<li>You will see that</li>
+</ul></li>
 <li>From the Attribute Table that opens, click the Select features using an expression button: <img src="https://user-images.githubusercontent.com/67612228/195261159-b949e22b-7634-4326-ab50-089b94e76dc4.png" class="img-fluid" alt="image"></li>
 <li>In the Select by Expression window that opens, paste the code from below into the Expression field, and then click <code>Select Features</code> in the bottom right of the window.</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ot">"GCCSA_name_2021"</span>  <span class="op">=</span>  <span class="st">'Greater Brisbane'</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">OR</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Gold Coast'</span> </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="kw">OR</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Sunshine Coast'</span> </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">OR</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Toowoomba'</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Gold Coast'</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">OR</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Sunshine Coast'</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">OR</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Toowoomba'</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="kw">OR</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="ot">"GCCSA_name_2021"</span>  <span class="kw">LIKE</span>  <span class="st">'%Brisbane%'</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>This is SQL code, which is great for querying databases. This code selects any row that matches any of the criteria (this OR that). The first three look for exact matches, the last one looks to match the pattern given. The % acts like wildcard, so it’s looking for any row that contains Brisbane.</p>
+</blockquote>
 <ul>
 <li>Close the Select by Expression window and Attribute Table</li>
-<li>You should see the SEQ SA2 areas highlighted in yellow.</li>
+<li>You should see the SEQ SA2 areas highlighted in yellow (you may need to turn off other layers or zoom in).</li>
 <li>To permanently save this selection, right click on the reprojected SA2 layer, and select <code>Export &gt; Save Selected Features As...</code></li>
 <li>Save your file as <code>SA2_SEQ</code></li>
 <li>Make sure the CRS stays as <code>EPSG:7856 - GDA2020 / MGA zone 56</code>, then click <code>OK</code></li>
 </ul>
+<p>If you haven’t done so already, untick and hide all the original layers we aren’t using any more.</p>
 </section>
 <section id="analysis-spatial-overlaps" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-spatial-overlaps">Analysis: Spatial Overlaps</h2>
@@ -712,11 +761,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="intersection">Intersection</h3>
 <ul>
 <li>Go to <code>Vector &gt; Geoprocessing Tools &gt; Intersection</code></li>
-<li>Under <strong>Input Layer</strong> select <strong>CAPAD2020_terrestrial_QLD</strong></li>
-<li>Under <strong>Overlay Layer</strong> select <strong>koala_priority_area</strong></li>
+<li>Under <strong>Input Layer</strong> select <strong>CAPAD_Reproj</strong></li>
+<li>Under <strong>Overlay Layer</strong> select <strong>KPA_Reproj</strong></li>
 <li>Click <code>Run</code></li>
 </ul>
-<p>We get an error <code>Feature (26) from “CAPAD2020_terrestrial_QLD” has invalid geometry.</code> This is caused by little issues in the polygon layer. Sometimes when polygons are drawn or exported out from other areas, they will create errors, and sometimes little slither polygons on the edges. We can investigate the source of these errors using the <code>Check validity</code> tool, but for today, we’re simply going to fix them with the <code>Fix Geometries</code> tool from the Processing Toolbox.</p>
+<p>We get an error <code>Feature (26) from “CAPAD_Reproj” has invalid geometry.</code> This is caused by little issues in the polygon layer. Sometimes when polygons are drawn or exported from online sources, they will create errors, and sometimes little slither polygons on the edges. We can investigate the source of these errors using the <code>Check validity</code> tool, but for today, we’re simply going to fix them with the <code>Fix Geometries</code> tool from the Processing Toolbox.</p>
 </section>
 <section id="fix-geometries" class="level3">
 <h3 class="anchored" data-anchor-id="fix-geometries">Fix Geometries</h3>
@@ -724,9 +773,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Open the Processing Toolbox by clicking the cog icon from the top menu <img src="https://user-images.githubusercontent.com/67612228/195267106-f54d2655-2762-42ec-acd0-a2c744b059e9.png" class="img-fluid" alt="image"> (alternatively go to <code>View &gt; Panels &gt; Processing Toolbox</code></li>
 <li>In the <strong>Processing Toolbox</strong> window <code>Search</code> for “Fix geometries”</li>
 <li>Double-click on the <strong>Fix geometries</strong> option</li>
-<li>In the <strong>Fix Geometries</strong> window, select <code>CAPAD2020_terrestrial_QLD</code> from the <strong>Input layer</strong> options, then click <code>Run</code></li>
+<li>In the <strong>Fix Geometries</strong> window, select <code>CAPAD_Reproj</code> from the <strong>Input layer</strong> options, then click <code>Run</code></li>
+<li>Right click <strong>Fixed Geometries</strong> in the Layer panel, click Rename Layer, and change it to <strong>CAPAD_Fixed</strong></li>
 </ul>
-<p>You can now re-run the <strong>Intersection</strong> tool with the resulting <strong>Fixed Geometries</strong> layer (instead of the <strong>CAPAD2020_terrestrial_QLD</strong> layer)</p>
+<p>You can now re-run the <strong>Intersection</strong> tool with the resulting <strong>CAPAD_Fixed</strong> layer (instead of the <strong>CAPAD2020_terrestrial_QLD</strong> layer)</p>
+<ul>
+<li>Go to <code>Vector &gt; Geoprocessing Tools &gt; Intersection</code></li>
+<li>Under <strong>Input Layer</strong> select <strong>CAPAD_Fixed</strong></li>
+<li>Under <strong>Overlay Layer</strong> select <strong>KPA_Reproj</strong></li>
+<li>Click <code>Run</code></li>
+</ul>
+<p>Magic. Our new layer with be the thin overlap between our two original layers, and will have their shared Attribute Tables. However, this is a double-edged sword, as it has retained the Area columns of the original CAPAD polygons. If we want to know our new shape’s area, we need to calculate that.</p>
 </section>
 <section id="field-calculator" class="level3">
 <h3 class="anchored" data-anchor-id="field-calculator">Field Calculator</h3>
@@ -743,23 +800,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Do the same <strong>Field Calculator</strong> steps for the original koala_priority_area.</p>
 <p>You can now use the <strong>Field calculator</strong> to determine the percentage of the Koala Priority area which is currently protected. 1506573200.936991 / 5776218019.211894 = 26%</p>
 <p>Only 26%! Let’s look into this further. Perhaps our dataset is missing some new conservation areas.</p>
-<p>Let’s turn on the OpenStreetMap to see if we can see anything missing here. Let’s have a look at the dense collection of koala sightings near Springwood and the Daisy Hill Conservation Park. We can see that there are some protected bushlands in this area that aren’t in our CAPAD2020 dataset. It may be that these aren’t strict enough conservation areas, or our dataset may be out of date. Regardless, this gives us a good opportunity to use an important tool in GIS: Digitisation.</p>
+<p>Let’s turn on the OpenStreetMap to see if we can see anything missing here. Let’s have a look at the dense collection of koala sightings near Springwood and the Daisy Hill Conservation Park (if you can’t find them, paste these coordinates <strong>-27.581128,153.176828</strong> into the <strong>Coordinate</strong> box at the bottom of the window, and change the <strong>Scale</strong> to <strong>1:10000</strong>). We can see that there are some protected bushlands in this area that aren’t in our CAPAD2020 dataset. It may be that these aren’t strict enough conservation areas, or our dataset may be out of date. Regardless, this gives us a good opportunity to use an important tool in GIS: Digitisation.</p>
 </section>
 </section>
 <section id="map-digitisation" class="level2">
 <h2 class="anchored" data-anchor-id="map-digitisation">Map Digitisation</h2>
-<p>You may often need to create your own points, lines, and polygons when digitising satellite data, or simply highlighting a particular area. Let’s use the OpenStreeMap (in Browser, scroll down to XYZ Tiles, and double-click on OpenStreetMap) and digitise the Emu Street Bushland Refuge (you can quickly navigate here by changing your <strong>Scale</strong> to 1:10000 and <strong>Coordinate</strong> to 518271.26,6948896.93) * Go to <code>Layer &gt; Create Layer &gt; New GeoPackage Layer...</code> * Click the three dots <code>...</code> next to the <strong>Database</strong> section * Navigate to your <strong>vector_data</strong> folder and save the file as <strong>ESBR_polygon</strong> * From <strong>Geometry type</strong> select <code>MultiPolygon</code> * Make sure the CRS is set to <code>EPSG:7856 - GDA2020 / MGA zone 56</code> * Leave the other fields blank for now and click <code>OK</code></p>
-<p>We now have a brand new layer that we can add polygons to. * Select the new <strong>ESBR_polygon</strong> layer and then click the <strong>Toggle Editing</strong> pencil <img src="https://user-images.githubusercontent.com/67612228/195329987-d435f41e-c111-40b0-8ee5-043cf135692c.png" class="img-fluid" alt="image"> from the top menu (or go to <code>Layer &gt; Toggle Edititng</code> * On your keyboard, press <code>Ctrl + .</code> to start adding a new polygon * Zoom in to a corner of the area you want to create the polygon, and then <code>Left click</code> to start drawing your polygon ()You can use the mouse wheel to zoom in, and also press on the mouse wheel to navigate) * Continue adding points to your polygon until your return back to the start, <code>Right click</code> to stop digitising and create your polygon. * Leave the fid as <code>Autogenerate</code> and click <code>OK</code> * To save what you’ve done, click the <strong>Save Layer Edits</strong> button next to the <strong>Toggle Editing</strong> button * To finish editing your layer click the <strong>Toggle Editing</strong> button again</p>
+<p>You may often need to create your own points, lines, and polygons when digitising satellite data, or simply highlighting a particular area. Let’s use the OpenStreeMap (in Browser, scroll down to XYZ Tiles, and double-click on OpenStreetMap) and digitise the Emu Street Bushland Refuge.</p>
+<ul>
+<li><p>Go to <code>Layer &gt; Create Layer &gt; New GeoPackage Layer...</code></p></li>
+<li><p>Click the three dots <code>...</code> next to the <strong>Database</strong> section</p></li>
+<li><p>Navigate to your <code>data &gt; processed</code> folder and save the file as <strong>ESBR_polygon</strong></p></li>
+<li><p>From <strong>Geometry type</strong> select <code>MultiPolygon</code></p></li>
+<li><p>Make sure the CRS is set to <code>EPSG:7856 - GDA2020 / MGA zone 56</code></p></li>
+<li><p>Leave the other fields blank for now and click <code>OK</code></p></li>
+</ul>
+<p>We now have a brand new layer that we can add polygons to.</p>
+<ul>
+<li><p>Select the new <strong>ESBR_polygon</strong> layer and then click the <strong>Toggle Editing</strong> pencil <img src="https://user-images.githubusercontent.com/67612228/195329987-d435f41e-c111-40b0-8ee5-043cf135692c.png" class="img-fluid" alt="image"> from the top menu (or go to <code>Layer &gt; Toggle Edititng</code></p></li>
+<li><p>On your keyboard, press <code>Ctrl + .</code> (or click <img src="polygon.png" class="img-fluid"> Add Polygon Feature) to start adding a new polygon</p></li>
+<li><p>Zoom in to a corner of the area you want to create the polygon, and then <code>Left click</code> to start drawing your polygon (You can use the mouse wheel to zoom in, and also press and drag on the mouse wheel to navigate)</p>
+<ul>
+<li>A red dotted line will now appear between that first point and your cursor.</li>
+</ul></li>
+<li><p>Continue adding points to your polygon until your return back to the start, <code>Right click</code> to stop digitising and create your polygon.</p></li>
+<li><p>Leave the fid as <code>Autogenerate</code> and click <code>OK</code></p></li>
+<li><p>To save what you’ve done, click the <strong>Save Layer Edits</strong> button next to the <strong>Toggle Editing</strong> button</p></li>
+<li><p>To finish editing your layer click the <strong>Toggle Editing</strong> button</p></li>
+</ul>
 <p>You now know how to digitise a polygon, but the same steps apply for creating a point or a line layer. We created a new layer here, and you can also do the same steps to edit a pre-exisitng layer too.</p>
-<p>Despite these missing Refuge area polygons, you can still see that there are a lot of koalas which are found outside of protected areas. Infact, most sightings seem to occur outside of protected areas! Is this poor protected area management, or might our data be biased by when and where people are more likely to encounter koalas?</p>
+<p>The <strong>Vertex Tool</strong> <img src="vertex.png" class="img-fluid"> will allow you to move the location of points (or corners of polygons) that you have already created (you also need to click the <strong>Toggle Editing</strong> button for this tool)</p>
+<p>Despite these missing Refuge area polygons, you can still see that there are a lot of koalas which are found outside of protected areas. In fact, most sightings seem to occur outside of protected areas! Is this poor protected area management, or might our data be biased by when and where people are more likely to encounter koalas?</p>
 </section>
 <section id="analysis-how-do-koalas-and-people-overlap" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-how-do-koalas-and-people-overlap">Analysis: How do koalas and people overlap?</h2>
 <section id="count-points-in-polygons" class="level3">
 <h3 class="anchored" data-anchor-id="count-points-in-polygons">Count Points in Polygons</h3>
-<p>Earlier we lookied at overlap between polygons, we can also look at points in polygon. Let’s use the Count Points in Polygons tool to quickly count the number of points from a particular layer inside a polygon. We could look at a few things here, we could look at koala sightings in protected areas or in the priority areas, but let’s try to get an idea of how people and koala sightings overlap. You would expect there to be more koalas where there are fewer people, but perhaps our data is skewed by population levels.</p>
-<p>Let’s determine how many koalas are inside of each SA2 suburb. * Go to <code>Vector &gt; Analysis Tools &gt; Count Points in Polygons...</code> * In the <strong>Polygons</strong> field select <code>SA2_SEQ</code> * In the <strong>Points </strong> field select <code>koala_reduced</code> * In the <strong>Count field name</strong> field type in something like <code>NUM_KOALAS</code> * Click the three dots <code>...</code> next to the <strong>Count</strong> section, and click <strong>Save to File…</strong> * Navigate to your <strong>vector_data</strong> folder and save the file as <strong>SA2_SEQ_koalas</strong> * Click <code>Run</code> You will have a new layer, you can look at the <strong>Attribute Table</strong> for this layer to see the number of koala sightings in each suburb * Let’s double click on that layer and change the <strong>Symbology</strong> to <code>Graduated</code> * Set the <strong>Value</strong> to <code>NUM_KOALAS</code> * Choose a <strong>Color ramp</strong> of your liking * Click <code>Classify</code> * Then click <code>OK</code></p>
-<p>We can go further and use the <strong>Field Calculator</strong> to compare this to the current population in that area, and create a new field * Click on the <strong>Field Calculator</strong> icon * Under <strong>Create a new field</strong> set the <strong>Output field name</strong> to <code>KOALAS_PP</code> and set the <strong>Output field type</strong> to <code>Decimal number (real)</code> (we need to choose this option to ensure that we have decimals in our output) * In the <code>Expression</code> tab enter <code>"NUM_KOALAS" / "ERP_2021" * Click</code>OK * Try changing the <strong>value</strong> in *<strong>Symbology</strong> to <code>KOALA_PP</code> instead.</p>
+<p>Earlier we looked at overlap between polygons, we can also look at points overlapping with a polygon. Let’s use the Count Points in Polygons tool to quickly count the number of points from a particular layer inside a polygon. We could look at a few things here, we could look at koala sightings in protected areas or in the priority areas, but let’s try to get an idea of how people and koala sightings overlap. You would expect there to be more koalas where there are fewer people, but perhaps our data is skewed by population levels.</p>
+<p>Let’s determine how many koalas are inside of each SA2 suburb.</p>
+<ul>
+<li><p>Go to <code>Vector &gt; Analysis Tools &gt; Count Points in Polygons...</code></p></li>
+<li><p>In the <strong>Polygons</strong> field select <code>SA2_SEQ</code></p></li>
+<li><p>In the <strong>Points</strong> field select <code>Koalas_Reproj</code></p></li>
+<li><p>In the <strong>Count field name</strong> field type in something like <code>NUM_KOALAS</code></p></li>
+<li><p>Click the three dots <code>...</code> next to the <strong>Count</strong> section, and click <strong>Save to File…</strong></p></li>
+<li><p>Navigate to your <strong>processed</strong> folder and save the file as <strong>SA2_SEQ_koalas</strong></p></li>
+<li><p>Click <code>Run</code></p></li>
+</ul>
+<p>If it’s being really slow, we might be able to benefit from the <strong>Fix Geometries</strong> tool again.</p>
+<ul>
+<li><p>Click <code>Cancel</code> in the <strong>Count Points in Polygons</strong> window, but leave it open for now</p></li>
+<li><p>In the <strong>Processing Toolbox</strong> double-click on the <strong>Fix geometries</strong> option</p>
+<ul>
+<li><p>For Input Layer choose <strong>Koalas_Reproj</strong></p></li>
+<li><p>Click <code>Run</code></p></li>
+</ul></li>
+<li><p>Return to the <strong>Count Points in Polygons</strong> window, click <code>Change Parameters</code></p></li>
+<li><p>Change the <code>Points</code> to the new <strong>Fixed geometries</strong> layer</p></li>
+<li><p>Click <code>Run</code></p></li>
+</ul>
+<p>You can now look at the <strong>Attribute Table (F6)</strong> for this layer to see the number of koala sightings in each suburb. Let’s visualise this.</p>
+<ul>
+<li><p>Click on the <strong>SA2_SEQ_koalas</strong> layer in the Layers panel</p></li>
+<li><p>Open the Layer Sytling Panel by pressing F7 (or fn + F7)</p></li>
+<li><p>Change the Symbology from <code>Single Symbol</code> to <code>Graduated</code></p></li>
+<li><p>Set the <strong>Value</strong> to <code>NUM_KOALAS</code></p></li>
+<li><p>Choose a <strong>Color ramp</strong> of your liking</p></li>
+<li><p>Click <code>Classify</code></p></li>
+<li><p>You might want to play with the <strong>Mode</strong> to get a feel for the data</p></li>
+</ul>
+<p>Now we can quickly see how many Koalas are in each suburb.</p>
+<p>We can go further and use the <strong>Field Calculator</strong> to compare koala numbers to the current human population in that area, and create a new field with that information.</p>
+<ul>
+<li><p>Click on the <strong>Field Calculator</strong> button <img src="https://user-images.githubusercontent.com/67612228/195319687-1538f2a0-d8c8-4084-a632-0e3181fb11dd.png" class="img-fluid" alt="image"></p>
+<ul>
+<li><p>Under <strong>Create a new field</strong> set the <strong>Output field name</strong> to <code>KOALAS_PP</code></p></li>
+<li><p>Set the <strong>Output field type</strong> to <code>Decimal number (real)</code> (we need to choose this option to ensure that we have decimals in our output)</p></li>
+<li><p>In the <code>Expression</code> tab enter <code>"NUM_KOALAS" / "ERP_2021"</code></p>
+<ul>
+<li>ERP stands for Estimated Resident Population</li>
+</ul></li>
+<li><p>Click OK</p></li>
+</ul></li>
+<li><p>Now you can change the <strong>Value</strong> in <strong>Layer Styling</strong> to <code>KOALA_PP</code></p>
+<ul>
+<li>Click Classify again if needed</li>
+</ul></li>
+</ul>
 <p>We can now see how koala populations compare with human populations.</p>
 </section>
 </section>
