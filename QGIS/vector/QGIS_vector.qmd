@@ -10,6 +10,37 @@ author: UQ Library
 This is an intermediate level tutorial. Before completing this tutorial, we recommend our [QGIS: Introduction to Mapping](QGIS/intro/QGIS_intro.qmd) tutorial.
 This tutorial is designed for **QGIS 3.40**. If you need to install it on your computer, go to the [QGIS website](https://qgis.org/download/).
 
+We will start as always by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.
+
+-   Open QGIS and create a **new project** with `Project > New`.
+
+-   Let's now **save** our project: `Project > Save`.
+
+-   Create a new folder, let's call it "qgis_vector".
+
+-   Inside that folder, create these folders:
+
+    -   "data" - for all the data we will use to make our maps, split into:
+
+        -   "raw" - raw data from your research or the internet
+
+        -   "processed" - any data you've modified
+
+    -   "output" - for any maps or images we export
+
+-   Finally, let's save our .qgz project file here, named "qgis_vector_map.qgz"
+
+Your .qgz file should always be in the highest level folder, so it's only looking down into folders for data, not back out.
+
+![](folder.png)
+
+This might seem necessary now, but things quickly get out of control and hard to find if you don't have a good folder structure.
+
+Let's finally add an OpenStreetMap basemap to locate ourselves on the globe:
+
+-   `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
+
+
 ## What is Vector Data?
 
 Vector data is made up of points, lines, and/or polygons. They are made up of precise points with individual coordinates. Vector data is best contrasted with Raster data which has a grid of values evenly spaced apart, connected to one coordinate. Rasters are efficient at displaying large amounts of data, where vector data is very precise.
