@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-09-03">
+<meta name="dcterms.date" content="2025-09-04">
 
 <title>QGIS: Vector Analysis – UQ Library Technology Training</title>
 <style>
@@ -540,7 +540,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 3, 2025</p>
+      <p class="date">September 4, 2025</p>
     </div>
   </div>
   
@@ -555,6 +555,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <p>This is an intermediate level tutorial. Before completing this tutorial, we recommend our <a href="QGIS/intro/QGIS_intro.qmd">QGIS: Introduction to Mapping</a> tutorial. This tutorial is designed for <strong>QGIS 3.40</strong>. If you need to install it on your computer, go to the <a href="https://qgis.org/download/">QGIS website</a>.</p>
+<p>We will start as always by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.</p>
+<ul>
+<li><p>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>.</p></li>
+<li><p>Let’s now <strong>save</strong> our project: <code>Project &gt; Save</code>.</p></li>
+<li><p>Create a new folder, let’s call it “qgis_vector”.</p></li>
+<li><p>Inside that folder, create these folders:</p>
+<ul>
+<li><p>“data” - for all the data we will use to make our maps, split into:</p>
+<ul>
+<li><p>“raw” - raw data from your research or the internet</p></li>
+<li><p>“processed” - any data you’ve modified</p></li>
+</ul></li>
+<li><p>“output” - for any maps or images we export</p></li>
+</ul></li>
+<li><p>Finally, let’s save our .qgz project file here, named “qgis_vector_map.qgz”</p></li>
+</ul>
+<p>Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.</p>
+<p><img src="folder.png" class="img-fluid"></p>
+<p>This might seem necessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.</p>
+<p>Let’s finally add an OpenStreetMap basemap to locate ourselves on the globe:</p>
+<ul>
+<li><code>Browser panel &gt; XYZ Tiles &gt; OpenStreetMap</code> (double-click, or drag and drop into the Layers panel).</li>
+</ul>
 </section>
 <section id="what-is-vector-data" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-vector-data">What is Vector Data?</h2>
