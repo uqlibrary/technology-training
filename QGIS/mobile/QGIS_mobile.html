@@ -507,7 +507,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="setting-up" class="level1">
 <h1>Setting up</h1>
 <p>This is an intermediate level tutorial. Before completing this tutorial, we recommend our <a href="QGIS/intro/QGIS_intro.qmd">QGIS: Introduction to Mapping</a> tutorial. This tutorial is designed for <strong>QGIS 3.40</strong>. If you need to install it on your computer, go to the <a href="https://qgis.org/download/">QGIS website</a>.</p>
-<p>We will start by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.</p>
+<p>We will start as always by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.</p>
 <ul>
 <li><p>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>.</p></li>
 <li><p>Let’s now <strong>save</strong> our project: <code>Project &gt; Save</code>.</p></li>
@@ -554,7 +554,7 @@ ul.task-list li input[type="checkbox"] {
 <p>A Digital Elevation Model (DEM) is a common example of <strong>raster data</strong>, i.e.&nbsp;grid data that contains a value in each cell (a bit like the pixels in a coloured picture).</p>
 <p>For this tutorial, we are using a DEM sourced from <strong>ELVIS</strong> - Geoscience Australia’s ELeVation Information System.</p>
 <ul>
-<li>Go to http://www.ga.gov.au/elvis/</li>
+<li>Go to <a href="http://www.ga.gov.au/elvis/" class="uri">http://www.ga.gov.au/elvis/</a></li>
 <li>Search for “St Lucia” in the <code>Location Search</code> search box and select the first result</li>
 <li>Click <code>Order Data</code></li>
 <li>Choose “Draw” and “Box” and then click the <code>Draw</code> button</li>
@@ -572,7 +572,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="aerial-imagery">Aerial Imagery</h3>
 <p>There are a few places you can aquire aerial photography, today we will look at two sources, one is freely available Government Data from <strong>QImagery</strong>, the other is accessible from using your UQ credentials.</p>
 <ul>
-<li>Go to https://qimagery.information.qld.gov.au/</li>
+<li>Go to <a href="https://qimagery.information.qld.gov.au/" class="uri">https://qimagery.information.qld.gov.au/</a></li>
 <li>Read and tick the “I acknowledge I have read and agree to the Terms &amp; Conditions” box, and click <code>Get Started</code></li>
 <li>Click the Search button, select ‘locality, town or city’ and search for “St Lucia” in the “Enter search term” search box and select the first result</li>
 <li>It will zoom to your selected location then click the newly appeared <code>Search</code> button</li>
@@ -602,17 +602,28 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="lot-plans">Lot Plans</h3>
 <p>You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial. I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from our Github site.</p>
 <ul>
-<li>To access data from QLD Spatial go to https://qldspatial.information.qld.gov.au/</li>
-<li>Search for “property boundaries” and select the “property boundaries Queensland” option.</li>
-<li>You could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop <a href="https://github.com/uqlibrary/technology-training/blob/8e0aebe078198cd8bb65630c9ac4c4c8558a4392/QGIS/mobile/QGIS_Mobile_Data.zip">here</a>, just press the three dots and download.</li>
-<li>Move the downloaded zip file to your project folder, and open the shapefile in QGIS</li>
+<li><p>To access data from QLD Spatial go to <a href="https://qldspatial.information.qld.gov.au/" class="uri">https://qldspatial.information.qld.gov.au/</a></p></li>
+<li><p>Search for “property boundaries”</p></li>
+<li><p>Scroll down to “Property boundaries Queensland” and click <strong>Add to my list</strong></p></li>
+<li><p>Click <strong>My List</strong> from the top menu</p></li>
+<li><p>Click <strong>View/extract in map</strong></p></li>
+<li><p>Under Extractable Data, click the box next to <strong>Property boundaries Queensland</strong>, it will become green</p></li>
+<li><p>Click <strong>Extract/download</strong></p></li>
+<li><p>Click <strong>Choose an area</strong></p></li>
+<li><p>Select <strong>BRISBANE CITY</strong> from the Select LGA option</p></li>
+<li><p>Choose GeoPackage 1.0 from Select output format</p></li>
+<li><p>Enter your Email Address</p></li>
+<li><p>Accept the Terms and Conditions</p></li>
+<li><p>Click <strong>Extract/Download</strong></p></li>
+<li><p>You could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop <a href="https://github.com/uqlibrary/technology-training/blob/8e0aebe078198cd8bb65630c9ac4c4c8558a4392/QGIS/mobile/QGIS_Mobile_Data.zip">here</a>, just press the three dots and download.</p></li>
+<li><p>Move the downloaded zip file to your project folder, and open the shapefile in QGIS</p></li>
 </ul>
 </section>
 <section id="queensland-globe" class="level3">
 <h3 class="anchored" data-anchor-id="queensland-globe">Queensland Globe</h3>
 <p>Another way to access QSpatial Data is using the Queensland Globe portal.</p>
 <ul>
-<li>To access data from Queensland Globe go to https://qldglobe.information.qld.gov.au</li>
+<li>To access data from Queensland Globe go to <a href="https://qldglobe.information.qld.gov.au_">https://qldglobe.information.qld.gov.au</a></li>
 <li>Accept the T&amp;Cs.</li>
 <li>Click <strong>Search</strong>, Select <strong>Locality (Suburb) within a Local Government Area</strong>, and search for the location you want and select it from the list.</li>
 <li>Click <strong>Layers</strong>, click <strong>Add Layers +</strong> here you can scroll through and filter different layer types</li>
