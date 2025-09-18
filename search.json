@@ -1422,91 +1422,156 @@
     "href": "QGIS/fieldwork/QGIS_fieldwork.html",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "",
-    "text": "This is an intermediate level tutorial. Before completing this tutorial, we recommend our QGIS: Introduction to Mapping tutorial. This tutorial is designed for QGIS 3.40. If you need to install it on your computer, go to the QGIS website.\nWe will start as always by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.\n\nOpen QGIS and create a new project with Project &gt; New.\nLet’s now save our project: Project &gt; Save.\nCreate a new folder, let’s call it “qgis_fieldwork”.\nInside that folder, create these folders:\n\n“data” - for all the data we will use to make our maps, split into:\n\n“raw” - raw data from your research or the internet\n“processed” - any data you’ve modified\n\n“output” - for any maps or images we export\n“temp” - this isn’t necessary, but when you’re playing around and testing, it stops things getting messy.\n\nFinally, let’s save our .qgz project file here, named “qgis_fieldwork_map.qgz”\n\nYour .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.\n\nThis might seem necessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.\nLet’s finally add an OpenStreetMap basemap to locate ourselves on the globe:\n\nBrowser panel &gt; XYZ Tiles &gt; OpenStreetMap (double-click, or drag and drop into the Layers panel).\n\n\n\nQField and Avenza Maps are a mobile based offline mapping tools you can use on your smartphone.\n\n\nQField plugs directly in to QGIS, and allows you to link a QGIS project with your mobile phone for data collection.\nAndroid Download iOS Download\n\n\n\nFor Avenza Maps you just need to add a GeoPDF and you can collect data on it. It’s less functional than QField, but it’s a great fallback tool. Android Download iOS Download\nThere are alternatives out there, such as Input (MerginMaps)."
+    "text": "This is an intermediate level tutorial. Before completing this tutorial, we recommend our QGIS: Introduction to Mapping tutorial. This tutorial is designed for QGIS 3.40. If you need to install it on your computer, go to the QGIS website.\nWe will start as always by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.\n\nOpen QGIS and create a new project with Project &gt; New.\nLet’s now save our project: Project &gt; Save.\nCreate a new folder, let’s call it “qgis_fieldwork”.\nInside that folder, create these folders:\n\n“data” - for all the data we will use to make our maps, split into:\n\n“raw” - raw data from your research or the internet\n“processed” - any data you’ve modified\n\n“output” - for any maps or images we export\n“temp” - this isn’t necessary, but when you’re playing around and testing, it stops things getting messy.\n\nFinally, let’s save our .qgz project file here, named “qgis_fieldwork_map.qgz”\n\nYour .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.\n\nThis might seem necessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.\nLet’s finally add an OpenStreetMap basemap to locate ourselves on the globe:\n\nBrowser panel &gt; XYZ Tiles &gt; OpenStreetMap (double-click, or drag and drop into the Layers panel).\n\n\n\nQField and Avenza Maps are a mobile based offline mapping tools you can use on your smartphone.\n\n\nQField plugs directly in to QGIS, and allows you to link a QGIS project with your mobile phone for data collection.\nAndroid Download iOS Download\n\n\n\nFor Avenza Maps you just need to add a GeoPDF and you can collect data on it. It’s less functional than QField, but it’s a great fallback tool. Android Download iOS Download\nThere are alternatives out there, such as Input (MerginMaps).",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#install-qfield-and-avenza-maps-on-your-phone",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#install-qfield-and-avenza-maps-on-your-phone",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "",
-    "text": "QField and Avenza Maps are a mobile based offline mapping tools you can use on your smartphone.\n\n\nQField plugs directly in to QGIS, and allows you to link a QGIS project with your mobile phone for data collection.\nAndroid Download iOS Download\n\n\n\nFor Avenza Maps you just need to add a GeoPDF and you can collect data on it. It’s less functional than QField, but it’s a great fallback tool. Android Download iOS Download\nThere are alternatives out there, such as Input (MerginMaps)."
+    "text": "QField and Avenza Maps are a mobile based offline mapping tools you can use on your smartphone.\n\n\nQField plugs directly in to QGIS, and allows you to link a QGIS project with your mobile phone for data collection.\nAndroid Download iOS Download\n\n\n\nFor Avenza Maps you just need to add a GeoPDF and you can collect data on it. It’s less functional than QField, but it’s a great fallback tool. Android Download iOS Download\nThere are alternatives out there, such as Input (MerginMaps).",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#create-a-buffer-to-clip-our-data",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#create-a-buffer-to-clip-our-data",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "Create a buffer to clip our data",
-    "text": "Create a buffer to clip our data\nWe now want to only keep data that is relevant to the St Lucia campus. To achieve that, we need a mask to clip data.\nWe first need to select the lots that are relevant to us: - Use the “Select Feature by area or single click” (in the toolbar) - Click on the lots one by one (or draw a rectangle around them) with the Shift key pressed.\nWe can now create a buffer:\n\nGo to Vector &gt; Geoprocessing Tools &gt; Buffer\n\nThere are many settings we can change to edit the shape of the buffer, but we will leave most of these as the defaults for now.\n\nChoose “Brisbane_lot_plans” as the Input Layer, and tick the Selected features only box\nWe next want to choose distance that we want to create a buffer away from our vector.\n\nYou’ll note that the distance is currently in degrees. This is because the layer projection is EPSG:4283 GDA94, a geographic coordinate system. This might cause issues.\n\nIf you click Run. Your buffer won’t look very good.\n\nWe first need to convert our layer to a local projected coordinate system.\n\n\nLet’s reproject the layer for better results:\n\nGo to Vector &gt; Data Management Tools &gt; Reproject Layer\nChoose “Brisbane_lot_plans” as the Input Layer, and tick the Selected features only box\nChoose a local projected coordinate system such as GDA94 / MGA zone 56 or GDA2020 / MGA zone 56. This will convert our measurements to metres instead of degrees, and by choosing an Australian projection, it reduces distortion.\nClick “Run”\nThe new scratch layer will look the same, but it now has a different projection.\n\nLet’s create that buffer again.\n\nSelect the relevant lots\nGo to Vector &gt; Geoprocessing Tools &gt; Buffer\nThis time choose “Reprojected” as the Input Layer\nYou’ll notice the distance is now in metres. For this instance, I want a larger buffer of 50 m.\nWhen you click “Run”, your buffer should be a good distance away from the original boundary.\n\nNow we can Dissolve those polygons together:\n\nGo to Vector &gt; Geoprocessing Tools &gt; Dissolve\nChoose “Buffered” as the Input Layer.\nLet’s save this one to file, rather than a temporary file.\n\nClick “…” next to “[Create Temporary Layer]”,\nThen “Save to file”, and save it as UQ Boundary to your products folder.\n\n\n\nNote the Buffer tool has a “dissolve” option, but it’s important to know that there are many tools available."
+    "text": "Create a buffer to clip our data\nWe now want to only keep data that is relevant to the St Lucia campus. To achieve that, we need a mask to clip data.\nWe first need to select the lots that are relevant to us: - Use the “Select Feature by area or single click” (in the toolbar) - Click on the lots one by one (or draw a rectangle around them) with the Shift key pressed.\nWe can now create a buffer:\n\nGo to Vector &gt; Geoprocessing Tools &gt; Buffer\n\nThere are many settings we can change to edit the shape of the buffer, but we will leave most of these as the defaults for now.\n\nChoose “Brisbane_lot_plans” as the Input Layer, and tick the Selected features only box\nWe next want to choose distance that we want to create a buffer away from our vector.\n\nYou’ll note that the distance is currently in degrees. This is because the layer projection is EPSG:4283 GDA94, a geographic coordinate system. This might cause issues.\n\nIf you click Run. Your buffer won’t look very good.\n\nWe first need to convert our layer to a local projected coordinate system.\n\n\nLet’s reproject the layer for better results:\n\nGo to Vector &gt; Data Management Tools &gt; Reproject Layer\nChoose “Brisbane_lot_plans” as the Input Layer, and tick the Selected features only box\nChoose a local projected coordinate system such as GDA94 / MGA zone 56 or GDA2020 / MGA zone 56. This will convert our measurements to metres instead of degrees, and by choosing an Australian projection, it reduces distortion.\nClick “Run”\nThe new scratch layer will look the same, but it now has a different projection.\n\nLet’s create that buffer again.\n\nSelect the relevant lots\nGo to Vector &gt; Geoprocessing Tools &gt; Buffer\nThis time choose “Reprojected” as the Input Layer\nYou’ll notice the distance is now in metres. For this instance, I want a larger buffer of 50 m.\nWhen you click “Run”, your buffer should be a good distance away from the original boundary.\n\nNow we can Dissolve those polygons together:\n\nGo to Vector &gt; Geoprocessing Tools &gt; Dissolve\nChoose “Buffered” as the Input Layer.\nLet’s save this one to file, rather than a temporary file.\n\nClick “…” next to “[Create Temporary Layer]”,\nThen “Save to file”, and save it as UQ Boundary to your products folder.\n\n\n\nNote the Buffer tool has a “dissolve” option, but it’s important to know that there are many tools available.",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#combine-our-dems",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#combine-our-dems",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "Combine our DEMs",
-    "text": "Combine our DEMs\nSee the visible line between the raster tiles? That is because the separate raster files have different maximum and minimum values, so use different shades for different elevations. We have to merge them to make sure they use the same colour scale.\nTo do that, we use the Raster &gt; Miscellaneous &gt; Merge... tool to create one single layer from them.\n\nFirst, select all DEM layers for the “Input layers”\nMake sure the option “Place each input file into a separate band” is unchecked, as we want to end up with one single-band layer\nWe can save the output on disk instead of only creating a temporary file (for example, name it St_Lucia_DEM_merged and save it inside your project directory)\nClick “Run”\n\n\nYou will need to have Saga installed for this to work.\n\nWe can now remove the original DEM raster files."
+    "text": "Combine our DEMs\nSee the visible line between the raster tiles? That is because the separate raster files have different maximum and minimum values, so use different shades for different elevations. We have to merge them to make sure they use the same colour scale.\nTo do that, we use the Raster &gt; Miscellaneous &gt; Merge... tool to create one single layer from them.\n\nFirst, select all DEM layers for the “Input layers”\nMake sure the option “Place each input file into a separate band” is unchecked, as we want to end up with one single-band layer\nWe can save the output on disk instead of only creating a temporary file (for example, name it St_Lucia_DEM_merged and save it inside your project directory)\nClick “Run”\n\n\nYou will need to have Saga installed for this to work.\n\nWe can now remove the original DEM raster files.",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#clip-the-dem",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#clip-the-dem",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "Clip the DEM",
-    "text": "Clip the DEM\nWe now use Raster &gt; Extraction &gt; Clip Raster by Mask Layer to focus on our area of interest.\n\nMake sure the virtual raster output DEM is selected in the Input layer\nSet the Mask Layer to “UQ_Boundary”\nScroll down to “Clipped (mask)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_DEM to your project folder.\nAnother way to clip would be to use Extent\nMake sure the virtual raster output DEM is selected in the Input layer\nNavigate to Raster &gt; Extraction &gt; Clip Raster by Extent\nNext to “Clipping extent” click ... &gt; Calculate from Layer &gt; UQ_Boundary\nScroll down to “Clipped (extent)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_DEM to your project folder.\n\nIf you don’t save to file directly, remember two things:\n\nrename your clipped layer so it is more descriptive than the generic “Clipped (extent)”\nyou are currently using a temporary, scratch layer. It will be discarded if you exit QGIS. It is very useful for temporary intermediate files, but it can be safer to save copies of your intermediate data while you work, just in case! You can right-click on the layer and use Export &gt; Save As.."
+    "text": "Clip the DEM\nWe now use Raster &gt; Extraction &gt; Clip Raster by Mask Layer to focus on our area of interest.\n\nMake sure the virtual raster output DEM is selected in the Input layer\nSet the Mask Layer to “UQ_Boundary”\nScroll down to “Clipped (mask)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_DEM to your project folder.\nAnother way to clip would be to use Extent\nMake sure the virtual raster output DEM is selected in the Input layer\nNavigate to Raster &gt; Extraction &gt; Clip Raster by Extent\nNext to “Clipping extent” click ... &gt; Calculate from Layer &gt; UQ_Boundary\nScroll down to “Clipped (extent)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_DEM to your project folder.\n\nIf you don’t save to file directly, remember two things:\n\nrename your clipped layer so it is more descriptive than the generic “Clipped (extent)”\nyou are currently using a temporary, scratch layer. It will be discarded if you exit QGIS. It is very useful for temporary intermediate files, but it can be safer to save copies of your intermediate data while you work, just in case! You can right-click on the layer and use Export &gt; Save As..",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#save-your-project",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#save-your-project",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "Save your project",
-    "text": "Save your project\nIt’s not essential at this stage, it’s just a good reminder to save your work regularly so you don’t lose things when things go wrong."
+    "text": "Save your project\nIt’s not essential at this stage, it’s just a good reminder to save your work regularly so you don’t lose things when things go wrong.",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#clip-the-aerial-imagery",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#clip-the-aerial-imagery",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "Clip the Aerial Imagery",
-    "text": "Clip the Aerial Imagery\nWe can repeat the same process as above to clip the Aerial Imagery.\nNow, clip the converted aerial imagery:\n\nGo to Raster &gt; Extraction &gt; Clip Raster by Extent\nMake sure St_Lucia_Aerial is selected in the Input layer\nSet the Mask Layer to “UQ_Boundary”\nYou may need to define the Source and Target CRS to ensure that it all runs smoothly\nScroll down to “Clipped (mask)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_Aerial_clipped to your project folder.\n\nWe can now clean up our project by removing the original and intermediate layers we won’t need."
+    "text": "Clip the Aerial Imagery\nWe can repeat the same process as above to clip the Aerial Imagery.\nNow, clip the converted aerial imagery:\n\nGo to Raster &gt; Extraction &gt; Clip Raster by Extent\nMake sure St_Lucia_Aerial is selected in the Input layer\nSet the Mask Layer to “UQ_Boundary”\nYou may need to define the Source and Target CRS to ensure that it all runs smoothly\nScroll down to “Clipped (mask)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_Aerial_clipped to your project folder.\n\nWe can now clean up our project by removing the original and intermediate layers we won’t need.",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#change-the-symbology",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#change-the-symbology",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "Change the symbology",
-    "text": "Change the symbology\nWe can style our DEM with a terrain colour palette:\n\ndouble-click on the clipped DEM layer\ngo to the “Symbology” tab\nchange the Render type to “Singleband pseudocolor”\nby default, it uses the min/max values, which is what we want\nwe can change the “Color ramp” to something more suitable with the drop-down menu and Create new color ramp... &gt; Catalog: cpt-city &gt; Topography &gt; Elevation, for example."
+    "text": "Change the symbology\nWe can style our DEM with a terrain colour palette:\n\ndouble-click on the clipped DEM layer\ngo to the “Symbology” tab\nchange the Render type to “Singleband pseudocolor”\nby default, it uses the min/max values, which is what we want\nwe can change the “Color ramp” to something more suitable with the drop-down menu and Create new color ramp... &gt; Catalog: cpt-city &gt; Topography &gt; Elevation, for example.",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#add-a-hillshade",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#add-a-hillshade",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "Add a hillshade",
-    "text": "Add a hillshade\nAdding a hillshade makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.\n\nGo to Raster &gt; Analysis &gt; Hillshade....\nEnsure the Input Layer is your clipped DEM “St_Lucia_DEM”\nScroll down to “Hillshade” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_DEM_Hillshade to your project folder.\nClick Run"
+    "text": "Add a hillshade\nAdding a hillshade makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.\n\nGo to Raster &gt; Analysis &gt; Hillshade....\nEnsure the Input Layer is your clipped DEM “St_Lucia_DEM”\nScroll down to “Hillshade” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_DEM_Hillshade to your project folder.\nClick Run",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#create-contours",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#create-contours",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "Create Contours",
-    "text": "Create Contours\nAdding a contour makes your elevation even more evident and can also be used to quickly show elevation on other layers\n\nGo to Raster &gt; Extraction &gt; Contour....\nEnsure the Input Layer is your clipped DEM “St_Lucia_DEM”\nFor Interval between contour lines, the default is 10 m, which won’t be greatly noticeable at UQ where the highest point is 25 m. However, the finer the contour lines, the longer it will take to process. I will choose 5 m.\nScroll down to “Contours” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_Contours_5m to your project folder.\nClick Run"
+    "text": "Create Contours\nAdding a contour makes your elevation even more evident and can also be used to quickly show elevation on other layers\n\nGo to Raster &gt; Extraction &gt; Contour....\nEnsure the Input Layer is your clipped DEM “St_Lucia_DEM”\nFor Interval between contour lines, the default is 10 m, which won’t be greatly noticeable at UQ where the highest point is 25 m. However, the finer the contour lines, the longer it will take to process. I will choose 5 m.\nScroll down to “Contours” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as St_Lucia_Contours_5m to your project folder.\nClick Run",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#exporting-to-avenza-maps",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#exporting-to-avenza-maps",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "Exporting to Avenza Maps",
-    "text": "Exporting to Avenza Maps\nClick on Show Layout Manager in the toolbar or use Project &gt; Layout Manager. Create a new layout called “Avenza”. We can now see the Layout window.\nNormally we would add many elements to our layout if we were exporting it for print such as the map, a legend, a scale bar, a north arrow…\nIn this case however, we are simply interested in our map. Let’s add the map to the canvas:\n\nGo to the Layout tab, scroll down to ‘Resize Layout to Content’, click ‘Resize layout’\nBefore we export, let’s turn off any layers we aren’t using in QGIS to save space\nClick the Refresh View button up the top\nNow we are ready to export.\nGo to ‘Layout &gt; Export as PDF…’ and save your map.\nThe ‘PDF Export Options’ window will open\nTick the ‘Create Geospatial PDF (GeoPDF)’ box\nClick ‘Save’\n\nYou can repeat this process with the DEM and Hillshade to export out another kind of map.\nNow you simply need to export the pdf file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.\nWhen you first open Avenza Maps it will ask you to create an account, but you can import up to three maps without doing so, you can avoid creating an account by selecting the ‘x’ in the top right corner. * Allow Avenza Maps to access your device location * Select the orange ‘+’ in the bottom right and select ‘Download or import a map’ * Choose ‘From Storage Locations’ (if requested, give Avenza Maps the permissions to access your files) * Do the same for the other map, if you created one. * Once it has been imported, tap on the map. * You can now move the map around with your finger, and pinching to zoom. * Tapping the placemark icon in the bottom left will add a placemark in the middle of the crosshairs. * Tapping the 3 dots in the bottom right will allow you to add GPS tracking and draw and measure distances."
+    "text": "Exporting to Avenza Maps\nClick on Show Layout Manager in the toolbar or use Project &gt; Layout Manager. Create a new layout called “Avenza”. We can now see the Layout window.\nNormally we would add many elements to our layout if we were exporting it for print such as the map, a legend, a scale bar, a north arrow…\nIn this case however, we are simply interested in our map. Let’s add the map to the canvas:\n\nGo to the Layout tab, scroll down to ‘Resize Layout to Content’, click ‘Resize layout’\nBefore we export, let’s turn off any layers we aren’t using in QGIS to save space\nClick the Refresh View button up the top\nNow we are ready to export.\nGo to ‘Layout &gt; Export as PDF…’ and save your map.\nThe ‘PDF Export Options’ window will open\nTick the ‘Create Geospatial PDF (GeoPDF)’ box\nClick ‘Save’\n\nYou can repeat this process with the DEM and Hillshade to export out another kind of map.\nNow you simply need to export the pdf file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.\nWhen you first open Avenza Maps it will ask you to create an account, but you can import up to three maps without doing so, you can avoid creating an account by selecting the ‘x’ in the top right corner. * Allow Avenza Maps to access your device location * Select the orange ‘+’ in the bottom right and select ‘Download or import a map’ * Choose ‘From Storage Locations’ (if requested, give Avenza Maps the permissions to access your files) * Do the same for the other map, if you created one. * Once it has been imported, tap on the map. * You can now move the map around with your finger, and pinching to zoom. * Tapping the placemark icon in the bottom left will add a placemark in the middle of the crosshairs. * Tapping the 3 dots in the bottom right will allow you to add GPS tracking and draw and measure distances.",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#qfield-1",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#qfield-1",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "QField",
-    "text": "QField\nQField is another Android based GIS app."
+    "text": "QField\nQField is another Android based GIS app.",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "QGIS/fieldwork/QGIS_fieldwork.html#feedback",
     "href": "QGIS/fieldwork/QGIS_fieldwork.html#feedback",
     "title": "QGIS: Fieldwork Data Collection",
     "section": "Feedback",
-    "text": "Feedback\nPlease visit our website to provide feedback and find upcoming training courses we have on offer."
+    "text": "Feedback\nPlease visit our website to provide feedback and find upcoming training courses we have on offer.",
+    "crumbs": [
+      "Home",
+      "![](/images/QGIS.svg){width=20} QGIS",
+      "4. Mobile mapping"
+    ]
   },
   {
     "objectID": "Python/2-data_processing/data_processing.html",
