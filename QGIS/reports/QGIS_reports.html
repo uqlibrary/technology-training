@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-09-22">
+<meta name="dcterms.date" content="2025-09-25">
 
-<title>QGIS: Fieldwork Data Collection – UQ Library Technology Training</title>
+<title>QGIS: Refine Your Maps for Reporting and Publication – UQ Library Technology Training</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d797537a44de9c7115a4431b0b6e87fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-5f1f5d646c7fcd9202c689c493e95c64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -181,7 +181,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">QGIS: Fieldwork Data Collection</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">QGIS: Refine Your Maps for Reporting and Publication</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -366,6 +366,12 @@ window.Quarto = {
  <span class="menu-text">4. Fieldwork Data Collection</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/fieldwork/QGIS_reports.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Refined Maps for Publication</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -479,34 +485,51 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a>
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a></li>
+  <li><a href="#todays-aims" id="toc-todays-aims" class="nav-link" data-scroll-target="#todays-aims">Today’s Aims</a></li>
+  <li><a href="#download-the-data" id="toc-download-the-data" class="nav-link" data-scroll-target="#download-the-data">Download the Data</a></li>
+  <li><a href="#change-the-symbology" id="toc-change-the-symbology" class="nav-link" data-scroll-target="#change-the-symbology">Change the symbology</a>
   <ul class="collapse">
-  <li><a href="#install-qfield-and-avenza-maps-on-your-phone" id="toc-install-qfield-and-avenza-maps-on-your-phone" class="nav-link" data-scroll-target="#install-qfield-and-avenza-maps-on-your-phone">Install QField and Avenza Maps on your phone</a>
-  <ul class="collapse">
-  <li><a href="#qfield" id="toc-qfield" class="nav-link" data-scroll-target="#qfield">QField</a></li>
-  <li><a href="#avenza" id="toc-avenza" class="nav-link" data-scroll-target="#avenza">Avenza</a></li>
+  <li><a href="#point-geometry" id="toc-point-geometry" class="nav-link" data-scroll-target="#point-geometry">Point Geometry</a></li>
+  <li><a href="#line-geometry" id="toc-line-geometry" class="nav-link" data-scroll-target="#line-geometry">Line Geometry</a></li>
+  <li><a href="#polygon-geometry" id="toc-polygon-geometry" class="nav-link" data-scroll-target="#polygon-geometry">Polygon Geometry</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#get-some-data" id="toc-get-some-data" class="nav-link" data-scroll-target="#get-some-data">Get some data</a>
+  <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels">Labels</a></li>
+  <li><a href="#styles" id="toc-styles" class="nav-link" data-scroll-target="#styles">Styles</a></li>
+  <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes">Themes</a></li>
+  <li><a href="#basemaps" id="toc-basemaps" class="nav-link" data-scroll-target="#basemaps">Basemaps</a></li>
+  <li><a href="#themes-again" id="toc-themes-again" class="nav-link" data-scroll-target="#themes-again">Themes (again)</a></li>
+  <li><a href="#layout-manager" id="toc-layout-manager" class="nav-link" data-scroll-target="#layout-manager">Layout Manager</a>
   <ul class="collapse">
-  <li><a href="#dem" id="toc-dem" class="nav-link" data-scroll-target="#dem">DEM</a></li>
-  <li><a href="#aerial-imagery" id="toc-aerial-imagery" class="nav-link" data-scroll-target="#aerial-imagery">Aerial Imagery</a></li>
-  <li><a href="#lot-plans" id="toc-lot-plans" class="nav-link" data-scroll-target="#lot-plans">Lot Plans</a></li>
-  <li><a href="#queensland-globe" id="toc-queensland-globe" class="nav-link" data-scroll-target="#queensland-globe">Queensland Globe</a></li>
+  <li><a href="#page-properties" id="toc-page-properties" class="nav-link" data-scroll-target="#page-properties">Page Properties</a></li>
+  <li><a href="#guides" id="toc-guides" class="nav-link" data-scroll-target="#guides">Guides</a></li>
+  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map">Map</a></li>
+  <li><a href="#scale" id="toc-scale" class="nav-link" data-scroll-target="#scale">Scale</a></li>
+  <li><a href="#inset-map" id="toc-inset-map" class="nav-link" data-scroll-target="#inset-map">Inset Map</a></li>
+  <li><a href="#themes-again-1" id="toc-themes-again-1" class="nav-link" data-scroll-target="#themes-again-1">Themes (again!)</a></li>
+  <li><a href="#title" id="toc-title" class="nav-link" data-scroll-target="#title">Title</a></li>
+  <li><a href="#dynamic-text" id="toc-dynamic-text" class="nav-link" data-scroll-target="#dynamic-text">Dynamic Text</a></li>
+  <li><a href="#shapes" id="toc-shapes" class="nav-link" data-scroll-target="#shapes">Shapes</a></li>
+  <li><a href="#legend" id="toc-legend" class="nav-link" data-scroll-target="#legend">Legend</a></li>
+  <li><a href="#north-arrow" id="toc-north-arrow" class="nav-link" data-scroll-target="#north-arrow">North Arrow</a></li>
+  <li><a href="#scalebar" id="toc-scalebar" class="nav-link" data-scroll-target="#scalebar">Scalebar</a></li>
+  <li><a href="#finessing" id="toc-finessing" class="nav-link" data-scroll-target="#finessing">Finessing</a></li>
+  <li><a href="#export-options" id="toc-export-options" class="nav-link" data-scroll-target="#export-options">Export options</a></li>
   </ul></li>
-  <li><a href="#import-and-process-our-data" id="toc-import-and-process-our-data" class="nav-link" data-scroll-target="#import-and-process-our-data">Import and process our data</a>
+  <li><a href="#save-a-map-template" id="toc-save-a-map-template" class="nav-link" data-scroll-target="#save-a-map-template">Save a Map Template</a></li>
+  <li><a href="#load-a-map-template" id="toc-load-a-map-template" class="nav-link" data-scroll-target="#load-a-map-template">Load a Map Template</a>
   <ul class="collapse">
-  <li><a href="#create-a-buffer-to-clip-our-data" id="toc-create-a-buffer-to-clip-our-data" class="nav-link" data-scroll-target="#create-a-buffer-to-clip-our-data">Create a buffer to clip our data</a></li>
-  <li><a href="#combine-our-dems" id="toc-combine-our-dems" class="nav-link" data-scroll-target="#combine-our-dems">Combine our DEMs</a></li>
-  <li><a href="#clip-the-dem" id="toc-clip-the-dem" class="nav-link" data-scroll-target="#clip-the-dem">Clip the DEM</a></li>
-  <li><a href="#save-your-project" id="toc-save-your-project" class="nav-link" data-scroll-target="#save-your-project">Save your project</a></li>
-  <li><a href="#clip-the-aerial-imagery" id="toc-clip-the-aerial-imagery" class="nav-link" data-scroll-target="#clip-the-aerial-imagery">Clip the Aerial Imagery</a></li>
-  <li><a href="#change-the-symbology" id="toc-change-the-symbology" class="nav-link" data-scroll-target="#change-the-symbology">Change the symbology</a></li>
-  <li><a href="#add-a-hillshade" id="toc-add-a-hillshade" class="nav-link" data-scroll-target="#add-a-hillshade">Add a hillshade</a></li>
-  <li><a href="#create-contours" id="toc-create-contours" class="nav-link" data-scroll-target="#create-contours">Create Contours</a></li>
-  <li><a href="#exporting-to-avenza-maps" id="toc-exporting-to-avenza-maps" class="nav-link" data-scroll-target="#exporting-to-avenza-maps">Exporting to Avenza Maps</a></li>
-  <li><a href="#qfield-1" id="toc-qfield-1" class="nav-link" data-scroll-target="#qfield-1">QField</a></li>
+  <li><a href="#map-scale" id="toc-map-scale" class="nav-link" data-scroll-target="#map-scale">Map Scale</a></li>
+  <li><a href="#scalebar-1" id="toc-scalebar-1" class="nav-link" data-scroll-target="#scalebar-1">Scalebar</a></li>
+  <li><a href="#legend-1" id="toc-legend-1" class="nav-link" data-scroll-target="#legend-1">Legend</a></li>
+  <li><a href="#title-1" id="toc-title-1" class="nav-link" data-scroll-target="#title-1">Title</a></li>
+  </ul></li>
   <li><a href="#feedback" id="toc-feedback" class="nav-link" data-scroll-target="#feedback">Feedback</a></li>
+  <li><a href="#more-data-sources" id="toc-more-data-sources" class="nav-link" data-scroll-target="#more-data-sources">More Data Sources</a>
+  <ul class="collapse">
+  <li><a href="#aerial-imagery" id="toc-aerial-imagery" class="nav-link" data-scroll-target="#aerial-imagery">Aerial Imagery</a></li>
+  <li><a href="#georeferencing" id="toc-georeferencing" class="nav-link" data-scroll-target="#georeferencing">Georeferencing</a></li>
+  <li><a href="#more-web-mapping-services" id="toc-more-web-mapping-services" class="nav-link" data-scroll-target="#more-web-mapping-services">More Web Mapping Services</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -516,7 +539,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">QGIS: Fieldwork Data Collection</h1>
+<h1 class="title">QGIS: Refine Your Maps for Reporting and Publication</h1>
 </div>
 
 
@@ -533,7 +556,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 22, 2025</p>
+      <p class="date">September 25, 2025</p>
     </div>
   </div>
   
@@ -545,75 +568,562 @@ window.Quarto = {
 </header>
 
 
-<section id="setting-up" class="level1">
-<h1>Setting up</h1>
+<section id="setting-up" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
 <p>This is an intermediate level tutorial. Before completing this tutorial, we recommend our <a href="../../QGIS/intro/QGIS_intro.html">QGIS: Introduction to Mapping</a> tutorial. This tutorial is designed for <strong>QGIS 3.40</strong>. If you need to install it on your computer, go to the <a href="https://qgis.org/download/">QGIS website</a>.</p>
 <p>We will start as always by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.</p>
 <ul>
 <li><p>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>.</p></li>
 <li><p>Let’s now <strong>save</strong> our project: <code>Project &gt; Save</code>.</p></li>
-<li><p>Create a new folder, let’s call it “qgis_fieldwork”.</p></li>
+<li><p>Create a new folder, let’s call it “qgis_reports”.</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
 <li><p>Inside that folder, create these folders:</p>
 <ul>
-<li><p>“data” - for all the data we will use to make our maps, split into:</p>
+<li><p>“<strong>data</strong>” - for all the data we will use to make our maps, split into:</p>
 <ul>
-<li><p>“raw” - raw data from your research or the internet</p></li>
-<li><p>“processed” - any data you’ve modified</p></li>
+<li><p>“<strong>raw</strong>” - raw data from your research or the internet</p></li>
+<li><p>“<strong>processed</strong>” - any data you’ve modified</p></li>
 </ul></li>
-<li><p>“output” - for any maps or images we export</p></li>
-<li><p>“temp” - this isn’t <em>necessary</em>, but when you’re playing around and testing, it stops things getting messy.</p></li>
+<li><p>“<strong>output</strong>” - for any maps or images we export</p></li>
+<li><p>“<strong>temp</strong>” - this folder isn’t necessary, but when you’re playing around and testing, it stops things getting messy.</p></li>
 </ul></li>
-<li><p>Finally, let’s save our .qgz project file here, named “qgis_fieldwork_map.qgz”</p></li>
+<li><p>Finally, let’s save our .qgz project file inside the “<strong>qgis_reports</strong>” folder, named “qgis_reports_map.qgz”</p></li>
 </ul>
+</div><div class="column" style="width:5%;">
+<!-- empty column to create gap -->
+</div><div class="column" style="width:30%;">
+<p><img src="images/folder.png" class="img-fluid"></p>
+</div><div class="column" style="width:5%;">
+<!-- empty column to create gap -->
+</div>
+</div>
 <p>Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.</p>
-<p><img src="folder.png" class="img-fluid"></p>
-<p>This might seem necessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.</p>
-<p>Let’s finally add an OpenStreetMap basemap to locate ourselves on the globe:</p>
+<p>This might feel unnecessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.</p>
+<p>Let’s add an OpenStreetMap basemap to locate ourselves on the globe:</p>
 <ul>
 <li><code>Browser panel &gt; XYZ Tiles &gt; OpenStreetMap</code> (double-click, or drag and drop into the Layers panel).</li>
 </ul>
-<section id="install-qfield-and-avenza-maps-on-your-phone" class="level2">
-<h2 class="anchored" data-anchor-id="install-qfield-and-avenza-maps-on-your-phone">Install QField and Avenza Maps on your phone</h2>
-<p>QField and Avenza Maps are a mobile based offline mapping tools you can use on your smartphone.</p>
-<section id="qfield" class="level3">
-<h3 class="anchored" data-anchor-id="qfield">QField</h3>
-<p>QField plugs directly in to QGIS, and allows you to link a QGIS project with your mobile phone for data collection.</p>
-<p><a href="https://play.google.com/store/apps/details?id=ch.opengis.qfield">Android Download</a> <a href="https://apps.apple.com/app/qfield-for-qgis/id1531726814">iOS Download</a></p>
-</section>
-<section id="avenza" class="level3">
-<h3 class="anchored" data-anchor-id="avenza">Avenza</h3>
-<p>For Avenza Maps you just need to add a GeoPDF and you can collect data on it. It’s less functional than QField, but it’s a great fallback tool. <a href="https://play.google.com/store/apps/details?id=com.Avenza&amp;hl=en_AU">Android Download</a> <a href="https://apps.apple.com/app/avenza-maps/id388424049">iOS Download</a></p>
-<p>There are alternatives out there, such as <a href="https://merginmaps.com/features">Input (MerginMaps)</a>.</p>
-</section>
-</section>
-</section>
-<section id="get-some-data" class="level1">
-<h1>Get some data</h1>
-<p>We’re going to explore a number of different online spatial data repositories.</p>
-<section id="dem" class="level3">
-<h3 class="anchored" data-anchor-id="dem">DEM</h3>
-<p>A Digital Elevation Model (DEM) is a common example of <strong>raster data</strong>, i.e.&nbsp;grid data that contains a value in each cell (a bit like the pixels in a coloured picture).</p>
-<p>For this tutorial, we are using a DEM sourced from <strong>ELVIS</strong> - Geoscience Australia’s ELeVation Information System.</p>
+<p>And finally change our CRS to match our project area (Brisbane) for today to EPSG:7856 - GDA2020 / MGA zone 56</p>
 <ul>
-<li>Go to <a href="http://www.ga.gov.au/elvis/" class="uri">http://www.ga.gov.au/elvis/</a></li>
-<li>Search for “St Lucia” in the <code>Location Search</code> search box and select the first result</li>
-<li>Click <code>Order Data</code></li>
-<li>Choose “Draw” and “Box” and then click the <code>Draw</code> button</li>
-<li>Click on the map to start drawing a rectangle around your desired area</li>
-<li>Then click <code>Search</code></li>
-<li>The right panel will show you all the different datasets available in that area</li>
-<li>We want the QLD Government Digital Elevation Model 1 Metre, click the down arrow on the right</li>
-<li>As you hover over the different options, they will highlight a red box on the map, click the tick box and select all that overlap the area you’re interested in (note that there may be data from different years here)</li>
-<li>When you have the data you want, scroll to the bottom of the Order Data window</li>
-<li>Select your industry, enter your email, tick the reCAPTCHA, and click the <code>Order Datasets</code> button</li>
-<li>You should receive an email within 5 minutes, download the files from the link in the email, extract the folder to your project folder, and add them to your map.</li>
+<li><code>Project &gt; Properties</code> click the <code>CRS</code> tab, filter for <strong>7856</strong>, select EPSG:7856 - GDA2020 / MGA zone 56 and click <code>OK</code></li>
 </ul>
 </section>
+<section id="todays-aims" class="level2">
+<h2 class="anchored" data-anchor-id="todays-aims">Today’s Aims</h2>
+<p>Main aims:</p>
+<ul>
+<li>Create a pretty map for output</li>
+<li>Automate our map description</li>
+</ul>
+<p>If we have time:</p>
+<ul>
+<li>Learn to use Web Mapping Services</li>
+<li>Georeference an Image</li>
+</ul>
+</section>
+<section id="download-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="download-the-data">Download the Data</h2>
+<p>Today we’re going to focus on making a pretty map, so let’s start by populating our map with some pre-generated data.</p>
+<p>The <strong>data</strong> for this session can be directly downloaded from <a href="https://github.com/uqlibrary/technology-training-assets/raw/refs/heads/master/QGIS/reports/report_data.zip">this link</a>.</p>
+<p>Once downloaded, extract the archive into your <strong>raw</strong> folder within your <strong>data</strong> folder.</p>
+<p>Within QGIS, go to the <strong>Browser</strong> panel, open <code>**Project Home** &gt; **data** &gt; **raw**</code>, then drag and drop each of your files into the <strong>map canvas</strong>.</p>
+<p>You should have three new layers: <strong>Artefacts</strong>, <strong>Paths</strong>, and <strong>Project_area</strong></p>
+</section>
+<section id="change-the-symbology" class="level2">
+<h2 class="anchored" data-anchor-id="change-the-symbology">Change the symbology</h2>
+<p>Our vector layers are assigned a random colour when we load them. We now want to make them look better.</p>
+<section id="point-geometry" class="level3">
+<h3 class="anchored" data-anchor-id="point-geometry">Point Geometry</h3>
+<ul>
+<li>Open the <code>Layer Styling</code> panel by pressing <strong>F7</strong></li>
+<li>Select the <strong>Artefacts</strong> layer from either the <code>Layer Styling</code> panel, or the <code>Layers</code> panel.</li>
+<li>In the <code>Layer Styling</code> panel, change <code>**Single Symbol**</code> to <code>**Categorised**</code></li>
+<li>From <code>Value</code> select <strong>Artefact Type</strong></li>
+<li>Click the <code>**Classify**</code> button</li>
+</ul>
+<p>The random colours that QGIS gives you aren’t always pretty, so let’s change the colours - Click the dropdown next to the <code>Color ramp</code> - Click <code>Create New Color Ramp...</code>, select <code>Catalog: ColorBrewer</code>, and click <code>OK</code> - Click the dropdown next to <code>Scheme name</code> and choose <code>**Set1**</code> - This is a qualitative colour scheme that is easy to distinguish, <strong>Dark 2</strong> and <strong>Paired</strong> are also good options, you can find out more about <a href="https://colorbrewer2.org">ColorBrewer here</a> - Click the <code>back arrow button</code> next to <strong>Edit Ramp</strong></p>
+<p>Now that we have a nice colour scheme, let’s give it a contrasting Stroke color, and a new shape. The default is usually black, but I find this to look harsh, let’s make it a darker shade of the <strong>Fill colour</strong></p>
+<ul>
+<li>Double click on the symbol of the <code>Artefact Scatter</code></li>
+<li>Click <strong>Simple Marker</strong> - this will allow us to change the fill, stroke, and shape of the marker</li>
+<li>Click the dropdown next to <code>Stroke color</code>, click <code>Pick Color</code>, and then click the color from the <code>Fill Color</code> above, it should copy the colour!</li>
+<li>Now click directly on the <code>Stroke color</code> color box, this will take you to the <code>Select Stroke Color</code> window</li>
+<li>Drag the slider next to <code>V</code> to give us a darker shade of red</li>
+<li>Click the <code>back arrow button</code> next to <strong>Artefact Scatter &gt; Select Stroke Color</strong></li>
+<li>From the bottom of the window select another shape, let’s go with the <strong>Triangle</strong></li>
+<li>Click the <code>back arrow button</code> next to <strong>Artefact Scatter</strong></li>
+</ul>
+<p>Repeat these steps for the <strong>Single Artefact</strong>, you can leave the shape as a circle.</p>
+<p>If you want, you can change the properties of all symbols at once: - Simply click in the white space below your symbol classes so that non is selected. - If you click on the button next to <code>Symbol</code>, it will take you to <code>Symbol Settings</code> - Try increasing the size of the symbols to 3mm - <strong>WARNING</strong> if you change the <strong>Stroke color</strong> here, it will change the stroke for all of your symbols, undoing your work from above. - Click the <code>back arrow button</code> next to <strong>Symbol Settings</strong></p>
+</section>
+<section id="line-geometry" class="level3">
+<h3 class="anchored" data-anchor-id="line-geometry">Line Geometry</h3>
+<p>We can also make our lines look nice. Sometimes it can be as simple as picking a contrasting colour, and adding some more width. Sometimes it can be very useful to add some dashes to your line.</p>
+<ul>
+<li>Select the <strong>Paths</strong> layer from the <code>Layer Styling</code> panel</li>
+<li>Under <code>Line</code>, click <code>**Simple Line**</code></li>
+<li>Change the <code>Color</code> to a colour that is different to your points, and stands out from the map. I’m going to use orange</li>
+<li>Increase the <code>Stroke width</code> to 1mm - it looks big now, but will look better on your exported map later</li>
+<li>Click the <strong>green +</strong> next to <code>Line</code></li>
+</ul>
+<p>You can add as many simple lines, as you like, you can even change this <code>Symbol layer type</code> to Arrows, Hashed lines, Filled lines, and more.</p>
+<ul>
+<li>Increase the <code>Stroke width</code> to 1mm to match</li>
+<li>Change the <code>Stroke style</code> from <strong>Solid Line</strong> to <strong>Dashed Line</strong></li>
+<li>Change <code>Cap style</code> from <strong>Square</strong> to <strong>Round</strong></li>
+<li>Tick <code>Use custom dash pattern</code></li>
+<li>Click on the <strong>dashed line</strong> below the tick box
+<ul>
+<li>I like to set my <strong>Dash</strong> to 3mm and my <strong>Space</strong> to 5mm</li>
+</ul></li>
+</ul>
+</section>
+<section id="polygon-geometry" class="level3">
+<h3 class="anchored" data-anchor-id="polygon-geometry">Polygon Geometry</h3>
+<p>Depending on your map, you may want your polygon to remain solid, to be transparent, have hatched lines, or simply be an outline. As our project area has items inside it, it is probably best suited as an outline.</p>
+<ul>
+<li>Select the <strong>Project_area</strong> layer from the <code>Layer Styling</code> panel</li>
+<li>Under <code>Fill</code>, click <code>**Simple Fill**</code></li>
+<li>Change <code>Fill style</code> from <strong>Solid</strong> to <strong>No Brush</strong>
+<ul>
+<li>Note that this is where you could add horizontal, diagonal, or many other styles as a fill.</li>
+</ul></li>
+<li>Change <code>Stroke color</code> to something bright, like <strong>Yellow</strong></li>
+<li>Increase the <code>Stroke width</code> to 1mm</li>
+</ul>
+</section>
+</section>
+<section id="labels" class="level2">
+<h2 class="anchored" data-anchor-id="labels">Labels</h2>
+<p>Let’s add some labels to our data.</p>
+<ul>
+<li>Select the <strong>Artefacts</strong> layer from the <code>Layer Styling</code> panel
+<ul>
+<li>In the <code>Layer Styling</code> panel, click the <strong>yellow abc</strong> <code>Labels</code> tab
+<ul>
+<li>Change <code>No Labels</code> to <code>**Single Labels**</code></li>
+<li>Change the <code>Value</code> to <strong>fid</strong></li>
+<li>Change the <code>Color</code> to <strong>white</strong></li>
+<li>Just below the <code>Value</code> dropdown, click the third <strong>abc</strong> tab for <code>Buffer</code>
+<ul>
+<li>Tick the <code>Draw text buffer</code> box</li>
+<li>Change the <code>Size</code> to <strong>0.8</strong></li>
+<li>Change the <code>Color</code> to <strong>black</strong> - you could have reversed the two colours, but I prefer this contrast</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="styles" class="level2">
+<h2 class="anchored" data-anchor-id="styles">Styles</h2>
+<p>If you want to try different looks for a feature, but not have to undo everything, you can save them as <strong>Styles</strong></p>
+<ul>
+<li>In the <code>Layers</code> panel, <code>Right click on **Project_area** &gt; Styles &gt; Add...</code></li>
+<li>Name the style <strong>Project Point</strong></li>
+<li>Select the <strong>Project_area</strong> layer from either the <code>Layer Styling</code> panel
+<ul>
+<li>Under <code>Fill</code>, click <code>**Simple Fill**</code></li>
+<li>Change <code>Symbol layer type</code> from <strong>Simple Fill</strong> to <strong>Centroid Fill</strong></li>
+<li>Click <strong>Simple Marker</strong> and change the <code>Size</code> to 3 - you can also change the <strong>Stroke color</strong> if you like</li>
+</ul></li>
+</ul>
+<p>Now we have a point as the centre of our polygon, we can edit this style and revert back to the original whenever we like</p>
+</section>
+<section id="themes" class="level2">
+<h2 class="anchored" data-anchor-id="themes">Themes</h2>
+<p>Themes work similarly to styles, but instead of changing the layer styling, it changes the layers present. We can use themes to create multiple looks for our map that we can easily swap between. Let’s create a map for our future <strong>Inset Map</strong></p>
+<ul>
+<li>In the <code>Layers</code> panel, hide the <strong>Paths</strong> and <strong>Artefacts</strong> layer by unticking the boxes next to them.</li>
+<li>Now click the <strong>Eye</strong> icon (Manage Map Themes) at the top of the <code>Layers</code> panel, and click <code>Add theme...</code></li>
+<li>Let’s name our new theme <strong>Inset</strong>, and click <code>OK</code></li>
+<li>Unhide <strong>Paths</strong> and <strong>Artefacts</strong> layer by ticking the boxes next to them.</li>
+<li>Change the <strong>Project_area</strong> back to our original <strong>Default</strong> style
+<ul>
+<li><code>Right click on **Project_area** &gt; Styles (2) &gt; default</code></li>
+</ul></li>
+</ul>
+<p>Nothing exciting will happen <em>yet</em>, we will be able to use this later.</p>
+</section>
+<section id="basemaps" class="level2">
+<h2 class="anchored" data-anchor-id="basemaps">Basemaps</h2>
+<p>Unless we really need everything on the OpenStreetMap, it is too busy, and distracting. Let’s load in a new basemap. There are many ways of doing this, in the past we’ve used the QuickMapServices plugin to load in new basemaps, and used XYZ tiles to load in basemaps, now we can go to the next step and source them externally.</p>
+<p>Today we’re going to use a WMTS (Web Map Tile Service) from ESRI.</p>
+<ul>
+<li>Scroll down the <code>Browser</code> panel until your see <strong>WMS/WMTS</strong></li>
+<li>Right click WMS/WMTS and select <code>**New Connection...**</code>
+<ul>
+<li>In <code>Name</code> type <strong>ESRI World Imagery</strong></li>
+<li>In <code>URL</code> paste https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml</li>
+<li>Click <code>OK</code></li>
+</ul></li>
+<li>Now in the <code>Browser</code> panel, navigate <code>WMS/WMTS &gt; ESRI World Imagery</code> and double click on <strong>default028mm</strong>
+<ul>
+<li>The <strong>GoogleMapsCompatible</strong> is the same map, but a lower resolution, however <strong>default028mm</strong> will often show “Map data not yet available” at a scale around <strong>1:300</strong></li>
+</ul></li>
+<li>Arrange the layers so that the <strong>World Imagery</strong> layer is under your other layers (you can hide the OpenStreetMap now)</li>
+</ul>
+</section>
+<section id="themes-again" class="level2">
+<h2 class="anchored" data-anchor-id="themes-again">Themes (again)</h2>
+<p>Now that we’ve made some changes, we can see what themes do.</p>
+<ul>
+<li>In the <code>Layers</code> panel, click the <strong>Eye</strong> icon (Manage Map Themes), click <code>Add theme...</code></li>
+<li>Let’s name our new theme <strong>Main</strong>, and click <code>OK</code></li>
+<li>Now, click the <strong>Eye</strong> icon again
+<ul>
+<li>You will see that there are two check box options at the bottom <strong>Inset</strong> and <strong>Main</strong></li>
+<li>You can cycle between these two themes by choosing one or the other</li>
+<li>If you want to update a theme, simply go <code>**Eye** icon &gt; Replace theme...</code> and then select the theme you want to overwrite.</li>
+</ul></li>
+<li>Save your project</li>
+</ul>
+</section>
+<section id="layout-manager" class="level2">
+<h2 class="anchored" data-anchor-id="layout-manager">Layout Manager</h2>
+<p>Now we can prepare our map for export.</p>
+<ul>
+<li>Navigate to <code>Project &gt; Layout Manager...</code></li>
+<li>Under <strong>New from Template</strong> click <code>Create</code>, name the map <strong>Project Map</strong></li>
+<li>This will open the <strong>Layout Manager</strong></li>
+</ul>
+<section id="page-properties" class="level3">
+<h3 class="anchored" data-anchor-id="page-properties">Page Properties</h3>
+<p>Before we do anything, let’s set up out environment.</p>
+<ul>
+<li>Navigate to <code>Layout &gt; Page Properties..</code>
+<ul>
+<li>Here we can choose the size and orientation of our map.</li>
+<li>A4 is sensible, and it means you know the map will fit neatly into a report.</li>
+<li>Portrait means you can have a full page map without rotating the page in your report. But some spatial layouts make more sense in Landscape. Use your judgement.</li>
+</ul></li>
+</ul>
+</section>
+<section id="guides" class="level3">
+<h3 class="anchored" data-anchor-id="guides">Guides</h3>
+<p>Guides seem unnecessary, but they make lining things up, much much easier.</p>
+<ul>
+<li>In the right menu, click <code>Guides</code></li>
+<li>Click the <strong>green +</strong> under <strong>Horizontal Guides</strong> (if your canvas is a Landscape, choose <strong>Vertical Guides</strong> for this step)</li>
+<li>A new row should appear, click on the <strong>0</strong> and change it to <strong>235</strong></li>
+</ul>
+</section>
+<section id="map" class="level3">
+<h3 class="anchored" data-anchor-id="map">Map</h3>
+<ul>
+<li>Add your map by clicking the map icon in the left menu, or navigating <code>Add Item &gt; Add Map</code>
+<ul>
+<li>Your mouse will now be a +</li>
+<li>If you hover over the top corner of the canvas, the mouse should snap to the corner</li>
+<li>Click and drag until your mouse snaps to the corner created by the side of the canvas, and the guide you added</li>
+</ul></li>
+<li>In the <code>Items</code> panel on the right, double click on <strong>Map 1</strong> and rename it <strong>Main</strong>
+<ul>
+<li>This makes life so much more straightforward</li>
+</ul></li>
+</ul>
+</section>
+<section id="scale" class="level3">
+<h3 class="anchored" data-anchor-id="scale">Scale</h3>
+<p>Okay, we have our map, but it’s not zoomed in right. This is always a little tricky. You <em>could</em> click the <strong>Move item content</strong> button on the left menu(or press <code>C</code> on your keyboard), as this would allow you to drag the map around internally, and zoom in with your scroll wheel. <strong>But there is an easier way</strong></p>
+<ul>
+<li>Navigate back to your <strong>qgis_reports</strong> window
+<ul>
+<li>Right click on your <strong>Project_area</strong> layer and select <strong>Zoom to Layer(s)</strong></li>
+</ul></li>
+<li>Navigate back to your <strong>Project Map</strong> window
+<ul>
+<li>In the right menu, click <code>Item Properties</code></li>
+<li><img src="layoutmanager_scale.png" class="img-fluid"></li>
+<li>Click the first orange arrow button to <strong>Set Map Extent to Match Main Canvas Extent</strong></li>
+<li>Click the third orange arrow button to <strong>Set Map Scale to Match Main Canvas Scale</strong>
+<ul>
+<li>The other buttons do the reverse</li>
+</ul></li>
+<li>I like to then round the <strong>Scale</strong> up to a nice round number from something like 3814 to 4000</li>
+</ul></li>
+</ul>
+</section>
+<section id="inset-map" class="level3">
+<h3 class="anchored" data-anchor-id="inset-map">Inset Map</h3>
+<p>You can add your inset map to the blank space at the bottom (or side) of you map canvas, or you can put it on top of you main map in unused space. However, we don’t have an edge to snap our inset map on to, so guides are useful here too.</p>
+<ul>
+<li>In the right menu, click <code>Guides</code></li>
+<li>Click the <strong>green +</strong> under <strong>Horizontal Guides</strong></li>
+<li>A new row should appear, click on the <strong>0</strong> and change it to <strong>10</strong></li>
+<li>Click the <strong>green +</strong> under <strong>Vertical Guides</strong></li>
+<li>A new row should appear, click on the <strong>0</strong> and change it to <strong>10</strong></li>
+</ul>
+<p>We don’t need more guides unless you want a precise inset map size, but I’m happy if it’s aligned evenly with the top and side border.</p>
+<ul>
+<li>Add your map by clicking the map icon in the left menu, or navigating <code>Add Item &gt; Add Map</code></li>
+<li>Hover over the corner created by your guides, the mouse should snap to the corner
+<ul>
+<li>Click and drag until you’re happy with the size of your inset window (without overlapping any important features on the main map)</li>
+</ul></li>
+<li>Zoom out on the inset map, by selecting it from the <code>Items</code> tab and following the same approach as the <strong>Main map</strong>
+<ul>
+<li>Or by using <strong>Move item content</strong> button on the left menu(or press <code>C</code> on your keyboard), clicking on the inset and using the scroll wheel</li>
+</ul></li>
+<li>In the <code>Items</code> panel on the right, double click on <strong>Map 2</strong> and rename it <strong>Inset</strong></li>
+<li>Scroll to the bottom of the <code>Item Properties</code> panel and tick the <code>Frame</code> box
+<ul>
+<li>This gives our inset a nice border we can customise</li>
+</ul></li>
+</ul>
+<p>Now we have our maps added, we can bring our themes in to play again.</p>
+</section>
+<section id="themes-again-1" class="level3">
+<h3 class="anchored" data-anchor-id="themes-again-1">Themes (again!)</h3>
+<ul>
+<li>Select <strong>Main</strong> from the <code>Items</code> panel</li>
+<li>In <code>Item Properties</code>, you will see <strong>Layers</strong> section</li>
+<li>Tick <code>Follow map theme</code> and from the dropdown change <strong>none</strong> to <strong>Main</strong></li>
+<li>Now this map is linked to the <strong>Main</strong> theme and will only update when we change that theme, or the layers attributed to the theme</li>
+</ul>
+<p>Repeat this step for <strong>Inset</strong></p>
+<p>This is also a big advantage for using <strong>Styles</strong>, as the point is a better representation of our site on the inset map.</p>
+</section>
+<section id="title" class="level3">
+<h3 class="anchored" data-anchor-id="title">Title</h3>
+<ul>
+<li>Add a text box to your map by clicking the <code>Add Label</code> icon in the left menu, or navigating <code>Add Item &gt; Add Label</code></li>
+<li>Click and drag in the empty canvas below the map where you want to put your title
+<ul>
+<li>In the <code>Item Properties</code> panel remove the <strong>Lorem ipsum</strong> text, and add <strong>Brisbane Botanic Gardens</strong></li>
+<li>Under <strong>Appearance</strong> click the <code>Font</code> box to open the <code>Label Font</code> window
+<ul>
+<li>Change the text size to 18, you can make other font changes here too</li>
+<li>Click the <code>back arrow button</code> next to <code>Label Font</code></li>
+</ul></li>
+</ul></li>
+<li>In the <code>Items</code> panel on the right, double click on <strong>Brisbane Botanic Gardens</strong> and rename it <strong>Title</strong></li>
+</ul>
+<p>Okay, that’s a some fairly basic text, let’s do something interesting with the descriptive text.</p>
+</section>
+<section id="dynamic-text" class="level3">
+<h3 class="anchored" data-anchor-id="dynamic-text">Dynamic Text</h3>
+<ul>
+<li>Add another text box to your map by clicking the <code>Add Label</code> icon in the left menu, or navigating <code>Add Item &gt; Add Label</code></li>
+<li>Click and drag in the empty canvas below the title</li>
+<li>In the <code>Items</code> panel on the right, double click on <strong>Lorem ipsum</strong> and rename it <strong>Description</strong>
+<ul>
+<li>In the <code>Item Properties</code> panel remove the <strong>Lorem ipsum</strong> text and then enter:
+<ul>
+<li><strong>Date:</strong></li>
+<li><strong>Scale: 1:</strong></li>
+<li><strong>Datum:</strong></li>
+<li><strong>Sources:</strong></li>
+<li>Normally we’d have to enter the details for each of these manually, but we can use <strong>Dynamic Text</strong> to do it for us</li>
+</ul></li>
+</ul></li>
+<li>In the <code>Item Properties</code> panel, click next to <strong>Date:</strong>, so the cursor is sitting there
+<ul>
+<li>Under the <strong>Main Properties</strong> text box, click <code>Dynamic Text &gt; Current Date &gt; Day/Month/Year (26/09/2025)</code></li>
+<li>This will insert code that looks like this: <code>[%format_date(now(), 'dd/MM/yyyy')%]</code> which automatically adds today’s date</li>
+</ul></li>
+<li>Now repeat those steps for the rest, click next to <strong>Scale: 1:</strong>
+<ul>
+<li>Click <code>Dynamic Text &gt; Map Properties &gt; Main &gt; Scale (4000)</code></li>
+<li>The code will look like this: <code>[%format_number(item_variables('Main')['map_scale']</code> which automatically adds the main map’s scale - Click next to <strong>Datum:</strong></li>
+<li>Click <code>Dynamic Text &gt; Map Properties &gt; Main &gt; CRS Name (GDA2020 / MGA zone 56)</code></li>
+<li>The code will look like this: <code>[%item_variables('Main')['map_crs_description']%]</code> which automatically adds the main map’s CRS - Click next to <strong>Sources:</strong></li>
+<li>Click <code>Dynamic Text &gt; Layer Credits</code></li>
+<li>The code will look like this: <code>[%array_to_string(map_credits())%]</code> which automatically adds the sources built in to some of the data used
+<ul>
+<li>Note that this is built into the Metadata (layer <code>Properties &gt; Metadate &gt; Access</code> under <strong>Rights</strong>) of the baselayers, and the layers we downloaded. Not all layers will necessarily have this information, and sometimes it’s very detailed and clunky.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>You could also add any extra text details such as your name, the locality, any disclaimers, or any other details needed.</p>
+</section>
+<section id="shapes" class="level3">
+<h3 class="anchored" data-anchor-id="shapes">Shapes</h3>
+<p>We can add a border around our information section. This isn’t necessary, but it looks nice!</p>
+<ul>
+<li>Add a rectangle to your map by clicking the <code>Add Shape</code> icon in the left menu, or navigating <code>Add Item &gt; Add Shape &gt; Add Rectangle</code>
+<ul>
+<li>Hover over the corner created by the bottom of the map and the side of the canvas, the mouse should snap to the corner</li>
+<li>Click and drag until your mouse snaps to the opposite corner of the canvas</li>
+</ul></li>
+<li>In the <code>Items</code> panel, click the box next to <code>Style</code>, this will take you to the <code>Symbol Settings</code> window
+<ul>
+<li>Click <strong>Simple Fill</strong></li>
+<li>Change <code>Symbol layer type</code> from <strong>Simple Fill</strong> to <strong>Outline: Simple Line</strong></li>
+<li>Change the <code>Color</code> to a nice dark green</li>
+<li>Increase the <code>Stroke width</code> to 5mm</li>
+<li>Scroll to the bottom and tick the <code>Draw line only inside polygon</code> box</li>
+</ul></li>
+</ul>
+</section>
+<section id="legend" class="level3">
+<h3 class="anchored" data-anchor-id="legend">Legend</h3>
+<ul>
+<li>Add a Legend your map by clicking the <code>Add Legend</code> icon in the left menu, or navigating <code>Add Item &gt; Add Legend</code></li>
+</ul>
+<p>The legend always has too much detail to start. Let’s clean it up.</p>
+<ul>
+<li>In the <code>Item Properties</code> panel, change the <code>Title</code> to <strong>Legend</strong></li>
+<li>Under <strong>Legend Items</strong> untick <code>Auto update</code>
+<ul>
+<li>Click the drop down next to <strong>Artefacts</strong>, select the empty item, and then click the <strong>red -</strong> to remove it</li>
+<li>Remove the <strong>Imagery</strong> and the <strong>OpenStreetMap</strong> layer too</li>
+<li>Right click on <strong>Artefacts</strong> and select <strong>Hidden</strong>, we don’t need to see the group name</li>
+<li>Double click on <strong>Project_area</strong> and rename it to <strong>Project Area</strong></li>
+</ul></li>
+<li>Scroll down to <strong>Fonts and Text Formatting</strong>, under <strong>Legend Title</strong> click the <strong>Title font</strong> button
+<ul>
+<li>Change the <code>Size</code> to 13
+<ul>
+<li>You can change the <strong>Item Labels</strong> font size too, but 12 is fine here</li>
+</ul></li>
+</ul></li>
+<li>Scroll down to <strong>Spacing</strong>
+<ul>
+<li>Change <strong>Legend Title</strong> <code>Space below</code> to 2
+<ul>
+<li>You can change the <strong>Legend Items</strong> space between symbols too, but 2.5 is fine here</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="north-arrow" class="level3">
+<h3 class="anchored" data-anchor-id="north-arrow">North Arrow</h3>
+<ul>
+<li>Add a North Arrow your map by clicking the <strong>Add North Arrow</strong> icon in the left menu, or navigating <code>Add Item &gt; Add North Arrow</code>
+<ul>
+<li>Click and drag in the blank space under the map until you’re happy with the size of the arrow</li>
+<li>In the <code>Item Properties</code> panel, under the <code>SVG Images</code> box, type <strong>arrow</strong> in the search bar
+<ul>
+<li>Choose a North arrow you like</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="scalebar" class="level3">
+<h3 class="anchored" data-anchor-id="scalebar">Scalebar</h3>
+<ul>
+<li>Add a scale bar to your map by clicking the <strong>Add Scale Bar</strong> icon in the left menu, or navigating <code>Add Item &gt; Add Scale Bar</code>
+<ul>
+<li>You can click and drag in the blank space under the map, although the scale bar size will be set in a moment</li>
+<li>In the <code>Item Properties</code> panel, choose the appropriate <code>Scalebar units</code> - usually <strong>Metres</strong> or <strong>Kilometres</strong>
+<ul>
+<li>Under <strong>Segments</strong>, change right <code>Segments</code> to <strong>right 4</strong></li>
+<li>Change <code>Fixed width</code> to 50 units (on this map, I have used 50 metre intervals, as that feels understandable)</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="finessing" class="level3">
+<h3 class="anchored" data-anchor-id="finessing">Finessing</h3>
+<p>You will remember that we orignally made the points and lines quite large, but you will see that on this export map they are a more reasonable size. This is because we set them to millimetres, which will scale with our screen resolution when we zoom on the original map, but will scale to the size of our fixed dimensions A4 page in the <code>Layout Manager</code>.</p>
+<p>Our point labels need to be resized too. Return to the <code>qgis_reports</code> window and try changing their font size to 12 in the <code>Labels</code> tab of the <code>Layer Styling</code> panel.</p>
+<p>If the change doesn’t flow through when you return to the <code>Layout Manager/Project Map</code> window, try clicking the refresh button in the top menu.</p>
+<p>Move anything you need around to get it looking sharp. You could try using <code>Guides</code> if needed.</p>
+<p>Save your project.</p>
+<ul>
+<li><code>Layout &gt; Save Project</code></li>
+</ul>
+</section>
+<section id="export-options" class="level3">
+<h3 class="anchored" data-anchor-id="export-options">Export options</h3>
+<p>Now that we’re done we can export. Generally to PDF or Image. Today we will use image.</p>
+<ul>
+<li><code>Layout &gt; Export as Image...</code>
+<ul>
+<li>You will see a popup warning about WMS servers. Some tile services have limits to the size of file you can export like this. If you exceed it, your basemap will be blank.</li>
+</ul></li>
+<li>Click <code>OK</code></li>
+<li>Navigate to your project’s <strong>output</strong> folder, and give the file a meaningful name <strong>Brisbane Botanic Gardens Map</strong>, click <code>Save</code></li>
+<li>The <code>Export resolution</code> should automatically be a print quality 300dpi, and the width and height were set by our A4 selection.</li>
+<li>Click <code>Save</code></li>
+<li>Navigate to and open your file to make sure it worked!</li>
+</ul>
+</section>
+</section>
+<section id="save-a-map-template" class="level2">
+<h2 class="anchored" data-anchor-id="save-a-map-template">Save a Map Template</h2>
+<p>This is crucial! Save your hardwork for next time!</p>
+<ul>
+<li><code>Layout &gt; Save as Template...</code></li>
+<li>Navigate to a folder you can easily find again, such as a broader QGIS folder.</li>
+<li>Give it a meaningful name <strong>Report_Map_Template</strong></li>
+<li>Click <code>Save</code></li>
+</ul>
+</section>
+<section id="load-a-map-template" class="level2">
+<h2 class="anchored" data-anchor-id="load-a-map-template">Load a Map Template</h2>
+<p>Next time you need to make an export you can load your template in.</p>
+<p>Open an old QGIS Project.</p>
+<ul>
+<li>Navigate to <code>Project &gt; Layout Manager...</code></li>
+<li>Under <strong>New from Template</strong> change <code>Empty Layout</code> to <code>Specific</code>, click the three dots and navigate to your <strong>Report_Map_Template</strong>, select it, and click <code>Open</code></li>
+<li>Click <code>Create</code></li>
+<li>Give the layout an appropriate name, and click <code>OK</code></li>
+<li>This will open the <strong>Layout Manager</strong></li>
+</ul>
+<p>You will see that the inset and main maps are in the wrong location, the title is wrong, the scale bar is off, and the Legend is empty. But you know how to fix these!</p>
+<section id="map-scale" class="level3">
+<h3 class="anchored" data-anchor-id="map-scale">Map Scale</h3>
+<ul>
+<li>Navigate back to your <strong>QGIS</strong> window
+<ul>
+<li>Right click on the most suitable layer and select <strong>Zoom to Layer(s)</strong></li>
+</ul></li>
+<li>Navigate back to your <strong>Layout Manager</strong> window
+<ul>
+<li>Click the <strong>Main</strong> from the <code>Item</code> panel, and click the <code>Item Properties</code> panel</li>
+<li><img src="layoutmanager_scale.png" class="img-fluid"></li>
+<li>Click the first orange arrow button to <strong>Set Map Extent to Match Main Canvas Extent</strong></li>
+<li>Click the third orange arrow button to <strong>Set Map Scale to Match Main Canvas Scale</strong>
+<ul>
+<li>The other buttons do the reverse</li>
+</ul></li>
+<li>Round the <strong>Scale</strong> up to a nice round number</li>
+</ul></li>
+<li>Fix the inset map too</li>
+</ul>
+</section>
+<section id="scalebar-1" class="level3">
+<h3 class="anchored" data-anchor-id="scalebar-1">Scalebar</h3>
+<ul>
+<li>Click the <strong>Scalebar</strong> from the <code>Item</code> panel</li>
+<li>In the <code>Item Properties</code> panel, change <code>Scalebar units</code> to <strong>Metres</strong> or <strong>Kilometres</strong> - Change <code>Fixed width</code> to an appropriate unit</li>
+</ul>
+</section>
+<section id="legend-1" class="level3">
+<h3 class="anchored" data-anchor-id="legend-1">Legend</h3>
+<ul>
+<li>Click the <strong>Legend</strong> from the <code>Item</code> panel</li>
+<li>In the <code>Item Properties</code> panel, under the <strong>Legend Items</strong> box and click the <strong>green +</strong> to add a layer
+<ul>
+<li>Double click on and rename the layer if needed</li>
+<li>Repeat for all layers you need to list</li>
+</ul></li>
+</ul>
+</section>
+<section id="title-1" class="level3">
+<h3 class="anchored" data-anchor-id="title-1">Title</h3>
+<ul>
+<li>Click the <strong>Title</strong> from the <code>Item</code> panel</li>
+<li>In the <code>Item Properties</code> panel, under the <strong>Main Properties</strong> rename the title</li>
+</ul>
+<p>And that’s it, you now have another map looking the way you want it, without too much hassle.</p>
+</section>
+</section>
+<section id="feedback" class="level2">
+<h2 class="anchored" data-anchor-id="feedback">Feedback</h2>
+<p>Please visit our website to <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources">provide feedback</a> and find upcoming training courses we have on offer.</p>
+</section>
+<section id="more-data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="more-data-sources">More Data Sources</h2>
 <section id="aerial-imagery" class="level3">
 <h3 class="anchored" data-anchor-id="aerial-imagery">Aerial Imagery</h3>
 <p>There are a few places you can aquire aerial photography, today we will look at two sources, one is freely available Government Data from <strong>QImagery</strong>, the other is accessible from using your UQ credentials.</p>
 <ul>
-<li>Go to <a href="https://qimagery.information.qld.gov.au/" class="uri">https://qimagery.information.qld.gov.au/</a></li>
+<li>Go to <a href="https://qimagery.information.qld.gov.au/">QImagery</a></li>
 <li>Read and tick the “I acknowledge I have read and agree to the Terms &amp; Conditions” box, and click <code>Get Started</code></li>
 <li>Click the Search button, select ‘locality, town or city’ and search for “St Lucia” in the “Enter search term” search box and select the first result</li>
 <li>It will zoom to your selected location then click the newly appeared <code>Search</code> button</li>
@@ -622,223 +1132,24 @@ window.Quarto = {
 <li>You can then download your desired images by clicking “Download” and selecting TIFF (georeferenced)</li>
 <li>Move the TIFF file(s) to your project folder, and open them in QGIS</li>
 </ul>
-<p>If you want even higher resolution maps, there are restricted options available. Your particular study area may have maps available such as the <a href="https://scrc.maps.arcgis.com/apps/webappviewer/index.html?id=48501cb9e7294555be5b08e35e949616">Sunshine Coast MyMaps</a> service, CSIRO’s <a href="https://data.csiro.au/collection/csiro:43016">Norfolk Island Data Portal</a> or other <a href="https://data.csiro.au/collections/search/SQDEM/STsearch-by-keyword/">CSIRO spatial products</a>. It’s worth exploring to discover what various local council and government resources are available. As a UQ student, you also have access to very high resoltuion imagery from <strong>NearMap</strong>. You can even access an array of imagery going back in time.</p>
-<ul>
-<li>Go to the <a href="https://admin.nearmap.com/invitation/domain-signup?token=q9WIbXMtna1iskb2meNGhKpCaQp3WTRbMhXpQVGWkKouKUeqzkpjNznC_Ogz5iKYiw0Ev7vym2Ykaj_W_V4dBbTzR6qUX2eTDsNHpBuR4XbU9vDRxQN_Rg==">UQ NearMap Portal</a></li>
-<li>Enter your UQ Student (<span class="citation" data-cites="student.uq.edu.au">@student.uq.edu.au</span>) or Staff (<span class="citation" data-cites="uq.edu.au">@uq.edu.au</span>) email address, with the appropriate domain selected. Click “Invite me”.</li>
-<li>You should receive an email soon after, click the “Accept Invitation” button, and go through the account setup process.</li>
-<li>Go to Login and enter your email address, click “Next” and enter your password.</li>
-<li>From the top right select <code>MapBrowser</code>.</li>
-<li>Type “St Lucia, QLD” in the search box, press enter</li>
-<li>You can click the date down the bottom to look at different snapshots in time, and even compare maps side-by-side.</li>
-<li>To save imagery from NearMap, simply click the “Exports” button on the left handside (it is an image icon)</li>
-<li>From the menu that appears change the “Export type” to “Georeferenced image”</li>
-<li>From “Projection” choose GDA2020 / MGA zone 56</li>
-<li>You can increase and decrease the size of the bounding box by adjusting its corners, a smaller box means you can have a finer resolution, down to 0.075m. If we select all of UQ St Lucia in one go, the highest resolution we can have is 0.299m.</li>
-<li>Once you’re happy with your selection click <code>Download Files</code></li>
-<li>Move the downloaded zip file to your project folder, and open them in QGIS</li>
-</ul>
+<p>You can also get historical images from Geoscience Australia’s [Historical Aerial Photo (HAP)](Collection(https://experience.arcgis.com/experience/9a0ecbafe94f49829712b46fc69186ff)</p>
 </section>
-<section id="lot-plans" class="level3">
-<h3 class="anchored" data-anchor-id="lot-plans">Lot Plans</h3>
-<p>You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial. I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from our Github site.</p>
-<ul>
-<li><p>To access data from QLD Spatial go to <a href="https://qldspatial.information.qld.gov.au/" class="uri">https://qldspatial.information.qld.gov.au/</a></p></li>
-<li><p>Search for “property boundaries”</p></li>
-<li><p>Scroll down to “Property boundaries Queensland” and click <strong>Add to my list</strong></p></li>
-<li><p>Click <strong>My List</strong> from the top menu</p></li>
-<li><p>Click <strong>View/extract in map</strong></p></li>
-<li><p>Under Extractable Data, click the box next to <strong>Property boundaries Queensland</strong>, it will become green</p></li>
-<li><p>Click <strong>Extract/download</strong></p></li>
-<li><p>Click <strong>Choose an area</strong></p></li>
-<li><p>Select <strong>BRISBANE CITY</strong> from the Select LGA option</p></li>
-<li><p>Choose GeoPackage 1.0 from Select output format</p></li>
-<li><p>Enter your Email Address</p></li>
-<li><p>Accept the Terms and Conditions</p></li>
-<li><p>Click <strong>Extract/Download</strong></p></li>
-<li><p>You could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop <a href="https://github.com/uqlibrary/technology-training/blob/8e0aebe078198cd8bb65630c9ac4c4c8558a4392/QGIS/mobile/QGIS_Mobile_Data.zip">here</a>, just press the three dots and download.</p></li>
-<li><p>Move the downloaded zip file to your project folder, and open the shapefile in QGIS</p></li>
-</ul>
+<section id="georeferencing" class="level3">
+<h3 class="anchored" data-anchor-id="georeferencing">Georeferencing</h3>
+<p>I will be happy to go over this in person, but if you need a guide, here is the <a href="https://docs.qgis.org/3.40/en/docs/training_manual/forestry/map_georeferencing.html">QGIS how to</a></p>
 </section>
-<section id="queensland-globe" class="level3">
-<h3 class="anchored" data-anchor-id="queensland-globe">Queensland Globe</h3>
-<p>Another way to access QSpatial Data is using the Queensland Globe portal.</p>
-<ul>
-<li>To access data from Queensland Globe go to <a href="https://qldglobe.information.qld.gov.au">https://qldglobe.information.qld.gov.au</a></li>
-<li>Accept the T&amp;Cs.</li>
-<li>Click <strong>Search</strong>, Select <strong>Locality (Suburb) within a Local Government Area</strong>, and search for the location you want and select it from the list.</li>
-<li>Click <strong>Layers</strong>, click <strong>Add Layers +</strong> here you can scroll through and filter different layer types</li>
-<li>We want to tick the box next to <code>Planning Cadastre &gt; Land Parcels &gt; Land Parcel</code> (you may need to zoom in to see certain layers)</li>
-<li>To export data click the Wrench Icon in the top right, and then click the Identify icon (i)</li>
-<li>Use the triangular Identify Polygon tool to select and area of interest. Double click when you’ve finished selecting your area.</li>
-<li>The Layers menu will now show your selection. You can download all, or sections, of your selection.</li>
-<li>I will choose <strong>Land Parcel</strong> and then <strong>Download</strong> as a <strong>shp</strong> file.</li>
-<li>Note: You may need to disable other layers for this to work correctly. I needed to turn off the <strong>Transportation</strong> layer to prevent roads from being included in my selection.</li>
-</ul>
-</section>
-</section>
-<section id="import-and-process-our-data" class="level1">
-<h1>Import and process our data</h1>
-<p>If you have saved your data into your <strong>data</strong> folder within your project folder <strong>qgis_mobile</strong>, it should appear in Project Home. You can import it into your project’s layers by double-clicking on the data there.</p>
-<section id="create-a-buffer-to-clip-our-data" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-buffer-to-clip-our-data">Create a buffer to clip our data</h2>
-<p>We now want to only keep data that is relevant to the St Lucia campus. To achieve that, we need a mask to clip data.</p>
-<p>We first need to select the lots that are relevant to us: - Use the “Select Feature by area or single click” (in the toolbar) - Click on the lots one by one (or draw a rectangle around them) with the Shift key pressed.</p>
-<p>We can now create a buffer:</p>
-<ul>
-<li><p>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></p>
-<ul>
-<li>There are many settings we can change to edit the shape of the buffer, but we will leave most of these as the defaults for now.</li>
-</ul></li>
-<li><p>Choose “Brisbane_lot_plans” as the Input Layer, and tick the <strong>Selected features only</strong> box</p></li>
-<li><p>We next want to choose distance that we want to create a buffer away from our vector.</p>
-<ul>
-<li>You’ll note that the distance is currently in <strong>degrees</strong>. This is because the layer projection is EPSG:4283 GDA94, a geographic coordinate system. This might cause issues.</li>
-</ul></li>
-<li><p>If you click Run. Your buffer won’t look very good.</p>
-<ul>
-<li>We first need to convert our layer to a local projected coordinate system.</li>
-</ul></li>
-</ul>
-<p>Let’s reproject the layer for better results:</p>
-<ul>
-<li>Go to <code>Vector &gt; Data Management Tools &gt; Reproject Layer</code></li>
-<li>Choose “Brisbane_lot_plans” as the Input Layer, and tick the <strong>Selected features only</strong> box</li>
-<li>Choose a local projected coordinate system such as GDA94 / MGA zone 56 or GDA2020 / MGA zone 56. This will convert our measurements to metres instead of degrees, and by choosing an Australian projection, it reduces distortion.</li>
-<li>Click “Run”</li>
-<li>The new scratch layer will look the same, but it now has a different projection.</li>
-</ul>
-<p>Let’s create that buffer again.</p>
-<ul>
-<li>Select the relevant lots</li>
-<li>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></li>
-<li>This time choose “Reprojected” as the Input Layer</li>
-<li>You’ll notice the distance is now in metres. For this instance, I want a larger buffer of 50 m.</li>
-<li>When you click “Run”, your buffer should be a good distance away from the original boundary.</li>
-</ul>
-<p>Now we can Dissolve those polygons together:</p>
-<ul>
-<li>Go to <code>Vector &gt; Geoprocessing Tools &gt; Dissolve</code></li>
-<li>Choose “Buffered” as the Input Layer.</li>
-<li>Let’s save this one to file, rather than a temporary file.
-<ul>
-<li>Click “…” next to “[Create Temporary Layer]”,</li>
-<li>Then “Save to file”, and save it as <strong>UQ Boundary</strong> to your products folder.</li>
-</ul></li>
-</ul>
-<blockquote class="blockquote">
-<p><strong>Note</strong> the Buffer tool has a “dissolve” option, but it’s important to know that there are many tools available.</p>
-</blockquote>
-</section>
-<section id="combine-our-dems" class="level2">
-<h2 class="anchored" data-anchor-id="combine-our-dems">Combine our DEMs</h2>
-<p>See the visible line between the raster tiles? That is because the separate raster files have different maximum and minimum values, so use different shades for different elevations. We have to <strong>merge</strong> them to make sure they use the same colour scale.</p>
-<p>To do that, we use the <code>Raster &gt; Miscellaneous &gt; Merge...</code> tool to create one single layer from them.</p>
-<ul>
-<li>First, select all DEM layers for the “Input layers”</li>
-<li>Make sure the option “Place each input file into a separate band” is <strong>unchecked</strong>, as we want to end up with one single-band layer</li>
-<li>We can save the output on disk instead of only creating a temporary file (for example, name it <code>St_Lucia_DEM_merged</code> and save it inside your project directory)</li>
-<li>Click “Run”</li>
-</ul>
-<blockquote class="blockquote">
-<p>You will need to have Saga installed for this to work.</p>
-</blockquote>
-<p>We can now remove the original DEM raster files.</p>
-</section>
-<section id="clip-the-dem" class="level2">
-<h2 class="anchored" data-anchor-id="clip-the-dem">Clip the DEM</h2>
-<p>We now use <code>Raster &gt; Extraction &gt; Clip Raster by Mask Layer</code> to <strong>focus on our area of interest</strong>.</p>
-<ul>
-<li><p>Make sure the virtual raster output DEM is selected in the Input layer</p></li>
-<li><p>Set the Mask Layer to “UQ_Boundary”</p></li>
-<li><p>Scroll down to “Clipped (mask)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as <strong>St_Lucia_DEM</strong> to your project folder.</p></li>
-<li><p>Another way to clip would be to use Extent</p></li>
-<li><p>Make sure the virtual raster output DEM is selected in the Input layer</p></li>
-<li><p>Navigate to <code>Raster &gt; Extraction &gt; Clip Raster by Extent</code></p></li>
-<li><p>Next to “Clipping extent” click <code>... &gt; Calculate from Layer &gt; UQ_Boundary</code></p></li>
-<li><p>Scroll down to “Clipped (extent)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as <strong>St_Lucia_DEM</strong> to your project folder.</p></li>
-</ul>
-<p>If you don’t save to file directly, remember two things:</p>
-<ul>
-<li><strong>rename</strong> your clipped layer so it is more descriptive than the generic “Clipped (extent)”</li>
-<li>you are currently using a temporary, <strong>scratch layer</strong>. It will be discarded if you exit QGIS. It is very useful for temporary intermediate files, but it can be safer to save copies of your intermediate data while you work, just in case! You can right-click on the layer and use <code>Export &gt; Save As..</code></li>
-</ul>
-</section>
-<section id="save-your-project" class="level2">
-<h2 class="anchored" data-anchor-id="save-your-project">Save your project</h2>
-<p>It’s not essential at this stage, it’s just a good reminder to save your work regularly so you don’t lose things when things go wrong.</p>
-</section>
-<section id="clip-the-aerial-imagery" class="level2">
-<h2 class="anchored" data-anchor-id="clip-the-aerial-imagery">Clip the Aerial Imagery</h2>
-<p>We can repeat the same process as above to clip the Aerial Imagery.</p>
-<p>Now, clip the converted aerial imagery:</p>
-<ul>
-<li>Go to <code>Raster &gt; Extraction &gt; Clip Raster by Extent</code></li>
-<li>Make sure St_Lucia_Aerial is selected in the Input layer</li>
-<li>Set the Mask Layer to “UQ_Boundary”</li>
-<li>You may need to define the Source and Target CRS to ensure that it all runs smoothly</li>
-<li>Scroll down to “Clipped (mask)” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as <strong>St_Lucia_Aerial_clipped</strong> to your project folder.</li>
-</ul>
-<p>We can now clean up our project by removing the original and intermediate layers we won’t need.</p>
-</section>
-<section id="change-the-symbology" class="level2">
-<h2 class="anchored" data-anchor-id="change-the-symbology">Change the symbology</h2>
-<p>We can style our DEM with a <strong>terrain colour palette</strong>:</p>
-<ul>
-<li>double-click on the clipped DEM layer</li>
-<li>go to the “Symbology” tab</li>
-<li>change the Render type to “Singleband pseudocolor”</li>
-<li>by default, it uses the min/max values, which is what we want</li>
-<li>we can change the “Color ramp” to something more suitable with the drop-down menu and <code>Create new color ramp... &gt; Catalog: cpt-city &gt; Topography &gt; Elevation</code>, for example.</li>
-</ul>
-</section>
-<section id="add-a-hillshade" class="level2">
-<h2 class="anchored" data-anchor-id="add-a-hillshade">Add a hillshade</h2>
-<p>Adding a <strong>hillshade</strong> makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.</p>
-<ul>
-<li>Go to <code>Raster &gt; Analysis &gt; Hillshade...</code>.</li>
-<li>Ensure the Input Layer is your clipped DEM “St_Lucia_DEM”</li>
-<li>Scroll down to “Hillshade” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as <strong>St_Lucia_DEM_Hillshade</strong> to your project folder.</li>
-<li>Click Run</li>
-</ul>
-</section>
-<section id="create-contours" class="level2">
-<h2 class="anchored" data-anchor-id="create-contours">Create Contours</h2>
-<p>Adding a <strong>contour</strong> makes your elevation even more evident and can also be used to quickly show elevation on other layers</p>
-<ul>
-<li>Go to <code>Raster &gt; Extraction &gt; Contour...</code>.</li>
-<li>Ensure the Input Layer is your clipped DEM “St_Lucia_DEM”</li>
-<li>For <strong>Interval between contour lines</strong>, the default is 10 m, which won’t be greatly noticeable at UQ where the highest point is 25 m. However, the finer the contour lines, the longer it will take to process. I will choose 5 m.</li>
-<li>Scroll down to “Contours” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as <strong>St_Lucia_Contours_5m</strong> to your project folder.</li>
-<li>Click Run</li>
-</ul>
-</section>
-<section id="exporting-to-avenza-maps" class="level2">
-<h2 class="anchored" data-anchor-id="exporting-to-avenza-maps">Exporting to Avenza Maps</h2>
-<p>Click on <code>Show Layout Manager</code> in the toolbar or use <code>Project &gt; Layout Manager</code>. <code>Create</code> a new layout called “Avenza”. We can now see the Layout window.</p>
-<p>Normally we would add many elements to our layout if we were exporting it for print such as the map, a legend, a scale bar, a north arrow…</p>
-<p>In this case however, we are simply interested in our map. Let’s add the map to the canvas:</p>
-<ul>
-<li>Go to the Layout tab, scroll down to ‘Resize Layout to Content’, click ‘Resize layout’</li>
-<li>Before we export, let’s turn off any layers we aren’t using in QGIS to save space</li>
-<li>Click the Refresh View button up the top</li>
-<li>Now we are ready to export.</li>
-<li>Go to ‘Layout &gt; Export as PDF…’ and save your map.</li>
-<li>The ‘PDF Export Options’ window will open</li>
-<li>Tick the ‘Create Geospatial PDF (GeoPDF)’ box</li>
-<li>Click ‘Save’</li>
-</ul>
-<p>You can repeat this process with the DEM and Hillshade to export out another kind of map.</p>
-<p>Now you simply need to export the pdf file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.</p>
-<p>When you first open Avenza Maps it will ask you to create an account, but you can import up to three maps without doing so, you can avoid creating an account by selecting the ‘x’ in the top right corner. * Allow Avenza Maps to access your device location * Select the orange ‘+’ in the bottom right and select ‘Download or import a map’ * Choose ‘From Storage Locations’ (if requested, give Avenza Maps the permissions to access your files) * Do the same for the other map, if you created one. * Once it has been imported, tap on the map. * You can now move the map around with your finger, and pinching to zoom. * Tapping the placemark icon in the bottom left will add a placemark in the middle of the crosshairs. * Tapping the 3 dots in the bottom right will allow you to add GPS tracking and draw and measure distances.</p>
-</section>
-<section id="qfield-1" class="level2">
-<h2 class="anchored" data-anchor-id="qfield-1">QField</h2>
-<p>QField is another Android based GIS app.</p>
-</section>
-<section id="feedback" class="level2">
-<h2 class="anchored" data-anchor-id="feedback">Feedback</h2>
-<p>Please visit our website to <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources">provide feedback</a> and find upcoming training courses we have on offer.</p>
+<section id="more-web-mapping-services" class="level3">
+<h3 class="anchored" data-anchor-id="more-web-mapping-services">More Web Mapping Services</h3>
+<p>Add any of these URLs via <strong>ArcGIS REST Servers</strong> in QGIS</p>
+<p><a href="https://www.data.qld.gov.au/dataset/queensland-imagery-latest-state-program-public-basemap-service">QLD Gov Aerial Basemap</a></p>
+<p><a href="https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Transportation/RoadsAndTracks/MapServer">QLD Gov Roads</a></p>
+<p><a href="https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/MapServer">QLD Heritage Areas</a></p>
+<p><a href="https://spatial-gis.information.qld.gov.au/arcgis/rest/services">More QLD Gov Services</a></p>
+<p><a href="https://services3.arcgis.com/ocUCNI2h4moKOpKX/ArcGIS/rest/services">Brisbane/SEQ Utilities</a></p>
+<p><a href="https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services">BCC Data</a></p>
+<p><a href="https://services9.arcgis.com/Ov1diE0uxjL6wSzH/ArcGIS/rest/services/">Random User’s Data</a></p>
+<p><a href="https://www.arcgis.com/home/search.html?restrict=false&amp;sortField=relevance&amp;sortOrder=desc&amp;focus=layers-weblayers-features#content">10000+ Searchable Feature Layers from ArcGIS</a></p>
+<p><a href="https://help.nearmap.com/kb/articles/752">NearMap API</a></p>
 
 
 </section>
