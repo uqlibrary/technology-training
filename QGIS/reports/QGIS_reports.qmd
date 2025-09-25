@@ -1,11 +1,11 @@
 ---
-title: "QGIS: Fieldwork Data Collection"
+title: "QGIS: Refine Your Maps for Reporting and Publication"
 editor: source
 date: today
 author: UQ Library
 ---
 
-# Setting up
+## Setting up
 
 This is an intermediate level tutorial. Before completing this tutorial, we recommend our [QGIS: Introduction to Mapping](../intro/QGIS_intro.qmd) tutorial. This tutorial is designed for **QGIS 3.40**. If you need to install it on your computer, go to the [QGIS website](https://qgis.org/download/).
 
@@ -15,76 +15,459 @@ We will start as always by creating a good folder structure to work within. This
 
 -   Let's now **save** our project: `Project > Save`.
 
--   Create a new folder, let's call it "qgis_fieldwork".
+-   Create a new folder, let's call it "qgis_reports".
 
+::::::: columns
+::: {.column width="60%"}
 -   Inside that folder, create these folders:
 
-    -   "data" - for all the data we will use to make our maps, split into:
+    -   "**data**" - for all the data we will use to make our maps, split into:
 
-        -   "raw" - raw data from your research or the internet
+        -   "**raw**" - raw data from your research or the internet
 
-        -   "processed" - any data you've modified
+        -   "**processed**" - any data you've modified
 
-    -   "output" - for any maps or images we export
+    -   "**output**" - for any maps or images we export
 
-    -   "temp" - this isn't *necessary*, but when you're playing around and testing, it stops things getting messy.
+    -   "**temp**" - this folder isn't necessary, but when you're playing around and testing, it stops things getting messy.
 
--   Finally, let's save our .qgz project file here, named "qgis_fieldwork_map.qgz"
+-   Finally, let's save our .qgz project file inside the "**qgis_reports**" folder, named "qgis_reports_map.qgz"
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="30%"}
+![](images/folder.png)
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+:::::::
 
 Your .qgz file should always be in the highest level folder, so it's only looking down into folders for data, not back out.
 
-![](folder.png)
+This might feel unnecessary now, but things quickly get out of control and hard to find if you don't have a good folder structure.
 
-This might seem necessary now, but things quickly get out of control and hard to find if you don't have a good folder structure.
-
-Let's finally add an OpenStreetMap basemap to locate ourselves on the globe:
+Let's add an OpenStreetMap basemap to locate ourselves on the globe:
 
 -   `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
 
-## Install QField and Avenza Maps on your phone
+And finally change our CRS to match our project area (Brisbane) for today to EPSG:7856 - GDA2020 / MGA zone 56
 
-QField and Avenza Maps are a mobile based offline mapping tools you can use on your smartphone.
+-   `Project > Properties` click the `CRS` tab, filter for **7856**, select EPSG:7856 - GDA2020 / MGA zone 56 and click `OK`
 
-### QField
+## Today's Aims
 
-QField plugs directly in to QGIS, and allows you to link a QGIS project with your mobile phone for data collection.
+Main aims:
 
-[Android Download](https://play.google.com/store/apps/details?id=ch.opengis.qfield) [iOS Download](https://apps.apple.com/app/qfield-for-qgis/id1531726814)
+-   Create a pretty map for output
+-   Automate our map description
 
-### Avenza
+If we have time:
 
-For Avenza Maps you just need to add a GeoPDF and you can collect data on it. It's less functional than QField, but it's a great fallback tool. [Android Download](https://play.google.com/store/apps/details?id=com.Avenza&hl=en_AU) [iOS Download](https://apps.apple.com/app/avenza-maps/id388424049)
+-   Learn to use Web Mapping Services
+-   Georeference an Image
 
-There are alternatives out there, such as [Input (MerginMaps)](https://merginmaps.com/features).
+## Download the Data
 
-# Get some data
+Today we're going to focus on making a pretty map, so let's start by populating our map with some pre-generated data.
 
-We're going to explore a number of different online spatial data repositories.
+The **data** for this session can be directly downloaded from [this link](https://github.com/uqlibrary/technology-training-assets/raw/refs/heads/master/QGIS/reports/report_data.zip).
 
-### DEM
+Once downloaded, extract the archive into your **raw** folder within your **data** folder.
 
-A Digital Elevation Model (DEM) is a common example of **raster data**, i.e. grid data that contains a value in each cell (a bit like the pixels in a coloured picture).
+Within QGIS, go to the **Browser** panel, open `**Project Home** > **data** > **raw**`, then drag and drop each of your files into the **map canvas**.
 
-For this tutorial, we are using a DEM sourced from **ELVIS** - Geoscience Australia's ELeVation Information System.
+You should have three new layers: **Artefacts**, **Paths**, and **Project_area**
 
--   Go to <http://www.ga.gov.au/elvis/>
--   Search for "St Lucia" in the `Location Search` search box and select the first result
--   Click `Order Data`
--   Choose "Draw" and "Box" and then click the `Draw` button
--   Click on the map to start drawing a rectangle around your desired area
--   Then click `Search`
--   The right panel will show you all the different datasets available in that area
--   We want the QLD Government Digital Elevation Model 1 Metre, click the down arrow on the right
--   As you hover over the different options, they will highlight a red box on the map, click the tick box and select all that overlap the area you're interested in (note that there may be data from different years here)
--   When you have the data you want, scroll to the bottom of the Order Data window
--   Select your industry, enter your email, tick the reCAPTCHA, and click the `Order Datasets` button
--   You should receive an email within 5 minutes, download the files from the link in the email, extract the folder to your project folder, and add them to your map.
+## Change the symbology
+
+Our vector layers are assigned a random colour when we load them. We now want to make them look better.
+
+### Point Geometry
+
+-   Open the `Layer Styling` panel by pressing **F7**
+-   Select the **Artefacts** layer from either the `Layer Styling` panel, or the `Layers` panel.
+-   In the `Layer Styling` panel, change `**Single Symbol**` to `**Categorised**`
+-   From `Value` select **Artefact Type**
+-   Click the `**Classify**` button
+
+The random colours that QGIS gives you aren't always pretty, so let's change the colours - Click the dropdown next to the `Color ramp` - Click `Create New Color Ramp...`, select `Catalog: ColorBrewer`, and click `OK` - Click the dropdown next to `Scheme name` and choose `**Set1**` - This is a qualitative colour scheme that is easy to distinguish, **Dark 2** and **Paired** are also good options, you can find out more about [ColorBrewer here](https://colorbrewer2.org) - Click the `back arrow button` next to **Edit Ramp**
+
+Now that we have a nice colour scheme, let's give it a contrasting Stroke color, and a new shape. The default is usually black, but I find this to look harsh, let's make it a darker shade of the **Fill colour**
+
+-   Double click on the symbol of the `Artefact Scatter`
+-   Click **Simple Marker** - this will allow us to change the fill, stroke, and shape of the marker
+-   Click the dropdown next to `Stroke color`, click `Pick Color`, and then click the color from the `Fill Color` above, it should copy the colour!
+-   Now click directly on the `Stroke color` color box, this will take you to the `Select Stroke Color` window
+-   Drag the slider next to `V` to give us a darker shade of red
+-   Click the `back arrow button` next to **Artefact Scatter \> Select Stroke Color**
+-   From the bottom of the window select another shape, let's go with the **Triangle**
+-   Click the `back arrow button` next to **Artefact Scatter**
+
+Repeat these steps for the **Single Artefact**, you can leave the shape as a circle.
+
+If you want, you can change the properties of all symbols at once: - Simply click in the white space below your symbol classes so that non is selected. - If you click on the button next to `Symbol`, it will take you to `Symbol Settings` - Try increasing the size of the symbols to 3mm - **WARNING** if you change the **Stroke color** here, it will change the stroke for all of your symbols, undoing your work from above. - Click the `back arrow button` next to **Symbol Settings**
+
+### Line Geometry
+
+We can also make our lines look nice. Sometimes it can be as simple as picking a contrasting colour, and adding some more width. Sometimes it can be very useful to add some dashes to your line.
+
+-   Select the **Paths** layer from the `Layer Styling` panel
+-   Under `Line`, click `**Simple Line**`
+-   Change the `Color` to a colour that is different to your points, and stands out from the map. I'm going to use orange
+-   Increase the `Stroke width` to 1mm - it looks big now, but will look better on your exported map later
+-   Click the **green +** next to `Line`
+
+You can add as many simple lines, as you like, you can even change this `Symbol layer type` to Arrows, Hashed lines, Filled lines, and more.
+
+-   Increase the `Stroke width` to 1mm to match
+-   Change the `Stroke style` from **Solid Line** to **Dashed Line**
+-   Change `Cap style` from **Square** to **Round**
+-   Tick `Use custom dash pattern`
+-   Click on the **dashed line** below the tick box
+    -   I like to set my **Dash** to 3mm and my **Space** to 5mm
+
+### Polygon Geometry
+
+Depending on your map, you may want your polygon to remain solid, to be transparent, have hatched lines, or simply be an outline. As our project area has items inside it, it is probably best suited as an outline.
+
+-   Select the **Project_area** layer from the `Layer Styling` panel
+-   Under `Fill`, click `**Simple Fill**`
+-   Change `Fill style` from **Solid** to **No Brush**
+    -   Note that this is where you could add horizontal, diagonal, or many other styles as a fill.
+-   Change `Stroke color` to something bright, like **Yellow**
+-   Increase the `Stroke width` to 1mm
+
+## Labels
+
+Let's add some labels to our data.
+
+-   Select the **Artefacts** layer from the `Layer Styling` panel
+    -   In the `Layer Styling` panel, click the **yellow abc** `Labels` tab
+        -   Change `No Labels` to `**Single Labels**`
+        -   Change the `Value` to **fid**
+        -   Change the `Color` to **white**
+        -   Just below the `Value` dropdown, click the third **abc** tab for `Buffer`
+            -   Tick the `Draw text buffer` box
+            -   Change the `Size` to **0.8**
+            -   Change the `Color` to **black** - you could have reversed the two colours, but I prefer this contrast
+
+## Styles
+
+If you want to try different looks for a feature, but not have to undo everything, you can save them as **Styles**
+
+-   In the `Layers` panel, `Right click on **Project_area** > Styles > Add...`
+-   Name the style **Project Point**
+-   Select the **Project_area** layer from either the `Layer Styling` panel
+    -   Under `Fill`, click `**Simple Fill**`
+    -   Change `Symbol layer type` from **Simple Fill** to **Centroid Fill**
+    -   Click **Simple Marker** and change the `Size` to 3 - you can also change the **Stroke color** if you like
+
+Now we have a point as the centre of our polygon, we can edit this style and revert back to the original whenever we like
+
+## Themes
+
+Themes work similarly to styles, but instead of changing the layer styling, it changes the layers present. We can use themes to create multiple looks for our map that we can easily swap between. Let's create a map for our future **Inset Map**
+
+-   In the `Layers` panel, hide the **Paths** and **Artefacts** layer by unticking the boxes next to them.
+-   Now click the **Eye** icon (Manage Map Themes) at the top of the `Layers` panel, and click `Add theme...`
+-   Let's name our new theme **Inset**, and click `OK`
+-   Unhide **Paths** and **Artefacts** layer by ticking the boxes next to them.
+-   Change the **Project_area** back to our original **Default** style
+    -   `Right click on **Project_area** > Styles (2) > default`
+
+Nothing exciting will happen *yet*, we will be able to use this later.
+
+## Basemaps
+
+Unless we really need everything on the OpenStreetMap, it is too busy, and distracting. Let's load in a new basemap. There are many ways of doing this, in the past we've used the QuickMapServices plugin to load in new basemaps, and used XYZ tiles to load in basemaps, now we can go to the next step and source them externally.
+
+Today we're going to use a WMTS (Web Map Tile Service) from ESRI.
+
+-   Scroll down the `Browser` panel until your see **WMS/WMTS**
+-   Right click WMS/WMTS and select `**New Connection...**`
+    -   In `Name` type **ESRI World Imagery**
+    -   In `URL` paste https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml
+    -   Click `OK`
+-   Now in the `Browser` panel, navigate `WMS/WMTS > ESRI World Imagery` and double click on **default028mm**
+    -   The **GoogleMapsCompatible** is the same map, but a lower resolution, however **default028mm** will often show "Map data not yet available" at a scale around **1:300**
+-   Arrange the layers so that the **World Imagery** layer is under your other layers (you can hide the OpenStreetMap now)
+
+## Themes (again)
+
+Now that we've made some changes, we can see what themes do.
+
+-   In the `Layers` panel, click the **Eye** icon (Manage Map Themes), click `Add theme...`
+-   Let's name our new theme **Main**, and click `OK`
+-   Now, click the **Eye** icon again
+    -   You will see that there are two check box options at the bottom **Inset** and **Main**
+    -   You can cycle between these two themes by choosing one or the other
+    -   If you want to update a theme, simply go `**Eye** icon > Replace theme...` and then select the theme you want to overwrite.
+-   Save your project
+
+## Layout Manager
+
+Now we can prepare our map for export.
+
+-   Navigate to `Project > Layout Manager...`
+-   Under **New from Template** click `Create`, name the map **Project Map**
+-   This will open the **Layout Manager**
+
+### Page Properties
+
+Before we do anything, let's set up out environment.
+
+-   Navigate to `Layout > Page Properties..`
+    -   Here we can choose the size and orientation of our map.
+    -   A4 is sensible, and it means you know the map will fit neatly into a report.
+    -   Portrait means you can have a full page map without rotating the page in your report. But some spatial layouts make more sense in Landscape. Use your judgement.
+
+### Guides
+
+Guides seem unnecessary, but they make lining things up, much much easier.
+
+-   In the right menu, click `Guides`
+-   Click the **green +** under **Horizontal Guides** (if your canvas is a Landscape, choose **Vertical Guides** for this step)
+-   A new row should appear, click on the **0** and change it to **235**
+
+### Map
+
+-   Add your map by clicking the map icon in the left menu, or navigating `Add Item > Add Map`
+    -   Your mouse will now be a +
+    -   If you hover over the top corner of the canvas, the mouse should snap to the corner
+    -   Click and drag until your mouse snaps to the corner created by the side of the canvas, and the guide you added
+-   In the `Items` panel on the right, double click on **Map 1** and rename it **Main**
+    -   This makes life so much more straightforward
+
+### Scale
+
+Okay, we have our map, but it's not zoomed in right. This is always a little tricky. You *could* click the **Move item content** button on the left menu(or press `C` on your keyboard), as this would allow you to drag the map around internally, and zoom in with your scroll wheel. **But there is an easier way**
+
+-   Navigate back to your **qgis_reports** window
+    -   Right click on your **Project_area** layer and select **Zoom to Layer(s)**
+-   Navigate back to your **Project Map** window
+    -   In the right menu, click `Item Properties`
+    -   ![](layoutmanager_scale.png)
+    -   Click the first orange arrow button to **Set Map Extent to Match Main Canvas Extent**
+    -   Click the third orange arrow button to **Set Map Scale to Match Main Canvas Scale**
+        -   The other buttons do the reverse
+    -   I like to then round the **Scale** up to a nice round number from something like 3814 to 4000
+
+### Inset Map
+
+You can add your inset map to the blank space at the bottom (or side) of you map canvas, or you can put it on top of you main map in unused space. However, we don't have an edge to snap our inset map on to, so guides are useful here too.
+
+-   In the right menu, click `Guides`
+-   Click the **green +** under **Horizontal Guides**
+-   A new row should appear, click on the **0** and change it to **10**
+-   Click the **green +** under **Vertical Guides**
+-   A new row should appear, click on the **0** and change it to **10**
+
+We don't need more guides unless you want a precise inset map size, but I'm happy if it's aligned evenly with the top and side border.
+
+-   Add your map by clicking the map icon in the left menu, or navigating `Add Item > Add Map`
+-   Hover over the corner created by your guides, the mouse should snap to the corner
+    -   Click and drag until you're happy with the size of your inset window (without overlapping any important features on the main map)
+-   Zoom out on the inset map, by selecting it from the `Items` tab and following the same approach as the **Main map**
+    -   Or by using **Move item content** button on the left menu(or press `C` on your keyboard), clicking on the inset and using the scroll wheel
+-   In the `Items` panel on the right, double click on **Map 2** and rename it **Inset**
+-   Scroll to the bottom of the `Item Properties` panel and tick the `Frame` box
+    -   This gives our inset a nice border we can customise
+
+Now we have our maps added, we can bring our themes in to play again.
+
+### Themes (again!)
+
+-   Select **Main** from the `Items` panel
+-   In `Item Properties`, you will see **Layers** section
+-   Tick `Follow map theme` and from the dropdown change **none** to **Main**
+-   Now this map is linked to the **Main** theme and will only update when we change that theme, or the layers attributed to the theme
+
+Repeat this step for **Inset**
+
+This is also a big advantage for using **Styles**, as the point is a better representation of our site on the inset map.
+
+### Title
+
+-   Add a text box to your map by clicking the `Add Label` icon in the left menu, or navigating `Add Item > Add Label`
+-   Click and drag in the empty canvas below the map where you want to put your title
+    -   In the `Item Properties` panel remove the **Lorem ipsum** text, and add **Brisbane Botanic Gardens**
+    -   Under **Appearance** click the `Font` box to open the `Label Font` window
+        -   Change the text size to 18, you can make other font changes here too
+        -   Click the `back arrow button` next to `Label Font`
+-   In the `Items` panel on the right, double click on **Brisbane Botanic Gardens** and rename it **Title**
+
+Okay, that's a some fairly basic text, let's do something interesting with the descriptive text.
+
+### Dynamic Text
+
+-   Add another text box to your map by clicking the `Add Label` icon in the left menu, or navigating `Add Item > Add Label`
+-   Click and drag in the empty canvas below the title
+-   In the `Items` panel on the right, double click on **Lorem ipsum** and rename it **Description**
+    -   In the `Item Properties` panel remove the **Lorem ipsum** text and then enter:
+        -   **Date:**
+        -   **Scale: 1:**
+        -   **Datum:**
+        -   **Sources:**
+        -   Normally we'd have to enter the details for each of these manually, but we can use **Dynamic Text** to do it for us
+-   In the `Item Properties` panel, click next to **Date:**, so the cursor is sitting there
+    -   Under the **Main Properties** text box, click `Dynamic Text > Current Date > Day/Month/Year (26/09/2025)`
+    -   This will insert code that looks like this: `[%format_date(now(), 'dd/MM/yyyy')%]` which automatically adds today's date
+-   Now repeat those steps for the rest, click next to **Scale: 1:**
+    -   Click `Dynamic Text > Map Properties > Main > Scale (4000)`
+    -   The code will look like this: `[%format_number(item_variables('Main')['map_scale']` which automatically adds the main map's scale - Click next to **Datum:**
+    -   Click `Dynamic Text > Map Properties > Main > CRS Name (GDA2020 / MGA zone 56)`
+    -   The code will look like this: `[%item_variables('Main')['map_crs_description']%]` which automatically adds the main map's CRS - Click next to **Sources:**
+    -   Click `Dynamic Text > Layer Credits`
+    -   The code will look like this: `[%array_to_string(map_credits())%]` which automatically adds the sources built in to some of the data used
+        -   Note that this is built into the Metadata (layer `Properties > Metadate > Access` under **Rights**) of the baselayers, and the layers we downloaded. Not all layers will necessarily have this information, and sometimes it's very detailed and clunky.
+
+You could also add any extra text details such as your name, the locality, any disclaimers, or any other details needed.
+
+### Shapes
+
+We can add a border around our information section. This isn't necessary, but it looks nice!
+
+-   Add a rectangle to your map by clicking the `Add Shape` icon in the left menu, or navigating `Add Item > Add Shape > Add Rectangle`
+    -   Hover over the corner created by the bottom of the map and the side of the canvas, the mouse should snap to the corner
+    -   Click and drag until your mouse snaps to the opposite corner of the canvas
+-   In the `Items` panel, click the box next to `Style`, this will take you to the `Symbol Settings` window
+    -   Click **Simple Fill**
+    -   Change `Symbol layer type` from **Simple Fill** to **Outline: Simple Line**
+    -   Change the `Color` to a nice dark green
+    -   Increase the `Stroke width` to 5mm
+    -   Scroll to the bottom and tick the `Draw line only inside polygon` box
+
+### Legend
+
+-   Add a Legend your map by clicking the `Add Legend` icon in the left menu, or navigating `Add Item > Add Legend`
+
+The legend always has too much detail to start. Let's clean it up.
+
+-   In the `Item Properties` panel, change the `Title` to **Legend**
+-   Under **Legend Items** untick `Auto update`
+    -   Click the drop down next to **Artefacts**, select the empty item, and then click the **red -** to remove it
+    -   Remove the **Imagery** and the **OpenStreetMap** layer too
+    -   Right click on **Artefacts** and select **Hidden**, we don't need to see the group name
+    -   Double click on **Project_area** and rename it to **Project Area**
+-   Scroll down to **Fonts and Text Formatting**, under **Legend Title** click the **Title font** button
+    -   Change the `Size` to 13
+        -   You can change the **Item Labels** font size too, but 12 is fine here
+-   Scroll down to **Spacing**
+    -   Change **Legend Title** `Space below` to 2
+        -   You can change the **Legend Items** space between symbols too, but 2.5 is fine here
+
+### North Arrow
+
+-   Add a North Arrow your map by clicking the **Add North Arrow** icon in the left menu, or navigating `Add Item > Add North Arrow`
+    -   Click and drag in the blank space under the map until you're happy with the size of the arrow
+    -   In the `Item Properties` panel, under the `SVG Images` box, type **arrow** in the search bar
+        -   Choose a North arrow you like
+
+### Scalebar
+
+-   Add a scale bar to your map by clicking the **Add Scale Bar** icon in the left menu, or navigating `Add Item > Add Scale Bar`
+    -   You can click and drag in the blank space under the map, although the scale bar size will be set in a moment
+    -   In the `Item Properties` panel, choose the appropriate `Scalebar units` - usually **Metres** or **Kilometres**
+        -   Under **Segments**, change right `Segments` to **right 4**
+        -   Change `Fixed width` to 50 units (on this map, I have used 50 metre intervals, as that feels understandable)
+
+### Finessing
+
+You will remember that we orignally made the points and lines quite large, but you will see that on this export map they are a more reasonable size. This is because we set them to millimetres, which will scale with our screen resolution when we zoom on the original map, but will scale to the size of our fixed dimensions A4 page in the `Layout Manager`.
+
+Our point labels need to be resized too. Return to the `qgis_reports` window and try changing their font size to 12 in the `Labels` tab of the `Layer Styling` panel.
+
+If the change doesn't flow through when you return to the `Layout Manager/Project Map` window, try clicking the refresh button in the top menu.
+
+Move anything you need around to get it looking sharp. You could try using `Guides` if needed.
+
+Save your project.
+
+-   `Layout > Save Project`
+
+### Export options
+
+Now that we're done we can export. Generally to PDF or Image. Today we will use image.
+
+-   `Layout > Export as Image...`
+    -   You will see a popup warning about WMS servers. Some tile services have limits to the size of file you can export like this. If you exceed it, your basemap will be blank.
+-   Click `OK`
+-   Navigate to your project's **output** folder, and give the file a meaningful name **Brisbane Botanic Gardens Map**, click `Save`
+-   The `Export resolution` should automatically be a print quality 300dpi, and the width and height were set by our A4 selection.
+-   Click `Save`
+-   Navigate to and open your file to make sure it worked!
+
+## Save a Map Template
+
+This is crucial! Save your hardwork for next time!
+
+-   `Layout > Save as Template...`
+-   Navigate to a folder you can easily find again, such as a broader QGIS folder.
+-   Give it a meaningful name **Report_Map_Template**
+-   Click `Save`
+
+## Load a Map Template
+
+Next time you need to make an export you can load your template in.
+
+Open an old QGIS Project.
+
+-   Navigate to `Project > Layout Manager...`
+-   Under **New from Template** change `Empty Layout` to `Specific`, click the three dots and navigate to your **Report_Map_Template**, select it, and click `Open`
+-   Click `Create`
+-   Give the layout an appropriate name, and click `OK`
+-   This will open the **Layout Manager**
+
+You will see that the inset and main maps are in the wrong location, the title is wrong, the scale bar is off, and the Legend is empty. But you know how to fix these!
+
+### Map Scale
+
+-   Navigate back to your **QGIS** window
+    -   Right click on the most suitable layer and select **Zoom to Layer(s)**
+-   Navigate back to your **Layout Manager** window
+    -   Click the **Main** from the `Item` panel, and click the `Item Properties` panel
+    -   ![](layoutmanager_scale.png)
+    -   Click the first orange arrow button to **Set Map Extent to Match Main Canvas Extent**
+    -   Click the third orange arrow button to **Set Map Scale to Match Main Canvas Scale**
+        -   The other buttons do the reverse
+    -   Round the **Scale** up to a nice round number
+-   Fix the inset map too
+
+### Scalebar
+
+-   Click the **Scalebar** from the `Item` panel
+-   In the `Item Properties` panel, change `Scalebar units` to **Metres** or **Kilometres** - Change `Fixed width` to an appropriate unit
+
+### Legend
+
+-   Click the **Legend** from the `Item` panel
+-   In the `Item Properties` panel, under the **Legend Items** box and click the **green +** to add a layer
+    -   Double click on and rename the layer if needed
+    -   Repeat for all layers you need to list
+
+### Title
+
+-   Click the **Title** from the `Item` panel
+-   In the `Item Properties` panel, under the **Main Properties** rename the title
+
+And that's it, you now have another map looking the way you want it, without too much hassle.
+
+## Feedback
+
+Please visit our website to [provide feedback](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources) and find upcoming training courses we have on offer.
+
+## More Data Sources
 
 ### Aerial Imagery
 
 There are a few places you can aquire aerial photography, today we will look at two sources, one is freely available Government Data from **QImagery**, the other is accessible from using your UQ credentials.
 
--   Go to <https://qimagery.information.qld.gov.au/>
+-   Go to [QImagery](https://qimagery.information.qld.gov.au/)
 -   Read and tick the "I acknowledge I have read and agree to the Terms & Conditions" box, and click `Get Started`
 -   Click the Search button, select 'locality, town or city' and search for "St Lucia" in the "Enter search term" search box and select the first result
 -   It will zoom to your selected location then click the newly appeared `Search` button
@@ -93,237 +476,30 @@ There are a few places you can aquire aerial photography, today we will look at 
 -   You can then download your desired images by clicking "Download" and selecting TIFF (georeferenced)
 -   Move the TIFF file(s) to your project folder, and open them in QGIS
 
-If you want even higher resolution maps, there are restricted options available. Your particular study area may have maps available such as the [Sunshine Coast MyMaps](https://scrc.maps.arcgis.com/apps/webappviewer/index.html?id=48501cb9e7294555be5b08e35e949616) service, CSIRO's [Norfolk Island Data Portal](https://data.csiro.au/collection/csiro:43016) or other [CSIRO spatial products](https://data.csiro.au/collections/search/SQDEM/STsearch-by-keyword/). It's worth exploring to discover what various local council and government resources are available. As a UQ student, you also have access to very high resoltuion imagery from **NearMap**. You can even access an array of imagery going back in time.
+You can also get historical images from Geoscience Australia's \[Historical Aerial Photo (HAP)\](Collection(https://experience.arcgis.com/experience/9a0ecbafe94f49829712b46fc69186ff)
 
--   Go to the [UQ NearMap Portal](https://admin.nearmap.com/invitation/domain-signup?token=q9WIbXMtna1iskb2meNGhKpCaQp3WTRbMhXpQVGWkKouKUeqzkpjNznC_Ogz5iKYiw0Ev7vym2Ykaj_W_V4dBbTzR6qUX2eTDsNHpBuR4XbU9vDRxQN_Rg==)
--   Enter your UQ Student (@student.uq.edu.au) or Staff (@uq.edu.au) email address, with the appropriate domain selected. Click "Invite me".
--   You should receive an email soon after, click the "Accept Invitation" button, and go through the account setup process.
--   Go to Login and enter your email address, click "Next" and enter your password.
--   From the top right select `MapBrowser`.
--   Type "St Lucia, QLD" in the search box, press enter
--   You can click the date down the bottom to look at different snapshots in time, and even compare maps side-by-side.
--   To save imagery from NearMap, simply click the "Exports" button on the left handside (it is an image icon)
--   From the menu that appears change the "Export type" to "Georeferenced image"
--   From "Projection" choose GDA2020 / MGA zone 56
--   You can increase and decrease the size of the bounding box by adjusting its corners, a smaller box means you can have a finer resolution, down to 0.075m. If we select all of UQ St Lucia in one go, the highest resolution we can have is 0.299m.
--   Once you're happy with your selection click `Download Files`
--   Move the downloaded zip file to your project folder, and open them in QGIS
+### Georeferencing
 
-### Lot Plans
+I will be happy to go over this in person, but if you need a guide, here is the [QGIS how to](https://docs.qgis.org/3.40/en/docs/training_manual/forestry/map_georeferencing.html)
 
-You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial. I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from our Github site.
+### More Web Mapping Services
 
--   To access data from QLD Spatial go to <https://qldspatial.information.qld.gov.au/>
+Add any of these URLs via **ArcGIS REST Servers** in QGIS
 
--   Search for "property boundaries"
+[QLD Gov Aerial Basemap](https://www.data.qld.gov.au/dataset/queensland-imagery-latest-state-program-public-basemap-service)
 
--   Scroll down to "Property boundaries Queensland" and click **Add to my list**
+[QLD Gov Roads](https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Transportation/RoadsAndTracks/MapServer)
 
--   Click **My List** from the top menu
+[QLD Heritage Areas](https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/MapServer)
 
--   Click **View/extract in map**
+[More QLD Gov Services](https://spatial-gis.information.qld.gov.au/arcgis/rest/services)
 
--   Under Extractable Data, click the box next to **Property boundaries Queensland**, it will become green
+[Brisbane/SEQ Utilities](https://services3.arcgis.com/ocUCNI2h4moKOpKX/ArcGIS/rest/services)
 
--   Click **Extract/download**
+[BCC Data](https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services)
 
--   Click **Choose an area**
+[Random User's Data](https://services9.arcgis.com/Ov1diE0uxjL6wSzH/ArcGIS/rest/services/)
 
--   Select **BRISBANE CITY** from the Select LGA option
+[10000+ Searchable Feature Layers from ArcGIS](https://www.arcgis.com/home/search.html?restrict=false&sortField=relevance&sortOrder=desc&focus=layers-weblayers-features#content)
 
--   Choose GeoPackage 1.0 from Select output format
-
--   Enter your Email Address
-
--   Accept the Terms and Conditions
-
--   Click **Extract/Download**
-
--   You could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop [here](https://github.com/uqlibrary/technology-training/blob/8e0aebe078198cd8bb65630c9ac4c4c8558a4392/QGIS/mobile/QGIS_Mobile_Data.zip), just press the three dots and download.
-
--   Move the downloaded zip file to your project folder, and open the shapefile in QGIS
-
-### Queensland Globe
-
-Another way to access QSpatial Data is using the Queensland Globe portal.
-
--   To access data from Queensland Globe go to [https://qldglobe.information.qld.gov.au](https://qldglobe.information.qld.gov.au)
--   Accept the T&Cs.
--   Click **Search**, Select **Locality (Suburb) within a Local Government Area**, and search for the location you want and select it from the list.
--   Click **Layers**, click **Add Layers +** here you can scroll through and filter different layer types
--   We want to tick the box next to `Planning Cadastre > Land Parcels > Land Parcel` (you may need to zoom in to see certain layers)
--   To export data click the Wrench Icon in the top right, and then click the Identify icon (i)
--   Use the triangular Identify Polygon tool to select and area of interest. Double click when you've finished selecting your area.
--   The Layers menu will now show your selection. You can download all, or sections, of your selection.
--   I will choose **Land Parcel** and then **Download** as a **shp** file.
--   Note: You may need to disable other layers for this to work correctly. I needed to turn off the **Transportation** layer to prevent roads from being included in my selection.
-
-# Import and process our data
-
-If you have saved your data into your **data** folder within your project folder **qgis_mobile**, it should appear in Project Home. You can import it into your project's layers by double-clicking on the data there.
-
-## Create a buffer to clip our data
-
-We now want to only keep data that is relevant to the St Lucia campus. To achieve that, we need a mask to clip data.
-
-We first need to select the lots that are relevant to us: - Use the "Select Feature by area or single click" (in the toolbar) - Click on the lots one by one (or draw a rectangle around them) with the Shift key pressed.
-
-We can now create a buffer:
-
--   Go to `Vector > Geoprocessing Tools > Buffer`
-
-    -   There are many settings we can change to edit the shape of the buffer, but we will leave most of these as the defaults for now.
-
--   Choose "Brisbane_lot_plans" as the Input Layer, and tick the **Selected features only** box
-
--   We next want to choose distance that we want to create a buffer away from our vector.
-
-    -   You'll note that the distance is currently in **degrees**. This is because the layer projection is EPSG:4283 GDA94, a geographic coordinate system. This might cause issues.
-
--   If you click Run. Your buffer won't look very good.
-
-    -   We first need to convert our layer to a local projected coordinate system.
-
-Let's reproject the layer for better results:
-
--   Go to `Vector > Data Management Tools > Reproject Layer`
--   Choose "Brisbane_lot_plans" as the Input Layer, and tick the **Selected features only** box
--   Choose a local projected coordinate system such as GDA94 / MGA zone 56 or GDA2020 / MGA zone 56. This will convert our measurements to metres instead of degrees, and by choosing an Australian projection, it reduces distortion.
--   Click "Run"
--   The new scratch layer will look the same, but it now has a different projection.
-
-Let's create that buffer again.
-
--   Select the relevant lots
--   Go to `Vector > Geoprocessing Tools > Buffer`
--   This time choose "Reprojected" as the Input Layer
--   You'll notice the distance is now in metres. For this instance, I want a larger buffer of 50 m.
--   When you click "Run", your buffer should be a good distance away from the original boundary.
-
-Now we can Dissolve those polygons together:
-
--   Go to `Vector > Geoprocessing Tools > Dissolve`
--   Choose "Buffered" as the Input Layer.
--   Let's save this one to file, rather than a temporary file.
-    -   Click "..." next to "\[Create Temporary Layer\]",
-    -   Then "Save to file", and save it as **UQ Boundary** to your products folder.
-
-> **Note** the Buffer tool has a "dissolve" option, but it's important to know that there are many tools available.
-
-## Combine our DEMs
-
-See the visible line between the raster tiles? That is because the separate raster files have different maximum and minimum values, so use different shades for different elevations. We have to **merge** them to make sure they use the same colour scale.
-
-To do that, we use the `Raster > Miscellaneous > Merge...` tool to create one single layer from them.
-
--   First, select all DEM layers for the "Input layers"
--   Make sure the option "Place each input file into a separate band" is **unchecked**, as we want to end up with one single-band layer
--   We can save the output on disk instead of only creating a temporary file (for example, name it `St_Lucia_DEM_merged` and save it inside your project directory)
--   Click "Run"
-
-> You will need to have Saga installed for this to work.
-
-We can now remove the original DEM raster files.
-
-## Clip the DEM
-
-We now use `Raster > Extraction > Clip Raster by Mask Layer` to **focus on our area of interest**.
-
--   Make sure the virtual raster output DEM is selected in the Input layer
-
--   Set the Mask Layer to "UQ_Boundary"
-
--   Scroll down to "Clipped (mask)" and click "..." next to \[Create Temporary Layer\]", then "Save to file", and save it as **St_Lucia_DEM** to your project folder.
-
--   Another way to clip would be to use Extent
-
--   Make sure the virtual raster output DEM is selected in the Input layer
-
--   Navigate to `Raster > Extraction > Clip Raster by Extent`
-
--   Next to "Clipping extent" click `... > Calculate from Layer > UQ_Boundary`
-
--   Scroll down to "Clipped (extent)" and click "..." next to \[Create Temporary Layer\]", then "Save to file", and save it as **St_Lucia_DEM** to your project folder.
-
-If you don't save to file directly, remember two things:
-
--   **rename** your clipped layer so it is more descriptive than the generic "Clipped (extent)"
--   you are currently using a temporary, **scratch layer**. It will be discarded if you exit QGIS. It is very useful for temporary intermediate files, but it can be safer to save copies of your intermediate data while you work, just in case! You can right-click on the layer and use `Export > Save As..`
-
-## Save your project
-
-It's not essential at this stage, it's just a good reminder to save your work regularly so you don't lose things when things go wrong.
-
-## Clip the Aerial Imagery
-
-We can repeat the same process as above to clip the Aerial Imagery.
-
-Now, clip the converted aerial imagery:
-
--   Go to `Raster > Extraction > Clip Raster by Extent`
--   Make sure St_Lucia_Aerial is selected in the Input layer
--   Set the Mask Layer to "UQ_Boundary"
--   You may need to define the Source and Target CRS to ensure that it all runs smoothly
--   Scroll down to "Clipped (mask)" and click "..." next to \[Create Temporary Layer\]", then "Save to file", and save it as **St_Lucia_Aerial_clipped** to your project folder.
-
-We can now clean up our project by removing the original and intermediate layers we won't need.
-
-## Change the symbology
-
-We can style our DEM with a **terrain colour palette**:
-
--   double-click on the clipped DEM layer
--   go to the "Symbology" tab
--   change the Render type to "Singleband pseudocolor"
--   by default, it uses the min/max values, which is what we want
--   we can change the "Color ramp" to something more suitable with the drop-down menu and `Create new color ramp... > Catalog: cpt-city > Topography > Elevation`, for example.
-
-## Add a hillshade
-
-Adding a **hillshade** makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.
-
--   Go to `Raster > Analysis > Hillshade...`.
--   Ensure the Input Layer is your clipped DEM "St_Lucia_DEM"
--   Scroll down to "Hillshade" and click "..." next to \[Create Temporary Layer\]", then "Save to file", and save it as **St_Lucia_DEM_Hillshade** to your project folder.
--   Click Run
-
-## Create Contours
-
-Adding a **contour** makes your elevation even more evident and can also be used to quickly show elevation on other layers
-
--   Go to `Raster > Extraction > Contour...`.
--   Ensure the Input Layer is your clipped DEM "St_Lucia_DEM"
--   For **Interval between contour lines**, the default is 10 m, which won't be greatly noticeable at UQ where the highest point is 25 m. However, the finer the contour lines, the longer it will take to process. I will choose 5 m.
--   Scroll down to "Contours" and click "..." next to \[Create Temporary Layer\]", then "Save to file", and save it as **St_Lucia_Contours_5m** to your project folder.
--   Click Run
-
-## Exporting to Avenza Maps
-
-Click on `Show Layout Manager` in the toolbar or use `Project > Layout Manager`. `Create` a new layout called "Avenza". We can now see the Layout window.
-
-Normally we would add many elements to our layout if we were exporting it for print such as the map, a legend, a scale bar, a north arrow...
-
-In this case however, we are simply interested in our map. Let's add the map to the canvas:
-
--   Go to the Layout tab, scroll down to 'Resize Layout to Content', click 'Resize layout'
--   Before we export, let's turn off any layers we aren't using in QGIS to save space
--   Click the Refresh View button up the top
--   Now we are ready to export.
--   Go to 'Layout \> Export as PDF...' and save your map.
--   The 'PDF Export Options' window will open
--   Tick the 'Create Geospatial PDF (GeoPDF)' box
--   Click 'Save'
-
-You can repeat this process with the DEM and Hillshade to export out another kind of map.
-
-Now you simply need to export the pdf file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.
-
-When you first open Avenza Maps it will ask you to create an account, but you can import up to three maps without doing so, you can avoid creating an account by selecting the 'x' in the top right corner. \* Allow Avenza Maps to access your device location \* Select the orange '+' in the bottom right and select 'Download or import a map' \* Choose 'From Storage Locations' (if requested, give Avenza Maps the permissions to access your files) \* Do the same for the other map, if you created one. \* Once it has been imported, tap on the map. \* You can now move the map around with your finger, and pinching to zoom. \* Tapping the placemark icon in the bottom left will add a placemark in the middle of the crosshairs. \* Tapping the 3 dots in the bottom right will allow you to add GPS tracking and draw and measure distances.
-
-## QField
-
-QField is another Android based GIS app.
-
-## Feedback
-
-Please visit our website to [provide feedback](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources) and find upcoming training courses we have on offer.
+[NearMap API](https://help.nearmap.com/kb/articles/752)
