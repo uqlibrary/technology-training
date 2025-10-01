@@ -1,5 +1,6 @@
 project:
   type: website
+  pre-render: _preprocessing/preprocessing.py
   render:
     - "*.qmd"
     - "*.ipynb"
@@ -13,6 +14,7 @@ project:
 
 website:
   title: "UQ Library Technology Training"
+  favicon: "/images/laptop_icon.svg"
   navbar:
     search: true
     left:
@@ -33,7 +35,9 @@ website:
         - href: https://camwest5.github.io/python-training-intensive/
           text: "Python for Data Analysis"
       - href: more_training.qmd
-        text: "Training Elsewhere"
+        text: "Training Elsewhere"      
+      - href: https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=
+        text: "**Book a Workshop**"
       
     tools:
       - icon: github
@@ -56,7 +60,7 @@ website:
             href: Git/git.qmd
           - text: "GitHub and portfolios"
             href: Git/GitHub/GitHub_intro.qmd
-      - text: "![](/images/overleaf.svg){width=20} LaTeX with Overleaf"
+      - text: "![](/images/overleaf.svg){width=20} $\\LaTeX$ with Overleaf"
         href: LaTeX/overleaf_latex.qmd
       - text: "![](/images/loop.svg){width=20} Loop"
         href: Loop/loop.qmd
@@ -74,13 +78,13 @@ website:
         href: Premiere_Pro/premiere_pro.qmd
       - section: "![](/images/python.svg){width=20} Python"
         contents:
-          - text: "1. Fundamentals"
+          - text: "1. The Fundamentals"
             href: Python/1-fundamentals/fundamentals.qmd
-          - text: "2. Data processing"
+          - text: "2. Data Analysis and Transformation"
             href: Python/2-data_processing/data_processing.qmd
-          - text: "3. Visualisation"
+          - text: "3. Introductory Visualisation"
             href: Python/3-intro_visualisation/visualisation.ipynb
-          - text: "4. Statistics and more visualisations"
+          - text: "4. Statistics and Further Visualisation"
             href: Python/4-stats_and_further_vis/stats_and_vis.ipynb
           - text: "5. Building your Python toolkit"
             href: Python/5-python_toolkit/python_toolkit.qmd
@@ -92,8 +96,10 @@ website:
             href: QGIS/raster/QGIS_raster.qmd
           - text: "3. Vector analysis"
             href: QGIS/vector/QGIS_vector.qmd
-          - text: "4. Mobile mapping"
-            href: QGIS/mobile/QGIS_mobile.qmd
+          - text: "4. Fieldwork Data Collection"
+            href: QGIS/fieldwork/QGIS_fieldwork.qmd
+          - text: "5. Refined Maps for Publication"
+            href: QGIS/reports/QGIS_reports.qmd
       - text: "![](/images/XM.svg){width=20} Qualtrics"
         href: Qualtrics/qualtrics.qmd
       - section: "![](/images/R.svg){width=20} R with RStudio"

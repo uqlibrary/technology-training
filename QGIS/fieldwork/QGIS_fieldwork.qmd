@@ -1,5 +1,5 @@
 ---
-title: "QGIS: Mobile Mapping"
+title: "QGIS: Fieldwork Data Collection"
 editor: source
 date: today
 author: UQ Library
@@ -15,7 +15,7 @@ We will start as always by creating a good folder structure to work within. This
 
 -   Let's now **save** our project: `Project > Save`.
 
--   Create a new folder, let's call it "qgis_mobile".
+-   Create a new folder, let's call it "qgis_fieldwork".
 
 -   Inside that folder, create these folders:
 
@@ -26,10 +26,12 @@ We will start as always by creating a good folder structure to work within. This
         -   "processed" - any data you've modified
 
     -   "output" - for any maps or images we export
+    
+    -   "DCIM" - this is a new one, it's for storing images from our phone!
 
     -   "temp" - this isn't *necessary*, but when you're playing around and testing, it stops things getting messy.
 
--   Finally, let's save our .qgz project file here, named "qgis_mobile_map.qgz"
+-   Finally, let's save our .qgz project file here, named "qgis_fieldwork_map.qgz"
 
 Your .qgz file should always be in the highest level folder, so it's only looking down into folders for data, not back out.
 
@@ -74,26 +76,17 @@ For this tutorial, we are using a DEM sourced from **ELVIS** - Geoscience Austra
 -   Click on the map to start drawing a rectangle around your desired area
 -   Then click `Search`
 -   The right panel will show you all the different datasets available in that area
--   We want the QLD Government 1 Metre DEM, click the down arrow on the right
--   As you hover over the different options, they will highlight a red box on the map, select all that overlap the area you're interested in (note that there may be data from different years here)
+-   We want the QLD Government Digital Elevation Model 1 Metre, click the down arrow on the right
+-   As you hover over the different options, they will highlight a red box on the map, click the tick box and select all that overlap the area you're interested in (note that there may be data from different years here)
 -   When you have the data you want, scroll to the bottom of the Order Data window
 -   Select your industry, enter your email, tick the reCAPTCHA, and click the `Order Datasets` button
 -   You should receive an email within 5 minutes, download the files from the link in the email, extract the folder to your project folder, and add them to your map.
 
 ### Aerial Imagery
 
-There are a few places you can aquire aerial photography, today we will look at two sources, one is freely available Government Data from **QImagery**, the other is accessible from using your UQ credentials.
+There are a few places you can aquire aerial photography, today we will look at two sources, one is freely available Government Data, the other is accessible from using your UQ credentials.
 
--   Go to <https://qimagery.information.qld.gov.au/>
--   Read and tick the "I acknowledge I have read and agree to the Terms & Conditions" box, and click `Get Started`
--   Click the Search button, select 'locality, town or city' and search for "St Lucia" in the "Enter search term" search box and select the first result
--   It will zoom to your selected location then click the newly appeared `Search` button
--   From here you can select from a wide array of images of QLD over many years.
--   Click one of the drop-downs and hover over the options to see where those images are located. Preview the image by clicking View.
--   You can then download your desired images by clicking "Download" and selecting TIFF (georeferenced)
--   Move the TIFF file(s) to your project folder, and open them in QGIS
-
-If you want even higher resolution maps, there are restricted options available. Your particular study area may have maps available such as the [Sunshine Coast MyMaps](https://scrc.maps.arcgis.com/apps/webappviewer/index.html?id=48501cb9e7294555be5b08e35e949616) service, CSIRO's [Norfolk Island Data Portal](https://data.csiro.au/collection/csiro:43016) or other [CSIRO spatial products](https://data.csiro.au/collections/search/SQDEM/STsearch-by-keyword/). It's worth exploring to discover what various local council and government resources are available. As a UQ student, you also have access to very high resoltuion imagery from **NearMap**. You can even access an array of imagery going back in time.
+As a UQ student, you also have access to very high resoltuion imagery from **NearMap**. You can even access an array of imagery going back in time.
 
 -   Go to the [UQ NearMap Portal](https://admin.nearmap.com/invitation/domain-signup?token=q9WIbXMtna1iskb2meNGhKpCaQp3WTRbMhXpQVGWkKouKUeqzkpjNznC_Ogz5iKYiw0Ev7vym2Ykaj_W_V4dBbTzR6qUX2eTDsNHpBuR4XbU9vDRxQN_Rg==)
 -   Enter your UQ Student (@student.uq.edu.au) or Staff (@uq.edu.au) email address, with the appropriate domain selected. Click "Invite me".
@@ -109,9 +102,12 @@ If you want even higher resolution maps, there are restricted options available.
 -   Once you're happy with your selection click `Download Files`
 -   Move the downloaded zip file to your project folder, and open them in QGIS
 
+
+If you want more aerial images or other spatial files, it's worth looking at a range of government sources. Your particular study area may have maps available such as the [Sunshine Coast MyMaps](https://scrc.maps.arcgis.com/apps/webappviewer/index.html?id=48501cb9e7294555be5b08e35e949616) service, CSIRO's [Norfolk Island Data Portal](https://data.csiro.au/collection/csiro:43016) or other [CSIRO spatial products](https://data.csiro.au/collections/search/SQDEM/STsearch-by-keyword/).
+
 ### Lot Plans
 
-You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial. I will show you how to download the files, but the data is often quite large in size, so I have downloaded it beforehand, and trimmed the raw data down for you to download from our Github site.
+You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial. There are three ways to access this data. You can download all of it, you can select a portion for download, or you can live load it into your project. Today we  download the files covering our project area.
 
 -   To access data from QLD Spatial go to <https://qldspatial.information.qld.gov.au/>
 
@@ -139,15 +135,15 @@ You can access a wide variety of QLD Government Data, including Spatial Data suc
 
 -   Click **Extract/Download**
 
--   You could download this file, however, as it is the property boundaries for all of QLD, so you can find the trimmed file for our workshop [here](https://github.com/uqlibrary/technology-training/blob/8e0aebe078198cd8bb65630c9ac4c4c8558a4392/QGIS/mobile/QGIS_Mobile_Data.zip), just press the three dots and download.
+-   You can can also just download the preprepared data [here](https://github.com/uqlibrary/technology-training/blob/8e0aebe078198cd8bb65630c9ac4c4c8558a4392/QGIS/mobile/QGIS_Mobile_Data.zip), just press the three dots and download.
 
--   Move the downloaded zip file to your project folder, and open the shapefile in QGIS
+-   Move the downloaded zip file to your project raw data folder, and open the shapefile in QGIS
 
 ### Queensland Globe
 
 Another way to access QSpatial Data is using the Queensland Globe portal.
 
--   To access data from Queensland Globe go to [https://qldglobe.information.qld.gov.au](https://qldglobe.information.qld.gov.au_)
+-   To access data from Queensland Globe go to [https://qldglobe.information.qld.gov.au](https://qldglobe.information.qld.gov.au)
 -   Accept the T&Cs.
 -   Click **Search**, Select **Locality (Suburb) within a Local Government Area**, and search for the location you want and select it from the list.
 -   Click **Layers**, click **Add Layers +** here you can scroll through and filter different layer types
@@ -183,22 +179,34 @@ We can now create a buffer:
 -   If you click Run. Your buffer won't look very good.
 
     -   We first need to convert our layer to a local projected coordinate system.
+    
+    
+### Reproject Our Data
 
-Let's reproject the layer for better results:
 
--   Go to `Vector > Data Management Tools > Reproject Layer`
--   Choose "Brisbane_lot_plans" as the Input Layer, and tick the **Selected features only** box
--   Choose a local projected coordinate system such as GDA94 / MGA zone 56 or GDA2020 / MGA zone 56. This will convert our measurements to metres instead of degrees, and by choosing an Australian projection, it reduces distortion.
--   Click "Run"
--   The new scratch layer will look the same, but it now has a different projection.
+Let's reproject the layer for better results.
+
+We have two options here. We can either reproject the whole layer as we did in the [previous workshop](https://uqlibrary.github.io/technology-training/QGIS/vector/QGIS_vector.html#reproject), OR we can export our selection and reproject it as we export. Let's do the latter.
+
+-   With our desired area still selected, right click on the lot plan layer `Export > Save Selected Features As...`
+-   Set the **Format** to `GeoPackage`
+-   Click the three dots `...` next to the **File name** field, navigate to the project's **processed data** folder, and type in **UQ_lot_plan** and click `Save`
+-   Set the CRS to `EPSG:7856 - GDA2020 / MGA zone 56`
+-   Click `OK`
+
+The new layer will look the same, but it now has a different projection.
+
+### Buffer again
 
 Let's create that buffer again.
 
 -   Select the relevant lots
 -   Go to `Vector > Geoprocessing Tools > Buffer`
--   This time choose "Reprojected" as the Input Layer
--   You'll notice the distance is now in metres. For this instance, I want a larger buffer of 50 m.
--   When you click "Run", your buffer should be a good distance away from the original boundary.
+-   This time choose **UQ_lot_plan** as the Input Layer
+-   You'll notice the distance is now in metres. For this instance, I want a larger buffer of 50m.
+-   When you click `Run`, your buffer should be a good distance away from the original boundary.
+
+### Dissolve Polygons
 
 Now we can Dissolve those polygons together:
 
@@ -218,7 +226,6 @@ To do that, we use the `Raster > Miscellaneous > Merge...` tool to create one si
 
 -   First, select all DEM layers for the "Input layers"
 -   Make sure the option "Place each input file into a separate band" is **unchecked**, as we want to end up with one single-band layer
--   We can save the output on disk instead of only creating a temporary file (for example, name it `St_Lucia_DEM_merged` and save it inside your project directory)
 -   Click "Run"
 
 > You will need to have Saga installed for this to work.
@@ -227,23 +234,26 @@ We can now remove the original DEM raster files.
 
 ## Clip the DEM
 
-We now use `Raster > Extraction > Clip Raster by Mask Layer` to **focus on our area of interest**.
-
--   Make sure the virtual raster output DEM is selected in the Input layer
-
--   Set the Mask Layer to "UQ_Boundary"
-
--   Scroll down to "Clipped (mask)" and click "..." next to \[Create Temporary Layer\]", then "Save to file", and save it as **St_Lucia_DEM** to your project folder.
-
--   Another way to clip would be to use Extent
-
--   Make sure the virtual raster output DEM is selected in the Input layer
-
--   Navigate to `Raster > Extraction > Clip Raster by Extent`
+We now use `Raster > Extraction > Clip Raster by Extent` to **focus on our area of interest**.
 
 -   Next to "Clipping extent" click `... > Calculate from Layer > UQ_Boundary`
 
--   Scroll down to "Clipped (extent)" and click "..." next to \[Create Temporary Layer\]", then "Save to file", and save it as **St_Lucia_DEM** to your project folder.
+-   Scroll down to "Clipped (extent)" and click "..." next to \[Create Temporary Layer\]", then "Save to file", and save it as **UQ_DEM** to your project folder.
+
+-   Click `Run`
+
+
+Another way to clip would be to use Mask Layer, but I prefer Extent, as the file size is the same, but you get more interesting data.
+
+::: {.callout-note collapse="true"}
+-   Make sure the virtual raster output DEM is selected in the Input layer
+
+-   Navigate to `Raster > Extraction > Clip Raster by Mask Layer` 
+
+-   Set the Mask Layer to "UQ_Boundary"
+
+-   Click `Run`
+::: 
 
 If you don't save to file directly, remember two things:
 
@@ -284,7 +294,7 @@ Adding a **hillshade** makes your visualisation of elevation more readable and v
 
 -   Go to `Raster > Analysis > Hillshade...`.
 -   Ensure the Input Layer is your clipped DEM "St_Lucia_DEM"
--   Scroll down to "Hillshade" and click "..." next to \[Create Temporary Layer\]", then "Save to file", and save it as **St_Lucia_DEM_Hillshade** to your project folder.
+-   Scroll down to "Hillshade" and click "..." next to `Create Temporary Layer`, then "Save to file", and save it as **St_Lucia_DEM_Hillshade** to your project folder.
 -   Click Run
 
 ## Create Contours
@@ -297,7 +307,167 @@ Adding a **contour** makes your elevation even more evident and can also be used
 -   Scroll down to "Contours" and click "..." next to \[Create Temporary Layer\]", then "Save to file", and save it as **St_Lucia_Contours_5m** to your project folder.
 -   Click Run
 
+
+## Create a new layer for our data collection
+
+This is a very important step, as you cannot create new layers in QField, so we need this to record the data we collect.
+
+-   Go to `Layer > Create Layer > New GeoPackage Layer...`
+-   Click the three dots `...` next to the **Database** field, navigate to the project's **processed data** folder, and type in **fieldwork_data** and click `Save`
+-   For `Geometry type` choose **MultiPoint**
+-   Set the CRS to `EPSG:7844 - GDA2020`
+-   Under **New Field** we will add our layer attributes:
+-   Let's call the point name "Name"
+    -   `Name`: **Name**
+    -   `Type`: **Text (string)**
+    -   Click `Add to Fields List`
+-   Description
+    -   `Name`: **Description**
+    -   `Type`: **Text (string)**
+    -   Click `Add to Fields List`
+-   Date and Time
+    -   `Name`: **DateTime**
+    -   `Type`: **Date & Time**
+    -   Click `Add to Fields List`
+-   Latitude
+    -   `Name`: **Lat**
+    -   `Type`: **Decimal (double)**
+    -   Click `Add to Fields List`
+-   Longtitude
+    -   `Name`: **Long**
+    -   `Type`: **Decimal (double)**
+    -   Click `Add to Fields List`
+- Click `OK`
+
+## Add another field
+It would be nice to be able to take photos when we collect our data, let's add another field.
+
+-   Double click on the new **fieldwork_data** layer
+-   Click on the `Fields` tab
+-   Click the yellow pencil button to **Toggle Editing Mode**
+-   Click the now visible yellow **New field** button
+    -   `Name`: **Photo**
+    -   `Type`: **Text (string)**
+    -   Click `OK`
+-   Click the yellow pencil button to **Toggle Editing Mode**
+-   Click `Save`
+-   Click `OK`
+
+
+## Prepare the Attributes Form
+
+Now that we have a layer with all the desired fields, we can now edit the layer form to customise how things are entered.
+
+-   Double click on the new **fieldwork_data** layer
+-   Click on the `Attributes Form` tab
+-   At the very top of the window, click `Autogenerate` and change it to `Drag and Drop Designer`
+
+On the left you will see all of our Fields, we can drag and drop these into the `Form Layout` section - this section lays out how our form will look when we enter new data.
+
+-   Drag and Drop the **Photo** Field to the `Form Layout` so that it is sitting above **DateTime**
+-   Click **fid** and press the **red minus button** - we want to keep the field, but don't need to see this in our form
+-   Click **Name**
+    -   Under **Constraints** tick `Not Null` and `Enforce not null constraint`
+    -   We don't need to change anything else for Name, we just want to make it mandatory
+-   Click **Photo**
+    -   Under **Widget Type** click `Text Edit` and change it to `Attachment`
+    -   Under **Path** change `Default path` to *@project_home + '/DCIM'*
+        -   Change `Absolute Path` to `Relative to Project Path`
+    -   Tick **Use a hyperlink for document path (read-only)
+    -   Under **Integrated Document Viewer** change **Type** from `No Content` to `Image`
+    -   Click **DateTime**
+        -   Under **General** untick `Editable` - we don't want to edit this field 
+        -   Scroll to the bottom, under **Defaults** change the `Default value` to **$now**
+        -   If this worked, there will be a date and time next to `Preview`
+    -   Click **Lat**
+        -   Under **General** untick `Editable` - we don't want to edit this field 
+        -   Scroll to the bottom, under **Defaults** change the `Default value` to **$y**
+        -   The `Preview` will show **NULL**, but that's okay, we don't have data yet  
+    -   Click **Long**
+        -   Under **General** untick `Editable` - we don't want to edit this field 
+        -   Scroll to the bottom, under **Defaults** change the `Default value` to **$x**   
+-   Click `OK`
+
+We should now have a functional form, let's test it in QGIS before we send it to our phones
+
+
+-   Click the yellow pencil button to **Toggle Editing** on
+-   Click the green dots (or press Ctrl + .) to **Add Point Feature**
+-   Click on the map to add a point
+-   The **Name** should be mandatory, the **Description** editable, **Photo** have an add option, **DateTime** should have the current date and time, and **Lat** and **Long** should have numbers like "-27.494066205142065" and "153.0153703956312"
+-   Click `Cancel`
+-   Click the yellow pencil button to **Toggle Editing** off
+
+
+
+We're ready to export our project to QField.
+
+-   Navigate to `Plugins > Manage and Install Plugins...`
+-   Search for "QField"
+-   Click on **QField Sync**
+-   Click `Install Plugin`
+-   Once it has installed, click `Close`
+
+You can now access the QField Sync Plugin through the menu.
+
+-   Navigate to `Plugins > QFieldSync > Package for QField`
+-   If you get a Message window popup, click `Next`
+-   Give your project an appropriate title **qgis_fieldwork** 
+-   Under **Packaged Project Filename** navigate to your **outputs** folder and create a new folder called **UQ_Fieldwork**, open that folder and click `Save`
+-   Under **Advanced** untick `data` and `outputs`
+-   Click `Create`
+
+We now need to zip this folder and send it to our phone!
+
+-   Navigate to your **Outputs** folder, right click on the **UQ_Fieldwork** folder and compress it to a zip file.
+-   Send this file to your phone via email, cloud, or using a cable.
+
+## Using QField
+
+-   Open QField
+-   Skip any popups
+-   Tap `Open local file`
+-   Tap the green plus button in the bottom right
+-   Tap `Import project from ZIP`
+-   Navigate to your zip file. In my case, I had to go to the top left menu, and tap on **Downloads**
+-   The file should open in QField. You may need to tap on the outer folder, and then the **Project** itself.
+
+You can now access your map.
+
+-   Tap the menu in the top right to see your layers.
+-   Tap the eye to hide or unhide layers
+-   If you tap on a layer, and then tap the pencil icon in the bottom right, you can edit a layer.
+-   Let's do this for our **data_collected** layer
+-   Tap on the map on the right to return to the map, your cursor will now be a cross-hair
+-   Navigate around and then press the green + button to add a point
+-   Fill out the details, and then tap the tick in the top left. 
+-   You've collected data!
+
+To export your data back to QGIS, you can either copy the whole project folder in your phones storage back to your computer, or:
+
+-   Go to the menu
+-   Tap the folder with a cog on it
+-   Tap the three dots next to your **data_collected.gpkg** file
+-   Send it to your email
+-   When you import it back into QGIS, you may need to correct its CRS back to EPSG: 7844
+
+
+There's more to explore, such as the very very helpful [QFieldCloud](https://qfield.cloud/), and I encourage you to do so.
+
+If you have any questions, reach out to the UQ Library Training Team at training@library.uq.edu.au
+
+
+
+## Feedback
+
+Please visit our website to [provide feedback](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources) and find upcoming training courses we have on offer.
+
+
+
 ## Exporting to Avenza Maps
+
+
+::: {.callout-note collapse="true"}
 
 Click on `Show Layout Manager` in the toolbar or use `Project > Layout Manager`. `Create` a new layout called "Avenza". We can now see the Layout window.
 
@@ -319,11 +489,4 @@ You can repeat this process with the DEM and Hillshade to export out another kin
 Now you simply need to export the pdf file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.
 
 When you first open Avenza Maps it will ask you to create an account, but you can import up to three maps without doing so, you can avoid creating an account by selecting the 'x' in the top right corner. \* Allow Avenza Maps to access your device location \* Select the orange '+' in the bottom right and select 'Download or import a map' \* Choose 'From Storage Locations' (if requested, give Avenza Maps the permissions to access your files) \* Do the same for the other map, if you created one. \* Once it has been imported, tap on the map. \* You can now move the map around with your finger, and pinching to zoom. \* Tapping the placemark icon in the bottom left will add a placemark in the middle of the crosshairs. \* Tapping the 3 dots in the bottom right will allow you to add GPS tracking and draw and measure distances.
-
-## QField
-
-QField is another Android based GIS app.
-
-## Feedback
-
-Please visit our website to [provide feedback](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources) and find upcoming training courses we have on offer.
+:::

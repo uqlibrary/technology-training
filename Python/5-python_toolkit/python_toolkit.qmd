@@ -1,7 +1,7 @@
 ---
 execute:
     error: true
-title: Python Toolkit
+title: Building your Python Toolkit
 ---
 
 In this standalone workshop, we take a look at the Python building blocks that you'll want to have in your toolkit. This includes:
@@ -28,7 +28,8 @@ These crop up every time a new feature or concept is introduced.
 Before we begin, please follow the following instructions
 
 1. Open your preferred IDE (e.g. [Spyder](https://www.anaconda.com/download/success)).
-2. [Download the files](texts.zip) for today's session and place them in an accessible location
+2. [Download the files](texts.zip) for today's session.
+3. Extract them to an accessible location (you'll work from here).
 
 ## Part 0: Refresher
 
@@ -103,7 +104,7 @@ In the first part of this workshop, we'll learn to use Python's building blocks 
 - Conditionals `if` and `else`
 - Error handling with `raise`
 
-To begin, **create a new script called `toolkit.py`**. This should be in the same folder as the `/texts/` folder you downloaded.
+To begin, **create a new script called `toolkit.py`**. This should be in the same location as the `/texts/` folder you downloaded.
 
 ### Using `os` to check the working directory
 
@@ -206,8 +207,7 @@ print("Running the Python Toolkit Program")
 print(f"The current working directory is {os.getcwd()}")
 
 # Check that the folder exists in our working directory
-folder_check = os.path.exists("texts")
-print(folder_check)
+print(os.path.exists("texts"))
 ```
 
 :::{.callout-tip collapse="true"}
