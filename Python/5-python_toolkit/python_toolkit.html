@@ -618,7 +618,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>name<span class="op">&gt;</span> <span class="op">=</span> <span class="op">&lt;</span>value<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </i><p><i></i></p>
 <p>For example, the script below creates two objects, <code>example_number</code> and <code>example_string</code>, by assigning values to both.</p>
-<div id="c17aa83f" class="cell" data-execution_count="1">
+<div id="37777b97" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>example_number <span class="op">=</span> <span class="fl">100.5</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>example_string <span class="op">=</span> <span class="st">"Hello!"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -632,7 +632,7 @@ window.Quarto = {
 </i><p><i></i></p>
 <p>The parentheses <code>()</code> are essential, even if you don’t have any inputs.</p>
 <p>For example, let’s use the <code>round()</code> function to round our <code>example_number</code>:</p>
-<div id="35d06af7" class="cell" data-execution_count="2">
+<div id="b9c7d556" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(example_number)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>100</code></pre>
@@ -644,7 +644,7 @@ window.Quarto = {
 <p>Finally, you will encounter a third type of command in Python: keywords. These are special commands which alter your code in a predetermined way, and you can’t use them for variable names. You also can’t write your own - they’re baked into Python itself.</p>
 <p>Keywords must always be followed by a space (or a colon in special cases). One example is the <code>import</code> command, which loads a module. Modules are collections of Python code that <em>other</em> people have written, containing lots of functions, variables and submodules.</p>
 <p>For example, the following code imports the <code>os</code> module.</p>
-<div id="4ee02ceb" class="cell" data-execution_count="3">
+<div id="39681bad" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -662,7 +662,7 @@ window.Quarto = {
 <section id="using-os-to-check-the-working-directory" class="level3">
 <h3 class="anchored" data-anchor-id="using-os-to-check-the-working-directory">Using <code>os</code> to check the working directory</h3>
 <p>We’ll begin by diving into an unusual starting point: the <code>os</code> module. Python comes with a built in module called <code>os</code> (short for operating system) which allows you to interact with your computer. Let’s start by importing it</p>
-<div id="356f52a6" class="cell" data-execution_count="4">
+<div id="96078424" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="os" class="callout callout-style-default callout-tip callout-titled">
@@ -688,7 +688,7 @@ window.Quarto = {
 </div>
 <p>This links our Python environment to the <code>os</code> module so we can now access code from it. The reason that we’re starting <em>here</em> is because we can use the <code>os</code> module to interact with our computer.</p>
 <p>Next, we’ll use the <code>print()</code> function to send a message to the user:</p>
-<div id="7ea8892b" class="cell" data-execution_count="5">
+<div id="10d16e76" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running the Python Toolkit Program"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -714,7 +714,7 @@ window.Quarto = {
 </div>
 <p>As a first application of <code>os</code>, we’ll use it to print the <strong>current working directory</strong>. This is a location on your computer, considered by the program to be <em>home</em> - all files are relative to the current working directory. We’ll need this later when we deal with file paths.</p>
 <p>You can access the current working directory with the <code>getcwd()</code> function within the <code>os</code> module. Because the function lives <em>inside</em> the module, we need to use the <code>.</code> operator.</p>
-<div id="beb73bf5" class="cell" data-execution_count="6">
+<div id="a995dcdb" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running the Python Toolkit Program"</span>)</span>
@@ -744,7 +744,7 @@ The current working directory is
 </div>
 </div>
 <p>We can simplify this process by using f-strings. Including the letter <code>f</code> directly <em>before</em> a string’s first quotation mark tells Python to execute any code within curly brackets:</p>
-<div id="5953f540" class="cell" data-execution_count="7">
+<div id="10dee499" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running the Python Toolkit Program"</span>)</span>
@@ -786,7 +786,7 @@ The current working directory is /home/runner/work/technology-training/technolog
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>You can include executed code within strings by prepending them with the letter f.&nbsp;The code needs to be placed within curly brackets <em>inside</em> the string, and the output of the code will be directly inserted there.</p>
-<div id="c4f95eb8" class="cell" data-execution_count="8">
+<div id="50fa42bd" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ss">f"This is an f-string, showing that 1 + 1 = </span><span class="sc">{</span><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>'This is an f-string, showing that 1 + 1 = 2'</code></pre>
@@ -799,7 +799,7 @@ The current working directory is /home/runner/work/technology-training/technolog
 <section id="managing-folders-and-paths-with-conditionals" class="level3">
 <h3 class="anchored" data-anchor-id="managing-folders-and-paths-with-conditionals">Managing folders and paths with conditionals</h3>
 <p>Now that we’ve printed a welcome message, let’s use another function, to ensure that we’ve got the folder “texts” in our working directory. The function lives in a <em>submodule</em> of <code>os</code>, called <code>os.paths</code>, and the function is <code>exists()</code>.</p>
-<div id="608cf143" class="cell" data-execution_count="9">
+<div id="96643839" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running the Python Toolkit Program"</span>)</span>
@@ -852,7 +852,7 @@ True</code></pre>
 <li><code>&lt;condition&gt;</code> <span class="math inline">\(\rightarrow\)</span> <code>os.path.exists("texts")</code></li>
 <li><code>code_to_run_if_True</code> <span class="math inline">\(\rightarrow\)</span> <code>print("The folder /texts/ exists")</code></li>
 </ul>
-<div id="2eddbf8e" class="cell" data-execution_count="10">
+<div id="5af792fb" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running the Python Toolkit Program"</span>)</span>
@@ -868,7 +868,7 @@ The folder /texts/ exists</code></pre>
 </div>
 </div>
 <p>What if it doesn’t exist? We can use the keyword <code>else</code> to catch anything that fails the condition.</p>
-<div id="a57e9d2e" class="cell" data-execution_count="11">
+<div id="836a1a90" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running the Python Toolkit Program"</span>)</span>
@@ -946,7 +946,7 @@ The folder /texts/ exists.</code></pre>
 <li>Place a useful message <em>inside</em> the brackets.</li>
 </ol>
 <p>In this case, we should use the <code>FileNotFoundError()</code>. Let’s replace the <code>else</code> section:</p>
-<div id="55cb620c" class="cell" data-execution_count="12">
+<div id="71618540" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running the Python Toolkit Program"</span>)</span>
@@ -989,7 +989,7 @@ The folder /texts/ exists.</code></pre>
 <h3 class="anchored" data-anchor-id="activity-1">Activity 1</h3>
 <p>To make sure that you’ve set things up correctly, you should raise an error if <strong>the number of files in the texts folder is not five</strong>.</p>
 <p>To set things up, let’s use the <code>os.listdir()</code> function to get a list of the files, storing them in a variable.</p>
-<div id="8d543133" class="cell" data-execution_count="13">
+<div id="b9b63732" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running the Python Toolkit Program"</span>)</span>
@@ -1029,25 +1029,25 @@ The folder /texts/ exists.</code></pre>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>To check (in)equalities, you can use logical operators. For example,</p>
-<div id="2ddb7410" class="cell" data-execution_count="14">
+<div id="797a9906" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">==</span> <span class="dv">1</span>  <span class="co"># Equal to</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="e26741c0" class="cell" data-execution_count="15">
+<div id="7ffdf2ed" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">!=</span> <span class="dv">2</span>  <span class="co"># Not equal to</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="ab5d145d" class="cell" data-execution_count="16">
+<div id="46390117" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">&gt;</span> <span class="dv">1</span>   <span class="co"># Greater than</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="a980d0f0" class="cell" data-execution_count="17">
+<div id="9166ad90" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">&lt;=</span> <span class="dv">1</span>  <span class="co"># Less than or equal to</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>True</code></pre>
@@ -1069,7 +1069,7 @@ The folder /texts/ exists.</code></pre>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The new code is</p>
-<div id="de490569" class="cell" data-execution_count="18">
+<div id="485ffde0" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>files_in_texts <span class="op">=</span> os.listdir(<span class="st">"texts"</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that there are five files within texts</span></span>
@@ -1078,7 +1078,7 @@ The folder /texts/ exists.</code></pre>
 </div>
 <p>Note that this doesn’t produce an output message. Generally, if everything is fine, we don’t need a message.</p>
 <p>The whole program has now become</p>
-<div id="39f70c60" class="cell" data-execution_count="19">
+<div id="c89c7082" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running the Python Toolkit Program"</span>)</span>
@@ -1127,7 +1127,7 @@ The folder /texts/ exists.</code></pre>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>Before we begin, ensure that your code looks like this. Continue from the bottom throughout part 2.</p>
-<div id="a2138c06" class="cell" data-execution_count="20">
+<div id="591ac88a" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running the Python Toolkit Program"</span>)</span>
@@ -1166,7 +1166,7 @@ The folder /texts/ exists.</code></pre>
 <li>Inside the block (like an <code>if</code> statement), use <code>file.read()</code> to access its contents and store that in a variable.</li>
 </ol>
 <p>We’ll use that final variable to perform our analysis. It is completely disconnected from the actual file.</p>
-<div id="93448549" class="cell" data-execution_count="21">
+<div id="aae741ab" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### Part 2 ####</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"texts/Macbeth.txt"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
@@ -1200,7 +1200,7 @@ The folder /texts/ exists.</code></pre>
 </div>
 <p>Next, let’s perform some analysis of the text. Our goal is to compare the <strong>total number of words</strong> with the total <strong>unique</strong> number of words.</p>
 <p>First, we need to apply a <em>string method</em> to separate the words in the text. Methods are functions that all variables of a particular type have access to, and we use them with the dot operator <code>.</code>. In this case, the <code>.split()</code> method will create a <em>list</em> by dividing the string every time there is a whitespace.</p>
-<div id="ff860393" class="cell" data-execution_count="22">
+<div id="da6ba709" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### Part 2 ####</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"texts/Macbeth.txt"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
@@ -1221,7 +1221,7 @@ The folder /texts/ exists.</code></pre>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Every variable has common methods (functions) and attributes (variables) associated with them, accessible via the <code>.</code> operator. For example, all strings have the <code>.lower()</code> method which makes them lowercase:</p>
-<div id="209f9ec9" class="cell" data-execution_count="23">
+<div id="43031464" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>example_string <span class="op">=</span> <span class="st">"THIS WAS IN CAPS"</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>example_string.lower()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
@@ -1229,7 +1229,7 @@ The folder /texts/ exists.</code></pre>
 </div>
 </div>
 <p>Other variables have their own methods. Numbers have the <code>.as_integer_ratio()</code> method, which turns the number into a fraction</p>
-<div id="8983c786" class="cell" data-execution_count="24">
+<div id="27b65b89" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>example_int <span class="op">=</span> <span class="fl">5.5</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>example_int.as_integer_ratio()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
@@ -1237,7 +1237,7 @@ The folder /texts/ exists.</code></pre>
 </div>
 </div>
 <p>and lists have the <code>.append()</code> method, which adds another element to the list</p>
-<div id="2d04414f" class="cell" data-execution_count="25">
+<div id="1f9b4a10" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>example_list <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>]</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>example_list.append(<span class="st">"c"</span>)</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(example_list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1249,7 +1249,7 @@ The folder /texts/ exists.</code></pre>
 </div>
 </div>
 <p>We can then use the <code>len()</code> function again to determine the total number of words and print a message. We can also use <code>print()</code> by itself to make an empty line.</p>
-<div id="cf09f692" class="cell" data-execution_count="26">
+<div id="d346de65" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### Part 2 ####</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"texts/Macbeth.txt"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
@@ -1272,7 +1272,7 @@ There are 21428 words in Macbeth.</code></pre>
 <li>Find the count of unique words with <code>len()</code></li>
 <li>Print an additional message</li>
 </ol>
-<div id="5f4ccc7a" class="cell" data-execution_count="27">
+<div id="1dcd6226" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### Part 2 ####</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"texts/Macbeth.txt"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
@@ -1309,7 +1309,7 @@ There are 6207 different words in Macbeth.</code></pre>
 <p><strong>Lists</strong></p>
 <p>Lists simply a collection of Python objects. They are <strong>ordered</strong>, so you can access them by their <em>index</em>, and they are <strong>mutable</strong>, so you can change individual elements.</p>
 <p>Create a list with square brackets:</p>
-<div id="e15f582e" class="cell" data-execution_count="28">
+<div id="aed8e397" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>example_list <span class="op">=</span> [<span class="dv">1</span>, <span class="st">"a"</span>, <span class="fl">5.5</span>]</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mutable - can change specific elements</span></span>
@@ -1323,7 +1323,7 @@ There are 6207 different words in Macbeth.</code></pre>
 <p><strong>Tuples</strong></p>
 <p>Tuples are like lists, but you can’t modify its elements. That makes it <strong>ordered</strong> and <strong>immutable</strong>.</p>
 <p>Create a tuple with parentheses:</p>
-<div id="296219d1" class="cell" data-execution_count="29">
+<div id="49cad22b" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>example_tuple <span class="op">=</span> (<span class="dv">1</span>, <span class="st">"a"</span>, <span class="fl">5.5</span>)</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Immutable - attempting to change specific element gives error</span></span>
@@ -1344,7 +1344,7 @@ Cell <span class="ansi-green-fg">In[29], line 4</span>
 <p><strong>Dictionaries</strong></p>
 <p>Dictionaries are like lists, but they are <strong>unordered</strong>. Instead of using <em>position</em> to identify elements, you use <em>keywords</em>.</p>
 <p>Create a dictionary with curly brackets and <code>key: value</code> pairs:</p>
-<div id="5d7d6371" class="cell" data-execution_count="30">
+<div id="d7d58d51" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>example_dict <span class="op">=</span> {<span class="st">"a"</span>: <span class="dv">1</span>, <span class="st">"b"</span>: <span class="dv">2</span>, <span class="st">"c"</span>: <span class="dv">3</span>}</span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Can create new elements in dictionary by 'accessing' them</span></span>
@@ -1356,12 +1356,12 @@ Cell <span class="ansi-green-fg">In[29], line 4</span>
 </div>
 <p><strong>Sets</strong></p>
 <p>Sets are like lists but the elements are <strong>unique</strong>. Duplicates will always be removed. They are also <strong>unordered</strong>, so you can’t access individual elements unless you loop through the set.</p>
-<div id="488a7a5a" class="cell" data-execution_count="31">
+<div id="a16f7407" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>example_set <span class="op">=</span> {<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="st">"c"</span>}</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(example_set)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{2, 'a', 'c'}</code></pre>
+<pre><code>{'c', 2, 'a'}</code></pre>
 </div>
 </div>
 </div>
@@ -1369,7 +1369,7 @@ Cell <span class="ansi-green-fg">In[29], line 4</span>
 </div>
 <p>Finally, let’s determine the ratio of unique words to total words</p>
 <p><span class="math display">\[\text{ratio} = \frac{\text{unique words}}{\text{total words}}\]</span></p>
-<div id="f95f00e3" class="cell" data-execution_count="32">
+<div id="bf27dee2" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### Part 2 ####</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"texts/Macbeth.txt"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
@@ -1406,7 +1406,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 <span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>code_after_loop</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </i><p><i></i></p>
 <p>We’ll start just by printing out the names of each file. We need the list of file names, which we get from <code>os.listdir("texts")</code>.</p>
-<div id="512e519c" class="cell" data-execution_count="33">
+<div id="d2803dc4" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### Part 2 ####</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"texts/Macbeth.txt"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
@@ -1461,7 +1461,7 @@ Macbeth.txt</code></pre>
 </i><p><i></i></p>
 <p>Whatever you name in <code>&lt;placeholder&gt;</code> will store an element of the <code>&lt;object&gt;</code> for each iteration of the loop.</p>
 <p>For example, the following loop prints each element of <code>example_list</code>. Each time the loop runs, <code>letter</code> stores one of the list’s elements, in order.</p>
-<div id="353f0e3f" class="cell" data-execution_count="34">
+<div id="2400cb10" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>example_list <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>]</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> letter <span class="kw">in</span> example_list:</span>
@@ -1475,7 +1475,7 @@ c</code></pre>
 <p>There are a few important keywords you can use to help with loops.</p>
 <p><strong><code>break</code></strong></p>
 <p>The keyword <code>break</code> tells Python to finish the loop immediately. This is often used with conditionals. For example,</p>
-<div id="a8aa6555" class="cell" data-execution_count="35">
+<div id="99a86cc6" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>example_list <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>]</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> letter <span class="kw">in</span> example_list:</span>
@@ -1488,7 +1488,7 @@ c</code></pre>
 </div>
 <p><strong><code>continue</code></strong></p>
 <p>The keyword <code>continue</code> tells Python to skip the rest of the current iteration and start the next.</p>
-<div id="1d0d5dd9" class="cell" data-execution_count="36">
+<div id="ef91fadb" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>example_list <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>]</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> letter <span class="kw">in</span> example_list:</span>
@@ -1505,7 +1505,7 @@ c</code></pre>
 </div>
 <p>We can use our <code>for</code> loop to run the whole analysis on each file.</p>
 <p>First, let’s just place the analysis inside the loop. This will run once for each file, but because we haven’t changed the path from <code>"texts/Macbeth.txt"</code>, it will still read Macbeth each time.</p>
-<div id="b726b33e" class="cell" data-execution_count="37">
+<div id="20d2e0e2" class="cell" data-execution_count="37">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### Part 2 ####</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>files_in_texts <span class="op">=</span> os.listdir(<span class="st">"texts"</span>)</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1550,7 +1550,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 <p>Notice that the final <code>files_in_texts = os.listdir("texts")</code> has been removed because it’s superfluous.</p>
 <p>Now we can use the <code>text</code> variable, which changes on each iteration of the loop, in place of the file path. Specifically, we’ll make the change</p>
 <p><code>"texts/Macbeth.txt"</code> <span class="math inline">\(\rightarrow\)</span> <code>f"texts/{text_path}"</code></p>
-<div id="e0e6c7c5" class="cell" data-execution_count="38">
+<div id="2bc30b5e" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### Part 2 ####</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>files_in_texts <span class="op">=</span> os.listdir(<span class="st">"texts"</span>)</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1593,7 +1593,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 </div>
 </div>
 <p>If you look closely, it <em>has</em> worked - the numbers are changing each time. We need to update our messages though, to make it dynamic.</p>
-<div id="bf298250" class="cell" data-execution_count="39">
+<div id="21f6554f" class="cell" data-execution_count="39">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### Part 2 ####</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>files_in_texts <span class="op">=</span> os.listdir(<span class="st">"texts"</span>)</span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1650,25 +1650,25 @@ The unique word ratio is 0.2896677244726526</code></pre>
 <div class="callout-body-container callout-body">
 <p><strong>Indexing</strong></p>
 <p>To extract a substring from a string (or a subset of a list) use square brackets and specify the <em>position</em> of the elements you want. For example, to pick out the first letter in the following string,</p>
-<div id="2c988aee" class="cell" data-execution_count="40">
+<div id="af7c9744" class="cell" data-execution_count="40">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>example_string <span class="op">=</span> <span class="st">"apple"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>you specify the position of the first element, which is <code>0</code> (in Python, count from 0):</p>
-<div id="d9cf5262" class="cell" data-execution_count="41">
+<div id="86411006" class="cell" data-execution_count="41">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>example_string[<span class="dv">0</span>] <span class="co"># First element</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>'a'</code></pre>
 </div>
 </div>
 <p>If you want the second element, use <code>1</code>:</p>
-<div id="06f79352" class="cell" data-execution_count="42">
+<div id="ccb071ed" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>example_string[<span class="dv">1</span>] <span class="co"># Second element</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
 <pre><code>'p'</code></pre>
 </div>
 </div>
 <p>If you want to count <em>from the end</em>, use negatives:</p>
-<div id="067eb461" class="cell" data-execution_count="43">
+<div id="dbf87437" class="cell" data-execution_count="43">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>example_string[<span class="op">-</span><span class="dv">1</span>] <span class="co"># Last element</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>'e'</code></pre>
@@ -1676,7 +1676,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 </div>
 <p><strong>Slicing</strong></p>
 <p>What if you want multiple elements? You <em>slice</em> by specifying the start and end indices between a colon:</p>
-<div id="a1c86f5f" class="cell" data-execution_count="44">
+<div id="5d7c5dbc" class="cell" data-execution_count="44">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>example_string[<span class="dv">1</span>:<span class="dv">3</span>] <span class="co"># Elements 1 and 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>'pp'</code></pre>
@@ -1684,21 +1684,21 @@ The unique word ratio is 0.2896677244726526</code></pre>
 </div>
 <p>Notice that it <em>includes</em> the first index but <em>excludes</em> the second.</p>
 <p>To start at the beginning, just leave the first index out:</p>
-<div id="fa54da9e" class="cell" data-execution_count="45">
+<div id="caabdf31" class="cell" data-execution_count="45">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>example_string[:<span class="dv">3</span>] <span class="co"># Elements 0, 1 and 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>'app'</code></pre>
 </div>
 </div>
 <p>To go to the end, leave the second index out:</p>
-<div id="0852f9aa" class="cell" data-execution_count="46">
+<div id="d1b70d1f" class="cell" data-execution_count="46">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>example_string[<span class="dv">2</span>:] <span class="co"># Elements 2, 3, ..., -1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="46">
 <pre><code>'ple'</code></pre>
 </div>
 </div>
 <p>Finally, you can combine negative indexing with slicing. For example, to go <em>up to the last element</em>:</p>
-<div id="be183542" class="cell" data-execution_count="47">
+<div id="c105709f" class="cell" data-execution_count="47">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>example_string[:<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>'appl'</code></pre>
@@ -1786,7 +1786,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 </div>
 </div>
 </div>
-<div id="827ad39d" class="cell" data-execution_count="48">
+<div id="124260d4" class="cell" data-execution_count="48">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### Part 2 ####</span></span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>files_in_texts <span class="op">=</span> os.listdir(<span class="st">"texts"</span>)</span>
 <span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1873,7 +1873,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 <div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The following code is a possible solution to the problem.</p>
-<div id="74e5055e" class="cell" data-execution_count="49">
+<div id="0ee714c4" class="cell" data-execution_count="49">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### Part 2 ####</span></span>
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>files_in_texts <span class="op">=</span> os.listdir(<span class="st">"texts"</span>)</span>
 <span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1921,7 +1921,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 <div id="callout-19" class="callout-19-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>Before beginning, just check that your code is up to date:</p>
-<div id="55e36ea7" class="cell" data-execution_count="50">
+<div id="521165ee" class="cell" data-execution_count="50">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running the Python Toolkit Program"</span>)</span>
@@ -2019,7 +2019,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 <span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">&lt;</span>output<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </i><p><i></i></p>
 <p>Let’s set it up, without including any code yet, with a single input variable <code>path</code>:</p>
-<div id="b6917c06" class="cell" data-execution_count="51">
+<div id="7fbc9bc3" class="cell" data-execution_count="51">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_book(path):</span>
@@ -2112,7 +2112,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 </div>
 </div>
 <p>Now, let’s include the code that we previously used to read the file and split the words. Note that the variable containing the full file path is <code>path</code>, so we should change that accordingly.</p>
-<div id="2e9396e5" class="cell" data-execution_count="52">
+<div id="52639437" class="cell" data-execution_count="52">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_book(path):  </span>
@@ -2138,7 +2138,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 </div>
 </div>
 <p>Finally, let’s replace code within the loop with a simple <em>function call</em> to our new function. All together,</p>
-<div id="271326db" class="cell" data-execution_count="53">
+<div id="145565ca" class="cell" data-execution_count="53">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_book(path):  </span>
@@ -2228,7 +2228,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 </ol>
 <p>The script should look like this:</p>
 <p><strong><code>reader.py</code></strong></p>
-<div id="d85836aa" class="cell" data-execution_count="54">
+<div id="d1215b76" class="cell" data-execution_count="54">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_book_words(path):  </span>
 <span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
 <span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>        contents <span class="op">=</span> <span class="bu">file</span>.read()</span>
@@ -2242,7 +2242,7 @@ The unique word ratio is 0.2896677244726526</code></pre>
 </ol>
 <p>The main script should look like this</p>
 <p><strong><code>toolkit.py</code></strong></p>
-<div id="966c484d" class="cell" data-execution_count="55">
+<div id="4b6c8338" class="cell" data-execution_count="55">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> reader</span>
 <span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a></span>
