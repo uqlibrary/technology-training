@@ -42,7 +42,7 @@ def update_live_links() -> None:
                 upcoming_event = event
 
         if len(upcoming_event) == 0:
-            break
+            continue
 
         # Form message
         link = f"https://studenthub.uq.edu.au/students/events/detail/{upcoming_event["entityId"]}"
@@ -84,7 +84,7 @@ def remove_upcoming_links() -> None:
             content: str = f.read()
 
         if MESSAGE_HEADER not in content:
-            break
+            continue
 
         message_start = content.find(MESSAGE_HEADER)
         message_end = content.find(":::", content.find(":::", message_start) + 4) + 5
@@ -122,7 +122,7 @@ def list_active_qmds() -> list[str]:
             continue
 
         # Only consider files that are getting published (i.e., in _quarto.yml)
-        content_filepaths = [
+        content_filepaths += [
             os.path.join(path, file)
             for file in files
             if (file in project_file)
@@ -133,4 +133,10 @@ def list_active_qmds() -> list[str]:
 
 
 if __name__ == "__main__":
+    print("*******DEBUGGING update_live_links()*********")
     update_live_links()
+    print()
+    input(
+        "Upcoming links are temporarily in .qmd files.\n\nPress enter to remove them and finish."
+    )
+    remove_upcoming_links()
