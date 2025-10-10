@@ -17,6 +17,7 @@ def update_live_links() -> None:
         },
     )
 
+    r.raise_for_status()
     sh_body = r.json()
 
     # Loop through active QMDs and update
