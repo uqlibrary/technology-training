@@ -69,6 +69,8 @@ def update_live_links() -> None:
         """
         )
 
+        message = message[1:]
+
         # Insert message after YAML
         yaml_end = content.find("---", content.find("---") + 4) + 5
         new_content = "".join([content[:yaml_end], message, content[yaml_end:]])
@@ -90,7 +92,12 @@ def remove_upcoming_links() -> None:
             continue
 
         message_start = content.find(MESSAGE_HEADER)
-        message_end = content.find(":::", content.find(":::", message_start) + 4) + 5
+        message_end = (
+            content.find(
+                "\n", content.find(":::", content.find(":::", message_start) + 4)
+            )
+            + 1
+        )
 
         old_message = content[message_start:message_end]
 
