@@ -48,7 +48,7 @@ def update_live_links() -> None:
         print(f"Inserting upcoming link in {qmd_path}")
 
         # Form message
-        link = f"https://studenthub.uq.edu.au/students/events/detail/{upcoming_event["entityId"]}"
+        link = f"https://studenthub.uq.edu.au/students/events/detail/{upcoming_event['entityId']}"
         booking_message = "[Book in to the next offering now.]"
         formatted_date = datetime.strptime(
             upcoming_event["start"], "%Y-%m-%dT%H:%M:%S%z"
