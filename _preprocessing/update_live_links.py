@@ -120,7 +120,7 @@ def list_active_qmds() -> list[str]:
 
     content_filepaths = []
     # Go through pages on site
-    for path, dirs, files in os.walk(".\\"):
+    for path, dirs, files in os.walk("./"):
         if len(path) > 2 and (path[2] == "_" or path[2] == "."):
             continue
 
