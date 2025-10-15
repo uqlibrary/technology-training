@@ -29,50 +29,79 @@ def update_live_links() -> None:
         # Get title
         title_start = content.find("title") + 6
         title = content[title_start : content.find("\n", title_start)]
-        clean_title = clean(title)
 
-        # Get earliest upcoming event
-        date = None
-        upcoming_event: dict = {}
+        titles = []
+        markers = []
+        if "Word" in title or "Excel" in title or "NVivo" in title:
+            h1_end = 0
+            while True:
+                h1_start = content.find("## ", h1_end)
+                if h1_start == -1:
+                    break
+                h1_end = content.find("\n", h1_start)
 
-        for event in sh_body:
-            new_date = datetime.strptime(event["start"], "%Y-%m-%dT%H:%M:%S%z")
-            if clean_title in clean(event["name"]) and (
-                date is None or new_date < date
-            ):
-                upcoming_event = event
+                session_title = (
+                    title.replace('"', "").replace("Microsoft", "")
+                    + ": "
+                    + content[h1_start:h1_end].replace("## ", "")
+                )
 
-        if len(upcoming_event) == 0:
-            continue
+                titles.append(clean(session_title))
+                markers.append(h1_end + 2)
 
-        # Form message
-        link = f"https://studenthub.uq.edu.au/students/events/detail/{upcoming_event["entityId"]}"
-        booking_message = "[Book in to the next offering now.]"
-        formatted_date = datetime.strptime(
-            upcoming_event["start"], "%Y-%m-%dT%H:%M:%S%z"
-        ).strftime("%a %b %d at %I:%M %p.")
+        else:
+            titles = [clean(title)]
+            markers = [content.find("---", content.find("---") + 4) + 5]
+            # Instead use heading 1s
 
-        message = textwrap.dedent(
-            f"""
-        {MESSAGE_HEADER}
-        :::{{.callout-tip}}
-        # Upcoming workshop(s) available!
+        for clean_title, marker in zip(titles, markers):
 
-        The next workshop is on **{formatted_date}**
-        
-        {booking_message}({link})
+            # Get earliest upcoming event
+            date = None
+            upcoming_event: dict = {}
 
-        Alternatively, [check our calendar](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=) for future events.
-        :::
-        """
-        )
+            for event in sh_body:
+                new_date = datetime.strptime(event["start"], "%Y-%m-%dT%H:%M:%S%z")
+                if clean_title in clean(event["name"]) and (
+                    date is None or new_date < date
+                ):
+                    upcoming_event = event
 
-        # Insert message after YAML
-        yaml_end = content.find("---", content.find("---") + 4) + 5
-        new_content = "".join([content[:yaml_end], message, content[yaml_end:]])
+            if len(upcoming_event) == 0:
+                continue
 
-        with open(qmd_path, "w", encoding="utf8") as f:
-            f.write(new_content)
+            print(f"Inserting upcoming link in {qmd_path}")
+
+            # Form message
+            link = f"https://studenthub.uq.edu.au/students/events/detail/{upcoming_event['entityId']}"
+            booking_message = "[Book in to the next offering now.]"
+            formatted_date = datetime.strptime(
+                upcoming_event["start"], "%Y-%m-%dT%H:%M:%S%z"
+            ).strftime("%a %b %d at %I:%M %p.")
+
+            message = textwrap.dedent(
+                f"""
+            {MESSAGE_HEADER}
+            :::{{.callout-tip}}
+            # Upcoming workshop(s) available!
+
+            The next workshop is on **{formatted_date}**
+            
+            {booking_message}({link})
+
+            Alternatively, [check our calendar](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=) for future events.
+            :::
+            """
+            )
+
+            message = message[1:]
+
+            # Insert message after YAML
+
+            new_content = "".join([content[:marker], message, content[marker:]])
+
+            with open(qmd_path, "w", encoding="utf8") as f:
+                f.write(new_content)
 
     return None
 
@@ -88,7 +117,12 @@ def remove_upcoming_links() -> None:
             continue
 
         message_start = content.find(MESSAGE_HEADER)
-        message_end = content.find(":::", content.find(":::", message_start) + 4) + 5
+        message_end = (
+            content.find(
+                "\n", content.find(":::", content.find(":::", message_start) + 4)
+            )
+            + 1
+        )
 
         old_message = content[message_start:message_end]
 
@@ -118,7 +152,7 @@ def list_active_qmds() -> list[str]:
 
     content_filepaths = []
     # Go through pages on site
-    for path, dirs, files in os.walk(".\\"):
+    for path, dirs, files in os.walk("./"):
         if len(path) > 2 and (path[2] == "_" or path[2] == "."):
             continue
 
