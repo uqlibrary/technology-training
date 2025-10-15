@@ -69,7 +69,7 @@ Just a quick detour to discuss file paths of which there are two types: **absolu
 Absolute file paths always start at the "top" of your file system, e.g. one of the drives (like C:) for Windows users, so they are never ambiguous. It's like providing your full street address from country to street number.
 
 ```bash
-C://Users/my_username/research/data/really_important_secret_data.csv
+C:/Users/my_username/research/data/really_important_secret_data.csv
 ```
 
 #### Relative
@@ -102,13 +102,13 @@ Or a combination of the two (e.g. up one, then down into a *different* folder)
 
 One last note: Windows uses backslashes for their file paths
 ```bash
-C:\\Users\...
+C:\Users\...
 ```
-But Python uses backslashes as an escape character. For example, `"\n"` is a newline, `"\u1234"` is the unicode character U+1234 and confusingly `"\\"` is a **single** backslash. The easist way to get around this is by prefixing `r` to all strings: this makes them *raw*.
+But Python uses backslashes as an escape character. For example, `"\n"` is a newline, `"\u1234"` is the unicode character U+1234 and confusingly `"\\"` is a **single** backslash. The easist way to get around this is by prefixing `R` to all strings: this makes them *raw*.
 
 ```{python}
 #| eval: false
-windows_url = r"C:\\Users\..."
+windows_url = R"C:\\Users\..."
 ```
 
 ### Initial look at the data
