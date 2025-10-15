@@ -62,10 +62,12 @@ def update_live_links() -> None:
 
             for event in sh_body:
                 new_date = datetime.strptime(event["start"], "%Y-%m-%dT%H:%M:%S%z")
+
                 if clean_title in clean(event["name"]) and (
                     date is None or new_date < date
                 ):
                     upcoming_event = event
+                    date = new_date
 
             if len(upcoming_event) == 0:
                 continue
