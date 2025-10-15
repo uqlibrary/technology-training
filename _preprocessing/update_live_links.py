@@ -20,10 +20,10 @@ def update_live_links() -> None:
     r.raise_for_status()
     sh_body = r.json()
 
-    # Loop through active QMDs and update
-    for qmd_path in list_active_qmds():
+    # Loop through active files and update
+    for published_path in list_published_files():
 
-        with open(qmd_path, encoding="utf8") as f:
+        with open(published_path, encoding="utf8") as f:
             content: str = f.read()
 
         # Get title
@@ -32,7 +32,12 @@ def update_live_links() -> None:
 
         titles = []
         markers = []
-        if "Word" in title or "Excel" in title or "NVivo" in title:
+        if published_path[-6:] == ".ipynb":
+            titles = [clean(title)]
+            markers = [
+                content.find(",", content.find("---", content.find("---") + 4) + 4) + 2
+            ]
+        elif "Word" in title or "Excel" in title or "NVivo" in title:
             h1_end = 0
             while True:
                 h1_start = content.find("## ", h1_end)
@@ -62,15 +67,17 @@ def update_live_links() -> None:
 
             for event in sh_body:
                 new_date = datetime.strptime(event["start"], "%Y-%m-%dT%H:%M:%S%z")
+
                 if clean_title in clean(event["name"]) and (
                     date is None or new_date < date
                 ):
                     upcoming_event = event
+                    date = new_date
 
             if len(upcoming_event) == 0:
                 continue
 
-            print(f"Inserting upcoming link in {qmd_path}")
+            print(f"Inserting upcoming link in {published_path}")
 
             # Form message
             link = f"https://studenthub.uq.edu.au/students/events/detail/{upcoming_event['entityId']}"
@@ -93,14 +100,19 @@ def update_live_links() -> None:
             :::
             """
             )
-
             message = message[1:]
+
+            if published_path[-6:] == ".ipynb":
+                message = message[:-1]
+                message = message.replace("\n", '\\n",\n    "')
+                message = message.replace('""', R'"\n"')
+                message = '    "' + message + '\\n",\n'
 
             # Insert message after YAML
 
             new_content = "".join([content[:marker], message, content[marker:]])
 
-            with open(qmd_path, "w", encoding="utf8") as f:
+            with open(published_path, "w", encoding="utf8") as f:
                 f.write(new_content)
 
     return None
@@ -108,27 +120,31 @@ def update_live_links() -> None:
 
 def remove_upcoming_links() -> None:
     """Loops through active .qmds and removes the upcoming links message. Directly reverses changes made by update_live_links()."""
-    for qmd_path in list_active_qmds():
+    for published_path in list_published_files():
 
-        with open(qmd_path, encoding="utf8") as f:
+        with open(published_path, encoding="utf8") as f:
             content: str = f.read()
 
         if MESSAGE_HEADER not in content:
             continue
 
         message_start = content.find(MESSAGE_HEADER)
+
         message_end = (
             content.find(
                 "\n", content.find(":::", content.find(":::", message_start) + 4)
             )
             + 1
         )
+        if published_path[-6:] == ".ipynb":
+            message_start -= 1
+            message_end += 4
 
         old_message = content[message_start:message_end]
 
         new_content = content.replace(old_message, "")
 
-        with open(qmd_path, "w", encoding="utf8") as f:
+        with open(published_path, "w", encoding="utf8") as f:
             f.write(new_content)
 
     return None
@@ -145,7 +161,7 @@ def clean(s: str) -> str:
     return "".join(new_s)
 
 
-def list_active_qmds() -> list[str]:
+def list_published_files() -> list[str]:
     """Walks through current dir and returns a list of qmds that are also in _quarto.yml"""
     with open("_quarto.yml") as f:
         project_file = f.read()
@@ -160,8 +176,7 @@ def list_active_qmds() -> list[str]:
         content_filepaths += [
             os.path.join(path, file)
             for file in files
-            if (file in project_file)
-            and (file[-2:] == "md")  # or file[-6:] == ".ipynb")
+            if (file in project_file) and (file[-2:] == "md" or file[-6:] == ".ipynb")
         ]
 
     return content_filepaths
