@@ -1,8 +1,7 @@
 import os
 import requests
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import textwrap
-import yaml
 
 MESSAGE_HEADER = f"<!-- Upcoming workshops -->"
 
@@ -82,9 +81,15 @@ def update_live_links() -> None:
             # Form message
             link = f"https://studenthub.uq.edu.au/students/events/detail/{upcoming_event['entityId']}"
             booking_message = "[Book in to the next offering now.]"
-            formatted_date = datetime.strptime(
-                upcoming_event["start"], "%Y-%m-%dT%H:%M:%S%z"
-            ).strftime("%a %b %d at %I:%M %p.")
+
+            date = datetime.strptime(upcoming_event["start"], "%Y-%m-%dT%H:%M:%S%z")
+
+            if date.day == datetime.now(timezone(timedelta(hours=10))).day:
+                formatted_date = date.strftime("today at %I:%M %p.")
+            elif date.day == datetime.now(timezone(timedelta(hours=10))).day + 1:
+                formatted_date = date.strftime("tomorrow at %I:%M %p.")
+            else:
+                formatted_date = date.strftime("%a %b %d at %I:%M %p.")
 
             message = textwrap.dedent(
                 f"""
