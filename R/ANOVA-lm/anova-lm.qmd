@@ -5,17 +5,13 @@ date: today
 author: UQ Library
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
-```
-
 ## What are we going to learn?
 
-In this hands-on session, you will use R, RStudio to run analysis of variance (ANOVA) and linear regression models. 
+In this hands-on session, you will use R, RStudio to run analysis of variance (ANOVA) and linear regression models.
 
-Specifically, you will learn:
+Specifically, you will learn about:
 
-* visualize data in base R and using the ggplot2 package
+* data visualisation in base R and ggplot2
 * analysis of variance (ANOVA) in base R
 * linear models in base R
 * the tidy model approach
@@ -32,12 +28,12 @@ For any dataset or function doubts that you might have, don't forget the three w
 
 1. the shortcut command: `?functionname`
 2. the help function: `help(functionname)`
-3. the keyboard shortcut: press F1 after writing a function name
+3. the keyboard shortcut: press F1 with your cursor on a function name
 
 ## Open RStudio
 
 * If you are using your own laptop please open RStudio
-  * If you need them, we have [installation instructions](/R/Installation.md#r--rstudio-installation-instructions)
+  * If you need them, we have [installation instructions](R/installation.qmd)
 * Make sure you have a working internet connection
 * On Library computers (the first time takes about 10 min.): 
     * Log in with your UQ credentials (student account if you have two)
@@ -51,17 +47,19 @@ For any dataset or function doubts that you might have, don't forget the three w
 
 ### Install and load required packages for first sections
 
-```{r packages, message=FALSE}
+```{r}
+#| label: packages
+#| message: false
 # install.packages("readr")
-library(readr)       # for importing data
+library(readr)        # data import
 # install.packages("dplyr")
-library(dplyr) # data manipulation package
+library(dplyr)        # data manipulation
 # install.packages("ggplot2")
-library(ggplot2) # data visualization
+library(ggplot2)      # data visualisation
 # install.packages("car")
-library(car)         # Companion to Applied Regression package
+library(car)          # Companion to the book "An R Companion to Applied Regression"
 # install.packages("performance")
-library(performance) # Assessment of Regressmon Models performance
+library(performance)  # Assessment of regression models performance
 ```
 
 > Remember to use <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute a command from the script.
@@ -71,8 +69,8 @@ library(performance) # Assessment of Regressmon Models performance
 * Click the "File" menu button (top left corner), then "New Project"
 * Click "New Directory"
 * Click "New Project" ("Empty project" if you have an older version of RStudio)
-* In "Directory name", type the name of your project, e.g. "dplyr_intro"
-* Select the folder where to locate your project: for example, the `Documents/RProjects` folder, which you can create if it doesn't exist yet.
+* In "Directory name", type the name of your project, e.g. "r_statistics"
+* Select the folder where to locate your project: for example, a `Documents/RProjects` folder, which you can create if it doesn't exist yet.
 * Click the "Create Project" button
 
 ### Create a script
@@ -87,24 +85,27 @@ We will use a script to write code more comfortably.
 
 The following section will be using data from [Constable (1993)](https://link.springer.com/article/10.1007/BF00349318) to explore how three different feeding regimes affect the size of sea urchins over time.
 
-Sea urchins reportedly regulate their size according to the level of food available to regulate maintenance requirements. The paper examines whether a reduction in suture width (i.e., connection points between plates; see Fig 1 from constable 1993) is the basis for shrinking due to low food conditions.
+Sea urchins reportedly regulate their size according to the level of food available to regulate maintenance requirements. The paper examines whether a reduction in suture width (i.e., connection points between plates; see Fig. 1 from constable 1993) is the basis for shrinking due to low food conditions.
 
 ![Figure 1 from Constable 1993 paper showing sea urchin plates and suture width](images/Constable-1993-fig1.PNG)
 
-The [data in csv format](https://tidymodels.org/start/models/urchins.csv) is available from the tidymodels website and were assembled for a tutorial [here](https://www.flutterbys.com.au/stats/tut/tut7.5a.html).
+The [data in csv format](https://tidymodels.org/start/models/urchins.csv) is available from the tidymodels website.
 
-```{r read in the data, message=FALSE, warning=FALSE}
+```{r}
+#| label: read
+#| message: false
 urchins <- 
    # read in the data
    read_csv("https://tidymodels.org/start/models/urchins.csv") %>% 
-   # change the names to be more description
+   # change the names to be more descriptive
    setNames(c("food_regime", "initial_volume", "width")) %>% 
-   # convert food_regime from chr to a factor, helpful for modeling
+   # convert food_regime from character to factor, helpful for modeling
    mutate(food_regime = factor(food_regime, 
                                levels = c("Initial", "Low", "High")))
 ```
 
 ```{r}
+#| label: see-data
 urchins # see the data as a tibble
 ```
 
@@ -112,33 +113,34 @@ We have 72 urchins with data on:
 
 * experimental feeding regime group with 3 levels (Initial, Low, or High)
 * size in milliliters at the start of the experiment (initial_volume)
-* suture width in millimeters at the end of the experiment (width, see [Fig 1](pictures/Constable-1993-fig1.PNG))
+* suture width in millimeters at the end of the experiment (width, see Fig. 1)
 
 ## Statistics in R using base and stats
 
-### Visualize the data 
+### Visualise the data 
 
 Use a boxplot to visualize width versus `food_regime` as a factor and a scatterplot for width versus `initial_volume` as a continuous variable.
 
 ```{r}
+#| label: initial-plots
 boxplot(width ~ food_regime, data = urchins)
 plot(width ~ initial_volume, data = urchins)
 ```
 
 We can see that there are some relationships between the response variable (width) and our two covariates (food_regime and initial volume). But what about the interaction between the two covariates?
 
-**Challenge 1 - Use ggplot2 to make a plot visualizing the interaction between our two variables. Add a trendline to the data.**
+**Challenge 1 - Use ggplot2 to make a plot visualising the interaction between our two variables. Add a trendline to the data.**
 
 > Hint: think about grouping and coloring.
 
-```{r ggplot urchins}
+```{r}
+#| label: ggplot2-scatter
 ggplot(urchins,
        aes(x = initial_volume,
            y = width,
            col = food_regime)) +
    geom_point() +
-   geom_smooth(method = "lm", se = FALSE) + # add a linear trendline with out a confidence interval e.g., se = FALSE
-   scale_color_viridis_d(option = "plasma", end = 0.7)   # change to color blind friendly palette, end is a corrected hue value
+   geom_smooth(method = "lm", se = FALSE) # add a linear trend line without a confidence interval
 ```
 
 Urchins that were larger in volume at the start of the experiment tended to have wider sutures at the end. Slopes of the lines look different so this effect may depend on the feeding regime indicating we should include an interaction term.
@@ -149,9 +151,10 @@ Information in this section was taken from [rpubs.com](https://rpubs.com/tmcurle
 
 We can do an ANOVA with the `aov()` function to test for differences in sea urchin suture width between our groups. We are technically running and **analysis of covariance (ANCOVA)** as we have both a continuous and a categorical variable. ANOVAs are for categorical variables and we will see that some of the *post-hoc* tests are not amenable to continuous variables.
 
->`aov()` uses the model formula `response variable ~ covariate1 + covariate2`. The * denotes the inclusion of both main effects and interactions which we have done below. The formula below is equivalent to `reponse ~ covar1 + covar2 + covar1:covar2` i.e., the main effect of covar 1 and covar 2, and the interaction between the two.
+>`aov()` uses the model formula `response variable ~ covariate1 + covariate2`. The * denotes the inclusion of both main effects and interactions which we have done below. The formula below is equivalent to `reponse ~ covar1 + covar2 + covar1:covar2` i.e., the main effect of covar1 and covar2, and the interaction between the two.
 
 ```{r}
+#| label: anova
 aov_urch <- aov(width ~ food_regime * initial_volume, 
                 data = urchins)
 summary(aov_urch)  # print the summary statistics
@@ -164,6 +167,7 @@ Both the main effects and interaction are significant (p < 0.05) indicating a si
 Run a **Tukey's Honestly Significant Difference (HSD)** test - note it does not work for non-factors as per the warning message.
 
 ```{r}
+#| label: tukey
 TukeyHSD(aov_urch)
 ```
 
@@ -174,95 +178,119 @@ The comparison between High-Initial and High-Low food regimes are significant (p
 We also want to check that our model is a good fit and does not violate any ANOVA **assumptions**:
 
 1. Data are independent and normally distributed.
-2. The residuals from the data are normally distributed.
+2. The residuals from the data are normally distributed (homogeneity of variance).
 3. The variances of the sampled populations are equal. 
 
-**Challenge 2 - Use a histogram and qqplots to visually check data are normal**.  
+##### Normal distribution
+
+**Challenge 2 - Use a histogram and quantile-quantile (QQ) plots to visually check data are normally distributed**.  
 
 ```{r}
+#| label: normality
 hist(urchins$width)
+# run the two together to combine them
 qqnorm(urchins$width)
 qqline(urchins$width)
 ```
 
+QQ plots show the actual data vs their theoretical quantiles (i.e. the quantiles if the data was normally distributed). If the data was normally distributed, the points would follow closely the diagonal.
+
 You could also run a Shapiro-Wilk test on the data:
 
 ```{r}
+#| label: shapiro
 shapiro.test(urchins$width)
 ```
 
 The p-value is less than 0.05 so the data are significantly different from a normal distribution.
 
-Check the **model residuals**. Plot the residuals vs fitted values - do not want too much deviation from 0. 
+##### Homogeneity of variance
+
+We plot the model's residuals (difference between observed and predicted values) versus the fitted values to check for homogeneity of variance - we do not want too much deviation from 0. (The red line is the average of the values.)
 
 ```{r}
-plot(aov_urch, 1)
+#| label: residuals
+plot(aov_urch, 1) # only plot first of 4 plots
 ```
 
-Can also plot the predicted values from the model with the acutal values.
+We can also plot the predicted values from the model with the actual values:
 
 ```{r}
+#| label: predicted
 plot(predict(aov_urch) ~ urchins$width)
 abline(0, 1, col = "red") # plot a red line with intercept of 0 and slope of 1
 ```
 
-Check the **normality of residuals**, run Shapiro-Wilk test on residuals:
+This QQ plot show the residuals vs their theoretical quantiles (i.e. the quantiles if the data was normally distributed). If the residuals were normally distributed, they would follow closely the diagonal.
 
 ```{r}
+#| label: qqplot
 plot(aov_urch, 2)
+```
 
+To check the normality of residuals, we can also run a Shapiro-Wilk test on residuals:
+
+```{r}
+#| label: shapiro-residuals
 shapiro.test(resid(aov_urch))
 ```
 
-The residuals fall on the Normal Q-Q plot diagonal and the Shapiro-Wilk result is non-significant (p > 0.05).
+The residuals fall on the Normal Q-Q plot diagonal and the Shapiro-Wilk result is non-significant (p > 0.05), which means we can't reject the hypothesis that the data comes from a population with a normal distribution.
 
-Check for **homogeneity of variance**
+Another way to check for homogeneity of variance is by using Levene's test.
 
-**Challenge 3 - use the help documentation for `leveneTest()` from the `car` package to check homogenetity of variance on `food_regime`.**
+**Challenge 3 - use the help documentation for `leveneTest()` from the `car` package to check homogeneity of variance on `food_regime`.**
 
 > Again, only works for factor groups.
 
 ```{r}
+#| label: levene
 leveneTest(width ~ food_regime, data = urchins)
 ```
 
-The Levene's Test is significant for `food_regime` (not what we want) and there are a few options to deal with this. You can ignore this violation based on your own *a priori* knowledge of the distribution of the population being samples, drop the p-value significance, or use a different test.
+The Levene's Test is significant for `food_regime`, which is not what we were hoping for: it means the assumption of homogeneity of variance is not met. There are a few options to deal with this. You can ignore this violation based on your own *a priori* knowledge of the distribution of the population being samples, drop the p-value significance, or use a different test.
 
 ### Linear Model
 
 ```{r}
+#| label: linear-model
 lm_urch <- lm(width ~ food_regime * initial_volume, 
               data = urchins)
 summary(lm_urch)
 ```
 
-In the output, we have the model call, residuals, and the coefficients. The first coefficient is the `(Intercept)` and you might notice the `food_regimeInitial` is missing. The function defaults to an effects parameterization where the intercept is the reference or baseline of the categorical group - Initial in this case. 
+In the output, we have the model call, residuals, and the coefficients. The first coefficient is the `(Intercept)` and you might notice the `food_regimeInitial` is missing. The function defaults to an effects parameterisation where the intercept is the reference or baseline of the categorical group - Initial in this case. 
 
 >You can change the reference level of a factor using the `relevel()` function. 
 
 The estimates of the remaining group levels of `food_regime` represents the effect of being in that group. To calculate the group coefficients for all group levels you *add* the estimates for the level to the intercept (first group level) estimate. For example, the estimate for the 'Initial' feeding regime is 0.0331 and we add the estimate of 'Low' (0.0331 + 0.0197) to get the mean maximum size of 0.0528 mm for width.
 
-For the continuous covariate, the estimate represents the change in the response variable for a unit increase in the covariate. 'Initial Volume's' estimate of 0.0015 represents a 0.0015 mm increase (the estimate is positive) in width per ml increase in urchin initial volume. 
+For the continuous covariate, the estimate represents the change in the response variable for a unit increase in the covariate. For example, `initial_volume`'s estimate of 0.0015 represents a 0.0015 mm increase (the estimate is positive) in width per ml increase in urchin initial volume. 
 
-We can get ANOVA test statistics on our linear model using the `anova()` in base or `Anova()` from the `car` package.  
+We can get ANOVA test statistics on our linear model using `anova()` in base or `Anova()` from the `car` package. 
 
 ```{r}
+#| label: anova-table
 anova(lm_urch)
 ```
 
 ```{r}
+#| label: anova-car
 Anova(lm_urch)
 ```
 
 These are effectively the same as the `aov()` model we ran before. 
 
->**Note**: The statistics outputs are the same comparing the `aov()` and `anova()` models while the `Anova()` model is **not** exactly the same. The `Anova()` output tells us it was a Type II test and the `aov()` documentation says it is only for *balanced* designs which means the Type 1 test is the applied (see [here](https://bookdown.org/ndphillips/YaRrr/type-i-type-ii-and-type-iii-anovas.html)). The type of test can be set for `Anova()` but not the others. Here, the overall take-away from the different ANOVA functions are comparable.
+>**Note**: The statistics outputs are the same comparing the `aov()` and `anova()` models while the `Anova()` model is **not** exactly the same. The `Anova()` output tells us it was a Type II test and the `aov()` documentation says it is only for *balanced* designs which means the Type 1 test is applied (see [here](https://bookdown.org/ndphillips/YaRrr/type-i-type-ii-and-type-iii-anovas.html)). The type of test can be set for `Anova()` but not the others. Here, the overall take-away from the different ANOVA functions are comparable.
 
 **Challenge 4 - use the check_model() documentation to apply the function to our `lm_urch` model.**
 
 The performance package has a handy function `check_model()` that will check several aspects of your model in one go:
 
-```{r message=FALSE, warning=FALSE}
+```{r}
+#| label: check-model
+#| fig-height: 9
+#| fig-width: 8
 check_model(lm_urch)
 ```
 
@@ -271,9 +299,10 @@ check_model(lm_urch)
 1. Test whether # of cylinders and/or engine displacement affect fuel efficiency. 
 2. Make a plot to visualize the relationship.
 
-> **Hint**: Check out the documentation for the dataset `?mpg` to see the varaibles in the dataset. Are the variables the right data type? Suggest saving the dataset locally in your environment i.e., `mpg2 <- mpg` so you can change data types if necessary.
+> **Hint**: Check out the documentation for the dataset `?mpg` to see the variables in the dataset. Are the variables the right data type? Suggest saving the dataset locally in your environment i.e., `mpg2 <- mpg` so you can change data types if necessary.
 
 ```{r}
+#| label: mpg-challenge
 mpg2 <-  mpg
 mpg2$cyl <- as.factor(mpg$cyl) # convert cyl from numeric to factor
 
@@ -289,6 +318,7 @@ Anova(lm_cars) # from the car package
 ```
 
 ```{r}
+#| label: plot-mpg
 ggplot(data = mpg2,
        aes(x = displ,
            y = hwy,
@@ -311,23 +341,17 @@ The packages vary in the methods, how to specify random factors, etc. The model 
 
 ## Introducing Tidymodels
 
-Like the tidyverse package, the Tidymodels framework is a collection of packages for modeling and machine learning following the tidyverse principles. 
-
-This section is modified from the first [Tidymodels article](https://www.tidymodels.org/start/models/).
+Like the tidyverse package, the Tidymodels framework is a collection of packages for modeling and machine learning following the tidyverse principles.
 
 ### Load more packages
 
-```{r tidymodel packages, message=FALSE}
+```{r}
+#| label: tidymodels-packages
+#| message: false
 # install.packages("tidymodels")
 library(tidymodels) # for parsnip package and rest of tidymodels
 # install.packages("dotwhisker")
-# dotwhiskers was archived from CRAN in 2024, see:
-# https://github.com/fsolt/dotwhisker/issues/115
-# if unavailable, can be installed from GitHub:
-# remotes::install_github('fsolt/dotwhisker')
 library(dotwhisker)# for visualizing regression results
-# install.packages("parsnip")
-library(parsnip)
 ```
 
 ### Build and fit a model
@@ -342,6 +366,7 @@ For Tidymodels, we need to specify the following:
 We will specify the *functional form* or model type as ["linear regression"](https://parsnip.tidymodels.org/reference/linear_reg.html) as there is a numeric outcome with a linear slope and intercept. We can do this with:
 
 ```{r}
+#| label: start-model
 linear_reg()  
 ```
 
@@ -350,6 +375,7 @@ On its own, not that interesting. Next, we specify the method for *fitting* or t
 The [documentation page](https://parsnip.tidymodels.org/reference/linear_reg.html) for linear_reg() lists the possible engines. We'll save this model object as lm_mod.
 
 ```{r}
+#| label: pick-engine
 lm_mod <- 
 linear_reg() %>% 
    set_engine("lm")
@@ -360,6 +386,7 @@ Next, the model can be estimated or trained using the `fit()` function and the m
 `width ~ initial_volume * food_regime`
 
 ```{r}
+#| label: fit-model
 lm_fit <- 
    lm_mod %>% 
    fit(width ~ initial_volume * food_regime, data = urchins)
@@ -367,15 +394,17 @@ lm_fit <-
 lm_fit
 ```
 
-We can use the `tidy()` function for our `lm` object to output model parameter estimates and their statistical properties. Similar to `summary()` but the results are more predictable and useful format.
+We can use the `tidy()` function for our `lm` object to output model parameter estimates and their statistical properties. Similar to `summary()` but the results are more predictable and in a useful format.
 
 ```{r}
+#| label: tidy-fit
 tidy(lm_fit)
 ```
 
 This output can be used to generate a dot-and-whisker plot of our regression results using the `dotwhisker` package:
 
 ```{r}
+#| label: dotwhisker-plot
 tidy(lm_fit) %>% 
    dwplot(dot_args = list(size = 2, color = "black"),
           whisker_args = list(color = "black"),
@@ -392,6 +421,7 @@ Say that it would be interesting to make a plot of the mean body size for urchin
 First, lets make some new example data to predict for our graph:
 
 ```{r}
+#| label: expand
 new_points <- expand.grid(initial_volume = 20,
                           food_regime = c("Initial", "Low", "High"))
 new_points
@@ -404,6 +434,7 @@ With tidymodels, the types of predicted values are standardized so that we can u
 Let's generate the mean suture width values:
 
 ```{r}
+#| label: predict
 mean_pred <- predict(lm_fit, new_data = new_points)
 mean_pred
 ```
@@ -411,6 +442,7 @@ mean_pred
 When making predictions, the tidymodels convention is to always produce a tibble of results with standardized column names. This makes it easy to combine the original data and the predictions in a usable format:
 
 ```{r}
+#| label: combine
 conf_int_pred <- predict(lm_fit, 
                          new_data = new_points,
                          type = "conf_int")
@@ -444,8 +476,12 @@ Saving your workspace is usually not recommended if you have all the necessary c
 
 * For statistical analysis in R:
   + Steve Midway's [Data Analysis in R Part II Analysis](https://bookdown.org/steve_midway/DAR/part-ii-analysis.html)
-  + Jeffrey A. Walker's [Applied Statistics for Experiemental Biology](https://www.middleprofessor.com/files/applied-biostatistics_bookdown/_book/)
+  + Jeffrey A. Walker's [Applied Statistics for Experiemental Biology](https://middleprofessor.github.io/benchbiostats/)
   + Chester Ismay and Albert Y. Kim's [ModernDive Statistical Inference via Data Science](https://moderndive.com/)
 * For tidymodels:
   + [tidymodels website](https://www.tidymodels.org/)
-* Our compilation of [general R resources](https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md)
+* Our compilation of [general R resources](https://github.com/uqlibrary/technology-training/blob/master/R/usefullinks.md)
+
+## Licence
+
+Because it draws heavily from the [CC BY-SA-licensed](https://github.com/tidymodels/tidymodels.org?tab=readme-ov-file#tidymodelsorg) [Tidymodels article titled "Build a model"](https://www.tidymodels.org/start/models/), this material is also released under a [CC BY-SA 4.0 licence](https://creativecommons.org/licenses/by-sa/4.0/).
