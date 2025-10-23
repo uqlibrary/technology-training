@@ -177,14 +177,14 @@ print(f"The current working directory is {os.getcwd()}")
 
 When you work with other files, you'll want to set the working directory. Here, we'll be loading data that we store in the same folder as your Python script, so let's move the working directory there.
 
-1. First, copy your script's file path. On Windows, right click the file and press "copy as path".
+1. First, copy your script's file path. On Windows, find the file in File Explorer and copy the path address (up the top).
 2. Next, use the `os.chdir()` function to change the current working directory as follows
 
 ```python
-os.chdir(r"path/to/script.py")
+os.chdir(R"path/to/script/")
 ```
 
-Make sure you include the `r` before the path. This tells Python it's a *raw* string and won't misinterpret the backslashes.
+Make sure you include the `R` before the path. This tells Python it's a *raw* string and won't misinterpret the backslashes.
 :::
 
 :::{#fstrings .callout-tip collapse="true"}
@@ -375,6 +375,34 @@ raise SomeError("Appropriate error message")
 and there are [lots of built in exceptions](https://docs.python.org/3/library/exceptions.html).
 :::
 
+:::{.callout-warning}
+# `<Error retrieving source code with stack_data see ipython/ipython#13598>`
+Your traceback might have the error
+
+```bash
+<Error retrieving source code with stack_data see ipython/ipython#13598>
+```
+
+While this isn't a major issue, [it's a bug that will prevent you from seeing tracebacks in your error messages](https://github.com/ipython/ipython/issues/13598). It's because Anaconda has shipped an old version of a behind-the-scenes module that it uses; we can fix this.
+
+**If you're using Anaconda**,
+
+1. Open an Anaconda Prompt
+2. Run 
+
+```bash
+conda update executing
+```
+
+If you're not, then you might have a more serious bug going on. You can try running the following command in a terminal
+
+```bash
+pip install -U executing
+```
+
+but it may not solve the problem.
+
+:::
 
 ### Activity 1
 
@@ -889,6 +917,8 @@ for text_path in files_in_texts:
 
 Finally, let's remove the trailing `.txt` on the messages by extracting the text's title from its path. To do this, *slice* the string with square brackets: `title = text_path[:-4]`. In this case, we slice from the start of the path *up to the fourth last character*.
 
+We can also *replace* the underscores with spaces using the `.replace()` string method.
+
 :::{#slicing .callout-tip collapse="true"}
 # Indexing and Slicing
 
@@ -965,7 +995,7 @@ In sum:
 files_in_texts = os.listdir("texts")
 
 for text_path in files_in_texts:
-    title = text_path[:-4] # <-- extract the title
+    title = text_path[:-4].replace("_", " ") # <-- extract the title
 
     with open(f"texts/{text_path}", encoding = "utf-8") as file:
         contents = file.read()
