@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-10-23">
+<meta name="dcterms.date" content="2025-10-24">
 
 <title>QGIS: Refine Your Maps for Reporting and Publication – UQ Library Technology Training</title>
 <style>
@@ -492,19 +492,21 @@ window.Quarto = {
    
   <ul>
   <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a></li>
-  <li><a href="#todays-aims" id="toc-todays-aims" class="nav-link" data-scroll-target="#todays-aims">Today’s Aims</a></li>
-  <li><a href="#download-the-data" id="toc-download-the-data" class="nav-link" data-scroll-target="#download-the-data">Download the Data</a></li>
+  <li><a href="#todays-learning-goals" id="toc-todays-learning-goals" class="nav-link" data-scroll-target="#todays-learning-goals">Today’s Learning Goals</a></li>
+  <li><a href="#the-brief" id="toc-the-brief" class="nav-link" data-scroll-target="#the-brief">The Brief</a></li>
+  <li><a href="#basemaps" id="toc-basemaps" class="nav-link" data-scroll-target="#basemaps">Basemaps</a></li>
+  <li><a href="#colours" id="toc-colours" class="nav-link" data-scroll-target="#colours">Colours</a></li>
   <li><a href="#change-the-symbology" id="toc-change-the-symbology" class="nav-link" data-scroll-target="#change-the-symbology">Change the Symbology</a>
   <ul class="collapse">
   <li><a href="#point-geometry" id="toc-point-geometry" class="nav-link" data-scroll-target="#point-geometry">Point Geometry</a></li>
-  <li><a href="#line-geometry" id="toc-line-geometry" class="nav-link" data-scroll-target="#line-geometry">Line Geometry</a></li>
   <li><a href="#polygon-geometry" id="toc-polygon-geometry" class="nav-link" data-scroll-target="#polygon-geometry">Polygon Geometry</a></li>
+  <li><a href="#line-geometry" id="toc-line-geometry" class="nav-link" data-scroll-target="#line-geometry">Line Geometry</a></li>
   </ul></li>
-  <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels">Labels</a></li>
-  <li><a href="#styles" id="toc-styles" class="nav-link" data-scroll-target="#styles">Styles</a></li>
   <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes">Themes</a></li>
-  <li><a href="#basemaps" id="toc-basemaps" class="nav-link" data-scroll-target="#basemaps">Basemaps</a></li>
+  <li><a href="#styles" id="toc-styles" class="nav-link" data-scroll-target="#styles">Styles</a>
+  <ul class="collapse">
   <li><a href="#themes-again" id="toc-themes-again" class="nav-link" data-scroll-target="#themes-again">Themes (again)</a></li>
+  </ul></li>
   <li><a href="#layout-manager" id="toc-layout-manager" class="nav-link" data-scroll-target="#layout-manager">Layout Manager</a>
   <ul class="collapse">
   <li><a href="#page-properties" id="toc-page-properties" class="nav-link" data-scroll-target="#page-properties">Page Properties</a></li>
@@ -513,6 +515,7 @@ window.Quarto = {
   <li><a href="#scale" id="toc-scale" class="nav-link" data-scroll-target="#scale">Scale</a></li>
   <li><a href="#inset-map" id="toc-inset-map" class="nav-link" data-scroll-target="#inset-map">Inset Map</a></li>
   <li><a href="#themes-again-1" id="toc-themes-again-1" class="nav-link" data-scroll-target="#themes-again-1">Themes (again!)</a></li>
+  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text">Text</a></li>
   <li><a href="#title" id="toc-title" class="nav-link" data-scroll-target="#title">Title</a></li>
   <li><a href="#dynamic-text" id="toc-dynamic-text" class="nav-link" data-scroll-target="#dynamic-text">Dynamic Text</a></li>
   <li><a href="#shapes" id="toc-shapes" class="nav-link" data-scroll-target="#shapes">Shapes</a></li>
@@ -562,7 +565,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 23, 2025</p>
+      <p class="date">October 24, 2025</p>
     </div>
   </div>
   
@@ -577,16 +580,9 @@ window.Quarto = {
 <section id="setting-up" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
 <p>This is an intermediate level tutorial. Before completing this tutorial, we recommend our <a href="../../QGIS/intro/QGIS_intro.html">QGIS: Introduction to Mapping</a> tutorial. This tutorial is designed for <strong>QGIS 3.40</strong>. If you need to install it on your computer, go to the <a href="https://qgis.org/download/">QGIS website</a>.</p>
-<p>We will start as always by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.</p>
-<ul>
-<li><p>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>.</p></li>
-<li><p>Let’s now <strong>save</strong> our project: <code>Project &gt; Save</code>.</p></li>
-<li><p>Create a new folder, let’s call it “<strong>qgis_reports</strong>”.</p></li>
-</ul>
-<div class="columns">
-<div class="column" style="width:60%;">
-<ul>
-<li><p>Inside that folder, create these folders:</p>
+<p>We will start a little bit differently today, as we’re going to get straight into a project. The <strong>data</strong> and <strong>project</strong> for this session can be directly downloaded from <a href="https://github.com/uqlibrary/technology-training-assets/raw/refs/heads/master/QGIS/reports/qgis_reports.zip">this link</a>. This highlights one of the big benefits of creating a good folder structure for your project – it’s much easier to share!</p>
+<p>Please extract the folder from the zip file.</p>
+<p>As always we have our classic setup:</p>
 <ul>
 <li><p>“<strong>data</strong>” - for all the data we will use to make our maps, split into:</p>
 <ul>
@@ -594,35 +590,21 @@ window.Quarto = {
 <li><p>“<strong>processed</strong>” - any data you’ve modified</p></li>
 </ul></li>
 <li><p>“<strong>output</strong>” - for any maps or images we export</p></li>
-<li><p>“<strong>temp</strong>” - this folder isn’t necessary, but when you’re playing around and testing, it stops things getting messy.</p></li>
-</ul></li>
-<li><p>Finally, let’s save our .qgz project file inside the “<strong>qgis_reports</strong>” folder, named “<strong>qgis_reports_map.qgz</strong>”</p></li>
+<li><p>“<strong>temp</strong>” - this folder isn’t necessary, but when you’re playing around and testing, it can stop things getting messy.</p></li>
 </ul>
-</div><div class="column" style="width:5%;">
-<!-- empty column to create gap -->
-</div><div class="column" style="width:30%;">
-<p><img src="images/folder.png" class="img-fluid"></p>
-</div><div class="column" style="width:5%;">
-<!-- empty column to create gap -->
-</div>
-</div>
-<p>Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.</p>
-<p>This might feel unnecessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.</p>
-<p>Let’s add an <strong>OpenStreetMap</strong> basemap to locate ourselves on the globe:</p>
+<!-- -->
 <ul>
-<li><code>Browser panel &gt; XYZ Tiles &gt; OpenStreetMap</code> (double-click, or drag and drop into the Layers panel).</li>
+<li>Finally, we have our .qgz project file named “<strong>qgis_reports_map.qgz</strong>” inside the “<strong>qgis_reports</strong>” folder (the highest level folder) so it’s only looking down into folders for data, not back out.</li>
 </ul>
-<p>And finally change our CRS to match our project area (Brisbane) for today to EPSG:7856 - GDA2020 / MGA zone 56</p>
-<ul>
-<li><code>Project &gt; Properties</code> click the <code>CRS</code> tab, filter for <strong>7856</strong>, select <strong><code>EPSG:7856 - GDA2020 / MGA zone 56</code></strong> and click <code>OK</code></li>
-</ul>
+<p>Let’s open our <strong>qgis_reports_map.qgz</strong> file and get started.</p>
 </section>
-<section id="todays-aims" class="level2">
-<h2 class="anchored" data-anchor-id="todays-aims">Today’s Aims</h2>
+<section id="todays-learning-goals" class="level2">
+<h2 class="anchored" data-anchor-id="todays-learning-goals">Today’s Learning Goals</h2>
 <p>Main aims:</p>
 <ul>
 <li>Create a pretty map for output</li>
 <li>Automate our map description</li>
+<li>Use templates</li>
 </ul>
 <p>If we have time:</p>
 <ul>
@@ -630,191 +612,279 @@ window.Quarto = {
 <li>Georeference an Image</li>
 </ul>
 </section>
-<section id="download-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="download-the-data">Download the Data</h2>
-<p>Today we’re going to focus on making a pretty map, so let’s start by populating our map with some pre-generated data.</p>
-<p>The <strong>data</strong> for this session can be directly downloaded from <a href="https://github.com/uqlibrary/technology-training-assets/raw/refs/heads/master/QGIS/reports/report_data.zip">this link</a>.</p>
-<p>Once downloaded, extract the archive into your <strong>raw</strong> folder within your <strong>data</strong> folder.</p>
-<p>Within QGIS, go to the <strong>Browser</strong> panel, open <strong><code>Project Home &gt; data &gt; raw</code>,</strong> then drag and drop each of your files into themap canvas.</p>
-<p>You should have three new layers: <strong>Artefacts</strong>, <strong>Paths</strong>, and <strong>Project_area</strong></p>
+<section id="the-brief" class="level2">
+<h2 class="anchored" data-anchor-id="the-brief">The Brief</h2>
+<p>We need to use our spatial files to make a map that:</p>
+<ul>
+<li><p>Shows the project outline</p></li>
+<li><p>Show the access paths</p></li>
+<li><p>Categorises the artefacts</p></li>
+</ul>
+<p>The current map in our project does accomplish these goals, but it’s not inviting to look at.</p>
+<p>To fix this, we need to ask some questions:</p>
+<p><strong>Who is the intended audience for our map</strong>?</p>
+<ul>
+<li>A good looking map for a <strong>Report</strong> map may look different to an <strong>Academic Paper</strong> or a <strong>Technical</strong> map or to a map for the <strong>Public</strong>.</li>
+</ul>
+<p><strong>What story am I trying to tell?</strong></p>
+<ul>
+<li><p>Do you want to highlight a particular pattern in the data?</p>
+<ul>
+<li>You can use shapes and colour (esp.&nbsp;saturation) to bring your viewer to focus on certain elements of the map.</li>
+</ul></li>
+<li><p>Does it need to look friendly or more professional?</p>
+<ul>
+<li>Your choice of a colour palette can bring cohesion to your map.</li>
+</ul></li>
+<li><p>Do you have a lot of dense information you need to convey?</p>
+<ul>
+<li>Perhaps you need to make more than one map.</li>
+</ul></li>
+<li><p>Do you need to show what the land surface looks like, or not?</p>
+<ul>
+<li>That brings us to our next question:</li>
+</ul></li>
+</ul>
+<p><strong>What</strong> <strong>basemap does my map need</strong>?</p>
+<p>The basemap sets the tone for the rest of the layers in the map, as they can greatly change the visual complexity of the map.</p>
+<ul>
+<li><p>Satellite image - Geographically informative, but visually busy</p></li>
+<li><p>Street map - Geographically informative, but visually busy</p></li>
+<li><p>Historical image - Informative and busy, but black and white imagery can be less visually busy</p></li>
+<li><p>Simple topo map - Provides some information, but less visually busy</p></li>
+<li><p>No basemap - Centres focus on data, but provides no geographic context</p></li>
+</ul>
+</section>
+<section id="basemaps" class="level2">
+<h2 class="anchored" data-anchor-id="basemaps">Basemaps</h2>
+<p>Let’s start by making a map we might use in an <strong>Academic Paper</strong> or in an <strong>Article for the Public</strong>, where we want to focus their attention on our data. Unless we really need <strong>Satellite</strong> imagery, or everything on the <strong>OpenStreetMap</strong>, it is too busy and distracting.<br>
+<br>
+Let’s load in a new basemap.<br>
+<br>
+There are many ways of doing this, in the past we’ve used the <strong>QuickMapServices</strong> plugin to load in new basemaps, now we can go to the next step and source them externally. We can do this with WMTS (Web Map Tile Service), WCS (Web Coverage Service), ArcGIS REST Servers, and XYZ Tiles.</p>
+<p>Today we’re going to use an XYZ Tile from CARTODB.</p>
+<ul>
+<li>Scroll down the <code>Browser</code> panel until your see <strong>XYZ Tiles</strong></li>
+<li>Right click XYZ Tiles and select <code>New Connection...</code>
+<ul>
+<li>In <code>Name</code> type <strong>Voyager (no labels)</strong></li>
+<li>In <code>URL</code> paste:<br>
+<a href="https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/%7Bz%7D/%7Bx%7D/%7By%7D">https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}</a><span class="citation" data-cites="2x.png">@2x.png</span></li>
+<li>Increase the Max. Zoom Level to 20
+<ul>
+<li>This value depends on what is available from the given service in different parts of the world. Increasing that value beyond 20 for this map in Brisbane will show “Map data not yet available” when you zoom in very close.</li>
+</ul></li>
+<li>Click <code>OK</code></li>
+</ul></li>
+<li>In the <code>Browser</code> panel, expand <code>XYZ Tiles</code> and double click on <code>ESRI World Imagery</code></li>
+<li>Now do the same for this <strong>Light Gray Basemap</strong> from ESRI, but set the Max. Zoom Level to 16:<br>
+<a href="https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D">https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}</a></li>
+</ul>
+<p>Arrange the layers so that the <strong>Voyager (no labels)</strong> layer is under your other layers (you can hide the <strong>Light Gray Basemap</strong> and <strong>OpenStreetMap</strong> for now).</p>
+<p>Isn’t that much less visually busy?!</p>
+</section>
+<section id="colours" class="level2">
+<h2 class="anchored" data-anchor-id="colours">Colours</h2>
+<p>The random colours that QGIS gives you aren’t always pretty, so let’s change the colours.</p>
+<p>Choosing a colour palette can be difficult and overwhelming, but once you have one, you can keep using those colours to form a more harmonious looking map. What story are you telling? Do you want your map to be bright and saturated, or warm and earthy?</p>
+<p>The built in color ramps provide some good options I quite like <strong><code>rainfall</code></strong> (in Precipitation), <strong><code>Set1</code></strong> (in QGIS), and <strong><code>wiki-knutux</code></strong> (in Topography).</p>
+<p>Today we’re being fancy, we’re going to import and build our own Color Ramp and Color Palette.</p>
+<ul>
+<li><p>In you internet browser, navigate to <a href="https://colorbrewer2.org/#type=qualitative&amp;scheme=Set2&amp;n=8">colorbrewer2.org</a></p>
+<ul>
+<li><p>Set Number of data classes to 7</p></li>
+<li><p>Choose Set2 (should be the second from the right)</p></li>
+<li><p>Click and drag to highlight the 7 HEX codes listed (they should look like this #66c2a5)</p>
+<ul>
+<li>Copy those with Ctrl + C (or Cmd + C)</li>
+</ul></li>
+</ul></li>
+<li><p>Back in QGIS navigate to <code>Settings &gt; Options...</code></p>
+<ul>
+<li><p>Click the <code>Colors</code> from the left menu</p></li>
+<li><p>From the top right of the window click the <code>...</code> button and select <code>New Palette...</code>, name it <strong>Report Palette</strong></p></li>
+<li><p>Add your copied colours by clicking<img src="mActionEditPaste.png" class="img-fluid"> <code>Paste colors</code> on the right</p></li>
+<li><p>Click the <code>...</code> button again and tick the <code>Show in Color Buttons</code> box</p></li>
+<li><p>Click <code>OK</code></p></li>
+</ul></li>
+</ul>
+<p>We now have a custom palette we can use throughout our projects!</p>
+<p>Unfortunately we need to set up the Color Ramp separately.<br>
+</p>
+<ul>
+<li><p>Navigate to <code>Settings &gt; Style Manager...</code></p>
+<ul>
+<li><p>Click the <img src="images/symbologyAdd.png" class="img-fluid"> <code>Add item</code> button at the bottom and select <code>Color Presets...</code></p>
+<ul>
+<li><p>Select the colour that appeared there and remove it by pressing <img src="symbologyRemove.png" class="img-fluid"> <code>Remove color</code> at the bottom</p></li>
+<li><p>Add your copied colours by clicking<img src="mActionEditPaste.png" class="img-fluid"> <code>Paste colors</code></p></li>
+<li><p>Click <code>OK</code></p></li>
+</ul></li>
+<li><p>Change the <code>Destination</code> to <strong>Default</strong></p></li>
+<li><p>Give it a meaningful <code>Name</code> like <strong>Report Colour Ramp</strong></p></li>
+<li><p>Add the <code>Tag</code> <strong>Palettes</strong></p></li>
+<li><p>Tick <code>Add to favourites</code> (this means it will appear in the color ramp dropdown, and not just in the All Color Ramps section)</p></li>
+<li><p>Click <code>Save</code></p></li>
+</ul></li>
+<li><p>Click <code>Close</code></p></li>
+</ul>
+<p>You can also use the <code>Style Manager</code> to edit the default options and Favorites that appear in the Layer Styling window.</p>
+<p>Now we’ve set up our colours, we can start using them!</p>
 </section>
 <section id="change-the-symbology" class="level2">
 <h2 class="anchored" data-anchor-id="change-the-symbology">Change the Symbology</h2>
-<p>Our vector layers are assigned a random colour when we load them. We now want to make them look better.</p>
 <section id="point-geometry" class="level3">
 <h3 class="anchored" data-anchor-id="point-geometry">Point Geometry</h3>
+<section id="categories" class="level4">
+<h4 class="anchored" data-anchor-id="categories">Categories</h4>
 <ul>
-<li>Open the <code>Layer Styling</code> panel by pressing <strong>F7</strong></li>
-<li>Select the <strong>Artefacts</strong> layer from either the <code>Layer Styling</code> panel, or the <code>Layers</code> panel.</li>
-<li>In the <code>Layer Styling</code> panel, change <strong><code>Single Symbol</code></strong> to <code>Categorised</code></li>
+<li>Select the <strong>Artefacts</strong> layer from the <code>Layer Styling</code> panel</li>
+<li>In the <code>Layer Styling</code> panel, change <strong><code>Single Symbol</code></strong> to <code>Categorized</code></li>
 <li>From <code>Value</code> select <strong>Artefact Type</strong></li>
+<li>From <code>Color ramp</code> choose our <strong>Report Colour Ramp</strong></li>
 <li>Click the <strong><code>Classify</code></strong> button</li>
 </ul>
-<p>The random colours that QGIS gives you aren’t always pretty, so let’s change the colours</p>
-<ul>
-<li><p>Click the dropdown next to the <code>Color ramp</code></p></li>
-<li><p>Click <code>Create New Color Ramp...</code>, select <code>Catalog: ColorBrewer</code>, and click <code>OK</code></p></li>
-<li><p>Click the dropdown next to <code>Scheme name</code> and choose <strong><code>Set1</code></strong></p>
-<ul>
-<li>This is a qualitative colour scheme that is easy to distinguish, <strong>Dark 2</strong> and <strong>Paired</strong> are also good options, you can find out more about <a href="https://colorbrewer2.org">ColorBrewer here</a></li>
-</ul></li>
-<li><p>Click the <code>back arrow button</code> next to <strong>Edit Ramp</strong></p></li>
-</ul>
-<p>Now that we have a nice colour scheme, let’s give it a contrasting Stroke color, and a new shape. The default is usually black, but I find this to look harsh, let’s make it a darker shade of the <strong>Fill colour</strong></p>
-<ul>
-<li>Double click on the symbol of the <code>Artefact Scatter</code>
-<ul>
-<li>Click <strong>Simple Marker</strong> - this will allow us to change the fill, stroke, and shape of the marker
-<ul>
-<li>Click the dropdown next to <code>Stroke color</code>, click <code>Pick Color</code>, and then use the dropper to select the color from the <code>Fill Color</code> above, it should copy the colour!</li>
-</ul></li>
-<li>Now click directly on the <code>Stroke color</code> color box, this will take you to the <code>Select Stroke Color</code> window
-<ul>
-<li>Drag the slider next to <code>V</code> to give us a darker shade of red</li>
-<li>Click the <code>back arrow button</code> next to <strong>Artefact Scatter &gt; Select Stroke Color</strong></li>
-</ul></li>
-<li>From the bottom of the window select another shape, let’s go with the <strong>Triangle</strong></li>
-</ul></li>
-<li>Click the <code>back arrow button</code> next to <strong>Artefact Scatter</strong></li>
-</ul>
-<p>Repeat these steps for the <strong>Single Artefact</strong> - although you can leave the shape as a circle.</p>
+</section>
+<section id="symbols" class="level4">
+<h4 class="anchored" data-anchor-id="symbols">Symbols</h4>
+<p>With the <strong>Voyager (no labels)</strong> basemap, we can reduce the complexity of our symbology to make a cleaner looking map.</p>
 <p>If you want, you can change the properties of all symbols at once:</p>
 <ul>
 <li><p>Simply click in the white space below your symbol classes so that none are selected.</p></li>
-<li><p>If you click on the button next to <code>Symbol</code>, it will take you to <code>Symbol Settings</code></p>
+<li><p>If you click on the button next to <code>Symbol</code>, it will take you to <code>Symbol Settings</code><strong>WARNING</strong> if you edit any individual symbols before this step, it will reset any changes you made to those individual symbols.</p>
 <ul>
 <li><p>Try increasing the size of the symbols to 3mm</p></li>
-<li><p><strong>WARNING</strong> if you change the <strong>Stroke color</strong> here, it will change the stroke for all of your symbols, undoing your work from above.</p></li>
+<li><p>Click <code>Simple Marker</code> and change the <code>Symbol layer type</code> to <strong>Filled Marker</strong></p>
+<ul>
+<li><p>Now click <code>Simple Fill</code> and change its <code>Symbol layer type</code> to <strong>Outline: Simple Line</strong></p></li>
+<li><p>Change the <code>Stroke width</code>&nbsp;to <strong>0.4</strong></p></li>
+<li><p>This gives our points a very clean and simple appearance</p></li>
+</ul></li>
 </ul></li>
 <li><p>Click the <code>back arrow button</code> next to <strong>Symbol Settings</strong></p></li>
+</ul>
+<p>Now that we have a nice colour scheme, let’s give it a new shape. qg</p>
+<ul>
+<li>Double click on the symbol of the <code>Artefact Scatter</code>
+<ul>
+<li>Click <strong>Filled Marker</strong> - this will allow us to change many things including the shape of the marker
+<ul>
+<li>From the bottom of the window select a shape, let’s go with the <strong>Triangle</strong></li>
+</ul></li>
+</ul></li>
+<li>Click the <code>back arrow button</code> next to <strong>Artefact Scatter</strong></li>
+</ul>
+</section>
+</section>
+<section id="polygon-geometry" class="level3">
+<h3 class="anchored" data-anchor-id="polygon-geometry">Polygon Geometry</h3>
+<p>Depending on your map, you may want your polygon to remain solid, to be transparent, have hatched lines, or simply be an outline. As our project area has items inside it, but an unimportant basemap, we can use an outline with a slightly transparent background to bring focus.</p>
+<ul>
+<li>Open the <code>Layer Styling</code> panel by pressing <strong>F7</strong> (or fn+F7)</li>
+<li>Select the <strong>Project_area</strong> layer from either the <code>Layer Styling</code> panel, or the <code>Layers</code> panel.</li>
+<li>Under <code>Fill</code>, click <code>Simple Fill</code>
+<ul>
+<li>Set the <code>Stroke width</code> to <strong>0.8mm</strong></li>
+<li>Click the dropdown next to <code>Fill color</code> and select <strong>orange</strong> from our <strong>Report Palette</strong>
+<ul>
+<li>Click the colour again and change the <code>Opacity</code> to 15%</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>That’s nicer, but let’s make it <em>fancy.</em> Let’s add a dropshadow.</p>
+<ul>
+<li>Click the <img src="images/symbologyAdd-02.png" class="img-fluid"> <code>Add symbology layer</code> next to <code>Fill</code> to add another fill symbol<br>
+(You can add as many of these as you like, you can even change this with <code>Symbol layer type</code> to Arrows, Hashed lines, Filled lines, and more.)</li>
+<li>Click the new <strong>Simple Fill</strong>
+<ul>
+<li>Change <code>Symbol layer type</code> from <strong>Simple Fill</strong> to <strong>Outline: Simple Line</strong></li>
+<li>Set the <code>Stroke width</code> to 3</li>
+<li>Scroll to the bottom, tick <code>Draw Effects</code>, then click the <img src="images/mIconPaintEffects.png" class="img-fluid"> <code>Customise effects</code> button
+<ul>
+<li>Untick <code>Source</code></li>
+<li>Tick and select <code>Drop Shadow</code>
+<ul>
+<li>Change the <code>Blur Radius</code> to <strong>6mm</strong></li>
+<li>Change the <code>Opacity</code> to <strong>30%</strong></li>
+</ul></li>
+</ul></li>
+<li>Click the <code>back arrow button</code> next to <strong>Effects Properties</strong></li>
+</ul></li>
 </ul>
 </section>
 <section id="line-geometry" class="level3">
 <h3 class="anchored" data-anchor-id="line-geometry">Line Geometry</h3>
-<p>We can also make our lines look nice. Sometimes it can be as simple as picking a contrasting colour, and adding some more width. Sometimes it can be very useful to add some dashes to your line.</p>
+<p>We <em>can</em> make our lines stand out. Sometimes it can be as simple as picking a contrasting colour, changing the width, or adding more symbol layers (with dashes, or arrows, or horizontal lines).</p>
+<p>In this case, we want to keep the attention on the point data, let’s keep the paths, but reduce their contrast.</p>
 <ul>
 <li>Select the <strong>Paths</strong> layer from the <code>Layer Styling</code> panel</li>
 <li>Under <code>Line</code>, click <code>Simple Line</code>
 <ul>
-<li>Change the <code>Color</code> to a colour that is different to your points, and stands out from the map. I’m going to use orange</li>
-<li>Increase the <code>Stroke width</code> to 1mm - it looks big now, but will look better on your exported map later</li>
-<li>Click the <strong>green +</strong> next to <code>Line</code> to add another line symbol<br>
-(You can add as many simple lines, as you like, you can even change this with <code>Symbol layer type</code> to Arrows, Hashed lines, Filled lines, and more.)
-<ul>
-<li>Increase the <code>Stroke width</code> to 1mm to match</li>
-<li>Change the <code>Stroke style</code> from <strong>Solid Line</strong> to <strong>Dashed Line</strong></li>
-<li>Change <code>Cap style</code> from <strong>Square</strong> to <strong>Round</strong></li>
-<li>Tick <code>Use custom dash pattern</code></li>
-<li>Click on the <strong>dashed line</strong> below the tick box<br>
-I like to set my <strong>Dash</strong> to 3mm and my <strong>Space</strong> to 5mm</li>
+<li>Change the <code>Color</code> to a colour in your <strong>Report Palette</strong> that is different to your points, I’m going to use <strong>green</strong></li>
+<li>Increase the <code>Stroke width</code> to <strong>0.4mm</strong></li>
 </ul></li>
-</ul></li>
+<li>To reduce the focus on the paths, in the <code>Layers</code> panel, drag the <strong>Paths</strong> layer <strong>below</strong> the <strong>Project_area</strong> layer</li>
 </ul>
 </section>
-<section id="polygon-geometry" class="level3">
-<h3 class="anchored" data-anchor-id="polygon-geometry">Polygon Geometry</h3>
-<p>Depending on your map, you may want your polygon to remain solid, to be transparent, have hatched lines, or simply be an outline. As our project area has items inside it, it is probably best suited as an outline.</p>
-<ul>
-<li>Select the <strong>Project_area</strong> layer from the <code>Layer Styling</code> panel</li>
-<li>Under <code>Fill</code>, click <code>Simple Fill</code>
-<ul>
-<li>Change <code>Fill style</code> from <strong>Solid</strong> to <strong>No Brush</strong>
-<ul>
-<li>Note that this is where you could add horizontal, diagonal, or many other styles as a fill.</li>
-</ul></li>
-<li>Change <code>Stroke color</code> to something bright, like <strong>Yellow</strong></li>
-<li>Increase the <code>Stroke width</code> to 1mm</li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="labels" class="level2">
-<h2 class="anchored" data-anchor-id="labels">Labels</h2>
-<p>Let’s add some labels to our data.</p>
-<ul>
-<li>Select the <strong>Artefacts</strong> layer from the <code>Layer Styling</code> panel
-<ul>
-<li>In the <code>Layer Styling</code> panel, click the <strong>yellow abc</strong> <code>Labels</code> tab
-<ul>
-<li>Change <code>No Labels</code> to <code>Single Labels</code></li>
-<li>Change the <code>Value</code> to <strong>fid</strong></li>
-<li>Change the <code>Color</code> to <strong>white</strong></li>
-<li>Just below the <code>Value</code> dropdown, click the third <strong>abc</strong> tab for <code>Buffer</code>
-<ul>
-<li>Tick the <code>Draw text buffer</code> box</li>
-<li>Change the <code>Size</code> to <strong>0.8</strong></li>
-<li>Change the <code>Color</code> to <strong>black</strong> - you could have reversed the two colours, but I prefer this contrast</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</section>
-<section id="styles" class="level2">
-<h2 class="anchored" data-anchor-id="styles">Styles</h2>
-<p>If you want to try different looks for a feature, but not have to undo everything, you can save them as <strong>Styles</strong></p>
-<ul>
-<li>In the <code>Layers</code> panel, <code>Right click on Project_area &gt; Styles &gt; Add...</code></li>
-<li>Name the style <strong>Project Point</strong></li>
-<li>Select the <strong>Project_area</strong> layer from either the <code>Layer Styling</code> panel
-<ul>
-<li>Under <code>Fill</code>, click <code>Simple Fill</code></li>
-<li>Change <code>Symbol layer type</code> from <strong>Simple Fill</strong> to <strong>Centroid Fill</strong></li>
-<li>Click <strong>Simple Marker</strong> and change the <code>Size</code> to 3 - you can also change the <strong>Stroke color</strong> if you like</li>
-</ul></li>
-</ul>
-<p>Now we have a point as the centre of our polygon, we can edit this style and revert back to the original whenever we like</p>
 </section>
 <section id="themes" class="level2">
 <h2 class="anchored" data-anchor-id="themes">Themes</h2>
-<p>Themes work similarly to styles, but instead of changing the layer styling, it changes the layers present. We can use themes to create multiple looks for our map that we can easily swap between. Let’s create a map for our future <strong>Inset Map</strong></p>
+<p>We can use themes to create multiple looks for our map that we can easily swap between. Let’s create a map for our <strong>Data Map</strong></p>
 <ul>
-<li>In the <code>Layers</code> panel, hide the <strong>Paths</strong> and <strong>Artefacts</strong> layers by unticking the boxes next to them.</li>
-<li>Now click the <strong>Eye</strong> icon (Manage Map Themes) at the top of the <code>Layers</code> panel, and click <code>Add theme...</code>
+<li>Click the <strong>Eye</strong> icon (Manage Map Themes) at the top of the <code>Layers</code> panel, and click <code>Add theme...</code>
 <ul>
-<li>Let’s name our new theme <strong>Inset</strong>, and click <code>OK</code></li>
-</ul></li>
-<li>Change the <strong>Project_area</strong> back to our original <strong>Default</strong> style:
-<ul>
-<li><code>Right click on Project_area &gt; Styles (2) &gt; default</code>The map should return to how it looked before.</li>
+<li>Let’s name our new theme <strong>Data Main</strong>, and click <code>OK</code></li>
 </ul></li>
 </ul>
-<p>Nothing exciting will happen <em>yet</em>, but we will be able to use this later.</p>
+<p>Nothing exciting has happened <em>yet</em>, let’s change the layers a little to see the power of Themes.</p>
 </section>
-<section id="basemaps" class="level2">
-<h2 class="anchored" data-anchor-id="basemaps">Basemaps</h2>
-<p>Unless we really need everything on the <strong>OpenStreetMap</strong>, it is too busy, and distracting. Let’s load in a new basemap. There are many ways of doing this, in the past we’ve used the <strong>QuickMapServices</strong> plugin to load in new basemaps, and used <strong>XYZ tiles</strong> to load in basemaps, now we can go to the next step and source them externally.</p>
-<p>Today we’re going to use a <strong>WMTS (Web Map Tile Service)</strong> from ESRI.</p>
+<section id="styles" class="level2">
+<h2 class="anchored" data-anchor-id="styles">Styles</h2>
+<p><strong>Styles</strong> work similarly to <strong>Themes</strong>, but instead of changing which layers are layers present, it changes between different Layer Styling options.</p>
+<p>If you want to try different looks for a feature, but not have to undo everything, you can save them as <strong>Styles</strong></p>
 <ul>
-<li>Scroll down the <code>Browser</code> panel until your see <strong>WMS/WMTS</strong></li>
-<li>Right click WMS/WMTS and select <code>New Connection...</code>
+<li>In the <code>Layers</code> panel, <code>Right click on Project_area &gt; Styles &gt; Rename Current...</code>
 <ul>
-<li>In <code>Name</code> type <strong>ESRI World Imagery</strong></li>
-<li>In <code>URL</code> paste:<br>
-https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml</li>
-<li>Click <code>OK</code></li>
+<li>Let’s start by chaning the name of our current style from <strong>default</strong> to <strong>Data Main</strong></li>
 </ul></li>
-<li>In the <code>Browser</code> panel, navigate <code>WMS/WMTS &gt; ESRI World Imagery</code> and double click on <strong>default028mm</strong>
+<li>Let’s create a new style, <code>Right click on Project_area &gt; Styles &gt; Add...</code>
 <ul>
-<li>This is a very high resolution aerial basemap, however when you zoom closely in many areas it will often show “Map data not yet available” at a scale around <strong>1:300</strong></li>
-<li>The <strong>GoogleMapsCompatible</strong> is the same map at lower resolution, however it doesn’t have the “Map data not yet available” issue</li>
+<li>Name the style <strong>Data Inset</strong>
+<ul>
+<li>Now any Layer Style edits we do will be attached to the <strong>Data Inset</strong> style</li>
 </ul></li>
-<li>Arrange the layers so that the <strong>World Imagery</strong> layer is under your other layers (you can hide the <strong>OpenStreetMap</strong> now)</li>
+</ul></li>
+<li>Select the <strong>Project_area</strong> layer from the <code>Layer Styling</code> panel
+<ul>
+<li>Under <code>Fill</code>, click <code>Simple Fill</code></li>
+<li>Click the <code>Arrow Up</code> on the right to move it above <code>Simple Line</code></li>
+<li>Change the <code>Fill color</code> to an <code>Opacity</code> of <strong>100%</strong></li>
+<li>Change the <code>Stroke width</code> to <strong>0.4mm</strong></li>
+</ul></li>
 </ul>
-</section>
-<section id="themes-again" class="level2">
-<h2 class="anchored" data-anchor-id="themes-again">Themes (again)</h2>
-<p>Now that we’ve made some changes, we can see what themes do.</p>
+<p>Now we have a slightly different style to our <strong>Project_area</strong> that will look better in an inset map. We can edit this style and revert back to the original <strong>Data Main</strong> style whenever we like, we will explore how to use that with Themes next.</p>
+<section id="themes-again" class="level3">
+<h3 class="anchored" data-anchor-id="themes-again">Themes (again)</h3>
+<p>Now that we’ve made some style changes, we can see what themes do.</p>
 <ul>
-<li>In the <code>Layers</code> panel, click the <strong>Eye</strong> icon (Manage Map Themes), click <code>Add theme...</code></li>
-<li>Let’s name our new theme <strong>Main</strong>, and click <code>OK</code></li>
+<li><p>In the <code>Layers</code> panel, hide the <strong>ESRI World Imagery</strong>, <strong>Paths</strong> and <strong>Artefacts</strong> layers by unticking the boxes next to them.</p></li>
+<li><p>Unhide the <strong>Light Gray Basemap</strong></p></li>
+</ul>
+<!-- -->
+<ul>
+<li>Click the <strong>Eye</strong> icon (Manage Map Themes) at the top of the <code>Layers</code> panel, and click <code>Add theme...</code>
+<ul>
+<li>Let’s name our new theme <strong>Data Inset</strong>, and click <code>OK</code></li>
+</ul></li>
 <li>Now, click the <strong>Eye</strong> icon again
 <ul>
-<li>You will see that there are two check box options at the bottom: <strong>Inset</strong> and <strong>Main</strong></li>
+<li>You will see that there are two check box options at the bottom: <strong>Data Inset</strong> and <strong>Data Main</strong></li>
 <li>You can cycle between these two themes by choosing one or the other</li>
-<li>If you want to update a theme, simply hide/unhide the layers you want, go to <code>Eye icon &gt; Replace theme...</code> and then select the theme you want to overwrite.</li>
+<li>If you want to update a theme, simply hide/unhide layers, change the layer Styles, go to <code>Eye icon &gt; Replace theme...</code> and then select the theme you want to overwrite.</li>
 </ul></li>
 <li>Save your project</li>
 </ul>
+</section>
 </section>
 <section id="layout-manager" class="level2">
 <h2 class="anchored" data-anchor-id="layout-manager">Layout Manager</h2>
@@ -822,7 +892,7 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 <ul>
 <li>Navigate to <code>Project &gt; Layout Manager...</code>
 <ul>
-<li>Under <strong>New from Template</strong> click <code>Create</code>, name the map <strong>Project Map</strong></li>
+<li>Under <strong>New from Template</strong> click <code>Create</code>, name the map <strong>Data Map</strong></li>
 </ul></li>
 <li>This will open the <strong>Layout Manager</strong></li>
 </ul>
@@ -833,18 +903,26 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 <li>Navigate to <code>Layout &gt; Page Properties..</code>
 <ul>
 <li>Here we can choose the size and orientation of our map.</li>
-<li>A4 is sensible, and it means you know the map will fit neatly into a report.</li>
-<li>Portrait means you can have a full page map without rotating the page in your report. But some spatial layouts make more sense in Landscape. Use your judgement.</li>
+<li><strong>Size:</strong> A4 is often sensible, as it means you know the map will fit neatly into a report.
+<ul>
+<li>However you may need to make the size suit the data, or the requirements of where you’re submitting the map</li>
+<li>We’ll make ours <strong>200x200</strong></li>
+</ul></li>
+<li><strong>Orientation:</strong> Portrait means you can have a full page map without rotating the page in your report. But some spatial layouts make more sense in Landscape. Use your judgement.
+<ul>
+<li>Today we have manually changed the size, so this isn’t needed.</li>
+</ul></li>
 </ul></li>
 </ul>
 </section>
 <section id="guides" class="level3">
 <h3 class="anchored" data-anchor-id="guides">Guides</h3>
-<p>Guides seem unnecessary, but they make lining things up, much much easier.</p>
+<p>Guides seem unnecessary, but they make lining things up much much easier.</p>
+<p>We will use a guide to place our map details.</p>
 <ul>
 <li>In the right menu, click <code>Guides</code></li>
-<li>Click the <strong>green +</strong> under <strong>Horizontal Guides</strong> (if your canvas is a Landscape, choose <strong>Vertical Guides</strong> for this step)</li>
-<li>A new row should appear, click on the <strong>0</strong> and change it to <strong>235</strong></li>
+<li>Click <img src="images/symbologyAdd-01.png" class="img-fluid"> <code>Add new guide</code> under <strong>Vertical Guides</strong> (if your canvas is a Landscape, or you want your legend at the bottom, choose <strong>Horizontal Guides</strong> for this step)</li>
+<li>A new row should appear, click on the <strong>0</strong> and change it to <strong>140</strong></li>
 </ul>
 </section>
 <section id="map" class="level3">
@@ -854,7 +932,7 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 <ul>
 <li>Your mouse will now be a <strong>+</strong></li>
 <li>If you hover over the top corner of the canvas, the mouse should snap to the corner</li>
-<li>Click and drag until your mouse snaps to the corner created by the side of the canvas, and the guide you added</li>
+<li>Click and drag until your mouse snaps to the corner created by the bottom of the canvas, and the guide you added</li>
 </ul></li>
 <li>In the <code>Items</code> panel on the right, double click on <strong>Map 1</strong> and rename it <strong>Main</strong>
 <ul>
@@ -882,31 +960,26 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 </ul></li>
 <li>I like to then round the <strong>Scale</strong> up to a nice round number from something like 3814 to 4000</li>
 </ul></li>
+<li>While you’re here, scroll to the bottom of the <code>Item Properties</code>, and tick the box for <code>Frame</code>, it adds a simple border to our map</li>
 </ul>
 </section>
 <section id="inset-map" class="level3">
 <h3 class="anchored" data-anchor-id="inset-map">Inset Map</h3>
-<p>You can add your inset map to the blank space at the bottom (or side) of you map canvas, or you can put it on top of you main map in unused space. However, we don’t have an edge to snap our inset map on to, so guides are useful here too.</p>
+<p>You can add your inset map to the blank space at the side of you map canvas, or you can put it on top of you main map in unused space. We don’t have a lot of space around our map, so we’ll put it to the right. Guides are useful here too.</p>
 <ul>
 <li>In the right menu, click <code>Guides</code>
 <ul>
-<li>Click the <strong>green +</strong> under <strong>Horizontal Guides</strong>
+<li>Click <img src="images/symbologyAdd-03.png" class="img-fluid"> <code>Add new guide</code> under <strong>Horizontal Guides</strong> <em>twice</em>
 <ul>
-<li>A new row should appear, click on the <strong>0</strong> and change it to <strong>10</strong></li>
-</ul></li>
-<li>Click the <strong>green +</strong> under <strong>Vertical Guides</strong>
-<ul>
-<li>A new row should appear, click on the <strong>0</strong> and change it to <strong>10</strong></li>
+<li>In the new row changethe <strong>0</strong> to <strong>155</strong></li>
+<li>In the other new row change the <strong>0</strong> to <strong>95</strong></li>
 </ul></li>
 </ul></li>
-</ul>
-<p>We don’t need more guides unless you want a precise inset map size, but I’m happy so it’s aligned evenly with the top and side border.</p>
-<ul>
 <li>Add your map by clicking the map icon in the left menu, or navigating <code>Add Item &gt; Add Map</code>
 <ul>
-<li>Hover over the corner created by your guides, the mouse should snap to the corner
+<li>Hover over the corner created by top horizontal guide and the vertical guide, the mouse should snap to the corner
 <ul>
-<li>Click and drag until you’re happy with the size of your inset window (without overlapping any important features on the main map)</li>
+<li>Click and drag until your mouse snaps to the corner created by the side of the canvas, and the lower guide you added</li>
 </ul></li>
 </ul></li>
 <li>Zoom out on the inset map, by selecting it from the <code>Items</code> tab and following the same approach as the <strong>Main map</strong>
@@ -914,10 +987,6 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 <li>Or by using <strong>Move item content</strong> button on the left menu (or press <code>C</code> on your keyboard), clicking on the inset and using the scroll wheel</li>
 </ul></li>
 <li>In the <code>Items</code> panel on the right, double click on <strong>Map 2</strong> and rename it <strong>Inset</strong></li>
-<li>Scroll to the bottom of the <code>Item Properties</code> panel and tick the <code>Frame</code> box
-<ul>
-<li>This gives our inset a nice border which we can customise further</li>
-</ul></li>
 </ul>
 <p>Now we have our maps added, we can bring our themes in to play again.</p>
 </section>
@@ -934,20 +1003,31 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 </ul>
 <p>This is also a big advantage for using <strong>Styles</strong>, as the point is a better representation of our site on the inset map.</p>
 </section>
+<section id="text" class="level3">
+<h3 class="anchored" data-anchor-id="text">Text</h3>
+<p>Before we add any text, it’s worth thinking about what you want the font to be. You can manually set the font for each item in your Layout, or you can set the default font.</p>
+<ul>
+<li><p>Navigate to <code>Settings &gt; Options</code></p>
+<ul>
+<li><p>From the left menu, select <code>Layouts</code></p></li>
+<li><p>Change the default font to your preferred font. I’m going to select <strong>Sitka Text Semibold</strong></p></li>
+</ul></li>
+</ul>
+</section>
 <section id="title" class="level3">
 <h3 class="anchored" data-anchor-id="title">Title</h3>
 <ul>
-<li>Add a text box to your map by clicking the <code>Add Label</code> icon in the left menu, or navigating <code>Add Item &gt; Add Label</code></li>
-<li>Click and drag in the empty canvas below the map where you want to put your title
+<li><p>Add a text box to your map by clicking the <code>Add Label</code> icon in the left menu, or navigating <code>Add Item &gt; Add Label</code></p></li>
+<li><p>Click and drag in the empty canvas below the map where you want to put your title</p>
 <ul>
 <li>In the <code>Item Properties</code> panel remove the <strong>Lorem ipsum</strong> text, and add <strong>Brisbane Botanic Gardens</strong></li>
 <li>Under <strong>Appearance</strong> click the <code>Font</code> box to open the <code>Label Font</code> window
 <ul>
-<li>Change the text size to 18, you can make other font changes here too</li>
+<li>Change the text size to <strong>18</strong>, you can make other font changes here too</li>
 <li>Click the <code>back arrow button</code> next to <code>Label Font</code></li>
 </ul></li>
 </ul></li>
-<li>In the <code>Items</code> panel on the right, double click on <strong>Brisbane Botanic Gardens</strong> and rename it <strong>Title</strong></li>
+<li><p>In the <code>Items</code> panel on the right, double click on <strong>Brisbane Botanic Gardens</strong> and rename it <strong>Title</strong></p></li>
 </ul>
 <p>Okay, that’s a some fairly basic text, let’s do something interesting with the descriptive text.</p>
 </section>
@@ -956,7 +1036,7 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 <ul>
 <li>Add another text box to your map by clicking the <code>Add Label</code> icon in the left menu, or navigating <code>Add Item &gt; Add Label</code>
 <ul>
-<li>Click and drag in the empty canvas below the title</li>
+<li>Click and drag in the empty canvas below the inset map</li>
 <li>In the <code>Items</code> panel on the right, double click on “<strong>Lorem ipsum</strong>” and rename it <strong>Description</strong>
 <ul>
 <li>In the <code>Item Properties</code> panel remove the “<strong>Lorem ipsum</strong>” text and then enter:
@@ -965,7 +1045,6 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 <li><strong>Date:</strong></li>
 <li><strong>Scale: 1:</strong></li>
 <li><strong>Datum:</strong></li>
-<li><strong>Sources:</strong></li>
 <li>Normally we’d have to enter the details for each of these manually, but we can use <strong>Dynamic Text</strong> to do it for us</li>
 </ul></li>
 </ul></li>
@@ -991,13 +1070,38 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 <li>The code will look like this: <code>[%item_variables('Main')['map_crs_description']%]</code> which automatically adds the main map’s CRS</li>
 </ul></li>
 </ul></li>
+</ul></li>
+<li>Under <strong>Appearance</strong>:
+<ul>
+<li>Set the <code>Horizontal margin</code> and <code>Vertical margin</code> to <strong>2mm</strong></li>
+</ul></li>
+</ul>
+<p>Let’s add another text box for our sources, but we’ll make the font smaller</p>
+<ul>
+<li>Add another text box to your map by clicking the <code>Add Label</code> icon in the left menu, or navigating <code>Add Item &gt; Add Label</code>
+<ul>
+<li>Click and drag in the empty canvas below the inset map</li>
+<li>In the <code>Items</code> panel on the right, double click on “<strong>Lorem ipsum</strong>” and rename it <strong>Sources</strong></li>
+<li>In the <code>Item Properties</code> panel remove the “<strong>Lorem ipsum</strong>” text and then enter:
+<ul>
+<li><strong>Sources:</strong></li>
+</ul></li>
+</ul></li>
 <li>Click next to <strong>Sources:</strong>
 <ul>
 <li>Click <code>Dynamic Text &gt; Layer Credits</code>
 <ul>
 <li>The code will look like this: <code>[%array_to_string(map_credits())%]</code> which automatically adds the sources built in to some of the data used</li>
 <li>Note that this is built into the Metadata (layer <code>Properties &gt; Metadate &gt; Access</code> under <strong>Rights</strong>) of the baselayers, and the layers we downloaded. Not all layers will necessarily have this information, and sometimes it’s very detailed and clunky.</li>
+<li>It may be simpler to manually enter this to your map.</li>
 </ul></li>
+</ul></li>
+<li>Under <strong>Appearance</strong>:
+<ul>
+<li>Set the <code>Horizontal margin</code> and <code>Vertical margin</code> to <strong>2mm</strong></li>
+<li>Click <code>Font</code>
+<ul>
+<li>Set the <code>Size</code> to <strong>8mm</strong></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1005,11 +1109,11 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 </section>
 <section id="shapes" class="level3">
 <h3 class="anchored" data-anchor-id="shapes">Shapes</h3>
-<p>We can add a border around our information section. This isn’t necessary, but it looks nice!</p>
+<p>We can add a border around our layout. This isn’t necessary, but it looks nice! It also has greater customisability than the map frame options.</p>
 <ul>
 <li>Add a rectangle to your map by clicking the <code>Add Shape</code> icon in the left menu, or navigating <code>Add Item &gt; Add Shape &gt; Add Rectangle</code>
 <ul>
-<li>Hover over the corner created by the bottom of the map and the side of the canvas, the mouse should snap to the corner</li>
+<li>Hover over the top left corner of the canvas, the mouse should snap to the corner</li>
 <li>Click and drag until your mouse snaps to the opposite corner of the canvas</li>
 </ul></li>
 <li>In the <code>Items</code> panel, click the box next to <code>Style</code>, this will take you to the <code>Symbol Settings</code> window
@@ -1017,10 +1121,23 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 <li>Click <strong>Simple Fill</strong>
 <ul>
 <li>Change <code>Symbol layer type</code> from <strong>Simple Fill</strong> to <strong>Outline: Simple Line</strong></li>
-<li>Change the <code>Color</code> to a nice dark green</li>
-<li>Increase the <code>Stroke width</code> to 5mm</li>
-<li>Scroll to the bottom and tick the <code>Draw line only inside polygon</code> box</li>
+<li>Increase the <code>Stroke width</code> to 1mm</li>
+<li>Scroll to the bottom, tick <code>Draw Effects</code>, then click the <img src="images/mIconPaintEffects.png" class="img-fluid"> <code>Customise effects</code> button
+<ul>
+<li>Untick <code>Source</code></li>
+<li>Tick and select <code>Outer Glow</code>
+<ul>
+<li>Change the <code>Spread</code> to <strong>0.8mm</strong></li>
+<li>Change the <code>Blur Radius</code> to <strong>2.5mm</strong></li>
+<li>Change the <code>Single color</code> to <strong>Black</strong></li>
 </ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>In the <code>Items</code> panel, change the name from &lt;Rectangle&gt; to <strong>Outline</strong>
+<ul>
+<li>Then tick the lock box next to the <strong>Outline</strong></li>
+<li>This is mean that it stays on top of everything else, but you won’t select it every time you click the map canvas</li>
 </ul></li>
 </ul>
 </section>
@@ -1031,29 +1148,59 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 </ul>
 <p>The legend always has too much detail to start. Let’s clean it up.</p>
 <ul>
-<li>In the <code>Item Properties</code> panel, change the <code>Title</code> to <strong>Legend</strong></li>
-<li>Under <strong>Legend Items</strong> untick <code>Auto update</code>
+<li>In the <code>Item Properties</code> panel, under <strong>Legend Items</strong> untick <code>Auto update</code>
 <ul>
 <li>Click the drop down next to <strong>Artefacts</strong>, select the empty item, and then click the <strong>red –</strong> to remove it</li>
-<li>Remove the <strong>Imagery</strong> and the <strong>OpenStreetMap</strong> layer too</li>
+<li>Remove the <strong>Imagery</strong> layers too</li>
 <li>Right click on <strong>Artefacts</strong> and select <strong>Hidden</strong>, we don’t need to see the group name</li>
 <li>Double click on <strong>Project_area</strong> and rename it to <strong>Project Area</strong></li>
+<li>Double click on <strong>Paths – paths</strong> and rename it to <strong>Footpaths</strong></li>
 </ul></li>
-<li>Scroll down to <strong>Fonts and Text Formatting</strong>, under <strong>Legend Title</strong> click the <strong>Title font</strong> button
+<li>Scroll down to <strong>Fonts and Text Formatting</strong>, under <strong>Item Labels</strong> click the <strong>Item font</strong> button
 <ul>
-<li>Change the <code>Size</code> to <strong>13</strong>
-<ul>
-<li>You can change the <strong>Item Labels</strong> font size too, but <strong>12</strong> is fine here</li>
+<li>Change the <code>Size</code> to <strong>15</strong></li>
 </ul></li>
-</ul></li>
-<li>Scroll down to <strong>Spacing</strong>
+<li>Scroll down to <strong>Symbol</strong>
 <ul>
-<li>Change <strong>Legend Title</strong> <code>Space below</code> to <strong>2</strong>
-<ul>
-<li>You can change the <strong>Legend Items</strong> space between symbols too, but <strong>2.5</strong> is fine here</li>
-</ul></li>
+<li>Change<code>Symbol width</code> to 10</li>
+<li>Change<code>Symbol height</code> to 12</li>
 </ul></li>
 </ul>
+<section id="custom-legend-symbols" class="level4">
+<h4 class="anchored" data-anchor-id="custom-legend-symbols">Custom Legend Symbols</h4>
+<p>Okay, we have a legend, but let’s get really fancy with a custom polygon legend.</p>
+<ul>
+<li><p>Save your Layout</p>
+<ul>
+<li><code>Layout &gt; Save Project</code></li>
+</ul></li>
+<li><p>Navigate back to QGIS (it’s still open in another window)</p>
+<ul>
+<li><p>Select the <strong>Project_area</strong> in the <code>Layers</code> Panel</p></li>
+<li><p>From the top toolbars open the <img src="images/mActionCalculateField.png" class="img-fluid"> <code>Field Calculator</code></p>
+<ul>
+<li><p>In the <code>Expression</code> window paste <strong>geom_to_wkt($geometry)</strong></p></li>
+<li><p>Under the <code>Expression</code> window, <strong>right click</strong> on the text next to <strong>Preview</strong>: (it should start with “MultiSurface”</p>
+<ul>
+<li>Select <strong>Copy Expression Value</strong></li>
+</ul></li>
+<li><p>Close the <strong>Field Calculator</strong></p></li>
+</ul></li>
+</ul></li>
+<li><p>Back in the <strong>Layout Manager</strong>, in the <code>Item Properties</code> panel, double click on <strong>Project Area</strong></p>
+<ul>
+<li>Under <strong>Patch</strong>, click the <code>Shape</code> box
+<ul>
+<li>There should be a large <code>Shape</code> box with some “Polygon” details inside. Delete this.</li>
+<li>Paste what you copied from the <strong>Field Calulator</strong> - it should be many lines</li>
+<li>Be careful to delete the single quotes ’ at the start and end of what you’ve just pasted in</li>
+<li>Tick the <code>Preserve aspect ratio</code> box</li>
+</ul></li>
+<li>Click the back arrow button</li>
+</ul></li>
+<li><p>Click the back arrow button again</p></li>
+</ul>
+</section>
 </section>
 <section id="north-arrow" class="level3">
 <h3 class="anchored" data-anchor-id="north-arrow">North Arrow</h3>
@@ -1064,6 +1211,10 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 <li>In the <code>Item Properties</code> panel, under the <code>SVG Images</code> box, type <strong>arrow</strong> in the search bar
 <ul>
 <li>Choose a North arrow you like</li>
+<li>Scroll down to <strong>SVG Parameters</strong>
+<ul>
+<li>Set the <code>Fill color</code> and <code>Stroke color</code> to <strong>Black</strong></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1074,20 +1225,28 @@ https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/W
 <li>Add a scale bar to your map by clicking the <strong>Add Scale Bar</strong> icon in the left menu, or navigating <code>Add Item &gt; Add Scale Bar</code>
 <ul>
 <li>You can click and drag in the blank space under the map, although the scale bar size will be set in a moment</li>
-<li>In the <code>Item Properties</code> panel, choose the appropriate <code>Scalebar units</code> - usually <strong>Metres</strong> or <strong>Kilometres</strong>
+</ul></li>
+<li>In the <code>Item Properties</code> panel:
 <ul>
-<li>Under <strong>Segments</strong>, change the right <code>Segments</code> from <strong>right 2</strong> to <strong>right 4</strong></li>
-<li>Change <code>Fixed width</code> to <strong>50</strong> units (on this map, I have used 50 metre intervals, as that feels understandable)</li>
+<li>Change the <code>Style</code> from <strong>Single Box</strong> to <strong>Line Ticks Up</strong></li>
+<li>Scroll down to <strong>Appearance:</strong>
+<ul>
+<li>Change the <code>Label margin</code> to <strong>0mm</strong></li>
+<li>Change <code>Distance label placement</code> from <strong>Above Segment Edges</strong> to <strong>Below Segment Edges</strong></li>
 </ul></li>
 </ul></li>
 </ul>
 </section>
 <section id="finessing" class="level3">
 <h3 class="anchored" data-anchor-id="finessing">Finessing</h3>
-<p>You will remember that we orignally made the points and lines quite large, but you will see that on this export map they are a more reasonable size. This is because we set them to millimetres, which will scale with our screen resolution when we zoom on the original map, but will scale to the size of our fixed dimensions A4 page in the <code>Layout Manager</code>.</p>
-<p>Our point labels need to be resized too. Return to the <code>qgis_reports</code> window and try changing their font size to <strong>12</strong> in the <code>Labels</code> tab of the <code>Layer Styling</code> panel.</p>
-<p>If the change doesn’t flow through when you return to the <code>Layout Manager/Project Map</code> window, try clicking the refresh button in the top menu.</p>
-<p>Move anything you need around to get it looking sharp. You could try using <code>Guides</code> if needed.</p>
+<ul>
+<li><p>Go to <code>Layout</code> and scroll down to <strong>Resize Layout to Content</strong></p>
+<ul>
+<li><p>Set the <code>Top</code>, <code>Right</code>, <code>Left</code> and <code>Bottom Margin</code> to <strong>2mm</strong></p></li>
+<li><p>Click <code>Resize layout</code></p></li>
+<li><p>Now we can see the dark glow we added to the <strong>Outline</strong>, without interfering with our neat 200x200 layout</p></li>
+</ul></li>
+</ul>
 <p>Save your project.</p>
 <ul>
 <li><code>Layout &gt; Save Project</code></li>
