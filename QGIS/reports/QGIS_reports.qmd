@@ -9,116 +9,186 @@ author: UQ Library
 
 This is an intermediate level tutorial. Before completing this tutorial, we recommend our [QGIS: Introduction to Mapping](../intro/QGIS_intro.qmd) tutorial. This tutorial is designed for **QGIS 3.40**. If you need to install it on your computer, go to the [QGIS website](https://qgis.org/download/).
 
-We will start as always by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.
+We will start a little bit differently today, as we're going to get straight into a project. The **data** and **project** for this session can be directly downloaded from [this link](https://github.com/uqlibrary/technology-training-assets/raw/refs/heads/master/QGIS/reports/report_data.zip). This highlights one of the big benefits of creating a good folder structure for your project – it's much easier to share!
 
--   Open QGIS and create a **new project** with `Project > New`.
+Please extract the folder from the zip file.
 
--   Let's now **save** our project: `Project > Save`.
+As always we have our classic setup:
 
--   Create a new folder, let's call it "**qgis_reports**".
+-   "**data**" - for all the data we will use to make our maps, split into:
 
-::::::: columns
-::: {.column width="60%"}
--   Inside that folder, create these folders:
+    -   "**raw**" - raw data from your research or the internet
 
-    -   "**data**" - for all the data we will use to make our maps, split into:
+    -   "**processed**" - any data you've modified
 
-        -   "**raw**" - raw data from your research or the internet
+-   "**output**" - for any maps or images we export
 
-        -   "**processed**" - any data you've modified
+-   "**temp**" - this folder isn't necessary, but when you're playing around and testing, it can stop things getting messy.
 
-    -   "**output**" - for any maps or images we export
+<!-- -->
 
-    -   "**temp**" - this folder isn't necessary, but when you're playing around and testing, it stops things getting messy.
+-   Finally, we have our .qgz project file named "**qgis_reports_map.qgz**" inside the "**qgis_reports**" folder (the highest level folder) so it's only looking down into folders for data, not back out.
 
--   Finally, let's save our .qgz project file inside the "**qgis_reports**" folder, named "**qgis_reports_map.qgz**"
-:::
+Let's open our **qgis_reports_map.qgz** file and get started.
 
-::: {.column width="5%"}
-<!-- empty column to create gap -->
-:::
-
-::: {.column width="30%"}
-![](images/folder.png)
-:::
-
-::: {.column width="5%"}
-<!-- empty column to create gap -->
-:::
-:::::::
-
-Your .qgz file should always be in the highest level folder, so it's only looking down into folders for data, not back out.
-
-This might feel unnecessary now, but things quickly get out of control and hard to find if you don't have a good folder structure.
-
-Let's add an **OpenStreetMap** basemap to locate ourselves on the globe:
-
--   `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
-
-And finally change our CRS to match our project area (Brisbane) for today to EPSG:7856 - GDA2020 / MGA zone 56
-
--   `Project > Properties` click the `CRS` tab, filter for **7856**, select **`EPSG:7856 - GDA2020 / MGA zone 56`** and click `OK`
-
-## Today's Aims
+## Today's Learning Goals
 
 Main aims:
 
 -   Create a pretty map for output
 -   Automate our map description
+-   Use templates
 
 If we have time:
 
 -   Learn to use Web Mapping Services
 -   Georeference an Image
 
-## Download the Data
+## The Brief
 
-Today we're going to focus on making a pretty map, so let's start by populating our map with some pre-generated data.
+We need to use our spatial files to make a map that:
 
-The **data** for this session can be directly downloaded from [this link](https://github.com/uqlibrary/technology-training-assets/raw/refs/heads/master/QGIS/reports/report_data.zip).
+-   Shows the project outline
 
-Once downloaded, extract the archive into your **raw** folder within your **data** folder.
+-   Highlights the access paths
 
-Within QGIS, go to the **Browser** panel, open **`Project Home > data > raw`,** then drag and drop each of your files into themap canvas.
+-   Categorises the artefacts
 
-You should have three new layers: **Artefacts**, **Paths**, and **Project_area**
+The current map in our project does accomplish these goals, but it's not inviting to look at.
+
+To fix this, we need to ask some questions:
+
+**Who is the intended audience for our map**?
+
+-   A good looking map for a **Report** map may look different to an **Academic Paper** or a **Technical** map or to a map for the **Public**.
+
+**What story am I trying to tell?**
+
+-   Do you want to highlight a particular pattern in the data?
+
+    -   You can use shapes and colour (esp. saturation) to bring your viewer to focus on certain elements of the map.
+
+-   Does it need to look friendly or more professional?
+
+    -   Your choice of a colour palette can bring cohesion to your map.
+
+-   Do you have a lot of dense information you need to convey?
+
+    -   Perhaps you need to make more than one map.
+
+-   Do you need to show what the land surface looks like, or not?
+
+    -   That brings us to our next question:
+
+**What** **basemap does my map need**?
+
+The basemap sets the tone for the rest of the layers in the map, as they can greatly change the visual complexity of the map.
+
+-   Satellite image - Geographically informative, but visually busy
+
+-   Street map - Geographically informative, but visually busy
+
+-   Historical image - Informative and busy, but black and white imagery can be less visually busy
+
+-   Simple topo map - Provides some information, but less visually busy
+
+-   No basemap - Centres focus on data, but provides no geographic context
+
+## Basemaps
+
+Let's start by making a map we might use in a report where we need to see the land surface with satellite imagery. Unless we really need everything on the **OpenStreetMap**, it is too busy, and distracting. Let's load in a new basemap. There are many ways of doing this, in the past we've used the **QuickMapServices** plugin to load in new basemaps, now we can go to the next step and source them externally. We can do this with WMTS (Web Map Tile Service), WCS (Web Coverage Service), ArcGIS REST Servers, and XYZ Tiles.
+
+Today we're going to use an XYZ Tile from ESRI.
+
+-   Scroll down the `Browser` panel until your see **XYZ Tiles**
+-   Right click XYZ Tiles and select `New Connection...`
+    -   In `Name` type **ESRI World Imagery**
+    -   In `URL` paste:\
+        [https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}](https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x})
+    -   Increase the Max. Zoom Level to 20
+        -   This value depends on what is available from the given service in different parts of the world. Increasing that value beyond 20 for a map in Brisbane will show "Map data not yet available" when you zoom in very close.
+    -   Click `OK`
+-   In the `Browser` panel, expand `XYZ Tiles` and double click on `ESRI World Imagery`
+-   Now do the same for this **Light Gray Basemap**, but set the Max. Zoom Level to 16:\
+    [https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}](https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x})
+
+Arrange the layers so that the **ESRI World Imagery** layer is under your other layers (you can hide the **Light Gray Basemap** and **OpenStreetMap** for now)
+
+## Colours
+
+The random colours that QGIS gives you aren't always pretty, so let's change the colours.
+
+Choosing a colour palette can be difficult and overwhelming, but once you have one, you can keep using those colours to form a more harmonious looking map. What story are you telling? Do you want your map to be bright and saturated, or warm and earthy?
+
+The built in color ramps provide some good options I quite like **`rainfall`** (in Precipitation), **`Set1`** (in QGIS), and **`wiki-knutux`** (in Topography).
+
+Today we're being fancy, we're going to import and build our own Color Ramp and Color Palette.
+
+-   In you internet browser, navigate to [colorbrewer2.org](https://colorbrewer2.org/#type=qualitative&scheme=Set2&n=8)
+
+    -   Set Number of data classes to 8
+
+    -   Choose Set2 (should be the second from the right)
+
+    -   Click and drag to highlight the 8 HEX codes listed (they should look like this #66c2a5)
+
+        -   Copy those with Ctrl + C (or Cmd + C)
+
+-   Back in QGIS navigate to `Settings > Options...`
+
+    -   Click the `Colors` from the left menu
+
+    -   From the top right of the window click the `...` button and select `New Palette...`, name it **Report Palette**
+
+    -   Add your copied colours by clicking![](mActionEditPaste.png) `Paste colors` on the right
+
+    -   Click the `...` button again and tick the `Show in Color Buttons` box
+
+    -   Click `OK`
+
+We now have a custom palette we can use throughout our projects!
+
+Unfortunately we need to set up the Color Ramp separately.\
+
+-   Navigate to `Settings > Style Manager...`
+
+    -   Click the ![](images/symbologyAdd.png) `Add item` button at the bottom and select `Color Presets...`
+
+        -   Select the colour that appeared there and remove it by pressing ![](symbologyRemove.png) `Remove color` at the bottom
+
+        -   Add your copied colours by clicking![](mActionEditPaste.png) `Paste colors`
+
+        -   Click `OK`
+
+    -   Change the `Destination` to **Default**
+
+    -   Give it a meaningful `Name` like **Report Colour Ramp**
+
+    -   Add the `Tag` **Palettes**
+
+    -   Tick `Add to favourites` (this means it will appear in the color ramp dropdown, and not just in the All Color Ramps section)
+
+    -   Click `Save`
+
+-   Click `Close`
+
+You can also use the `Style Manager` to edit the default options and Favorites that appear in the Layer Styling window.
+
+Now we've set up our colours, we can start using them!
 
 ## Change the Symbology
 
-Our vector layers are assigned a random colour when we load them. We now want to make them look better.
-
 ### Point Geometry
 
--   Open the `Layer Styling` panel by pressing **F7**
--   Select the **Artefacts** layer from either the `Layer Styling` panel, or the `Layers` panel.
--   In the `Layer Styling` panel, change **`Single Symbol`** to `Categorised`
+#### Categories
+
+-   Select the **Artefacts** layer from the `Layer Styling` panel
+-   In the `Layer Styling` panel, change **`Single Symbol`** to `Categorized`
 -   From `Value` select **Artefact Type**
+-   From `Color ramp` choose our **Report Colour Ramp**
 -   Click the **`Classify`** button
 
-The random colours that QGIS gives you aren't always pretty, so let's change the colours
-
--   Click the dropdown next to the `Color ramp`
-
--   Click `Create New Color Ramp...`, select `Catalog: ColorBrewer`, and click `OK`
-
--   Click the dropdown next to `Scheme name` and choose **`Set1`**
-
-    -   This is a qualitative colour scheme that is easy to distinguish, **Dark 2** and **Paired** are also good options, you can find out more about [ColorBrewer here](https://colorbrewer2.org)
-
--   Click the `back arrow button` next to **Edit Ramp**
-
-Now that we have a nice colour scheme, let's give it a contrasting Stroke color, and a new shape. The default is usually black, but I find this to look harsh, let's make it a darker shade of the **Fill colour**
-
--   Double click on the symbol of the `Artefact Scatter`
-    -   Click **Simple Marker** - this will allow us to change the fill, stroke, and shape of the marker
-        -   Click the dropdown next to `Stroke color`, click `Pick Color`, and then use the dropper to select the color from the `Fill Color` above, it should copy the colour!
-    -   Now click directly on the `Stroke color` color box, this will take you to the `Select Stroke Color` window
-        -   Drag the slider next to `V` to give us a darker shade of red
-        -   Click the `back arrow button` next to **Artefact Scatter \> Select Stroke Color**
-    -   From the bottom of the window select another shape, let's go with the **Triangle**
--   Click the `back arrow button` next to **Artefact Scatter**
-
-Repeat these steps for the **Single Artefact** - although you can leave the shape as a circle.
+#### Symbols
 
 If you want, you can change the properties of all symbols at once:
 
@@ -128,104 +198,93 @@ If you want, you can change the properties of all symbols at once:
 
     -   Try increasing the size of the symbols to 3mm
 
-    -   **WARNING** if you change the **Stroke color** here, it will change the stroke for all of your symbols, undoing your work from above.
+    -   Click `Simple Marker` and change the `Stroke color` from **Black** to **Dark Grey**
+
+        -   This will retain that useful contrast while making it less harsh.
+
+    -   **WARNING** if you edit any individual symbols before this step, it will reset any changes you made to those individual symbols.
 
 -   Click the `back arrow button` next to **Symbol Settings**
 
-### Line Geometry
+Now that we have a nice colour scheme, let's give it a new shape. qg
 
-We can also make our lines look nice. Sometimes it can be as simple as picking a contrasting colour, and adding some more width. Sometimes it can be very useful to add some dashes to your line.
-
--   Select the **Paths** layer from the `Layer Styling` panel
--   Under `Line`, click `Simple Line`
-    -   Change the `Color` to a colour that is different to your points, and stands out from the map. I'm going to use orange
-    -   Increase the `Stroke width` to 1mm - it looks big now, but will look better on your exported map later
-    -   Click the **green +** next to `Line` to add another line symbol \
-        (You can add as many simple lines, as you like, you can even change this with `Symbol layer type` to Arrows, Hashed lines, Filled lines, and more.)
-        -   Increase the `Stroke width` to 1mm to match
-        -   Change the `Stroke style` from **Solid Line** to **Dashed Line**
-        -   Change `Cap style` from **Square** to **Round**
-        -   Tick `Use custom dash pattern`
-        -   Click on the **dashed line** below the tick box\
-            I like to set my **Dash** to 3mm and my **Space** to 5mm
+-   Double click on the symbol of the `Artefact Scatter`
+    -   Click **Simple Marker** - this will allow us to change many things including the shape of the marker
+        -   From the bottom of the window select a shape, let's go with the **Triangle**
+-   Click the `back arrow button` next to **Artefact Scatter**
 
 ### Polygon Geometry
 
 Depending on your map, you may want your polygon to remain solid, to be transparent, have hatched lines, or simply be an outline. As our project area has items inside it, it is probably best suited as an outline.
 
--   Select the **Project_area** layer from the `Layer Styling` panel
+-   Open the `Layer Styling` panel by pressing **F7** (or fn+F7)
+-   Select the **Project_area** layer from either the `Layer Styling` panel, or the `Layers` panel.
 -   Under `Fill`, click `Simple Fill`
     -   Change `Fill style` from **Solid** to **No Brush**
         -   Note that this is where you could add horizontal, diagonal, or many other styles as a fill.
-    -   Change `Stroke color` to something bright, like **Yellow**
+    -   Click the dropdown next to `Stroke color`, and you should see `Report Palette` with all your colours, choose the **Yellow**
     -   Increase the `Stroke width` to 1mm
 
-## Labels
+### Line Geometry
 
-Let's add some labels to our data.
+We can also make our lines stand out. Sometimes it can be as simple as picking a contrasting colour, and adding some more width. Sometimes it can be very useful to add some dashes to your line.
 
--   Select the **Artefacts** layer from the `Layer Styling` panel
-    -   In the `Layer Styling` panel, click the **yellow abc** `Labels` tab
-        -   Change `No Labels` to `Single Labels`
-        -   Change the `Value` to **fid**
-        -   Change the `Color` to **white**
-        -   Just below the `Value` dropdown, click the third **abc** tab for `Buffer`
-            -   Tick the `Draw text buffer` box
-            -   Change the `Size` to **0.8**
-            -   Change the `Color` to **black** - you could have reversed the two colours, but I prefer this contrast
-
-## Styles
-
-If you want to try different looks for a feature, but not have to undo everything, you can save them as **Styles**
-
--   In the `Layers` panel, `Right click on Project_area > Styles > Add...`
--   Name the style **Project Point**
--   Select the **Project_area** layer from either the `Layer Styling` panel
-    -   Under `Fill`, click `Simple Fill`
-    -   Change `Symbol layer type` from **Simple Fill** to **Centroid Fill**
-    -   Click **Simple Marker** and change the `Size` to 3 - you can also change the **Stroke color** if you like
-
-Now we have a point as the centre of our polygon, we can edit this style and revert back to the original whenever we like
+-   Select the **Paths** layer from the `Layer Styling` panel
+-   Under `Line`, click `Simple Line`
+    -   Change the `Color` to a colour in your Report Palette that is different to your points, I'm going to use orange
+    -   Increase the `Stroke width` to 1mm - it looks big now, but will look better on your exported map later
+    -   Click the **green +** next to `Line` to add another line symbol\
+        (You can add as many simple lines, as you like, you can even change this with `Symbol layer type` to Arrows, Hashed lines, Filled lines, and more.)
+        -   Increase the `Stroke width` to 1mm to match
+        -   Tick `Use custom dash pattern`
+        -   Click on the **dashed line** below the tick box\
+            I like to set my **Dash** to 3mm and my **Space** to 5mm
 
 ## Themes
 
-Themes work similarly to styles, but instead of changing the layer styling, it changes the layers present. We can use themes to create multiple looks for our map that we can easily swap between. Let's create a map for our future **Inset Map**
+We can use themes to create multiple looks for our map that we can easily swap between. Let's create a map for our **Report Map**
 
--   In the `Layers` panel, hide the **Paths** and **Artefacts** layers by unticking the boxes next to them.
--   Now click the **Eye** icon (Manage Map Themes) at the top of the `Layers` panel, and click `Add theme...`
-    -   Let's name our new theme **Inset**, and click `OK`
--   Change the **Project_area** back to our original **Default** style:
-    -   `Right click on Project_area > Styles (2) > default`The map should return to how it looked before.
+-   Click the **Eye** icon (Manage Map Themes) at the top of the `Layers` panel, and click `Add theme...`
+    -   Let's name our new theme **Report Main**, and click `OK`
 
-Nothing exciting will happen *yet*, but we will be able to use this later.
+Nothing exciting has happened *yet*, let's change the layers a little to see the power of Themes.
 
-## Basemaps
+## Styles
 
-Unless we really need everything on the **OpenStreetMap**, it is too busy, and distracting. Let's load in a new basemap. There are many ways of doing this, in the past we've used the **QuickMapServices** plugin to load in new basemaps, and used **XYZ tiles** to load in basemaps, now we can go to the next step and source them externally.
+**Styles** work similarly to **Themes**, but instead of changing which layers are layers present, it changes between different Layer Styling options.
 
-Today we're going to use a **WMTS (Web Map Tile Service)** from ESRI.
+If you want to try different looks for a feature, but not have to undo everything, you can save them as **Styles**
 
--   Scroll down the `Browser` panel until your see **WMS/WMTS**
--   Right click WMS/WMTS and select `New Connection...`
-    -   In `Name` type **ESRI World Imagery**
-    -   In `URL` paste:\
-        https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml
-    -   Click `OK`
--   In the `Browser` panel, navigate `WMS/WMTS > ESRI World Imagery` and double click on **default028mm**
-    -   This is a very high resolution aerial basemap, however when you zoom closely in many areas it will often show "Map data not yet available" at a scale around **1:300**
-    -   The **GoogleMapsCompatible** is the same map at lower resolution, however it doesn't have the "Map data not yet available" issue
--   Arrange the layers so that the **World Imagery** layer is under your other layers (you can hide the **OpenStreetMap** now)
+-   In the `Layers` panel, `Right click on Project_area > Styles > Rename Current...`
+    -   Let's start by chaning the name of our current style from **default** to **Report Main**
+-   Let's create a new style, `Right click on Project_area > Styles > Add...`
+    -   Name the style **Report Inset**
+        -   Now any Layer Style edits we do will be attached to the **Report Inset** style
+-   Select the **Project_area** layer from the `Layer Styling` panel
+    -   Under `Fill`, click `Simple Fill`
+    -   Change `Symbol layer type` from **Simple Fill** to **Centroid Fill**
+    -   Click **Simple Marker**
+        -   Change the `Size` to 3
+        -   Set the `Color` using your **Report Palette** to **Yellow**
 
-## Themes (again)
+Now we have a point as the centre of our polygon, we can edit this style and revert back to the original **Report Main** style whenever we like, we will explore how to use that with Themes next.
 
-Now that we've made some changes, we can see what themes do.
+### Themes (again)
 
--   In the `Layers` panel, click the **Eye** icon (Manage Map Themes), click `Add theme...`
--   Let's name our new theme **Main**, and click `OK`
+Now that we’ve made some style changes, we can see what themes do.
+
+-   In the `Layers` panel, hide the **ESRI World Imagery**, **Paths** and **Artefacts** layers by unticking the boxes next to them.
+
+-   Unhide the **Light Gray Basemap**
+
+<!-- -->
+
+-   Click the **Eye** icon (Manage Map Themes) at the top of the `Layers` panel, and click `Add theme...`
+    -   Let's name our new theme **Report Inset**, and click `OK`
 -   Now, click the **Eye** icon again
-    -   You will see that there are two check box options at the bottom: **Inset** and **Main**
+    -   You will see that there are two check box options at the bottom: **Report Inset** and **Report Main**
     -   You can cycle between these two themes by choosing one or the other
-    -   If you want to update a theme, simply hide/unhide the layers you want, go to `Eye icon > Replace theme...` and then select the theme you want to overwrite.
+    -   If you want to update a theme, simply hide/unhide layers, change the layer Styles, go to `Eye icon > Replace theme...` and then select the theme you want to overwrite.
 -   Save your project
 
 ## Layout Manager
@@ -233,7 +292,7 @@ Now that we've made some changes, we can see what themes do.
 Now we can prepare our map for export.
 
 -   Navigate to `Project > Layout Manager...`
-    -   Under **New from Template** click `Create`, name the map **Project Map**
+    -   Under **New from Template** click `Create`, name the map **Report Map**
 -   This will open the **Layout Manager**
 
 ### Page Properties
@@ -242,15 +301,16 @@ Before we do anything, let's set up out environment.
 
 -   Navigate to `Layout > Page Properties..`
     -   Here we can choose the size and orientation of our map.
-    -   A4 is sensible, and it means you know the map will fit neatly into a report.
-    -   Portrait means you can have a full page map without rotating the page in your report. But some spatial layouts make more sense in Landscape. Use your judgement.
+    -   **Size:** A4 is sensible, as it means you know the map will fit neatly into a report.
+    -   **Orientation:** Portrait means you can have a full page map without rotating the page in your report. But some spatial layouts make more sense in Landscape. Use your judgement.
+        -   Today we will use **Portrait**
 
 ### Guides
 
 Guides seem unnecessary, but they make lining things up, much much easier.
 
 -   In the right menu, click `Guides`
--   Click the **green +** under **Horizontal Guides** (if your canvas is a Landscape, choose **Vertical Guides** for this step)
+-   Click ![](images/symbologyAdd-01.png) `Add new guide` under **Horizontal Guides** (if your canvas is a Landscape, choose **Vertical Guides** for this step)
 -   A new row should appear, click on the **0** and change it to **235**
 
 ### Map
