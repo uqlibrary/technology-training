@@ -1,0 +1,595 @@
+---
+title: 'Python training (4 of 4): Statistics and Further Visualisation'
+jupyter: python3
+---
+
+This session is aimed as an overview of how to perform some statistical modelling with Python. **It is a Python workshop, not a statistics workshop** - if you'd like to better understand the statistical models, or need help deciding what's best for you, please consult a statistics resource or contact a statistician.
+
+In this session, we'll cover
+
+- Descriptive statistics
+  - Measures of central tendancy
+  - Measures of variability
+  - Measures of correlation
+  
+- Inferential statistics
+  - Linear regressions
+  - T-tests
+  - $\chi^2$ tests
+  - Generalised regressions
+
+- Visualising statistics
+  - Adding lines to graphs to indicate bounds
+  - Shading regions
+  - Subplots
+  - Boxplots
+
+We'll use two new modules:
+
+ - `scipy.stats`
+ - `statsmodels`
+
+## Setup
+
+### Spyder version
+
+Before we begin, please check which version of Spyder you're using (you can see this in the Anaconda Navigator, or in Help > About Spyder). **If it's less than 6**, you should update Spyder before continuing. However, if you're in a workshop, this will take too long - instead, use the following workaround if your plots don't work:
+
+```python
+plt.show()
+```
+
+More on this later.
+
+### Modules and data
+
+Let's import all our modules for today:
+
+```{python}
+import matplotlib.pyplot as plt
+import pandas as pd
+import scipy.stats as stats
+import seaborn as sns
+import statsmodels.formula.api as smf
+```
+
+We'll be working from our "Players2024" dataset again. If you don't have it yet,
+
+1. [Download the dataset](data/Players2024.csv).
+2. Create a folder in **in the same location as your script** called "data".
+3. Save the dataset there.
+
+To bring it in and clean it up,
+
+```{python}
+df = pd.read_csv("data/Players2024.csv")
+df = df[df["positions"] != "Missing"]
+df = df[df["height_cm"] > 100]
+```
+
+## Descriptive Statistics
+
+We'll start with sample size. All dataframes have most descriptive statistics functions available right off the bat which we access via the `.` operator. 
+
+To calculate the number of non-empty observations in a column, say the numeric variable `df["height_cm"]`, we use the `.count()` method
+
+```{python}
+df["height_cm"].count()
+```
+
+### Measures of central tendancy
+We can compute measures of central tendancy similarly. The average value is given by
+
+```{python}
+df["height_cm"].mean()
+```
+
+the median by
+
+```{python}
+df["height_cm"].median()
+```
+
+and the mode by
+
+```{python}
+df["height_cm"].mode()
+```
+
+> `.mode()` returns a dataframe with the most frequent values as there can be multiple.
+
+#### Visualisation
+
+Let's visualise our statistics as we go. We can start by producing a histogram of the heights with `seaborn`:
+
+```{python}
+sns.displot(df, x = "height_cm", binwidth = 1)
+```
+
+:::{.callout-warning collapse="true"}
+# If your plots don't appear...
+
+...***AND*** you don't have an error, then you might have a Spyder version with a bug. 
+
+The simplest workaround is to run `plt.show()` every time you make a plot. If you have time, you should update Spyder.
+:::
+
+We can use matplotlib to annotate the locations of these statistics. Let's save them into variables and then make the plot again. The important function is [`plt.vlines`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.vlines.html), which enables you to create vertical line(s) on your plot. We'll do it once for each so that we get separate legend entries. We'll need to provide the parameters
+
+- `x = `
+- `ymin = `
+- `ymax = `
+- `colors = `
+- `linestyles = `
+- `label = `
+
+```{python}
+# Save the statistics
+height_avg = df["height_cm"].mean()
+height_med = df["height_cm"].median()
+height_mod = df["height_cm"].mode()
+
+# Make the histogram
+sns.displot(df, x = "height_cm", binwidth = 1)
+
+# Annotate the plot with vertical and horizontal lines
+plt.vlines(x = height_avg, ymin = 0, ymax = 500, colors = "r", linestyles = "dashed", label = "Average")
+plt.vlines(x = height_med, ymin = 0, ymax = 500, colors = "k", linestyles = "dotted", label = "Median")
+plt.vlines(x = height_mod, ymin = 0, ymax = 500, colors = "orange", linestyles = "solid", label = "Mode")
+
+# Create the legend with the labels
+plt.legend()
+```
+
+### Activity 1: Measures of Central Tendency
+
+Let's extend this visualisation to include the median and mode, as well as change the median's linestyle to be "dotted".
+
+1. Visualise the median and mode, like the average, with different colours.
+2. Go to the documentation for [`plt.vlines()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.vlines.html) to change the median's linestyle.
+
+Then, try to use
+
+* [`plt.legend()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html) to remove the border on the legend.
+* [`plt.xlabel()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xlabel.html) to clean up the $x$-label.
+
+
+:::{.callout-note collapse=true}
+# Solution
+
+The following code is one possible solution.
+
+```{python}
+# Save the statistics
+height_avg = df["height_cm"].mean()
+height_med = df["height_cm"].median()
+height_mod = df["height_cm"].mode()
+
+# Make the histogram
+sns.displot(df, x = "height_cm", binwidth = 1)
+
+# Annotate the plot with vertical and horizontal lines
+plt.vlines(x = height_avg, ymin = 0, ymax = 500, colors = "r", label = "Average")
+plt.vlines(x = height_med, ymin = 0, ymax = 500, colors = "k", linestyles = "dotted", label = "Median")
+plt.vlines(x = height_mod, ymin = 0, ymax = 500, colors = "orange", label = "Mode")
+
+# Create the legend with the labels
+plt.legend(frameon = False)
+plt.xlabel("Height (cm)")
+```
+
+:::
+
+:::{.callout-tip collapse="true"}
+# Including mathematical symbols with $\LaTeX$.
+
+You can tell `matplotlib` to execute certain $\LaTeX$ commands in the text you plot, enabling inclusion of mathematics in your plots. This is particularly useful for certain units.
+
+Let's imagine we want to use $x_{height}$ for the $x$-label. Using dollar signs,
+
+```python
+plt.xlabel("$x_{height}$ (cm)")
+```
+
+```{python}
+# Save the statistics
+height_avg = df["height_cm"].mean()
+height_med = df["height_cm"].median()
+height_mod = df["height_cm"].mode()
+
+# Make the histogram
+sns.displot(df, x = "height_cm", binwidth = 1)
+
+# Annotate the plot with vertical and horizontal lines
+plt.vlines(x = height_avg, ymin = 0, ymax = 500, colors = "r", label = "Average")
+plt.vlines(x = height_med, ymin = 0, ymax = 500, colors = "k", linestyles = "dotted", label = "Median")
+plt.vlines(x = height_mod, ymin = 0, ymax = 500, colors = "orange", label = "Mode")
+
+# Create the legend with the labels
+plt.legend(frameon = False)
+plt.xlabel("$x_{height}$ (cm)")
+```
+
+
+$\LaTeX$ commands use backslashes `\`, and sometimes this conflicts with Python string's escape characters. To avoid this, prefix your conflicting strings with `R`, as in
+
+```python
+plt.xlabel(R"$x_{height}$ (m$\times 10^{-2}$)")
+```
+
+```{python}
+# Save the statistics
+height_avg = df["height_cm"].mean()
+height_med = df["height_cm"].median()
+height_mod = df["height_cm"].mode()
+
+# Make the histogram
+sns.displot(df, x = "height_cm", binwidth = 1)
+
+# Annotate the plot with vertical and horizontal lines
+plt.vlines(x = height_avg, ymin = 0, ymax = 500, colors = "r", label = "Average")
+plt.vlines(x = height_med, ymin = 0, ymax = 500, colors = "k", linestyles = "dotted", label = "Median")
+plt.vlines(x = height_mod, ymin = 0, ymax = 500, colors = "orange", label = "Mode")
+
+# Create the legend with the labels
+plt.legend(frameon = False)
+plt.xlabel(R"$x_{height}$ (m$\times 10^{-2}$)")
+```
+
+:::
+
+### Measures of variance
+
+We can also compute measures of variance. The minimum and maximum are as expected
+
+```{python}
+df["height_cm"].min()
+df["height_cm"].max()
+```
+
+The range is the difference
+
+```{python}
+df["height_cm"].max() - df["height_cm"].min()
+```
+
+Quantiles are given by `.quantile(...)` with the fraction inside. The inter-quartile range (IQR) is the difference between 25% and 75%.
+
+```{python}
+q1 = df["height_cm"].quantile(0.25)
+q3 = df["height_cm"].quantile(0.75)
+IQR = q3 - q1
+```
+
+A column's standard deviation and variance are given by
+
+```{python}
+df["height_cm"].std()
+df["height_cm"].var()
+```
+
+And the standard error of the mean (SEM) with
+
+```{python}
+df["height_cm"].sem()
+```
+
+You can calculate the skewness and kurtosis (variation of tails) of a sample with
+
+```{python}
+df["height_cm"].skew()
+df["height_cm"].kurt()
+```
+
+All together, you can see a nice statistical summary with
+
+```{python}
+df["height_cm"].describe()
+```
+
+### Activity 2: Inter-quartile range
+
+Let's take our previous visualisation and shade in the IQR using the function [`plt.fill_between()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.fill_between.html). You'll want to complete this activity in a few steps:
+
+1. Copy the code from the previous plot
+2. Save the quartiles Q1 and Q3 in variables
+3. Read the documentation for [`plt.fill_between()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.fill_between.html)
+4. Try to use it.
+
+You'll first want to use the function with the following parameters
+
+- `x = `
+- `y1 = `
+- `y2 = `
+
+i.e.,
+
+```python
+plt.fill_between(x = ..., y1 = ..., y2 = ...)
+```
+
+Once you've got it working, try adding the following two
+- `alpha = `  (for the opacity, a number between 0-1)
+- `label = `  (for the legend)
+
+:::{.callout-tip}
+# Hint
+
+The documentation for `plt.fill_between()` specifies that 
+
+- **`x`** should be ***array-like***. For us, this means a `list`.
+- **`y1`** and **`y2`** should be ***array-like or float***. This means either a `list` or a single decminal number.
+:::
+
+:::{.callout-note collapse=true}
+# Solution
+
+The following code is one possible solution.
+
+```python
+# Save the quartiles
+height_Q1 = df["height_cm"].quantile(0.25)
+height_Q3 = df["height_cm"].quantile(0.75)
+
+# Shade in the IQR
+plt.fill_between(x = [height_Q1, height_Q3], y1 = 0, y2 = 500, alpha = 0.2, label = "IQR")
+```
+
+All together with the original plot, this looks like
+
+```{python}
+# Save the statistics
+height_tot = df["height_cm"].count()
+height_avg = df["height_cm"].mean()
+height_med = df["height_cm"].median()
+height_mod = df["height_cm"].mode()
+
+# Save the quartiles
+height_Q1 = df["height_cm"].quantile(0.25)
+height_Q3 = df["height_cm"].quantile(0.75)
+
+# Make the histogram
+sns.displot(df, x = "height_cm", binwidth = 1)
+
+# Annotate the plot with vertical and horizontal lines
+plt.vlines(x = height_avg, ymin = 0, ymax = 500, colors = "r", linestyles = "dashed", label = "Average")
+plt.vlines(x = height_med, ymin = 0, ymax = 500, colors = "k", linestyles = "dotted", label = "Median")
+plt.vlines(x = height_mod, ymin = 0, ymax = 500, colors = "orange", linestyles = "solid", label = "Mode")
+
+# Shade in the IQR
+plt.fill_between(x = [height_Q1, height_Q3], y1 = 0, y2 = 500, alpha = 0.2, label = "IQR")
+
+# Create the legend with the labels
+plt.legend()
+```
+
+:::
+
+## Inferential Statistics
+
+Inferential statistics requires using the module `scipy.stats`.
+
+### Simple linear regressions
+
+Least-squares regression for two sets of measurements can be performed with the function `stats.linregress()`"
+
+```{python}
+stats.linregress(x = df["age"], y = df["height_cm"])
+```
+
+If we store this as a variable, we can access the different values with the `.` operator. For example, the p-value is
+
+```{python}
+lm = stats.linregress(x = df["age"], y = df["height_cm"])
+lm.pvalue
+```
+
+#### Visualisation
+
+Let's look at implementing the linear regression into our scatter plot from before. Using the scatterplot from before,
+
+```{python}
+sns.relplot(df, x = "age", y = "height_cm")
+```
+
+we'll need to plot the regression as a line. For reference,
+
+$$ y = \text{slope}\times x + \text{intercept}$$
+
+So
+
+```{python}
+sns.relplot(df, x = "age", y = "height_cm")
+
+# Construct the linear regression
+x_lm = df["age"]
+y_lm = lm.slope*x_lm + lm.intercept
+
+# Plot the line plot
+sns.lineplot(x = x_lm, y = y_lm, color = "r")
+```
+
+Finally, we can include the details of the linear regression in the legend by specifying them in the label. We'll need to `round()` them and `str()` them (turn them into strings) so that we can include them in the message.
+
+```{python}
+sns.relplot(df, x = "age", y = "height_cm")
+
+# Construct the linear regression
+x_lm = df["age"]
+y_lm = lm.slope*x_lm + lm.intercept
+
+# Round and stringify the values
+slope_rounded = str(round(lm.slope, 2))
+intercept_rounded = str(round(lm.intercept, 2))
+
+# Plot the line plot
+linreg_label = "Linear regression with\nslope = " + slope_rounded + "\nintercept = " + intercept_rounded
+sns.lineplot(x = x_lm, y = y_lm, color = "r", label = linreg_label)
+```
+
+### $t$-tests
+
+We can also perform $t$-tests with the `scipy.stats` module. Typically, this is performed to examine the statistical signficance of a difference between two samples' means. Let's examine whether that earlier groupby result for is accurate for heights, specifically, **are goalkeepers taller than non-goalkeepers?**
+
+The function [`stats.ttest_ind()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html) requires us to send in the two groups as separate columns, so we'll need to do a bit of reshaping.
+
+Let's start by creating a new variable for *goalkeeper status*, and then separate the goalkeepers from the non-goalkeepers in two variables
+
+```{python}
+df["gk"] = df["positions"] == "Goalkeeper"
+
+goalkeepers = df[df["gk"] == True]
+non_goalkeepers = df[df["gk"] == False]
+```
+
+The $t$-test for the means of two independent samples is given by
+
+```{python}
+stats.ttest_ind(goalkeepers["height_cm"], non_goalkeepers["height_cm"])
+```
+
+Yielding a p-value of $8\times 10^{-247}\approx 0$, indicating that the null-hypothesis (*heights are the same*) is extremely unlikely.
+
+### Activity 2: Visualisation
+
+We can also visualise these results with **boxplots**, showing the distributions and their statistical summary. Go to the seaborn documentation for [`sns.catplot()`](https://seaborn.pydata.org/generated/seaborn.catplot.html) to try figure out how.
+
+:::{.callout-note collapse=true}
+# Solution
+
+```{python}
+sns.catplot(df, x = "gk", y = "height_cm", kind = "box")
+```
+
+:::
+
+### More complex modelling
+
+If you need to do more advanced statistics, particularly if you need more regressions, you'll likely need to turn to a different package: `statsmodels`. It is particularly useful for **statistical modelling**.
+
+We'll go through three examples
+
+1. Simple linear regressions (like before)
+2. Multiple linear regressions
+3. Logistic regressions
+
+What's nice about `statsmodels` is that it gives an R-like interface and summaries.
+
+#### Simple linear regressions revisited
+
+Let's perform the same linear regression as before, looking at the "age" and "height variables". Our thinking is that players' heights dictate how long they can play, so we'll make $x = \text{height}$ and $y = \text{age}$.
+
+The first step is to make the set up the variables. We'll use the function `smf.ols()` for ordinary least squares. It takes in two imputs:
+
+* The formula string, in the form `y ~ X1 + X2 ...`
+* The data
+
+We create the model and compute the fit
+
+```{python}
+mod = smf.ols("height_cm ~ age", df)
+res = mod.fit()
+```
+
+Done! Let's take a look at the results
+
+```{python}
+res.summary()
+```
+
+\
+That's a lot nicer than with scipy. We can also make our plot from before by getting the model's $y$ values with `res.fittedvalues`
+
+```{python}
+sns.relplot(data = df, x = "age", y = "height_cm")
+sns.lineplot(x = df["age"], y = res.fittedvalues, color = "r")
+```
+
+#### Generalised linear models
+
+The `statsmodels` module has lots of advanced statistical models available. We'll take a look at one more: Generalised Linear Models. The distributions they include are
+
+* Binomial
+* Poisson
+* Negative Binomial
+* Gaussian (Normal)
+* Gamma
+* Inverse Gaussian
+* Tweedie
+
+We'll use the *binomial* option to create logistic regressions.
+
+Logistic regressions examine the distribution of binary data. For us, we can compare the heights of **goalkeepers vs non-goalkeepers** again. Let's convert our **gk** column from `True` $\rightarrow$ `1` and `False` $\rightarrow$ `0` by converting to an `int`:
+
+```{python}
+df["gk"] = df["gk"].astype(int)
+```
+
+Now, we can model this column with height. Specifically,
+
+$$ \text{gk} \sim \text{height}$$
+
+Start by making the model with the function `smf.glm()`. We need to specify the family of distributions; they all live in `sm.families`, which comes from a different submodule that we should import:
+
+```{python}
+import statsmodels.api as sm
+mod = smf.glm("gk ~ height_cm", data = df, family = sm.families.Binomial())
+```
+
+Next, evaluate the results
+
+```{python}
+res = mod.fit()
+```
+
+Let's have a look at the summary:
+
+```{python}
+res.summary()
+```
+
+Finally, we can plot the result like before
+
+```{python}
+sns.relplot(data = df, x = "height_cm", y = "gk")
+sns.lineplot(x = df["height_cm"], y = res.fittedvalues, color = "black")
+```
+
+### Activity 3: Digging deeper
+
+We've come to the end of the series, so to conclude we'll finish up with an open-ended activity. Like in workshop 2, download the [gapminder](https://uqlibrary.github.io/technology-training/Python/2-data_processing/data/gapminder.csv) dataset.
+
+Then, spend the remaining time analysing and visualising the data! If you're stuck, see if you can produce a visualisation and a statistic that show the same thing.
+
+Don't forget some data transformation tips:
+
+- Use `gapminder = df.read_csv(...)` to load the data
+- Use `gapminder.columns` to see the columns
+- Use `gapminder["column_name"]` to pick out an individual column
+- Use `gapminder[gapminder["column_name] == ...]` to filter for a specific value
+
+## Conclusion
+
+Python definitely has powerful tools for statistics and visualisations! If any of
+the content here was too challenging, you have other related issues
+you’d like to discuss or would simply like to learn more, we the
+technology training team would love to hear from you. You can contact us
+at <training@library.uq.edu.au>.
+
+Here’s a summary of what we’ve covered
+
+| Topic | Description |
+|------------------------------------|------------------------------------|
+| **Descriptive statistics** | Using built-in methods to pandas series (via `df["variable"].___` for a dataframe `df`) we can apply descriptive statistics to our data. |
+| **Using matplotlib to include statistical information** | Using `plt.vlines()` and `plt.fill_between()`, we can annotate the plots with lines showing statistically interesting values. |
+| **Inferential statistics** | Using the `scipy.stats` and `statsmodels` modules, we can perform statistical tests and modelling. |
+
+
+### Resources
+
+- [Official scipy.stats documentation](https://docs.scipy.org/doc/scipy/reference/stats.html)
+- [Official statsmodels documentation](https://www.statsmodels.org/stable/index.html)
+- [Official seaborn documentation](https://seaborn.pydata.org/index.html)
+- [Official matplotlib documentation](https://matplotlib.org/stable/index.html)
+- Our [compilation of useful Python links](https://github.com/uqlibrary/technology-training/blob/master/Python/useful_links.md)
+
