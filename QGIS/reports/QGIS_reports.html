@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-10-30">
+<meta name="dcterms.date" content="2025-10-31">
 
 <title>QGIS: Refine Your Maps for Reporting and Publication – UQ Library Technology Training</title>
 <style>
@@ -565,7 +565,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 30, 2025</p>
+      <p class="date">October 31, 2025</p>
     </div>
   </div>
   
@@ -676,7 +676,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 </ul></li>
 <li>Click <code>OK</code></li>
 </ul></li>
-<li>In the <code>Browser</code> panel, expand <code>XYZ Tiles</code> and double click on <code>ESRI World Imagery</code></li>
+<li>In the <code>Browser</code> panel, expand <code>XYZ Tiles</code> and double click on <code>Voyager (no labels)</code></li>
 <li>Now do the same for this <strong>Light Gray Basemap</strong> from ESRI, but set the Max. Zoom Level to 16:<br>
 <a href="https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D">https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}</a></li>
 </ul>
@@ -690,9 +690,10 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <p>The built in color ramps provide some good options I quite like <strong><code>rainfall</code></strong> (in Precipitation), <strong><code>Set1</code></strong> (in QGIS), and <strong><code>wiki-knutux</code></strong> (in Topography).</p>
 <p>Today we’re being fancy, we’re going to import and build our own Color Ramp and Color Palette.</p>
 <ul>
-<li><p>In you internet browser, navigate to <a href="https://colorbrewer2.org/#type=qualitative&amp;scheme=Set2&amp;n=8">colorbrewer2.org</a></p>
+<li><p>In you internet browser, navigate to <a href="https://colorbrewer2.org/#type=qualitative&amp;scheme=Set2&amp;n=7">colorbrewer2.org</a></p>
 <ul>
-<li><p>Set Number of data classes to 7</p></li>
+<li><p>Set “Number of data classes” to 7</p></li>
+<li><p>Set “Nature of data classes” to “qualitative”</p></li>
 <li><p>Choose Set2 (should be the second from the right)</p></li>
 <li><p>Click and drag to highlight the 7 HEX codes listed (they should look like this #66c2a5)</p>
 <ul>
@@ -763,7 +764,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 </ul></li>
 <li><p>Click the <code>back arrow button</code> next to <strong>Symbol Settings</strong></p></li>
 </ul>
-<p>Now that we have a nice colour scheme, let’s give it a new shape. qg</p>
+<p>Now that we have a nice colour scheme, let’s give it a new shape.</p>
 <ul>
 <li>Double click on the symbol of the <code>Artefact Scatter</code>
 <ul>
@@ -799,7 +800,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <ul>
 <li>Change <code>Symbol layer type</code> from <strong>Simple Fill</strong> to <strong>Outline: Simple Line</strong></li>
 <li>Set the <code>Stroke width</code> to 3</li>
-<li>Scroll to the bottom, tick <code>Draw Effects</code>, then click the <img src="images/mIconPaintEffects.png" class="img-fluid"> <code>Customise effects</code> button
+<li>Scroll to the bottom, tick <code>Draw Effects</code>, then click the <img src="images/mIconPaintEffects.png" class="img-fluid"> <code>Customise effects</code> button (The one next to “Enable symbol layer”, <em>not</em> the one in the “Layer Rendering” section!)
 <ul>
 <li>Untick <code>Source</code></li>
 <li>Tick and select <code>Drop Shadow</code>
@@ -829,7 +830,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 </section>
 <section id="themes" class="level2">
 <h2 class="anchored" data-anchor-id="themes">Themes</h2>
-<p>We can use themes to create multiple looks for our map that we can easily swap between. Let’s create a map for our <strong>Data Map</strong></p>
+<p>We can use themes to create multiple looks for our map that we can easily swap between. Let’s create a theme for our <strong>Data Map</strong></p>
 <ul>
 <li>Click the <strong>Eye</strong> icon (Manage Map Themes) at the top of the <code>Layers</code> panel, and click <code>Add theme...</code>
 <ul>
@@ -840,12 +841,12 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 </section>
 <section id="styles" class="level2">
 <h2 class="anchored" data-anchor-id="styles">Styles</h2>
-<p><strong>Styles</strong> work similarly to <strong>Themes</strong>, but instead of changing which layers are layers present, it changes between different Layer Styling options.</p>
+<p><strong>Styles</strong> work similarly to <strong>Themes</strong>, but instead of changing which layers are present, it changes between different Layer Styling options.</p>
 <p>If you want to try different looks for a feature, but not have to undo everything, you can save them as <strong>Styles</strong></p>
 <ul>
 <li>In the <code>Layers</code> panel, <code>Right click on Project_area &gt; Styles &gt; Rename Current...</code>
 <ul>
-<li>Let’s start by chaning the name of our current style from <strong>default</strong> to <strong>Data Main</strong></li>
+<li>Let’s start by changing the name of our current style from <strong>default</strong> to <strong>Data Main</strong></li>
 </ul></li>
 <li>Let’s create a new style, <code>Right click on Project_area &gt; Styles &gt; Add...</code>
 <ul>
@@ -920,7 +921,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <p>Guides seem unnecessary, but they make lining things up much much easier.</p>
 <p>We will use a guide to place our map details.</p>
 <ul>
-<li>In the right menu, click <code>Guides</code></li>
+<li>In the right panel, click <code>Guides</code></li>
 <li>Click <img src="images/symbologyAdd-01.png" class="img-fluid"> <code>Add new guide</code> under <strong>Vertical Guides</strong> (if your canvas is a Landscape, or you want your legend at the bottom, choose <strong>Horizontal Guides</strong> for this step)</li>
 <li>A new row should appear, click on the <strong>0</strong> and change it to <strong>140</strong></li>
 </ul>
@@ -977,7 +978,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 </ul></li>
 <li>Add your map by clicking the map icon in the left menu, or navigating <code>Add Item &gt; Add Map</code>
 <ul>
-<li>Hover over the corner created by top horizontal guide and the vertical guide, the mouse should snap to the corner
+<li>Hover over the corner created by the top horizontal guide and the vertical guide, the mouse should snap to the corner
 <ul>
 <li>Click and drag until your mouse snaps to the corner created by the side of the canvas, and the lower guide you added</li>
 </ul></li>
@@ -988,7 +989,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 </ul></li>
 <li>In the <code>Items</code> panel on the right, double click on <strong>Map 2</strong> and rename it <strong>Inset</strong></li>
 </ul>
-<p>Now we have our maps added, we can bring our themes in to play again.</p>
+<p>Now we have our maps added, we can bring our themes into play again.</p>
 </section>
 <section id="themes-again-1" class="level3">
 <h3 class="anchored" data-anchor-id="themes-again-1">Themes (again!)</h3>
@@ -1092,7 +1093,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <li>Click <code>Dynamic Text &gt; Layer Credits</code>
 <ul>
 <li>The code will look like this: <code>[%array_to_string(map_credits())%]</code> which automatically adds the sources built in to some of the data used</li>
-<li>Note that this is built into the Metadata (layer <code>Properties &gt; Metadate &gt; Access</code> under <strong>Rights</strong>) of the baselayers, and the layers we downloaded. Not all layers will necessarily have this information, and sometimes it’s very detailed and clunky.</li>
+<li>Note that this information lives in the Metadata (layer <code>Properties &gt; Metadata &gt; Access</code> under <strong>Rights</strong>) of the baselayers, and the layers we downloaded. Not all layers will necessarily have this information, and sometimes it’s very detailed and clunky. You can add this information in the layer’s metadata if it is missing.</li>
 <li>It may be simpler to manually enter this to your map.</li>
 </ul></li>
 </ul></li>
@@ -1116,7 +1117,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <li>Hover over the top left corner of the canvas, the mouse should snap to the corner</li>
 <li>Click and drag until your mouse snaps to the opposite corner of the canvas</li>
 </ul></li>
-<li>In the <code>Items</code> panel, click the box next to <code>Style</code>, this will take you to the <code>Symbol Settings</code> window
+<li>In the <code>Item Properties</code> panel, click the box next to <code>Style</code>, this will take you to the <code>Symbol Settings</code> window
 <ul>
 <li>Click <strong>Simple Fill</strong>
 <ul>
@@ -1137,7 +1138,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <li>In the <code>Items</code> panel, change the name from &lt;Rectangle&gt; to <strong>Outline</strong>
 <ul>
 <li>Then tick the lock box next to the <strong>Outline</strong></li>
-<li>This is mean that it stays on top of everything else, but you won’t select it every time you click the map canvas</li>
+<li>This means it stays on top of everything else, but you won’t select it every time you click the map canvas</li>
 </ul></li>
 </ul>
 </section>
@@ -1146,7 +1147,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <ul>
 <li>Add a Legend your map by clicking the <code>Add Legend</code> icon in the left menu, or navigating <code>Add Item &gt; Add Legend</code></li>
 </ul>
-<p>The legend always has too much detail to start. Let’s clean it up.</p>
+<p>The legend always has too much detail to start with. Let’s clean it up.</p>
 <ul>
 <li>In the <code>Item Properties</code> panel, under <strong>Legend Items</strong> untick <code>Auto update</code>
 <ul>
@@ -1205,7 +1206,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <section id="north-arrow" class="level3">
 <h3 class="anchored" data-anchor-id="north-arrow">North Arrow</h3>
 <ul>
-<li>Add a North Arrow your map by clicking the <strong>Add North Arrow</strong> icon in the left menu, or navigating <code>Add Item &gt; Add North Arrow</code>
+<li>Add a North Arrow to your map by clicking the <strong>Add North Arrow</strong> icon in the left menu, or navigating <code>Add Item &gt; Add North Arrow</code>
 <ul>
 <li>Click and drag in the blank space under the map until you’re happy with the size of the arrow</li>
 <li>In the <code>Item Properties</code> panel, under the <code>SVG Images</code> box, type <strong>arrow</strong> in the search bar
@@ -1240,11 +1241,11 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <section id="finessing" class="level3">
 <h3 class="anchored" data-anchor-id="finessing">Finessing</h3>
 <ul>
-<li><p>Go to <code>Layout</code> and scroll down to <strong>Resize Layout to Content</strong></p>
+<li><p>Go to the <code>Layout</code> panel and scroll down to <strong>Resize Layout to Content</strong></p>
 <ul>
-<li><p>Set the <code>Top</code>, <code>Right</code>, <code>Left</code> and <code>Bottom Margin</code> to <strong>2mm</strong></p></li>
-<li><p>Click <code>Resize layout</code></p></li>
-<li><p>Now we can see the dark glow we added to the <strong>Outline</strong>, without interfering with our neat 200x200 layout</p></li>
+<li>Set the <code>Top</code>, <code>Right</code>, <code>Left</code> and <code>Bottom Margin</code> to <strong>2mm</strong></li>
+<li>Click <code>Resize layout</code></li>
+<li>Now we can see the dark glow we added to the <strong>Outline</strong>, without interfering with our neat 200x200 layout</li>
 </ul></li>
 </ul>
 <p>Save your project.</p>
@@ -1262,7 +1263,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <li>Click <code>OK</code></li>
 </ul></li>
 <li>Navigate to your project’s <strong>output</strong> folder, and give the file a meaningful name “<strong>Brisbane Botanic Gardens Map</strong>”, click <code>Save</code></li>
-<li>The <code>Export resolution</code> should automatically be a print quality <strong>300dpi</strong>, and the width and height were set by our A4 selection.</li>
+<li>The <code>Export resolution</code> should automatically be a print quality <strong>300dpi</strong>, and the width and height should match the page size we set at the beginning.</li>
 <li>Click <code>Save</code></li>
 <li>Navigate to and open your file to make sure it worked!</li>
 </ul>
@@ -1270,7 +1271,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 </section>
 <section id="save-a-map-template" class="level2">
 <h2 class="anchored" data-anchor-id="save-a-map-template">Save a Map Template</h2>
-<p>This is crucial! Save your hardwork for next time!</p>
+<p>This is crucial! Save your hard work for next time!</p>
 <ul>
 <li><code>Layout &gt; Save as Template...</code></li>
 <li>Navigate to a folder you can easily find again, such as a broader QGIS folder.</li>
