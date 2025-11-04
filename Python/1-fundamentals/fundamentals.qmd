@@ -251,6 +251,13 @@ Steps
 > Note: if you want to print a number (e.g. the age), the easiest way is to send multiple arguments to the print function. For example,
 > `print("The first number is", 1)`
 
+
+:::{.callout-note}
+# Advanced
+
+If this is too easy, try to get the user to provide their age themselves with the command `int(input(...))`. **Make sure to use `int()`**, otherwise the string multiplication will crash Spyder. You'll want the [documentation for `input()`](https://docs.python.org/3/library/functions.html#input).
+:::
+
 <!--
 ### Stage 2
 
@@ -271,7 +278,6 @@ Here, `input` asks the user to pick a number. After the user (you) types somethi
 We have three lines of code corresponding to the steps above:
 
 ```{python}
-#| eval: false
 ### Age in minutes calculator
   
 # Input age
@@ -281,10 +287,27 @@ age_years = 56
 age_mins = age_years * 365 * 24 * 60
 
 # Print result
-print("You have lived for", str(age_mins), "minutes!")
+print("You have lived for", age_mins, "minutes!")
+```
+
+To include the `input()` command,
+
+```{python}
+#| eval: false
+### Age in minutes calculator
+  
+# Input age
+age_years = int(input("What is your age? "))
+
+# Calculate age in mins
+age_mins = age_years * 365 * 24 * 60
+
+# Print result
+print("You have lived for", age_mins, "minutes!")
 ```
 :::
 
+<!-- 
 ## Conditionals
 
 Funnelling code through different blocks based on conditions is a fundamental element of all programming, and achieved in Python with conditionals. The most important is the `if` statement, which checks a condition and runs the **indented** code block if it returns `True`:
@@ -363,7 +386,6 @@ else:
 
 You can only have one `if` and `else` statement, but as many `elif`s as you'd like.
 
-<!--
 
 ## Loops
 
@@ -510,47 +532,26 @@ Here the module `math` is stored as `m` in Python.
 
 Where this naming is used, it is usually the standard, and sharing code with different (including original/full) module names will not be compatible with other programmers.
 
-### External packages
+### Common external packages
 
-There are hundreds of thousands of external packages available, and you need to install them before importing them as above. There are many ways to install packages, and two most common:
+There are hundreds of thousands of external packages available, and Anaconda comes with the most common. For example, the `numpy` module, which enables numerical methods in Python. 
 
-#### Using `pip`
-
-If you are **not** using Anaconda, then the most common way to install a package is using the command `pip`, which installs packages from the Python Package Index (PyPI)
+You might recall that multiplication for sequences replicates them. This makes multiplying numeric lists unexpected:
 
 ```{python}
-#| eval: false
-pip install numpy
+3 * [1,2,3]
 ```
 
-> If this doesn't work for you, try using `!pip install numpy` - using an exclamation mark `!` sends your command straight to your operating system shell
-
-#### Using `conda`
-
-If you are using **Anaconda**, then the recommended installation method is using the `conda` command, which installs from Anaconda's package database:
-
-```{python}
-#| eval: false
-conda install numpy
-```
-
-> As above, if this doesn't work for you, try using `!pip install numpy` - using an exclamation mark `!` sends your command straight to your operating system shell
-
-#### Common packages
-
-Once installed, you can import these modules as before. Here, we've installed `numpy`, which is a popular numerical package.
+What if we wanted to multiply *each* element by `3`? Well, `numpy` has a variable where this *does* happen: the array. To turn a list into an array, use the `np.array()` function
 
 ```{python}
 import numpy as np
+example_array = np.array([1,2,3])
+
+3 * example_array
 ```
 
-Numpy is useful for its arrays, which allow you to apply mathematics to lists. For example, we can multiply each element in the array by $4$ with
-
-```{python}
-example_list = [1,2,3,4]
-example_array = np.array(example_list)
-example_array * 4
-```
+That works well!
 
 Some popular packages include
 
@@ -564,6 +565,47 @@ Some popular packages include
 | Statsmodels | `pip/conda install statsmodels` | `import statsmodels.api as sm` and/or `import statsmodels.tsa.api as tsa`| **Stat**istical **model**ling. The first import `sm` is for cross-sectional models, while `tsa` is for time-series models. | 
 | Requests | `pip/conda install requests` | `import requests` | Make HTTP (internet) **requests**. |
 | Beautiful Soup | `pip/conda install beautifulsoup4` | `from bs4 import BeautifulSoup` | Collect HTML data from websites. | 
+
+### Installing external packages
+
+Most external packages do not get shipped with Anaconda, and you'll need to install these yourself.
+
+#### Using `conda`
+
+If you are using **Anaconda**, then the recommended installation method is using the `conda` command, which installs from Anaconda's package database:
+
+```{python}
+#| eval: false
+conda install numpy
+```
+
+If you've got Spyder running, you'll need to **restart the kernel**. In the console, press the options button (three horizontal lines) > restart kernel.
+
+:::{.callout-note}
+# `SyntaxError: invalid syntax`
+
+If this doesn't work for you, try using `!conda install numpy` - using an exclamation mark `!` sends your command straight to your operating system shell.
+
+If *that* doesn't work, try using `conda install numpy` from an Anaconda prompt.
+:::
+
+#### Using `pip`
+
+If you are **not** using Anaconda, then the most common way to install a package is using the command `pip`, which installs packages from the Python Package Index (PyPI)
+
+```{python}
+#| eval: false
+pip install numpy
+```
+
+:::{.callout-note}
+# `SyntaxError: invalid syntax`
+
+If this doesn't work for you, try using `!pip install numpy` - using an exclamation mark `!` sends your command straight to your operating system shell.
+
+If *that* doesn't work, try using `pip install numpy` from an command prompt.
+:::
+
 
 ## Activity 2
 
@@ -589,7 +631,7 @@ df = pd.read_csv("insert_filepath_here")
 
 Today's data is five (random) people's height and weight. You can download it [here](BMI_data.csv).
 
-1. Download the data
+1. [Download the data](BMI_data.csv)
 2. Move the data into your project folder
 3. Read it in with `df = pd.read_csv("BMI_data.csv")`
 
