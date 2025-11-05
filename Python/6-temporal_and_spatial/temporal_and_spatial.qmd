@@ -1,0 +1,167 @@
+---
+title: 'Managing temporal and spatial data with Python'
+jupyter: python3
+---
+
+## Setting up
+
+```{python}
+import pandas as pd
+import matplotlib as mpl
+```
+
+## Temporal data
+
+```{python}
+aord = pd.read_csv("data/AORD_persecond.csv")
+print(aord.head())
+```
+
+
+
+### Setting up time series data
+Index vs column, how Python handles datetime, using `pd.Dataframe.dt`
+
+### Filtering, grouping and mutating
+
+### Parsing
+
+### Timezones
+
+### Time deltas?
+
+## Spatial data
+
+```{python}
+# import module
+import geopandas as gpd
+```
+
+```{python}
+# import the park polygons
+parks = gpd.read_file("data/park-locations.geojson")
+
+# see the contents
+parks.head()
+```
+
+Some `gpd.GeoDataFrame` methods/attributes
+
+```{python}
+
+```
+
+```{python}
+# visualise (static)
+parks.plot()
+```
+
+```{python}
+parks.plot("park_size", legend=True)
+```
+
+```{python}
+# what is the area of each polygon?
+parks.area
+```
+
+```{python}
+# re-project to do more precise calculations.
+parks = parks.to_crs("EPSG:7856")
+parks.area  # no more warning
+# check CRS
+```
+
+```{python}
+parks.crs
+
+```
+
+```{python}
+# biggest ones?
+parks.area.sort_values(ascending=False)
+```
+
+```{python}
+# change the index to the park name
+parks = parks.set_index("park_name")
+parks.area.sort_values(ascending=False)
+```
+
+```{python}
+# add the areas to the geodataframe
+parks["area"] = parks.area
+parks.plot("area", legend=True)
+```
+
+```{python}
+parks.explore()
+```
+
+```{python}
+# interactive plot
+# (this needs folium and mapclassify)
+interactive = parks.explore()
+# export it to a file
+interactive.save("interactive.html")
+```
+
+### Activity: List nearest parks to particular location
+
+
+```{python}
+# import toilets
+toilets = gpd.read_file("data/public-toilets-in-brisbane.geojson")
+# use same CRS as parks
+toilets = toilets.to_crs(parks.crs)
+
+toilets.plot()
+```
+
+```{python}
+joined = gpd.sjoin(parks, toilets, how="left", predicate="contains")
+
+```
+
+```{python}
+toilets_per_park = joined.groupby("park_name")["facilityid"].count()
+
+parks = parks.merge(toilets_per_park, on="park_name", how="left")
+
+parks = parks.rename(columns={"facilityid": "num_toilets"})
+```
+
+```{python}
+parks.plot("num_toilets")
+
+```
+
+```{python}
+all_toilets = toilets.dissolve()
+
+parks.covers(all_toilets)
+```
+
+```{python}
+parks["has_toilet"] = parks["num_toilets"] > 0
+
+parks.plot("has_toilet", legend=True)
+```
+
+```{python}
+parks.explore("has_toilet", legend=True)
+```
+
+Toilet density $\rho=\frac{N}{A}$.
+
+```{python}
+parks["toilet_density"] = parks["num_toilets"] / parks["area"]
+
+parks.plot("toilet_density", norm=mpl.colors.LogNorm())
+```
+
+```{python}
+parks.explore("toilet_density")
+```
+ 
+MAKE THIS LOG
