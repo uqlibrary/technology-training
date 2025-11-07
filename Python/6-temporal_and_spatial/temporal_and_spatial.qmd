@@ -3,108 +3,312 @@ title: 'Managing temporal and spatial data with Python'
 jupyter: python3
 ---
 
+Spyder, scripts and projects - make a general file and include.
+
 ## Setting up
+
+Make sure you've got the data for today's session in your /data/ folder:
+
+* [XAO_5min.csv](data/XAO_5min.csv)
+* [XAO_1d.csv](data/XAO_1d.csv)
+* [park-locations.geojson](data/park-locations.geojson)
+* [public-toilets-in-brisbane.geojson](data/public-toilets-in-brisbane.geojson)
+
+Let's begin by importing the `pandas` module for our data analysis.
 
 ```{python}
 import pandas as pd
 import matplotlib as mpl
+
+import datetime as dt
+```
+
+```{python}
+#| echo: false
+pd.set_option('display.max_rows', 10)
 ```
 
 ## Temporal data
 
+We'll start by working with the `XAO_5min.csv` dataset, which tracks the ASX's All Ordinaries index - the top 500 companies:
+
 ```{python}
-aord = pd.read_csv("data/AORD_5min.csv")
-print(aord.head())
+xao = pd.read_csv("data/XAO_5min.csv")
+xao
 ```
+
+It looks like there's a datum every five minutes, giving a summary of that period. Let's see how those columns are stored
+
+```{python}
+xao.dtypes
+```
+
+Unexpectedly, the numbers are all `float64` - decimals. The `Datetime` column is stored as an `object`, which is not helpful. In general, we won't be able to apply any time-based analysis to this data unless we store that column as a `datetime64` data type.
 
 ### Setting up time series data
-Index vs column, how Python handles datetime, using `pd.Dataframe.dt`
+We can manually tell `pandas` which columns to interpret as temporal with the `parse_dates` argument in [`pd.read_csv()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html). Technically, we need to send in a *list* of columns, as we could have multiple columns with temporal data.
 
-```{python}
-
-```
 ```{python}
 # Convert to datetime
-aord = pd.read_csv("data/AORD_5min.csv", parse_dates=["Datetime"])
-aord.head()
-```
-dtypes
-```{python}
-aord.dtypes
+xao = pd.read_csv("data/XAO_5min.csv", parse_dates=["Datetime"])
+xao
 ```
 
+
+Now, looking at how they're stored, it's set up correctly:
+```{python}
+xao.dtypes
+```
+
+### Timezones
+
+To see why this matters, notice something's a bit odd with the times. The first data point starts at midnight, but trading only opens at 10:00am! Our data is in the wrong timezone. The +00:00 indicates that this is UTC. Let's transform the data to Sydney, since that's where the ASX is.
+
+Since we've converted our column to a `datetime64` object, we can convert timezones easily. We'll start by accessing the column,
+
+```{python}
+xao["Datetime"]
+```
+
+All columns are technically `pd.Series` objects, and all series have functions (called methods) attached to them, accessible via the `.` operator. For example, to find the earliest timestamp,
+
+```{python}
+xao["Datetime"].min()
+```
+
+While `.min()` will work for any data type, lots of functions only work for time-series data. These live inside the `.dt` object. For example, to extract the months, 
+
+```{python}
+xao["Datetime"].dt.month
+```
+
+To convert timezones, use the `.dt.tz_convert(...)` function with the location as the only argument. This should have the format "Region/Location" [as per tz database timezones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones):
+
+```{python}
+xao["Datetime"].dt.tz_convert("Australia/Sydney")
+```
+
+Let's overwrite the data with this result
+
+```{python}
+xao = xao["Datetime"].dt.tz_convert("Australia/Sydney")
+```
 
 ### Filter 
-October
+
+We can also use `.dt` methods to filter the dataset. Have another look at the earliest timestamp
+
 ```{python}
-aord[aord["Datetime"].dt.month == 10]
+xao["Datetime"].min()
 ```
+
+That's 11:00am. But what's the earliest *time* in the dataset? Well, `.dt.time` pulls the times,
+
+```{python}
+xao["Datetime"].dt.time
+```
+
+the earliest of which is
+
+```{python}
+xao["Datetime"].dt.time.min()
+```
+
+That's earlier than our first point! This means our data doesn't start at the beginning of day 1. Let's keep everything *after* the first 10:00am timestamp.
+
+First, let's extract all the 10:00am points. We'll use the built-in module `datetime` (imported as `dt`) to create a simple timestamp
+
+```{python}
+xao[xao["Datetime"].dt.time == dt.time(10)]
+```
+
+Next, we'll save the first one of these as our start point
+
+
+TO DO FROM HERE - HALF-MERGED WIP STUFF
+
+```{python}
+xao[xao["Datetime"].dt.time == dt.time(10)]
+```
+
+
+
+
+To see why the set up matters, let's do a simple filter. What were the observations in October?
+
+We'll start by extracting the month from the timestamps. First, recall that you can access a particular column by indexing with its name:
+
+```{python}
+xao["Datetime"]
+```
+
+All columns are technically `pd.Series` objects, and all series have functions (called methods) attached to them, accessible via the `.` operator. For example, to find the earliest timestamp,
+
+```{python}
+xao["Datetime"].min()
+```
+
+While `.min()` will work for any data type, lots of functions only work for time-series data. These live inside the `.dt` object. For example, to extract the months, 
+
+```{python}
+xao["Datetime"].dt.month
+```
+
+We can use this object to filter our dataset. Filtering datetimes uses normal `pandas` filtering syntax:
+
+<i>
+```python
+df[condition]
+```
+</i>
+
+where *`condition`* usually looks like *`df["column"] == ...`* or some equivalent operator, like *`>`, `<`, `!=`* etc. 
+
+In our case, we'll use the condition `xao["Datetime"].dt.month == 10`:
+
+```{python}
+xao[xao["Datetime"].dt.month == 10]
+```
+
+TO DO UP TO HERE - HALF MERGED WIP STUFF
+
 ### Resampling
-Daily
+After filtering, the next analytical step is often to ask questions about particular groups. Questions like *what was the average $x$ per day?* Typically, you answer the question and then plot it.
+
+With time-series data, to answer these questions you can *resample*, performing an aggregation over a regular interval (e.g. average per day, max per month etc.).
+
+In `pandas`, you can do this with the [`.resample()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.resample.html) function. We need to use two arguments,
+
+* `rule="D"` to specify daily sampling
+* `on="Datetime"` to specify which column has the timestamps
+
 ```{python}
-aord.resample("D", on="Datetime").sum()
+xao.resample("D", on="Datetime")
 ```
 
-Let's get rid of weekends
+Notice that this is meaningless? We still need to aggregate with some kind of statistic for each day. The [`.agg()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.core.resample.Resampler.aggregate.html), with the corresponding statistic passed in, does this.
+
 ```{python}
-aord[aord["Datetime"].dt.weekday < 5].resample("D", on="Datetime")
+xao.resample("D", on="Datetime").agg("mean")
 ```
 
-Alternatively, use the `"B"` resample. Note: this will pull weekend values into the Monday.
+:::{.callout-tip}
+`.resample()` and `.agg()` will almost *always* be strung together as `.resample(...).agg(...)`.
+:::
+
+There we have it - our first piece of analysis. Notice all the `NaN`s? That's because there's no trading on weekends. We can use the `"B"` rule to resample over business days,
 
 ```{python}
-weekdays = aord.resample("B", on="Datetime").agg(["max", "min"])
-weekdays
+xao.resample("D", on="Datetime").agg("mean")
 ```
 
-### Index vs Column
+This seems to work, but wait - **all the Mondays have changed!**. Resampling doesn't remove data, it aggregates it. So, if you have any weekend rows, **these will be pulled into the Monday bin**.
+
+Let's clean the data properly, and then aggregate over business days. We'll want to filter like earlier, this time using the [`.dt.weekday`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.dt.weekday.html) attribute of our column. This returns the weekday from `Mon = 0` to `Sun = 6`.
 
 ```{python}
-# Index vs column1111
-weekdays.columns
-```
-```{python}
-weekdays.index
+xao[xao["Datetime"].dt.weekday < 5]
 ```
 
+Let's save it in a variable
+
 ```{python}
-weekdays[weekdays.index.day == 3]
+weekdays = xao[xao["Datetime"].dt.weekday < 5]
+```
+
+We can now safely resample,
+
+```{python}
+weekdays.resample("B", on="Datetime").agg("mean")
 ```
 
 
-### Group by day
+### Index vs column
+
+You might have noticed a small difference between the formatting of `weekdays` and the resampled result. In `weekdays`, the first 'column' is a numbered index and followed by "Datetime", like the other columns. After resampling, the index *is* the "Datetime" column.
+
+What this means is that `"Datetime"` **is no longer a column**
+
 ```{python}
-weekdays.groupby(weekdays.index.day).agg(["mean", "std", "count"])
+weekdays.resample("B", on="Datetime").agg("mean").columns
+```
+
+
+
+What's the difference? Does this matter? Sometimes, it's useful to have the times as the *index*, particularly if its truly time-series data (as opposed to data with multiple timestamps per observation). 
+
+Let's save it in a variable to explore a bit further.
+
+```{python}
+weekdays_avg = weekdays.resample("B", on="Datetime").agg("mean")
+```
+
+Usually, you need to do the analysis slightly differently. For example, to filter, use `weekdays_avg.index.` to pick out parameters such as `.month` and `.weekday`:
+
+```{python}
+weekdays_avg[weekdays_avg.index.month == 10]
+```
+
+It makes some things slightly simpler. For example, `.resample()` will use the index if you don't specify `on = `:
+
+```{python}
+weekdays_avg.resample("M").agg("mean")
+```
+
+Ultimately, either approach will work, so you need to be comfortable with both. If you want to bring the timestamps out of the, use `.reset_index()`:
+
+```{python}
+weekdays_avg.resample("M").agg("mean").reset_index()
 ```
 
 
 ### Plotting
 
-**Plot the prev groupby too...?**
+Let's visualise this data. `pandas` makes this simple for us with the `.plot()` method:
 
 ```{python}
-weekdays[[("High", "max"), ("Low", "min")]]
+weekdays_avg.plot()
 ```
+
+This was easy because the timestamps are in the index. Let's look at an example when they're not.
+
+Let's return to the previous, un-resampled `weekdays` variable, and re-resample to look at different statistics. You can aggregate over multiple statistics by sending a list into `.agg()`. For example, let's look at the max *and* min:
 
 ```{python}
-weekdays[[("High", "max"), ("Low", "min")]].plot()
+weekdays.resample("B", on="Datetime").agg(["max", "min"])
 ```
 
-### Timezones
-```{python}
-aord["Datetime"].dt.tz_convert("Australia/Brisbane")
-```
-
-### Time formatting
-See https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
+We can plot this too, although it's simpler if we condense the dataset to the variables we want to plot:
 
 ```{python}
-aord["Datetime"].dt.strftime("%c")
+weekdays_range = weekdays.resample("B", on="Datetime").agg(["max", "min"])
+weekdays_range = weekdays_range[[("High", "max"), ("Low", "min")]]
+weekdays_range.plot()
 ```
 
+### Misc
+
+
+#### Time formatting
+The `datetime64` data type that stores the timestamps is not a string, rather, a single timestamp object. If you want to reformat it as a presentable string, you can do that with the `.dt.strftime(...)` function. 
+
+You need to provide the format as a string conforming to the [built-in module `datetime`'s `strftime` behaviour](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior). In the string, each time field is represented by `"%x"`, where `x` changes based on the field. 
+
+For example, `"%y"` yields the year,
+
+```{python}
+xao["Datetime"].dt.strftime("%y")
+```
+
+You can make more elaborate messages, such as `"%I:%M %p on %m/%d"`:
+
+```{python}
+xao["Datetime"].dt.strftime("%I:%M %p on %m/%d")
+```
 
 ### Activity
-Download the 1d data, and play
+
+Using the tools we've applied, it's your turn to analyse a dataset. [Download the XAO_1d.csv](data/XAO_1d.csv) file, which has 40 years of daily XAO observations.
 
 
 ## Spatial data

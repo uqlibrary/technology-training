@@ -2,29 +2,35 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Convert to datetime
-aord = pd.read_csv(
-    "Python/6-temporal_and_spatial/data/AORD_5min.csv", parse_dates=["Datetime"]
+xao = pd.read_csv(
+    "Python/6-temporal_and_spatial/data/XAO_5min.csv", parse_dates=["Datetime"]
 )
 
-print("AORD")
-print(aord)
+print("XAO")
+print(xao)
 
 print("DTYPES")
-print(aord.dtypes)
+print(xao.dtypes)
 
 # Filter
 print("OCTOBER:")
-print(aord[aord["Datetime"].dt.month == 10])
+print(xao[xao["Datetime"].dt.month == 10])
 
 # Resampling
 print("DAILY")
-print(aord.resample("D", on="Datetime").sum())
+print(xao.resample("D", on="Datetime").sum())
 
 # Let's get rid of weekends
 print("NO WEEKENDS")
-print(aord[aord["Datetime"].dt.weekday < 5].resample("B", on="Datetime").mean())
+print(xao[xao["Datetime"].dt.weekday < 5].resample("B", on="Datetime").mean())
 
-weekdays = aord[aord["Datetime"].dt.weekday < 5].resample("B", on="Datetime").mean()
+weekdays = (
+    xao[xao["Datetime"].dt.weekday < 5]
+    .resample("B", on="Datetime")
+    .mean()
+    .reset_index()
+)
+print(weekdays)
 
 # Index vs column
 print("INDEX VS COLUMNS")
@@ -41,15 +47,15 @@ print(weekdays.groupby(weekdays.index.day).agg(["mean", "std", "count"]))
 
 # Timezones
 print("CHANGING TIMEZONES")
-print(aord["Datetime"].dt.tz_convert("Australia/Brisbane"))
+print(xao["Datetime"].dt.tz_convert("Australia/Brisbane"))
 
 # Time formatting
 # https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
 print("TIME FORMATTING")
-print(aord["Datetime"].dt.strftime("%c"))
+print(xao["Datetime"].dt.strftime("%c"))
 
 print("PLOTTING")
-weekday_limits = aord.resample("B", on="Datetime").agg(["max", "min"])
+weekday_limits = xao.resample("B", on="Datetime").agg(["max", "min"])
 
 # weekday_limits.plot(y=(("High", "max"), ("Low", "min")))
 
