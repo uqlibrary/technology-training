@@ -23,14 +23,89 @@ Index vs column, how Python handles datetime, using `pd.Dataframe.dt`
 ```{python}
 
 ```
+```{python}
+# Convert to datetime
+aord = pd.read_csv("data/AORD_5min.csv", parse_dates=["Datetime"])
+aord.head()
+```
+dtypes
+```{python}
+aord.dtypes
+```
 
-### Filtering, grouping and mutating
 
-### Parsing
+### Filter 
+October
+```{python}
+aord[aord["Datetime"].dt.month == 10]
+```
+### Resampling
+Daily
+```{python}
+aord.resample("D", on="Datetime").sum()
+```
+
+Let's get rid of weekends
+```{python}
+aord[aord["Datetime"].dt.weekday < 5].resample("D", on="Datetime")
+```
+
+Alternatively, use the `"B"` resample. Note: this will pull weekend values into the Monday.
+
+```{python}
+weekdays = aord.resample("B", on="Datetime").agg(["max", "min"])
+weekdays
+```
+
+### Index vs Column
+
+```{python}
+# Index vs column1111
+weekdays.columns
+```
+```{python}
+weekdays.index
+```
+
+```{python}
+weekdays[weekdays.index.day == 3]
+```
+
+
+### Group by day
+```{python}
+weekdays.groupby(weekdays.index.day).agg(["mean", "std", "count"])
+```
+
+
+### Plotting
+
+**Plot the prev groupby too...?**
+
+```{python}
+weekdays[[("High", "max"), ("Low", "min")]]
+```
+
+```{python}
+weekdays[[("High", "max"), ("Low", "min")]].plot()
+```
 
 ### Timezones
+```{python}
+aord["Datetime"].dt.tz_convert("Australia/Brisbane")
+```
 
-### Time deltas?
+### Time formatting
+See https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
+
+```{python}
+aord["Datetime"].dt.strftime("%c")
+```
+
+
+### Activity
+Download the 1d data, and play
+
 
 ## Spatial data
 
