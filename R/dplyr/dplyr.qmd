@@ -211,15 +211,16 @@ You can compare any kind of data For example:
 
 When R executes these commands, it answers `TRUE` of `FALSE`, as if asked a yes/no question. These `TRUE` and `FALSE` values are called **logical values**.
 
-To see if a value is part of a set of values, you can use the `%in%` operator:
+To see if a value is part of a set of values, you can use the `%in%` operator. For example, to confirm that I have "coffee" in my grocery list, but not "mangoes":
 
 ```{r}
 #| label: logical-in
-"apple" %in% c("pear", "apple")
-"mango" %in% c("pear", "apple")
+groceries <- c("tea", "coffee", "milk")
+"coffee" %in% groceries
+"mangoes" %in% groceries
 ```
 
-Note that we can compare a single value to many. For example, compare one value to three others:
+Note that we can compare a single value to many. For example, compare one value to five others:
 
 ```{r}
 #| label: logical-vector
@@ -359,22 +360,13 @@ gapminder %>%
 
 How do you think we could combine them to add something new to our dataset?
 
-#### Challenge 2 – mutate the GDP
+We could use `mutate()` to create a `gdp` variable, by multiplying the population and the GDP per capita:
 
-Use `mutate()` to create a `gdp` variable.
-
-Name your new dataset `gap_gdp`. When finished, `dim(gap_gdp)` should result in `1704 7`.
-
-Hint: use the `*` operator within `mutate()`.
-
-::: {.callout-tip collapse="true"}
-## Solution
 ```{r}
 #| label: mutate-gdp
 gap_gdp <- gapminder %>%
     mutate(gdp = gdpPercap * pop)
 ```
-:::
 
 You can reuse a variable computed by 'mutate()' straight away. For example, we also want a more readable version of our new variable, in billion dollars:
 
@@ -432,7 +424,7 @@ gapminder %>%
     summarise(pop = sum(pop))
 ```
 
-#### Challenge 3 – max life expectancy per country
+#### Challenge 2 – max life expectancy per country
 
 Group by country, and find out the maximum life expectancy ever recorded for each one.
 
@@ -447,6 +439,17 @@ gapminder %>%
     summarise(maxLE = max(lifeExp))
 ```
 :::
+
+And we could build on this to find out which countries have had the largest variation in life expectancy:
+
+```{r}
+#| label: lif-exp-dif
+gapminder %>% 
+  group_by(country) %>%
+  summarise(minLE = min(lifeExp), maxLE = max(lifeExp)) %>%
+  mutate(difLE = maxLE - minLE) %>%
+  arrange(-difLE)
+```
 
 ## More examples
 
@@ -484,7 +487,7 @@ gapminder %>%
 
 And another example, using using our gapminder dataset:
 
-Let's say we want to calulate the variation (range) in life expectancy per country and plot the top and bottom 10 countries?
+Let's say we want to calculate the variation (range) in life expectancy per country and plot the top and bottom 10 countries?
 
 ```{r}
 #| label: life-exp-var
@@ -512,7 +515,7 @@ gapminder %>%
 
 If you want to close RStudio, make sure you save your script first.
 
-You can then close the window, and if your script contains all the steps necessary for your data processing, it is safer to *not* save your workspace at the prompt. It should only take a second te execute all the commands stored in your script when you re-open your project.
+You can then close the window, and if your script contains all the steps necessary for your data processing, it is safer to *not* save your workspace at the prompt. It should only take a second to execute all the commands stored in your script when you re-open your project.
 
 ## What next?
 
