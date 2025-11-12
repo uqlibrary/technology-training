@@ -852,18 +852,19 @@ Warning
 </div>
 </div>
 <p>When R executes these commands, it answers <code>TRUE</code> of <code>FALSE</code>, as if asked a yes/no question. These <code>TRUE</code> and <code>FALSE</code> values are called <strong>logical values</strong>.</p>
-<p>To see if a value is part of a set of values, you can use the <code>%in%</code> operator:</p>
+<p>To see if a value is part of a set of values, you can use the <code>%in%</code> operator. For example, to confirm that I have “coffee” in my grocery list, but not “mangoes”:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="st">"apple"</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"pear"</span>, <span class="st">"apple"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>groceries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tea"</span>, <span class="st">"coffee"</span>, <span class="st">"milk"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="st">"coffee"</span> <span class="sc">%in%</span> groceries</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="st">"mango"</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"pear"</span>, <span class="st">"apple"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="st">"mangoes"</span> <span class="sc">%in%</span> groceries</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
 </div>
-<p>Note that we can compare a single value to many. For example, compare one value to three others:</p>
+<p>Note that we can compare a single value to many. For example, compare one value to five others:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1037,29 +1038,10 @@ Note
 </div>
 </div>
 <p>How do you think we could combine them to add something new to our dataset?</p>
-<section id="challenge-2-mutate-the-gdp" class="level4">
-<h4 class="anchored" data-anchor-id="challenge-2-mutate-the-gdp">Challenge 2 – mutate the GDP</h4>
-<p>Use <code>mutate()</code> to create a <code>gdp</code> variable.</p>
-<p>Name your new dataset <code>gap_gdp</code>. When finished, <code>dim(gap_gdp)</code> should result in <code>1704 7</code>.</p>
-<p>Hint: use the <code>*</code> operator within <code>mutate()</code>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<p>We could use <code>mutate()</code> to create a <code>gdp</code> variable, by multiplying the population and the GDP per capita:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>gap_gdp <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gdp =</span> gdpPercap <span class="sc">*</span> pop)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
 </div>
 <p>You can reuse a variable computed by ‘mutate()’ straight away. For example, we also want a more readable version of our new variable, in billion dollars:</p>
 <div class="cell">
@@ -1067,7 +1049,6 @@ Note
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gdp =</span> gdpPercap <span class="sc">*</span> pop,</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">gdpBil =</span> gdp <span class="sc">/</span> <span class="fl">1e9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
 </section>
 <section id="collapse-to-a-single-value-with-summarise" class="level3">
 <h3 class="anchored" data-anchor-id="collapse-to-a-single-value-with-summarise">5. Collapse to a single value with <code>summarise()</code></h3>
@@ -1129,12 +1110,12 @@ Note
 </div>
 </div>
 </div>
-<section id="challenge-3-max-life-expectancy-per-country" class="level4">
-<h4 class="anchored" data-anchor-id="challenge-3-max-life-expectancy-per-country">Challenge 3 – max life expectancy per country</h4>
+<section id="challenge-2-max-life-expectancy-per-country" class="level4">
+<h4 class="anchored" data-anchor-id="challenge-2-max-life-expectancy-per-country">Challenge 2 – max life expectancy per country</h4>
 <p>Group by country, and find out the maximum life expectancy ever recorded for each one.</p>
 <p>Hint: <code>?max</code></p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1143,7 +1124,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
@@ -1160,6 +1141,21 @@ Note
 </div>
 </div>
 </div>
+<p>And we could build on this to find out which countries have had the largest variation in life expectancy:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">minLE =</span> <span class="fu">min</span>(lifeExp), <span class="at">maxLE =</span> <span class="fu">max</span>(lifeExp)) <span class="sc">%&gt;%</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">difLE =</span> maxLE <span class="sc">-</span> minLE) <span class="sc">%&gt;%</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>difLE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["minLE"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["maxLE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["difLE"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Oman","2":"37.578","3":"75.640","4":"38.062"},{"1":"Vietnam","2":"40.412","3":"74.249","4":"33.837"},{"1":"Indonesia","2":"37.468","3":"70.650","4":"33.182"},{"1":"Saudi Arabia","2":"39.875","3":"72.777","4":"32.902"},{"1":"Libya","2":"42.723","3":"73.952","4":"31.229"},{"1":"Korea Rep.","2":"47.453","3":"78.623","4":"31.170"},{"1":"Nicaragua","2":"42.314","3":"72.899","4":"30.585"},{"1":"West Bank and Gaza","2":"43.160","3":"73.422","4":"30.262"},{"1":"Yemen Rep.","2":"32.548","3":"62.698","4":"30.150"},{"1":"Gambia","2":"30.000","3":"59.448","4":"29.448"},{"1":"Egypt","2":"41.893","3":"71.338","4":"29.445"},{"1":"Jordan","2":"43.158","3":"72.535","4":"29.377"},{"1":"Tunisia","2":"44.600","3":"73.923","4":"29.323"},{"1":"Algeria","2":"43.077","3":"72.301","4":"29.224"},{"1":"China","2":"44.000","3":"72.961","4":"28.961"},{"1":"Cambodia","2":"31.220","3":"59.723","4":"28.503"},{"1":"Morocco","2":"42.873","3":"71.164","4":"28.291"},{"1":"Honduras","2":"41.912","3":"70.198","4":"28.286"},{"1":"Syria","2":"45.883","3":"74.143","4":"28.260"},{"1":"Guatemala","2":"42.023","3":"70.259","4":"28.236"},{"1":"Turkey","2":"43.585","3":"71.777","4":"28.192"},{"1":"Nepal","2":"36.157","3":"63.785","4":"27.628"},{"1":"Peru","2":"43.902","3":"71.421","4":"27.519"},{"1":"India","2":"37.373","3":"64.698","4":"27.325"},{"1":"Ecuador","2":"48.357","3":"74.994","4":"26.637"},{"1":"El Salvador","2":"45.262","3":"71.878","4":"26.616"},{"1":"Bangladesh","2":"37.484","3":"64.062","4":"26.578"},{"1":"Dominican Republic","2":"45.928","3":"72.235","4":"26.307"},{"1":"Iran","2":"44.869","3":"70.964","4":"26.095"},{"1":"Senegal","2":"37.278","3":"63.062","4":"25.784"},{"1":"Malaysia","2":"48.463","3":"74.241","4":"25.778"},{"1":"Myanmar","2":"36.319","3":"62.069","4":"25.750"},{"1":"Mexico","2":"50.789","3":"76.195","4":"25.406"},{"1":"Bolivia","2":"40.414","3":"65.554","4":"25.140"},{"1":"Bahrain","2":"50.939","3":"75.635","4":"24.696"},{"1":"Mongolia","2":"42.244","3":"66.803","4":"24.559"},{"1":"Comoros","2":"40.715","3":"65.152","4":"24.437"},{"1":"Gabon","2":"37.003","3":"61.366","4":"24.363"},{"1":"Philippines","2":"47.752","3":"71.688","4":"23.936"},{"1":"Chile","2":"54.745","3":"78.553","4":"23.808"},{"1":"Reunion","2":"52.724","3":"76.442","4":"23.718"},{"1":"Mauritania","2":"40.543","3":"64.164","4":"23.621"},{"1":"Haiti","2":"37.579","3":"60.916","4":"23.337"},{"1":"Madagascar","2":"36.681","3":"59.443","4":"22.762"},{"1":"Rwanda","2":"23.599","3":"46.242","4":"22.643"},{"1":"Guinea","2":"33.609","3":"56.007","4":"22.398"},{"1":"Zimbabwe","2":"39.989","3":"62.351","4":"22.362"},{"1":"Colombia","2":"50.643","3":"72.889","4":"22.246"},{"1":"Eritrea","2":"35.928","3":"58.040","4":"22.112"},{"1":"Pakistan","2":"43.436","3":"65.483","4":"22.047"},{"1":"Kuwait","2":"55.565","3":"77.588","4":"22.023"},{"1":"Mauritius","2":"50.986","3":"72.801","4":"21.815"},{"1":"Costa Rica","2":"57.206","3":"78.782","4":"21.576"},{"1":"Brazil","2":"50.917","3":"72.390","4":"21.473"},{"1":"Hong Kong China","2":"60.960","3":"82.208","4":"21.248"},{"1":"Albania","2":"55.230","3":"76.423","4":"21.193"},{"1":"Bosnia and Herzegovina","2":"53.820","3":"74.852","4":"21.032"},{"1":"Mali","2":"33.685","3":"54.467","4":"20.782"},{"1":"Korea Dem. Rep.","2":"50.056","3":"70.647","4":"20.591"},{"1":"Panama","2":"55.191","3":"75.537","4":"20.346"},{"1":"Burkina Faso","2":"31.975","3":"52.295","4":"20.320"},{"1":"Namibia","2":"41.725","3":"61.999","4":"20.274"},{"1":"Djibouti","2":"34.812","3":"54.791","4":"19.979"},{"1":"Sudan","2":"38.635","3":"58.556","4":"19.921"},{"1":"Taiwan","2":"58.500","3":"78.400","4":"19.900"},{"1":"Togo","2":"38.596","3":"58.420","4":"19.824"},{"1":"Thailand","2":"50.848","3":"70.616","4":"19.768"},{"1":"Iraq","2":"45.320","3":"65.044","4":"19.724"},{"1":"Singapore","2":"60.396","3":"79.972","4":"19.576"},{"1":"Japan","2":"63.030","3":"82.603","4":"19.573"},{"1":"Niger","2":"37.444","3":"56.867","4":"19.423"},{"1":"Sao Tome and Principe","2":"46.471","3":"65.528","4":"19.057"},{"1":"Ethiopia","2":"34.078","3":"52.947","4":"18.869"},{"1":"Swaziland","2":"39.613","3":"58.474","4":"18.861"},{"1":"Cuba","2":"59.421","3":"78.273","4":"18.852"},{"1":"Venezuela","2":"55.088","3":"73.747","4":"18.659"},{"1":"Benin","2":"38.223","3":"56.728","4":"18.505"},{"1":"Portugal","2":"59.820","3":"78.098","4":"18.278"},{"1":"Lesotho","2":"42.138","3":"59.685","4":"17.547"},{"1":"Equatorial Guinea","2":"34.482","3":"51.579","4":"17.097"},{"1":"Kenya","2":"42.270","3":"59.339","4":"17.069"},{"1":"Botswana","2":"46.634","3":"63.622","4":"16.988"},{"1":"South Africa","2":"45.009","3":"61.888","4":"16.879"},{"1":"Ghana","2":"43.149","3":"60.022","4":"16.873"},{"1":"Cameroon","2":"38.523","3":"54.985","4":"16.462"},{"1":"Montenegro","2":"59.164","3":"75.445","4":"16.281"},{"1":"Lebanon","2":"55.928","3":"71.993","4":"16.065"},{"1":"Serbia","2":"57.996","3":"74.002","4":"16.006"},{"1":"Spain","2":"64.940","3":"80.941","4":"16.001"},{"1":"Congo Rep.","2":"42.111","3":"57.470","4":"15.359"},{"1":"Israel","2":"65.390","3":"80.745","4":"15.355"},{"1":"Somalia","2":"32.978","3":"48.159","4":"15.181"},{"1":"Mozambique","2":"31.286","3":"46.344","4":"15.058"},{"1":"Afghanistan","2":"28.801","3":"43.828","4":"15.027"},{"1":"Central African Republic","2":"35.463","3":"50.485","4":"15.022"},{"1":"Sri Lanka","2":"57.593","3":"72.396","4":"14.803"},{"1":"Italy","2":"65.940","3":"80.546","4":"14.606"},{"1":"Croatia","2":"61.210","3":"75.748","4":"14.538"},{"1":"Puerto Rico","2":"64.280","3":"78.746","4":"14.466"},{"1":"Poland","2":"61.310","3":"75.563","4":"14.253"},{"1":"Cote d'Ivoire","2":"40.477","3":"54.655","4":"14.178"},{"1":"Jamaica","2":"58.530","3":"72.567","4":"14.037"},{"1":"Guinea-Bissau","2":"32.500","3":"46.388","4":"13.888"},{"1":"Chad","2":"38.092","3":"51.724","4":"13.632"},{"1":"Greece","2":"65.860","3":"79.483","4":"13.623"},{"1":"Bulgaria","2":"59.600","3":"73.005","4":"13.405"},{"1":"France","2":"67.410","3":"80.657","4":"13.247"},{"1":"Malawi","2":"36.256","3":"49.420","4":"13.164"},{"1":"Austria","2":"66.800","3":"79.829","4":"13.029"},{"1":"Argentina","2":"62.485","3":"75.320","4":"12.835"},{"1":"Finland","2":"66.550","3":"79.313","4":"12.763"},{"1":"Angola","2":"30.015","3":"42.731","4":"12.716"},{"1":"Zambia","2":"39.193","3":"51.821","4":"12.628"},{"1":"Slovenia","2":"65.570","3":"77.926","4":"12.356"},{"1":"Sierra Leone","2":"30.331","3":"42.568","4":"12.237"},{"1":"Australia","2":"69.120","3":"81.235","4":"12.115"},{"1":"Switzerland","2":"69.620","3":"81.701","4":"12.081"},{"1":"Ireland","2":"66.910","3":"78.885","4":"11.975"},{"1":"Germany","2":"67.500","3":"79.406","4":"11.906"},{"1":"Canada","2":"68.750","3":"80.653","4":"11.903"},{"1":"Uganda","2":"39.978","3":"51.542","4":"11.564"},{"1":"Belgium","2":"68.000","3":"79.441","4":"11.441"},{"1":"Romania","2":"61.050","3":"72.476","4":"11.426"},{"1":"Tanzania","2":"41.215","3":"52.517","4":"11.302"},{"1":"Nigeria","2":"36.324","3":"47.472","4":"11.148"},{"1":"New Zealand","2":"69.390","3":"80.204","4":"10.814"},{"1":"Trinidad and Tobago","2":"59.100","3":"69.862","4":"10.762"},{"1":"Burundi","2":"39.031","3":"49.580","4":"10.549"},{"1":"Uruguay","2":"66.071","3":"76.384","4":"10.313"},{"1":"Slovak Republic","2":"64.360","3":"74.663","4":"10.303"},{"1":"United Kingdom","2":"69.180","3":"79.425","4":"10.245"},{"1":"United States","2":"68.440","3":"78.242","4":"9.802"},{"1":"Czech Republic","2":"66.870","3":"76.486","4":"9.616"},{"1":"Hungary","2":"64.030","3":"73.338","4":"9.308"},{"1":"Iceland","2":"72.490","3":"81.757","4":"9.267"},{"1":"Paraguay","2":"62.649","3":"71.752","4":"9.103"},{"1":"Sweden","2":"71.860","3":"80.884","4":"9.024"},{"1":"Congo Dem. Rep.","2":"39.143","3":"47.804","4":"8.661"},{"1":"Netherlands","2":"72.130","3":"79.762","4":"7.632"},{"1":"Denmark","2":"70.780","3":"78.332","4":"7.552"},{"1":"Liberia","2":"38.480","3":"46.027","4":"7.547"},{"1":"Norway","2":"72.670","3":"80.196","4":"7.526"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -1168,13 +1164,13 @@ Note
 <p>Another example of a summary, with a the starwars data set that dplyr provides:</p>
 <p>Grouping by species, summarise the number of characters per species and find the mean mass. Only for species groups with more than 1 character.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(), <span class="co"># this counts the number of rows in each group</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="co"># the mean of a single value is not worth reporting</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(), <span class="co"># this counts the number of rows in each group</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="co"># the mean of a single value is not worth reporting</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -1186,15 +1182,15 @@ Note
 <p>An example of data manipulation and data visualisation in the same command with gapminder:</p>
 <p>Summarise the gapminder population data into total population per continent per year and plot coloured by continent.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># increase in population per continent</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span> </span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">sum</span>(pop)) <span class="sc">%&gt;%</span> </span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year,</span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> pop,</span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># increase in population per continent</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">sum</span>(pop)) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year,</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> pop,</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'continent'. You can override using the
 `.groups` argument.</code></pre>
@@ -1208,25 +1204,25 @@ Note
 </div>
 </div>
 <p>And another example, using using our gapminder dataset:</p>
-<p>Let’s say we want to calulate the variation (range) in life expectancy per country and plot the top and bottom 10 countries?</p>
+<p>Let’s say we want to calculate the variation (range) in life expectancy per country and plot the top and bottom 10 countries?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">maxLifeExp =</span> <span class="fu">max</span>(lifeExp),</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">minLifeExp =</span> <span class="fu">min</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dif =</span> maxLifeExp <span class="sc">-</span> minLifeExp) <span class="sc">%&gt;%</span>  <span class="co"># new col with difference betwen max/min lifeExp</span></span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(dif)) <span class="sc">%&gt;%</span>  <span class="co"># arrange by dif, descending order for the next step</span></span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, (<span class="fu">nrow</span>(.)<span class="sc">-</span><span class="dv">10</span>)<span class="sc">:</span><span class="fu">nrow</span>(.)) <span class="sc">%&gt;%</span>  <span class="co"># slice top 10 rows and bottom 10 rows</span></span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(country, dif), <span class="at">y =</span> dif)) <span class="sc">+</span></span>
-<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="co"># flip the x and y axis for a horizontal bar chart</span></span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Country"</span>,</span>
-<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Difference in Life Expectancy"</span>) <span class="sc">+</span> <span class="co"># prettier labels for axes (which have been flipped) </span></span>
-<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">11.5</span>, <span class="at">xend =</span> <span class="fl">21.5</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"purple"</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">xend =</span> <span class="dv">11</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"green"</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">16</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">40</span>), </span>
-<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">c</span>(<span class="st">"Smallest 10"</span>, <span class="st">"Largest 10"</span>) ,</span>
-<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span> <span class="dv">5</span> , <span class="at">angle=</span><span class="dv">90</span>) <span class="co"># add labels to colored lines</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">maxLifeExp =</span> <span class="fu">max</span>(lifeExp),</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">minLifeExp =</span> <span class="fu">min</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dif =</span> maxLifeExp <span class="sc">-</span> minLifeExp) <span class="sc">%&gt;%</span>  <span class="co"># new col with difference betwen max/min lifeExp</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(dif)) <span class="sc">%&gt;%</span>  <span class="co"># arrange by dif, descending order for the next step</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, (<span class="fu">nrow</span>(.)<span class="sc">-</span><span class="dv">10</span>)<span class="sc">:</span><span class="fu">nrow</span>(.)) <span class="sc">%&gt;%</span>  <span class="co"># slice top 10 rows and bottom 10 rows</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(country, dif), <span class="at">y =</span> dif)) <span class="sc">+</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="co"># flip the x and y axis for a horizontal bar chart</span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Country"</span>,</span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Difference in Life Expectancy"</span>) <span class="sc">+</span> <span class="co"># prettier labels for axes (which have been flipped) </span></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">11.5</span>, <span class="at">xend =</span> <span class="fl">21.5</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"purple"</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">xend =</span> <span class="dv">11</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"green"</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">16</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">40</span>), </span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">c</span>(<span class="st">"Smallest 10"</span>, <span class="st">"Largest 10"</span>) ,</span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span> <span class="dv">5</span> , <span class="at">angle=</span><span class="dv">90</span>) <span class="co"># add labels to colored lines</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ℹ Please use `linewidth` instead.</code></pre>
@@ -1243,7 +1239,7 @@ Note
 <section id="close-project" class="level2">
 <h2 class="anchored" data-anchor-id="close-project">Close project</h2>
 <p>If you want to close RStudio, make sure you save your script first.</p>
-<p>You can then close the window, and if your script contains all the steps necessary for your data processing, it is safer to <em>not</em> save your workspace at the prompt. It should only take a second te execute all the commands stored in your script when you re-open your project.</p>
+<p>You can then close the window, and if your script contains all the steps necessary for your data processing, it is safer to <em>not</em> save your workspace at the prompt. It should only take a second to execute all the commands stored in your script when you re-open your project.</p>
 </section>
 <section id="what-next" class="level2">
 <h2 class="anchored" data-anchor-id="what-next">What next?</h2>
