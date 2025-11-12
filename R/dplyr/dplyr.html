@@ -1179,8 +1179,20 @@ Note
 </div>
 </div>
 </div>
-<p>An example of data manipulation and data visualisation in the same command with gapminder:</p>
-<p>Summarise the gapminder population data into total population per continent per year and plot coloured by continent.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Combining dplyr with ggplot2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you are already familiar with ggplot2, the two example below illustrate how you can process data with dplyr and pipe the result directly into a ggplot2 visualisation, as often done when using various Tidyverse packages.</p>
+<p>The following example summarises the gapminder population data into total population per continent per year and plots the results coloured by continent.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># increase in population per continent</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -1210,7 +1222,7 @@ Note
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">maxLifeExp =</span> <span class="fu">max</span>(lifeExp),</span>
 <span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">minLifeExp =</span> <span class="fu">min</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dif =</span> maxLifeExp <span class="sc">-</span> minLifeExp) <span class="sc">%&gt;%</span>  <span class="co"># new col with difference betwen max/min lifeExp</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dif =</span> maxLifeExp <span class="sc">-</span> minLifeExp) <span class="sc">%&gt;%</span>  <span class="co"># new col with difference between max/min lifeExp</span></span>
 <span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(dif)) <span class="sc">%&gt;%</span>  <span class="co"># arrange by dif, descending order for the next step</span></span>
 <span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, (<span class="fu">nrow</span>(.)<span class="sc">-</span><span class="dv">10</span>)<span class="sc">:</span><span class="fu">nrow</span>(.)) <span class="sc">%&gt;%</span>  <span class="co"># slice top 10 rows and bottom 10 rows</span></span>
 <span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(country, dif), <span class="at">y =</span> dif)) <span class="sc">+</span></span>
@@ -1218,20 +1230,19 @@ Note
 <span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="co"># flip the x and y axis for a horizontal bar chart</span></span>
 <span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Country"</span>,</span>
 <span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Difference in Life Expectancy"</span>) <span class="sc">+</span> <span class="co"># prettier labels for axes (which have been flipped) </span></span>
-<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">11.5</span>, <span class="at">xend =</span> <span class="fl">21.5</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"purple"</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">xend =</span> <span class="dv">11</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"green"</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">11.5</span>, <span class="at">xend =</span> <span class="fl">21.5</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"purple"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">xend =</span> <span class="dv">11</span>, <span class="at">y =</span> <span class="dv">39</span>, <span class="at">yend =</span> <span class="dv">39</span>, <span class="at">colour =</span> <span class="st">"green"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">16</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">40</span>), </span>
 <span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">c</span>(<span class="st">"Smallest 10"</span>, <span class="st">"Largest 10"</span>) ,</span>
-<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span> <span class="dv">5</span> , <span class="at">angle=</span><span class="dv">90</span>) <span class="co"># add labels to colored lines</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span> <span class="dv">5</span> , <span class="at">angle=</span><span class="dv">90</span>) <span class="co"># add labels to coloured lines</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="dplyr_files/figure-html/life-exp-var-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1248,7 +1259,6 @@ Note
 <li><a href="https://rstudio.github.io/cheatsheets/data-transformation.pdf">dplyr cheatsheet</a></li>
 <li><em>R for Data Science</em>, <a href="https://r4ds.hadley.nz/transform">chapter about dplyr</a></li>
 </ul>
-<p>For further R resources, look at <a href="../usefullinks.md">our compilation of resources</a>.</p>
 
 
 </section>
