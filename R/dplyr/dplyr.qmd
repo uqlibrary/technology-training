@@ -468,9 +468,12 @@ starwars %>%
   filter(n > 1) # the mean of a single value is not worth reporting
 ```
 
-An example of data manipulation and data visualisation in the same command with gapminder:
+::: {.callout-note collapse="true"}
+### Combining dplyr with ggplot2
 
-Summarise the gapminder population data into total population per continent per year and plot coloured by continent.
+If you are already familiar with ggplot2, the two example below illustrate how you can process data with dplyr and pipe the result directly into a ggplot2 visualisation, as often done when using various Tidyverse packages.
+
+The following example summarises the gapminder population data into total population per continent per year and plots the results coloured by continent.
 
 ```{r}
 #| label: pop-increase
@@ -495,7 +498,7 @@ gapminder %>%
   group_by(country) %>% 
   summarise(maxLifeExp = max(lifeExp),
             minLifeExp = min(lifeExp)) %>% 
-  mutate(dif = maxLifeExp - minLifeExp) %>%  # new col with difference betwen max/min lifeExp
+  mutate(dif = maxLifeExp - minLifeExp) %>%  # new col with difference between max/min lifeExp
   arrange(desc(dif)) %>%  # arrange by dif, descending order for the next step
   slice(1:10, (nrow(.)-10):nrow(.)) %>%  # slice top 10 rows and bottom 10 rows
   ggplot(aes(x = reorder(country, dif), y = dif)) +
@@ -503,13 +506,14 @@ gapminder %>%
   coord_flip() + # flip the x and y axis for a horizontal bar chart
   labs(x = "Country",
        y = "Difference in Life Expectancy") + # prettier labels for axes (which have been flipped) 
-  annotate("segment", x = 11.5, xend = 21.5, y = 39, yend = 39, colour = "purple", size=1, alpha=0.6) +
-  annotate("segment", x = 0.5, xend = 11, y = 39, yend = 39, colour = "green", size=1, alpha=0.6) +
+  annotate("segment", x = 11.5, xend = 21.5, y = 39, yend = 39, colour = "purple", linewidth = 1, alpha = 0.6) +
+  annotate("segment", x = 0.5, xend = 11, y = 39, yend = 39, colour = "green", linewidth = 1, alpha = 0.6) +
     annotate("text", x = c(5, 16), y = c(40, 40), 
            label = c("Smallest 10", "Largest 10") ,
-           color="black", size= 5 , angle=90) # add labels to colored lines
-
+           color="black", size= 5 , angle=90) # add labels to coloured lines
 ```
+
+:::
 
 ## Close project
 
@@ -523,5 +527,3 @@ More on dplyr:
 
 -   [dplyr cheatsheet](https://rstudio.github.io/cheatsheets/data-transformation.pdf)
 -   *R for Data Science*, [chapter about dplyr](https://r4ds.hadley.nz/transform)
-
-For further R resources, look at [our compilation of resources](../usefullinks.md).
