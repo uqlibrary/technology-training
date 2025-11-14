@@ -1361,8 +1361,7 @@ We can make our own modules that Python recognises with the `import` command. Th
 
 The script should look like this:
 
-**`reader.py`**
-```{python}
+```{python filename="reader.py"}
 def read_book_words(path):  
     with open(path, encoding = "utf-8") as file:
         contents = file.read()
@@ -1377,9 +1376,7 @@ Finally, we should reflect the changes in our original script.
 
 The main script should look like this
 
-**`toolkit.py`**
-
-```{python}
+```{python filename="toolkit.py"}
 import os
 import reader
 
