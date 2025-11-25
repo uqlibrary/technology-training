@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-11-24">
+<meta name="dcterms.date" content="2025-11-25">
 
 <title>QGIS: Vector Analysis – UQ Library Technology Training</title>
 <style>
@@ -588,7 +588,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 24, 2025</p>
+      <p class="date">November 25, 2025</p>
     </div>
   </div>
   
@@ -600,22 +600,6 @@ window.Quarto = {
 </header>
 
 
-<!-- Upcoming workshops -->
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Upcoming workshop(s) available!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The next workshop is on <strong>today at 10:00 AM.</strong></p>
-<p><a href="https://studenthub.uq.edu.au/students/events/detail/5920325">Book in to the next offering now.</a></p>
-<p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
-</div>
-</div>
 <section id="what-is-vector-data" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-vector-data">What is Vector Data?</h2>
 <p>Vector data is made up of points, lines, and/or polygons. They are made up of precise points with individual coordinates. Vector data is best contrasted with Raster data which has a grid of values evenly spaced apart, connected to one coordinate. Rasters are efficient at displaying large amounts of data, where vector data is very precise.</p>
@@ -658,7 +642,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.</p>
-<p>This might seem necessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.</p>
+<p>This might seem unnecessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.</p>
 <p>Let’s finally add an OpenStreetMap basemap to locate ourselves on the globe:</p>
 <ul>
 <li><code>Browser panel &gt; XYZ Tiles &gt; OpenStreetMap</code> (double-click, or drag and drop into the Layers panel).</li>
@@ -673,13 +657,13 @@ window.Quarto = {
 <section id="koala-sighting-data-encounters" class="level4">
 <h4 class="anchored" data-anchor-id="koala-sighting-data-encounters">Koala Sighting Data (encounters)</h4>
 <p>If we’re looking at Koalas, we should get some occurence/sighting data.</p>
-<p>We’re getting our species observation data today from the <a href="https://www.ala.org.au/">Atlas of Living Australia</a>. This is an Australia Biodiversity occurence database. It pulls data from a variety of different sources, including government data, individual collectors and community groups. This means that this data will contain sampling bias and will often simply represent encounters, rather than using robust sampling and collection methods. So, while we need to use this data with caution, it’s still a useful dataset!</p>
+<p>We’re getting our species observation data today from the <a href="https://www.ala.org.au/">Atlas of Living Australia</a>. This is an Australia Biodiversity occurrence database. It pulls data from a variety of different sources, including government data, individual collectors and community groups. This means that this data will contain sampling bias and will often simply represent encounters, rather than using robust sampling and collection methods. So, while we need to use this data with caution, it’s still a useful dataset!</p>
 <p>You need to create an account and request the exact dataset you need, so to speed things up today, we’ve provided the data already cleaned and processed the data in the download link above.</p>
 <p>Some similar online repositories include the Global Biodiversity Information Facility (GBIF) and iNaturalist</p>
 </section>
 <section id="cleaning-and-processing-the-ala-data" class="level4">
 <h4 class="anchored" data-anchor-id="cleaning-and-processing-the-ala-data">Cleaning and processing the ALA data</h4>
-<p>What do we mean by processed? Well, the ALA dataset has 206 columns by default. This means that each occurence has 206 associated cells, and when multiplied by ~200,000 sightings, our data gets huge (&gt;300mb!). To save time (and storage space!) today we have already deleted 200 of those columns (bring the dataset down to 15mb).</p>
+<p>What do we mean by processed? Well, the ALA dataset has 206 columns by default. This means that each occurrence has 206 associated cells, and when multiplied by ~200,000 sightings, our data gets huge (&gt;300mb!). To save time (and storage space!) today we have already deleted 200 of those columns (bringing the dataset down to 15mb).</p>
 </section>
 </section>
 <section id="qld-government-spatial-data" class="level3">
@@ -774,7 +758,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="projections">Projections</h2>
 <section id="what-are-projections" class="level3">
 <h3 class="anchored" data-anchor-id="what-are-projections">What are projections?</h3>
-<p>To turn the geoid/spheroid shape the of Earth into a flat map, we need to squish, stretch, and distort the map to make it flat. The mathematical equations used to do this are what we’re talking about when we say “<strong>projections</strong>”. Imagine it like a soccer ball, if we have to squash it to make it flat, it’s not going to look nice and square like our maps do. So we pull and stretch it to make it flat and rectangular. There will always be some kind of distortion when we stretch our map like this. This is why the Mercator Projection makes Greenland look large, and Africa look smaller than it really is.</p>
+<p>To turn the geoid/spheroid shape of the Earth into a flat map, we need to squish, stretch, and distort the map to make it flat. The mathematical equations used to do this are what we’re talking about when we say “<strong>projections</strong>”. Imagine it like a soccer ball, if we have to squash it to make it flat, it’s not going to look nice and square like our maps do. So we pull and stretch it to make it flat and rectangular. There will always be some kind of distortion when we stretch our map like this. This is why the Mercator Projection makes Greenland look large, and Africa look smaller than it really is.</p>
 </section>
 <section id="why-are-projections-important-to-us" class="level3">
 <h3 class="anchored" data-anchor-id="why-are-projections-important-to-us">Why are projections important to us?</h3>
@@ -803,10 +787,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="subset-our-sa2-data-down-to-seq---select-features-using-an-expression">Subset our SA2 data down to SEQ - Select features using an expression</h2>
 <p>The following code will allow you to select the SA2 features that are in SEQ.</p>
 <ul>
-<li>Right click on the reprojected SA2 layer, and select <strong>Open Attribute Table</strong>
-<ul>
-<li>You will see that</li>
-</ul></li>
+<li>Right click on the reprojected SA2 layer, and select <strong>Open Attribute Table</strong></li>
 <li>From the Attribute Table that opens, click the Select features using an expression button: <img src="https://user-images.githubusercontent.com/67612228/195261159-b949e22b-7634-4326-ab50-089b94e76dc4.png" class="img-fluid" alt="image"></li>
 <li>In the Select by Expression window that opens, paste the code from below into the Expression field, and then click <code>Select Features</code> in the bottom right of the window.</li>
 </ul>
@@ -845,7 +826,7 @@ window.Quarto = {
 <section id="fix-geometries" class="level3">
 <h3 class="anchored" data-anchor-id="fix-geometries">Fix Geometries</h3>
 <ul>
-<li>Open the Processing Toolbox by clicking the cog icon from the top menu <img src="https://user-images.githubusercontent.com/67612228/195267106-f54d2655-2762-42ec-acd0-a2c744b059e9.png" class="img-fluid" alt="image"> (alternatively go to <code>View &gt; Panels &gt; Processing Toolbox</code></li>
+<li>Open the Processing Toolbox by clicking the cog icon from the top menu <img src="https://user-images.githubusercontent.com/67612228/195267106-f54d2655-2762-42ec-acd0-a2c744b059e9.png" class="img-fluid" alt="image"> (alternatively go to <code>View &gt; Panels &gt; Processing Toolbox</code>)</li>
 <li>In the <strong>Processing Toolbox</strong> window <code>Search</code> for “Fix geometries”</li>
 <li>Double-click on the <strong>Fix geometries</strong> option</li>
 <li>In the <strong>Fix Geometries</strong> window, select <code>CAPAD_Reproj</code> from the <strong>Input layer</strong> options, then click <code>Run</code></li>
@@ -936,7 +917,7 @@ window.Quarto = {
 <p>You can now look at the <strong>Attribute Table (F6)</strong> for this layer to see the number of koala sightings in each suburb. Let’s visualise this.</p>
 <ul>
 <li><p>Click on the <strong>SA2_SEQ_koalas</strong> layer in the Layers panel</p></li>
-<li><p>Open the Layer Sytling Panel by pressing F7 (or fn + F7)</p></li>
+<li><p>Open the Layer Styling Panel by pressing F7 (or fn + F7)</p></li>
 <li><p>Change the Symbology from <code>Single Symbol</code> to <code>Graduated</code></p></li>
 <li><p>Set the <strong>Value</strong> to <code>NUM_KOALAS</code></p></li>
 <li><p>Choose a <strong>Color ramp</strong> of your liking</p></li>
