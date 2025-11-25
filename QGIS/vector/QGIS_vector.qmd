@@ -61,7 +61,7 @@ We will start as always by creating a good folder structure to work within. This
 
 Your .qgz file should always be in the highest level folder, so it's only looking down into folders for data, not back out.
 
-This might seem necessary now, but things quickly get out of control and hard to find if you don't have a good folder structure.
+This might seem unnecessary now, but things quickly get out of control and hard to find if you don't have a good folder structure.
 
 Let's finally add an OpenStreetMap basemap to locate ourselves on the globe:
 
@@ -79,7 +79,7 @@ I will quickly show you where all of this data came from.
 
 If we're looking at Koalas, we should get some occurence/sighting data.
 
-We're getting our species observation data today from the [Atlas of Living Australia](https://www.ala.org.au/). This is an Australia Biodiversity occurence database. It pulls data from a variety of different sources, including government data, individual collectors and community groups. This means that this data will contain sampling bias and will often simply represent encounters, rather than using robust sampling and collection methods. So, while we need to use this data with caution, it's still a useful dataset!
+We're getting our species observation data today from the [Atlas of Living Australia](https://www.ala.org.au/). This is an Australia Biodiversity occurrence database. It pulls data from a variety of different sources, including government data, individual collectors and community groups. This means that this data will contain sampling bias and will often simply represent encounters, rather than using robust sampling and collection methods. So, while we need to use this data with caution, it's still a useful dataset!
 
 You need to create an account and request the exact dataset you need, so to speed things up today, we've provided the data already cleaned and processed the data in the download link above.
 
@@ -87,7 +87,7 @@ Some similar online repositories include the Global Biodiversity Information Fac
 
 #### Cleaning and processing the ALA data
 
-What do we mean by processed? Well, the ALA dataset has 206 columns by default. This means that each occurence has 206 associated cells, and when multiplied by \~200,000 sightings, our data gets huge (\>300mb!). To save time (and storage space!) today we have already deleted 200 of those columns (bring the dataset down to 15mb).
+What do we mean by processed? Well, the ALA dataset has 206 columns by default. This means that each occurrence has 206 associated cells, and when multiplied by \~200,000 sightings, our data gets huge (\>300mb!). To save time (and storage space!) today we have already deleted 200 of those columns (bringing the dataset down to 15mb).
 
 ### QLD Government Spatial Data
 
@@ -171,7 +171,7 @@ But what about the Koala Encounters location data? We need to handle this differ
 
 ### What are projections?
 
-To turn the geoid/spheroid shape the of Earth into a flat map, we need to squish, stretch, and distort the map to make it flat. The mathematical equations used to do this are what we're talking about when we say "**projections**". Imagine it like a soccer ball, if we have to squash it to make it flat, it's not going to look nice and square like our maps do. So we pull and stretch it to make it flat and rectangular. There will always be some kind of distortion when we stretch our map like this. This is why the Mercator Projection makes Greenland look large, and Africa look smaller than it really is.
+To turn the geoid/spheroid shape of the Earth into a flat map, we need to squish, stretch, and distort the map to make it flat. The mathematical equations used to do this are what we're talking about when we say "**projections**". Imagine it like a soccer ball, if we have to squash it to make it flat, it's not going to look nice and square like our maps do. So we pull and stretch it to make it flat and rectangular. There will always be some kind of distortion when we stretch our map like this. This is why the Mercator Projection makes Greenland look large, and Africa look smaller than it really is.
 
 ### Why are projections important to us?
 
@@ -206,7 +206,6 @@ You won't notice any difference, as QGIS is helpfully doing "on the fly projecti
 The following code will allow you to select the SA2 features that are in SEQ.
 
 -   Right click on the reprojected SA2 layer, and select **Open Attribute Table**
-    -   You will see that
 -   From the Attribute Table that opens, click the Select features using an expression button: ![image](https://user-images.githubusercontent.com/67612228/195261159-b949e22b-7634-4326-ab50-089b94e76dc4.png)
 -   In the Select by Expression window that opens, paste the code from below into the Expression field, and then click `Select Features` in the bottom right of the window.
 
@@ -245,7 +244,7 @@ We get an error `Feature (26) from “CAPAD_Reproj” has invalid geometry.` Thi
 
 ### Fix Geometries
 
--   Open the Processing Toolbox by clicking the cog icon from the top menu ![image](https://user-images.githubusercontent.com/67612228/195267106-f54d2655-2762-42ec-acd0-a2c744b059e9.png) (alternatively go to `View > Panels > Processing Toolbox`
+-   Open the Processing Toolbox by clicking the cog icon from the top menu ![image](https://user-images.githubusercontent.com/67612228/195267106-f54d2655-2762-42ec-acd0-a2c744b059e9.png) (alternatively go to `View > Panels > Processing Toolbox`)
 -   In the **Processing Toolbox** window `Search` for "Fix geometries"
 -   Double-click on the **Fix geometries** option
 -   In the **Fix Geometries** window, select `CAPAD_Reproj` from the **Input layer** options, then click `Run`
@@ -367,7 +366,7 @@ You can now look at the **Attribute Table (F6)** for this layer to see the numbe
 
 -   Click on the **SA2_SEQ_koalas** layer in the Layers panel
 
--   Open the Layer Sytling Panel by pressing F7 (or fn + F7)
+-   Open the Layer Styling Panel by pressing F7 (or fn + F7)
 
 -   Change the Symbology from `Single Symbol` to `Graduated`
 
