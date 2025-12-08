@@ -1,0 +1,116 @@
+---
+title: "QGIS: Data Sources"
+editor: source
+date: today
+author: UQ Library
+---
+
+# Data
+
+This is a list of Spatial data sources that you might find useful. Some are used in our workshops, others didn't fit, but are still very valuable.
+Some of the data sources will have instructions for extracting the data, some will not. This is primarily a repository to refer to and use to find data. 
+
+
+## Council Data
+
+[Sunshine Coast MyMaps](https://scrc.maps.arcgis.com/apps/webappviewer/index.html?id=48501cb9e7294555be5b08e35e949616)
+
+
+## Federal Data
+
+CSIRO's [Norfolk Island Data Portal](https://data.csiro.au/collection/csiro:43016)
+[CSIRO spatial products](https://data.csiro.au/collections/search/SQDEM/STsearch-by-keyword/).
+
+## Raster Data
+
+### DEM
+
+A Digital Elevation Model (DEM) is a common example of **raster data**, i.e. grid data that contains a value in each cell (a bit like the pixels in a coloured picture).
+
+For this tutorial, we are using a DEM sourced from **ELVIS** - Geoscience Australia's ELeVation Information System.
+
+-   Go to <http://www.ga.gov.au/elvis/>
+-   Search for "St Lucia" in the `Location Search` search box and select the first result
+-   Click `Order Data`
+-   Choose "Draw" and "Box" and then click the `Draw` button
+-   Click on the map to start drawing a rectangle around your desired area
+-   Then click `Search`
+-   The right panel will show you all the different datasets available in that area
+-   We want the QLD Government Digital Elevation Model 1 Metre, click the down arrow on the right
+-   As you hover over the different options, they will highlight a red box on the map, click the tick box and select all that overlap the area you're interested in (note that there may be data from different years here)
+-   When you have the data you want, scroll to the bottom of the Order Data window
+-   Select your industry, enter your email, tick the reCAPTCHA, and click the `Order Datasets` button
+-   You should receive an email within 5 minutes, download the files from the link in the email, extract the folder to your project folder, and add them to your map.
+
+### Aerial Imagery
+
+There are a few places you can aquire aerial photography, today we will look at two sources, one is freely available Government Data, the other is accessible from using your UQ credentials.
+
+As a UQ student, you also have access to very high resoltuion imagery from **NearMap**. You can even access an array of imagery going back in time.
+
+-   Go to the [UQ NearMap Portal](https://admin.nearmap.com/invitation/domain-signup?token=q9WIbXMtna1iskb2meNGhKpCaQp3WTRbMhXpQVGWkKouKUeqzkpjNznC_Ogz5iKYiw0Ev7vym2Ykaj_W_V4dBbTzR6qUX2eTDsNHpBuR4XbU9vDRxQN_Rg==)
+-   Enter your UQ Student (@student.uq.edu.au) or Staff (@uq.edu.au) email address, with the appropriate domain selected. Click "Invite me".
+-   You should receive an email soon after, click the "Accept Invitation" button, and go through the account setup process.
+-   Go to Login and enter your email address, click "Next" and enter your password.
+-   From the top right select `MapBrowser`.
+-   Type "St Lucia, QLD" in the search box, press enter
+-   You can click the date down the bottom to look at different snapshots in time, and even compare maps side-by-side.
+-   To save imagery from NearMap, simply click the "Exports" button on the left handside (it is an image icon)
+-   From the menu that appears change the "Export type" to "Georeferenced image"
+-   From "Projection" choose GDA2020 / MGA zone 56
+-   You can increase and decrease the size of the bounding box by adjusting its corners, a smaller box means you can have a finer resolution, down to 0.075m. If we select all of UQ St Lucia in one go, the highest resolution we can have is 0.299m.
+-   Once you're happy with your selection click `Download Files`
+-   Move the downloaded zip file to your project folder, and open them in QGIS
+
+
+
+## Vector Data
+
+### Lot Plans
+
+You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial. There are three ways to access this data. You can download all of it, you can select a portion for download, or you can live load it into your project. Today we  download the files covering our project area.
+
+-   To access data from QLD Spatial go to <https://qldspatial.information.qld.gov.au/>
+
+-   Search for "property boundaries"
+
+-   Scroll down to "Property boundaries Queensland" and click **Add to my list**
+
+-   Click **My List** from the top menu
+
+-   Click **View/extract in map**
+
+-   Under Extractable Data, click the box next to **Property boundaries Queensland**, it will become green
+
+-   Click **Extract/download**
+
+-   Click **Choose an area**
+
+-   Select **BRISBANE CITY** from the Select LGA option
+
+-   Choose GeoPackage 1.0 from Select output format
+
+-   Enter your Email Address
+
+-   Accept the Terms and Conditions
+
+-   Click **Extract/Download**
+
+-   You can can also just download the preprepared data [here](https://github.com/uqlibrary/technology-training/blob/8e0aebe078198cd8bb65630c9ac4c4c8558a4392/QGIS/mobile/QGIS_Mobile_Data.zip), just press the three dots and download.
+
+-   Move the downloaded zip file to your project raw data folder, and open the shapefile in QGIS
+
+### Queensland Globe
+
+Another way to access QSpatial Data is using the Queensland Globe portal.
+
+-   To access data from Queensland Globe go to [https://qldglobe.information.qld.gov.au](https://qldglobe.information.qld.gov.au)
+-   Accept the T&Cs.
+-   Click **Search**, Select **Locality (Suburb) within a Local Government Area**, and search for the location you want and select it from the list.
+-   Click **Layers**, click **Add Layers +** here you can scroll through and filter different layer types
+-   We want to tick the box next to `Planning Cadastre > Land Parcels > Land Parcel` (you may need to zoom in to see certain layers)
+-   To export data click the Wrench Icon in the top right, and then click the Identify icon (i)
+-   Use the triangular Identify Polygon tool to select and area of interest. Double click when you've finished selecting your area.
+-   The Layers menu will now show your selection. You can download all, or sections, of your selection.
+-   I will choose **Land Parcel** and then **Download** as a **shp** file.
+-   Note: You may need to disable other layers for this to work correctly. I needed to turn off the **Transportation** layer to prevent roads from being included in my selection.
