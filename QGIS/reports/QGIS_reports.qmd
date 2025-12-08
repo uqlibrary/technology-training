@@ -96,9 +96,9 @@ The basemap sets the tone for the rest of the layers in the map, as they can gre
 
 ## Basemaps
 
-Let's start by making a map we might use in an **Academic Paper** or in an **Article for the Public**, where we want to focus their attention on our data. Unless we really need **Satellite** imagery, or everything on the **OpenStreetMap**, it is too busy and distracting. \
+Let's start by making a map we might use in an **Academic Paper** or in an **Article for the Public**, where we want to focus their attention on our data. Unless we really need **Satellite** imagery, or everything on the **OpenStreetMap**, it is too busy and distracting.\
 \
-Let's load in a new basemap. \
+Let's load in a new basemap.\
 \
 There are many ways of doing this, in the past we've used the **QuickMapServices** plugin to load in new basemaps, now we can go to the next step and source them externally. We can do this with WMTS (Web Map Tile Service), WCS (Web Coverage Service), ArcGIS REST Servers, and XYZ Tiles.
 
@@ -108,13 +108,13 @@ Today we're going to use an XYZ Tile from CARTODB.
 -   Right click XYZ Tiles and select `New Connection...`
     -   In `Name` type **Voyager (no labels)**
     -   In `URL` paste:\
-        [https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}](https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y})@2x.png
+        https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png
     -   Increase the Max. Zoom Level to 20
         -   This value depends on what is available from the given service in different parts of the world. Increasing that value beyond 20 for this map in Brisbane will show "Map data not yet available" when you zoom in very close.
     -   Click `OK`
 -   In the `Browser` panel, expand `XYZ Tiles` and double click on `Voyager (no labels)`
 -   Now do the same for this **Light Gray Basemap** from ESRI, but set the Max. Zoom Level to 16:\
-    [https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}](https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x})
+    https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}
 
 Arrange the layers so that the **Voyager (no labels)** layer is under your other layers (you can hide the **Light Gray Basemap** and **OpenStreetMap** for now).
 
@@ -130,10 +130,10 @@ The built in color ramps provide some good options I quite like **`rainfall`** (
 
 Today we're being fancy, we're going to import and build our own Color Ramp and Color Palette.
 
--   In you internet browser, navigate to [colorbrewer2.org](https://colorbrewer2.org/#type=qualitative&scheme=Set2&n=7)
+-   In your internet browser, navigate to [colorbrewer2.org](https://colorbrewer2.org/#type=qualitative&scheme=Set2&n=7)
 
     -   Set "Number of data classes" to 7
-    
+
     -   Set "Nature of data classes" to "qualitative"
 
     -   Choose Set2 (should be the second from the right)
@@ -243,7 +243,7 @@ That's nicer, but let's make it *fancy.* Let's add a dropshadow.
 -   Click the new **Simple Fill**
     -   Change `Symbol layer type` from **Simple Fill** to **Outline: Simple Line**
     -   Set the `Stroke width` to 3
-    -   Scroll to the bottom, tick `Draw Effects`, then click the ![](images/mIconPaintEffects.png) `Customise effects` button (The one next to "Enable symbol layer", _not_ the one in the "Layer Rendering" section!)
+    -   Scroll to the bottom, tick `Draw Effects`, then click the ![](images/mIconPaintEffects.png) `Customise effects` button (The one next to "Enable symbol layer", *not* the one in the "Layer Rendering" section!)
         -   Untick `Source`
         -   Tick and select `Drop Shadow`
             -   Change the `Blur Radius` to **6mm**
@@ -294,7 +294,7 @@ Now we have a slightly different style to our **Project_area** that will look be
 
 Now that we’ve made some style changes, we can see what themes do.
 
--   In the `Layers` panel, hide the **ESRI World Imagery**, **Paths** and **Artefacts** layers by unticking the boxes next to them.
+-   In the `Layers` panel, hide the **Voyager (no labels)**, **Paths** and **Artefacts** layers by unticking the boxes next to them.
 
 -   Unhide the **Light Gray Basemap**
 
