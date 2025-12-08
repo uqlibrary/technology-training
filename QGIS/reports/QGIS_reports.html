@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-12-07">
+<meta name="dcterms.date" content="2025-12-08">
 
 <title>QGIS: Refine Your Maps for Reporting and Publication – UQ Library Technology Training</title>
 <style>
@@ -102,6 +102,10 @@ window.Quarto = {
 };
 </script>
 
+<meta property="og:title" content="QGIS: Refine Your Maps for Reporting and Publication – UQ Library Technology Training">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://uqlibrary.github.io/technology-training/images/QGIS.svg">
+<meta property="og:site_name" content="UQ Library Technology Training">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -559,7 +563,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 7, 2025</p>
+      <p class="date">December 8, 2025</p>
     </div>
   </div>
   
@@ -663,7 +667,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <ul>
 <li>In <code>Name</code> type <strong>Voyager (no labels)</strong></li>
 <li>In <code>URL</code> paste:<br>
-<a href="https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/%7Bz%7D/%7Bx%7D/%7By%7D">https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}</a><span class="citation" data-cites="2x.png">@2x.png</span></li>
+https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}<span class="citation" data-cites="2x.png">@2x.png</span></li>
 <li>Increase the Max. Zoom Level to 20
 <ul>
 <li>This value depends on what is available from the given service in different parts of the world. Increasing that value beyond 20 for this map in Brisbane will show “Map data not yet available” when you zoom in very close.</li>
@@ -672,7 +676,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 </ul></li>
 <li>In the <code>Browser</code> panel, expand <code>XYZ Tiles</code> and double click on <code>Voyager (no labels)</code></li>
 <li>Now do the same for this <strong>Light Gray Basemap</strong> from ESRI, but set the Max. Zoom Level to 16:<br>
-<a href="https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D">https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}</a></li>
+https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}</li>
 </ul>
 <p>Arrange the layers so that the <strong>Voyager (no labels)</strong> layer is under your other layers (you can hide the <strong>Light Gray Basemap</strong> and <strong>OpenStreetMap</strong> for now).</p>
 <p>Isn’t that much less visually busy?!</p>
@@ -684,7 +688,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <p>The built in color ramps provide some good options I quite like <strong><code>rainfall</code></strong> (in Precipitation), <strong><code>Set1</code></strong> (in QGIS), and <strong><code>wiki-knutux</code></strong> (in Topography).</p>
 <p>Today we’re being fancy, we’re going to import and build our own Color Ramp and Color Palette.</p>
 <ul>
-<li><p>In you internet browser, navigate to <a href="https://colorbrewer2.org/#type=qualitative&amp;scheme=Set2&amp;n=7">colorbrewer2.org</a></p>
+<li><p>In your internet browser, navigate to <a href="https://colorbrewer2.org/#type=qualitative&amp;scheme=Set2&amp;n=7">colorbrewer2.org</a></p>
 <ul>
 <li><p>Set “Number of data classes” to 7</p></li>
 <li><p>Set “Nature of data classes” to “qualitative”</p></li>
@@ -862,7 +866,7 @@ There are many ways of doing this, in the past we’ve used the <strong>QuickMap
 <h3 class="anchored" data-anchor-id="themes-again">Themes (again)</h3>
 <p>Now that we’ve made some style changes, we can see what themes do.</p>
 <ul>
-<li><p>In the <code>Layers</code> panel, hide the <strong>ESRI World Imagery</strong>, <strong>Paths</strong> and <strong>Artefacts</strong> layers by unticking the boxes next to them.</p></li>
+<li><p>In the <code>Layers</code> panel, hide the <strong>Voyager (no labels)</strong>, <strong>Paths</strong> and <strong>Artefacts</strong> layers by unticking the boxes next to them.</p></li>
 <li><p>Unhide the <strong>Light Gray Basemap</strong></p></li>
 </ul>
 <!-- -->
