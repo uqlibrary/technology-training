@@ -5,7 +5,7 @@ date: today
 author: UQ Library
 ---
 
-# Setting up
+# Setup
 
 This is an intermediate level tutorial. Before completing this tutorial, we recommend our [QGIS: Introduction to Mapping](QGIS/intro/QGIS_intro.qmd) tutorial. This tutorial is designed for **QGIS 3.40**. If you need to install it on your computer, go to the [QGIS website](https://qgis.org/download/).
 
@@ -31,7 +31,6 @@ We will start as always by creating a good folder structure to work within. This
     
     -   "UQ_Fieldwork" - this is also new, it's for exporting our project to QField
 
-    -   "temp" - this isn't *necessary*, but when you're playing around and testing, it stops things getting messy.
 
 -   Finally, let's save our .qgz project file here, named "qgis_fieldwork_map.qgz"
 
@@ -43,11 +42,7 @@ This might seem unnecessary now, but things quickly get out of control and hard 
 
 
 
-## Install QField on your phone
-
-QField and Avenza Maps are a mobile based offline mapping tools you can use on your smartphone.
-
-### QField
+## Install QField
 
 QField plugs directly in to QGIS, and allows you to link a QGIS project with your mobile phone for data collection.
 
@@ -63,7 +58,7 @@ There are alternatives out there, such as [Input (MerginMaps)](https://merginmap
 
 :::
 
-# Download our data
+# Download Data
 
 Our data for today is packaged in a zip file.
 
@@ -110,7 +105,7 @@ Today we're going to use a World Imagery XYZ Tile from ESRI.
 
 You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from [QLD Spatial](https://qldspatial.information.qld.gov.au/). 
 
-Today we have extracted a selection from "[Property boundaries Queensland](https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={3F217A59-1FDB-412A-813D-A1E7843FB618}"
+Today we have extracted a selection from [Property boundaries Queensland](https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={3F217A59-1FDB-412A-813D-A1E7843FB618})
 
 There are three ways to access data from QSpatial. 
 
@@ -121,10 +116,7 @@ There are three ways to access data from QSpatial.
 -   Live load it into your project using a [Mapserver](https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer). 
 
 
--   You can can also just download the preprepared data [here](https://github.com/uqlibrary/technology-training/blob/8e0aebe078198cd8bb65630c9ac4c4c8558a4392/QGIS/mobile/QGIS_Mobile_Data.zip), just press the three dots and download.
-
-
-# Import our data
+# Import Data
 
 Our data should neatly appear within the `Project Home` folder within the `Browser` panel.
 
@@ -133,7 +125,7 @@ Our data should neatly appear within the `Project Home` folder within the `Brows
 -   Drag in the **UQ_DEM_1m.tif** and **St_Lucia_Property_Boundaries.gpkg**
 
 
-# Buffer around our data
+# Buffer Data
 
 Buffers are a simple, but powerful, tool that we can use to extend the borders of our vector data. 
 It's useful for polygons, lines, and points.
@@ -226,7 +218,7 @@ Hopefully it's clear why we needed to convert from a Geographic Coordinate Syste
 Let's see what would happen if we did our buffer on those lines in a different projection.
 
 
-### Reproject Our Data
+### Reproject Data
 
 -   Go to `Vector > Data Management Tools > Reproject Layer...`
 
@@ -240,7 +232,7 @@ Let's see what would happen if we did our buffer on those lines in a different p
 
     -   We don't need to permanently save this, so we can leave it as a temporary layer
 
-### Buffer the Reprojected Lines
+### Buffer Reprojected Lines
 
 -   Go to `Vector > Geoprocessing Tools > Buffer`
 
@@ -271,7 +263,7 @@ It can still be useful to use this projection to take points. But you have to be
 It's not essential at this stage, it's just a good reminder to save your work regularly so you don't lose things when things go wrong.
 
 
-# Create a hillshade
+# Hillshade
 
 Adding a **hillshade** makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.
 
@@ -280,7 +272,7 @@ Adding a **hillshade** makes your visualisation of elevation more readable and v
 -   Scroll down to "Hillshade" and click "..." next to `Create Temporary Layer`, then "Save to file", and save it as **UQ_Hillshade** to your project folder.
 -   Click Run
 
-# Change the DEM symbology
+# DEM symbology
 
 We can style our DEM with a **terrain colour palette**:
 
@@ -301,7 +293,7 @@ Let's link these two together.
 -   Make sure the DEM is above the Hillshade within this group
 
 
-# Create Contours
+# Contours
 
 Adding a **contour** makes your elevation even more evident and can also be used to quickly show elevation on other layers
 
@@ -312,7 +304,7 @@ Adding a **contour** makes your elevation even more evident and can also be used
 -   Click Run
 
 
-# Create layer for data collection
+# Layer for Data Collection
 
 This is a very important step, as you cannot create new layers in QField, so we need this to record the data we collect.
 
@@ -353,7 +345,7 @@ We could choose a local Geographic Coordinate System like **EPSG:7844 - GDA2020*
 **Always check and transform to a common CRS before analysis.**
 
 
-## Add another field
+## Add Another Field
 It would be nice to be able to take photos when we collect our data, let's add another field.
 
 -   Double click on the new **fieldwork_data** layer
@@ -368,7 +360,7 @@ It would be nice to be able to take photos when we collect our data, let's add a
 -   Click `OK`
 
 
-## Prepare the Attributes Form
+## Attributes Form Preparation
 
 Now that we have a layer with all the desired fields, we can now edit the layer form to customise how things are entered.
 
@@ -419,7 +411,7 @@ We should now have a functional form, let's test it in QGIS before we send it to
 -   Click `Cancel`
 -   Click the yellow pencil button to **Toggle Editing** off
 
-# Create a layer for our tracks
+# Tracks Layer
 
 This is another important step, as you need to create your tracking layer before you export to QField
 
@@ -434,7 +426,7 @@ This is another important step, as you need to create your tracking layer before
     -   Click `Add to Fields List`
     
     
-## Prepare the Tracks Attributes Form
+## Tracks Attributes Form Preparation
 
 Let's prepare the **tracks** DateTime as we did with the **collected_data**
 -   Double click on the new **tracks** layer
@@ -565,11 +557,13 @@ If you have any questions, reach out to the UQ Library Training Team at training
 
 
 
-## Feedback
+# Feedback
 
 Please visit our website to [provide feedback](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources) and find upcoming training courses we have on offer.
 
 
+
+# Stretch Goals
 
 ## Exporting to Avenza Maps
 
@@ -599,8 +593,6 @@ When you first open Avenza Maps it will ask you to create an account, but you ca
 :::
 
 
-
-# Stretch Goals
 
 ## AutoID
 
