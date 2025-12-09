@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2025-12-08">
+<meta name="dcterms.date" content="2025-12-09">
 
 <title>QGIS: Fieldwork Data Collection – UQ Library Technology Training</title>
 <style>
@@ -489,14 +489,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
-  <li><a href="#install-qfield-on-your-phone" id="toc-install-qfield-on-your-phone" class="nav-link" data-scroll-target="#install-qfield-on-your-phone">Install QField on your phone</a>
-  <ul class="collapse">
-  <li><a href="#qfield" id="toc-qfield" class="nav-link" data-scroll-target="#qfield">QField</a></li>
+  <li><a href="#install-qfield" id="toc-install-qfield" class="nav-link" data-scroll-target="#install-qfield">Install QField</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#download-our-data" id="toc-download-our-data" class="nav-link" data-scroll-target="#download-our-data">Download our data</a></li>
+  <li><a href="#download-data" id="toc-download-data" class="nav-link" data-scroll-target="#download-data">Download Data</a></li>
   <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources">Data Sources</a>
   <ul class="collapse">
   <li><a href="#dem" id="toc-dem" class="nav-link" data-scroll-target="#dem">DEM</a></li>
@@ -507,35 +504,35 @@ window.Quarto = {
   </ul></li>
   <li><a href="#lot-plans" id="toc-lot-plans" class="nav-link" data-scroll-target="#lot-plans">Lot Plans</a></li>
   </ul></li>
-  <li><a href="#import-our-data" id="toc-import-our-data" class="nav-link" data-scroll-target="#import-our-data">Import our data</a></li>
-  <li><a href="#buffer-around-our-data" id="toc-buffer-around-our-data" class="nav-link" data-scroll-target="#buffer-around-our-data">Buffer around our data</a></li>
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import Data</a></li>
+  <li><a href="#buffer-data" id="toc-buffer-data" class="nav-link" data-scroll-target="#buffer-data">Buffer Data</a></li>
   <li><a href="#select-and-reproject" id="toc-select-and-reproject" class="nav-link" data-scroll-target="#select-and-reproject">Select and Reproject</a></li>
   <li><a href="#polygons-to-lines" id="toc-polygons-to-lines" class="nav-link" data-scroll-target="#polygons-to-lines">Polygons to Lines</a>
   <ul class="collapse">
   <li><a href="#buffer-the-lines" id="toc-buffer-the-lines" class="nav-link" data-scroll-target="#buffer-the-lines">Buffer the Lines</a></li>
   <li><a href="#explore-projections" id="toc-explore-projections" class="nav-link" data-scroll-target="#explore-projections">Explore Projections</a>
   <ul class="collapse">
-  <li><a href="#reproject-our-data" id="toc-reproject-our-data" class="nav-link" data-scroll-target="#reproject-our-data">Reproject Our Data</a></li>
-  <li><a href="#buffer-the-reprojected-lines" id="toc-buffer-the-reprojected-lines" class="nav-link" data-scroll-target="#buffer-the-reprojected-lines">Buffer the Reprojected Lines</a></li>
+  <li><a href="#reproject-data" id="toc-reproject-data" class="nav-link" data-scroll-target="#reproject-data">Reproject Data</a></li>
+  <li><a href="#buffer-reprojected-lines" id="toc-buffer-reprojected-lines" class="nav-link" data-scroll-target="#buffer-reprojected-lines">Buffer Reprojected Lines</a></li>
   </ul></li>
   <li><a href="#style-the-boundary-buffer-polygon" id="toc-style-the-boundary-buffer-polygon" class="nav-link" data-scroll-target="#style-the-boundary-buffer-polygon">Style the Boundary buffer polygon</a>
   <ul class="collapse">
   <li><a href="#save-your-project" id="toc-save-your-project" class="nav-link" data-scroll-target="#save-your-project">Save your project</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#create-a-hillshade" id="toc-create-a-hillshade" class="nav-link" data-scroll-target="#create-a-hillshade">Create a hillshade</a></li>
-  <li><a href="#change-the-dem-symbology" id="toc-change-the-dem-symbology" class="nav-link" data-scroll-target="#change-the-dem-symbology">Change the DEM symbology</a></li>
-  <li><a href="#create-contours" id="toc-create-contours" class="nav-link" data-scroll-target="#create-contours">Create Contours</a></li>
-  <li><a href="#create-layer-for-data-collection" id="toc-create-layer-for-data-collection" class="nav-link" data-scroll-target="#create-layer-for-data-collection">Create layer for data collection</a>
+  <li><a href="#hillshade" id="toc-hillshade" class="nav-link" data-scroll-target="#hillshade">Hillshade</a></li>
+  <li><a href="#dem-symbology" id="toc-dem-symbology" class="nav-link" data-scroll-target="#dem-symbology">DEM symbology</a></li>
+  <li><a href="#contours" id="toc-contours" class="nav-link" data-scroll-target="#contours">Contours</a></li>
+  <li><a href="#layer-for-data-collection" id="toc-layer-for-data-collection" class="nav-link" data-scroll-target="#layer-for-data-collection">Layer for Data Collection</a>
   <ul class="collapse">
-  <li><a href="#add-another-field" id="toc-add-another-field" class="nav-link" data-scroll-target="#add-another-field">Add another field</a></li>
-  <li><a href="#prepare-the-attributes-form" id="toc-prepare-the-attributes-form" class="nav-link" data-scroll-target="#prepare-the-attributes-form">Prepare the Attributes Form</a></li>
+  <li><a href="#add-another-field" id="toc-add-another-field" class="nav-link" data-scroll-target="#add-another-field">Add Another Field</a></li>
+  <li><a href="#attributes-form-preparation" id="toc-attributes-form-preparation" class="nav-link" data-scroll-target="#attributes-form-preparation">Attributes Form Preparation</a></li>
   </ul></li>
-  <li><a href="#create-a-layer-for-our-tracks" id="toc-create-a-layer-for-our-tracks" class="nav-link" data-scroll-target="#create-a-layer-for-our-tracks">Create a layer for our tracks</a>
+  <li><a href="#tracks-layer" id="toc-tracks-layer" class="nav-link" data-scroll-target="#tracks-layer">Tracks Layer</a>
   <ul class="collapse">
-  <li><a href="#prepare-the-tracks-attributes-form" id="toc-prepare-the-tracks-attributes-form" class="nav-link" data-scroll-target="#prepare-the-tracks-attributes-form">Prepare the Tracks Attributes Form</a></li>
+  <li><a href="#tracks-attributes-form-preparation" id="toc-tracks-attributes-form-preparation" class="nav-link" data-scroll-target="#tracks-attributes-form-preparation">Tracks Attributes Form Preparation</a></li>
   </ul></li>
-  <li><a href="#qfield-1" id="toc-qfield-1" class="nav-link" data-scroll-target="#qfield-1">QField</a>
+  <li><a href="#qfield" id="toc-qfield" class="nav-link" data-scroll-target="#qfield">QField</a>
   <ul class="collapse">
   <li><a href="#install-qfield-plugin" id="toc-install-qfield-plugin" class="nav-link" data-scroll-target="#install-qfield-plugin">Install QField Plugin</a></li>
   <li><a href="#prepare-data-for-qfield" id="toc-prepare-data-for-qfield" class="nav-link" data-scroll-target="#prepare-data-for-qfield">Prepare Data for QField</a></li>
@@ -546,11 +543,11 @@ window.Quarto = {
   <li><a href="#turning-on-tracks" id="toc-turning-on-tracks" class="nav-link" data-scroll-target="#turning-on-tracks">Turning on Tracks</a></li>
   <li><a href="#turning-off-tracks" id="toc-turning-off-tracks" class="nav-link" data-scroll-target="#turning-off-tracks">Turning off Tracks</a></li>
   </ul></li>
-  <li><a href="#feedback" id="toc-feedback" class="nav-link" data-scroll-target="#feedback">Feedback</a></li>
-  <li><a href="#exporting-to-avenza-maps" id="toc-exporting-to-avenza-maps" class="nav-link" data-scroll-target="#exporting-to-avenza-maps">Exporting to Avenza Maps</a></li>
   </ul></li>
+  <li><a href="#feedback" id="toc-feedback" class="nav-link" data-scroll-target="#feedback">Feedback</a></li>
   <li><a href="#stretch-goals" id="toc-stretch-goals" class="nav-link" data-scroll-target="#stretch-goals">Stretch Goals</a>
   <ul class="collapse">
+  <li><a href="#exporting-to-avenza-maps" id="toc-exporting-to-avenza-maps" class="nav-link" data-scroll-target="#exporting-to-avenza-maps">Exporting to Avenza Maps</a></li>
   <li><a href="#autoid" id="toc-autoid" class="nav-link" data-scroll-target="#autoid">AutoID</a></li>
   </ul></li>
   </ul>
@@ -578,7 +575,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 8, 2025</p>
+      <p class="date">December 9, 2025</p>
     </div>
   </div>
   
@@ -590,24 +587,8 @@ window.Quarto = {
 </header>
 
 
-<!-- Upcoming workshops -->
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Upcoming workshop(s) available!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The next workshop is on <strong>today at 10:00 AM.</strong></p>
-<p><a href="https://studenthub.uq.edu.au/students/events/detail/5946845">Book in to the next offering now.</a></p>
-<p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
-</div>
-</div>
-<section id="setting-up" class="level1">
-<h1>Setting up</h1>
+<section id="setup" class="level1">
+<h1>Setup</h1>
 <p>This is an intermediate level tutorial. Before completing this tutorial, we recommend our <a href="QGIS/intro/QGIS_intro.qmd">QGIS: Introduction to Mapping</a> tutorial. This tutorial is designed for <strong>QGIS 3.40</strong>. If you need to install it on your computer, go to the <a href="https://qgis.org/download/">QGIS website</a>.</p>
 <p>We will start as always by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.</p>
 <ul>
@@ -624,22 +605,18 @@ window.Quarto = {
 <li><p>“output” - for any maps or images we export</p></li>
 <li><p>“DCIM” - this is a new one, it’s for storing images from our phone!</p></li>
 <li><p>“UQ_Fieldwork” - this is also new, it’s for exporting our project to QField</p></li>
-<li><p>“temp” - this isn’t <em>necessary</em>, but when you’re playing around and testing, it stops things getting messy.</p></li>
 </ul></li>
 <li><p>Finally, let’s save our .qgz project file here, named “qgis_fieldwork_map.qgz”</p></li>
 </ul>
 <p>Your .qgz file should always be in the highest level folder, so it’s only looking down into folders for data, not back out.</p>
 <p><img src="folder.png" class="img-fluid"></p>
 <p>This might seem unnecessary now, but things quickly get out of control and hard to find if you don’t have a good folder structure.</p>
-<section id="install-qfield-on-your-phone" class="level2">
-<h2 class="anchored" data-anchor-id="install-qfield-on-your-phone">Install QField on your phone</h2>
-<p>QField and Avenza Maps are a mobile based offline mapping tools you can use on your smartphone.</p>
-<section id="qfield" class="level3">
-<h3 class="anchored" data-anchor-id="qfield">QField</h3>
+<section id="install-qfield" class="level2">
+<h2 class="anchored" data-anchor-id="install-qfield">Install QField</h2>
 <p>QField plugs directly in to QGIS, and allows you to link a QGIS project with your mobile phone for data collection.</p>
 <p><a href="https://play.google.com/store/apps/details?id=ch.opengis.qfield">Android Download</a> <a href="https://apps.apple.com/app/qfield-for-qgis/id1531726814">iOS Download</a></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -648,7 +625,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For Avenza Maps you just need to add a GeoPDF and you can collect data on it. It’s less functional than QField, but it’s a great fallback tool. <a href="https://play.google.com/store/apps/details?id=com.Avenza&amp;hl=en_AU">Android Download</a> <a href="https://apps.apple.com/app/avenza-maps/id388424049">iOS Download</a></p>
 <p>There are alternatives out there, such as <a href="https://merginmaps.com/features">Input (MerginMaps)</a>.</p>
@@ -657,9 +634,8 @@ window.Quarto = {
 </div>
 </section>
 </section>
-</section>
-<section id="download-our-data" class="level1">
-<h1>Download our data</h1>
+<section id="download-data" class="level1">
+<h1>Download Data</h1>
 <p>Our data for today is packaged in a zip file.</p>
 <ul>
 <li>Download today’s data from <a href="https://github.com/uqlibrary/technology-training-assets/raw/refs/heads/master/QGIS/fieldwork/QGIS_Fieldwork_Data.zip">here</a>.</li>
@@ -705,26 +681,25 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <section id="lot-plans" class="level2">
 <h2 class="anchored" data-anchor-id="lot-plans">Lot Plans</h2>
 <p>You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from <a href="https://qldspatial.information.qld.gov.au/">QLD Spatial</a>.</p>
-<p>Today we have extracted a selection from “[Property boundaries Queensland](https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={3F217A59-1FDB-412A-813D-A1E7843FB618}”</p>
+<p>Today we have extracted a selection from <a href="https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid=%7B3F217A59-1FDB-412A-813D-A1E7843FB618%7D">Property boundaries Queensland</a></p>
 <p>There are three ways to access data from QSpatial.</p>
 <ul>
 <li><p>Download all of the data from a layer</p></li>
 <li><p>Select a portion of a layer for download using the <a href="https://qldspatial.information.qld.gov.au/catalogue/custom/myList.page">My List</a> function</p></li>
 <li><p>Live load it into your project using a <a href="https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer">Mapserver</a>.</p></li>
-<li><p>You can can also just download the preprepared data <a href="https://github.com/uqlibrary/technology-training/blob/8e0aebe078198cd8bb65630c9ac4c4c8558a4392/QGIS/mobile/QGIS_Mobile_Data.zip">here</a>, just press the three dots and download.</p></li>
 </ul>
 </section>
 </section>
-<section id="import-our-data" class="level1">
-<h1>Import our data</h1>
+<section id="import-data" class="level1">
+<h1>Import Data</h1>
 <p>Our data should neatly appear within the <code>Project Home</code> folder within the <code>Browser</code> panel.</p>
 <ul>
 <li><p>Open the Data and Raw Data folder</p></li>
 <li><p>Drag in the <strong>UQ_DEM_1m.tif</strong> and <strong>St_Lucia_Property_Boundaries.gpkg</strong></p></li>
 </ul>
 </section>
-<section id="buffer-around-our-data" class="level1">
-<h1>Buffer around our data</h1>
+<section id="buffer-data" class="level1">
+<h1>Buffer Data</h1>
 <p>Buffers are a simple, but powerful, tool that we can use to extend the borders of our vector data. It’s useful for polygons, lines, and points.</p>
 <p>Perhaps we need to keep 10m from the property boundaries when doing our fieldwork. A buffer can help us there.</p>
 <p>However, our <strong>St_Lucia_Property_Boundaries</strong> layer has some issues we need to resolve before we can buffer it.</p>
@@ -809,8 +784,8 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <h2 class="anchored" data-anchor-id="explore-projections">Explore Projections</h2>
 <p>Hopefully it’s clear why we needed to convert from a Geographic Coordinate System to a Projected Coordinate System, but why is it important that we chose the local projection <strong>EPSG:23856 - GDA94 / MGA zone 56</strong>?</p>
 <p>Let’s see what would happen if we did our buffer on those lines in a different projection.</p>
-<section id="reproject-our-data" class="level3">
-<h3 class="anchored" data-anchor-id="reproject-our-data">Reproject Our Data</h3>
+<section id="reproject-data" class="level3">
+<h3 class="anchored" data-anchor-id="reproject-data">Reproject Data</h3>
 <ul>
 <li><p>Go to <code>Vector &gt; Data Management Tools &gt; Reproject Layer...</code></p></li>
 <li><p>Choose the <strong>Lines</strong> in <code>Input layer</code></p></li>
@@ -824,8 +799,8 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 </ul></li>
 </ul>
 </section>
-<section id="buffer-the-reprojected-lines" class="level3">
-<h3 class="anchored" data-anchor-id="buffer-the-reprojected-lines">Buffer the Reprojected Lines</h3>
+<section id="buffer-reprojected-lines" class="level3">
+<h3 class="anchored" data-anchor-id="buffer-reprojected-lines">Buffer Reprojected Lines</h3>
 <ul>
 <li><p>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></p></li>
 <li><p>Choose “<strong>Reprojected</strong>” as the <code>Input Layer</code></p></li>
@@ -857,8 +832,8 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 </section>
 </section>
 </section>
-<section id="create-a-hillshade" class="level1">
-<h1>Create a hillshade</h1>
+<section id="hillshade" class="level1">
+<h1>Hillshade</h1>
 <p>Adding a <strong>hillshade</strong> makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.</p>
 <ul>
 <li>Go to <code>Raster &gt; Analysis &gt; Hillshade...</code>.</li>
@@ -867,8 +842,8 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <li>Click Run</li>
 </ul>
 </section>
-<section id="change-the-dem-symbology" class="level1">
-<h1>Change the DEM symbology</h1>
+<section id="dem-symbology" class="level1">
+<h1>DEM symbology</h1>
 <p>We can style our DEM with a <strong>terrain colour palette</strong>:</p>
 <ul>
 <li>double-click on the clipped DEM layer</li>
@@ -888,8 +863,8 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <li>Make sure the DEM is above the Hillshade within this group</li>
 </ul>
 </section>
-<section id="create-contours" class="level1">
-<h1>Create Contours</h1>
+<section id="contours" class="level1">
+<h1>Contours</h1>
 <p>Adding a <strong>contour</strong> makes your elevation even more evident and can also be used to quickly show elevation on other layers</p>
 <ul>
 <li>Go to <code>Raster &gt; Extraction &gt; Contour...</code>.</li>
@@ -899,8 +874,8 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <li>Click Run</li>
 </ul>
 </section>
-<section id="create-layer-for-data-collection" class="level1">
-<h1>Create layer for data collection</h1>
+<section id="layer-for-data-collection" class="level1">
+<h1>Layer for Data Collection</h1>
 <p>This is a very important step, as you cannot create new layers in QField, so we need this to record the data we collect.</p>
 <ul>
 <li>Go to <code>Layer &gt; Create Layer &gt; New GeoPackage Layer...</code></li>
@@ -949,7 +924,7 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <p>You might wonder why we’ve just chosen WGS84 after seeing the issues with it earlier. Placing points with this projection is less of an issue than doing measurements and analysis. For today we’re choosing WGS84 so that our Lat and Long values are in a format most people expect: WGS84. If we chose a Projected Coordinate System, it wouldn’t give us location in degrees <code>Lat: -27.4705, Lon: 153.0260</code>, it would give us a location meters <code>Easting: 500,000 Northing: 6,900,000</code> We could choose a local Geographic Coordinate System like <strong>EPSG:7844 - GDA2020</strong>, but again, most people will assume your values are in <strong>EPSG:4326 - WGS 84</strong>, so that’s a safe bet unless your group/company has a preferred option.</p>
 <p><strong>Always check and transform to a common CRS before analysis.</strong></p>
 <section id="add-another-field" class="level2">
-<h2 class="anchored" data-anchor-id="add-another-field">Add another field</h2>
+<h2 class="anchored" data-anchor-id="add-another-field">Add Another Field</h2>
 <p>It would be nice to be able to take photos when we collect our data, let’s add another field.</p>
 <ul>
 <li>Double click on the new <strong>fieldwork_data</strong> layer</li>
@@ -966,8 +941,8 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <li>Click <code>OK</code></li>
 </ul>
 </section>
-<section id="prepare-the-attributes-form" class="level2">
-<h2 class="anchored" data-anchor-id="prepare-the-attributes-form">Prepare the Attributes Form</h2>
+<section id="attributes-form-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="attributes-form-preparation">Attributes Form Preparation</h2>
 <p>Now that we have a layer with all the desired fields, we can now edit the layer form to customise how things are entered.</p>
 <ul>
 <li>Double click on the new <strong>collected_data</strong> layer</li>
@@ -1032,8 +1007,8 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 </ul>
 </section>
 </section>
-<section id="create-a-layer-for-our-tracks" class="level1">
-<h1>Create a layer for our tracks</h1>
+<section id="tracks-layer" class="level1">
+<h1>Tracks Layer</h1>
 <p>This is another important step, as you need to create your tracking layer before you export to QField</p>
 <ul>
 <li>Go to <code>Layer &gt; Create Layer &gt; New GeoPackage Layer...</code></li>
@@ -1048,8 +1023,8 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <li>Click <code>Add to Fields List</code></li>
 </ul></li>
 </ul>
-<section id="prepare-the-tracks-attributes-form" class="level2">
-<h2 class="anchored" data-anchor-id="prepare-the-tracks-attributes-form">Prepare the Tracks Attributes Form</h2>
+<section id="tracks-attributes-form-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="tracks-attributes-form-preparation">Tracks Attributes Form Preparation</h2>
 <p>Let’s prepare the <strong>tracks</strong> DateTime as we did with the <strong>collected_data</strong> - Double click on the new <strong>tracks</strong> layer - Click on the <code>Attributes Form</code> tab - At the very top of the window, click <code>Autogenerate</code> and change it to <code>Drag and Drop Designer</code></p>
 <p>On the left you will see all of our Fields, we can drag and drop these into the <code>Form Layout</code> section - this section lays out how our form will look when we enter new data.</p>
 <ul>
@@ -1064,7 +1039,7 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 </ul>
 </section>
 </section>
-<section id="qfield-1" class="level1">
+<section id="qfield" class="level1">
 <h1>QField</h1>
 <p>We’re ready to export our project to QField.</p>
 <section id="install-qfield-plugin" class="level2">
@@ -1180,14 +1155,17 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <p>If you have any questions, reach out to the UQ Library Training Team at training@library.uq.edu.au</p>
 </section>
 </section>
-<section id="feedback" class="level2">
-<h2 class="anchored" data-anchor-id="feedback">Feedback</h2>
+</section>
+<section id="feedback" class="level1">
+<h1>Feedback</h1>
 <p>Please visit our website to <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources">provide feedback</a> and find upcoming training courses we have on offer.</p>
 </section>
+<section id="stretch-goals" class="level1">
+<h1>Stretch Goals</h1>
 <section id="exporting-to-avenza-maps" class="level2">
 <h2 class="anchored" data-anchor-id="exporting-to-avenza-maps">Exporting to Avenza Maps</h2>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1196,7 +1174,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Click on <code>Show Layout Manager</code> in the toolbar or use <code>Project &gt; Layout Manager</code>. <code>Create</code> a new layout called “Avenza”. We can now see the Layout window.</p>
 <p>Normally we would add many elements to our layout if we were exporting it for print such as the map, a legend, a scale bar, a north arrow…</p>
@@ -1218,9 +1196,6 @@ Note
 </div>
 </div>
 </section>
-</section>
-<section id="stretch-goals" class="level1">
-<h1>Stretch Goals</h1>
 <section id="autoid" class="level2">
 <h2 class="anchored" data-anchor-id="autoid">AutoID</h2>
 <p>We can use some fancy code to make the ID automated</p>
