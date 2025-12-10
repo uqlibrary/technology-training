@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2001-01-25">
+
+<title>BirdStrikes – UQ Library Training Intensives</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-748b535e376f14d4692bf2b2e5fd6380.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-656e237a0da1fd552299701f9f2ac015.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark-656e237a0da1fd552299701f9f2ac015.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-656e237a0da1fd552299701f9f2ac015.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="../../../../site_libs/quarto-dashboard/stickythead.js"></script>
+
+
+
+<script src="../../../../site_libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="../../../../site_libs/quarto-dashboard/components.js"></script>
+
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../../../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../../../../site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="../../../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../../../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../../../../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../../../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="../../../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+</head>
+
+<body class="quarto-dashboard nav-fixed dashboard-fill fullcontent quarto-light">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">UQ Library Training Intensives</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Content</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-content">    
+        <li>
+    <a class="dropdown-item" href="../../../../r/setup.html">
+ <span class="dropdown-text">R with RStudio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../qgis/setup.html">
+ <span class="dropdown-text">QGIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../python/setup.html">
+ <span class="dropdown-text">Python for Data Analysis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../project/details.html"> 
+<span class="menu-text">The Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../gallery/project_gallery.html"> 
+<span class="menu-text">Project Gallery</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://uqlibrary.github.io/technology-training"> 
+<span class="menu-text">UQ Library Technology Training</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler hidden" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+
+
+    <div class="navbar-brand-container">       
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">BirdStrikes</a></div>
+        
+        
+      </div>
+    </div>
+</div>
+</nav>
+</header></header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+<!-- main -->
+
+<div class="bslib-grid-item html-fill-item bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 60fr) minmax(3em, 40fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div class="plotly html-widget html-fill-item html-fill-container" id="htmlwidget-9b99bcd7f23726c9575e" style="width:100%;height:406px;"></div>
+<script type="application/json" data-for="htmlwidget-9b99bcd7f23726c9575e">{"x":{"data":[{"x":[1,2,3,4],"y":[1,2,3,4,5,7,8],"z":[[0.044372294372294376,1,0.090909090909090912,0.88311688311688308],[0.048701298701298704,0.60822510822510822,0.047619047619047616,0.24891774891774893],[0.003246753246753247,0.072510822510822512,0.005411255411255411,0.14935064935064934],[0.003246753246753247,0.067099567099567103,0.00974025974025974,0.080086580086580081],[0.00974025974025974,0.44047619047619047,0.035714285714285712,0.085497835497835503],[0.0367965367965368,0.51515151515151514,0.021645021645021644,0.05735930735930736],[null,0.003246753246753247,0,0.0010822510822510823]],"text":[["","","",""],["","","",""],["","","",""],["","","",""],["","","",""],["","","",""],[null,"","",""]],"colorscale":[[0,"#FFFFFF"],[0.0010822510822510823,"#FFFFFF"],[0.003246753246753247,"#FFFEFE"],[0.005411255411255411,"#FFFEFE"],[0.00974025974025974,"#FFFDFC"],[0.021645021645021644,"#FFFBF9"],[0.035714285714285712,"#FFF8F6"],[0.0367965367965368,"#FFF8F5"],[0.044372294372294376,"#FFF7F3"],[0.047619047619047616,"#FFF6F3"],[0.048701298701298704,"#FFF6F2"],[0.05735930735930736,"#FFF4F0"],[0.067099567099567103,"#FFF2ED"],[0.072510822510822512,"#FFF1EC"],[0.080086580086580081,"#FFF0EA"],[0.085497835497835503,"#FFEFE9"],[0.090909090909090912,"#FFEEE7"],[0.14935064935064934,"#FFE3D8"],[0.24891774891774893,"#FFCFBF"],[0.44047619047619047,"#FFAA90"],[0.51515151515151514,"#FF9B7E"],[0.60822510822510822,"#FF8767"],[0.88311688311688308,"#FF4326"],[1,"#FF0000"]],"type":"heatmap","showscale":false,"autocolorscale":false,"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4],"y":[1,2,3,4,5,7,8],"z":[[0.078947368421052627,1,0.083732057416267949,0.49282296650717705],[0.069377990430622011,0.64593301435406703,0.040669856459330141,0.1076555023923445],[null,0.043062200956937802,null,0.038277511961722487],[0,0.052631578947368418,0.0023923444976076554,0.021531100478468901],[0.031100478468899521,0.52392344497607657,0.035885167464114832,0.093301435406698566],[0.081339712918660281,0.73205741626794263,0.026315789473684209,0.052631578947368418],[null,0.0023923444976076554,null,null]],"text":[["","","",""],["","","",""],[null,"",null,""],["","","",""],["","","",""],["","","",""],[null,"",null,null]],"colorscale":[[0,"#FFFFFF"],[0.0023923444976076554,"#FFFFFF"],[0.021531100478468901,"#FFFDFC"],[0.026315789473684209,"#FFFDFC"],[0.031100478468899521,"#FFFCFB"],[0.035885167464114832,"#FFFCFB"],[0.038277511961722487,"#FFFCFA"],[0.040669856459330141,"#FFFBFA"],[0.043062200956937802,"#FFFBFA"],[0.052631578947368418,"#FFFAF9"],[0.069377990430622011,"#FFF9F7"],[0.078947368421052627,"#FFF8F6"],[0.081339712918660281,"#FFF8F5"],[0.083732057416267949,"#FFF8F5"],[0.093301435406698566,"#FFF7F4"],[0.1076555023923445,"#FFF6F2"],[0.49282296650717705,"#FFD4C6"],[0.52392344497607657,"#FFD2C2"],[0.64593301435406703,"#FFC7B4"],[0.73205741626794263,"#FFBFAA"],[1,"#FFA88D"]],"type":"heatmap","showscale":false,"autocolorscale":false,"showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4],"y":[1,2,3,4,5,6,7,8],"z":[[0.023054755043227664,1,0.11095100864553314,0.47982708933717577],[0.038904899135446688,0.67723342939481268,0.044668587896253602,0.14841498559077809],[0,0.066282420749279536,0.0043227665706051877,0.077809798270893377],[0.001440922190201729,0.096541786743515851,0.0043227665706051877,0.018731988472622477],[0.015850144092219021,0.51008645533141206,0.038904899135446688,0.061959654178674349],[null,0.002881844380403458,null,0],[0.038904899135446688,0.56051873198847257,0.033141210374639768,0.060518731988472622],[null,0.0043227665706051877,null,null]],"text":[["","","",""],["","","",""],["","","",""],["","","",""],["","","",""],[null,"",null,""],["","","",""],[null,"",null,null]],"colorscale":[[0,"#FFFFFF"],[0.001440922190201729,"#FFFFFF"],[0.002881844380403458,"#FFFFFE"],[0.0043227665706051877,"#FFFEFE"],[0.015850144092219021,"#FFFDFC"],[0.018731988472622477,"#FFFCFB"],[0.023054755043227664,"#FFFCFA"],[0.033141210374639768,"#FFFAF8"],[0.038904899135446688,"#FFF9F7"],[0.044668587896253602,"#FFF9F6"],[0.060518731988472622,"#FFF6F3"],[0.061959654178674349,"#FFF6F3"],[0.066282420749279536,"#FFF6F2"],[0.077809798270893377,"#FFF4F0"],[0.096541786743515851,"#FFF1EC"],[0.11095100864553314,"#FFEFE9"],[0.14841498559077809,"#FFEAE2"],[0.47982708933717577,"#FFBAA3"],[0.51008645533141206,"#FFB59E"],[0.56051873198847257,"#FFAE94"],[0.67723342939481268,"#FF9C7F"],[1,"#FF6746"]],"type":"heatmap","showscale":false,"autocolorscale":false,"showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1],"y":[1],"name":"f48318cb152b1c542c463b07caf7ab9c","type":"scatter","mode":"markers","opacity":0,"hoverinfo":"skip","showlegend":false,"marker":{"color":[0,1],"colorscale":[[0,"#FFFFFF"],[0.0033444816053511714,"#FFFEFE"],[0.0066889632107023419,"#FFFEFD"],[0.010033444816053512,"#FFFDFC"],[0.013377926421404684,"#FFFCFB"],[0.016722408026755852,"#FFFCFB"],[0.020066889632107024,"#FFFBFA"],[0.023411371237458196,"#FFFBF9"],[0.026755852842809368,"#FFFAF8"],[0.030100334448160536,"#FFF9F7"],[0.033444816053511711,"#FFF9F6"],[0.03678929765886288,"#FFF8F5"],[0.040133779264214048,"#FFF7F4"],[0.043478260869565223,"#FFF7F4"],[0.046822742474916391,"#FFF6F3"],[0.050167224080267567,"#FFF5F2"],[0.053511705685618735,"#FFF5F1"],[0.056856187290969896,"#FFF4F0"],[0.060200668896321072,"#FFF4EF"],[0.06354515050167224,"#FFF3EE"],[0.066889632107023422,"#FFF2EE"],[0.070234113712374591,"#FFF2ED"],[0.073578595317725759,"#FFF1EC"],[0.076923076923076927,"#FFF0EB"],[0.080267558528428096,"#FFF0EA"],[0.083612040133779264,"#FFEFE9"],[0.086956521739130446,"#FFEEE8"],[0.090301003344481615,"#FFEEE7"],[0.093645484949832783,"#FFEDE7"],[0.096989966555183951,"#FFEDE6"],[0.10033444816053513,"#FFECE5"],[0.1036789297658863,"#FFEBE4"],[0.10702341137123747,"#FFEBE3"],[0.11036789297658862,"#FFEAE2"],[0.11371237458193979,"#FFE9E1"],[0.11705685618729098,"#FFE9E1"],[0.12040133779264214,"#FFE8E0"],[0.12374581939799331,"#FFE7DF"],[0.12709030100334448,"#FFE7DE"],[0.13043478260869568,"#FFE6DD"],[0.13377926421404684,"#FFE5DC"],[0.13712374581939801,"#FFE5DB"],[0.14046822742474918,"#FFE4DB"],[0.14381270903010035,"#FFE4DA"],[0.14715719063545152,"#FFE3D9"],[0.15050167224080269,"#FFE2D8"],[0.15384615384615385,"#FFE2D7"],[0.15719063545150502,"#FFE1D6"],[0.16053511705685619,"#FFE0D5"],[0.16387959866220736,"#FFE0D5"],[0.16722408026755853,"#FFDFD4"],[0.17056856187290972,"#FFDED3"],[0.17391304347826089,"#FFDED2"],[0.17725752508361206,"#FFDDD1"],[0.18060200668896323,"#FFDDD0"],[0.1839464882943144,"#FFDCCF"],[0.18729096989966557,"#FFDBCF"],[0.19063545150501673,"#FFDBCE"],[0.1939799331103679,"#FFDACD"],[0.19732441471571907,"#FFD9CC"],[0.20066889632107027,"#FFD9CB"],[0.20401337792642144,"#FFD8CA"],[0.2073578595317726,"#FFD7C9"],[0.21070234113712377,"#FFD7C9"],[0.21404682274247494,"#FFD6C8"],[0.21739130434782611,"#FFD5C7"],[0.22073578595317725,"#FFD5C6"],[0.22408026755852842,"#FFD4C5"],[0.22742474916387959,"#FFD4C4"],[0.23076923076923078,"#FFD3C4"],[0.23411371237458195,"#FFD2C3"],[0.23745819397993312,"#FFD2C2"],[0.24080267558528429,"#FFD1C1"],[0.24414715719063546,"#FFD0C0"],[0.24749163879598662,"#FFD0BF"],[0.25083612040133779,"#FFCFBE"],[0.25418060200668896,"#FFCEBE"],[0.25752508361204013,"#FFCEBD"],[0.26086956521739135,"#FFCDBC"],[0.26421404682274252,"#FFCCBB"],[0.26755852842809369,"#FFCCBA"],[0.27090301003344486,"#FFCBB9"],[0.27424749163879603,"#FFCAB9"],[0.27759197324414719,"#FFCAB8"],[0.28093645484949836,"#FFC9B7"],[0.28428093645484953,"#FFC9B6"],[0.2876254180602007,"#FFC8B5"],[0.29096989966555181,"#FFC7B4"],[0.29431438127090304,"#FFC7B4"],[0.29765886287625415,"#FFC6B3"],[0.30100334448160537,"#FFC5B2"],[0.30434782608695649,"#FFC5B1"],[0.30769230769230771,"#FFC4B0"],[0.31103678929765888,"#FFC3AF"],[0.31438127090301005,"#FFC3AF"],[0.31772575250836121,"#FFC2AE"],[0.32107023411371238,"#FFC1AD"],[0.32441471571906355,"#FFC1AC"],[0.32775919732441472,"#FFC0AB"],[0.33110367892976589,"#FFBFAA"],[0.33444816053511706,"#FFBFAA"],[0.33779264214046822,"#FFBEA9"],[0.34113712374581945,"#FFBDA8"],[0.34448160535117056,"#FFBDA7"],[0.34782608695652178,"#FFBCA6"],[0.3511705685618729,"#FFBCA5"],[0.35451505016722412,"#FFBBA5"],[0.35785953177257523,"#FFBAA4"],[0.36120401337792646,"#FFBAA3"],[0.36454849498327757,"#FFB9A2"],[0.3678929765886288,"#FFB8A1"],[0.37123745819397996,"#FFB8A1"],[0.37458193979933113,"#FFB7A0"],[0.3779264214046823,"#FFB69F"],[0.38127090301003347,"#FFB69E"],[0.38461538461538464,"#FFB59D"],[0.38795986622073581,"#FFB49C"],[0.39130434782608697,"#FFB49C"],[0.39464882943143814,"#FFB39B"],[0.39799331103678931,"#FFB29A"],[0.40133779264214053,"#FFB299"],[0.40468227424749165,"#FFB198"],[0.40802675585284287,"#FFB098"],[0.41137123745819398,"#FFB097"],[0.41471571906354521,"#FFAF96"],[0.41806020066889632,"#FFAE95"],[0.42140468227424754,"#FFAE94"],[0.42474916387959866,"#FFAD93"],[0.42809364548494988,"#FFAC93"],[0.43143812709030105,"#FFAC92"],[0.43478260869565222,"#FFAB91"],[0.43812709030100339,"#FFAA90"],[0.4414715719063545,"#FFAA8F"],[0.44481605351170572,"#FFA98F"],[0.44816053511705684,"#FFA88E"],[0.45150501672240806,"#FFA88D"],[0.45484949832775917,"#FFA78C"],[0.4581939799331104,"#FFA68B"],[0.46153846153846156,"#FFA68B"],[0.46488294314381273,"#FFA58A"],[0.4682274247491639,"#FFA489"],[0.47157190635451507,"#FFA488"],[0.47491638795986624,"#FFA387"],[0.47826086956521741,"#FFA286"],[0.48160535117056857,"#FFA286"],[0.48494983277591974,"#FFA185"],[0.48829431438127091,"#FFA084"],[0.49163879598662213,"#FFA083"],[0.49498327759197325,"#FF9F82"],[0.49832775919732447,"#FF9E82"],[0.50167224080267558,"#FF9E81"],[0.50501672240802675,"#FF9D80"],[0.50836120401337792,"#FF9C7F"],[0.51170568561872909,"#FF9C7E"],[0.51505016722408026,"#FF9B7E"],[0.51839464882943143,"#FF9A7D"],[0.52173913043478271,"#FF9A7C"],[0.52508361204013376,"#FF997B"],[0.52842809364548504,"#FF987A"],[0.5317725752508361,"#FF977A"],[0.53511705685618738,"#FF9779"],[0.53846153846153844,"#FF9678"],[0.54180602006688972,"#FF9577"],[0.54515050167224077,"#FF9576"],[0.54849498327759205,"#FF9476"],[0.55183946488294322,"#FF9375"],[0.55518394648829439,"#FF9374"],[0.55852842809364556,"#FF9273"],[0.56187290969899673,"#FF9172"],[0.56521739130434778,"#FF9172"],[0.56856187290969906,"#FF9071"],[0.57190635451505023,"#FF8F70"],[0.5752508361204014,"#FF8E6F"],[0.57859531772575246,"#FF8E6E"],[0.58193979933110362,"#FF8D6E"],[0.5852842809364549,"#FF8C6D"],[0.58862876254180607,"#FF8C6C"],[0.59197324414715724,"#FF8B6B"],[0.5953177257525083,"#FF8A6B"],[0.59866220735785958,"#FF896A"],[0.60200668896321075,"#FF8969"],[0.60535117056856191,"#FF8868"],[0.60869565217391297,"#FF8767"],[0.61204013377926425,"#FF8767"],[0.61538461538461542,"#FF8666"],[0.61872909698996659,"#FF8565"],[0.62207357859531776,"#FF8464"],[0.62541806020066892,"#FF8463"],[0.62876254180602009,"#FF8363"],[0.63210702341137126,"#FF8262"],[0.63545150501672243,"#FF8261"],[0.6387959866220736,"#FF8160"],[0.64214046822742477,"#FF805F"],[0.64548494983277593,"#FF7F5F"],[0.6488294314381271,"#FF7F5E"],[0.65217391304347838,"#FF7E5D"],[0.65551839464882944,"#FF7D5C"],[0.65886287625418061,"#FF7C5C"],[0.66220735785953178,"#FF7C5B"],[0.66555183946488305,"#FF7B5A"],[0.66889632107023411,"#FF7A59"],[0.67224080267558528,"#FF7A58"],[0.67558528428093645,"#FF7958"],[0.67892976588628773,"#FF7857"],[0.6822742474916389,"#FF7756"],[0.68561872909698995,"#FF7755"],[0.68896321070234112,"#FF7654"],[0.6923076923076924,"#FF7554"],[0.69565217391304357,"#FF7453"],[0.69899665551839463,"#FF7452"],[0.7023411371237458,"#FF7351"],[0.70568561872909707,"#FF7251"],[0.70903010033444824,"#FF7150"],[0.71237458193979941,"#FF704F"],[0.71571906354515047,"#FF704E"],[0.71906354515050175,"#FF6F4D"],[0.72240802675585292,"#FF6E4D"],[0.72575250836120409,"#FF6D4C"],[0.72909698996655514,"#FF6D4B"],[0.73244147157190631,"#FF6C4A"],[0.73578595317725759,"#FF6B4A"],[0.73913043478260876,"#FF6A49"],[0.74247491638795993,"#FF6948"],[0.74581939799331098,"#FF6947"],[0.74916387959866226,"#FF6846"],[0.75250836120401343,"#FF6746"],[0.7558528428093646,"#FF6645"],[0.75919732441471566,"#FF6544"],[0.76254180602006694,"#FF6543"],[0.76588628762541811,"#FF6442"],[0.76923076923076927,"#FF6342"],[0.77257525083612044,"#FF6241"],[0.77591973244147161,"#FF6140"],[0.77926421404682278,"#FF603F"],[0.78260869565217395,"#FF603E"],[0.78595317725752512,"#FF5F3E"],[0.78929765886287628,"#FF5E3D"],[0.79264214046822745,"#FF5D3C"],[0.79598662207357862,"#FF5C3B"],[0.79933110367892979,"#FF5B3B"],[0.80267558528428107,"#FF5A3A"],[0.80602006688963213,"#FF5939"],[0.80936454849498329,"#FF5938"],[0.81270903010033446,"#FF5837"],[0.81605351170568574,"#FF5737"],[0.8193979933110368,"#FF5636"],[0.82274247491638797,"#FF5535"],[0.82608695652173914,"#FF5434"],[0.82943143812709041,"#FF5333"],[0.83277591973244158,"#FF5232"],[0.83612040133779264,"#FF5132"],[0.83946488294314381,"#FF5031"],[0.84280936454849509,"#FF4F30"],[0.84615384615384626,"#FF4E2F"],[0.84949832775919731,"#FF4E2E"],[0.85284280936454848,"#FF4D2E"],[0.85618729096989976,"#FF4C2D"],[0.85953177257525093,"#FF4B2C"],[0.8628762541806021,"#FF4A2B"],[0.86622073578595316,"#FF492A"],[0.86956521739130443,"#FF4829"],[0.8729096989966556,"#FF4629"],[0.87625418060200677,"#FF4528"],[0.87959866220735783,"#FF4427"],[0.882943143812709,"#FF4326"],[0.88628762541806028,"#FF4225"],[0.88963210702341144,"#FF4124"],[0.89297658862876261,"#FF4023"],[0.89632107023411367,"#FF3F23"],[0.89966555183946495,"#FF3E22"],[0.90301003344481612,"#FF3D21"],[0.90635451505016729,"#FF3B20"],[0.90969899665551834,"#FF3A1F"],[0.91304347826086962,"#FF391E"],[0.91638795986622079,"#FF381D"],[0.91973244147157196,"#FF361C"],[0.92307692307692313,"#FF351B"],[0.9264214046822743,"#FF341A"],[0.92976588628762546,"#FF3219"],[0.93311036789297663,"#FF3118"],[0.9364548494983278,"#FF3017"],[0.93979933110367897,"#FF2E16"],[0.94314381270903014,"#FF2D15"],[0.94648829431438131,"#FF2B14"],[0.94983277591973247,"#FF2A13"],[0.95317725752508375,"#FF2812"],[0.95652173913043481,"#FF2611"],[0.95986622073578598,"#FF2410"],[0.96321070234113715,"#FF230F"],[0.96655518394648843,"#FF210D"],[0.96989966555183948,"#FF1F0C"],[0.97324414715719065,"#FF1C0B"],[0.97658862876254182,"#FF1A09"],[0.9799331103678931,"#FF1708"],[0.98327759197324427,"#FF1506"],[0.98662207357859533,"#FF1205"],[0.98996655518394649,"#FF0E04"],[0.99331103678929777,"#FF0A02"],[0.99665551839464894,"#FF0501"],[1,"#FF0000"]],"colorbar":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"thickness":23.040000000000003,"title":"Count of Bird Strikes","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickmode":"array","ticktext":["250","500","750"],"tickvals":[0.27024891774891774,0.5399098124098124,0.809570707070707],"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"ticklen":2,"len":0.5}},"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":56.913242009132418,"r":7.3059360730593621,"b":41.643835616438366,"l":95.707762557077672},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Clear Skies in the Day: Pilot's (and Bird's) Dismay","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,0.32976598173515981],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["Dawn","Day","Dusk","Night"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["Dawn","Day","Dusk","Night"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"annotations":[{"text":"Time of Day","x":0.5,"y":0,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"top","annotationType":"axis","yshift":-21.917808219178088},{"text":"Phase of Flight","x":0,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis","xshift":-80.365296803653024},{"text":"No Cloud","x":0.1648829908675799,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.68949771689498},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Overcast","x":0.49999999999999994,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.68949771689498},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Some Cloud","x":0.83511700913242004,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.68949771689498},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,8.5999999999999996],"tickmode":"array","ticktext":["Approach","Climb","Descent","En Route","Landing Roll","Parked","Take-off run","Taxi"],"tickvals":[1,2,3,4,5,6,7,8],"categoryorder":"array","categoryarray":["Approach","Climb","Descent","En Route","Landing Roll","Parked","Take-off run","Taxi"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716894984},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.32976598173515981,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.32976598173515981,"y0":0,"y1":23.37899543378996,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.33690068493150682,"x1":0.66309931506849307,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.33690068493150682,"x1":0.66309931506849307,"y0":0,"y1":23.37899543378996,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.67023401826484019,"x1":1,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.67023401826484019,"x1":1,"y0":0,"y1":23.37899543378996,"yanchor":1,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["Dawn","Day","Dusk","Night"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["Dawn","Day","Dusk","Night"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.33690068493150682,0.66309931506849307],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"xaxis3":{"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["Dawn","Day","Dusk","Night"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["Dawn","Day","Dusk","Night"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.67023401826484019,1],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Count of Bird Strikes","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"2c07f499f7b":{"x":{},"y":{},"fill":{},"type":"heatmap"}},"cur_data":"2c07f499f7b","visdat":{"2c07f499f7b":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<img src="Birdstrikes_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-dashboard-img-contain">
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card cell bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<img src="Birdstrikes_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-dashboard-img-contain">
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden">
+
+</div>
+</div>
+</div>
+
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
+
+
+
+</body></html>
