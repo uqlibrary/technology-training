@@ -372,30 +372,44 @@ On the left you will see all of our Fields, we can drag and drop these into the 
 
 -   Drag and Drop the **Photo** Field to the `Form Layout` so that it is sitting above **DateTime**
 -   Click **fid** and press the **red minus button** - we want to keep the field, but don't need to see this in our form
+
+
 -   Click **ID**
     -   Under **Constraints** tick `Not Null` and `Enforce not null constraint`
     -   We don't need to change anything else for ID, we just want to make it mandatory
+
+
 -   Click **Category**
     -   Under **Widget Type** click `Text Edit` and change it to `Value Map`
     -   Add the following to `Values` and `Descriptions`:
         -   `EX` and `Excellent`
         -   `GD` and `Good`
         -   `PR` and `Poor`
+        -   `OT` and `Other` 
+            -   It is good practice to have an Other field if you're using a "Not Null" constraint, as it allows the user to note when something doesn't meet the given Categories.
     -   Under **Constraints** tick `Not Null` and `Enforce not null constraint`
+
+
 -   Click **Photo**
     -   Under **Widget Type** click `Text Edit` and change it to `Attachment`
     -   Under **Path** change `Default path` to *@project_home + '/DCIM'*
         -   Change `Absolute Path` to `Relative to Project Path`
     -   Tick **Use a hyperlink for document path (read-only)
     -   Under **Integrated Document Viewer** change **Type** from `No Content` to `Image`
+
+
 -   Click **DateTime**
     -   Under **General** untick `Editable` - we don't want to edit this field 
     -   Scroll to the bottom, under **Defaults** change the `Default value` to **$now**
     -   If this worked, there will be a date and time next to `Preview`
+
+
 -   Click **Lat**
     -   Under **General** untick `Editable` - we don't want to edit this field 
     -   Scroll to the bottom, under **Defaults** change the `Default value` to **$y**
     -   The `Preview` will show **NULL**, but that's okay, we don't have data yet  
+
+
 -   Click **Long**
         -   Under **General** untick `Editable` - we don't want to edit this field 
         -   Scroll to the bottom, under **Defaults** change the `Default value` to **$x**   
