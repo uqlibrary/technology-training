@@ -940,14 +940,14 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 </ul>
 <p>On the left you will see all of our Fields, we can drag and drop these into the <code>Form Layout</code> section - this section lays out how our form will look when we enter new data.</p>
 <ul>
-<li>Drag and Drop the <strong>Photo</strong> Field to the <code>Form Layout</code> so that it is sitting above <strong>DateTime</strong></li>
-<li>Click <strong>fid</strong> and press the <strong>red minus button</strong> - we want to keep the field, but don’t need to see this in our form</li>
-<li>Click <strong>ID</strong>
+<li><p>Drag and Drop the <strong>Photo</strong> Field to the <code>Form Layout</code> so that it is sitting above <strong>DateTime</strong></p></li>
+<li><p>Click <strong>fid</strong> and press the <strong>red minus button</strong> - we want to keep the field, but don’t need to see this in our form</p></li>
+<li><p>Click <strong>ID</strong></p>
 <ul>
 <li>Under <strong>Constraints</strong> tick <code>Not Null</code> and <code>Enforce not null constraint</code></li>
 <li>We don’t need to change anything else for ID, we just want to make it mandatory</li>
 </ul></li>
-<li>Click <strong>Category</strong>
+<li><p>Click <strong>Category</strong></p>
 <ul>
 <li>Under <strong>Widget Type</strong> click <code>Text Edit</code> and change it to <code>Value Map</code></li>
 <li>Add the following to <code>Values</code> and <code>Descriptions</code>:
@@ -955,10 +955,14 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <li><code>EX</code> and <code>Excellent</code></li>
 <li><code>GD</code> and <code>Good</code></li>
 <li><code>PR</code> and <code>Poor</code></li>
+<li><code>OT</code> and <code>Other</code>
+<ul>
+<li>It is good practice to have an Other field if you’re using a “Not Null” constraint, as it allows the user to note when something doesn’t meet the given Categories.</li>
+</ul></li>
 </ul></li>
 <li>Under <strong>Constraints</strong> tick <code>Not Null</code> and <code>Enforce not null constraint</code></li>
 </ul></li>
-<li>Click <strong>Photo</strong>
+<li><p>Click <strong>Photo</strong></p>
 <ul>
 <li>Under <strong>Widget Type</strong> click <code>Text Edit</code> and change it to <code>Attachment</code></li>
 <li>Under <strong>Path</strong> change <code>Default path</code> to <em><span class="citation" data-cites="project_home">@project_home</span> + ‘/DCIM’</em>
@@ -968,22 +972,21 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <li>Tick **Use a hyperlink for document path (read-only)</li>
 <li>Under <strong>Integrated Document Viewer</strong> change <strong>Type</strong> from <code>No Content</code> to <code>Image</code></li>
 </ul></li>
-<li>Click <strong>DateTime</strong>
+<li><p>Click <strong>DateTime</strong></p>
 <ul>
 <li>Under <strong>General</strong> untick <code>Editable</code> - we don’t want to edit this field</li>
 <li>Scroll to the bottom, under <strong>Defaults</strong> change the <code>Default value</code> to <strong>$now</strong></li>
 <li>If this worked, there will be a date and time next to <code>Preview</code></li>
 </ul></li>
-<li>Click <strong>Lat</strong>
+<li><p>Click <strong>Lat</strong></p>
 <ul>
 <li>Under <strong>General</strong> untick <code>Editable</code> - we don’t want to edit this field</li>
 <li>Scroll to the bottom, under <strong>Defaults</strong> change the <code>Default value</code> to <strong>$y</strong></li>
-<li>The <code>Preview</code> will show <strong>NULL</strong>, but that’s okay, we don’t have data yet<br>
-</li>
+<li>The <code>Preview</code> will show <strong>NULL</strong>, but that’s okay, we don’t have data yet</li>
 </ul></li>
-<li>Click <strong>Long</strong> - Under <strong>General</strong> untick <code>Editable</code> - we don’t want to edit this field - Scroll to the bottom, under <strong>Defaults</strong> change the <code>Default value</code> to <strong>$x</strong><br>
-</li>
-<li>Click <code>OK</code></li>
+<li><p>Click <strong>Long</strong> - Under <strong>General</strong> untick <code>Editable</code> - we don’t want to edit this field - Scroll to the bottom, under <strong>Defaults</strong> change the <code>Default value</code> to <strong>$x</strong><br>
+</p></li>
+<li><p>Click <code>OK</code></p></li>
 </ul>
 <p>We should now have a functional form, let’s test it in QGIS before we send it to our phones</p>
 <ul>
