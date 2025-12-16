@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,18 +34,19 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../../../../">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-748b535e376f14d4692bf2b2e5fd6380.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-a1d88c52d6a7564626ce0b2a6532e554.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../../site_libs/bootstrap/bootstrap-dark-a1d88c52d6a7564626ce0b2a6532e554.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../../../site_libs/bootstrap/bootstrap-a1d88c52d6a7564626ce0b2a6532e554.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-81161df70946103be4ff68a34233701c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark-81161df70946103be4ff68a34233701c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-81161df70946103be4ff68a34233701c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-dashboard/quarto-dashboard.js"></script>
 <script src="../../../../site_libs/quarto-dashboard/stickythead.js"></script>
 
@@ -151,7 +152,8 @@ ul.task-list li input[type="checkbox"] {
     </button>    
 
 
-    <div class="navbar-brand-container">       
+    <div class="navbar-brand-container">
+
 
       <div class="navbar-title">
         <div class="navbar-title-text"><a href="#">Bird Strikes and Aeroplane Damages in the U.S. (1990-1999)</a></div>
@@ -191,80 +193,80 @@ Does higher flight speed increase the bird stike damage likelihood?
 </span></div></div>
 <div class="card-body html-fill-item html-fill-container">
 <div class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="3">
-<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small">
 <caption>Generalized Linear Model Regression Results</caption>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Dep. Variable:</td>
+<th data-quarto-table-cell-role="th">Dep. Variable:</th>
 <td>damage</td>
-<td data-quarto-table-cell-role="th">No. Observations:</td>
+<th data-quarto-table-cell-role="th">No. Observations:</th>
 <td>10002</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Model:</td>
+<th data-quarto-table-cell-role="th">Model:</th>
 <td>GLM</td>
-<td data-quarto-table-cell-role="th">Df Residuals:</td>
+<th data-quarto-table-cell-role="th">Df Residuals:</th>
 <td>9992</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Model Family:</td>
+<th data-quarto-table-cell-role="th">Model Family:</th>
 <td>Binomial</td>
-<td data-quarto-table-cell-role="th">Df Model:</td>
+<th data-quarto-table-cell-role="th">Df Model:</th>
 <td>9</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Link Function:</td>
+<th data-quarto-table-cell-role="th">Link Function:</th>
 <td>Logit</td>
-<td data-quarto-table-cell-role="th">Scale:</td>
+<th data-quarto-table-cell-role="th">Scale:</th>
 <td>1.0000</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Method:</td>
+<th data-quarto-table-cell-role="th">Method:</th>
 <td>IRLS</td>
-<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
+<th data-quarto-table-cell-role="th">Log-Likelihood:</th>
 <td>-6908.1</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Date:</td>
+<th data-quarto-table-cell-role="th">Date:</th>
 <td>Wed, 10 Dec 2025</td>
-<td data-quarto-table-cell-role="th">Deviance:</td>
+<th data-quarto-table-cell-role="th">Deviance:</th>
 <td>13816.</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Time:</td>
+<th data-quarto-table-cell-role="th">Time:</th>
 <td>14:58:31</td>
-<td data-quarto-table-cell-role="th">Pearson chi2:</td>
+<th data-quarto-table-cell-role="th">Pearson chi2:</th>
 <td>1.00e+04</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">No. Iterations:</td>
+<th data-quarto-table-cell-role="th">No. Iterations:</th>
 <td>4</td>
-<td data-quarto-table-cell-role="th">Pseudo R-squ. (CS):</td>
+<th data-quarto-table-cell-role="th">Pseudo R-squ. (CS):</th>
 <td>0.002913</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Covariance Type:</td>
+<th data-quarto-table-cell-role="th">Covariance Type:</th>
 <td>nonrobust</td>
-<td data-quarto-table-cell-role="th"></td>
+<th data-quarto-table-cell-role="th"></th>
 <td></td>
 </tr>
 </tbody>
 </table>
 
 
-<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small">
 <tbody>
 <tr class="odd">
 <td></td>
-<td data-quarto-table-cell-role="th">coef</td>
-<td data-quarto-table-cell-role="th">std err</td>
-<td data-quarto-table-cell-role="th">z</td>
-<td data-quarto-table-cell-role="th">P&gt;|z|</td>
-<td data-quarto-table-cell-role="th">[0.025</td>
-<td data-quarto-table-cell-role="th">0.975]</td>
+<th data-quarto-table-cell-role="th">coef</th>
+<th data-quarto-table-cell-role="th">std err</th>
+<th data-quarto-table-cell-role="th">z</th>
+<th data-quarto-table-cell-role="th">P&gt;|z|</th>
+<th data-quarto-table-cell-role="th">[0.025</th>
+<th data-quarto-table-cell-role="th">0.975]</th>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Intercept</td>
+<th data-quarto-table-cell-role="th">Intercept</th>
 <td>0.1157</td>
 <td>0.063</td>
 <td>1.845</td>
@@ -273,7 +275,7 @@ Does higher flight speed increase the bird stike damage likelihood?
 <td>0.239</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">speed_quantile[T.Q2]</td>
+<th data-quarto-table-cell-role="th">speed_quantile[T.Q2]</th>
 <td>-0.0051</td>
 <td>0.087</td>
 <td>-0.059</td>
@@ -282,7 +284,7 @@ Does higher flight speed increase the bird stike damage likelihood?
 <td>0.165</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">speed_quantile[T.Q3]</td>
+<th data-quarto-table-cell-role="th">speed_quantile[T.Q3]</th>
 <td>-0.0288</td>
 <td>0.080</td>
 <td>-0.361</td>
@@ -291,7 +293,7 @@ Does higher flight speed increase the bird stike damage likelihood?
 <td>0.127</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">speed_quantile[T.Q4]</td>
+<th data-quarto-table-cell-role="th">speed_quantile[T.Q4]</th>
 <td>-0.2467</td>
 <td>0.128</td>
 <td>-1.924</td>
@@ -300,7 +302,7 @@ Does higher flight speed increase the bird stike damage likelihood?
 <td>0.005</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">speed_quantile[T.Q5]</td>
+<th data-quarto-table-cell-role="th">speed_quantile[T.Q5]</th>
 <td>-0.1935</td>
 <td>0.090</td>
 <td>-2.159</td>
@@ -309,7 +311,7 @@ Does higher flight speed increase the bird stike damage likelihood?
 <td>-0.018</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">speed_quantile[T.Q6]</td>
+<th data-quarto-table-cell-role="th">speed_quantile[T.Q6]</th>
 <td>-0.0954</td>
 <td>0.080</td>
 <td>-1.199</td>
@@ -318,7 +320,7 @@ Does higher flight speed increase the bird stike damage likelihood?
 <td>0.061</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">speed_quantile[T.Q7]</td>
+<th data-quarto-table-cell-role="th">speed_quantile[T.Q7]</th>
 <td>0.0874</td>
 <td>0.142</td>
 <td>0.614</td>
@@ -327,7 +329,7 @@ Does higher flight speed increase the bird stike damage likelihood?
 <td>0.367</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">speed_quantile[T.Q8]</td>
+<th data-quarto-table-cell-role="th">speed_quantile[T.Q8]</th>
 <td>-0.0672</td>
 <td>0.087</td>
 <td>-0.774</td>
@@ -336,7 +338,7 @@ Does higher flight speed increase the bird stike damage likelihood?
 <td>0.103</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">speed_quantile[T.Q9]</td>
+<th data-quarto-table-cell-role="th">speed_quantile[T.Q9]</th>
 <td>0.1336</td>
 <td>0.089</td>
 <td>1.507</td>
@@ -345,7 +347,7 @@ Does higher flight speed increase the bird stike damage likelihood?
 <td>0.307</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">speed_quantile[T.Q10]</td>
+<th data-quarto-table-cell-role="th">speed_quantile[T.Q10]</th>
 <td>0.1748</td>
 <td>0.094</td>
 <td>1.863</td>
@@ -371,80 +373,80 @@ Does higher flight speed increase the bird stike damage likelihood?
 </span></div></div>
 <div class="card-body html-fill-item html-fill-container">
 <div class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="4">
-<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small">
 <caption>Generalized Linear Model Regression Results</caption>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Dep. Variable:</td>
+<th data-quarto-table-cell-role="th">Dep. Variable:</th>
 <td>damage</td>
-<td data-quarto-table-cell-role="th">No. Observations:</td>
+<th data-quarto-table-cell-role="th">No. Observations:</th>
 <td>10002</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Model:</td>
+<th data-quarto-table-cell-role="th">Model:</th>
 <td>GLM</td>
-<td data-quarto-table-cell-role="th">Df Residuals:</td>
+<th data-quarto-table-cell-role="th">Df Residuals:</th>
 <td>10000</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Model Family:</td>
+<th data-quarto-table-cell-role="th">Model Family:</th>
 <td>Binomial</td>
-<td data-quarto-table-cell-role="th">Df Model:</td>
+<th data-quarto-table-cell-role="th">Df Model:</th>
 <td>1</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Link Function:</td>
+<th data-quarto-table-cell-role="th">Link Function:</th>
 <td>Logit</td>
-<td data-quarto-table-cell-role="th">Scale:</td>
+<th data-quarto-table-cell-role="th">Scale:</th>
 <td>1.0000</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Method:</td>
+<th data-quarto-table-cell-role="th">Method:</th>
 <td>IRLS</td>
-<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
+<th data-quarto-table-cell-role="th">Log-Likelihood:</th>
 <td>-6905.5</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Date:</td>
+<th data-quarto-table-cell-role="th">Date:</th>
 <td>Wed, 10 Dec 2025</td>
-<td data-quarto-table-cell-role="th">Deviance:</td>
+<th data-quarto-table-cell-role="th">Deviance:</th>
 <td>13811.</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Time:</td>
+<th data-quarto-table-cell-role="th">Time:</th>
 <td>14:58:32</td>
-<td data-quarto-table-cell-role="th">Pearson chi2:</td>
+<th data-quarto-table-cell-role="th">Pearson chi2:</th>
 <td>1.00e+04</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">No. Iterations:</td>
+<th data-quarto-table-cell-role="th">No. Iterations:</th>
 <td>4</td>
-<td data-quarto-table-cell-role="th">Pseudo R-squ. (CS):</td>
+<th data-quarto-table-cell-role="th">Pseudo R-squ. (CS):</th>
 <td>0.003424</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Covariance Type:</td>
+<th data-quarto-table-cell-role="th">Covariance Type:</th>
 <td>nonrobust</td>
-<td data-quarto-table-cell-role="th"></td>
+<th data-quarto-table-cell-role="th"></th>
 <td></td>
 </tr>
 </tbody>
 </table>
 
 
-<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small">
 <tbody>
 <tr class="odd">
 <td></td>
-<td data-quarto-table-cell-role="th">coef</td>
-<td data-quarto-table-cell-role="th">std err</td>
-<td data-quarto-table-cell-role="th">z</td>
-<td data-quarto-table-cell-role="th">P&gt;|z|</td>
-<td data-quarto-table-cell-role="th">[0.025</td>
-<td data-quarto-table-cell-role="th">0.975]</td>
+<th data-quarto-table-cell-role="th">coef</th>
+<th data-quarto-table-cell-role="th">std err</th>
+<th data-quarto-table-cell-role="th">z</th>
+<th data-quarto-table-cell-role="th">P&gt;|z|</th>
+<th data-quarto-table-cell-role="th">[0.025</th>
+<th data-quarto-table-cell-role="th">0.975]</th>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Intercept</td>
+<th data-quarto-table-cell-role="th">Intercept</th>
 <td>0.0338</td>
 <td>0.022</td>
 <td>1.520</td>
@@ -453,7 +455,7 @@ Does higher flight speed increase the bird stike damage likelihood?
 <td>0.077</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">height</td>
+<th data-quarto-table-cell-role="th">height</th>
 <td>6.388e-05</td>
 <td>1.11e-05</td>
 <td>5.733</td>
@@ -567,13 +569,14 @@ Approach : 4142
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -588,7 +591,7 @@ Approach : 4142
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/uqlibrary\.github\.io\/technology-training-intensives\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
