@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Vector Analysis – UQ Library Training Intensives</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-656e237a0da1fd552299701f9f2ac015.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">UQ Library Training Intensives</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Content</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-content">    
+        <li>
+    <a class="dropdown-item" href="../../r/setup.html">
+ <span class="dropdown-text">R with RStudio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../qgis/setup.html">
+ <span class="dropdown-text">QGIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../python/setup.html">
+ <span class="dropdown-text">Python for Data Analysis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../project/details.html"> 
+<span class="menu-text">The Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../gallery/project_gallery.html"> 
+<span class="menu-text">Project Gallery</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://uqlibrary.github.io/technology-training"> 
+<span class="menu-text">UQ Library Technology Training</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-are-we-going-to-learn" id="toc-what-are-we-going-to-learn" class="nav-link active" data-scroll-target="#what-are-we-going-to-learn">What are we going to learn?</a></li>
+  <li><a href="#what-is-vector-data" id="toc-what-is-vector-data" class="nav-link" data-scroll-target="#what-is-vector-data">What is Vector Data?</a></li>
+  <li><a href="#what-are-we-doing-today" id="toc-what-are-we-doing-today" class="nav-link" data-scroll-target="#what-are-we-doing-today">What are we doing today?</a></li>
+  <li><a href="#gather-some-data" id="toc-gather-some-data" class="nav-link" data-scroll-target="#gather-some-data">Gather some data</a>
+  <ul class="collapse">
+  <li><a href="#data-summary" id="toc-data-summary" class="nav-link" data-scroll-target="#data-summary">Data Summary</a></li>
+  </ul></li>
+  <li><a href="#load-in-our-data" id="toc-load-in-our-data" class="nav-link" data-scroll-target="#load-in-our-data">Load in our data</a>
+  <ul class="collapse">
+  <li><a href="#importing-csv-data" id="toc-importing-csv-data" class="nav-link" data-scroll-target="#importing-csv-data">Importing CSV data</a></li>
+  </ul></li>
+  <li><a href="#tabular-data" id="toc-tabular-data" class="nav-link" data-scroll-target="#tabular-data">Tabular data</a>
+  <ul class="collapse">
+  <li><a href="#joining-tabular-data" id="toc-joining-tabular-data" class="nav-link" data-scroll-target="#joining-tabular-data">Joining tabular data</a></li>
+  </ul></li>
+  <li><a href="#subset-our-sa2-data-down-to-seq---select-features-using-an-expression" id="toc-subset-our-sa2-data-down-to-seq---select-features-using-an-expression" class="nav-link" data-scroll-target="#subset-our-sa2-data-down-to-seq---select-features-using-an-expression">Subset our SA2 data down to SEQ - Select features using an expression</a></li>
+  <li><a href="#analysis-spatial-overlaps" id="toc-analysis-spatial-overlaps" class="nav-link" data-scroll-target="#analysis-spatial-overlaps">Analysis: Spatial Overlaps</a>
+  <ul class="collapse">
+  <li><a href="#intersection" id="toc-intersection" class="nav-link" data-scroll-target="#intersection">Intersection</a></li>
+  <li><a href="#fix-geometries" id="toc-fix-geometries" class="nav-link" data-scroll-target="#fix-geometries">Fix Geometries</a></li>
+  <li><a href="#field-calculator" id="toc-field-calculator" class="nav-link" data-scroll-target="#field-calculator">Field Calculator</a></li>
+  </ul></li>
+  <li><a href="#map-digitisation" id="toc-map-digitisation" class="nav-link" data-scroll-target="#map-digitisation">Map Digitisation</a></li>
+  <li><a href="#analysis-how-do-koalas-and-people-overlap" id="toc-analysis-how-do-koalas-and-people-overlap" class="nav-link" data-scroll-target="#analysis-how-do-koalas-and-people-overlap">Analysis: How do koalas and people overlap?</a>
+  <ul class="collapse">
+  <li><a href="#count-points-in-polygons" id="toc-count-points-in-polygons" class="nav-link" data-scroll-target="#count-points-in-polygons">Count Points in Polygons</a></li>
+  </ul></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap up</a></li>
+  <li><a href="#feedback" id="toc-feedback" class="nav-link" data-scroll-target="#feedback">Feedback</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Vector Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="what-are-we-going-to-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-we-going-to-learn">What are we going to learn?</h2>
+<p>In this workshop, we will learn about:</p>
+<ul>
+<li>Importing data from a CSV</li>
+<li>Joining Tabular data</li>
+<li>Overlaps/Intersections</li>
+<li>Digitisation</li>
+<li>Point counts within a polygon</li>
+</ul>
+</section>
+<section id="what-is-vector-data" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-vector-data">What is Vector Data?</h2>
+<p>Vector data is made up of points, lines, and/or polygons. They are made up of precise points with individual coordinates. Vector data is best contrasted with Raster data which has a grid of values evenly spaced apart, connected to one coordinate. Rasters are efficient at displaying large amounts of data, where vector data is very precise.</p>
+<p>The <a href="https://mapschool.io/">Map School</a> has some useful explainers of what Vector data is.</p>
+</section>
+<section id="what-are-we-doing-today" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-we-doing-today">What are we doing today?</h2>
+<p>To look at vector data, we’re going to use the example of koala populations and protected areas, and use some analyses to see how they interact. The QLD Government has set koala protection as a priority for the State, but how do their priorities match up with the data? We can use QGIS and spatial analysis to ask questions of the data.</p>
+</section>
+<section id="gather-some-data" class="level2">
+<h2 class="anchored" data-anchor-id="gather-some-data">Gather some data</h2>
+<p>We’re going to explore a number of different online spatial data repositories. Please <a href="https://github.com/uqlibrary/technology-training-assets/raw/refs/heads/master/QGIS/vector/vector_data.zip">download the full dataset here</a>, and extract it into the qgis_vector folder you created earlier.</p>
+<blockquote class="blockquote">
+<p>In the zip file of today’s data we have already trimmed it down to just QLD to save on file size</p>
+</blockquote>
+<section id="data-summary" class="level3">
+<h3 class="anchored" data-anchor-id="data-summary">Data Summary</h3>
+<p>You should have:</p>
+<ul>
+<li>Point data for analysis
+<ul>
+<li>Koala Sightings</li>
+</ul></li>
+<li>Boundary Files to spatially categorise our data
+<ul>
+<li>Koala Priority Areas</li>
+<li>Protected Areas</li>
+<li>SA2 Areas (with human population)</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="load-in-our-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-in-our-data">Load in our data</h2>
+<p>For most of our data, we will simply be able to double click on it in the Project Home folder within the Browser window. When you load in this data, QGIS will give you a warning that your Project Projection is different to the data you’re importing. Simply click cancel on this window. We will be fixing this issue later. Make sure your Project Projection remains as EPSG:7856.</p>
+<p>Load in:</p>
+<ul>
+<li><p>SA2_ERP_2021_QLD.gpkg (suburb data)</p></li>
+<li><p>CAPAD2020_terrestrial_QLD.gpkg (Protected Areas)</p></li>
+<li><p>koala_priority_area.gpkg</p></li>
+</ul>
+<p>But what about the Koala Encounters location data? We need to handle this differently, as it is currently not in a spatial format, but in a csv file.</p>
+<section id="importing-csv-data" class="level3">
+<h3 class="anchored" data-anchor-id="importing-csv-data">Importing CSV data</h3>
+<ul>
+<li>Go to <code>Layer &gt; Add Layer &gt; Add Delimited Text Layer...</code></li>
+<li>Click the three dots <code>...</code> next to the <strong>File name</strong> field, navigate to the project folder, and select <code>koala_reduced</code></li>
+<li>Click the Geometry Definition drop down
+<ul>
+<li>This should automatically identify decimalLongitude and the X field, and decimalLatitude as the Y field.</li>
+<li>You may need to set the Geometry CRS. For this data from the ALA it is EPSG:4326 - WGS84</li>
+</ul></li>
+<li>Click <code>Add</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>It’s usually the case that data like this is in EPSG:4326 - WGS84, as that is the standard used by most GPS units and Google Maps. However, it’s still worth checking those details on the website you’ve downloaded it from. If your data doesn’t come with a predefined projection, and the spatial portal doesn’t specify, but it uses a Google Maps style interface, it’s probably using EPSG:4326 - WGS84</p>
+</blockquote>
+</section>
+</section>
+<section id="tabular-data" class="level2">
+<h2 class="anchored" data-anchor-id="tabular-data">Tabular data</h2>
+<p>QGIS can deal with plain tabular data. For example, try importing the file HDI.ods: it doesn’t contain any coordinates, but we can still store it as a layer and use it in our project. You can see the data it contains by opening its attribute table.</p>
+<p>How can we add the Human Development Index (HDI) data to our existing “admin” shapefile?</p>
+<section id="joining-tabular-data" class="level3">
+<h3 class="anchored" data-anchor-id="joining-tabular-data">Joining tabular data</h3>
+<p>To add the HDI data to our region shapefile, we can go the the “admin” layer’s properties, use the <img src="https://docs.qgis.org/3.40/en/_images/join.png" class="img-fluid" alt="Join Button"> <code>Joins</code> tab and click the <code>Add new join</code> button <img src="https://docs.qgis.org/3.40/en/_images/symbologyAdd.png" class="img-fluid" alt="Add New Join Button"> to create a new join. We can then choose the HDI data as the <code>Join layer</code>, and define what common field between the two tables we will merge on: the ISO_3166_2 code in our case.</p>
+<p>You can now see the joined data highlighted in green in the <img src="https://docs.qgis.org/3.40/en/_images/mSourceFields.png" class="img-fluid" alt="Fields Tab Button"><code>Fields</code> tab, click “OK”, and check the actual values in the “admin” layer’s attribute table.</p>
+</section>
+</section>
+<section id="subset-our-sa2-data-down-to-seq---select-features-using-an-expression" class="level2">
+<h2 class="anchored" data-anchor-id="subset-our-sa2-data-down-to-seq---select-features-using-an-expression">Subset our SA2 data down to SEQ - Select features using an expression</h2>
+<p>The following code will allow you to select the SA2 features that are in SEQ.</p>
+<ul>
+<li>Right click on the reprojected SA2 layer, and select <strong>Open Attribute Table</strong></li>
+<li>From the Attribute Table that opens, click the Select features using an expression button: <img src="https://docs.qgis.org/3.40/en/_images/mIconExpressionSelect.png" class="img-fluid" alt="image"></li>
+<li>In the Select by Expression window that opens, paste the code from below into the Expression field, and then click <code>Select Features</code> in the bottom right of the window.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Gold Coast'</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">OR</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Sunshine Coast'</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">OR</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Toowoomba'</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="kw">OR</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="ot">"GCCSA_name_2021"</span>  <span class="kw">LIKE</span>  <span class="st">'%Brisbane%'</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>This is SQL code, which is great for querying databases. This code selects any row that matches any of the criteria (this OR that). The first three look for exact matches, the last one looks to match the pattern given. The % acts like wildcard, so it’s looking for any row that contains Brisbane.</p>
+</blockquote>
+<ul>
+<li>Close the Select by Expression window and Attribute Table</li>
+<li>You should see the SEQ SA2 areas highlighted in yellow (you may need to turn off other layers or zoom in).</li>
+<li>To permanently save this selection, right click on the reprojected SA2 layer, and select <code>Export &gt; Save Selected Features As...</code></li>
+<li>Save your file as <code>SA2_SEQ</code></li>
+<li>Make sure the CRS stays as <code>EPSG:7856 - GDA2020 / MGA zone 56</code>, then click <code>OK</code></li>
+</ul>
+<p>If you haven’t done so already, untick and hide all the original layers we aren’t using any more.</p>
+</section>
+<section id="analysis-spatial-overlaps" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-spatial-overlaps">Analysis: Spatial Overlaps</h2>
+<p>Let’s find out how much of our Koala Priority areas are already under federally recognised protection. To do this we will use the Intersection tool. This tool is similar to the <strong>Clip</strong> tool, but rather than just cutting out the overlapping area, it also combines the Attribute Tables of the two layers.</p>
+<section id="intersection" class="level3">
+<h3 class="anchored" data-anchor-id="intersection">Intersection</h3>
+<ul>
+<li>Go to <code>Vector &gt; Geoprocessing Tools &gt; Intersection</code></li>
+<li>Under <strong>Input Layer</strong> select <strong>CAPAD_Reproj</strong></li>
+<li>Under <strong>Overlay Layer</strong> select <strong>KPA_Reproj</strong></li>
+<li>Click <code>Run</code></li>
+</ul>
+<p>We get an error <code>Feature (26) from “CAPAD_Reproj” has invalid geometry.</code> This is caused by little issues in the polygon layer. Sometimes when polygons are drawn or exported from online sources, they will create errors, and sometimes little slither polygons on the edges. We can investigate the source of these errors using the <code>Check validity</code> tool, but for today, we’re simply going to fix them with the <code>Fix Geometries</code> tool from the Processing Toolbox.</p>
+</section>
+<section id="fix-geometries" class="level3">
+<h3 class="anchored" data-anchor-id="fix-geometries">Fix Geometries</h3>
+<ul>
+<li>Open the Processing Toolbox by clicking the cog icon from the top menu <img src="https://docs.qgis.org/3.40/en/_images/processingAlgorithm.png" class="img-fluid" alt="Processing Toolbox"> (alternatively go to <code>View &gt; Panels &gt; Processing Toolbox</code>)</li>
+<li>In the <strong>Processing Toolbox</strong> window <code>Search</code> for “Fix geometries”</li>
+<li>Double-click on the <strong>Fix geometries</strong> option</li>
+<li>In the <strong>Fix Geometries</strong> window, select <code>CAPAD_Reproj</code> from the <strong>Input layer</strong> options, then click <code>Run</code></li>
+<li>Right click <strong>Fixed Geometries</strong> in the Layer panel, click Rename Layer, and change it to <strong>CAPAD_Fixed</strong></li>
+</ul>
+<p>You can now re-run the <strong>Intersection</strong> tool with the resulting <strong>CAPAD_Fixed</strong> layer (instead of the <strong>CAPAD2020_terrestrial_QLD</strong> layer)</p>
+<ul>
+<li>Go to <code>Vector &gt; Geoprocessing Tools &gt; Intersection</code></li>
+<li>Under <strong>Input Layer</strong> select <strong>CAPAD_Fixed</strong></li>
+<li>Under <strong>Overlay Layer</strong> select <strong>KPA_Reproj</strong></li>
+<li>Click <code>Run</code></li>
+</ul>
+<p>Magic. Our new layer with be the thin overlap between our two original layers, and will have their shared Attribute Tables. However, this is a double-edged sword, as it has retained the Area columns of the original CAPAD polygons. If we want to know our new shape’s area, we need to calculate that.</p>
+</section>
+<section id="field-calculator" class="level3">
+<h3 class="anchored" data-anchor-id="field-calculator">Field Calculator</h3>
+<p>We can use the <strong>Field Calculator</strong> to calculate the area of our polygon.</p>
+<p>Select <strong>Intersection</strong> from the <strong>Layers</strong> panel, and the click the <strong>Open Field Calculator</strong> button <img src="https://docs.qgis.org/3.40/en/_images/mActionCalculateField.png" class="img-fluid" alt="Field Calculator Button"></p>
+<p>In the <strong>Field calculator</strong> window, type the following code into the <strong>Expression</strong> tab:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>($area)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>$area will give us the area of a single polygon - we could use this to create a new field in our Attribute Table based on area if we wanted to</li>
+<li>sum() will add together the area for every polygon in that layer.</li>
+<li>Below the text box, you will see a field titled <strong>Preview:</strong>, the value following that contains the results of our expression. Copy that number.</li>
+<li>Click <code>Cancel</code></li>
+</ul>
+<p>Do the same <strong>Field Calculator</strong> steps for the original koala_priority_area.</p>
+<p>You can now use the <strong>Field calculator</strong> to determine the percentage of the Koala Priority area which is currently protected. 1506573200.936991 / 5776218019.211894 = 26%</p>
+<p>Only 26%! Let’s look into this further. Perhaps our dataset is missing some new conservation areas.</p>
+<p>Let’s turn on the OpenStreetMap to see if we can see anything missing here. Let’s have a look at the dense collection of koala sightings near Springwood and the Daisy Hill Conservation Park (if you can’t find them, paste these coordinates <strong>-27.581128,153.176828</strong> into the <strong>Coordinate</strong> box at the bottom of the window, and change the <strong>Scale</strong> to <strong>1:10000</strong>). We can see that there are some protected bushlands in this area that aren’t in our CAPAD2020 dataset. It may be that these aren’t strict enough conservation areas, or our dataset may be out of date. Regardless, this gives us a good opportunity to use an important tool in GIS: Digitisation.</p>
+</section>
+</section>
+<section id="map-digitisation" class="level2">
+<h2 class="anchored" data-anchor-id="map-digitisation">Map Digitisation</h2>
+<p>You may often need to create your own points, lines, and polygons when digitising satellite data, or simply highlighting a particular area. Let’s use the OpenStreeMap (in Browser, scroll down to XYZ Tiles, and double-click on OpenStreetMap) and digitise the Emu Street Bushland Refuge.</p>
+<ul>
+<li><p>Go to <code>Layer &gt; Create Layer &gt; New GeoPackage Layer...</code></p></li>
+<li><p>Click the three dots <code>...</code> next to the <strong>Database</strong> section</p></li>
+<li><p>Navigate to your <code>data &gt; processed</code> folder and save the file as <strong>ESBR_polygon</strong></p></li>
+<li><p>From <strong>Geometry type</strong> select <code>MultiPolygon</code></p></li>
+<li><p>Make sure the CRS is set to <code>EPSG:7856 - GDA2020 / MGA zone 56</code></p></li>
+<li><p>Leave the other fields blank for now and click <code>OK</code></p></li>
+</ul>
+<p>We now have a brand new layer that we can add polygons to.</p>
+<ul>
+<li><p>Select the new <strong>ESBR_polygon</strong> layer and then click the <strong>Toggle Editing</strong> pencil <img src="https://docs.qgis.org/3.40/en/_images/mActionToggleEditing.png" class="img-fluid" alt="Toggle Editing Button"> from the top menu (or go to <code>Layer &gt; Toggle Edititng</code></p></li>
+<li><p>On your keyboard, press <code>Ctrl + .</code> (or click <img src="https://docs.qgis.org/3.40/en/_images/mActionCapturePolygon.png" class="img-fluid" alt="Add Polygon Button"> Add Polygon Feature) to start adding a new polygon</p></li>
+<li><p>Zoom in to a corner of the area you want to create the polygon, and then <code>Left click</code> to start drawing your polygon (You can use the mouse wheel to zoom in, and also press and drag on the mouse wheel to navigate)</p>
+<ul>
+<li>A red dotted line will now appear between that first point and your cursor.</li>
+</ul></li>
+<li><p>Continue adding points to your polygon until your return back to the start, <code>Right click</code> to stop digitising and create your polygon.</p></li>
+<li><p>Leave the fid as <code>Autogenerate</code> and click <code>OK</code></p></li>
+<li><p>To save what you’ve done, click the <strong>Save Layer Edits</strong> button next to the <strong>Toggle Editing</strong> button</p></li>
+<li><p>To finish editing your layer click the <strong>Toggle Editing</strong> button</p></li>
+</ul>
+<p>You now know how to digitise a polygon, but the same steps apply for creating a point or a line layer. We created a new layer here, and you can also do the same steps to edit a pre-exisitng layer too.</p>
+<p>The <strong>Vertex Tool</strong> <img src="https://docs.qgis.org/3.40/en/_images/mActionVertexToolActiveLayer.png" class="img-fluid" alt="Vertex Tool Button"> will allow you to move the location of points (or corners of polygons) that you have already created (you also need to click the <strong>Toggle Editing</strong> button for this tool)</p>
+<p>Despite these missing Refuge area polygons, you can still see that there are a lot of koalas which are found outside of protected areas. In fact, most sightings seem to occur outside of protected areas! Is this poor protected area management, or might our data be biased by when and where people are more likely to encounter koalas?</p>
+</section>
+<section id="analysis-how-do-koalas-and-people-overlap" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-how-do-koalas-and-people-overlap">Analysis: How do koalas and people overlap?</h2>
+<section id="count-points-in-polygons" class="level3">
+<h3 class="anchored" data-anchor-id="count-points-in-polygons">Count Points in Polygons</h3>
+<p>Earlier we looked at overlap between polygons, we can also look at points overlapping with a polygon. Let’s use the Count Points in Polygons tool to quickly count the number of points from a particular layer inside a polygon. We could look at a few things here, we could look at koala sightings in protected areas or in the priority areas, but let’s try to get an idea of how people and koala sightings overlap. You would expect there to be more koalas where there are fewer people, but perhaps our data is skewed by population levels.</p>
+<p>Let’s determine how many koalas are inside of each SA2 suburb.</p>
+<ul>
+<li><p>Go to <code>Vector &gt; Analysis Tools &gt; Count Points in Polygons...</code></p></li>
+<li><p>In the <strong>Polygons</strong> field select <code>SA2_SEQ</code></p></li>
+<li><p>In the <strong>Points</strong> field select <code>Koalas_Reproj</code></p></li>
+<li><p>In the <strong>Count field name</strong> field type in something like <code>NUM_KOALAS</code></p></li>
+<li><p>Click the three dots <code>...</code> next to the <strong>Count</strong> section, and click <strong>Save to File…</strong></p></li>
+<li><p>Navigate to your <strong>processed</strong> folder and save the file as <strong>SA2_SEQ_koalas</strong></p></li>
+<li><p>Click <code>Run</code></p></li>
+</ul>
+<p>If it’s being really slow, we might be able to benefit from the <strong>Fix Geometries</strong> tool again.</p>
+<ul>
+<li><p>Click <code>Cancel</code> in the <strong>Count Points in Polygons</strong> window, but leave it open for now</p></li>
+<li><p>In the <strong>Processing Toolbox</strong> double-click on the <strong>Fix geometries</strong> option</p>
+<ul>
+<li><p>For Input Layer choose <strong>Koalas_Reproj</strong></p></li>
+<li><p>Click <code>Run</code></p></li>
+</ul></li>
+<li><p>Return to the <strong>Count Points in Polygons</strong> window, click <code>Change Parameters</code></p></li>
+<li><p>Change the <code>Points</code> to the new <strong>Fixed geometries</strong> layer</p></li>
+<li><p>Click <code>Run</code></p></li>
+</ul>
+<p>You can now look at the <strong>Attribute Table (F6)</strong> for this layer to see the number of koala sightings in each suburb. Let’s visualise this.</p>
+<ul>
+<li><p>Click on the <strong>SA2_SEQ_koalas</strong> layer in the Layers panel</p></li>
+<li><p>Open the Layer Styling Panel by pressing F7 (or fn + F7)</p></li>
+<li><p>Change the Symbology from <code>Single Symbol</code> to <code>Graduated</code></p></li>
+<li><p>Set the <strong>Value</strong> to <code>NUM_KOALAS</code></p></li>
+<li><p>Choose a <strong>Color ramp</strong> of your liking</p></li>
+<li><p>Click <code>Classify</code></p></li>
+<li><p>You might want to play with the <strong>Mode</strong> to get a feel for the data</p></li>
+</ul>
+<p>Now we can quickly see how many Koalas are in each suburb.</p>
+<p>We can go further and use the <strong>Field Calculator</strong> to compare koala numbers to the current human population in that area, and create a new field with that information.</p>
+<ul>
+<li><p>Click on the <strong>Field Calculator</strong> button <img src="https://docs.qgis.org/3.40/en/_images/mActionCalculateField.png" class="img-fluid" alt="image"></p>
+<ul>
+<li><p>Under <strong>Create a new field</strong> set the <strong>Output field name</strong> to <code>KOALAS_PP</code></p></li>
+<li><p>Set the <strong>Output field type</strong> to <code>Decimal number (real)</code> (we need to choose this option to ensure that we have decimals in our output)</p></li>
+<li><p>In the <code>Expression</code> tab enter <code>"NUM_KOALAS" / "ERP_2021"</code></p>
+<ul>
+<li>ERP stands for Estimated Resident Population</li>
+</ul></li>
+<li><p>Click OK</p></li>
+</ul></li>
+<li><p>Now you can change the <strong>Value</strong> in <strong>Layer Styling</strong> to <code>KOALA_PP</code></p>
+<ul>
+<li>Click Classify again if needed</li>
+</ul></li>
+</ul>
+<p>We can now see how koala populations compare with human populations.</p>
+</section>
+</section>
+<section id="wrap-up" class="level2">
+<h2 class="anchored" data-anchor-id="wrap-up">Wrap up</h2>
+<p>Today we explored projections, looked at a variety of data sources, questioned the quality of our data, used the Intersection tool, the Field Calculator, digitised a map, and used polygon point counts.</p>
+<p>After running these tests and analyses, do we feel that there is adequate protection and conservation areas for koalas in QLD? How might you show this?</p>
+<p>How might you use these tools in your own analysis?</p>
+</section>
+<section id="feedback" class="level2">
+<h2 class="anchored" data-anchor-id="feedback">Feedback</h2>
+<p>Please visit our website to <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources">provide feedback</a> and find upcoming training courses we have on offer.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

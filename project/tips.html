@@ -250,10 +250,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here’s a few general tips. In addition, we strongly recommend using <a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf">the pandas cheatsheets</a>, which give a quick and easy reference for common packages and functions, and <a href="https://www.data-to-viz.com/">from Data to Viz</a>, which guides you through choosing a visualisation.</p>
 <section id="hotkeys" class="level2">
 <h2 class="anchored" data-anchor-id="hotkeys">Hotkeys</h2>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="tab-content" data-group="lang">
+<div id="tabset-1-1" class="active tab-pane" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -340,9 +340,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-manipulation" class="level2">
 <h2 class="anchored" data-anchor-id="data-manipulation">Data manipulation</h2>
 <p>Import packages to make data manipulation easier</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
+<div class="tab-content" data-group="lang">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -354,9 +354,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="importing-and-exporting-data" class="level3">
 <h3 class="anchored" data-anchor-id="importing-and-exporting-data">Importing and exporting data</h3>
 <p>Read your data with an I/O (input/output) function.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
+<div class="tab-content" data-group="lang">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/dataset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -366,9 +366,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>You can also export your data to a csv file.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
+<div class="tab-content" data-group="lang">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(dataset, <span class="st">"data/output_name.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -381,9 +381,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="initial-exploration" class="level3">
 <h3 class="anchored" data-anchor-id="initial-exploration">Initial exploration</h3>
 <p>You’ll want to explore the data to start with - below are a few functions to get started.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
+<div class="tab-content" data-group="lang">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <table class="caption-top table">
 <colgroup>
@@ -476,9 +476,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="removing-nans" class="level3">
 <h3 class="anchored" data-anchor-id="removing-nans">Removing <code>nan</code>s</h3>
 <p>We can remove <code>nan</code>s by filtering</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
+<div class="tab-content" data-group="lang">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> dataset <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(variable_to_check_for_NAs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -505,9 +505,9 @@ Using <code>!</code> for negation
 <section id="time-series-data" class="level3">
 <h3 class="anchored" data-anchor-id="time-series-data">Time series data</h3>
 <p>If you’ve picked a dataset with time-series data (e.g.&nbsp;a “date” variable), you should transform that variable so that it visualises better:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
+<div class="tab-content" data-group="lang">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dataset<span class="sc">$</span>variable <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(dataset<span class="sc">$</span>variable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -520,9 +520,9 @@ Using <code>!</code> for negation
 <section id="categorical-and-ordered-data" class="level3">
 <h3 class="anchored" data-anchor-id="categorical-and-ordered-data">Categorical and ordered data</h3>
 <p>If you’re dealing with categorical data, you can specify this explicitly to keep track of the levels.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
+<div class="tab-content" data-group="lang">
 <div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dataset<span class="sc">$</span>variable <span class="ot">&lt;-</span> <span class="fu">factor</span>(dataset<span class="sc">$</span>variable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -532,9 +532,9 @@ Using <code>!</code> for negation
 </div>
 </div>
 <p>To manually specify the order of categories,</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
+<div class="tab-content" data-group="lang">
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <p>Specify the order by sending in an ordered list of the levels joined with <code>c()</code>:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dataset<span class="sc">$</span>variable <span class="ot">&lt;-</span> <span class="fu">factor</span>(dataset<span class="sc">$</span>variable, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"first_val"</span>, <span class="st">"second_val"</span>, ... ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -565,9 +565,9 @@ Coffee survey
 <section id="renaming-variables" class="level3">
 <h3 class="anchored" data-anchor-id="renaming-variables">Renaming variables</h3>
 <p>Some datasets have cumbersome names for their variables which we can rename.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
+<div class="tab-content" data-group="lang">
 <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">new_name =</span> old_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -616,9 +616,9 @@ World population
 <section id="visualisation" class="level2">
 <h2 class="anchored" data-anchor-id="visualisation">Visualisation</h2>
 <p>We can make simple visualisations of our data.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
+<div class="tab-content" data-group="lang">
 <div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
 <p>Use <code>ggplot2</code>’s <code>ggplot()</code> function, with</p>
 <ul>
@@ -649,9 +649,9 @@ World population
 </div>
 </div>
 <p>We can add additional customisations to our plots, such as axis labels.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
+<div class="tab-content" data-group="lang">
 <div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
 <p>Generally, <code>ggplot2</code> lets you do this with additional elements added to the plot. For example, to add axis labels,</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dataset,</span>

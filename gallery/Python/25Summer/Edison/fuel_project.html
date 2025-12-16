@@ -209,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="06118c59" class="cell" data-execution_count="1">
+<div id="c030690d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [615977 rows x 14 columns]</code></pre>
 </div>
 </div>
-<div id="6d69548d" class="cell" data-execution_count="2">
+<div id="00eadfb8" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initial exploration</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.columns</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -339,7 +339,7 @@ freq        118040
 Name: Site_Brand, dtype: object</code></pre>
 </div>
 </div>
-<div id="9cc0c788" class="cell" data-execution_count="3">
+<div id="2a239caf" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summaries</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gb <span class="op">=</span> df.groupby(<span class="st">"Fuel_Type"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -393,7 +393,7 @@ Name: Site_Brand, dtype: object</code></pre>
 </div>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_7898/3688228111.py:13: SettingWithCopyWarning:
+<pre><code>/tmp/ipykernel_2732/3688228111.py:13: SettingWithCopyWarning:
 
 
 A value is trying to be set on a copy of a slice from a DataFrame.
@@ -431,7 +431,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 </div>
-<div id="64b29799" class="cell" data-execution_count="4">
+<div id="35fef80b" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fuel <span class="op">=</span> pd.read_csv(<span class="st">"./data/data/qld_fuel.csv"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas </span>
@@ -445,7 +445,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 </div>
-<div id="2d2183fb" class="cell" data-execution_count="5">
+<div id="497d1b0b" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>figure <span class="op">=</span> px.scatter(data_frame <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"Fuel_Type"</span>, y <span class="op">=</span> <span class="st">"unit_price"</span>, color <span class="op">=</span> <span class="st">"Site_State"</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>           facet_col <span class="op">=</span> <span class="st">"Site_State"</span>, hover_name <span class="op">=</span> <span class="st">"Site_Brand"</span>,</span>
@@ -453,7 +453,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>figure.write_html(<span class="st">"fuel.html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="410fb33a" class="cell" color="primary" title="Location of stations" data-execution_count="6">
+<div id="b4539cc9" class="cell" color="primary" title="Location of stations" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fuel <span class="op">=</span> pd.read_csv(<span class="st">"./data/data/qld_fuel.csv"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas </span>

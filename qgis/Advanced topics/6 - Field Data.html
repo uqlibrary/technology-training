@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-12-16">
+
+<title>Field Data Collection – UQ Library Training Intensives</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-656e237a0da1fd552299701f9f2ac015.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">UQ Library Training Intensives</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Content</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-content">    
+        <li>
+    <a class="dropdown-item" href="../../r/setup.html">
+ <span class="dropdown-text">R with RStudio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../qgis/setup.html">
+ <span class="dropdown-text">QGIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../python/setup.html">
+ <span class="dropdown-text">Python for Data Analysis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../project/details.html"> 
+<span class="menu-text">The Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../gallery/project_gallery.html"> 
+<span class="menu-text">Project Gallery</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://uqlibrary.github.io/technology-training"> 
+<span class="menu-text">UQ Library Technology Training</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#folder-setup" id="toc-folder-setup" class="nav-link active" data-scroll-target="#folder-setup">Folder Setup</a></li>
+  <li><a href="#install-qfield" id="toc-install-qfield" class="nav-link" data-scroll-target="#install-qfield">Install QField</a></li>
+  <li><a href="#download-data" id="toc-download-data" class="nav-link" data-scroll-target="#download-data">Download Data</a></li>
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources">Data Sources</a>
+  <ul class="collapse">
+  <li><a href="#dem" id="toc-dem" class="nav-link" data-scroll-target="#dem">DEM</a></li>
+  <li><a href="#aerial-imagery" id="toc-aerial-imagery" class="nav-link" data-scroll-target="#aerial-imagery">Aerial Imagery</a>
+  <ul class="collapse">
+  <li><a href="#local-raster-files" id="toc-local-raster-files" class="nav-link" data-scroll-target="#local-raster-files">Local Raster Files</a></li>
+  <li><a href="#mapserver-raster-files" id="toc-mapserver-raster-files" class="nav-link" data-scroll-target="#mapserver-raster-files">Mapserver Raster Files</a></li>
+  </ul></li>
+  <li><a href="#lot-plans" id="toc-lot-plans" class="nav-link" data-scroll-target="#lot-plans">Lot Plans</a></li>
+  </ul></li>
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import Data</a></li>
+  <li><a href="#buffer-data" id="toc-buffer-data" class="nav-link" data-scroll-target="#buffer-data">Buffer Data</a></li>
+  <li><a href="#select-and-reproject" id="toc-select-and-reproject" class="nav-link" data-scroll-target="#select-and-reproject">Select and Reproject</a></li>
+  <li><a href="#polygons-to-lines" id="toc-polygons-to-lines" class="nav-link" data-scroll-target="#polygons-to-lines">Polygons to Lines</a>
+  <ul class="collapse">
+  <li><a href="#buffer-the-lines" id="toc-buffer-the-lines" class="nav-link" data-scroll-target="#buffer-the-lines">Buffer the Lines</a></li>
+  <li><a href="#explore-projections" id="toc-explore-projections" class="nav-link" data-scroll-target="#explore-projections">Explore Projections</a>
+  <ul class="collapse">
+  <li><a href="#reproject-data" id="toc-reproject-data" class="nav-link" data-scroll-target="#reproject-data">Reproject Data</a></li>
+  <li><a href="#buffer-reprojected-lines" id="toc-buffer-reprojected-lines" class="nav-link" data-scroll-target="#buffer-reprojected-lines">Buffer Reprojected Lines</a></li>
+  </ul></li>
+  <li><a href="#style-the-boundary-buffer-polygon" id="toc-style-the-boundary-buffer-polygon" class="nav-link" data-scroll-target="#style-the-boundary-buffer-polygon">Style the Boundary buffer polygon</a>
+  <ul class="collapse">
+  <li><a href="#save-your-project" id="toc-save-your-project" class="nav-link" data-scroll-target="#save-your-project">Save your project</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#hillshade" id="toc-hillshade" class="nav-link" data-scroll-target="#hillshade">Hillshade</a></li>
+  <li><a href="#dem-symbology" id="toc-dem-symbology" class="nav-link" data-scroll-target="#dem-symbology">DEM symbology</a></li>
+  <li><a href="#contours" id="toc-contours" class="nav-link" data-scroll-target="#contours">Contours</a></li>
+  <li><a href="#layer-for-data-collection" id="toc-layer-for-data-collection" class="nav-link" data-scroll-target="#layer-for-data-collection">Layer for Data Collection</a>
+  <ul class="collapse">
+  <li><a href="#add-another-field" id="toc-add-another-field" class="nav-link" data-scroll-target="#add-another-field">Add Another Field</a></li>
+  <li><a href="#attributes-form-preparation" id="toc-attributes-form-preparation" class="nav-link" data-scroll-target="#attributes-form-preparation">Attributes Form Preparation</a></li>
+  </ul></li>
+  <li><a href="#tracks-layer" id="toc-tracks-layer" class="nav-link" data-scroll-target="#tracks-layer">Tracks Layer</a>
+  <ul class="collapse">
+  <li><a href="#tracks-attributes-form-preparation" id="toc-tracks-attributes-form-preparation" class="nav-link" data-scroll-target="#tracks-attributes-form-preparation">Tracks Attributes Form Preparation</a></li>
+  </ul></li>
+  <li><a href="#qfield" id="toc-qfield" class="nav-link" data-scroll-target="#qfield">QField</a>
+  <ul class="collapse">
+  <li><a href="#install-qfield-plugin" id="toc-install-qfield-plugin" class="nav-link" data-scroll-target="#install-qfield-plugin">Install QField Plugin</a></li>
+  <li><a href="#prepare-data-for-qfield" id="toc-prepare-data-for-qfield" class="nav-link" data-scroll-target="#prepare-data-for-qfield">Prepare Data for QField</a></li>
+  <li><a href="#export-to-qfield" id="toc-export-to-qfield" class="nav-link" data-scroll-target="#export-to-qfield">Export to QField</a></li>
+  <li><a href="#opening-the-qfield-project" id="toc-opening-the-qfield-project" class="nav-link" data-scroll-target="#opening-the-qfield-project">Opening the QField Project</a></li>
+  <li><a href="#using-qfield" id="toc-using-qfield" class="nav-link" data-scroll-target="#using-qfield">Using QField</a>
+  <ul class="collapse">
+  <li><a href="#turning-on-tracks" id="toc-turning-on-tracks" class="nav-link" data-scroll-target="#turning-on-tracks">Turning on Tracks</a></li>
+  <li><a href="#turning-off-tracks" id="toc-turning-off-tracks" class="nav-link" data-scroll-target="#turning-off-tracks">Turning off Tracks</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#feedback" id="toc-feedback" class="nav-link" data-scroll-target="#feedback">Feedback</a></li>
+  <li><a href="#stretch-goals" id="toc-stretch-goals" class="nav-link" data-scroll-target="#stretch-goals">Stretch Goals</a>
+  <ul class="collapse">
+  <li><a href="#exporting-to-avenza-maps" id="toc-exporting-to-avenza-maps" class="nav-link" data-scroll-target="#exporting-to-avenza-maps">Exporting to Avenza Maps</a></li>
+  <li><a href="#autoid" id="toc-autoid" class="nav-link" data-scroll-target="#autoid">AutoID</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Field Data Collection</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 16, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="folder-setup" class="level2">
+<h2 class="anchored" data-anchor-id="folder-setup">Folder Setup</h2>
+<pre><code>-   "DCIM" - this is a new one, it's for storing images from our phone!
+
+-   "UQ_Fieldwork" - this is also new, it's for exporting our project to QField</code></pre>
+</section>
+<section id="install-qfield" class="level2">
+<h2 class="anchored" data-anchor-id="install-qfield">Install QField</h2>
+<p>QField plugs directly in to QGIS, and allows you to link a QGIS project with your mobile phone for data collection.</p>
+<p><a href="https://play.google.com/store/apps/details?id=ch.opengis.qfield">Android Download</a> <a href="https://apps.apple.com/app/qfield-for-qgis/id1531726814">iOS Download</a></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+You can also explore Avenza, which uses GeoPDFs
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For Avenza Maps you just need to add a GeoPDF and you can collect data on it. It’s less functional than QField, but it’s a great fallback tool. <a href="https://play.google.com/store/apps/details?id=com.Avenza&amp;hl=en_AU">Android Download</a> <a href="https://apps.apple.com/app/avenza-maps/id388424049">iOS Download</a></p>
+<p>There are alternatives out there, such as <a href="https://merginmaps.com/features">Input (MerginMaps)</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="download-data" class="level1">
+<h1>Download Data</h1>
+<p>Our data for today is packaged in a zip file.</p>
+<ul>
+<li>Download today’s data from <a href="https://github.com/uqlibrary/technology-training-assets/raw/refs/heads/master/QGIS/fieldwork/QGIS_Fieldwork_Data.zip">here</a>.</li>
+<li>Extract/unzip the data and move it into your <strong>raw data</strong> folder</li>
+</ul>
+</section>
+<section id="data-sources" class="level1">
+<h1>Data Sources</h1>
+<p>We’re going to explore a number of different online spatial data repositories.</p>
+<section id="dem" class="level2">
+<h2 class="anchored" data-anchor-id="dem">DEM</h2>
+<p>A Digital Elevation Model (DEM) is a common example of <strong>raster data</strong>, i.e.&nbsp;grid data that contains a value in each cell (a bit like the pixels in a coloured picture).</p>
+<p>For this tutorial, we are using a DEM sourced from <a href="http://www.ga.gov.au/elvis/"><strong>ELVIS</strong></a> - Geoscience Australia’s ELeVation Information System.</p>
+</section>
+<section id="aerial-imagery" class="level2">
+<h2 class="anchored" data-anchor-id="aerial-imagery">Aerial Imagery</h2>
+<p>There are a few places you can acquire aerial photography.</p>
+<section id="local-raster-files" class="level3">
+<h3 class="anchored" data-anchor-id="local-raster-files">Local Raster Files</h3>
+<p>As a UQ student, you have access to very high resolution imagery from <a href="https://admin.nearmap.com/invitation/domain-signup?token=q9WIbXMtna1iskb2meNGhKpCaQp3WTRbMhXpQVGWkKouKUeqzkpjNznC_Ogz5iKYiw0Ev7vym2Ykaj_W_V4dBbTzR6qUX2eTDsNHpBuR4XbU9vDRxQN_Rg=="><strong>NearMap</strong></a>. You can activate an account here to download georeferenced aerial imagery. You can even access an array of imagery going back in time to around 2010.</p>
+<p>We won’t use NearMap today, but you’re welcome to explore it.</p>
+</section>
+<section id="mapserver-raster-files" class="level3">
+<h3 class="anchored" data-anchor-id="mapserver-raster-files">Mapserver Raster Files</h3>
+<p>Today we’re going to use a World Imagery XYZ Tile from ESRI.</p>
+<ul>
+<li>Scroll down the <code>Browser</code> panel until your see <strong>XYZ Tiles</strong></li>
+<li>Right click XYZ Tiles and select <code>New Connection...</code>
+<ul>
+<li>In <code>Name</code> type <strong>ESRI World Imagery</strong></li>
+<li>In <code>URL</code> paste:<br>
+https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}</li>
+<li>Increase the Max. Zoom Level to 20
+<ul>
+<li>This value depends on what is available from the given service in different parts of the world. Increasing that value beyond 20 for this map in Brisbane will show “Map data not yet available” when you zoom in very close.</li>
+</ul></li>
+<li>Click <code>OK</code></li>
+</ul></li>
+<li>In the <code>Browser</code> panel, expand <code>XYZ Tiles</code> and double click on <code>ESRI World Imagery</code></li>
+</ul>
+</section>
+</section>
+<section id="lot-plans" class="level2">
+<h2 class="anchored" data-anchor-id="lot-plans">Lot Plans</h2>
+<p>You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from <a href="https://qldspatial.information.qld.gov.au/">QLD Spatial</a>.</p>
+<p>Today we have extracted a selection from <a href="https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid=%7B3F217A59-1FDB-412A-813D-A1E7843FB618%7D">Property boundaries Queensland</a></p>
+<p>There are three ways to access data from QSpatial.</p>
+<ul>
+<li><p>Download all of the data from a layer</p></li>
+<li><p>Select a portion of a layer for download using the <a href="https://qldspatial.information.qld.gov.au/catalogue/custom/myList.page">My List</a> function</p></li>
+<li><p>Live load it into your project using a <a href="https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer">Mapserver</a>.</p></li>
+</ul>
+</section>
+</section>
+<section id="import-data" class="level1">
+<h1>Import Data</h1>
+<p>Our data should neatly appear within the <code>Project Home</code> folder within the <code>Browser</code> panel.</p>
+<ul>
+<li><p>Open the Data and Raw Data folder</p></li>
+<li><p>Drag in the <strong>UQ_DEM_1m.tif</strong> and <strong>St_Lucia_Property_Boundaries.gpkg</strong></p></li>
+</ul>
+</section>
+<section id="buffer-data" class="level1">
+<h1>Buffer Data</h1>
+<p>Buffers are a simple, but powerful, tool that we can use to extend the borders of our vector data. It’s useful for polygons, lines, and points.</p>
+<p>Perhaps we need to keep 10m from the property boundaries when doing our fieldwork. A buffer can help us there.</p>
+<p>However, our <strong>St_Lucia_Property_Boundaries</strong> layer has some issues we need to resolve before we can buffer it.</p>
+<ul>
+<li><p>It has extra properties that we don’t need</p></li>
+<li><p>A buffer on a polygon will grow out from the edges, not put a buffer either side of the edges</p></li>
+<li><p>It’s in a Geographic Coordinate System</p></li>
+</ul>
+<p>Let’s look at what happens if we create a buffer in a Geographic Coordinate System:</p>
+<ul>
+<li><p>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></p></li>
+<li><p>Choose “<strong>St_Lucia_Property_Boundaries</strong>” as the Input Layer</p></li>
+<li><p>We next want to choose distance that we want to create a buffer away from our vector.</p>
+<ul>
+<li>However, you’ll note that because the layer projection is EPSG:4283 GDA94 (a geographic coordinate system), the distance is currently in <strong>degrees</strong>.</li>
+</ul></li>
+<li><p>If you click Run with 10 Degrees, your buffer will be nearly the size of Queensland.</p>
+<ul>
+<li>To change this to metres, we first need to convert our layer to a local projected coordinate system.</li>
+</ul></li>
+</ul>
+</section>
+<section id="select-and-reproject" class="level1">
+<h1>Select and Reproject</h1>
+<p>We can <strong>Select</strong> the data we want, and <strong>reproject</strong> at the same time!</p>
+<p>We first need to select the lots that are relevant to us:</p>
+<ul>
+<li><p>Click the dropdown next to the <strong>Select Feature(s)</strong> icon in the toolbar, and choose the <code>Select Feature by polygon</code> option</p>
+<ul>
+<li>This allows us to click around our desired selection</li>
+</ul></li>
+<li><p>Make sure <strong>St_Lucia_Property_Boundaries</strong> is the selected layer in the <code>Layers</code> panel</p></li>
+<li><p>Click around the lots to draw a shape around the lots we want to keep</p></li>
+<li><p>Right-click to finish selecting</p>
+<ul>
+<li>If you need to select any more features, press and hold <strong>Shift</strong> while drawing around your extra features, when you right-click they will be added to your selection</li>
+<li>To remove any accidentally selected features from the selection, press and hold <strong>Control</strong> and draw around the unwanted features.</li>
+</ul></li>
+<li><p>Right click on the <strong>St_Lucia_Property_Boundaries</strong> layer, and select <code>Export &gt; Save Selected Features As...</code></p></li>
+<li><p>Choose <strong>Geopackage</strong> as the <code>Format</code></p></li>
+<li><p>Click the three dots on the right of <code>File name</code>, navigate to your <strong>Processed</strong> data folder and save it as “<strong>UQ_Boundary</strong>”</p></li>
+<li><p>See the <code>Layer name</code> to “<strong>UQ Boundary</strong>”</p>
+<ul>
+<li>The Layer name can have spaces in it, but it’s best to avoid spaces in a File name</li>
+</ul></li>
+<li><p>Make sure you change the CRS, effectively reprojecting the layer</p>
+<ul>
+<li>Choose <code>EPSG:23856 - GDA94 / MGA zone 56</code>
+<ul>
+<li>This is the same projection as our DEM, and a good local projection</li>
+</ul></li>
+</ul></li>
+<li><p>Click <code>OK</code></p></li>
+</ul>
+</section>
+<section id="polygons-to-lines" class="level1">
+<h1>Polygons to Lines</h1>
+<p>To buffer either side of the edges of our boundaries, we need to convert them from Polygons to Lines.</p>
+<ul>
+<li>Go to <code>Vector &gt; Geometry Tools &gt; Polygons to Lines</code></li>
+<li>Set the <code>Input Layer</code> to <strong>UQ Boundary</strong></li>
+<li>Click <code>OK</code></li>
+</ul>
+<section id="buffer-the-lines" class="level2">
+<h2 class="anchored" data-anchor-id="buffer-the-lines">Buffer the Lines</h2>
+<ul>
+<li><p>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></p></li>
+<li><p>Choose “<strong>Lines</strong>” as the <code>Input Layer</code></p></li>
+<li><p>Set the <code>Distance</code> to <strong>10</strong> metres</p>
+<ul>
+<li>We can also make the buffer squared if we want, but we will keep it with the rounded default</li>
+</ul></li>
+<li><p>Tick the <code>Dissolve result</code> box</p>
+<ul>
+<li>This will merge the polygons from our output, making for a cleaner look. The Dissolve tool also exists as a standalone tool.</li>
+</ul></li>
+<li><p>Click the three dots <code>...</code> next to the <strong>Buffered</strong> field, navigate to the project’s <strong>processed</strong> data folder, and type in <strong>UQ_Boundary_Buffer</strong> and click <code>Save</code></p></li>
+<li><p>Click <code>Run</code></p></li>
+</ul>
+</section>
+<section id="explore-projections" class="level2">
+<h2 class="anchored" data-anchor-id="explore-projections">Explore Projections</h2>
+<p>Hopefully it’s clear why we needed to convert from a Geographic Coordinate System to a Projected Coordinate System, but why is it important that we chose the local projection <strong>EPSG:23856 - GDA94 / MGA zone 56</strong>?</p>
+<p>Let’s see what would happen if we did our buffer on those lines in a different projection.</p>
+<section id="reproject-data" class="level3">
+<h3 class="anchored" data-anchor-id="reproject-data">Reproject Data</h3>
+<ul>
+<li><p>Go to <code>Vector &gt; Data Management Tools &gt; Reproject Layer...</code></p></li>
+<li><p>Choose the <strong>Lines</strong> in <code>Input layer</code></p></li>
+<li><p>Set the Target CRS to <code>EPSG:3857 - WGS84 / Pseudo-Mercator</code></p>
+<ul>
+<li>This is a very common projection that Google and your phones use</li>
+</ul></li>
+<li><p>Click <code>Run</code></p>
+<ul>
+<li>We don’t need to permanently save this, so we can leave it as a temporary layer</li>
+</ul></li>
+</ul>
+</section>
+<section id="buffer-reprojected-lines" class="level3">
+<h3 class="anchored" data-anchor-id="buffer-reprojected-lines">Buffer Reprojected Lines</h3>
+<ul>
+<li><p>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></p></li>
+<li><p>Choose “<strong>Reprojected</strong>” as the <code>Input Layer</code></p></li>
+<li><p>Set the <code>Distance</code> to <strong>10</strong> metres</p></li>
+<li><p>Click <code>Run</code></p></li>
+</ul>
+<p>Move the new <strong>Buffered</strong> layer order so that it draws over the <strong>UQ_Boundar_Buffer</strong> layer. Notice anything interesting?</p>
+<p>The new <strong>Buffered</strong> layer is about 1m smaller!</p>
+<p>This is because <strong>EPSG:3857 - WGS84 / Pseudo-Mercator</strong> is a global projection that tries to preserve shapes. Although the units are in metres, the scaling factor changes as you move away from the equator to account for the curvature of the Earth.</p>
+<p>It can still be useful to use this projection to take points. But you have to be careful when you’re making measurements and calculations, for those, a local projection is usually better.</p>
+</section>
+</section>
+<section id="style-the-boundary-buffer-polygon" class="level2">
+<h2 class="anchored" data-anchor-id="style-the-boundary-buffer-polygon">Style the Boundary buffer polygon</h2>
+<ul>
+<li>Open the <code>Layer Styling</code> panel by pressing <strong>F7</strong> (or fn+F7)</li>
+<li>Select the <strong>UQ_Boundar_Buffer</strong> layer from either the <code>Layer Styling</code> panel, or the <code>Layers</code> panel.</li>
+<li>Under <code>Fill</code>, click <code>Simple Fill</code>
+<ul>
+<li>Click the dropdown next to <code>Fill color</code> and select a colour that reminds us not to go there, like <strong>orange</strong>
+<ul>
+<li>Change the <code>Opacity</code> to something around 30%</li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="save-your-project" class="level3">
+<h3 class="anchored" data-anchor-id="save-your-project">Save your project</h3>
+<p>It’s not essential at this stage, it’s just a good reminder to save your work regularly so you don’t lose things when things go wrong.</p>
+</section>
+</section>
+</section>
+<section id="hillshade" class="level1">
+<h1>Hillshade</h1>
+<p>Adding a <strong>hillshade</strong> makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.</p>
+<ul>
+<li>Go to <code>Raster &gt; Analysis &gt; Hillshade...</code>.</li>
+<li>Ensure the Input Layer is your clipped DEM “St_Lucia_DEM”</li>
+<li>Scroll down to “Hillshade” and click “…” next to <code>Create Temporary Layer</code>, then “Save to file”, and save it as <strong>UQ_Hillshade</strong> to your project folder.</li>
+<li>Click Run</li>
+</ul>
+</section>
+<section id="dem-symbology" class="level1">
+<h1>DEM symbology</h1>
+<p>We can style our DEM with a <strong>terrain colour palette</strong>:</p>
+<ul>
+<li>double-click on the clipped DEM layer</li>
+<li>go to the “<code>Symbology</code>” tab</li>
+<li>change the Render type to “Singleband pseudocolor”</li>
+<li>by default, it uses the min/max values, which is what we want</li>
+<li>we can change the “Color ramp” to something more suitable with the drop-down menu and <code>Create new color ramp... &gt; Catalog: cpt-city &gt; Topography &gt; Elevation</code>, for example.</li>
+<li>go to the “<code>Transparency</code>” tab</li>
+<li>Set the <strong>Global Opacity</strong> to 50%</li>
+<li>Click <code>OK</code></li>
+</ul>
+<p>Let’s link these two together.</p>
+<ul>
+<li>Hold <code>Ctrl</code> and select both the Hillshade and the DEM layers</li>
+<li>Press the <code>Add Group</code> button from the top of the <code>Layers</code> panel</li>
+<li>Call it DEM</li>
+<li>Make sure the DEM is above the Hillshade within this group</li>
+</ul>
+</section>
+<section id="contours" class="level1">
+<h1>Contours</h1>
+<p>Adding a <strong>contour</strong> makes your elevation even more evident and can also be used to quickly show elevation on other layers</p>
+<ul>
+<li>Go to <code>Raster &gt; Extraction &gt; Contour...</code>.</li>
+<li>Ensure the Input Layer is your clipped DEM “St_Lucia_DEM”</li>
+<li>For <strong>Interval between contour lines</strong>, the default is 10 m, which won’t be greatly noticeable at UQ where the highest point is 25 m. However, the finer the contour lines, the longer it will take to process. I will choose 5 m.</li>
+<li>Scroll down to “Contours” and click “…” next to [Create Temporary Layer]“, then”Save to file”, and save it as <strong>UQ_Contours_5m</strong> to your project folder.</li>
+<li>Click Run</li>
+</ul>
+</section>
+<section id="layer-for-data-collection" class="level1">
+<h1>Layer for Data Collection</h1>
+<p>This is a very important step, as you cannot create new layers in QField, so we need this to record the data we collect.</p>
+<ul>
+<li>Go to <code>Layer &gt; Create Layer &gt; New GeoPackage Layer...</code></li>
+<li>Click the three dots <code>...</code> next to the <strong>Database</strong> field, navigate to the project’s <strong>processed data</strong> folder, and type in <strong>collected_data</strong> and click <code>Save</code></li>
+<li>For <code>Geometry type</code> choose <strong>MultiPoint</strong></li>
+<li>Set the CRS to <code>EPSG:4326 - WGS 84</code></li>
+<li>Under <strong>New Field</strong> we will add our layer attributes:</li>
+<li>Let’s call the point name “ID”
+<ul>
+<li><code>Name</code>: <strong>ID</strong></li>
+<li><code>Type</code>: <strong>Text (string)</strong></li>
+<li>Click <code>Add to Fields List</code></li>
+</ul></li>
+<li>Description
+<ul>
+<li><code>Name</code>: <strong>Description</strong></li>
+<li><code>Type</code>: <strong>Text (string)</strong></li>
+<li>Click <code>Add to Fields List</code></li>
+</ul></li>
+<li>Category
+<ul>
+<li><code>Name</code>: <strong>Category</strong></li>
+<li><code>Type</code>: <strong>Text (string)</strong></li>
+<li>Click <code>Add to Fields List</code></li>
+</ul></li>
+<li>Date and Time
+<ul>
+<li><code>Name</code>: <strong>DateTime</strong></li>
+<li><code>Type</code>: <strong>Date &amp; Time</strong></li>
+<li>Click <code>Add to Fields List</code></li>
+</ul></li>
+<li>Latitude
+<ul>
+<li><code>Name</code>: <strong>Lat</strong></li>
+<li><code>Type</code>: <strong>Decimal (double)</strong></li>
+<li>Click <code>Add to Fields List</code></li>
+</ul></li>
+<li>Longtitude
+<ul>
+<li><code>Name</code>: <strong>Long</strong></li>
+<li><code>Type</code>: <strong>Decimal (double)</strong></li>
+<li>Click <code>Add to Fields List</code></li>
+</ul></li>
+<li>Click <code>OK</code></li>
+</ul>
+<p>You might wonder why we’ve just chosen WGS84 after seeing the issues with it earlier. Placing points with this projection is less of an issue than doing measurements and analysis. For today we’re choosing WGS84 so that our Lat and Long values are in a format most people expect: WGS84. If we chose a Projected Coordinate System, it wouldn’t give us location in degrees <code>Lat: -27.4705, Lon: 153.0260</code>, it would give us a location meters <code>Easting: 500,000 Northing: 6,900,000</code> We could choose a local Geographic Coordinate System like <strong>EPSG:7844 - GDA2020</strong>, but again, most people will assume your values are in <strong>EPSG:4326 - WGS 84</strong>, so that’s a safe bet unless your group/company has a preferred option.</p>
+<p><strong>Always check and transform to a common CRS before analysis.</strong></p>
+<section id="add-another-field" class="level2">
+<h2 class="anchored" data-anchor-id="add-another-field">Add Another Field</h2>
+<p>It would be nice to be able to take photos when we collect our data, let’s add another field.</p>
+<ul>
+<li>Double click on the new <strong>fieldwork_data</strong> layer</li>
+<li>Click on the <code>Fields</code> tab</li>
+<li>Click the yellow pencil button to <strong>Toggle Editing Mode</strong></li>
+<li>Click the now visible yellow <strong>New field</strong> button
+<ul>
+<li><code>Name</code>: <strong>Photo</strong></li>
+<li><code>Type</code>: <strong>Text (string)</strong></li>
+<li>Click <code>OK</code></li>
+</ul></li>
+<li>Click the yellow pencil button to <strong>Toggle Editing Mode</strong></li>
+<li>Click <code>Save</code></li>
+<li>Click <code>OK</code></li>
+</ul>
+</section>
+<section id="attributes-form-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="attributes-form-preparation">Attributes Form Preparation</h2>
+<p>Now that we have a layer with all the desired fields, we can now edit the layer form to customise how things are entered.</p>
+<ul>
+<li>Double click on the new <strong>collected_data</strong> layer</li>
+<li>Click on the <code>Attributes Form</code> tab</li>
+<li>At the very top of the window, click <code>Autogenerate</code> and change it to <code>Drag and Drop Designer</code></li>
+</ul>
+<p>On the left you will see all of our Fields, we can drag and drop these into the <code>Form Layout</code> section - this section lays out how our form will look when we enter new data.</p>
+<ul>
+<li><p>Drag and Drop the <strong>Photo</strong> Field to the <code>Form Layout</code> so that it is sitting above <strong>DateTime</strong></p></li>
+<li><p>Click <strong>fid</strong> and press the <strong>red minus button</strong> - we want to keep the field, but don’t need to see this in our form</p></li>
+<li><p>Click <strong>ID</strong></p>
+<ul>
+<li>Under <strong>Constraints</strong> tick <code>Not Null</code> and <code>Enforce not null constraint</code></li>
+<li>We don’t need to change anything else for ID, we just want to make it mandatory</li>
+</ul></li>
+<li><p>Click <strong>Category</strong></p>
+<ul>
+<li>Under <strong>Widget Type</strong> click <code>Text Edit</code> and change it to <code>Value Map</code></li>
+<li>Add the following to <code>Values</code> and <code>Descriptions</code>:
+<ul>
+<li><code>EX</code> and <code>Excellent</code></li>
+<li><code>GD</code> and <code>Good</code></li>
+<li><code>PR</code> and <code>Poor</code></li>
+<li><code>OT</code> and <code>Other</code>
+<ul>
+<li>It is good practice to have an Other field if you’re using a “Not Null” constraint, as it allows the user to note when something doesn’t meet the given Categories.</li>
+</ul></li>
+</ul></li>
+<li>Under <strong>Constraints</strong> tick <code>Not Null</code> and <code>Enforce not null constraint</code></li>
+</ul></li>
+<li><p>Click <strong>Photo</strong></p>
+<ul>
+<li>Under <strong>Widget Type</strong> click <code>Text Edit</code> and change it to <code>Attachment</code></li>
+<li>Under <strong>Path</strong> change <code>Default path</code> to <em><span class="citation" data-cites="project_home">@project_home</span> + ‘/DCIM’</em>
+<ul>
+<li>Change <code>Absolute Path</code> to <code>Relative to Project Path</code></li>
+</ul></li>
+<li>Tick **Use a hyperlink for document path (read-only)</li>
+<li>Under <strong>Integrated Document Viewer</strong> change <strong>Type</strong> from <code>No Content</code> to <code>Image</code></li>
+</ul></li>
+<li><p>Click <strong>DateTime</strong></p>
+<ul>
+<li>Under <strong>General</strong> untick <code>Editable</code> - we don’t want to edit this field</li>
+<li>Scroll to the bottom, under <strong>Defaults</strong> change the <code>Default value</code> to <strong>$now</strong></li>
+<li>If this worked, there will be a date and time next to <code>Preview</code></li>
+</ul></li>
+<li><p>Click <strong>Lat</strong></p>
+<ul>
+<li>Under <strong>General</strong> untick <code>Editable</code> - we don’t want to edit this field</li>
+<li>Scroll to the bottom, under <strong>Defaults</strong> change the <code>Default value</code> to <strong>$y</strong></li>
+<li>The <code>Preview</code> will show <strong>NULL</strong>, but that’s okay, we don’t have data yet</li>
+</ul></li>
+<li><p>Click <strong>Long</strong> - Under <strong>General</strong> untick <code>Editable</code> - we don’t want to edit this field - Scroll to the bottom, under <strong>Defaults</strong> change the <code>Default value</code> to <strong>$x</strong><br>
+</p></li>
+<li><p>Click <code>OK</code></p></li>
+</ul>
+<p>We should now have a functional form, let’s test it in QGIS before we send it to our phones</p>
+<ul>
+<li>Click the yellow pencil button to <strong>Toggle Editing</strong> on</li>
+<li>Click the green dots (or press Ctrl + .) to <strong>Add Point Feature</strong></li>
+<li>Click on the map to add a point</li>
+<li>The <strong>Name</strong> should be mandatory, the <strong>Description</strong> editable, <strong>Photo</strong> have an add option, <strong>DateTime</strong> should have the current date and time, and <strong>Lat</strong> and <strong>Long</strong> should have numbers like “-27.494066205142065” and “153.0153703956312”</li>
+<li>Click <code>Cancel</code></li>
+<li>Click the yellow pencil button to <strong>Toggle Editing</strong> off</li>
+</ul>
+</section>
+</section>
+<section id="tracks-layer" class="level1">
+<h1>Tracks Layer</h1>
+<p>This is another important step, as you need to create your tracking layer before you export to QField</p>
+<ul>
+<li>Go to <code>Layer &gt; Create Layer &gt; New GeoPackage Layer...</code></li>
+<li>Click the three dots <code>...</code> next to the <strong>Database</strong> field, navigate to the project’s <strong>processed data</strong> folder, and type in <strong>tracks</strong> and click <code>Save</code></li>
+<li>For <code>Geometry type</code> choose <strong>MultiLine</strong></li>
+<li>Set the CRS to <code>EPSG:23856 - GDA94 / MGA zone 56</code></li>
+<li>Under <strong>New Field</strong> we will add just one layer attribute:</li>
+<li>Let’s call the point name “DateTime”
+<ul>
+<li><code>Name</code>: <strong>DateTime</strong></li>
+<li><code>Type</code>: <strong>Date &amp; Time</strong></li>
+<li>Click <code>Add to Fields List</code></li>
+</ul></li>
+</ul>
+<section id="tracks-attributes-form-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="tracks-attributes-form-preparation">Tracks Attributes Form Preparation</h2>
+<p>Let’s prepare the <strong>tracks</strong> DateTime as we did with the <strong>collected_data</strong> - Double click on the new <strong>tracks</strong> layer - Click on the <code>Attributes Form</code> tab - At the very top of the window, click <code>Autogenerate</code> and change it to <code>Drag and Drop Designer</code></p>
+<p>On the left you will see all of our Fields, we can drag and drop these into the <code>Form Layout</code> section - this section lays out how our form will look when we enter new data.</p>
+<ul>
+<li>Click <strong>fid</strong> and press the <strong>red minus button</strong> - we want to keep the field, but don’t need to see this in our form</li>
+<li>Click <strong>DateTime</strong>
+<ul>
+<li>Under <strong>General</strong> untick <code>Editable</code> - we don’t want to edit this field</li>
+<li>Scroll to the bottom, under <strong>Defaults</strong> change the <code>Default value</code> to <strong>$now</strong></li>
+<li>If this worked, there will be a date and time next to <code>Preview</code></li>
+</ul></li>
+<li>Click <code>OK</code></li>
+</ul>
+</section>
+</section>
+<section id="qfield" class="level1">
+<h1>QField</h1>
+<p>We’re ready to export our project to QField.</p>
+<section id="install-qfield-plugin" class="level2">
+<h2 class="anchored" data-anchor-id="install-qfield-plugin">Install QField Plugin</h2>
+<ul>
+<li>Navigate to <code>Plugins &gt; Manage and Install Plugins...</code></li>
+<li>Search for “QField”</li>
+<li>Click on <strong>QField Sync</strong></li>
+<li>Click <code>Install Plugin</code></li>
+<li>Once it has installed, click <code>Close</code></li>
+</ul>
+<p>You can now access the QField Sync Plugin through the menu.</p>
+</section>
+<section id="prepare-data-for-qfield" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-data-for-qfield">Prepare Data for QField</h2>
+<p>At this point we need to clean up our Layers. You don’t have to remove everything, but it’s worth deciding what layers you want to remove, and what <strong>scratch layers</strong> you want to make permanent.</p>
+<ul>
+<li><p>Hide any layers you want to keep, but don’t want to export to QField</p></li>
+<li><p>Make sure your layer order makes sense, I recommend the following layers visible in this order:</p>
+<ul>
+<li>collected_data</li>
+<li>tracks</li>
+<li>UQ_Boundary_Buffer</li>
+<li>UQ_Contours_5m</li>
+<li>UQ_DEM_1m</li>
+<li>UQ_Hillshade</li>
+<li>World Imagery Tile</li>
+</ul></li>
+</ul>
+</section>
+<section id="export-to-qfield" class="level2">
+<h2 class="anchored" data-anchor-id="export-to-qfield">Export to QField</h2>
+<ul>
+<li>Navigate to <code>Plugins &gt; QFieldSync &gt; Package for QField</code></li>
+<li>If you get a Message window popup, click <code>Next</code></li>
+<li>Give your project an appropriate title <strong>UQ_Fieldwork</strong></li>
+<li>Under <strong>Packaged Project Filename</strong> navigate to your <strong>UQ_Fieldwork</strong> folder and click <code>Save</code></li>
+<li>Under <strong>Advanced</strong> untick every folder except <code>DCIM</code>
+<ul>
+<li>We want a copy of this folder for our photos to be saved to. The rest of our data will be packaged into the QField folder.</li>
+</ul></li>
+<li>At the bottom of the window click <code>Configure current project...</code>
+<ul>
+<li>Click the <code>Cable Export</code> tab (if we were using QFieldCloud, we would click that option now instead)</li>
+<li>Click the <code>Toggle Layers</code> eye symbol on the right
+<ul>
+<li>In the <code>Action</code> column change <code>Copy</code> to <code>Remove from project</code> for any layers you don’t want to copy to QField.</li>
+</ul></li>
+<li>Scroll down and tick <strong>Geofencing</strong>
+<ul>
+<li>Set <code>Geofencing areas layer</code> to UQ_Boundary_Buffer</li>
+</ul></li>
+<li>Click <code>OK</code></li>
+</ul></li>
+<li>Click <code>Create</code></li>
+</ul>
+<p>We now need to zip the <code>QField</code> folder and send it to our phone!</p>
+<ul>
+<li>Navigate to your <strong>Project</strong> folder, right click on the <strong>UQ_Fieldwork</strong> folder and compress it to a zip file.</li>
+<li>Send this file to your phone via email, cloud, or using a cable.</li>
+</ul>
+</section>
+<section id="opening-the-qfield-project" class="level2">
+<h2 class="anchored" data-anchor-id="opening-the-qfield-project">Opening the QField Project</h2>
+<p><strong>Android</strong> - Open QField - Skip any popups - Tap <code>Open local file</code> - Tap the green plus button in the bottom right - Tap <code>Import project from ZIP</code> - Navigate to your zip file. In my case, I had to go to the top left menu, and tap on <strong>Downloads</strong> - The file should open in QField. You may need to tap on the outer folder, and then the <strong>Project</strong> itself.</p>
+<p><strong>iOS</strong> - Open the zip file and extract it to: <code>On My iPhone/QField/Imported Projects</code> - Open QField - Skip any popups - Tap <code>Open local file</code> - Tap <code>Imported projects</code> - Open the <strong>UQ_Fieldwork</strong> folder until you reach the <strong>UQ_Fieldwork</strong> Project file. - The project should open in QField.</p>
+<p>You can now access your map.</p>
+</section>
+<section id="using-qfield" class="level2">
+<h2 class="anchored" data-anchor-id="using-qfield">Using QField</h2>
+<ul>
+<li>Tap the menu in the top right to see your layers.</li>
+<li>Tap the eye to hide or unhide layers</li>
+<li>If you tap on a layer, and then tap the pencil icon in the bottom right, you can edit a layer.</li>
+<li>Let’s do this for our <strong>data_collected</strong> layer</li>
+<li>Tap on the map on the right to return to the map, your cursor will now be a cross-hair</li>
+<li>Navigate around and then press the green + button to add a point</li>
+<li>Fill out the details, and then tap the tick in the top left.</li>
+<li>You’ve collected data!</li>
+</ul>
+<section id="turning-on-tracks" class="level3">
+<h3 class="anchored" data-anchor-id="turning-on-tracks">Turning on Tracks</h3>
+<ul>
+<li>Tap the menu in the top right to see your layers.</li>
+<li>Press and hold on your <strong>Tracks</strong> layer
+<ul>
+<li>When the new menu appears, tap <code>Setup tracking</code></li>
+<li>Here you can choose the interval for when a new point will be placed for your tracks
+<ul>
+<li>As we’re inside and may not move much, turn on <code>Time requirement</code> and set a short <code>Minimum time</code> of <strong>15</strong> seconds</li>
+<li>Tap <code>Start tracking</code></li>
+</ul></li>
+<li>If you have your phone’s GPS on, and you zoom in on yourself, your should see a tracking line appear.</li>
+</ul></li>
+</ul>
+</section>
+<section id="turning-off-tracks" class="level3">
+<h3 class="anchored" data-anchor-id="turning-off-tracks">Turning off Tracks</h3>
+<ul>
+<li>Press and hold on your <strong>Tracks</strong> layer
+<ul>
+<li>When the new menu appears, tap <code>Stop tracking</code></li>
+</ul></li>
+</ul>
+<p>To export your data back to QGIS, you can either copy the whole project folder in your phones storage back to your computer, or:</p>
+<ul>
+<li>Go to the menu</li>
+<li>Tap the folder with a cog on it</li>
+<li>Tap the three dots next to your <strong>data_collected.gpkg</strong> file</li>
+<li>Send it to your email</li>
+</ul>
+<p>There’s more to explore, such as the very very helpful <a href="https://qfield.cloud/">QFieldCloud</a>, and I encourage you to do so.</p>
+<p>If you have any questions, reach out to the UQ Library Training Team at training@library.uq.edu.au</p>
+</section>
+</section>
+</section>
+<section id="feedback" class="level1">
+<h1>Feedback</h1>
+<p>Please visit our website to <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources">provide feedback</a> and find upcoming training courses we have on offer.</p>
+</section>
+<section id="stretch-goals" class="level1">
+<h1>Stretch Goals</h1>
+<section id="exporting-to-avenza-maps" class="level2">
+<h2 class="anchored" data-anchor-id="exporting-to-avenza-maps">Exporting to Avenza Maps</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Click on <code>Show Layout Manager</code> in the toolbar or use <code>Project &gt; Layout Manager</code>. <code>Create</code> a new layout called “Avenza”. We can now see the Layout window.</p>
+<p>Normally we would add many elements to our layout if we were exporting it for print such as the map, a legend, a scale bar, a north arrow…</p>
+<p>In this case however, we are simply interested in our map. Let’s add the map to the canvas:</p>
+<ul>
+<li>Go to the Layout tab, scroll down to ‘Resize Layout to Content’, click ‘Resize layout’</li>
+<li>Before we export, let’s turn off any layers we aren’t using in QGIS to save space</li>
+<li>Click the Refresh View button up the top</li>
+<li>Now we are ready to export.</li>
+<li>Go to ‘Layout &gt; Export as PDF…’ and save your map.</li>
+<li>The ‘PDF Export Options’ window will open</li>
+<li>Tick the ‘Create Geospatial PDF (GeoPDF)’ box</li>
+<li>Click ‘Save’</li>
+</ul>
+<p>You can repeat this process with the DEM and Hillshade to export out another kind of map.</p>
+<p>Now you simply need to export the pdf file(s) to your phone. You can email it, send it through the cloud, or transfer it using a cable.</p>
+<p>When you first open Avenza Maps it will ask you to create an account, but you can import up to three maps without doing so, you can avoid creating an account by selecting the ‘x’ in the top right corner. * Allow Avenza Maps to access your device location * Select the orange ‘+’ in the bottom right and select ‘Download or import a map’ * Choose ‘From Storage Locations’ (if requested, give Avenza Maps the permissions to access your files) * Do the same for the other map, if you created one. * Once it has been imported, tap on the map. * You can now move the map around with your finger, and pinching to zoom. * Tapping the placemark icon in the bottom left will add a placemark in the middle of the crosshairs. * Tapping the 3 dots in the bottom right will allow you to add GPS tracking and draw and measure distances.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="autoid" class="level2">
+<h2 class="anchored" data-anchor-id="autoid">AutoID</h2>
+<p>We can use some fancy code to make the ID automated</p>
+<ul>
+<li>Double click on the new <strong>collected_data</strong> layer
+<ul>
+<li>Click on the <code>Attributes Form</code> tab</li>
+<li>Click <strong>ID</strong>
+<ul>
+<li>Under <strong>General</strong> untick <code>Editable</code> - we don’t want to edit an automated field</li>
+<li>Under <strong>Defaults</strong> click the <code>Expression Builder</code> button
+<ul>
+<li>Paste in this code:</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<pre><code>concat(
+    "cat",
+    '-',
+    lpad(
+        to_string(
+            coalesce(
+                aggregate(
+                    'DataCollection',        -- layer name
+                    'max',                    -- aggregate function
+                    to_int(
+                        regexp_substr("ID", '\\d+')
+                    ),                        -- numeric part of auto_id
+                    "cat" = attribute(@parent, 'cat')
+                ) + 1,
+                1
+            )
+        ),
+        3,
+        '0'
+    )
+)
+</code></pre>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
