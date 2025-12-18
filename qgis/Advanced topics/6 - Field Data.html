@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-12-16">
+<meta name="dcterms.date" content="2025-12-18">
 
 <title>Field Data Collection – UQ Library Training Intensives</title>
 <style>
@@ -156,18 +156,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#polygons-to-lines" id="toc-polygons-to-lines" class="nav-link" data-scroll-target="#polygons-to-lines">Polygons to Lines</a>
   <ul class="collapse">
   <li><a href="#buffer-the-lines" id="toc-buffer-the-lines" class="nav-link" data-scroll-target="#buffer-the-lines">Buffer the Lines</a></li>
-  <li><a href="#explore-projections" id="toc-explore-projections" class="nav-link" data-scroll-target="#explore-projections">Explore Projections</a>
-  <ul class="collapse">
-  <li><a href="#reproject-data" id="toc-reproject-data" class="nav-link" data-scroll-target="#reproject-data">Reproject Data</a></li>
-  <li><a href="#buffer-reprojected-lines" id="toc-buffer-reprojected-lines" class="nav-link" data-scroll-target="#buffer-reprojected-lines">Buffer Reprojected Lines</a></li>
-  </ul></li>
   <li><a href="#style-the-boundary-buffer-polygon" id="toc-style-the-boundary-buffer-polygon" class="nav-link" data-scroll-target="#style-the-boundary-buffer-polygon">Style the Boundary buffer polygon</a>
   <ul class="collapse">
   <li><a href="#save-your-project" id="toc-save-your-project" class="nav-link" data-scroll-target="#save-your-project">Save your project</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#hillshade" id="toc-hillshade" class="nav-link" data-scroll-target="#hillshade">Hillshade</a></li>
-  <li><a href="#dem-symbology" id="toc-dem-symbology" class="nav-link" data-scroll-target="#dem-symbology">DEM symbology</a></li>
   <li><a href="#contours" id="toc-contours" class="nav-link" data-scroll-target="#contours">Contours</a></li>
   <li><a href="#layer-for-data-collection" id="toc-layer-for-data-collection" class="nav-link" data-scroll-target="#layer-for-data-collection">Layer for Data Collection</a>
   <ul class="collapse">
@@ -188,6 +181,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#turning-on-tracks" id="toc-turning-on-tracks" class="nav-link" data-scroll-target="#turning-on-tracks">Turning on Tracks</a></li>
   <li><a href="#turning-off-tracks" id="toc-turning-off-tracks" class="nav-link" data-scroll-target="#turning-off-tracks">Turning off Tracks</a></li>
+  <li><a href="#exporting-from-qfield-to-qgis" id="toc-exporting-from-qfield-to-qgis" class="nav-link" data-scroll-target="#exporting-from-qfield-to-qgis">Exporting from QField to QGIS</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#feedback" id="toc-feedback" class="nav-link" data-scroll-target="#feedback">Feedback</a></li>
@@ -215,7 +209,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 16, 2025</p>
+      <p class="date">December 18, 2025</p>
     </div>
   </div>
   
@@ -401,39 +395,6 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <li><p>Click <code>Run</code></p></li>
 </ul>
 </section>
-<section id="explore-projections" class="level2">
-<h2 class="anchored" data-anchor-id="explore-projections">Explore Projections</h2>
-<p>Hopefully it’s clear why we needed to convert from a Geographic Coordinate System to a Projected Coordinate System, but why is it important that we chose the local projection <strong>EPSG:23856 - GDA94 / MGA zone 56</strong>?</p>
-<p>Let’s see what would happen if we did our buffer on those lines in a different projection.</p>
-<section id="reproject-data" class="level3">
-<h3 class="anchored" data-anchor-id="reproject-data">Reproject Data</h3>
-<ul>
-<li><p>Go to <code>Vector &gt; Data Management Tools &gt; Reproject Layer...</code></p></li>
-<li><p>Choose the <strong>Lines</strong> in <code>Input layer</code></p></li>
-<li><p>Set the Target CRS to <code>EPSG:3857 - WGS84 / Pseudo-Mercator</code></p>
-<ul>
-<li>This is a very common projection that Google and your phones use</li>
-</ul></li>
-<li><p>Click <code>Run</code></p>
-<ul>
-<li>We don’t need to permanently save this, so we can leave it as a temporary layer</li>
-</ul></li>
-</ul>
-</section>
-<section id="buffer-reprojected-lines" class="level3">
-<h3 class="anchored" data-anchor-id="buffer-reprojected-lines">Buffer Reprojected Lines</h3>
-<ul>
-<li><p>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></p></li>
-<li><p>Choose “<strong>Reprojected</strong>” as the <code>Input Layer</code></p></li>
-<li><p>Set the <code>Distance</code> to <strong>10</strong> metres</p></li>
-<li><p>Click <code>Run</code></p></li>
-</ul>
-<p>Move the new <strong>Buffered</strong> layer order so that it draws over the <strong>UQ_Boundar_Buffer</strong> layer. Notice anything interesting?</p>
-<p>The new <strong>Buffered</strong> layer is about 1m smaller!</p>
-<p>This is because <strong>EPSG:3857 - WGS84 / Pseudo-Mercator</strong> is a global projection that tries to preserve shapes. Although the units are in metres, the scaling factor changes as you move away from the equator to account for the curvature of the Earth.</p>
-<p>It can still be useful to use this projection to take points. But you have to be careful when you’re making measurements and calculations, for those, a local projection is usually better.</p>
-</section>
-</section>
 <section id="style-the-boundary-buffer-polygon" class="level2">
 <h2 class="anchored" data-anchor-id="style-the-boundary-buffer-polygon">Style the Boundary buffer polygon</h2>
 <ul>
@@ -452,37 +413,6 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <p>It’s not essential at this stage, it’s just a good reminder to save your work regularly so you don’t lose things when things go wrong.</p>
 </section>
 </section>
-</section>
-<section id="hillshade" class="level1">
-<h1>Hillshade</h1>
-<p>Adding a <strong>hillshade</strong> makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.</p>
-<ul>
-<li>Go to <code>Raster &gt; Analysis &gt; Hillshade...</code>.</li>
-<li>Ensure the Input Layer is your clipped DEM “St_Lucia_DEM”</li>
-<li>Scroll down to “Hillshade” and click “…” next to <code>Create Temporary Layer</code>, then “Save to file”, and save it as <strong>UQ_Hillshade</strong> to your project folder.</li>
-<li>Click Run</li>
-</ul>
-</section>
-<section id="dem-symbology" class="level1">
-<h1>DEM symbology</h1>
-<p>We can style our DEM with a <strong>terrain colour palette</strong>:</p>
-<ul>
-<li>double-click on the clipped DEM layer</li>
-<li>go to the “<code>Symbology</code>” tab</li>
-<li>change the Render type to “Singleband pseudocolor”</li>
-<li>by default, it uses the min/max values, which is what we want</li>
-<li>we can change the “Color ramp” to something more suitable with the drop-down menu and <code>Create new color ramp... &gt; Catalog: cpt-city &gt; Topography &gt; Elevation</code>, for example.</li>
-<li>go to the “<code>Transparency</code>” tab</li>
-<li>Set the <strong>Global Opacity</strong> to 50%</li>
-<li>Click <code>OK</code></li>
-</ul>
-<p>Let’s link these two together.</p>
-<ul>
-<li>Hold <code>Ctrl</code> and select both the Hillshade and the DEM layers</li>
-<li>Press the <code>Add Group</code> button from the top of the <code>Layers</code> panel</li>
-<li>Call it DEM</li>
-<li>Make sure the DEM is above the Hillshade within this group</li>
-</ul>
 </section>
 <section id="contours" class="level1">
 <h1>Contours</h1>
@@ -777,6 +707,9 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 </ul>
 <p>There’s more to explore, such as the very very helpful <a href="https://qfield.cloud/">QFieldCloud</a>, and I encourage you to do so.</p>
 <p>If you have any questions, reach out to the UQ Library Training Team at training@library.uq.edu.au</p>
+</section>
+<section id="exporting-from-qfield-to-qgis" class="level3">
+<h3 class="anchored" data-anchor-id="exporting-from-qfield-to-qgis">Exporting from QField to QGIS</h3>
 </section>
 </section>
 </section>

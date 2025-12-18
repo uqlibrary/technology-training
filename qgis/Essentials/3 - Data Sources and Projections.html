@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-12-16">
+<meta name="dcterms.date" content="2025-12-18">
 
 <title>Data Sources and Projections – UQ Library Training Intensives</title>
 <style>
@@ -152,6 +152,17 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#reproject" id="toc-reproject" class="nav-link" data-scroll-target="#reproject">Reproject</a></li>
   </ul></li>
+  <li><a href="#buffer-data" id="toc-buffer-data" class="nav-link" data-scroll-target="#buffer-data">Buffer Data</a></li>
+  <li><a href="#select-and-reproject" id="toc-select-and-reproject" class="nav-link" data-scroll-target="#select-and-reproject">Select and Reproject</a></li>
+  <li><a href="#polygons-to-lines" id="toc-polygons-to-lines" class="nav-link" data-scroll-target="#polygons-to-lines">Polygons to Lines</a>
+  <ul class="collapse">
+  <li><a href="#buffer-the-lines" id="toc-buffer-the-lines" class="nav-link" data-scroll-target="#buffer-the-lines">Buffer the Lines</a></li>
+  <li><a href="#explore-projections" id="toc-explore-projections" class="nav-link" data-scroll-target="#explore-projections">Explore Projections</a>
+  <ul class="collapse">
+  <li><a href="#reproject-data" id="toc-reproject-data" class="nav-link" data-scroll-target="#reproject-data">Reproject Data</a></li>
+  <li><a href="#buffer-reprojected-lines" id="toc-buffer-reprojected-lines" class="nav-link" data-scroll-target="#buffer-reprojected-lines">Buffer Reprojected Lines</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
   <ul class="collapse">
   <li><a href="#council-data" id="toc-council-data" class="nav-link" data-scroll-target="#council-data">Council Data</a></li>
@@ -167,11 +178,13 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#basemaps" id="toc-basemaps" class="nav-link" data-scroll-target="#basemaps">Basemaps</a>
   <ul class="collapse">
+  <li><a href="#mapserver-raster-files" id="toc-mapserver-raster-files" class="nav-link" data-scroll-target="#mapserver-raster-files">Mapserver Raster Files</a></li>
   <li><a href="#more-web-mapping-services" id="toc-more-web-mapping-services" class="nav-link" data-scroll-target="#more-web-mapping-services">More Web Mapping Services</a></li>
   </ul></li>
-  <li><a href="#vector-data" id="toc-vector-data" class="nav-link" data-scroll-target="#vector-data">Vector Data</a>
+  <li><a href="#vector-data" id="toc-vector-data" class="nav-link" data-scroll-target="#vector-data">Vector Data</a></li>
+  <li><a href="#lot-plans" id="toc-lot-plans" class="nav-link" data-scroll-target="#lot-plans">Lot Plans</a>
   <ul class="collapse">
-  <li><a href="#lot-plans" id="toc-lot-plans" class="nav-link" data-scroll-target="#lot-plans">Lot Plans</a></li>
+  <li><a href="#lot-plans-1" id="toc-lot-plans-1" class="nav-link" data-scroll-target="#lot-plans-1">Lot Plans</a></li>
   <li><a href="#queensland-globe" id="toc-queensland-globe" class="nav-link" data-scroll-target="#queensland-globe">Queensland Globe</a></li>
   <li><a href="#online-community-spatial-repositories" id="toc-online-community-spatial-repositories" class="nav-link" data-scroll-target="#online-community-spatial-repositories">Online Community Spatial Repositories</a></li>
   <li><a href="#qld-government-spatial-data" id="toc-qld-government-spatial-data" class="nav-link" data-scroll-target="#qld-government-spatial-data">QLD Government Spatial Data</a></li>
@@ -199,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 16, 2025</p>
+      <p class="date">December 18, 2025</p>
     </div>
   </div>
   
@@ -277,6 +290,122 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Click <code>Run</code></p></li>
 </ul>
 <p>You won’t notice any difference, as QGIS is helpfully doing “on the fly projections” to make the layers sit nicely together. But now that you’ve reprojected your data, you can safely do your analyses.</p>
+</section>
+</section>
+<section id="buffer-data" class="level1">
+<h1>Buffer Data</h1>
+<p>Buffers are a simple, but powerful, tool that we can use to extend the borders of our vector data. It’s useful for polygons, lines, and points.</p>
+<p>Perhaps we need to keep 10m from the property boundaries when doing our fieldwork. A buffer can help us there.</p>
+<p>However, our <strong>St_Lucia_Property_Boundaries</strong> layer has some issues we need to resolve before we can buffer it.</p>
+<ul>
+<li><p>It has extra properties that we don’t need</p></li>
+<li><p>A buffer on a polygon will grow out from the edges, not put a buffer either side of the edges</p></li>
+<li><p>It’s in a Geographic Coordinate System</p></li>
+</ul>
+<p>Let’s look at what happens if we create a buffer in a Geographic Coordinate System:</p>
+<ul>
+<li><p>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></p></li>
+<li><p>Choose “<strong>St_Lucia_Property_Boundaries</strong>” as the Input Layer</p></li>
+<li><p>We next want to choose distance that we want to create a buffer away from our vector.</p>
+<ul>
+<li>However, you’ll note that because the layer projection is EPSG:4283 GDA94 (a geographic coordinate system), the distance is currently in <strong>degrees</strong>.</li>
+</ul></li>
+<li><p>If you click Run with 10 Degrees, your buffer will be nearly the size of Queensland.</p>
+<ul>
+<li>To change this to metres, we first need to convert our layer to a local projected coordinate system.</li>
+</ul></li>
+</ul>
+</section>
+<section id="select-and-reproject" class="level1">
+<h1>Select and Reproject</h1>
+<p>We can <strong>Select</strong> the data we want, and <strong>reproject</strong> at the same time!</p>
+<p>We first need to select the lots that are relevant to us:</p>
+<ul>
+<li><p>Click the dropdown next to the <strong>Select Feature(s)</strong> icon in the toolbar, and choose the <code>Select Feature by polygon</code> option</p>
+<ul>
+<li>This allows us to click around our desired selection</li>
+</ul></li>
+<li><p>Make sure <strong>St_Lucia_Property_Boundaries</strong> is the selected layer in the <code>Layers</code> panel</p></li>
+<li><p>Click around the lots to draw a shape around the lots we want to keep</p></li>
+<li><p>Right-click to finish selecting</p>
+<ul>
+<li>If you need to select any more features, press and hold <strong>Shift</strong> while drawing around your extra features, when you right-click they will be added to your selection</li>
+<li>To remove any accidentally selected features from the selection, press and hold <strong>Control</strong> and draw around the unwanted features.</li>
+</ul></li>
+<li><p>Right click on the <strong>St_Lucia_Property_Boundaries</strong> layer, and select <code>Export &gt; Save Selected Features As...</code></p></li>
+<li><p>Choose <strong>Geopackage</strong> as the <code>Format</code></p></li>
+<li><p>Click the three dots on the right of <code>File name</code>, navigate to your <strong>Processed</strong> data folder and save it as “<strong>UQ_Boundary</strong>”</p></li>
+<li><p>See the <code>Layer name</code> to “<strong>UQ Boundary</strong>”</p>
+<ul>
+<li>The Layer name can have spaces in it, but it’s best to avoid spaces in a File name</li>
+</ul></li>
+<li><p>Make sure you change the CRS, effectively reprojecting the layer</p>
+<ul>
+<li>Choose <code>EPSG:23856 - GDA94 / MGA zone 56</code>
+<ul>
+<li>This is the same projection as our DEM, and a good local projection</li>
+</ul></li>
+</ul></li>
+<li><p>Click <code>OK</code></p></li>
+</ul>
+</section>
+<section id="polygons-to-lines" class="level1">
+<h1>Polygons to Lines</h1>
+<p>To buffer either side of the edges of our boundaries, we need to convert them from Polygons to Lines.</p>
+<ul>
+<li>Go to <code>Vector &gt; Geometry Tools &gt; Polygons to Lines</code></li>
+<li>Set the <code>Input Layer</code> to <strong>UQ Boundary</strong></li>
+<li>Click <code>OK</code></li>
+</ul>
+<section id="buffer-the-lines" class="level2">
+<h2 class="anchored" data-anchor-id="buffer-the-lines">Buffer the Lines</h2>
+<ul>
+<li><p>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></p></li>
+<li><p>Choose “<strong>Lines</strong>” as the <code>Input Layer</code></p></li>
+<li><p>Set the <code>Distance</code> to <strong>10</strong> metres</p>
+<ul>
+<li>We can also make the buffer squared if we want, but we will keep it with the rounded default</li>
+</ul></li>
+<li><p>Tick the <code>Dissolve result</code> box</p>
+<ul>
+<li>This will merge the polygons from our output, making for a cleaner look. The Dissolve tool also exists as a standalone tool.</li>
+</ul></li>
+<li><p>Click the three dots <code>...</code> next to the <strong>Buffered</strong> field, navigate to the project’s <strong>processed</strong> data folder, and type in <strong>UQ_Boundary_Buffer</strong> and click <code>Save</code></p></li>
+<li><p>Click <code>Run</code></p></li>
+</ul>
+</section>
+<section id="explore-projections" class="level2">
+<h2 class="anchored" data-anchor-id="explore-projections">Explore Projections</h2>
+<p>Hopefully it’s clear why we needed to convert from a Geographic Coordinate System to a Projected Coordinate System, but why is it important that we chose the local projection <strong>EPSG:23856 - GDA94 / MGA zone 56</strong>?</p>
+<p>Let’s see what would happen if we did our buffer on those lines in a different projection.</p>
+<section id="reproject-data" class="level3">
+<h3 class="anchored" data-anchor-id="reproject-data">Reproject Data</h3>
+<ul>
+<li><p>Go to <code>Vector &gt; Data Management Tools &gt; Reproject Layer...</code></p></li>
+<li><p>Choose the <strong>Lines</strong> in <code>Input layer</code></p></li>
+<li><p>Set the Target CRS to <code>EPSG:3857 - WGS84 / Pseudo-Mercator</code></p>
+<ul>
+<li>This is a very common projection that Google and your phones use</li>
+</ul></li>
+<li><p>Click <code>Run</code></p>
+<ul>
+<li>We don’t need to permanently save this, so we can leave it as a temporary layer</li>
+</ul></li>
+</ul>
+</section>
+<section id="buffer-reprojected-lines" class="level3">
+<h3 class="anchored" data-anchor-id="buffer-reprojected-lines">Buffer Reprojected Lines</h3>
+<ul>
+<li><p>Go to <code>Vector &gt; Geoprocessing Tools &gt; Buffer</code></p></li>
+<li><p>Choose “<strong>Reprojected</strong>” as the <code>Input Layer</code></p></li>
+<li><p>Set the <code>Distance</code> to <strong>10</strong> metres</p></li>
+<li><p>Click <code>Run</code></p></li>
+</ul>
+<p>Move the new <strong>Buffered</strong> layer order so that it draws over the <strong>UQ_Boundar_Buffer</strong> layer. Notice anything interesting?</p>
+<p>The new <strong>Buffered</strong> layer is about 1m smaller!</p>
+<p>This is because <strong>EPSG:3857 - WGS84 / Pseudo-Mercator</strong> is a global projection that tries to preserve shapes. Although the units are in metres, the scaling factor changes as you move away from the equator to account for the curvature of the Earth.</p>
+<p>It can still be useful to use this projection to take points. But you have to be careful when you’re making measurements and calculations, for those, a local projection is usually better.</p>
+</section>
 </section>
 </section>
 <section id="data" class="level1">
@@ -377,6 +506,25 @@ https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_B
 </ul>
 <p>Arrange the layers so that the <strong>Voyager (no labels)</strong> layer is under your other layers (you can hide the <strong>Light Gray Basemap</strong> and <strong>OpenStreetMap</strong> for now).</p>
 <p>Isn’t that much less visually busy?!</p>
+<section id="mapserver-raster-files" class="level3">
+<h3 class="anchored" data-anchor-id="mapserver-raster-files">Mapserver Raster Files</h3>
+<p>Today we’re going to use a World Imagery XYZ Tile from ESRI.</p>
+<ul>
+<li>Scroll down the <code>Browser</code> panel until your see <strong>XYZ Tiles</strong></li>
+<li>Right click XYZ Tiles and select <code>New Connection...</code>
+<ul>
+<li>In <code>Name</code> type <strong>ESRI World Imagery</strong></li>
+<li>In <code>URL</code> paste:<br>
+https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}</li>
+<li>Increase the Max. Zoom Level to 20
+<ul>
+<li>This value depends on what is available from the given service in different parts of the world. Increasing that value beyond 20 for this map in Brisbane will show “Map data not yet available” when you zoom in very close.</li>
+</ul></li>
+<li>Click <code>OK</code></li>
+</ul></li>
+<li>In the <code>Browser</code> panel, expand <code>XYZ Tiles</code> and double click on <code>ESRI World Imagery</code></li>
+</ul>
+</section>
 <section id="more-web-mapping-services" class="level3">
 <h3 class="anchored" data-anchor-id="more-web-mapping-services">More Web Mapping Services</h3>
 <p>Add any of these URLs via <strong>ArcGIS REST Servers</strong> in QGIS</p>
@@ -393,8 +541,19 @@ https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_B
 </section>
 <section id="vector-data" class="level2">
 <h2 class="anchored" data-anchor-id="vector-data">Vector Data</h2>
-<section id="lot-plans" class="level3">
-<h3 class="anchored" data-anchor-id="lot-plans">Lot Plans</h3>
+</section>
+<section id="lot-plans" class="level2">
+<h2 class="anchored" data-anchor-id="lot-plans">Lot Plans</h2>
+<p>You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from <a href="https://qldspatial.information.qld.gov.au/">QLD Spatial</a>.</p>
+<p>Today we have extracted a selection from <a href="https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid=%7B3F217A59-1FDB-412A-813D-A1E7843FB618%7D">Property boundaries Queensland</a></p>
+<p>There are three ways to access data from QSpatial.</p>
+<ul>
+<li><p>Download all of the data from a layer</p></li>
+<li><p>Select a portion of a layer for download using the <a href="https://qldspatial.information.qld.gov.au/catalogue/custom/myList.page">My List</a> function</p></li>
+<li><p>Live load it into your project using a <a href="https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer">Mapserver</a>.</p></li>
+</ul>
+<section id="lot-plans-1" class="level3">
+<h3 class="anchored" data-anchor-id="lot-plans-1">Lot Plans</h3>
 <p>You can access a wide variety of QLD Government Data, including Spatial Data such as lot plans and vegetation maps, from QLD Spatial. There are three ways to access this data. You can download all of it, you can select a portion for download, or you can live load it into your project. Today we download the files covering our project area.</p>
 <ul>
 <li><p>To access data from QLD Spatial go to <a href="https://qldspatial.information.qld.gov.au/" class="uri">https://qldspatial.information.qld.gov.au/</a></p></li>

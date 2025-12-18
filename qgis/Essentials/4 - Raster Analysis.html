@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-12-16">
+<meta name="dcterms.date" content="2025-12-18">
 
 <title>Raster Analysis – UQ Library Training Intensives</title>
 <style>
@@ -149,8 +149,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#create-a-watershed-layer" id="toc-create-a-watershed-layer" class="nav-link" data-scroll-target="#create-a-watershed-layer">Create a watershed layer</a></li>
   <li><a href="#channel-network-and-drainage-basin" id="toc-channel-network-and-drainage-basin" class="nav-link" data-scroll-target="#channel-network-and-drainage-basin">Channel network and drainage basin</a></li>
   <li><a href="#viewshed" id="toc-viewshed" class="nav-link" data-scroll-target="#viewshed">Viewshed</a></li>
-  <li><a href="#d-maps" id="toc-d-maps" class="nav-link" data-scroll-target="#d-maps">3D maps</a></li>
-  <li><a href="#exporting" id="toc-exporting" class="nav-link" data-scroll-target="#exporting">Exporting</a></li>
   <li><a href="#saving-your-project" id="toc-saving-your-project" class="nav-link" data-scroll-target="#saving-your-project">Saving your project</a></li>
   <li><a href="#feedback" id="toc-feedback" class="nav-link" data-scroll-target="#feedback">Feedback</a></li>
   </ul>
@@ -172,7 +170,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 16, 2025</p>
+      <p class="date">December 18, 2025</p>
     </div>
   </div>
   
@@ -273,6 +271,13 @@ ul.task-list li input[type="checkbox"] {
 <li>Make sure you apply some transparency to the pseudocolour DEM, and place the hillshade layer underneath (in <code>Properties &gt; Symbology &gt; Transparency</code>)</li>
 <li>Down the bottom of the window under <strong>Resampling</strong> change the <code>Zoomed: in</code> and <code>out</code> from “Nearest Neighbour” to “Cubic” (this will remove some of the grid-like patterns you might see in your Hillshade layer otherwise)</li>
 </ul>
+<p>Let’s link these two together.</p>
+<ul>
+<li>Hold <code>Ctrl</code> and select both the Hillshade and the DEM layers</li>
+<li>Press the <code>Add Group</code> button from the top of the <code>Layers</code> panel</li>
+<li>Call it DEM</li>
+<li>Make sure the DEM is above the Hillshade within this group</li>
+</ul>
 <blockquote class="blockquote">
 <p>Another method is to use the hillshade tool instead of the symbology: <code>Raster &gt; Analysis &gt; Hillshade...</code>.</p>
 </blockquote>
@@ -344,25 +349,6 @@ ul.task-list li input[type="checkbox"] {
 <p>This will produce a black and white raster showing what can be seen, and what can’t. Go to the Layer <strong>Styling Menu</strong>, and change it to <strong>Singleband Pseudocolor</strong>, change the <strong>Mode</strong> to <strong>Equal Interval</strong>, and set the <strong>Classes</strong> to <strong>2</strong>. Change one of the Colors to transparent to highlight either what can be see, or what cannot.</p>
 <p>As an extra feature. You can do the reverse analysis with a Viewshed. That is, you could use this to know what landmarks are visible in a landscape. Set the Observer Height to that of a building or tree in the landscape, and the Target Height to be that of people in the landscape, and you’ll know where it can be seen from.</p>
 <p>If you want to get more sophisticated with your Viewshed analyses, there is, of course, a plugin called <strong>Visibility Analysis</strong> which will allow you to use one or multiple points as observers, take in account of the Earth’s curvature, see what vector points can see other vector points, and more.</p>
-</section>
-<section id="d-maps" class="level2">
-<h2 class="anchored" data-anchor-id="d-maps">3D maps</h2>
-<p>A 3D viewer is integrated in QGIS: <code>View &gt; 3D Map Views &gt; New 3D Map View</code></p>
-<p>In the 3D map window, make sure to first:</p>
-<ul>
-<li>Click the <strong>Options</strong> wrench icon, choose <code>Configure &gt; Terrain</code>, set the “Type” to “DEM (Raster layer)”, and set the “Elevation” to your clipped DEM.</li>
-<li>Exaggerate the relief with the “Vertical scale” setting (try 3).</li>
-</ul>
-<p>To see the 3D effect, you will have to use your <kbd>Ctrl</kbd> or <kbd>Shift</kbd> keys on your keyboard while panning with the mouse to change the angle of view.</p>
-<p>To avoid seeing gaps in the rendering, you can go back to your Terrain options and set the “Tile resolution” and “Skirt height” to higher values.</p>
-<blockquote class="blockquote">
-<p>A useful plugin for 3D maps is qgis2threeJS, which might be handy to add a 3D map to a website.</p>
-</blockquote>
-</section>
-<section id="exporting" class="level2">
-<h2 class="anchored" data-anchor-id="exporting">Exporting</h2>
-<p>Use the Layout Manager to create a new layout, and insert both a 2D map and a 3D map.</p>
-<p>When inserting the 3D map, it will tell you that the “scene is not set”. You will have to import the 3D scene settings from your view: <code>Item Properties &gt; Scene Settings &gt; Copy Scene Settings from a 3D View...</code> and then select your 3D map from the drop-down.</p>
 </section>
 <section id="saving-your-project" class="level2">
 <h2 class="anchored" data-anchor-id="saving-your-project">Saving your project</h2>
