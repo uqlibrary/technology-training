@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-12-19">
+
+<title>Styling Themes and Templates – UQ Library Training Intensives</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-d58b9a2750f78c4ba5585652ef45bd1c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">UQ Library Training Intensives</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Content</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-content">    
+        <li>
+    <a class="dropdown-item" href="../../r/setup.html">
+ <span class="dropdown-text">R with RStudio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../qgis/setup.html">
+ <span class="dropdown-text">QGIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../python/setup.html">
+ <span class="dropdown-text">Python for Data Analysis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../project/details.html"> 
+<span class="menu-text">The Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../gallery/project_gallery.html"> 
+<span class="menu-text">Project Gallery</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://uqlibrary.github.io/technology-training"> 
+<span class="menu-text">UQ Library Technology Training</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#todays-learning-goals" id="toc-todays-learning-goals" class="nav-link active" data-scroll-target="#todays-learning-goals">Today’s Learning Goals</a></li>
+  <li><a href="#the-brief" id="toc-the-brief" class="nav-link" data-scroll-target="#the-brief">The Brief</a></li>
+  <li><a href="#basemaps" id="toc-basemaps" class="nav-link" data-scroll-target="#basemaps">Basemaps</a></li>
+  <li><a href="#colours" id="toc-colours" class="nav-link" data-scroll-target="#colours">Colours</a></li>
+  <li><a href="#change-the-symbology" id="toc-change-the-symbology" class="nav-link" data-scroll-target="#change-the-symbology">Change the Symbology</a>
+  <ul class="collapse">
+  <li><a href="#point-geometry" id="toc-point-geometry" class="nav-link" data-scroll-target="#point-geometry">Point Geometry</a></li>
+  <li><a href="#polygon-geometry" id="toc-polygon-geometry" class="nav-link" data-scroll-target="#polygon-geometry">Polygon Geometry</a></li>
+  <li><a href="#line-geometry" id="toc-line-geometry" class="nav-link" data-scroll-target="#line-geometry">Line Geometry</a></li>
+  </ul></li>
+  <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes">Themes</a></li>
+  <li><a href="#styles" id="toc-styles" class="nav-link" data-scroll-target="#styles">Styles</a>
+  <ul class="collapse">
+  <li><a href="#themes-again" id="toc-themes-again" class="nav-link" data-scroll-target="#themes-again">Themes (again)</a></li>
+  </ul></li>
+  <li><a href="#layout-manager" id="toc-layout-manager" class="nav-link" data-scroll-target="#layout-manager">Layout Manager</a>
+  <ul class="collapse">
+  <li><a href="#page-properties" id="toc-page-properties" class="nav-link" data-scroll-target="#page-properties">Page Properties</a></li>
+  <li><a href="#guides" id="toc-guides" class="nav-link" data-scroll-target="#guides">Guides</a></li>
+  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map">Map</a></li>
+  <li><a href="#scale" id="toc-scale" class="nav-link" data-scroll-target="#scale">Scale</a></li>
+  <li><a href="#inset-map" id="toc-inset-map" class="nav-link" data-scroll-target="#inset-map">Inset Map</a></li>
+  <li><a href="#themes-again-1" id="toc-themes-again-1" class="nav-link" data-scroll-target="#themes-again-1">Themes (again!)</a></li>
+  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text">Text</a></li>
+  <li><a href="#title" id="toc-title" class="nav-link" data-scroll-target="#title">Title</a></li>
+  <li><a href="#dynamic-text" id="toc-dynamic-text" class="nav-link" data-scroll-target="#dynamic-text">Dynamic Text</a></li>
+  <li><a href="#shapes" id="toc-shapes" class="nav-link" data-scroll-target="#shapes">Shapes</a></li>
+  <li><a href="#legend" id="toc-legend" class="nav-link" data-scroll-target="#legend">Legend</a></li>
+  <li><a href="#north-arrow" id="toc-north-arrow" class="nav-link" data-scroll-target="#north-arrow">North Arrow</a></li>
+  <li><a href="#scalebar" id="toc-scalebar" class="nav-link" data-scroll-target="#scalebar">Scalebar</a></li>
+  <li><a href="#finessing" id="toc-finessing" class="nav-link" data-scroll-target="#finessing">Finessing</a></li>
+  <li><a href="#export-options" id="toc-export-options" class="nav-link" data-scroll-target="#export-options">Export options</a></li>
+  </ul></li>
+  <li><a href="#save-a-map-template" id="toc-save-a-map-template" class="nav-link" data-scroll-target="#save-a-map-template">Save a Map Template</a></li>
+  <li><a href="#load-a-map-template" id="toc-load-a-map-template" class="nav-link" data-scroll-target="#load-a-map-template">Load a Map Template</a>
+  <ul class="collapse">
+  <li><a href="#map-scale" id="toc-map-scale" class="nav-link" data-scroll-target="#map-scale">Map Scale</a></li>
+  <li><a href="#scalebar-1" id="toc-scalebar-1" class="nav-link" data-scroll-target="#scalebar-1">Scalebar</a></li>
+  <li><a href="#legend-1" id="toc-legend-1" class="nav-link" data-scroll-target="#legend-1">Legend</a></li>
+  <li><a href="#title-1" id="toc-title-1" class="nav-link" data-scroll-target="#title-1">Title</a></li>
+  </ul></li>
+  <li><a href="#feedback" id="toc-feedback" class="nav-link" data-scroll-target="#feedback">Feedback</a>
+  <ul class="collapse">
+  <li><a href="#georeferencing" id="toc-georeferencing" class="nav-link" data-scroll-target="#georeferencing">Georeferencing</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Styling Themes and Templates</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 19, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="todays-learning-goals" class="level2">
+<h2 class="anchored" data-anchor-id="todays-learning-goals">Today’s Learning Goals</h2>
+<p>Main aims:</p>
+<ul>
+<li>Create a pretty map for output</li>
+<li>Automate our map description</li>
+<li>Use templates</li>
+</ul>
+<p>If we have time:</p>
+<ul>
+<li>Learn to use Web Mapping Services</li>
+<li>Georeference an Image</li>
+</ul>
+</section>
+<section id="the-brief" class="level2">
+<h2 class="anchored" data-anchor-id="the-brief">The Brief</h2>
+<p>We need to use our spatial files to make a map that:</p>
+<ul>
+<li><p>Shows the project outline</p></li>
+<li><p>Show the access paths</p></li>
+<li><p>Categorises the artefacts</p></li>
+</ul>
+<p>The current map in our project does accomplish these goals, but it’s not inviting to look at.</p>
+<p>To fix this, we need to ask some questions:</p>
+<p><strong>Who is the intended audience for our map</strong>?</p>
+<ul>
+<li>A good looking map for a <strong>Report</strong> map may look different to an <strong>Academic Paper</strong> or a <strong>Technical</strong> map or to a map for the <strong>Public</strong>.</li>
+</ul>
+<p><strong>What story am I trying to tell?</strong></p>
+<ul>
+<li><p>Do you want to highlight a particular pattern in the data?</p>
+<ul>
+<li>You can use shapes and colour (esp.&nbsp;saturation) to bring your viewer to focus on certain elements of the map.</li>
+</ul></li>
+<li><p>Does it need to look friendly or more professional?</p>
+<ul>
+<li>Your choice of a colour palette can bring cohesion to your map.</li>
+</ul></li>
+<li><p>Do you have a lot of dense information you need to convey?</p>
+<ul>
+<li>Perhaps you need to make more than one map.</li>
+</ul></li>
+<li><p>Do you need to show what the land surface looks like, or not?</p>
+<ul>
+<li>That brings us to our next question:</li>
+</ul></li>
+</ul>
+<p><strong>What</strong> <strong>basemap does my map need</strong>?</p>
+<p>The basemap sets the tone for the rest of the layers in the map, as they can greatly change the visual complexity of the map.</p>
+<ul>
+<li><p>Satellite image - Geographically informative, but visually busy</p></li>
+<li><p>Street map - Geographically informative, but visually busy</p></li>
+<li><p>Historical image - Informative and busy, but black and white imagery can be less visually busy</p></li>
+<li><p>Simple topo map - Provides some information, but less visually busy</p></li>
+<li><p>No basemap - Centres focus on data, but provides no geographic context</p></li>
+</ul>
+</section>
+<section id="basemaps" class="level2">
+<h2 class="anchored" data-anchor-id="basemaps">Basemaps</h2>
+<p>Let’s start by making a map we might use in an <strong>Academic Paper</strong> or in an <strong>Article for the Public</strong>, where we want to focus their attention on our data. Unless we really need <strong>Satellite</strong> imagery, or everything on the <strong>OpenStreetMap</strong>, it is too busy and distracting.</p>
+<p>Let’s load in a new basemap.</p>
+<p>There are many ways of doing this, in the past we’ve used the <strong>QuickMapServices</strong> plugin to load in new basemaps, now we can go to the next step and source them externally. We can do this with WMTS (Web Map Tile Service), WCS (Web Coverage Service), ArcGIS REST Servers, and XYZ Tiles.</p>
+<p>Today we’re going to use the <strong>Voyager (no labels)</strong> XYZ Tile from CARTODB and <strong>Light Gray Basemap</strong> from ESRI.</p>
+<p>Isn’t that much less visually busy?!</p>
+</section>
+<section id="colours" class="level2">
+<h2 class="anchored" data-anchor-id="colours">Colours</h2>
+<p>The random colours that QGIS gives you aren’t always pretty, so let’s change the colours.</p>
+<p>Choosing a colour palette can be difficult and overwhelming, but once you have one, you can keep using those colours to form a more harmonious looking map. What story are you telling? Do you want your map to be bright and saturated, or warm and earthy?</p>
+<p>The built in color ramps provide some good options I quite like <strong><code>rainfall</code></strong> (in Precipitation), <strong><code>Set1</code></strong> (in QGIS), and <strong><code>wiki-knutux</code></strong> (in Topography).</p>
+<p>Today we’re being fancy, we’re going to import and build our own Color Ramp and Color Palette.</p>
+<ul>
+<li><p>In your internet browser, navigate to <a href="https://colorbrewer2.org/#type=qualitative&amp;scheme=Set2&amp;n=7">colorbrewer2.org</a></p>
+<ul>
+<li><p>Set “Number of data classes” to 7</p></li>
+<li><p>Set “Nature of data classes” to “qualitative”</p></li>
+<li><p>Choose Set2 (should be the second from the right)</p></li>
+<li><p>Click and drag to highlight the 7 HEX codes listed (they should look like this #66c2a5)</p>
+<ul>
+<li>Copy those with Ctrl + C (or Cmd + C)</li>
+</ul></li>
+</ul></li>
+<li><p>Back in QGIS navigate to <code>Settings &gt; Options...</code></p>
+<ul>
+<li><p>Click the <code>Colors</code> from the left menu</p></li>
+<li><p>From the top right of the window click the <code>...</code> button and select <code>New Palette...</code>, name it <strong>Report Palette</strong></p></li>
+<li><p>Add your copied colours by clicking<img src="mActionEditPaste.png" class="img-fluid"> <code>Paste colors</code> on the right</p></li>
+<li><p>Click the <code>...</code> button again and tick the <code>Show in Color Buttons</code> box</p></li>
+<li><p>Click <code>OK</code></p></li>
+</ul></li>
+</ul>
+<p>We now have a custom palette we can use throughout our projects!</p>
+<p>Unfortunately we need to set up the Color Ramp separately.<br>
+</p>
+<ul>
+<li><p>Navigate to <code>Settings &gt; Style Manager...</code></p>
+<ul>
+<li><p>Click the <img src="images/symbologyAdd.png" class="img-fluid"> <code>Add item</code> button at the bottom and select <code>Color Presets...</code></p>
+<ul>
+<li><p>Select the colour that appeared there and remove it by pressing <img src="symbologyRemove.png" class="img-fluid"> <code>Remove color</code> at the bottom</p></li>
+<li><p>Add your copied colours by clicking<img src="mActionEditPaste.png" class="img-fluid"> <code>Paste colors</code></p></li>
+<li><p>Click <code>OK</code></p></li>
+</ul></li>
+<li><p>Change the <code>Destination</code> to <strong>Default</strong></p></li>
+<li><p>Give it a meaningful <code>Name</code> like <strong>Report Colour Ramp</strong></p></li>
+<li><p>Add the <code>Tag</code> <strong>Palettes</strong></p></li>
+<li><p>Tick <code>Add to favourites</code> (this means it will appear in the color ramp dropdown, and not just in the All Color Ramps section)</p></li>
+<li><p>Click <code>Save</code></p></li>
+</ul></li>
+<li><p>Click <code>Close</code></p></li>
+</ul>
+<p>You can also use the <code>Style Manager</code> to edit the default options and Favorites that appear in the Layer Styling window.</p>
+<p>Now we’ve set up our colours, we can start using them!</p>
+</section>
+<section id="change-the-symbology" class="level2">
+<h2 class="anchored" data-anchor-id="change-the-symbology">Change the Symbology</h2>
+<section id="point-geometry" class="level3">
+<h3 class="anchored" data-anchor-id="point-geometry">Point Geometry</h3>
+<section id="categories" class="level4">
+<h4 class="anchored" data-anchor-id="categories">Categories</h4>
+<ul>
+<li>Select the <strong>Artefacts</strong> layer from the <code>Layer Styling</code> panel</li>
+<li>In the <code>Layer Styling</code> panel, change <strong><code>Single Symbol</code></strong> to <code>Categorized</code></li>
+<li>From <code>Value</code> select <strong>Artefact Type</strong></li>
+<li>From <code>Color ramp</code> choose our <strong>Report Colour Ramp</strong></li>
+<li>Click the <strong><code>Classify</code></strong> button</li>
+</ul>
+</section>
+<section id="symbols" class="level4">
+<h4 class="anchored" data-anchor-id="symbols">Symbols</h4>
+<p>With the <strong>Voyager (no labels)</strong> basemap, we can reduce the complexity of our symbology to make a cleaner looking map.</p>
+<p>If you want, you can change the properties of all symbols at once:</p>
+<ul>
+<li><p>Simply click in the white space below your symbol classes so that none are selected.</p></li>
+<li><p>If you click on the button next to <code>Symbol</code>, it will take you to <code>Symbol Settings</code><strong>WARNING</strong> if you edit any individual symbols before this step, it will reset any changes you made to those individual symbols.</p>
+<ul>
+<li><p>Try increasing the size of the symbols to 3mm</p></li>
+<li><p>Click <code>Simple Marker</code> and change the <code>Symbol layer type</code> to <strong>Filled Marker</strong></p>
+<ul>
+<li><p>Now click <code>Simple Fill</code> and change its <code>Symbol layer type</code> to <strong>Outline: Simple Line</strong></p></li>
+<li><p>Change the <code>Stroke width</code>&nbsp;to <strong>0.4</strong></p></li>
+<li><p>This gives our points a very clean and simple appearance</p></li>
+</ul></li>
+</ul></li>
+<li><p>Click the <code>back arrow button</code> next to <strong>Symbol Settings</strong></p></li>
+</ul>
+<p>Now that we have a nice colour scheme, let’s give it a new shape.</p>
+<ul>
+<li>Double click on the symbol of the <code>Artefact Scatter</code>
+<ul>
+<li>Click <strong>Filled Marker</strong> - this will allow us to change many things including the shape of the marker
+<ul>
+<li>From the bottom of the window select a shape, let’s go with the <strong>Triangle</strong></li>
+</ul></li>
+</ul></li>
+<li>Click the <code>back arrow button</code> next to <strong>Artefact Scatter</strong></li>
+</ul>
+</section>
+</section>
+<section id="polygon-geometry" class="level3">
+<h3 class="anchored" data-anchor-id="polygon-geometry">Polygon Geometry</h3>
+<p>Depending on your map, you may want your polygon to remain solid, to be transparent, have hatched lines, or simply be an outline. As our project area has items inside it, but an unimportant basemap, we can use an outline with a slightly transparent background to bring focus.</p>
+<ul>
+<li>Open the <code>Layer Styling</code> panel by pressing <strong>F7</strong> (or fn+F7)</li>
+<li>Select the <strong>Project_area</strong> layer from either the <code>Layer Styling</code> panel, or the <code>Layers</code> panel.</li>
+<li>Under <code>Fill</code>, click <code>Simple Fill</code>
+<ul>
+<li>Set the <code>Stroke width</code> to <strong>0.8mm</strong></li>
+<li>Click the dropdown next to <code>Fill color</code> and select <strong>orange</strong> from our <strong>Report Palette</strong>
+<ul>
+<li>Click the colour again and change the <code>Opacity</code> to 15%</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>That’s nicer, but let’s make it <em>fancy.</em> Let’s add a dropshadow.</p>
+<ul>
+<li>Click the <img src="images/symbologyAdd-02.png" class="img-fluid"> <code>Add symbology layer</code> next to <code>Fill</code> to add another fill symbol<br>
+(You can add as many of these as you like, you can even change this with <code>Symbol layer type</code> to Arrows, Hashed lines, Filled lines, and more.)</li>
+<li>Click the new <strong>Simple Fill</strong>
+<ul>
+<li>Change <code>Symbol layer type</code> from <strong>Simple Fill</strong> to <strong>Outline: Simple Line</strong></li>
+<li>Set the <code>Stroke width</code> to 3</li>
+<li>Scroll to the bottom, tick <code>Draw Effects</code>, then click the <img src="images/mIconPaintEffects.png" class="img-fluid"> <code>Customise effects</code> button (The one next to “Enable symbol layer”, <em>not</em> the one in the “Layer Rendering” section!)
+<ul>
+<li>Untick <code>Source</code></li>
+<li>Tick and select <code>Drop Shadow</code>
+<ul>
+<li>Change the <code>Blur Radius</code> to <strong>6mm</strong></li>
+<li>Change the <code>Opacity</code> to <strong>30%</strong></li>
+</ul></li>
+</ul></li>
+<li>Click the <code>back arrow button</code> next to <strong>Effects Properties</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="line-geometry" class="level3">
+<h3 class="anchored" data-anchor-id="line-geometry">Line Geometry</h3>
+<p>We <em>can</em> make our lines stand out. Sometimes it can be as simple as picking a contrasting colour, changing the width, or adding more symbol layers (with dashes, or arrows, or horizontal lines).</p>
+<p>In this case, we want to keep the attention on the point data, let’s keep the paths, but reduce their contrast.</p>
+<ul>
+<li>Select the <strong>Paths</strong> layer from the <code>Layer Styling</code> panel</li>
+<li>Under <code>Line</code>, click <code>Simple Line</code>
+<ul>
+<li>Change the <code>Color</code> to a colour in your <strong>Report Palette</strong> that is different to your points, I’m going to use <strong>green</strong></li>
+<li>Increase the <code>Stroke width</code> to <strong>0.4mm</strong></li>
+</ul></li>
+<li>To reduce the focus on the paths, in the <code>Layers</code> panel, drag the <strong>Paths</strong> layer <strong>below</strong> the <strong>Project_area</strong> layer</li>
+</ul>
+</section>
+</section>
+<section id="themes" class="level2">
+<h2 class="anchored" data-anchor-id="themes">Themes</h2>
+<p>We can use themes to create multiple looks for our map that we can easily swap between. Let’s create a theme for our <strong>Data Map</strong></p>
+<ul>
+<li>Click the <strong>Eye</strong> icon (Manage Map Themes) at the top of the <code>Layers</code> panel, and click <code>Add theme...</code>
+<ul>
+<li>Let’s name our new theme <strong>Data Main</strong>, and click <code>OK</code></li>
+</ul></li>
+</ul>
+<p>Nothing exciting has happened <em>yet</em>, let’s change the layers a little to see the power of Themes.</p>
+</section>
+<section id="styles" class="level2">
+<h2 class="anchored" data-anchor-id="styles">Styles</h2>
+<p><strong>Styles</strong> work similarly to <strong>Themes</strong>, but instead of changing which layers are present, it changes between different Layer Styling options.</p>
+<p>If you want to try different looks for a feature, but not have to undo everything, you can save them as <strong>Styles</strong></p>
+<ul>
+<li>In the <code>Layers</code> panel, <code>Right click on Project_area &gt; Styles &gt; Rename Current...</code>
+<ul>
+<li>Let’s start by changing the name of our current style from <strong>default</strong> to <strong>Data Main</strong></li>
+</ul></li>
+<li>Let’s create a new style, <code>Right click on Project_area &gt; Styles &gt; Add...</code>
+<ul>
+<li>Name the style <strong>Data Inset</strong>
+<ul>
+<li>Now any Layer Style edits we do will be attached to the <strong>Data Inset</strong> style</li>
+</ul></li>
+</ul></li>
+<li>Select the <strong>Project_area</strong> layer from the <code>Layer Styling</code> panel
+<ul>
+<li>Under <code>Fill</code>, click <code>Simple Fill</code></li>
+<li>Click the <code>Arrow Up</code> on the right to move it above <code>Simple Line</code></li>
+<li>Change the <code>Fill color</code> to an <code>Opacity</code> of <strong>100%</strong></li>
+<li>Change the <code>Stroke width</code> to <strong>0.4mm</strong></li>
+</ul></li>
+</ul>
+<p>Now we have a slightly different style to our <strong>Project_area</strong> that will look better in an inset map. We can edit this style and revert back to the original <strong>Data Main</strong> style whenever we like, we will explore how to use that with Themes next.</p>
+<section id="themes-again" class="level3">
+<h3 class="anchored" data-anchor-id="themes-again">Themes (again)</h3>
+<p>Now that we’ve made some style changes, we can see what themes do.</p>
+<ul>
+<li><p>In the <code>Layers</code> panel, hide the <strong>Voyager (no labels)</strong>, <strong>Paths</strong> and <strong>Artefacts</strong> layers by unticking the boxes next to them.</p></li>
+<li><p>Unhide the <strong>Light Gray Basemap</strong></p></li>
+</ul>
+<!-- -->
+<ul>
+<li>Click the <strong>Eye</strong> icon (Manage Map Themes) at the top of the <code>Layers</code> panel, and click <code>Add theme...</code>
+<ul>
+<li>Let’s name our new theme <strong>Data Inset</strong>, and click <code>OK</code></li>
+</ul></li>
+<li>Now, click the <strong>Eye</strong> icon again
+<ul>
+<li>You will see that there are two check box options at the bottom: <strong>Data Inset</strong> and <strong>Data Main</strong></li>
+<li>You can cycle between these two themes by choosing one or the other</li>
+<li>If you want to update a theme, simply hide/unhide layers, change the layer Styles, go to <code>Eye icon &gt; Replace theme...</code> and then select the theme you want to overwrite.</li>
+</ul></li>
+<li>Save your project</li>
+</ul>
+</section>
+</section>
+<section id="layout-manager" class="level2">
+<h2 class="anchored" data-anchor-id="layout-manager">Layout Manager</h2>
+<p>Now we can prepare our map for export.</p>
+<ul>
+<li>Navigate to <code>Project &gt; Layout Manager...</code>
+<ul>
+<li>Under <strong>New from Template</strong> click <code>Create</code>, name the map <strong>Data Map</strong></li>
+</ul></li>
+<li>This will open the <strong>Layout Manager</strong></li>
+</ul>
+<section id="page-properties" class="level3">
+<h3 class="anchored" data-anchor-id="page-properties">Page Properties</h3>
+<p>Before we do anything, let’s set up out environment.</p>
+<ul>
+<li>Navigate to <code>Layout &gt; Page Properties..</code>
+<ul>
+<li>Here we can choose the size and orientation of our map.</li>
+<li><strong>Size:</strong> A4 is often sensible, as it means you know the map will fit neatly into a report.
+<ul>
+<li>However you may need to make the size suit the data, or the requirements of where you’re submitting the map</li>
+<li>We’ll make ours <strong>200x200</strong></li>
+</ul></li>
+<li><strong>Orientation:</strong> Portrait means you can have a full page map without rotating the page in your report. But some spatial layouts make more sense in Landscape. Use your judgement.
+<ul>
+<li>Today we have manually changed the size, so this isn’t needed.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="guides" class="level3">
+<h3 class="anchored" data-anchor-id="guides">Guides</h3>
+<p>Guides seem unnecessary, but they make lining things up much much easier.</p>
+<p>We will use a guide to place our map details.</p>
+<ul>
+<li>In the right panel, click <code>Guides</code></li>
+<li>Click <img src="images/symbologyAdd-01.png" class="img-fluid"> <code>Add new guide</code> under <strong>Vertical Guides</strong> (if your canvas is a Landscape, or you want your legend at the bottom, choose <strong>Horizontal Guides</strong> for this step)</li>
+<li>A new row should appear, click on the <strong>0</strong> and change it to <strong>140</strong></li>
+</ul>
+</section>
+<section id="map" class="level3">
+<h3 class="anchored" data-anchor-id="map">Map</h3>
+<ul>
+<li>Add your map by clicking the map icon in the left menu, or navigating <code>Add Item &gt; Add Map</code>
+<ul>
+<li>Your mouse will now be a <strong>+</strong></li>
+<li>If you hover over the top corner of the canvas, the mouse should snap to the corner</li>
+<li>Click and drag until your mouse snaps to the corner created by the bottom of the canvas, and the guide you added</li>
+</ul></li>
+<li>In the <code>Items</code> panel on the right, double click on <strong>Map 1</strong> and rename it <strong>Main</strong>
+<ul>
+<li>Giving Items clear names makes this process much more straightforward</li>
+</ul></li>
+</ul>
+</section>
+<section id="scale" class="level3">
+<h3 class="anchored" data-anchor-id="scale">Scale</h3>
+<p>Okay, we have our map, but it’s not zoomed in right. This is always a little tricky.</p>
+<p>You <em>could</em> click the <strong>Move item content</strong> button on the left menu(or press <code>C</code> on your keyboard), as this would allow you to drag the map around internally, and zoom in with your scroll wheel. <strong>But there is an easier way!</strong></p>
+<ul>
+<li>Navigate back to your <strong>qgis_reports</strong> window
+<ul>
+<li>Right click on your <strong>Project_area</strong> layer and select <strong>Zoom to Layer(s)</strong></li>
+</ul></li>
+<li>Navigate back to your <strong>Project Map</strong> window
+<ul>
+<li>In the right menu, click <code>Item Properties</code></li>
+<li>You will see these options: <img src="layoutmanager_scale.png" class="img-fluid"></li>
+<li>Click the first orange arrow button to <strong>Set Map Extent to Match Main Canvas Extent</strong></li>
+<li>Click the third orange arrow button to <strong>Set Map Scale to Match Main Canvas Scale</strong>
+<ul>
+<li>The other buttons do the reverse</li>
+</ul></li>
+<li>I like to then round the <strong>Scale</strong> up to a nice round number from something like 3814 to 4000</li>
+</ul></li>
+<li>While you’re here, scroll to the bottom of the <code>Item Properties</code>, and tick the box for <code>Frame</code>, it adds a simple border to our map</li>
+</ul>
+</section>
+<section id="inset-map" class="level3">
+<h3 class="anchored" data-anchor-id="inset-map">Inset Map</h3>
+<p>You can add your inset map to the blank space at the side of you map canvas, or you can put it on top of you main map in unused space. We don’t have a lot of space around our map, so we’ll put it to the right. Guides are useful here too.</p>
+<ul>
+<li>In the right menu, click <code>Guides</code>
+<ul>
+<li>Click <img src="images/symbologyAdd-03.png" class="img-fluid"> <code>Add new guide</code> under <strong>Horizontal Guides</strong> <em>twice</em>
+<ul>
+<li>In the new row changethe <strong>0</strong> to <strong>155</strong></li>
+<li>In the other new row change the <strong>0</strong> to <strong>95</strong></li>
+</ul></li>
+</ul></li>
+<li>Add your map by clicking the map icon in the left menu, or navigating <code>Add Item &gt; Add Map</code>
+<ul>
+<li>Hover over the corner created by the top horizontal guide and the vertical guide, the mouse should snap to the corner
+<ul>
+<li>Click and drag until your mouse snaps to the corner created by the side of the canvas, and the lower guide you added</li>
+</ul></li>
+</ul></li>
+<li>Zoom out on the inset map, by selecting it from the <code>Items</code> tab and following the same approach as the <strong>Main map</strong>
+<ul>
+<li>Or by using <strong>Move item content</strong> button on the left menu (or press <code>C</code> on your keyboard), clicking on the inset and using the scroll wheel</li>
+</ul></li>
+<li>In the <code>Items</code> panel on the right, double click on <strong>Map 2</strong> and rename it <strong>Inset</strong></li>
+</ul>
+<p>Now we have our maps added, we can bring our themes into play again.</p>
+</section>
+<section id="themes-again-1" class="level3">
+<h3 class="anchored" data-anchor-id="themes-again-1">Themes (again!)</h3>
+<ul>
+<li>Select <strong>Main</strong> from the <code>Items</code> panel
+<ul>
+<li>In <code>Item Properties</code>, you will see <strong>Layers</strong> section</li>
+<li>Tick <code>Follow map theme</code> and from the dropdown change <strong>none</strong> to <strong>Main</strong></li>
+<li>Now this map is linked to the <strong>Main</strong> theme and will only update when we change that theme, or the layers attributed to the theme</li>
+</ul></li>
+<li>Repeat this step for <strong>Inset</strong></li>
+</ul>
+<p>This is also a big advantage for using <strong>Styles</strong>, as the point is a better representation of our site on the inset map.</p>
+</section>
+<section id="text" class="level3">
+<h3 class="anchored" data-anchor-id="text">Text</h3>
+<p>Before we add any text, it’s worth thinking about what you want the font to be. You can manually set the font for each item in your Layout, or you can set the default font.</p>
+<ul>
+<li><p>Navigate to <code>Settings &gt; Options</code></p>
+<ul>
+<li><p>From the left menu, select <code>Layouts</code></p></li>
+<li><p>Change the default font to your preferred font. I’m going to select <strong>Sitka Text Semibold</strong></p></li>
+</ul></li>
+</ul>
+</section>
+<section id="title" class="level3">
+<h3 class="anchored" data-anchor-id="title">Title</h3>
+<ul>
+<li><p>Add a text box to your map by clicking the <code>Add Label</code> icon in the left menu, or navigating <code>Add Item &gt; Add Label</code></p></li>
+<li><p>Click and drag in the empty canvas below the map where you want to put your title</p>
+<ul>
+<li>In the <code>Item Properties</code> panel remove the <strong>Lorem ipsum</strong> text, and add <strong>Brisbane Botanic Gardens</strong></li>
+<li>Under <strong>Appearance</strong> click the <code>Font</code> box to open the <code>Label Font</code> window
+<ul>
+<li>Change the text size to <strong>18</strong>, you can make other font changes here too</li>
+<li>Click the <code>back arrow button</code> next to <code>Label Font</code></li>
+</ul></li>
+</ul></li>
+<li><p>In the <code>Items</code> panel on the right, double click on <strong>Brisbane Botanic Gardens</strong> and rename it <strong>Title</strong></p></li>
+</ul>
+<p>Okay, that’s a some fairly basic text, let’s do something interesting with the descriptive text.</p>
+</section>
+<section id="dynamic-text" class="level3">
+<h3 class="anchored" data-anchor-id="dynamic-text">Dynamic Text</h3>
+<ul>
+<li>Add another text box to your map by clicking the <code>Add Label</code> icon in the left menu, or navigating <code>Add Item &gt; Add Label</code>
+<ul>
+<li>Click and drag in the empty canvas below the inset map</li>
+<li>In the <code>Items</code> panel on the right, double click on “<strong>Lorem ipsum</strong>” and rename it <strong>Description</strong>
+<ul>
+<li>In the <code>Item Properties</code> panel remove the “<strong>Lorem ipsum</strong>” text and then enter:
+<ul>
+<li><strong>Created by:</strong></li>
+<li><strong>Date:</strong></li>
+<li><strong>Scale: 1:</strong></li>
+<li><strong>Datum:</strong></li>
+<li>Normally we’d have to enter the details for each of these manually, but we can use <strong>Dynamic Text</strong> to do it for us</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>In the <code>Item Properties</code> panel, click next to <strong>Date:</strong>, so the cursor is sitting there
+<ul>
+<li>Under the <strong>Main Properties</strong> text box, click <code>Dynamic Text &gt; Current Date &gt; Day/Month/Year (26/09/2025)</code></li>
+<li>This will insert code that looks like this: <code>[%format_date(now(), 'dd/MM/yyyy')%]</code> which automatically adds today’s date</li>
+</ul></li>
+<li>Now repeat those steps for the rest:
+<ul>
+<li>Click next to <strong>Scale: 1:</strong>
+<ul>
+<li>Click <code>Dynamic Text &gt; Map Properties &gt; Main &gt; Scale (4000)</code>
+<ul>
+<li>The code will look like this: <code>[%format_number(item_variables('Main')['map_scale']</code> which automatically adds the main map’s scale</li>
+</ul></li>
+</ul></li>
+<li>Click next to <strong>Datum:</strong>
+<ul>
+<li>Click <code>Dynamic Text &gt; Map Properties &gt; Main &gt; CRS Name (GDA2020 / MGA zone 56)</code>
+<ul>
+<li>The code will look like this: <code>[%item_variables('Main')['map_crs_description']%]</code> which automatically adds the main map’s CRS</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Under <strong>Appearance</strong>:
+<ul>
+<li>Set the <code>Horizontal margin</code> and <code>Vertical margin</code> to <strong>2mm</strong></li>
+</ul></li>
+</ul>
+<p>Let’s add another text box for our sources, but we’ll make the font smaller</p>
+<ul>
+<li>Add another text box to your map by clicking the <code>Add Label</code> icon in the left menu, or navigating <code>Add Item &gt; Add Label</code>
+<ul>
+<li>Click and drag in the empty canvas below the inset map</li>
+<li>In the <code>Items</code> panel on the right, double click on “<strong>Lorem ipsum</strong>” and rename it <strong>Sources</strong></li>
+<li>In the <code>Item Properties</code> panel remove the “<strong>Lorem ipsum</strong>” text and then enter:
+<ul>
+<li><strong>Sources:</strong></li>
+</ul></li>
+</ul></li>
+<li>Click next to <strong>Sources:</strong>
+<ul>
+<li>Click <code>Dynamic Text &gt; Layer Credits</code>
+<ul>
+<li>The code will look like this: <code>[%array_to_string(map_credits())%]</code> which automatically adds the sources built in to some of the data used</li>
+<li>Note that this information lives in the Metadata (layer <code>Properties &gt; Metadata &gt; Access</code> under <strong>Rights</strong>) of the baselayers, and the layers we downloaded. Not all layers will necessarily have this information, and sometimes it’s very detailed and clunky. You can add this information in the layer’s metadata if it is missing.</li>
+<li>It may be simpler to manually enter this to your map.</li>
+</ul></li>
+</ul></li>
+<li>Under <strong>Appearance</strong>:
+<ul>
+<li>Set the <code>Horizontal margin</code> and <code>Vertical margin</code> to <strong>2mm</strong></li>
+<li>Click <code>Font</code>
+<ul>
+<li>Set the <code>Size</code> to <strong>8mm</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>You could also add any extra text details such as the locality, disclaimers, or any other details needed.</p>
+</section>
+<section id="shapes" class="level3">
+<h3 class="anchored" data-anchor-id="shapes">Shapes</h3>
+<p>We can add a border around our layout. This isn’t necessary, but it looks nice! It also has greater customisability than the map frame options.</p>
+<ul>
+<li>Add a rectangle to your map by clicking the <code>Add Shape</code> icon in the left menu, or navigating <code>Add Item &gt; Add Shape &gt; Add Rectangle</code>
+<ul>
+<li>Hover over the top left corner of the canvas, the mouse should snap to the corner</li>
+<li>Click and drag until your mouse snaps to the opposite corner of the canvas</li>
+</ul></li>
+<li>In the <code>Item Properties</code> panel, click the box next to <code>Style</code>, this will take you to the <code>Symbol Settings</code> window
+<ul>
+<li>Click <strong>Simple Fill</strong>
+<ul>
+<li>Change <code>Symbol layer type</code> from <strong>Simple Fill</strong> to <strong>Outline: Simple Line</strong></li>
+<li>Increase the <code>Stroke width</code> to 1mm</li>
+<li>Scroll to the bottom, tick <code>Draw Effects</code>, then click the <img src="images/mIconPaintEffects.png" class="img-fluid"> <code>Customise effects</code> button
+<ul>
+<li>Untick <code>Source</code></li>
+<li>Tick and select <code>Outer Glow</code>
+<ul>
+<li>Change the <code>Spread</code> to <strong>0.8mm</strong></li>
+<li>Change the <code>Blur Radius</code> to <strong>2.5mm</strong></li>
+<li>Change the <code>Single color</code> to <strong>Black</strong></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>In the <code>Items</code> panel, change the name from &lt;Rectangle&gt; to <strong>Outline</strong>
+<ul>
+<li>Then tick the lock box next to the <strong>Outline</strong></li>
+<li>This means it stays on top of everything else, but you won’t select it every time you click the map canvas</li>
+</ul></li>
+</ul>
+</section>
+<section id="legend" class="level3">
+<h3 class="anchored" data-anchor-id="legend">Legend</h3>
+<ul>
+<li>Add a Legend your map by clicking the <code>Add Legend</code> icon in the left menu, or navigating <code>Add Item &gt; Add Legend</code></li>
+</ul>
+<p>The legend always has too much detail to start with. Let’s clean it up.</p>
+<ul>
+<li>In the <code>Item Properties</code> panel, under <strong>Legend Items</strong> untick <code>Auto update</code>
+<ul>
+<li>Click the drop down next to <strong>Artefacts</strong>, select the empty item, and then click the <strong>red –</strong> to remove it</li>
+<li>Remove the <strong>Imagery</strong> layers too</li>
+<li>Right click on <strong>Artefacts</strong> and select <strong>Hidden</strong>, we don’t need to see the group name</li>
+<li>Double click on <strong>Project_area</strong> and rename it to <strong>Project Area</strong></li>
+<li>Double click on <strong>Paths – paths</strong> and rename it to <strong>Footpaths</strong></li>
+</ul></li>
+<li>Scroll down to <strong>Fonts and Text Formatting</strong>, under <strong>Item Labels</strong> click the <strong>Item font</strong> button
+<ul>
+<li>Change the <code>Size</code> to <strong>15</strong></li>
+</ul></li>
+<li>Scroll down to <strong>Symbol</strong>
+<ul>
+<li>Change<code>Symbol width</code> to 10</li>
+<li>Change<code>Symbol height</code> to 12</li>
+</ul></li>
+</ul>
+<section id="custom-legend-symbols" class="level4">
+<h4 class="anchored" data-anchor-id="custom-legend-symbols">Custom Legend Symbols</h4>
+<p>Okay, we have a legend, but let’s get really fancy with a custom polygon legend.</p>
+<ul>
+<li><p>Save your Layout</p>
+<ul>
+<li><code>Layout &gt; Save Project</code></li>
+</ul></li>
+<li><p>Navigate back to QGIS (it’s still open in another window)</p>
+<ul>
+<li><p>Select the <strong>Project_area</strong> in the <code>Layers</code> Panel</p></li>
+<li><p>From the top toolbars open the <img src="images/mActionCalculateField.png" class="img-fluid"> <code>Field Calculator</code></p>
+<ul>
+<li><p>In the <code>Expression</code> window paste <strong>geom_to_wkt($geometry)</strong></p></li>
+<li><p>Under the <code>Expression</code> window, <strong>right click</strong> on the text next to <strong>Preview</strong>: (it should start with “MultiSurface”</p>
+<ul>
+<li>Select <strong>Copy Expression Value</strong></li>
+</ul></li>
+<li><p>Close the <strong>Field Calculator</strong></p></li>
+</ul></li>
+</ul></li>
+<li><p>Back in the <strong>Layout Manager</strong>, in the <code>Item Properties</code> panel, double click on <strong>Project Area</strong></p>
+<ul>
+<li>Under <strong>Patch</strong>, click the <code>Shape</code> box
+<ul>
+<li>There should be a large <code>Shape</code> box with some “Polygon” details inside. Delete this.</li>
+<li>Paste what you copied from the <strong>Field Calulator</strong> - it should be many lines</li>
+<li>Be careful to delete the single quotes ’ at the start and end of what you’ve just pasted in</li>
+<li>Tick the <code>Preserve aspect ratio</code> box</li>
+</ul></li>
+<li>Click the back arrow button</li>
+</ul></li>
+<li><p>Click the back arrow button again</p></li>
+</ul>
+</section>
+</section>
+<section id="north-arrow" class="level3">
+<h3 class="anchored" data-anchor-id="north-arrow">North Arrow</h3>
+<ul>
+<li>Add a North Arrow to your map by clicking the <strong>Add North Arrow</strong> icon in the left menu, or navigating <code>Add Item &gt; Add North Arrow</code>
+<ul>
+<li>Click and drag in the blank space under the map until you’re happy with the size of the arrow</li>
+<li>In the <code>Item Properties</code> panel, under the <code>SVG Images</code> box, type <strong>arrow</strong> in the search bar
+<ul>
+<li>Choose a North arrow you like</li>
+<li>Scroll down to <strong>SVG Parameters</strong>
+<ul>
+<li>Set the <code>Fill color</code> and <code>Stroke color</code> to <strong>Black</strong></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="scalebar" class="level3">
+<h3 class="anchored" data-anchor-id="scalebar">Scalebar</h3>
+<ul>
+<li>Add a scale bar to your map by clicking the <strong>Add Scale Bar</strong> icon in the left menu, or navigating <code>Add Item &gt; Add Scale Bar</code>
+<ul>
+<li>You can click and drag in the blank space under the map, although the scale bar size will be set in a moment</li>
+</ul></li>
+<li>In the <code>Item Properties</code> panel:
+<ul>
+<li>Change the <code>Style</code> from <strong>Single Box</strong> to <strong>Line Ticks Up</strong></li>
+<li>Scroll down to <strong>Appearance:</strong>
+<ul>
+<li>Change the <code>Label margin</code> to <strong>0mm</strong></li>
+<li>Change <code>Distance label placement</code> from <strong>Above Segment Edges</strong> to <strong>Below Segment Edges</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="finessing" class="level3">
+<h3 class="anchored" data-anchor-id="finessing">Finessing</h3>
+<ul>
+<li><p>Go to the <code>Layout</code> panel and scroll down to <strong>Resize Layout to Content</strong></p>
+<ul>
+<li>Set the <code>Top</code>, <code>Right</code>, <code>Left</code> and <code>Bottom Margin</code> to <strong>2mm</strong></li>
+<li>Click <code>Resize layout</code></li>
+<li>Now we can see the dark glow we added to the <strong>Outline</strong>, without interfering with our neat 200x200 layout</li>
+</ul></li>
+</ul>
+<p>Save your project.</p>
+<ul>
+<li><code>Layout &gt; Save Project</code></li>
+</ul>
+</section>
+<section id="export-options" class="level3">
+<h3 class="anchored" data-anchor-id="export-options">Export options</h3>
+<p>Now that we’re done we can export. Generally to PDF or Image. Today we will use image.</p>
+<ul>
+<li><code>Layout &gt; Export as Image...</code>
+<ul>
+<li>You will see a popup warning about WMS servers. Some tile services have limits to the size of file you can export like this. If you exceed it, your basemap will be blank.</li>
+<li>Click <code>OK</code></li>
+</ul></li>
+<li>Navigate to your project’s <strong>output</strong> folder, and give the file a meaningful name “<strong>Brisbane Botanic Gardens Map</strong>”, click <code>Save</code></li>
+<li>The <code>Export resolution</code> should automatically be a print quality <strong>300dpi</strong>, and the width and height should match the page size we set at the beginning.</li>
+<li>Click <code>Save</code></li>
+<li>Navigate to and open your file to make sure it worked!</li>
+</ul>
+</section>
+</section>
+<section id="save-a-map-template" class="level2">
+<h2 class="anchored" data-anchor-id="save-a-map-template">Save a Map Template</h2>
+<p>This is crucial! Save your hard work for next time!</p>
+<ul>
+<li><code>Layout &gt; Save as Template...</code></li>
+<li>Navigate to a folder you can easily find again, such as a broader QGIS folder.</li>
+<li>Give it a meaningful name “<strong>Report_Map_Template</strong>”</li>
+<li>Click <code>Save</code></li>
+</ul>
+</section>
+<section id="load-a-map-template" class="level2">
+<h2 class="anchored" data-anchor-id="load-a-map-template">Load a Map Template</h2>
+<p>Next time you need to make an export you can load your template in.</p>
+<p>Open an old QGIS Project.</p>
+<ul>
+<li>Navigate to <code>Project &gt; Layout Manager...</code>
+<ul>
+<li>Under <strong>New from Template</strong> change <code>Empty Layout</code> to <code>Specific</code>, click the three dots and navigate to your <strong>Report_Map_Template</strong>, select it, and click <code>Open</code></li>
+<li>Click <code>Create</code></li>
+<li>Give the layout an appropriate name, and click <code>OK</code></li>
+</ul></li>
+<li>This will open the <strong>Layout Manager</strong></li>
+</ul>
+<p>You will see that the inset and main maps are in the wrong location, the title is wrong, the scale bar is off, and the Legend is empty. But you know how to fix these!</p>
+<section id="map-scale" class="level3">
+<h3 class="anchored" data-anchor-id="map-scale">Map Scale</h3>
+<ul>
+<li>Navigate back to your <strong>QGIS</strong> window
+<ul>
+<li>Right click on the most suitable layer and select <strong>Zoom to Layer(s)</strong></li>
+</ul></li>
+<li>Navigate back to your <strong>Layout Manager</strong> window
+<ul>
+<li>Click the <strong>Main</strong> from the <code>Item</code> panel, and click the <code>Item Properties</code> panel</li>
+<li><img src="layoutmanager_scale.png" class="img-fluid"></li>
+<li>Click the first orange arrow button to <strong>Set Map Extent to Match Main Canvas Extent</strong></li>
+<li>Click the third orange arrow button to <strong>Set Map Scale to Match Main Canvas Scale</strong>
+<ul>
+<li>The other buttons do the reverse</li>
+</ul></li>
+<li>Round the <strong>Scale</strong> up to a nice round number</li>
+</ul></li>
+<li>Fix the inset map too</li>
+</ul>
+</section>
+<section id="scalebar-1" class="level3">
+<h3 class="anchored" data-anchor-id="scalebar-1">Scalebar</h3>
+<ul>
+<li>Click the <strong>Scalebar</strong> from the <code>Item</code> panel</li>
+<li>In the <code>Item Properties</code> panel, change <code>Scalebar units</code> to <strong>Metres</strong> or <strong>Kilometres</strong> - Change <code>Fixed width</code> to an appropriate unit</li>
+</ul>
+</section>
+<section id="legend-1" class="level3">
+<h3 class="anchored" data-anchor-id="legend-1">Legend</h3>
+<ul>
+<li>Click the <strong>Legend</strong> from the <code>Item</code> panel</li>
+<li>In the <code>Item Properties</code> panel, under the <strong>Legend Items</strong> box and click the <strong>green +</strong> to add a layer
+<ul>
+<li>Double click on and rename the layer if needed</li>
+<li>Repeat for all layers you need to list</li>
+</ul></li>
+</ul>
+</section>
+<section id="title-1" class="level3">
+<h3 class="anchored" data-anchor-id="title-1">Title</h3>
+<ul>
+<li>Click the <strong>Title</strong> from the <code>Item</code> panel</li>
+<li>In the <code>Item Properties</code> panel, under the <strong>Main Properties</strong> rename the title</li>
+</ul>
+<p>And that’s it, you now have another map looking the way you want it, without too much hassle.</p>
+</section>
+</section>
+<section id="feedback" class="level2">
+<h2 class="anchored" data-anchor-id="feedback">Feedback</h2>
+<p>Please visit our website to <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/software-training-resources">provide feedback</a> and find upcoming training courses we have on offer.</p>
+<section id="georeferencing" class="level3">
+<h3 class="anchored" data-anchor-id="georeferencing">Georeferencing</h3>
+<p>I will be happy to go over this in person, but if you need a guide, here is the <a href="https://docs.qgis.org/3.40/en/docs/training_manual/forestry/map_georeferencing.html">QGIS how to</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/uqlibrary\.github\.io\/technology-training-intensives\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

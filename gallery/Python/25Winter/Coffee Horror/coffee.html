@@ -222,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="comparing-personal-preferences-and-bitterness-for-coffeec" class="level2">
 <h2 class="anchored" data-anchor-id="comparing-personal-preferences-and-bitterness-for-coffeec">Comparing personal preferences and bitterness for <strong>CoffeeC</strong></h2>
-<div id="0d7d09cc" class="cell" data-execution_count="1">
+<div id="1f74c147" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"../../../../data/coffee_survey.csv"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="distribution-of-age" class="level2">
 <h2 class="anchored" data-anchor-id="distribution-of-age"><strong>Distribution of Age</strong></h2>
-<div id="37ac5a8b" class="cell" data-execution_count="2">
+<div id="2e8a7a35" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, y <span class="op">=</span> <span class="st">"age"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -255,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="distribution-of-favourite-coffee" class="level2">
 <h2 class="anchored" data-anchor-id="distribution-of-favourite-coffee"><strong>Distribution of Favourite coffee</strong></h2>
-<div id="4495cfe5" class="cell" data-execution_count="3">
+<div id="a59d4405" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> <span class="st">"favourite"</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>            binwidth <span class="op">=</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="favourite-coffee-based-on-gender" class="level2">
 <h2 class="anchored" data-anchor-id="favourite-coffee-based-on-gender"><strong>Favourite coffee based on gender</strong></h2>
-<div id="e6dc15b7" class="cell" data-execution_count="4">
+<div id="3e73bea7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"gender"</span>, y <span class="op">=</span> <span class="st">"favourite"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -292,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="preferred-coffee-style" class="level2">
 <h2 class="anchored" data-anchor-id="preferred-coffee-style"><strong>Preferred Coffee Style</strong></h2>
-<div id="e7ffe74c" class="cell" data-execution_count="5">
+<div id="18c013f3" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">'Pourover'</span>, <span class="st">'Latte'</span>,<span class="st">'Drip coffee'</span>, <span class="st">'Cappuccino'</span>, <span class="st">'Espresso'</span>,<span class="st">'Cortado'</span>,<span class="st">'Americano'</span>, <span class="st">'Iced coffee'</span>, <span class="st">'Mocha'</span>,<span class="st">'Cold brew'</span>,<span class="st">'Other'</span>, <span class="st">'Blended drinks'</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> [<span class="dv">1026</span>, <span class="dv">654</span>, <span class="dv">415</span>, <span class="dv">330</span>, <span class="dv">309</span>, <span class="dv">295</span>, <span class="dv">238</span>, <span class="dv">147</span>, <span class="dv">116</span>, <span class="dv">108</span>, <span class="dv">105</span>, <span class="dv">45</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a circle at the center of the plot</span></span>
