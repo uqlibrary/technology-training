@@ -125,25 +125,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Content</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-content">    
-        <li>
-    <a class="dropdown-item" href="../../r/setup.html">
- <span class="dropdown-text">R with RStudio</span></a>
+  <li class="nav-item">
+    <a class="nav-link active" href="../../r/setup.html" aria-current="page"> 
+<span class="menu-text">R</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../../qgis/setup.html">
- <span class="dropdown-text">QGIS</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../../qgis/setup.html"> 
+<span class="menu-text">QGIS</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../../python/setup.html">
- <span class="dropdown-text">Python for Data Analysis</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../../python/setup.html"> 
+<span class="menu-text">Python</span></a>
   </li>  
-    </ul>
-  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../project/details.html"> 
 <span class="menu-text">The Project</span></a>
@@ -456,18 +449,18 @@ format: dashboard
 warning: false
 ---
 
-```xtk
+```smb
 players <- read.csv("../../data/Players2024.csv")
 ```
 
-```xtk
+```smb
 library(dplyr)
 players <- players %>% filter(positions != "Missing", height_cm > 100)
 ```
 
 ## Figures {height=70%}
 
-```xtk
+```smb
 #| title: Goalkeepers tend to be taller
 #| fig-alt: "A boxplot of the relationship between height and position."
 library(ggplot2)
@@ -476,7 +469,7 @@ ggplot(players, aes(x = positions, y = height_cm)) +
   labs(x = "Position", y = "Height (cm)")
 ```
 
-```xtk
+```smb
 #| title: Age vs Height by position
 p <- ggplot(players, aes(x = age, y = height_cm, colour = positions, label = name, label2 = nationality)) + 
   geom_point() + 
@@ -488,7 +481,7 @@ ggplotly(p)
 
 ## Table
 
-```xtk
+```smb
 #| title: A glimpse at the dataset
 library(knitr)
 kable(players)
