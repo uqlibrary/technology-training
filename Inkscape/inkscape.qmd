@@ -1,0 +1,104 @@
+---
+title: "Inkscape: introduction to vector design"
+format: html
+---
+
+## Inkscape
+
+Inkscape is an open source vector drawing tool.
+
+Vector images are made of shapes, as opposed to raster graphics that are made of pixels. This means that a vector graphic always looks sharp, and individual objects can be modified independently.
+
+## New file
+
+Create a new file by clicking on "New Document" in the welcome dialog.
+
+## Draw shapes
+
+The left toolbar has various shape tools. Start with tracing a rectangle with the Rectangle Tool. The right panel has a Fill and Stroke tab than allows you to change what you want to fill the shape with, and the look of the outline (if any).
+
+Try using the colour wheel in the "Fill" tab to change the colour for the "Flat colour" option, then play with defining your own gradient with the "Linear gradient" option. With gradients, you can define where they start and end on the shape by moving the blue line's handles.
+
+Make sure there is a stoke style selected in the "Stroke style tab", then style it in the "Stroke paint" tab.
+
+Try the same thing with the "Ellipse/Arc Tool" now. You can trace a perfect circle by keeping the Ctrl key pressed when dragging.
+
+## Controls
+
+Use Ctrl + Scroll to zoom in and out.
+
+You can resize an object by using the corner handles, but remember that if you want to keep the aspect ratio, you have to press Ctrl at the same time.
+
+If you use Shift while resizing, the centre of the object stays at the same position.
+
+You can also change the size to precise values by using the toolbar (and picking any unit you want to use).
+
+## Filters
+
+Select a shape and use the menu Filters - Filter Gallery...
+
+Although you can find many filters in the Filters menu, this dialog allows searching keywords. Test a few filters: some common ones are "Blur" and "Drop Shadow". Some filters will have a dialog pop up for settings, others won't.
+
+You can modify the filter's settings (or create a new filter) by going to Filters - Filter Editor..., and remove an object's filters by going to Filters - Remove Filters.
+
+## Trace bitmap
+
+You can transform a raster image into a vector image by using Path - Trace Bitmap.
+
+Choose a picture from the [Wellcome Collection of botanical art](https://commons.wikimedia.org/wiki/Category:Botanical_illustrations_in_the_Wellcome_Collection) (for example, [this orchid](https://commons.wikimedia.org/wiki/File:An_orchid_(Laelia_anceps);_flowering_stem_and_leaves._Waterc_Wellcome_V0043292.jpg)). Copy and paste the image into Inkscape, then use the menu: Path - Trace Bitmap.
+
+In the Trace Bitmap panel, switch to the "Multicolour" tab, then use the following options:
+
+-   Scans: 8 (the number of colours)
+
+-   Smooth
+
+-   Stack
+
+-   Remove background
+
+Then click "Apply". Inkscape generates a vector version of the original image. You can play with the settings to get better results. For example, increasing the values for "Speckles", "Smooth corners" and "Optimise" will simplify the object in various ways, making lighter but less detailed.
+
+If you double-click on the resulting object, you can access the different layers that make it, and remove / keep as you see fit. For example, there might still be a background depending on the contrast of the picture, which you can remove (if it doesn't affect the rest of the picture). Double-click out of the object (or click on another object) to get out of the object's layers.
+
+If there's a part of the image you don't want to keep, but you don't want to remove the whole layer, you can use the Node Tool, click on the object, and select the nodes, then delete them.
+
+You can also use this tool to modify the paths.
+
+## Layers and Objects
+
+In the right panel, the "Layers and Objects" tab is a very important tool, especially as your composition becomes more complex. It shows in which order all the layers are stacked, and also makes it more obvious that you are inside a multi-layer object (like our traced flowers). You can drag-and-drop objects to change the order they are stacked in, and choose to hide and lock them (so you don't select or modify them by mistake).
+
+You can also change the order of objects by using the "Raise" and "Lower" buttons in the top toolbar.
+
+## Groups
+
+Place your circle and square behind the flowers, and once you think they fit well together, you can select the objects and right-click - Group them, so they move together from now on. See how that is reflected in the Layers and Objects panel?
+
+## Align and Distribute
+
+With Object - Align and Distribute, you can access many tools to align objects relative to each other or to the page.
+
+## Path effects
+
+Select a simple object, then go to Path - Path Effects. This panel gives you access to numerous effects. Try for example "Rotate copies", then change the number of copies and move the centre of the modified object.
+
+Some other useful path effects you could try:
+
+-   Roughen: to make something "less neat"
+
+-   Tiling: to generate a grid of repeated images, or a tiled pattern.
+
+## Templates
+
+In File - New from Template, you can pick various sizes depending on what you are creating a graphic for.
+
+## Import Web Image
+
+You can import vector images from different sources in File - Import Web Image...
+
+Choose a source and type a keyword. Make sure to respect the licensing!
+
+## Formats
+
+Inkscape used SVG ("Scalable Vector Graphics") as a default format. It's an open standard that is very common. However, you can export your creation in many different formats, including raster formats (like PNG) if needed.
