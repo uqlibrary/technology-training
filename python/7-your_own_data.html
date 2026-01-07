@@ -280,7 +280,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#environments-and-importing-data" id="toc-environments-and-importing-data" class="nav-link active" data-scroll-target="#environments-and-importing-data">Environments and importing data</a>
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a></li>
+  <li><a href="#environments-and-importing-data" id="toc-environments-and-importing-data" class="nav-link" data-scroll-target="#environments-and-importing-data">Environments and importing data</a>
   <ul class="collapse">
   <li><a href="#getting-your-setup-right" id="toc-getting-your-setup-right" class="nav-link" data-scroll-target="#getting-your-setup-right">Getting your setup right</a></li>
   <li><a href="#importing-your-data-correctly" id="toc-importing-your-data-correctly" class="nav-link" data-scroll-target="#importing-your-data-correctly">Importing your data correctly</a></li>
@@ -319,13 +320,39 @@ window.Quarto = {
 
 
 <p>In this final session, we look at taking the skills we’ve developed during the intensive and applying it to your own data. We’ll also discuss a few common pitfalls and where to get help in the wild.</p>
+<section id="setting-up" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
+<p>Spend five minutes locating your data and preparing Spyder</p>
+<ol type="1">
+<li>Locate and structure your own project folder
+<ul>
+<li>You might like to use a <em>data/</em> folder for data</li>
+</ul></li>
+<li>(Optional) Turn it into a Spyder project
+<ol type="1">
+<li>Click <em>Projects</em> <span class="math inline">\(\rightarrow\)</span> <em>New Project…</em></li>
+<li>Click 🔘 Existing directory</li>
+<li>Choose <strong><em>top-level folder</em></strong> of your project</li>
+</ol></li>
+<li>Create a new script for processing, called <code>processing.py</code> (or whatever you’d like to).
+<ul>
+<li>You might like to put this into a <em>scripts/</em> folder</li>
+</ul></li>
+</ol>
+<p>We’ll spend most of this session like project time, troubleshooting and setting up your own data for analysis. Before we do that, let’s discuss a few common tips and pitfalls. Namely,</p>
+<ul>
+<li>Managing paths and the working directory</li>
+<li>Importing different data structures and files</li>
+<li>Dealing with different types of data</li>
+</ul>
+</section>
 <section id="environments-and-importing-data" class="level2">
 <h2 class="anchored" data-anchor-id="environments-and-importing-data">Environments and importing data</h2>
 <p>Perhaps the most frustrating issues are those which prevent you from importing the data at all!</p>
 <section id="getting-your-setup-right" class="level3">
 <h3 class="anchored" data-anchor-id="getting-your-setup-right">Getting your setup right</h3>
 <p>Nobody likes to encounter this:</p>
-<div id="ba4e1225" class="cell" data-execution_count="1">
+<div id="c26897d4" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -351,7 +378,7 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <li>Where is your data?</li>
 </ol>
 <p>Answering the first question is easy: simply run</p>
-<div id="76e15a89" class="cell" data-execution_count="2">
+<div id="2b35d6df" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>os.getcwd()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -790,7 +817,7 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"col_name"</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">"col_name"</span>])`</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Include <code>format="..."</code> to specify the format of your timestamps, according to the <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">standard Python datetime syntax</a>. For example, <code>format="%d/%m/%y"</code> matches two-digit DD/MM/YY, e.g.&nbsp;03/02/26.</p>
 <p>If the timestamp is spread across multiple columns, e.g.</p>
-<div id="03292150" class="cell" data-execution_count="3">
+<div id="9061c4bc" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>   day  month  year
 0   21      3  1987
@@ -799,7 +826,7 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 </div>
 </div>
 <p>you can use <code>pd.to_datetime</code> on those columns (or the whole dataframe if there’s nothing else) to convert them into a single time series</p>
-<div id="652b1d46" class="cell" data-execution_count="4">
+<div id="744ba480" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pd.to_datetime(temporal[[<span class="st">"day"</span>, <span class="st">"month"</span>, <span class="st">"year"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>0   1987-03-21
