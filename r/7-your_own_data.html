@@ -154,7 +154,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../r/setup.html"> 
+    <a class="nav-link active" href="../r/setup.html" aria-current="page"> 
 <span class="menu-text">R</span></a>
   </li>  
   <li class="nav-item">
@@ -162,7 +162,7 @@ window.Quarto = {
 <span class="menu-text">QGIS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../python/setup.html" aria-current="page"> 
+    <a class="nav-link" href="../python/setup.html"> 
 <span class="menu-text">Python</span></a>
   </li>  
   <li class="nav-item">
@@ -188,7 +188,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../python/7-your_own_data.html">Analysing your own data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/7-your_own_data.html">Analysing your own data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -202,8 +202,8 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python for Data Analysis</span></a>
+  <a href="../r/setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R with RStudio</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -217,25 +217,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/Essentials/1-Fundamentals.html" class="sidebar-item-text sidebar-link">
+  <a href="../r/Essentials/1-Fundamentals.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The Fundamentals</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/Essentials/2-Data_processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Processing</span></a>
+  <a href="../r/Essentials/2-Data_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preparing data for analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/Essentials/3-Visualisation.html" class="sidebar-item-text sidebar-link">
+  <a href="../r/Essentials/3-Visualisation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualisation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/Essentials/4-Sharing_and_Publishing.html" class="sidebar-item-text sidebar-link">
+  <a href="../r/Essentials/4-Sharing_and_Publishing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Sharing and Publishing</span></a>
   </div>
 </li>
@@ -252,13 +252,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/Advanced topics/5-Statistics.html" class="sidebar-item-text sidebar-link">
+  <a href="../r/Advanced topics/5-Statistics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/Advanced topics/6-Programming.html" class="sidebar-item-text sidebar-link">
+  <a href="../r/Advanced topics/6-Programming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programming Essentials</span></a>
   </div>
 </li>
@@ -266,7 +266,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/7-your_own_data.html" class="sidebar-item-text sidebar-link active">
+  <a href="../r/7-your_own_data.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Analysing your own data</span></a>
   </div>
 </li>
@@ -327,15 +327,15 @@ window.Quarto = {
 <li>Locate and structure your own project folder
 <ul>
 <li>You might like to create a <em>data/</em> folder</li>
-<li>You might like to create a <em>data/</em> folder</li>
+<li>You might like to create a <em>scripts/</em> folder</li>
 </ul></li>
-<li>(Optional) Turn it into a Spyder project
+<li>(Optional) Turn it into an RStudio project
 <ol type="1">
-<li>Click <em>Projects</em> <span class="math inline">\(\rightarrow\)</span> <em>New Project…</em></li>
-<li>Click 🔘 Existing directory</li>
-<li>Choose <strong><em>top-level folder</em></strong> of your project</li>
+<li>Click <em>File</em> <span class="math inline">\(\rightarrow\)</span> <em>New Project…</em></li>
+<li>Click <strong>Existing Directory</strong></li>
+<li>Click <em>Browse…</em> and choose <strong><em>top-level folder</em></strong> of your project</li>
 </ol></li>
-<li>Create a new script for processing, called <code>processing.py</code> (or whatever you’d like to).</li>
+<li>Create a new script for processing, called <code>processing.R</code> (or whatever you’d like to).</li>
 </ol>
 <p>We’ll spend most of this session like project time, troubleshooting and setting up your own data for analysis. Before we do that, let’s discuss a few common tips and pitfalls. Namely,</p>
 <ul>
@@ -350,37 +350,33 @@ window.Quarto = {
 <section id="getting-your-setup-right" class="level3">
 <h3 class="anchored" data-anchor-id="getting-your-setup-right">Getting your setup right</h3>
 <p>Nobody likes to encounter this:</p>
-<div id="acf8bc46" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[1], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">FileNotFoundError</span>(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">PANIC!</span><span style="color:rgb(175,0,0)">"</span>)
-
-<span class="ansi-red-fg">FileNotFoundError</span>: PANIC!</pre>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in file(file, "rt"): cannot open file 'PANIC!': No such file or
+directory</code></pre>
 </div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in file(file, "rt"): cannot open the connection</code></pre>
 </div>
 </div>
 <p>To solve it, we need to talk about filesystems.</p>
-<p>When running a Python script, there are always three relevant locations:</p>
+<p>When running an R script, there are always three relevant locations:</p>
 <ul>
-<li>Your Python executable</li>
+<li>Your R executable</li>
 <li>Your script</li>
 <li>Your working directory</li>
 </ul>
-<p>The Python executable runs your script <strong>from the working directory</strong></p>
-<p>Why does this matter? Because when you import data, Python uses your <strong>working directory</strong> as the reference, not the others. This means that there are important questions you need to ask:</p>
+<p>The R executable runs your script <strong>from the working directory</strong></p>
+<p>Why does this matter? Because when you import data, R uses your <strong>working directory</strong> as the reference, not the others. This means that there are important questions you need to ask:</p>
 <ol type="1">
 <li>Where is your working directory?</li>
 <li>Where is your data?</li>
 </ol>
 <p>Answering the first question is easy: simply run</p>
-<div id="bfdbf07a" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>os.getcwd()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>'/home/runner/work/technology-training-intensives/technology-training-intensives/python'</code></pre>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/home/runner/work/technology-training-intensives/technology-training-intensives/r"</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -394,14 +390,13 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>When you run Python from the command line, it’s the current location as specified in the terminal</li>
-<li>When you run Python in Spyder, it’s the folder displayed in “Files” and given by the address in the <strong>top right</strong>.<br>
-</li>
+<li>When you run R from the command line, it’s the current location as specified in the terminal</li>
+<li>When you run R in RStudio, it’s the address displayed in the bar attached to <strong>Console</strong></li>
 </ul>
 </div>
 </div>
 <p>This address is your working directory. All paths in your scripts are evaluated relative to this location.</p>
-<p>This includes data paths can be absolute or relative, and it can be online.</p>
+<p>This includes data paths, which can be absolute or relative, and can be online.</p>
 <p>Absolute paths begin with a root prefix and have folders separated with slashes. They contain <strong>all</strong> the folders from the root of the filesystem down to the object of interest.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="os">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Windows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Unix-like (e.g.&nbsp;macOS, Ubuntu)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">URL</a></li></ul>
@@ -510,10 +505,10 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 </div>
 <div class="callout-body-container callout-body">
 <p>If you’re using a project, you shouldn’t need to change working directories. Instead, try modifying the path first.</p>
-<p>If you need to change working directories, you can do this with Python code,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="st">"path/to/new/dir"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Or in Spyder by changing the address in the top-right.</p>
-<p>You should check that it’s worked by running <code>os.getcwd()</code>.</p>
+<p>If you need to change working directories, you can do this with R code,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"path/to/dir"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or in the <strong>Files</strong> tab by navigating to the folder and clicking <em>More</em> <span class="math inline">\(\rightarrow\)</span> <em>Set As Working Directory</em>.</p>
+<p>You should check that it’s worked by running <code>getwd()</code>.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -526,26 +521,26 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The backslashes in Windows paths conflict with Python’s escape character in strings (also a backslash). To fix this, you can</p>
+<p>The backslashes in Windows paths conflict with R’s escape character in strings (also a backslash). To fix this, you can</p>
 <ul>
-<li>Replace backslashes with forwardslashes <strong>in Python</strong></li>
-<li>Prefix the string with <code>R</code> to ignore the backslashes</li>
+<li>Replace backslashes with forwardslashes <strong>in R</strong></li>
+<li>Use <em>raw strings</em>: <code>r"(...)"</code></li>
 <li>Escape the backslashes with an <em>extra</em> backslash</li>
 </ul>
 <p>For example, the following Windows path</p>
 <p><i></i></p><i>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Users\me\data\secrets.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Users\me\data\secrets.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </i><p><i></i></p>
 <p>could be imported as any of the following</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prefix with R"...</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="vs">R"C:\Users\me\data\secrets.csv"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace with forwardslashes</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">"C:/Users/me/data/secrets.csv"</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Escape the backslashes</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">"C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">me</span><span class="ch">\\</span><span class="st">data</span><span class="ch">\\</span><span class="st">secrets.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>We recommend using the <code>R"..."</code> option where possible, as it’s the least work.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Raw strings</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(r<span class="st">"(C:\Users\me\data\secrets.csv)"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace with forwardslashes</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"C:/Users/me/data/secrets.csv"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Escape the backslashes</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">me</span><span class="sc">\\</span><span class="st">data</span><span class="sc">\\</span><span class="st">secrets.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We recommend using the <code>r"(...)"</code> option where possible, as it’s the least work.</p>
 </div>
 </div>
 <p>If you’ve fixed the filepath and you’re on top of the Windows peculiarities, then check the following errors for more troubleshooting.</p>
@@ -555,14 +550,13 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span><code>SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes ...</code>
+<span class="screen-reader-only">Warning</span>`Error: … is an unrecognized escape in character string
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You’ve probably used a path with backslashes and not adjusted it for Python. See “Watch out Windows users” above.</p>
-<p>Python throws this error when it runs <code>"\u..."</code> or <code>"\U..."</code> (unless <code>"..."</code> is a valid unicode code; <code>\Users</code> is not).</p>
+<p>You’ve probably used a path with backslashes and not adjusted it for R. See “Watch out Windows users” above.</p>
 </div>
 </div>
 </div>
@@ -572,11 +566,28 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span><code>FileNotFoundError: [Errno 2] No such file or directory ...</code> but everything is correct???
+<span class="screen-reader-only">Warning</span><code>Error: '\U' used without hex digits in character string...</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You’ve probably used a path with backslashes and not adjusted it for R. See “Watch out Windows users” above.</p>
+<p>R throws this error when it runs <code>"\u..."</code> or <code>"\U..."</code> (unless <code>"..."</code> is a valid unicode code; <code>\Users</code> is not).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span><code>cannot open file...</code> but everything is correct???
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Have you used a path with backslashes on a non-Windows machine? If you have, replace them with forwardslashes.</p>
 </div>
@@ -593,12 +604,8 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <h3 class="anchored" data-anchor-id="importing-your-data-correctly">Importing your data correctly</h3>
 <p>Once you’ve got the path working, the next challenge will be importing the data correctly. Unlike our data, yours might have multiple header rows, missing data, simply be organised differently or even be a different file type.</p>
 <p>We’ll look at importing .csv files here, but the same applies to other file types.</p>
-<p>The documentation for <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html"><code>pd.read_csv</code></a> explains (as of v2.3) 49 different parameters that the functions supports. These include</p>
+<p>The documentation for <code>read.csv</code> describes (as of v4.4.0) 25 different parameters that the functions supports. These include</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Parameter</th>
@@ -607,33 +614,32 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>filepath_or_buffer</code></td>
+<td><code>file</code></td>
 <td>The path (<strong>doesn’t have to actually be <code>.csv</code>!</strong>)</td>
 </tr>
 <tr class="even">
+<td><code>header</code></td>
+<td><code>TRUE/FALSE</code> specifying if the first row is a header</td>
+</tr>
+<tr class="odd">
 <td><code>sep</code></td>
 <td>The separator (use <code>"\t"</code> for tab separated values)</td>
 </tr>
-<tr class="odd">
-<td><code>header</code></td>
-<td>The row number(s) containing headers (pass <code>header=None</code> for no header)</td>
-</tr>
 <tr class="even">
-<td><code>skiprows</code></td>
-<td>Skip certain rows (by number <strong>from 0</strong>)</td>
-</tr>
-<tr class="odd">
-<td><code>na_values</code></td>
+<td><code>na.strings</code></td>
 <td>A list of values to interpret as empty cells</td>
 </tr>
-<tr class="even">
-<td><code>parse_dates</code></td>
-<td>A list of column names to interpret as datetimes (other options as well, see docs)</td>
+<tr class="odd">
+<td><code>skip</code></td>
+<td>Skip the first <code>skip=n</code> rows</td>
 </tr>
 </tbody>
 </table>
-<p>There are plenty more! Check these out if your data isn’t importing correctly.</p>
-<p>Additionally, you can import other types of files. See the <a href="https://pandas.pydata.org/docs/user_guide/io.html">IO tools</a> user guide for using file types, like .xlsx (Excel workbooks), JSON, etc.</p>
+<p>There are plenty more! Run</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(read.csv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>to see the rest. For more advanced reading, you can also try the [<code>readr</code> package]](https://readr.tidyverse.org/).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -644,9 +650,10 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Reading <code>.xlsx</code> files can be complicated, but for simple reading, just use</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pd.read_excel(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>with <code>sheet_name="..."</code> if you’d like to specify the sheet.</p>
+<p>Reading <code>.xlsx</code> files can be complicated. You should use the <a href="https://readxl.tidyverse.org/"><code>readxl</code> package</a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><a href="https://readxl.tidyverse.org/reference/read_excel.html?q=read_excel#null">Check out the documentation</a> for details.</p>
 </div>
 </div>
 </section>
@@ -657,23 +664,75 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <p>We’ll look at a few common tips to get you going, but before you start, the best advice is to get out a pencil and paper and draw. Mock up your data, figure out what you want and write down the steps that you would have to do <em>by hand</em>. Then you’ll have a good grasp of what you want, and whether the code is working.</p>
 <p>A few resources that you should consult:</p>
 <ul>
-<li><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html">The official pandas User Guide</a> is comprehensive and will likely provide tutorial support for your use cases. <strong>Start here</strong>.</li>
-<li><a href="https://github.com/pandas-dev/pandas/blob/main/doc/cheatsheet/Pandas_Cheat_Sheet.pdf">The pandas cheatsheet</a> is a fantastic resource which outlines the common pandas tasks along with diagrams of the tabular operations. <strong>Consult this often!</strong></li>
-<li><a href="https://pandas.pydata.org/pandas-docs/stable/reference/index.html">The pandas API reference</a> is a succinct reference of each pandas function. Scroll through the <code>Series</code> options for column-based functions to see if any sound appropriate, or learn how to use one you’ve discovered.</li>
+<li><a href="https://uqlibrary.github.io/technology-training/R/usefullinks.html">Our compilation of useful resources</a></li>
+<li><a href="https://posit.co/resources/cheatsheets/">R and RStudio cheatsheets</a> are fantastic resources which outline the common data tidying tasks along with diagrams of the tabular operations. <strong>Consult these often!</strong></li>
+<li><a href="https://dplyr.tidyverse.org/">The dplyr documentation</a> provides in-depth descriptions and guides for working with dplyr.</li>
 </ul>
 <p>See below for a summary of data cleaning tips you might need to apply to your data, assuming your data is stored in <code>df</code> and <code>"col_name"</code> is a column name</p>
 <section id="reshaping-your-data" class="level3">
 <h3 class="anchored" data-anchor-id="reshaping-your-data">Reshaping your data</h3>
-<p>For simple (or complex) reshaping tasks, like filtering, subsetting and adding new columns, refresh yourself with our second session of this intensive: <a href="../python/Essentials/2-Data_processing.html">2 - Data Processing</a>. Alternatively, the read one of the following user guide articles</p>
-<ul>
-<li><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html">10 minutes to pandas</a></li>
-<li><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html">Indexing and selecting data</a></li>
-<li><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html">Merge, join, concatenate and compare</a></li>
-<li><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html">Reshaping and pivot tables</a></li>
-</ul>
+<p>For simple (or complex) reshaping tasks, like filtering, subsetting and adding new columns, refresh yourself with our second session of this intensive: <a href="./Essentials/2-Data_processing.qmd">2 - Data Processing</a>. Alternatively, the read one of the following user guide articles <!-- 
+* [10 minutes to pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html)
+* [Indexing and selecting data](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html)
+* [Merge, join, concatenate and compare](https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html)
+* [Reshaping and pivot tables](https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html)
+ --></p>
 </section>
 <section id="cleaning-up-inconsistencies" class="level3">
 <h3 class="anchored" data-anchor-id="cleaning-up-inconsistencies">Cleaning up inconsistencies</h3>
+<p>The <code>mutate(...)</code> function is the simplest for cleaning up values in certain columns. Use as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_col =</span> ...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This creates a new column based on the computation of <code>...</code>, which can include other columns. A useful helper function is <code>if_else()</code>, which changes the computation based on the condition. For example, to replace values <code>"A"</code> with <code>"B"</code> in <code>col_name</code>,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">col_name =</span> <span class="fu">if_else</span>(col_name <span class="sc">==</span> <span class="st">"A"</span>, <span class="st">"B"</span>, col_name))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For reshaping and cleaning, consult the <a href="https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf">dplyr cheatsheet</a></p>
+</section>
+<section id="dealing-with-different-types-of-data" class="level3">
+<h3 class="anchored" data-anchor-id="dealing-with-different-types-of-data">Dealing with different types of data</h3>
+<p>Each variable (column) in an R dataframe is stored as a particular data type. Common types include</p>
+<ul>
+<li><code>object</code> for generic non-numeric data. Each cell can contain any Python object, almost always strings but occasionally lists. Mixed types will default to <code>character</code>.</li>
+<li><code>numeric</code> for number</li>
+<li><code>logical</code> for booleans (<code>TRUE</code> or <code>FALSE</code>)</li>
+<li><code>character</code> for literal strings</li>
+<li><code>POSIXct</code> (among others) for timestamps</li>
+<li><code>factor</code> for categorical data</li>
+</ul>
+<p>For applying methods specific to <strong>textual</strong>, <strong>temporal</strong> or <strong>categorical</strong> data, you must first ensure the columns match the dtype you expect. Common mishaps include</p>
+<ul>
+<li>Timestamps or categorical data stored as <code>character</code> types</li>
+<li>Numeric <em>categorical</em> data stored as <code>numeric</code> the type.</li>
+</ul>
+<p>If you need to change the way a variable is stored, you can either do that during the import stage (e.g.&nbsp;by modifying the function <code>read.csv</code>) or with a relevant function, described in the respective sections below.</p>
+<section id="textual" class="level4">
+<h4 class="anchored" data-anchor-id="textual">Textual</h4>
+<p>The simplest way to deal with textual data in R is by using the <a href="https://stringr.tidyverse.org/">stringr</a> package.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Consult the user guide
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should consult the official <em><a href="https://stringr.tidyverse.org/articles/stringr.html">Introduction to stringr</a></em> user guide for details about the package, and the <a href="https://github.com/rstudio/cheatsheets/blob/main/strings.pdf">official cheatsheet</a> for a detailed summary. We’ve included a brief summary of some useful functions here.</p>
+</div>
+</div>
+<!-- 
+For each example below, append `.method` to `df["col_name"]`. For example, the method `.str.replace` should be used as `df["col_name"].str.replace()`. Each function is applied to **every row in "col_name"**
+ -->
+<p>Load in the package with <code>library(stringr)</code>. All stringr functions follow the same format:</p>
+<p><i></i></p><i>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>str_<span class="sc">&lt;</span>function_name<span class="sc">&gt;</span>(input_string, parameters...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</i><p><i></i></p>
+<p>The value for <code>input_string</code> can be a variable(s). If you’re using pipes, you could use <code>select()</code> to choose the columns to include. For example</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(a_string_col) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_length</span>()   <span class="co"># Or any other stringr function</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Some useful functions are included here for reference.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -687,92 +746,52 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>df.replace("old","new")</code></td>
-<td>Replace all values <code>"old"</code> in a <strong>dataframe</strong> with <code>"new"</code></td>
+<td><code>str_detect(...)</code></td>
+<td>Return TRUE/FALSE if pattern is in the string.</td>
 </tr>
 <tr class="even">
-<td><code>df["col_name"].replace("old","new")</code></td>
-<td>Replace all values <code>"old"</code> in a <strong>column</strong> with <code>"new"</code></td>
+<td><code>str_sub(...)</code></td>
+<td>Extract a substring based on character indices (a slice).</td>
 </tr>
 <tr class="odd">
-<td><code>df.rename(columns = {"old_col": "new_col"})</code></td>
-<td>Replace column name <code>"old_col"</code> with <code>"new_col"</code></td>
+<td><code>str_trim(...)</code></td>
+<td>Trim whitespace from start and/or end of the string.</td>
 </tr>
 <tr class="even">
-<td><code>df.fillna("new_na")</code></td>
-<td>Replace all NA/empty in a <strong>dataframe</strong> values with <code>"new_na"</code></td>
+<td><code>str_replace(...)</code></td>
+<td>Replace the first matched pattern in the string (use <code>str_replace_all(...)</code> to replace all).</td>
 </tr>
 <tr class="odd">
-<td><code>df["col_name"].fillna("new_na")</code></td>
-<td>Replace all NA/empty values in a <strong>column</strong> with <code>"new_na"</code></td>
+<td><code>str_c(...)</code></td>
+<td>Join multiple strings into one.</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="dealing-with-different-types-of-data" class="level3">
-<h3 class="anchored" data-anchor-id="dealing-with-different-types-of-data">Dealing with different types of data</h3>
-<p>Each series (column) in pandas is stored as a particular dtype (data type). Common types include</p>
-<ul>
-<li><code>object</code> for generic non-numeric data. Each cell can contain any Python object, almost always strings but occasionally lists. Mixed types will default to <code>object</code>.</li>
-<li><code>int64</code> for integers.</li>
-<li><code>float64</code> for decimals (including scientific notation).</li>
-<li><code>bool</code> for booleans (<code>True</code> or <code>False</code>)</li>
-<li><code>datetime64[ns]</code> for timestamps</li>
-<li><code>category</code> for categorical data</li>
-</ul>
-<p>For applying methods specific to <strong>textual</strong>, <strong>temporal</strong> or <strong>categorical</strong> data, you must first ensure the columns match the dtype you expect. Common mishaps include</p>
-<ul>
-<li>Timestamps or categorical data stored as <code>object</code> dtypes</li>
-<li>Numeric categorical data stored as <code>int64</code> or <code>float64</code> dtypes</li>
-</ul>
-<p>By default all timestamps and categorical data are read in as <code>object</code>s. You can modify <code>pd.read_csv()</code> at the import stage, otherwise use <code>.astype()</code> to change a column’s type (or <code>pd.to_datetime</code> in the case of timestamps):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"A"</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">"A"</span>])       <span class="co"># &lt;-- Time series</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"A"</span>] <span class="op">=</span> df[<span class="st">"A"</span>].astype(<span class="st">"category"</span>)    <span class="co"># &lt;-- Categorical</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"A"</span>] <span class="op">=</span> df[<span class="st">"A"</span>].astype(<span class="st">"object"</span>)      <span class="co"># &lt;-- Object (e.g. string data)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>We’ll look at these more in the respective sections below.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>String changes in pandas v3.0
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Pandas v3.0 changes the (default) behaviour for string columns. They are longer be <code>object</code> dtypes, but <code>str</code> dtypes (by default). Most features will work the same, but it may cause some breaking changes: see the <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/migration-3-strings.html">migration user guide</a> for details.</p>
-<p>As of December 2025, pandas 3.0 is still in the final stages of development.</p>
-</div>
-</div>
-<p>In general, pandas allows you to apply type-specific methods with specific accessors:</p>
-<ul>
-<li><code>df["col_name"].str</code> contains <em>string</em> methods</li>
-<li><code>df["col_name"].dt</code> contains <em>datetime</em> methods</li>
-<li><code>df["col_name"].cat</code> contains <em>categorical</em> methods</li>
-</ul>
-<p>We’ll go through a few useful ones here. Note that</p>
-<ul>
-<li><code>.str</code> methods only work on <code>object</code> dtypes</li>
-<li><code>.dt</code> methods only work on <code>datetime64[ns]</code> dtypes</li>
-<li><code>.cat</code> methods only work on on <code>category</code> types.</li>
-</ul>
-<section id="textual-.str-methods" class="level4">
-<h4 class="anchored" data-anchor-id="textual-.str-methods">Textual (<code>.str</code> methods)</h4>
-<p>When performing text analysis, or for simple string methods, use the methods in <code>df["col_name"].str</code>.</p>
+<section id="time-series" class="level4">
+<h4 class="anchored" data-anchor-id="time-series">Time series</h4>
+<p>The simplest way to deal with temporal data in R is by using the <a href="https://lubridate.tidyverse.org/">lubridate</a> package.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Consult the <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html">user guide</a>
+<span class="screen-reader-only">Tip</span>Consult the user guide
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You should consult the official <em><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html">Working with text data</a></em> user guide for details about string operations. We’ve included a brief summary of some useful functions here.</p>
+<p>You should consult the official <em><a href="https://lubridate.tidyverse.org/articles/lubridate.html">Do more with dates and times in R</a></em> user guide for details about the package, and the <a href="https://rawgit.com/rstudio/cheatsheets/main/lubridate.pdf">official cheatsheet</a> for a detailed summary. We’ve included a brief summary of some useful functions here.</p>
 </div>
 </div>
-<p>For each example below, append <code>.method</code> to <code>df["col_name"]</code>. For example, the method <code>.str.replace</code> should be used as <code>df["col_name"].str.replace()</code>. Each function is applied to <strong>every row in “col_name”</strong></p>
+<p>Load in the package with <code>library(lubridate)</code>. To convert the column <code>dt_col</code> into an appropriate type, use</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>dt_col <span class="ot">&lt;-</span> <span class="fu">as_datetime</span>(df<span class="sc">$</span>dt_col)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>There are other parsing functions, should your needs be more specific. <a href="https://rawgit.com/rstudio/cheatsheets/main/lubridate.pdf">Take a look at the cheatsheet</a> to learn more.</p>
+<p>Most lubridate functions will take in a date-time object (or a variable containing them). You can use the pipe, for example</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(a_datetime_col) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">year</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Some useful functions are included here for reference.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -780,130 +799,74 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 </colgroup>
 <thead>
 <tr class="header">
-<th>Method</th>
+<th>Function</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>.str.cat(...)</code></td>
-<td>Concatenate one or more strings to the end</td>
+<td><code>hour()</code></td>
+<td>Returns the hour part of the datetime. Similarly for other units (e.g.&nbsp;<code>year()</code>, <code>second()</code>).</td>
 </tr>
 <tr class="even">
-<td><code>.str.split(...)</code></td>
-<td>Split the string into a list of strings based on a common delimiter. Inverse of <code>.join()</code></td>
+<td><code>hours(...)</code></td>
+<td>Represents a number of hours (similarly for other units). Useful for arithmetic, e.g.&nbsp;<code>df$dt_col + hours(2)</code>. <strong><em>Can result in impossible dates</em></strong>, e.g.&nbsp;31st Feb.</td>
 </tr>
 <tr class="odd">
-<td><code>.str.join(...)</code></td>
-<td>Join a list of strings into a single string based on a delimiter. Inverse of <code>.split()</code></td>
+<td><code>dhours(...)</code></td>
+<td>Represents a number of hours in terms of seconds (similarly for other units). Useful for arithmetic, e.g.&nbsp;<code>df$dt_col + dhours(2)</code>. <strong><em>Inconsistent units (e.g.&nbsp;months, leap-years) are approximated</em></strong>.</td>
 </tr>
 <tr class="even">
-<td><code>.str.contains(...)</code></td>
-<td>Return <code>True</code>/<code>False</code> if the string contains <code>...</code>. Useful for filtering: <code>df[df["col_name"].str.contains(...)]</code> will subset for those rows in “col_name” which contain “…”.</td>
+<td><code>round_date(...)</code></td>
+<td>Rounds to the near unit specified.</td>
 </tr>
 <tr class="odd">
-<td><code>.str.slice(...)</code></td>
-<td>Return a slice of the strings</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="time-series-.dt-methods" class="level4">
-<h4 class="anchored" data-anchor-id="time-series-.dt-methods">Time series (<code>.dt</code> methods)</h4>
-<p>When performing time series analysis, or for simple temporal methods, use the methods in <code>df["col_name"].dt</code>.</p>
-<p>Note that the column <strong>must be a <code>datetime64[ns]</code> dtype</strong> (you could change the <code>[ns]</code> to a different precision if you’d prefer, like millisecond <code>[ms]</code> or second <code>[s]</code>). To set column <code>df["col_name"]</code>, use <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html">pd.to_datetime</a></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"col_name"</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">"col_name"</span>])`</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Include <code>format="..."</code> to specify the format of your timestamps, according to the <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">standard Python datetime syntax</a>. For example, <code>format="%d/%m/%y"</code> matches two-digit DD/MM/YY, e.g.&nbsp;03/02/26.</p>
-<p>If the timestamp is spread across multiple columns, e.g.</p>
-<div id="e801f2ed" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-stdout">
-<pre><code>   day  month  year
-0   21      3  1987
-1    7      8  2000
-2   15     12  2026</code></pre>
-</div>
-</div>
-<p>you can use <code>pd.to_datetime</code> on those columns (or the whole dataframe if there’s nothing else) to convert them into a single time series</p>
-<div id="2d9841fe" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pd.to_datetime(temporal[[<span class="st">"day"</span>, <span class="st">"month"</span>, <span class="st">"year"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>0   1987-03-21
-1   2000-08-07
-2   2026-12-15
-dtype: datetime64[ns]</code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Consult the <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html">user guide</a>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You should consult the official <em><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html">Time series / date functionality</a></em> user guide for details about temporal operations. We’ve included a brief summary of some useful functions here.</p>
-</div>
-</div>
-<p>For each example below, append <code>.method</code> to <code>df["col_name"]</code>. For example, the method <code>.dt.date</code> should be used as <code>df["col_name"].dt.date</code>. Each function is applied to <strong>every row in “col_name”</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>.dt.date</code></td>
-<td>Return the date part of the timestamp (this is technically an <em>attribute</em>, meaning it’s not a function and should not have brackets <code>()</code>)</td>
-</tr>
-<tr class="even">
-<td><code>.dt.weekday()</code></td>
-<td>Return the day of the week corresponding to the date</td>
-</tr>
-<tr class="odd">
-<td><code>dt.normalize()</code></td>
-<td>Convert all times to midnight</td>
-</tr>
-<tr class="even">
-<td><code>.dt.strftime(...)</code></td>
-<td>Convert a timestamp to a string. Send the format into <code>...</code> according to the <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">standard Python datetime syntax</a></td>
-</tr>
-<tr class="odd">
-<td><code>.resample(...)</code></td>
-<td>For time-based grouping, e.g.&nbsp;average/max/median <span class="math inline">\(x\)</span> per day/hour/minute. Note that this is <strong><em>not</em></strong> a <code>.dt</code> method - it applies directly to the column: <code>df["col_name"].resample(...)</code></td>
+<td><code>with_tz(...)</code></td>
+<td>Convert a date-time to a new time zone</td>
 </tr>
 </tbody>
 </table>
 <section id="filtering" class="level5">
 <h5 class="anchored" data-anchor-id="filtering">Filtering</h5>
 <p>You can filter particular parts of the timestamp as normal, because they’re just numbers:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"col_name"</span>].year <span class="op">==</span> <span class="dv">2026</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>However, you might want to filter from or before a particular <em>timestamp</em>. To do this, use a <code>pd.Timestamp</code> in the condition, e.g.&nbsp;for timestamps after 3rd Feb 2026,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"col_name"</span>] <span class="op">&gt;</span> pd.Timestamp(<span class="dv">2026</span>, <span class="dv">2</span>, <span class="dv">3</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(dt_col) <span class="sc">==</span> <span class="dv">2026</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>However, you might want to filter from or before a particular date-time. Use the parsing functions to do this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(dt_col) <span class="sc">&gt;</span> <span class="fu">as_datetime</span>(<span class="st">"2026/02/03"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="categorical-.cat-methods" class="level4">
-<h4 class="anchored" data-anchor-id="categorical-.cat-methods">Categorical (<code>.cat</code> methods)</h4>
-<p>When analysing categorical data, you can use the methods in <code>df["col_name"].cat</code>. These are particularly useful for data with ordered levels.</p>
-<p>To make a column the <code>"category"</code> type, use <code>.astype("category")</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"col_name"</span>] <span class="op">=</span> df[<span class="st">"col_name"</span>].astype(<span class="st">"category"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="categorical" class="level4">
+<h4 class="anchored" data-anchor-id="categorical">Categorical</h4>
+<p>R has a special, built-in type for categorical data: <code>factor</code>. It stores the different possible values as “levels”, which it maps to your data, making it more efficient than normal strings.</p>
+<p>Factors can also order the levels, making it a good choice for ordered data (e.g.&nbsp;“Small” &lt; “Medium” &lt; “Large”).</p>
+<p>To make the variable <code>cat_col</code> a factor, use the <code>factor()</code> function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>cat_col <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>cat_col)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can use <code>levels(df$cat_col)</code> to see the unique levels.</p>
+<p>For more advanced functions, you can use the <a href="https://forcats.tidyverse.org/">forcats</a> package.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Consult the <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/categorical.html">user guide</a>
+<span class="screen-reader-only">Tip</span>Consult the user guide
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You should consult the official <em><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/categorical.html">Categorical data</a></em> user guide for details about categorical operations. We’ve included a brief summary of some useful functions here.</p>
+<p>You should consult the official <em><a href="https://forcats.tidyverse.org/articles/forcats.html">Introduction to forcats</a></em> user guide for details about the package, and the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/factors.pdf">official cheatsheet</a> for a detailed summary. We’ve included a brief summary of some useful functions here.</p>
 </div>
 </div>
-<p>For each example below, append <code>.method</code> to <code>df["col_name"]</code>. For example, the method <code>.cat.categories</code> should be used as <code>df["col_name"].cat.categories</code>. Each function is applied to <strong>every row in “col_name”</strong>.</p>
+<p>Load in the package with <code>library(forcats)</code>.</p>
+<p>All forcats functions follow the same format:</p>
+<p><i></i></p><i>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fct_<span class="sc">&lt;</span>function_name<span class="sc">&gt;</span>(input_factor, parameters...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</i><p><i></i></p>
+<p>If you’re using pipes, you could use <code>select()</code> to choose the columns to include. For example</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(a_cat_col) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fct_count</span>()   <span class="co"># Or any other forcats function</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Some useful functions are included here for reference.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -911,41 +874,55 @@ dtype: datetime64[ns]</code></pre>
 </colgroup>
 <thead>
 <tr class="header">
-<th>Method</th>
+<th>Function</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>.cut(...)</code></td>
-<td>Group a numeric data into discrete bins. <strong>Apply to numeric columns</strong>, returns a category column.</td>
+<td><code>fct_count()</code></td>
+<td>Count the number of values per level</td>
 </tr>
 <tr class="even">
-<td><code>.cat.categories</code></td>
-<td>Return the categories in the column.</td>
+<td><code>fct_c()</code></td>
+<td>Combine factors with different levels</td>
 </tr>
 <tr class="odd">
-<td><code>.cat.reorder_categories(..., ordered=True)</code></td>
-<td>Change the category order. Exclude <code>ordered=True</code> if the data is not ordered.</td>
+<td><code>fct_relevel(...)</code></td>
+<td>Manually reorder the factor levels</td>
 </tr>
 <tr class="even">
-<td><code>.sort_values(...)</code></td>
-<td>Sort the column based on the category order. Will fail if <code>.cat.ordered == False</code>, and will work for non-category columns (sorting alphabetically for strings and numerically for numbers).</td>
+<td><code>fct_recode(...)</code></td>
+<td>Manually change the levels</td>
+</tr>
+<tr class="odd">
+<td><code>fct_collapse(...)</code></td>
+<td>Collapse multiple levels into a manual groups</td>
+</tr>
+<tr class="even">
+<td><code>fct_other(...)</code></td>
+<td>Collapse selected levels into a single “other” level</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="geospatial" class="level4">
 <h4 class="anchored" data-anchor-id="geospatial">Geospatial</h4>
-<p>To manage geospatial data, you should use the <a href="https://geopandas.org/en/stable/index.html"><code>geopandas</code></a> package. With geopandas, you create GeoDataFrames, which behave like pandas DataFrames with additional behaviour for geospatial columns. Let us know if you’d like help with this!</p>
+<p>Managing geospatial data is a complex task beyond the scope of this introductory intensive. If you’re planning to analyse geospatial data in R, you should check out</p>
+<ul>
+<li><a href="https://r-spatial.github.io/sf/articles/sf1.html">sf</a> (simple features) for <strong>vector data</strong></li>
+<li><a href="https://rspatial.github.io/terra/index.html">terra</a> for <strong>raster data</strong> and more complex vector data</li>
+<li><a href="https://r-spatial.github.io/stars/">stars</a> for spatiotemporal data, irregular grids or other advanced features</li>
+</ul>
+<p>Let us know if you’d like a hand or want to discuss further!</p>
 </section>
 </section>
 </section>
 <section id="what-to-do-when-you-dont-know-what-to-do" class="level2">
 <h2 class="anchored" data-anchor-id="what-to-do-when-you-dont-know-what-to-do">What to do when you don’t know what to do</h2>
 <ol type="1">
-<li><strong>Consult the documentation</strong>. If your function isn’t behaving, go to the specific page for that function. Otherwise, consult a relevant <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html">user guide</a>.</li>
-<li><strong>Search the web for your issue</strong> to find practical and canonical approaches to typical data cleaning tasks. <a href="https://stackoverflow.com/questions/tagged/pandas">Stackoverflow is your friend</a>.</li>
+<li><strong>Consult the documentation</strong>. If your function isn’t behaving, go to the specific page for that function. Otherwise, consult a relevant user guide or <a href="https://posit.co/resources/cheatsheets/">cheat sheet</a>.</li>
+<li><strong>Search the web for your issue</strong> to find practical and canonical approaches to typical data cleaning tasks. <a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow is your friend</a>.</li>
 <li><strong>Ask us while we’re here!</strong> And once we’re gone, shoot us an email at <a href="mailto:training@library.uq.edu.au">training@library.uq.edu.au</a></li>
 <li>Lots of people also ask AI. There are pros and cons, but beware: you’ll get a solution that <em>probably</em> works, but if you don’t know why, <strong>you should double check the data matches what you want</strong> (and try learn what it’s done!).</li>
 </ol>
