@@ -26,6 +26,22 @@ Part of this repository is based on [Paula Andrea Martinez](https://orcid.org/00
 
 If you would like to develop on top of this, please cite the source as mentioned above, and conserve the git history if possible (so authors are credited).
 
+## Automation
+
+The `_processing` folder contains some scripts which run during before and after render, and change depending on whether the render occurs locally or during CI (i.e. the GitHub workflow). Specifically:
+
+### During local renders
+
+* Preprocessing checks all links across the repo and records their status (OK, CHECK, BROKEN, EXEMPT, VALID on ...) in `ok_links.csv` and `check_links_log.csv`. Manually validated links can be updated in `validated_links.csv`.
+* Postprocessing does nothing.
+
+### During workflow renders
+
+* Preprocessing injects banners onto all .qmd files which are associated with upcoming, advertised training. This has the unfortunate consequence of requiring those files to re-render, regardless of the state in `_freeze`.
+* Postprocessing removes banners from files. 
+
+Note that all changes made during workflow renders occur on the runner, none of which are actually commited to the repo. 
+
 ## Contributing
 
  You can [raise an issue](https://github.com/uqlibrary/technology-training/issues) or submit a change in this repository if you spot something that needs fixing.
@@ -68,7 +84,17 @@ This website uses the `[freeze: auto](https://quarto.org/docs/projects/code-exec
 
 When rendering locally after a change, the files in the `_freeze` directory will likely change, so make sure to commit those changes too.
 
-#### {renv} for reproducibility
+#### Managing dependencies
+
+We use {renv} for managing R dependencies and `requirements.txt` (with {venv}) for Python. If your contributions need new or updated packages, you'll need to update these dependencies.
+
+Before you do, some things to consider:
+
+* The website uses an Ubuntu runner. Some Python and R packages are specific to Windows/MacOS, so please ensure that the packages you are updating are required for *Ubuntu*.
+* You will need to use virtual environments. Specifically, your clone of this repo should use Python/R environments that have the same dependencies (**and no more**) as specified in `lock.file` (R) or `requirements.txt` (Python). Once the clones are actually clones, you can then start to add new dependencies as required.
+* Please ensure you only install what is necessary! There are too many dependencies already.
+
+##### {renv} for reproducibility with R
 
 The {renv} package is used to keep track of what R package versions were used to run the chunks of code. This can have several benefits:
 
@@ -83,6 +109,20 @@ However, this means that one should remember to:
 If a package dependency is not caught automatically by {renv} (for example, if a function depends on an optional package), you can manually add it to the `_dependencies.R` file.
 
 Make sure to commit any changes to `renv.lock` and `_dependencies.R`.
+
+##### `requirements.txt` for reproducibility with Python
+
+This repository also comes with a `requirements.txt` file for Python reproducibility. This file keeps track of Python dependencies which are used during website rendering.
+
+If your changes require new Python packages, be sure to include these in the `requirements.txt` file.
+
+To update the `requirements.txt` file, **use a virtual environment manager**. We recommend [venv](https://docs.python.org/3/library/venv.html). 
+
+1. Make a clean Python environment in your local clone of the repo. **Do not check this into version control: ensure the folder is in `.gitignore`.**
+2. Install the packages in `requirements.txt` (typically via `pip install -r requirements.txt`)
+3. Install any other packages you require if you still need to (typically via `pip install ...`)
+4. Update `requirements.txt` (typically via `pip freeze > requirements.txt`).
+5. Commit any changes to `requirements.txt`. Do not commit any {venv} related files.
 
 #### Captions and alternative text for images
 
@@ -108,6 +148,7 @@ Learn more about alt text:
 * [Wikipedia's guide on alt text](https://en.wikipedia.org/wiki/Help:Alt_text)
 * [Wikipedia's example of alt text](https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Accessibility/Alternative_text_for_images#Examples)
 * Amy Cesal's article on [writing alt text for data visualisation](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81)
+
 
 ## Contact
 

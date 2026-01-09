@@ -1,6 +1,6 @@
 project:
   type: website
-  pre-render: _preprocessing/preprocessing.py
+  pre-render: _processing/preprocessing.py
   render:
     - "*.qmd"
     - "*.ipynb"
@@ -11,7 +11,7 @@ project:
     - "!R/UQ R User Group"
     - "!Python/archive"
     - "!Inkscape"
-  post-render: _preprocessing/postprocessing.py
+  post-render: _processing/postprocessing.py
 
 website:
   open-graph: true
