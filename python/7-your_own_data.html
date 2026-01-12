@@ -350,7 +350,7 @@ window.Quarto = {
 <section id="getting-your-setup-right" class="level3">
 <h3 class="anchored" data-anchor-id="getting-your-setup-right">Getting your setup right</h3>
 <p>Nobody likes to encounter this:</p>
-<div id="77164a60" class="cell" data-execution_count="1">
+<div id="3220926c" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -376,7 +376,7 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <li>Where is your data?</li>
 </ol>
 <p>Answering the first question is easy: simply run</p>
-<div id="245e6f28" class="cell" data-execution_count="2">
+<div id="3422f721" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>os.getcwd()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -815,7 +815,7 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"col_name"</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">"col_name"</span>])`</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Include <code>format="..."</code> to specify the format of your timestamps, according to the <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">standard Python datetime syntax</a>. For example, <code>format="%d/%m/%y"</code> matches two-digit DD/MM/YY, e.g.&nbsp;03/02/26.</p>
 <p>If the timestamp is spread across multiple columns, you can use <code>pd.to_datetime</code> on those columns (or the whole dataframe if there’s nothing else) to convert them into a single time series. Take for example this dataframe, stored as a variable called <code>temporal</code>:</p>
-<div id="566b348b" class="cell" data-execution_count="3">
+<div id="9817b50c" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>   day  month  year
 0   21      3  1987
@@ -824,7 +824,7 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 </div>
 </div>
 <p>This command would convert the three series to a single datetime series:</p>
-<div id="d86cf9df" class="cell" data-execution_count="4">
+<div id="9a72715b" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pd.to_datetime(temporal[[<span class="st">"day"</span>, <span class="st">"month"</span>, <span class="st">"year"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>0   1987-03-21
