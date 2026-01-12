@@ -2,6 +2,7 @@ import datetime
 import os
 import re
 import requests
+import sys
 import pandas as pd
 
 
@@ -75,7 +76,7 @@ def test_link(link: str, path_from: str = os.getcwd()) -> tuple[str, str | Excep
 
 def check_links(
     log_path: str = "_processing/check_links_log.csv", verbose: bool = False
-) -> None:
+) -> int:
     """
     Tests the links present in all .*md and .ipynb files
     specified in _quarto.yml and logs output in log_path.
@@ -172,7 +173,16 @@ def check_links(
         > 0
     ):
         print("WARN: Broken links found. Check _processing/check_links_log.csv")
+        return 1
+    else:
+        return 0
 
 
 if __name__ == "__main__":
-    check_links(verbose=True)
+    # Only run if on github (not during render - see preprocessing.py) or in venv
+    if sys.prefix != sys.base_prefix or os.getenv("IN_GITHUB_WORKFLOW") == "true":
+        sys.exit(check_links(verbose=True))
+    else:
+        print(
+            "WARN: Link checking has NOT occured. Is this because you haven't activated the virtual environment?"
+        )

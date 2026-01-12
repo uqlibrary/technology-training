@@ -1,0 +1,33 @@
+# This workflow periodically checks live links on the repo using /_processing/check_links.py
+
+# NOT FOR HERE BUT TO REMEMBER: Use root-level for project paths in intensives? 
+# Might simplify the scripts a lot. i.e. use /data rather than ../../../../data or
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '21 21 * * 0'
+
+name: Check links
+
+env:
+  IN_GITHUB_WORKFLOW: true
+
+jobs:
+  process-and-check-links:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas
+
+      - name: Run link checker
+        run: python3 _processing/check_links.py
+
