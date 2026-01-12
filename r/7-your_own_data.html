@@ -333,7 +333,7 @@ window.Quarto = {
 <ol type="1">
 <li>Click <em>File</em> <span class="math inline">\(\rightarrow\)</span> <em>New Project…</em></li>
 <li>Click <strong>Existing Directory</strong></li>
-<li>Click <em>Browse…</em> and choose <strong><em>top-level folder</em></strong> of your project</li>
+<li>Click <em>Browse…</em> and choose the <strong><em>top-level folder</em></strong> of your project</li>
 </ol></li>
 <li>Create a new script for processing, called <code>processing.R</code> (or whatever you’d like to).</li>
 </ol>
@@ -406,9 +406,9 @@ directory</code></pre>
 <pre><code>C:\Users\...\...\data\example.csv</code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>On unix-like systems, absolute paths are prefixed with a forwardslash <code>/</code>, which also separate folders.</p>
+<p>On Unix-like systems, absolute paths are prefixed with a forwardslash <code>/</code>, which also separate folders.</p>
 <pre><code>/home/user/.../.../data/example.csv</code></pre>
-<p>Alternatively, you also have the option to start from your ‘user’ directory by prefixing with a tilde <code>~</code>:</p>
+<p>Alternatively, you can start from your ‘user’ directory by prefixing with a tilde <code>~</code>:</p>
 <pre><code>~/.../.../data/example.csv</code></pre>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
@@ -505,7 +505,7 @@ directory</code></pre>
 </div>
 <div class="callout-body-container callout-body">
 <p>If you’re using a project, you shouldn’t need to change working directories. Instead, try modifying the path first.</p>
-<p>If you need to change working directories, you can do this with R code,</p>
+<p>If you really need to change working directories, you can do this with R code,</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"path/to/dir"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or in the <strong>Files</strong> tab by navigating to the folder and clicking <em>More</em> <span class="math inline">\(\rightarrow\)</span> <em>Set As Working Directory</em>.</p>
 <p>You should check that it’s worked by running <code>getwd()</code>.</p>
@@ -651,7 +651,8 @@ directory</code></pre>
 <p>Reading <code>.xlsx</code> files can be complicated. You should use the <a href="https://readxl.tidyverse.org/"><code>readxl</code> package</a></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><a href="https://readxl.tidyverse.org/reference/read_excel.html?q=read_excel#null">Check out the documentation</a> for details.</p>
+<p>You can use the argument <code>sheet="..."</code> if you’d like to specify the sheet.</p>
+<p><a href="https://readxl.tidyverse.org/reference/read_excel.html">Check out the documentation</a> for details.</p>
 </div>
 </div>
 </section>
@@ -669,7 +670,7 @@ directory</code></pre>
 <p>See below for a summary of data cleaning tips you might need to apply to your data, assuming your data is stored in <code>df</code> and <code>"col_name"</code> is a column name</p>
 <section id="reshaping-your-data" class="level3">
 <h3 class="anchored" data-anchor-id="reshaping-your-data">Reshaping your data</h3>
-<p>For simple (or complex) reshaping tasks, like filtering, subsetting and adding new columns, refresh yourself with our second session of this intensive: <a href="./Essentials/2-Data_processing.qmd">2 - Data Processing</a>. Alternatively, the read one of the following user guide articles <!-- 
+<p>For simple (or complex) reshaping tasks, like filtering, subsetting and adding new columns, refresh yourself with our second session of this intensive: <a href="./Essentials/2-Data_processing.qmd">2 - Data Processing</a>. Alternatively, read one of the following user guides: <!-- 
 * [10 minutes to pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html)
 * [Indexing and selecting data](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html)
 * [Merge, join, concatenate and compare](https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html)
@@ -684,18 +685,18 @@ directory</code></pre>
 <p>This creates a new column based on the computation of <code>...</code>, which can include other columns. A useful helper function is <code>if_else()</code>, which changes the computation based on the condition. For example, to replace values <code>"A"</code> with <code>"B"</code> in <code>col_name</code>,</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="sc">%&gt;%</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">col_name =</span> <span class="fu">if_else</span>(col_name <span class="sc">==</span> <span class="st">"A"</span>, <span class="st">"B"</span>, col_name))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For reshaping and cleaning, consult the <a href="https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf">dplyr cheatsheet</a></p>
+<p>For reshaping and cleaning, consult the <a href="https://rstudio.github.io/cheatsheets/data-transformation.pdf">dplyr cheatsheet</a>.</p>
 </section>
 <section id="dealing-with-different-types-of-data" class="level3">
 <h3 class="anchored" data-anchor-id="dealing-with-different-types-of-data">Dealing with different types of data</h3>
 <p>Each variable (column) in an R dataframe is stored as a particular data type. Common types include</p>
 <ul>
-<li><code>object</code> for generic non-numeric data. Each cell can contain any Python object, almost always strings but occasionally lists. Mixed types will default to <code>character</code>.</li>
-<li><code>numeric</code> for number</li>
-<li><code>logical</code> for booleans (<code>TRUE</code> or <code>FALSE</code>)</li>
 <li><code>character</code> for literal strings</li>
-<li><code>POSIXct</code> (among others) for timestamps</li>
+<li><code>numeric</code> for numbers</li>
+<li><code>int</code> for integers (no decimals)</li>
 <li><code>factor</code> for categorical data</li>
+<li><code>logical</code> for booleans (<code>TRUE</code> or <code>FALSE</code>)</li>
+<li><code>POSIXct</code> (among others) for timestamps</li>
 </ul>
 <p>For applying methods specific to <strong>textual</strong>, <strong>temporal</strong> or <strong>categorical</strong> data, you must first ensure the columns match the dtype you expect. Common mishaps include</p>
 <ul>
@@ -920,9 +921,9 @@ For each example below, append `.method` to `df["col_name"]`. For example, the m
 <h2 class="anchored" data-anchor-id="what-to-do-when-you-dont-know-what-to-do">What to do when you don’t know what to do</h2>
 <ol type="1">
 <li><strong>Consult the documentation</strong>. If your function isn’t behaving, go to the specific page for that function. Otherwise, consult a relevant user guide or <a href="https://posit.co/resources/cheatsheets/">cheat sheet</a>.</li>
-<li><strong>Search the web for your issue</strong> to find practical and canonical approaches to typical data cleaning tasks. <a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow is your friend</a>.</li>
+<li><strong>Search the web for your issue</strong> to find practical and canonical approaches to typical data cleaning tasks. <a href="https://stackoverflow.com/questions/tagged/r">StackOverflow is your friend</a>.</li>
 <li><strong>Ask us while we’re here!</strong> And once we’re gone, shoot us an email at <a href="mailto:training@library.uq.edu.au">training@library.uq.edu.au</a></li>
-<li>Lots of people also ask AI. There are pros and cons, but beware: you’ll get a solution that <em>probably</em> works, but if you don’t know why, <strong>you should double check the data matches what you want</strong> (and try learn what it’s done!).</li>
+<li>Lots of people also ask AI. There are pros and cons, but beware: you’ll get a solution that <em>probably</em> works, but if you don’t know why, <strong>you should double check the data matches what you want</strong> (and try to understand what it’s done!).</li>
 </ol>
 </section>
 <section id="now-give-it-a-go" class="level2">

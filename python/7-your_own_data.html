@@ -350,7 +350,7 @@ window.Quarto = {
 <section id="getting-your-setup-right" class="level3">
 <h3 class="anchored" data-anchor-id="getting-your-setup-right">Getting your setup right</h3>
 <p>Nobody likes to encounter this:</p>
-<div id="89be0672" class="cell" data-execution_count="1">
+<div id="77164a60" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -376,7 +376,7 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <li>Where is your data?</li>
 </ol>
 <p>Answering the first question is easy: simply run</p>
-<div id="05d4c781" class="cell" data-execution_count="2">
+<div id="245e6f28" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>os.getcwd()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -411,9 +411,9 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <pre><code>C:\Users\...\...\data\example.csv</code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>On unix-like systems, absolute paths are prefixed with a forwardslash <code>/</code>, which also separate folders.</p>
+<p>On Unix-like systems, absolute paths are prefixed with a forwardslash <code>/</code>, which also separate folders.</p>
 <pre><code>/home/user/.../.../data/example.csv</code></pre>
-<p>Alternatively, you also have the option to start from your ‘user’ directory by prefixing with a tilde <code>~</code>:</p>
+<p>Alternatively, you can start from your ‘user’ directory by prefixing with a tilde <code>~</code>:</p>
 <pre><code>~/.../.../data/example.csv</code></pre>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
@@ -664,7 +664,7 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <p>See below for a summary of data cleaning tips you might need to apply to your data, assuming your data is stored in <code>df</code> and <code>"col_name"</code> is a column name</p>
 <section id="reshaping-your-data" class="level3">
 <h3 class="anchored" data-anchor-id="reshaping-your-data">Reshaping your data</h3>
-<p>For simple (or complex) reshaping tasks, like filtering, subsetting and adding new columns, refresh yourself with our second session of this intensive: <a href="../python/Essentials/2-Data_processing.html">2 - Data Processing</a>. Alternatively, the read one of the following user guide articles</p>
+<p>For simple (or complex) reshaping tasks, like filtering, subsetting and adding new columns, refresh yourself with our second session of this intensive: <a href="../python/Essentials/2-Data_processing.html">2 - Data Processing</a>. Alternatively, read one of the following user guides:</p>
 <ul>
 <li><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html">10 minutes to pandas</a></li>
 <li><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html">Indexing and selecting data</a></li>
@@ -740,7 +740,7 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Pandas v3.0 changes the (default) behaviour for string columns. They are longer be <code>object</code> dtypes, but <code>str</code> dtypes (by default). Most features will work the same, but it may cause some breaking changes: see the <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/migration-3-strings.html">migration user guide</a> for details.</p>
+<p>Pandas v3.0 changes the (default) behaviour for string columns. They will no longer be <code>object</code> dtypes, but <code>str</code> dtypes (by default). Most features will work the same, but it may cause some breaking changes: see the <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/migration-3-strings.html">migration user guide</a> for details.</p>
 <p>As of December 2025, pandas 3.0 is still in the final stages of development.</p>
 </div>
 </div>
@@ -754,7 +754,7 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <ul>
 <li><code>.str</code> methods only work on <code>object</code> dtypes</li>
 <li><code>.dt</code> methods only work on <code>datetime64[ns]</code> dtypes</li>
-<li><code>.cat</code> methods only work on on <code>category</code> types.</li>
+<li><code>.cat</code> methods only work on <code>category</code> types.</li>
 </ul>
 <section id="textual-.str-methods" class="level4">
 <h4 class="anchored" data-anchor-id="textual-.str-methods">Textual (<code>.str</code> methods)</h4>
@@ -795,7 +795,7 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 </tr>
 <tr class="odd">
 <td><code>.str.join(...)</code></td>
-<td>Join a list of strings into a single string based on a delimiter. Inverse of <code>.split()</code></td>
+<td>Join a list of strings into a single string (inserting an optional delimiter). Inverse of <code>.split()</code></td>
 </tr>
 <tr class="even">
 <td><code>.str.contains(...)</code></td>
@@ -814,8 +814,8 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 <p>Note that the column <strong>must be a <code>datetime64[ns]</code> dtype</strong> (you could change the <code>[ns]</code> to a different precision if you’d prefer, like millisecond <code>[ms]</code> or second <code>[s]</code>). To set column <code>df["col_name"]</code>, use <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html">pd.to_datetime</a></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"col_name"</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">"col_name"</span>])`</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Include <code>format="..."</code> to specify the format of your timestamps, according to the <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">standard Python datetime syntax</a>. For example, <code>format="%d/%m/%y"</code> matches two-digit DD/MM/YY, e.g.&nbsp;03/02/26.</p>
-<p>If the timestamp is spread across multiple columns, e.g.</p>
-<div id="e159ff34" class="cell" data-execution_count="3">
+<p>If the timestamp is spread across multiple columns, you can use <code>pd.to_datetime</code> on those columns (or the whole dataframe if there’s nothing else) to convert them into a single time series. Take for example this dataframe, stored as a variable called <code>temporal</code>:</p>
+<div id="566b348b" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>   day  month  year
 0   21      3  1987
@@ -823,8 +823,8 @@ Cell <span class="ansi-green-fg">In[1], line 1</span>
 2   15     12  2026</code></pre>
 </div>
 </div>
-<p>you can use <code>pd.to_datetime</code> on those columns (or the whole dataframe if there’s nothing else) to convert them into a single time series</p>
-<div id="6def41da" class="cell" data-execution_count="4">
+<p>This command would convert the three series to a single datetime series:</p>
+<div id="d86cf9df" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pd.to_datetime(temporal[[<span class="st">"day"</span>, <span class="st">"month"</span>, <span class="st">"year"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>0   1987-03-21
@@ -864,7 +864,7 @@ dtype: datetime64[ns]</code></pre>
 <td>Return the day of the week corresponding to the date</td>
 </tr>
 <tr class="odd">
-<td><code>dt.normalize()</code></td>
+<td><code>.dt.normalize()</code></td>
 <td>Convert all times to midnight</td>
 </tr>
 <tr class="even">
@@ -918,7 +918,7 @@ dtype: datetime64[ns]</code></pre>
 <tbody>
 <tr class="odd">
 <td><code>.cut(...)</code></td>
-<td>Group a numeric data into discrete bins. <strong>Apply to numeric columns</strong>, returns a category column.</td>
+<td>Group numeric data into discrete bins. <strong>Apply to numeric columns</strong>, returns a category column.</td>
 </tr>
 <tr class="even">
 <td><code>.cat.categories</code></td>
@@ -930,7 +930,7 @@ dtype: datetime64[ns]</code></pre>
 </tr>
 <tr class="even">
 <td><code>.sort_values(...)</code></td>
-<td>Sort the column based on the category order. Will fail if <code>.cat.ordered == False</code>, and will work for non-category columns (sorting alphabetically for strings and numerically for numbers).</td>
+<td>Sort the column (but not the rest of the dataframe) based on the category order. Will fail if <code>.cat.ordered == False</code>, and will work for non-category columns (sorting alphabetically for strings and numerically for numbers).</td>
 </tr>
 </tbody>
 </table>
@@ -945,9 +945,9 @@ dtype: datetime64[ns]</code></pre>
 <h2 class="anchored" data-anchor-id="what-to-do-when-you-dont-know-what-to-do">What to do when you don’t know what to do</h2>
 <ol type="1">
 <li><strong>Consult the documentation</strong>. If your function isn’t behaving, go to the specific page for that function. Otherwise, consult a relevant <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html">user guide</a>.</li>
-<li><strong>Search the web for your issue</strong> to find practical and canonical approaches to typical data cleaning tasks. <a href="https://stackoverflow.com/questions/tagged/pandas">Stackoverflow is your friend</a>.</li>
+<li><strong>Search the web for your issue</strong> to find practical and canonical approaches to typical data cleaning tasks. <a href="https://stackoverflow.com/questions/tagged/pandas">StackOverflow is your friend</a>.</li>
 <li><strong>Ask us while we’re here!</strong> And once we’re gone, shoot us an email at <a href="mailto:training@library.uq.edu.au">training@library.uq.edu.au</a></li>
-<li>Lots of people also ask AI. There are pros and cons, but beware: you’ll get a solution that <em>probably</em> works, but if you don’t know why, <strong>you should double check the data matches what you want</strong> (and try learn what it’s done!).</li>
+<li>Lots of people also ask AI. There are pros and cons, but beware: you’ll get a solution that <em>probably</em> works, but if you don’t know why, <strong>you should double check the data matches what you want</strong> (and try to understand what it’s done!).</li>
 </ol>
 </section>
 <section id="now-give-it-a-go" class="level2">
