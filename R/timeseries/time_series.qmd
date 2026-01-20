@@ -325,7 +325,7 @@ This is a lot cleaner than what we had originally!
 
 We have previously exported a CSV, which is a great, simple format that can be opened pretty much anywhere. However, if you want to save an R object to reopen it exactly as it was, you can use an R-specific format like RData.
 
-```{r export RData}
+```{r export RData, eval=FALSE}
 save(analytes_summary, file = "data/summary.RData")
 ```
 
@@ -605,11 +605,11 @@ The both tests now indicate the differenced time series is now stationary.
 
 #### Autocorrelation plots
 
-Plot the **autocorrelation function** (ACF) correlogram for the time series. There are *k* lags on the x-axis and the unit of lag is sampling interval (month here). Lag 0 is always the theoretical maximum of 1 and helps to compare other lags. 
+Plot the **autocorrelation function** (ACF) correlogram for the time series. There are *k* lags on the x-axis and the unit of lag is sampling interval (month here). Lag 0 is always the theoretical maximum of 1 and helps to compare other lags.
 
 The cutest explanation of ACF by Dr Allison Horst:
 
-![Autocorrelation function art by Allison Horst](acf_1.jpg)
+![Autocorrelation function art by Allison Horst](images/acf_1.jpg)
 
 See the full artwork series explaining ACF [here](https://qaehs-lib-rtimeseries2022.netlify.app/2022/02/03/acf-art/).
 
