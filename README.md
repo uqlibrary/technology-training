@@ -14,9 +14,10 @@ All programming sessions use the "live-coding" format in which the instructor an
 
 The following sessions are not currently maintained.
 
-| Title | Course notes | Live collaborative pad |
-|:-|:-:|:-:|
-| Introduction to R for Humanities | [md](intro_to_programming/intro_to_programming.md) <sup>[source](intro_to_programming/intro_to_programming.qmd)</sup> | [html](https://cryptpad.fr/code/#/2/code/edit/Op8PvBdGbBxBO9efXUuEYGlB/) |
+| Title | Course notes |
+|:-|:-:|
+| Introduction to R for Humanities | [qmd](R/text_analysis/text_analysis.qmd) |
+| R statistics: time series | [qmd](R/time_series/time_series.qmd) |
 
 ## Licence
 
