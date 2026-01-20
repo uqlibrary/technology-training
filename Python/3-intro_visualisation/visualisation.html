@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python Training (3 of 4): Introductory Data Visualisation – UQ Library Technology Training</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../..//images/laptop_icon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-464d469a26f3df86c765af02c3901629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Python Training (3 of 4): Introductory Data Visualisation – UQ Library Technology Training">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://uqlibrary.github.io/technology-training/images/python.svg">
+<meta property="og:site_name" content="UQ Library Technology Training">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">UQ Library Technology Training</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Orientation/orientation.html"> 
+<span class="menu-text">O-Week</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-user-groups" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">User Groups</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-user-groups">    
+        <li>
+    <a class="dropdown-item" href="https://uqrug.netlify.app/">
+ <span class="dropdown-text">UQ R User Group</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://uqpug.github.io/">
+ <span class="dropdown-text">UQ Python User Group</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://uqlibrary.github.io/technology-training-intensives/"> 
+<span class="menu-text">Training Intensives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../more_training.html"> 
+<span class="menu-text">Training Elsewhere</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart="> 
+<span class="menu-text"><strong>Book a Workshop</strong></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/uqlibrary/technology-training" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Python/1-fundamentals/fundamentals.html"><img src="../../images/python.svg" class="img-fluid" width="20"> Python</a></li><li class="breadcrumb-item"><a href="../../Python/3-intro_visualisation/visualisation.html">3. Introductory Data Visualisation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Acrobat/acrobat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/acrobat.svg" class="img-fluid" width="20"> Acrobat</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Audacity/audacity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/audacity.svg" class="img-fluid" width="20"> Audacity</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Excel/excel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/excel.svg" class="img-fluid" width="20"> Excel</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../GenAI/genai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/ChatGPT_logo.svg" class="img-fluid" width="20"> GenAI</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text"><img src="../../images/git.svg" class="img-fluid" width="20"> Git</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Git/git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git from the command line</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Git/GitHub/GitHub_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub and portfolios</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../LaTeX/overleaf_latex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/overleaf.svg" class="img-fluid" width="20"> <span class="math inline">\(\LaTeX\)</span> with Overleaf</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Loop/loop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/loop.svg" class="img-fluid" width="20"> Loop</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NVivo/nvivo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/nvivo.png" class="img-fluid" width="20"> NVivo</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../OpenRefine/openrefine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/openrefine.svg" class="img-fluid" width="20"> OpenRefine</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../OSM/OpenStreetMap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/openstreetmap.svg" class="img-fluid" width="20"> OpenStreetMap</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Photoshop/photoshop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/photoshop.svg" class="img-fluid" width="20"> Photoshop</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../PowerPoint/powerpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/powerpoint.svg" class="img-fluid" width="20"> PowerPoint</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Premiere_Pro/premiere_pro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/premiere_pro.svg" class="img-fluid" width="20"> Premiere Pro</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><img src="../../images/python.svg" class="img-fluid" width="20"> Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Python/1-fundamentals/fundamentals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. The Fundamentals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Python/2-data_processing/data_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Managing Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Python/3-intro_visualisation/visualisation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">3. Introductory Data Visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Python/4-stats_and_further_vis/stats_and_vis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Statistics and Further Visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Python/5-python_toolkit/python_toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Building your Python toolkit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Python/useful_links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Further resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text"><img src="../../images/QGIS.svg" class="img-fluid" width="20"> QGIS</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/intro/QGIS_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/reports/QGIS_reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Refined Maps for Publication</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/raster/QGIS_raster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Raster analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/vector/QGIS_vector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Vector analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../QGIS/fieldwork/QGIS_fieldwork.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Fieldwork Data Collection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Qualtrics/qualtrics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/XM.svg" class="img-fluid" width="20"> Qualtrics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text"><img src="../../images/R.svg" class="img-fluid" width="20"> R with RStudio</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">0. Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/rstudio_intro/rstudio_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Getting started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/dplyr/dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. dplyr: data transformation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/ggplot2_intro/ggplot2_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. ggplot2: introduction to visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/ggplot2_intermediate/ggplot2_intermediate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. ggplot2: intermediate visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/tidyverse_next_steps/tidyverse_next_steps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. tidyr and purrr: tidying and loops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/reports/reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Quarto: reproducible publishing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/heatmaps/heatmaps_intermediate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Heatmaps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/shiny/shiny.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Shiny web apps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/packaging/packaging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Functions and packaging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/ANOVA-lm/anova-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. ANOVA and linear regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../R/usefullinks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Further resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../uMap/umap_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/uMap.svg" class="img-fluid" width="20"> uMap</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Shell/shell_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/bash.svg" class="img-fluid" width="20"> Unix Shell</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Voyant/voyant.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/voyant.png" class="img-fluid" width="20"> Voyant Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Word/word.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="../../images/word.svg" class="img-fluid" width="20"> Word</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a>
+  <ul class="collapse">
+  <li><a href="#spyder-version" id="toc-spyder-version" class="nav-link" data-scroll-target="#spyder-version">Spyder version</a></li>
+  <li><a href="#modules-and-data" id="toc-modules-and-data" class="nav-link" data-scroll-target="#modules-and-data">Modules and data</a></li>
+  </ul></li>
+  <li><a href="#seaborn-for-simple-visualisations" id="toc-seaborn-for-simple-visualisations" class="nav-link" data-scroll-target="#seaborn-for-simple-visualisations">Seaborn for simple visualisations</a>
+  <ul class="collapse">
+  <li><a href="#categorical-plots" id="toc-categorical-plots" class="nav-link" data-scroll-target="#categorical-plots">Categorical plots</a></li>
+  <li><a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions">Distributions</a></li>
+  <li><a href="#activity-1" id="toc-activity-1" class="nav-link" data-scroll-target="#activity-1">Activity 1</a></li>
+  <li><a href="#relational-plots" id="toc-relational-plots" class="nav-link" data-scroll-target="#relational-plots">Relational plots</a></li>
+  <li><a href="#activity-2" id="toc-activity-2" class="nav-link" data-scroll-target="#activity-2">Activity 2</a></li>
+  </ul></li>
+  <li><a href="#going-deeper-with-matplotlib" id="toc-going-deeper-with-matplotlib" class="nav-link" data-scroll-target="#going-deeper-with-matplotlib">Going deeper with <code>matplotlib</code></a>
+  <ul class="collapse">
+  <li><a href="#saving-plots" id="toc-saving-plots" class="nav-link" data-scroll-target="#saving-plots">Saving plots</a></li>
+  <li><a href="#making-modifications" id="toc-making-modifications" class="nav-link" data-scroll-target="#making-modifications">Making modifications</a></li>
+  <li><a href="#annotations" id="toc-annotations" class="nav-link" data-scroll-target="#annotations">Annotations</a></li>
+  <li><a href="#axis-limits" id="toc-axis-limits" class="nav-link" data-scroll-target="#axis-limits">Axis limits</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#figure--to-axes-level-plot" id="toc-figure--to-axes-level-plot" class="nav-link" data-scroll-target="#figure--to-axes-level-plot">Figure- to Axes-level plot</a></li>
+  <li><a href="#relational-plots-1" id="toc-relational-plots-1" class="nav-link" data-scroll-target="#relational-plots-1">Relational Plots</a></li>
+  <li><a href="#distributions-1" id="toc-distributions-1" class="nav-link" data-scroll-target="#distributions-1">Distributions</a></li>
+  <li><a href="#categorical-plots-1" id="toc-categorical-plots-1" class="nav-link" data-scroll-target="#categorical-plots-1">Categorical Plots</a></li>
+  <li><a href="#other-plots" id="toc-other-plots" class="nav-link" data-scroll-target="#other-plots">Other Plots</a></li>
+  </ul></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Python/1-fundamentals/fundamentals.html"><img src="../../images/python.svg" class="img-fluid" width="20"> Python</a></li><li class="breadcrumb-item"><a href="../../Python/3-intro_visualisation/visualisation.html">3. Introductory Data Visualisation</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Python Training (3 of 4): Introductory Data Visualisation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- Upcoming workshops -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Upcoming workshop(s) available!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The next workshop is on <strong>Fri Mar 13 at 09:30 AM.</strong></p>
+<p><a href="https://studenthub.uq.edu.au/students/events/detail/6050899">Book in to the next offering now.</a></p>
+<p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
+</div>
+</div>
+<p>In this third workshop we will cover</p>
+<ul>
+<li>Simple visualisations with seaborn</li>
+<li>Making modifications with matplotlib</li>
+</ul>
+<section id="setting-up" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
+<section id="spyder-version" class="level3">
+<h3 class="anchored" data-anchor-id="spyder-version">Spyder version</h3>
+<p>Before we begin, please check which version of Spyder you’re using (you can see this in the Anaconda Navigator, or in Help &gt; About Spyder). <strong>If it’s less than 6</strong>, you should update Spyder before continuing. However, if you’re in a workshop, this will take too long - instead, use the following workaround if your plots don’t work:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>More on this later.</p>
+</section>
+<section id="modules-and-data" class="level3">
+<h3 class="anchored" data-anchor-id="modules-and-data">Modules and data</h3>
+<p>We’ll need three modules today:</p>
+<div id="568af9b3" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>For this workshop we’ll be working from the “Players2024.csv” dataset. If you don’t have it yet,</p>
+<ol type="1">
+<li><a href="data/Players2024.csv">Download the dataset</a>.</li>
+<li>Create a folder in <strong>in the same location as your script</strong> called “data”.</li>
+<li>Save the dataset there.</li>
+</ol>
+<p>We should then bring it in with pandas:</p>
+<div id="417aafec" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/Players2024.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Take a quick peak at the dataset to remind yourself</p>
+<div id="f6181437" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        name  birth_date  height_cm   positions nationality  \
+0               James Milner  1986-01-04      175.0    Midfield     England   
+1        Anastasios Tsokanis  1991-05-02      176.0    Midfield      Greece   
+2              Jonas Hofmann  1992-07-14      176.0    Midfield     Germany   
+3                 Pepe Reina  1982-08-31      188.0  Goalkeeper       Spain   
+4              Lionel Carole  1991-04-12      180.0    Defender      France   
+...                      ...         ...        ...         ...         ...   
+5930  Oleksandr Pshenychnyuk  2006-05-01      180.0    Midfield     Ukraine   
+5931            Alex Marques  2005-10-23      186.0    Defender    Portugal   
+5932             Tomás Silva  2006-05-25      175.0    Defender    Portugal   
+5933             Fábio Sambú  2007-09-06      180.0      Attack    Portugal   
+5934          Hakim Sulemana  2005-02-19      164.0      Attack       Ghana   
+
+      age                                    club  
+0      38  Brighton and Hove Albion Football Club  
+1      33        Volou Neos Podosferikos Syllogos  
+2      32             Bayer 04 Leverkusen Fußball  
+3      42                             Calcio Como  
+4      33                      Kayserispor Kulübü  
+...   ...                                     ...  
+5930   18              ZAO FK Chornomorets Odessa  
+5931   18                  Boavista Futebol Clube  
+5932   18                  Boavista Futebol Clube  
+5933   17                  Boavista Futebol Clube  
+5934   19                    Randers Fodbold Club  
+
+[5935 rows x 7 columns]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="seaborn-for-simple-visualisations" class="level2">
+<h2 class="anchored" data-anchor-id="seaborn-for-simple-visualisations">Seaborn for simple visualisations</h2>
+<p>To begin our visualisations, we’ll use the package <a href="https://seaborn.pydata.org/index.html">seaborn</a>, which allows you to quickly whip up decent graphs.</p>
+<p>Seaborn has three plotting functions</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(...) <span class="co"># for categorical plotting, e.g. bar plots, box plots etc.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(...) <span class="co"># for relational plotting, e.g. line plots, scatter plots</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sns.displot(...) <span class="co"># for distributions, e.g. histograms</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We’ll begin with the first.</p>
+<blockquote class="blockquote">
+<p>It’s called “seaborn” as a reference to fictional character <a href="https://en.wikipedia.org/wiki/Sam_Seaborn">Sam Seaborn</a>, whose initials are “sns”.</p>
+</blockquote>
+<section id="categorical-plots" class="level3">
+<h3 class="anchored" data-anchor-id="categorical-plots">Categorical plots</h3>
+<p>Categorical plots are produced with seaborn’s <code>sns.catplot()</code> function. There are two key pieces of information to pass:</p>
+<ul>
+<li>The data</li>
+<li>The variables</li>
+</ul>
+<p>Let’s see if there’s a relationship between the players’ <strong>heights</strong> and <strong>positions</strong>, by placing their positions on the <span class="math inline">\(x\)</span> axis and heights on the <span class="math inline">\(y\)</span>.</p>
+<div id="b7fba602" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-5-output-1.png" width="487" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Our first graph! This is called a <em>swarm</em> plot; it’s like a scatter plot for categorical variables.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>If your plots don’t appear…
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>…<strong><em>AND</em></strong> you don’t have an error, then you might have a Spyder version with a bug.</p>
+<p>The simplest workaround is to run <code>plt.show()</code> every time you make a plot. If you have time, you should update Spyder.</p>
+</div>
+</div>
+</div>
+<p>It’s already revealed two things to us about the data:</p>
+<ul>
+<li>There are some incorrect heights - nobody is shorter than 25cm!</li>
+<li>Someone’s position is “missing”</li>
+</ul>
+<p>Let’s get rid of these with the data analysis techniques from last session</p>
+<div id="0858d6b0" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove missing position</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"positions"</span>] <span class="op">!=</span> <span class="st">"Missing"</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure reasonable heights</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"height_cm"</span>] <span class="op">&gt;</span> <span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Run the plot again, it’s more reasonable now</p>
+<div id="76e1835f" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-7-output-1.png" width="487" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="bar-plots" class="level4">
+<h4 class="anchored" data-anchor-id="bar-plots">Bar plots</h4>
+<p>Swarm plots are interesting but not standard. You can change the plot type with the <code>kind</code> parameter</p>
+<div id="f1326865" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"bar"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-8-output-1.png" width="487" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Many aspects of your plot can be adjusted by sending in additional parameters and is where seaborn excels.</p>
+</blockquote>
+<p>It seems like goalkeepers are taller, but not by much. Let’s look at the standard deviation for each position by changing the <code>estimator =</code> parameter (default is mean)</p>
+<div id="566c9920" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"bar"</span>, estimator <span class="op">=</span> <span class="st">"std"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-9-output-1.png" width="488" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Clearly there’s a lot less variation in goalkeepers - they’re all tall.</p>
+</section>
+<section id="detour---line-length" class="level4">
+<h4 class="anchored" data-anchor-id="detour---line-length">Detour - line length</h4>
+<p>Notice that our last line was longer than 79 characters? That’s bad Python, and hard to read. We can fix this by making it a multi-line function, placing arguments on new lines, according to <a href="https://peps.python.org/pep-0008/#code-lay-out">PEP 8</a></p>
+<div id="24ce9f3b" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"bar"</span>, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>            estimator <span class="op">=</span> <span class="st">"std"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-10-output-1.png" width="488" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="box-plots" class="level4">
+<h4 class="anchored" data-anchor-id="box-plots">Box plots</h4>
+<p>Let’s make box plots instead. It’s the same procedure, just change to <code>kind = "box"</code> and remove <code>estimator =</code></p>
+<div id="8484518d" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-11-output-1.png" width="487" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Just as we predicted.</p>
+</section>
+</section>
+<section id="distributions" class="level3">
+<h3 class="anchored" data-anchor-id="distributions">Distributions</h3>
+<section id="histograms" class="level4">
+<h4 class="anchored" data-anchor-id="histograms">Histograms</h4>
+<p>Let’s move to the “Age” parameter now. We can look at the distribution of ages with</p>
+<div id="df7adbcd" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-12-output-1.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Looks a bit funny with those gaps - let’s change the number of bins with <code>bins = 28</code></p>
+<div id="77ce1ace" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, bins <span class="op">=</span> <span class="dv">28</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-13-output-1.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, what if you wanted to look at the distribution for different variables? We can make a separate distribution for each position with the <code>col = "positions"</code> argument, specifying a new row for each position</p>
+<div id="ac82b6da" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, bins <span class="op">=</span> <span class="dv">28</span>, col <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-14-output-1.png" width="1910" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="kernel-density-estimates" class="level4">
+<h4 class="anchored" data-anchor-id="kernel-density-estimates">Kernel density estimates</h4>
+<p>Finally, you don’t <em>have</em> to do histograms. You could also do a Kernel Density Estimate, with <code>kind = "kde"</code> (let’s remove <code>bins =</code> and <code>row =</code>)</p>
+<div id="f2cb82a5" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, kind <span class="op">=</span> <span class="st">"kde"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-15-output-1.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you want a separate line for each position, we should indicate that each position needs a different colour/hue with <code>hue = "positions"</code></p>
+<div id="ab6e5ed0" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>, kind <span class="op">=</span> <span class="st">"kde"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-16-output-1.png" width="603" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="activity-1" class="level3">
+<h3 class="anchored" data-anchor-id="activity-1">Activity 1</h3>
+<p>Create a histogram which looks at the distribution of heights, with a separate distribution for each position, distinguished by colour. Then, use the <code>multiple = "stack"</code> parameter to make it a bit neater.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="b74fa318" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>, multiple <span class="op">=</span> <span class="st">"stack"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-17-output-1.png" width="603" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="relational-plots" class="level3">
+<h3 class="anchored" data-anchor-id="relational-plots">Relational plots</h3>
+<p>It seems like players peak in their mid-twenties, but goalkeepers stay for longer. Let’s see if there’s a relationship between players’ <strong>age</strong> and <strong>height</strong></p>
+<section id="scatter-plots" class="level4">
+<h4 class="anchored" data-anchor-id="scatter-plots">Scatter plots</h4>
+<p>We’ll start with a scatter plot</p>
+<div id="0a2f9361" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-18-output-1.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Not much of a trend there, although the bottom-right looks a bit emptier than the rest (could it be that short old players are the first to retire?).</p>
+<p>We can use <code>hue =</code> to have a look at positions again</p>
+<div id="082825cb" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-19-output-1.png" width="585" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Yup, goalkeepers are tall, and everyone else is a jumble.</p>
+</section>
+<section id="line-plots" class="level4">
+<h4 class="anchored" data-anchor-id="line-plots">Line plots</h4>
+<p>Let’s do a line plot of the average height per age.</p>
+<div id="87847d59" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"line"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-20-output-1.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Seems pretty flat, except the ends are a bit weird because there’s not much data. Let’s eliminate everything before 17 and after 38 and plot it</p>
+<div id="a8bb0a84" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create smaller dataframe</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>condition <span class="op">=</span> (df[<span class="st">"age"</span>] <span class="op">&gt;</span> <span class="dv">17</span>) <span class="op">&amp;</span> (df[<span class="st">"age"</span>] <span class="op">&lt;</span> <span class="dv">38</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>inner_ages <span class="op">=</span> df[condition]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Line plot</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"line"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-21-output-1.png" width="471" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Looks a bit shaky but that’s just because it’s zoomed in - notice that we go from 182cm to 184cm. We’ll fix this when we look at matplotlib in the next section.</p>
+</section>
+<section id="combining-the-two" class="level4">
+<h4 class="anchored" data-anchor-id="combining-the-two">Combining the two</h4>
+<p>We can combine our scatter and line plots together.</p>
+<ol type="1">
+<li>Make the first plot as normal</li>
+<li>For all additional (overlaying) plots, use an <strong>axes-level plot</strong> instead of <code>sns.relplot()</code> etc. These just draw the points/bars/lines, and are normally behind-the-scenes. There’s one for every plot type, and look like
+<ul>
+<li><code>sns.lineplot()</code></li>
+<li><code>sns.scatterplot()</code></li>
+<li><code>sns.boxplot()</code></li>
+<li><code>sns.histplot()</code></li>
+<li>etc.</li>
+</ul></li>
+</ol>
+<p>For example,</p>
+<div id="d5a5bd32" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-22-output-1.png" width="585" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>You can’t include <code>kind =</code> inside an axes level plot</strong></p>
+</blockquote>
+<p>Let’s swap the colour variable from the scatter plot to the line plot</p>
+<div id="43ca44de" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-23-output-1.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Finally, let’s make the scatter dots smaller with <code>s = 10</code> and grey with <code>color = "grey"</code>.</p>
+<div id="17a3ce9a" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-24-output-1.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="activity-2" class="level3">
+<h3 class="anchored" data-anchor-id="activity-2">Activity 2</h3>
+<p>It’s really important to become familiar with the documentation. Go to the <a href="https://seaborn.pydata.org/generated/seaborn.relplot.html"><code>sns.relplot</code> documentation</a>, and look up the following parameters:</p>
+<ul>
+<li><code>col</code></li>
+<li><code>col_wrap</code></li>
+<li><code>col_order</code></li>
+<li><code>hue_order</code></li>
+<li><code>legend</code></li>
+</ul>
+<p>Using those parameters, create a scatter plot for age vs height (like above), which meets the following conditions:</p>
+<ul>
+<li>Separate the plots for each position.</li>
+<li>Apply a different colour to each position.</li>
+<li>Arrange the plots in <strong>two</strong> columns</li>
+<li>Remove the legend</li>
+<li>Manually order the colours:
+<ol type="1">
+<li>Attack</li>
+<li>Midfield</li>
+<li>Defender</li>
+<li>Goalkeeper</li>
+</ol></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For the ordering, you might want to make a list with the desired order, e.g.&nbsp;<code>order = ["Attack", "Midfield", ... ]</code></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="6fa1ad20" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> [<span class="st">"Attack"</span>, <span class="st">"Midfield"</span>, <span class="st">"Defender"</span>, <span class="st">"Goalkeeper"</span>]</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>, </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>            col <span class="op">=</span> <span class="st">"positions"</span>, col_wrap <span class="op">=</span> <span class="dv">2</span>, hue_order <span class="op">=</span> order, </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>            col_order <span class="op">=</span> order)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-25-output-1.png" width="1074" height="950" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="going-deeper-with-matplotlib" class="level2">
+<h2 class="anchored" data-anchor-id="going-deeper-with-matplotlib">Going deeper with <code>matplotlib</code></h2>
+<p>Seaborn is great for simple and initial visualisations, but when you need to make adjustments it gets tricky. At its core, seaborn is just a simple way of using <a href="https://matplotlib.org/">matplotlib</a>, an extensive and popular plotting package. It was created as a way of doing MATLAB visualisations with Python, so if you’re coming from there, things will feel familiar.</p>
+<p><strong>Pros</strong></p>
+<ul>
+<li>Customisable. You can tweak almost every parameter of the visualisations</li>
+<li>Fast. It can handle large data</li>
+<li>Popular. Lots of people use it, and knowing it will help you collaborate</li>
+</ul>
+<p><strong>Cons</strong> - a bit programmy</p>
+<ul>
+<li>Steep-ish learning curve. Creating basic plots can be easy, but its set up with enough complexity that it takes a bit of work to figure out what’s going on.</li>
+<li>Cumbersome. You can tweak almost everything, but this means that it can take some effort to tweak <em>anything</em>.</li>
+</ul>
+<p>We’re barely going to touch the matplotlib surface, but we’ll look at some essentials.</p>
+<section id="saving-plots" class="level3">
+<h3 class="anchored" data-anchor-id="saving-plots">Saving plots</h3>
+<p>Before we move to adjusting the plot, let’s just look at how you save it. While you <em>can</em> do this with seaborn, the matplotlib way is also very simple.</p>
+<p>As a first step, you should make a new folder. Navigate using your file explorer to the project and create a new folder called “plots”.</p>
+<p>Next, save the current plot with <code>plt.savefig("place_location_here")</code>, and <strong>we have to do this at the same time that we make the plot</strong>. Let’s save our previous overlaying plot:So run all this code at once:</p>
+<div id="00718071" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"plots/first_saved_plot.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-26-output-1.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="making-modifications" class="level3">
+<h3 class="anchored" data-anchor-id="making-modifications">Making modifications</h3>
+<section id="titles" class="level4">
+<h4 class="anchored" data-anchor-id="titles">Titles</h4>
+<p>Notice that the <span class="math inline">\(y\)</span> axis has an ugly label? That’s because seaborn is just drawing from your dataframe.</p>
+<p>We can change axis labels with <code>plt.ylabel()</code></p>
+<div id="b2fc4c2b" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting functions</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Customisation</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>Text(4.8166666666666655, 0.5, 'Height (cm)')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-27-output-2.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>and similarly you could change <code>plt.xlabel(...)</code>.</p>
+<blockquote class="blockquote">
+<p>Make sure you run the above line <strong>at the same time</strong> as your plotting function. You can either * Highlight <strong>all</strong> the code and press <kbd>F9</kbd> * Make a cell with <code>#%%</code> and press <kbd>ctrl</kbd> + <kbd>enter</kbd></p>
+</blockquote>
+<p>We can also change the legend title to “positions” with <code>plt.legend()</code></p>
+<div id="7dfbab43" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting functions</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Customisation</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-28-output-1.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>And its location with <code>loc = "lower left"</code></p>
+<div id="f4136d51" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting functions</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Customisation</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-29-output-1.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>And give the whole plot a title with <code>plt.title()</code></p>
+<div id="26bc18ea" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>Text(0.5, 1.0, "Are players' heights and ages related?")</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-30-output-2.png" width="470" height="490" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="annotations" class="level3">
+<h3 class="anchored" data-anchor-id="annotations">Annotations</h3>
+<p>You might want to annotate your plot with text and arrows. Text is simple with the <code>plt.text()</code> function; we just need to specify its coordinates and the contents.</p>
+<div id="ca7c8227" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>Text(38.5, 181, 'Not enough\ndata for mean')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-31-output-2.png" width="500" height="490" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>The characters <code>\n</code> mean ‘new line’</p>
+</blockquote>
+<p>We could annotate with arrows too. This is more complex, using the <code>plt.annotate()</code> function:</p>
+<div id="d09a08b3" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>plt.annotate(text <span class="op">=</span> <span class="st">"No short</span><span class="ch">\n</span><span class="st">older players"</span>, xy <span class="op">=</span> [<span class="dv">37</span>,<span class="dv">165</span>], xytext <span class="op">=</span> [<span class="dv">40</span>,<span class="dv">172</span>],</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>             arrowprops <span class="op">=</span> <span class="bu">dict</span>(width <span class="op">=</span> <span class="dv">1</span>, headwidth <span class="op">=</span> <span class="dv">10</span>, headlength <span class="op">=</span> <span class="dv">10</span>, </span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>                          facecolor <span class="op">=</span> <span class="st">"black"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>Text(40, 172, 'No short\nolder players')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-32-output-2.png" width="512" height="490" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>I’ve split this over multiple lines, but its still <strong>one function</strong> - check the brackets</p>
+</blockquote>
+<p>All together, our plot has become</p>
+</section>
+<section id="axis-limits" class="level3">
+<h3 class="anchored" data-anchor-id="axis-limits">Axis limits</h3>
+<p>The last feature we’ll look at is editing axis limits. Let’s try to make more room in the bottom left for the legend with the functions <code>plt.xlim()</code> and <code>plt.ylim()</code></p>
+<div id="22466a44" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>, loc <span class="op">=</span> <span class="st">"lower left"</span>)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">"No short</span><span class="ch">\n</span><span class="st">older players"</span>, [<span class="dv">37</span>,<span class="dv">165</span>], [<span class="dv">40</span>,<span class="dv">172</span>], </span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>             arrowprops <span class="op">=</span> <span class="bu">dict</span>(width <span class="op">=</span> <span class="dv">1</span>,headwidth <span class="op">=</span> <span class="dv">10</span>,headlength <span class="op">=</span> <span class="dv">10</span>, </span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>                               facecolor <span class="op">=</span> <span class="st">"black"</span>))</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Axis limits</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>plt.xlim([<span class="dv">10</span>,<span class="dv">45</span>])</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="dv">150</span>,<span class="dv">210</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-33-output-1.png" width="500" height="490" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>I’m not sure that looks any better, but you get the idea!</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>As we have seen, seaborn and matplotlib are a powerful tools for visualising data efficiently and aesthetically. A range of other plot types and customisation is available, for inspiration have a look at the <a href="https://seaborn.pydata.org/examples/index.html">seaborn gallery</a> and <a href="https://matplotlib.org/stable/gallery/">matplotlib gallery</a>. If any of the content here was too challenging, you have other related issues you’d like to discuss or would simply like to learn more, we the technology training team would love to hear from you. You can contact us at <a href="mailto:training@library.uq.edu.au" class="email">training@library.uq.edu.au</a>.</p>
+<p>Here’s a summary of what we’ve covered</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Topic</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Plotting</strong></td>
+<td>Using <code>seaborn</code>’s <code>sns.catplot()</code> (categorical), <code>sns.relplot()</code> (relational, i.e.&nbsp;scatter &amp; line) and <code>sns.displot()</code> (distributive) functions, we can make plots by specifying various parameters, e.g.&nbsp;<code>x = ...</code>, <code>y = ...</code>, <code>hue = ...</code>, etc.</td>
+</tr>
+<tr class="even">
+<td><strong>Introducing variables into visualisations</strong></td>
+<td>We don’t just have to use <span class="math inline">\(x\)</span>- and <span class="math inline">\(y\)</span>-axes: we can use colour (<code>hue = ...</code>), shape (<code>style = ...</code>), size (<code>size = ...</code>) and facets (<code>col = ...</code>, <code>row = ...</code>) to introduce more variables to our visualisations.</td>
+</tr>
+<tr class="odd">
+<td><strong>Overlaying plots</strong></td>
+<td>By combining a figure-level plot (e.g.&nbsp;<code>sns.catplot()</code>) with multiple axes-level plots (e.g.&nbsp;<code>sns.boxplot()</code>), we can overlay multiple graphs onto the same visualisation</td>
+</tr>
+<tr class="even">
+<td><strong>Saving figures</strong></td>
+<td>We can use <code>matplotlib</code>’s function <code>plt.savefig(...)</code> to export our plots</td>
+</tr>
+<tr class="odd">
+<td><strong>Customisations</strong></td>
+<td>The functions <code>plt.xlabel()</code>, <code>plt.ylabel()</code> and <code>plt.title()</code> allow you to customise your plot’s axes. The <code>plt.legend()</code> function modifies the legend, and <code>plt.xlim()</code> and <code>plt.ylim()</code> adjust the axis limits.</td>
+</tr>
+<tr class="even">
+<td><strong>Annotations</strong></td>
+<td>Use the functions <code>plt.text()</code> and <code>plt.annotate()</code> to draw lines and text on your visualisation.</td>
+</tr>
+</tbody>
+</table>
+<p>Below is a summary of <em>all</em> available* plots in seaborn. Most of these have been examined in either the introductory session or this one, however, there are some which we have not yet looked at. The <a href="https://seaborn.pydata.org/api.html">seaborn documentation</a> and <a href="https://seaborn.pydata.org/tutorial.html">tutorials</a> provide desciptions and advice for all available plots.</p>
+<blockquote class="blockquote">
+<p>*As of v0.12.2</p>
+</blockquote>
+<section id="figure--to-axes-level-plot" class="level3">
+<h3 class="anchored" data-anchor-id="figure--to-axes-level-plot">Figure- to Axes-level plot</h3>
+<p>All the plots below are figure-level. To produce the axes-level plot of the same type, simply use</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="op">****</span>plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>where <code>****</code> is given in <code>kind = "****"</code> for the corresponding figure-level plot. For example,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sns.relplot( ..., kind <span class="op">=</span> <span class="st">"scatter"</span>, ... ) <span class="co"># Figure-level scatter plot</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>sns.scatterplot( ... ) <span class="co"># Axes-level scatter plot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="relational-plots-1" class="level3">
+<h3 class="anchored" data-anchor-id="relational-plots-1">Relational Plots</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Plot Name</th>
+<th>Code</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Scatter Plot</td>
+<td><code>sns.relplot( ... , kind = "scatter", ... )</code></td>
+<td>Requires numerical data</td>
+</tr>
+<tr class="even">
+<td>Line Plot</td>
+<td><code>sns.relplot( ... , kind = "line", ... )</code></td>
+<td>Requires numerical data</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="distributions-1" class="level3">
+<h3 class="anchored" data-anchor-id="distributions-1">Distributions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Plot Name</th>
+<th>Code</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Histogram</td>
+<td><code>sns.displot( ... , kind = "hist", ... )</code></td>
+<td>Can be univariate (<code>x</code> only) or bivariate (<code>x</code> and <code>y</code>)</td>
+</tr>
+<tr class="even">
+<td>Kernel Density Estimate</td>
+<td><code>sns.displot( ... , kind = "kde" , ... )</code></td>
+<td>Can be univariate (<code>x</code> only) or bivariate (<code>x</code> and <code>y</code>)</td>
+</tr>
+<tr class="odd">
+<td>ECDF*</td>
+<td><code>sns.displot( ... , kind = "ecdf", ... )</code></td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>Rug Plot</td>
+<td><code>sns.displot( ... , rug = True , ... )</code></td>
+<td>Combine with another <code>sns.displot</code>, plots marginal distributions</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>*Empirical Cumulative Distribution Functions</p>
+</blockquote>
+</section>
+<section id="categorical-plots-1" class="level3">
+<h3 class="anchored" data-anchor-id="categorical-plots-1">Categorical Plots</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Plot Name</th>
+<th>Code</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Strip Plot</td>
+<td><code>sns.catplot( ... , kind = "strip" , ... )</code></td>
+<td>Like a scatterplot for categorical data</td>
+</tr>
+<tr class="even">
+<td>Swarm Plot</td>
+<td><code>sns.catplot( ... , kind = "swarm" , ... )</code></td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>Box Plot</td>
+<td><code>sns.catplot( ... , kind = "box" , ... )</code></td>
+<td>One variable is always interpreted categorically</td>
+</tr>
+<tr class="even">
+<td>Violin Plot</td>
+<td><code>sns.catplot( ... , kind = "violin" , ... )</code></td>
+<td>One variable is always interpreted categorically</td>
+</tr>
+<tr class="odd">
+<td>Enhanced Box Plot</td>
+<td><code>sns.catplot( ... , kind = "boxen", ... )</code></td>
+<td>A box plot with additional quantiles</td>
+</tr>
+<tr class="even">
+<td>Point Plot</td>
+<td><code>sns.catplot( ... , kind = "point" , ... )</code></td>
+<td>Like a line plot for categorical data</td>
+</tr>
+<tr class="odd">
+<td>Bar Plot</td>
+<td><code>sns.catplot( ... , kind = "bar" , ... )</code></td>
+<td>Aggregates data</td>
+</tr>
+<tr class="even">
+<td>Count Plot</td>
+<td><code>sns.catplot( ... , kind = "count" , ... )</code></td>
+<td>A bar plot with the total number of observations</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="other-plots" class="level3">
+<h3 class="anchored" data-anchor-id="other-plots">Other Plots</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Plot Name</th>
+<th>Code</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pair Plot</td>
+<td><code>sns.pairplot( ... )</code></td>
+<td>A form of facetting</td>
+</tr>
+<tr class="even">
+<td>Joint Plot</td>
+<td><code>sns.jointplot( ... )</code></td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>Regressions</td>
+<td><code>sns.lmplot( ... )</code></td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>Residual Plot</td>
+<td><code>sns.residplot( ... )</code></td>
+<td>The residuals of a linear regression</td>
+</tr>
+<tr class="odd">
+<td>Heatmap</td>
+<td><code>sns.heatmap( ... )</code></td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>Clustermap</td>
+<td><code>sns.clustermap( ... )</code></td>
+<td>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li><a href="https://seaborn.pydata.org/index.html">Official seaborn documentation</a></li>
+<li><a href="https://matplotlib.org/stable/index.html">Official matplotlib documentation</a></li>
+<li>Our <a href="https://github.com/uqlibrary/technology-training/blob/master/Python/useful_links.md">compilation of useful Python links</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/uqlibrary\.github\.io\/technology-training\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
