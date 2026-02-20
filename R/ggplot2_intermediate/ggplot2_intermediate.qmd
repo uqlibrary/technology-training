@@ -5,8 +5,6 @@ date: today
 author: UQ Library
 ---
 
-
-
 # Essential shortcuts
 
 -   function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in a function name.
@@ -61,7 +59,9 @@ During this hands-on session, you will:
 
 Let's also create a "plots" folder to store exports:
 
-```{r eval=FALSE}
+```{r}
+#| label: dir-create
+#| eval: false
 dir.create("plots")
 ```
 
@@ -74,6 +74,7 @@ Create a **new script** (File \> New File \> R Script) and add a few comments to
 Finally, make sure you **load ggplot2** so we can use its functions:
 
 ```{r}
+#| label: load-package
 library(ggplot2)
 ```
 
@@ -90,13 +91,16 @@ Using the following syntax, how can you read the online CSV data into an R objec
 You have to use the `read.csv()` function, which can take a URL:
 
 ```{r}
+#| label: read-data
 gapminder <- read.csv(
   file = "https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
 ```
 
 If you are not familiar with the dataset, `View()` and `summary()` can help you explore it.
 
-```{r eval=FALSE}
+```{r}
+#| label: explore-data
+#| eval: false
 View(gapminder)    # view as a separate spreadsheet
 summary(gapminder) # summary statistics for each variable
 ```
@@ -110,6 +114,7 @@ Let's start with a question: how do Gross Domestic Product (GDP) and life expect
 We can make a simple plot with the basics of ggplot2:
 
 ```{r}
+#| label: scatter
 ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp)) +
@@ -135,6 +140,7 @@ Here are some common examples:
 Let's modify our plot to colour the points according to the continent variable.
 
 ```{r}
+#| label: scatter-colour
 ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp)) +
@@ -146,7 +152,9 @@ ggplot(data = gapminder,
 
 How can we save our scatter plot to the 'plots' directory we created using a function?
 
-```{r eval=FALSE}
+```{r}
+#| label: save-plot
+#| eval: false
 ggsave(filename = "plots/gdpPercap_v_lifeExp.png", width = 7, height = 4)
 ```
 
@@ -161,6 +169,7 @@ This plot uses the default discrete palette.
 > **Saving some typing**: We will keep modifying this plot. To reuse the constant base of our plot (the `ggplot()` call and the point geometry), we can create an object:
 
 ```{r}
+#| label: save-as-object
 p <- ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp)) +
@@ -171,6 +180,7 @@ p <- ggplot(data = gapminder,
 We can use other palettes than the default one. ggplot2 provides extra functions to modify colour scales. For example:
 
 ```{r}
+#| label: scale-viridis
 p +
   scale_colour_viridis_d()
 ```
@@ -180,6 +190,7 @@ Viridis is a collection of palettes that are designed to be accessible (i.e. per
 Another collection of palettes is the ColorBrewer collection:
 
 ```{r}
+#| label: scale-brewer
 p +
   scale_colour_brewer(palette = "Set1")
 ```
@@ -193,6 +204,7 @@ For colorspace, the function names are structured as follows: `scale_<aesthetic>
 Let's first use an alternative qualitative palette:
 
 ```{r}
+#| label: scale-colorspace
 library(colorspace)
 p +
   scale_colour_discrete_qualitative()
@@ -201,12 +213,14 @@ p +
 This is the default ggplot2 palette! Which means ggplot2 already use a HCL palette. But having the colorspace package loaded, we can now see all the palettes available:
 
 ```{r}
+#| label: view-palettes
 hcl_palettes(plot = TRUE)
 ```
 
 Let's try a different one:
 
 ```{r}
+#| label: colorspace-palette
 p +
   scale_colour_discrete_sequential("Batlow")
 ```
@@ -214,6 +228,7 @@ p +
 Finally, to use a custom palette, we can use the ggplot2 function `scale_colour_manual()` and provide a list of colour names.
 
 ```{r}
+#| label: scale-manual
 p +
   scale_colour_manual(values = c("lightblue", "pink", "purple", "black", "red"))
 ```
@@ -229,6 +244,7 @@ You can find [visual lists](https://r-charts.com/colors/) of all the R colours, 
 We could further modify our plot to make it more readable. For example, we can use a different x axis scale to distribute the data differently:
 
 ```{r}
+#| label: log-axis
 p +
   scale_x_log10()
 ```
@@ -238,6 +254,7 @@ It is possible to use various transformations with the `scale_x_continuous()` fu
 We can also further customise a scale with breaks and labels:
 
 ```{r}
+#| label: custom-breaks
 p +
   scale_x_log10(breaks = c(5e2, 1e3, 1e4, 1e5),
                 labels = c("500", "1 k", "10 k", "100 k"))
@@ -250,12 +267,14 @@ p +
 We might want to focus on the left hand side part of our original plot:
 
 ```{r}
+#| label: see-plot-object
 p
 ```
 
 To zoom in, we might want to change our axis limits by using `ylim()`.
 
 ```{r}
+#| label: zoom-lose-data
 p +
   xlim(c(0, 6e4))
 ```
@@ -267,6 +286,7 @@ The method we use works for our point geometry, but is problematic for other sha
 A better way to focus on one part of the plot would be to modify the **coordinate system**:
 
 ```{r}
+#| label: zoom-actual
 p +
   coord_cartesian(xlim = c(0, 6e4))
 ```
@@ -280,6 +300,7 @@ The plotly package brings the power of the Plotly javascript library to R. Insta
 Let's reuse our original plot object with some modification, and feed it to `ggplotly()`:
 
 ```{r}
+#| label: make-interactive
 p <- ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp,
@@ -294,6 +315,7 @@ ggplotly(p)
 You can now identify single points, zoom into your plot, and show/hide categories. However, the pop-up does not tell us which country the point corresponds to. That's because we don't mention the `country` variable in our code. Let's reveal that information by slightly modifying the `p` object:
 
 ```{r}
+#| label: plotly-add-label
 p <- ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp,
@@ -306,12 +328,14 @@ p <- ggplot(data = gapminder,
 The interactive version now tells us which country each point correspond to:
 
 ```{r}
+#| label: see-plotly
 ggplotly(p)
 ```
 
 To add yet another variable to the visualisation, we can animate the plot b< associating the `frame` aesthetic with the `year` variable. This adds a slider and a "Play" button under the visualisation.
 
 ```{r}
+#| label: plotly-time-frames
 p <- ggplot(data = gapminder,
        mapping = aes(x = gdpPercap,
                      y = lifeExp,
@@ -332,6 +356,7 @@ ggplotly(p)
 Search for the histogram geometry function, and plot the life expectancy. How can we modify the bars?
 
 ```{r}
+#| label: histogram
 ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram() # by default, bins = 30
 ```
@@ -341,6 +366,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
 Let's change the bin width:
 
 ```{r}
+#| label: binwidth
 ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(binwidth = 1)
 ```
@@ -350,6 +376,7 @@ Here, each bar contains one year of life expectancy.
 We can also change the number of bins:
 
 ```{r}
+#| label: bin-number
 ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram(bins = 10)
 ```
@@ -357,6 +384,7 @@ ggplot(gapminder, aes(x = lifeExp)) +
 Now, let's colour the bins by continent. Instinctively, you could try the `colour` aesthetic:
 
 ```{r}
+#| label: colour-edges
 ggplot(gapminder, aes(x = lifeExp, colour = continent)) +
   geom_histogram(bins = 10)
 ```
@@ -366,6 +394,7 @@ ggplot(gapminder, aes(x = lifeExp, colour = continent)) +
 Some aesthetics will work better with some geometries than others. We have to use the `fill` aesthetic to colour the areas instead:
 
 ```{r}
+#| label: colour-fill
 ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
   geom_histogram(bins = 10)
 ```
@@ -373,6 +402,7 @@ ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
 Colouring our bins allows us to experiment with the geometry's **position**. The histogram geometry uses the "stack" position by default. It might convey different information if we make it use ratios instead, using the `position = "fill"` argument:
 
 ```{r}
+#| label: position-fill
 ggplot(gapminder,
        aes(x = lifeExp,
            fill = continent)) +
@@ -385,6 +415,7 @@ You might have noticed that the y-axis is still labeled 'count' when it has chan
 We can also modify the y-axis labels with the `labs()` function.
 
 ```{r}
+#| label: percent
 library(scales)
 
 ggplot(gapminder,
@@ -399,6 +430,7 @@ ggplot(gapminder,
 We can also make the bars "dodge" each other:
 
 ```{r}
+#| label: position-dodge
 ggplot(gapminder,
        aes(x = lifeExp,
            fill = continent)) +
@@ -409,6 +441,7 @@ ggplot(gapminder,
 This "dodged" version reads similarly to a density plot (although the number of countries per continent does not influence the size):
 
 ```{r}
+#| label: density
 ggplot(gapminder,
        aes(x = lifeExp,
            colour = continent)) +
@@ -420,6 +453,7 @@ ggplot(gapminder,
 An even more readable representation of the dodged histogram could use **faceting**:
 
 ```{r}
+#| label: facet
 ggplot(gapminder,
        aes(x = lifeExp,
            fill = continent)) +
@@ -436,6 +470,7 @@ We have to wrap the variable(s) we want to facet by into the `vars()` function.
 The legend is probably superfluous. We want to keep the colours, but we use the `theme()` function to customise the look of our plot and remove the legend:
 
 ```{r}
+#| label: remove-legend
 ggplot(gapminder,
        aes(x = lifeExp,
            fill = continent)) +
@@ -447,6 +482,7 @@ ggplot(gapminder,
 If you use a pre-built theme function, make sure you place it before customising the legend. Otherwise it will bring the legend back!
 
 ```{r}
+#| label: preset-before-theme
 ggplot(gapminder,
        aes(x = lifeExp,
            fill = continent)) +
@@ -461,6 +497,7 @@ ggplot(gapminder,
 This extra example gives an idea of how a refined ggplot2 visualisation might be constructed. It represents 4 different variables, using the larger diamonds data set.
 
 ```{r}
+#| label: diamonds
 ggplot(diamonds,
        aes(x = carat,
            y = price)) +
@@ -491,6 +528,7 @@ In this visualisation:
 A simple boxplot can help visualise a distribution in categories:
 
 ```{r}
+#| label: boxplot
 ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
@@ -500,6 +538,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
 What do you think this extra line might do to our boxplots?
 
 ```{r}
+#| label: rotate-labels
 ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
   theme(axis.text.x = element_text(angle = 90))
@@ -514,6 +553,7 @@ This is useful if the x labels get too cramped on the x axis: you can rotate the
 Let's try summarising the average and standard deviation of life expectancy by continent from the gapminder data and piping it directly into a ggplot. We will need to install/load dplyr for this.
 
 ```{r}
+#| label: with-dplyr
 # install.packages("dplyr")
 library(dplyr)
 
@@ -541,6 +581,7 @@ In ggplot2, multiple data frames can be plotted on the same plot. For example, l
 3. plot the continent data and add the error bars from the first summary
 
 ```{r}
+#| label: process-data
 total <- gapminder %>% 
    group_by(year) %>% # group by year
    summarise(tot = sum(pop), # sum the population for every year
@@ -557,6 +598,7 @@ cont_ave
 When specifying a data set outside of the main `ggplot()` function - the `data = ` argument must be used. The other functions `geom_bar()` etc. assume the first argument is `mapping = aes()` unless the data argument is explicitly defined.
 
 ```{r}
+#| label: two-datasets
 ggplot(data = cont_ave, aes(x = year, 
              y = totalpop)) +
   geom_bar(aes(fill = continent),
