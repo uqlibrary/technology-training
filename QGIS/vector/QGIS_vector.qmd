@@ -201,37 +201,28 @@ For each of our layers, do the following:
 
 You won't notice any difference, as QGIS is helpfully doing "on the fly projections" to make the layers sit nicely together. But now that you've reprojected your data, you can safely do your analyses.
 
-## Subset our SA2 data down to SEQ - Select features using an expression
-
-The following code will allow you to select the SA2 features that are in SEQ.
-
--   Right click on the reprojected SA2 layer, and select **Open Attribute Table**
--   From the Attribute Table that opens, click the Select features using an expression button: ![image](https://user-images.githubusercontent.com/67612228/195261159-b949e22b-7634-4326-ab50-089b94e76dc4.png)
--   In the Select by Expression window that opens, paste the code from below into the Expression field, and then click `Select Features` in the bottom right of the window.
-
-``` sql
- "SA4_name_2021" =  'Gold Coast' 
- OR
- "SA4_name_2021" =  'Sunshine Coast' 
-  OR
- "SA4_name_2021" =  'Toowoomba' 
- OR
-  "GCCSA_name_2021"  LIKE  '%Brisbane%' 
-```
-
-> This is SQL code, which is great for querying databases. This code selects any row that matches any of the criteria (this OR that). The first three look for exact matches, the last one looks to match the pattern given. The % acts like wildcard, so it's looking for any row that contains Brisbane.
-
--   Close the Select by Expression window and Attribute Table
--   You should see the SEQ SA2 areas highlighted in yellow (you may need to turn off other layers or zoom in).
--   To permanently save this selection, right click on the reprojected SA2 layer, and select `Export > Save Selected Features As...`
--   Save your file as `SA2_SEQ`
--   Make sure the CRS stays as `EPSG:7856 - GDA2020 / MGA zone 56`, then click `OK`
-
-If you haven't done so already, untick and hide all the original layers we aren't using any more.
 
 ## Analysis: Spatial Overlaps
 
-Let's find out how much of our Koala Priority areas are already under federally recognised protection. To do this we will use the Intersection tool. This tool is similar to the **Clip** tool, but rather than just cutting out the overlapping area, it also combines the Attribute Tables of the two layers.
+Let's find out how much of our Koala Priority Areas are already under federally recognised protection. To do this we will use the Intersection tool. This tool is similar to the **Clip** tool, but rather than just cutting out the overlapping area, it also combines the Attribute Tables of the two layers.
+
+First we will create a field to represent the original area of our KPAs.
+
+-   Select **KPA_Reproj** from the `Layers` panel.
+
+-   Click on the **Field Calculator** button ![image](https://user-images.githubusercontent.com/67612228/195319687-1538f2a0-d8c8-4084-a632-0e3181fb11dd.png){alt="image"}
+
+    -   Under **Create a new field** set the **Output field name** to `KPA_Orig_Area`
+
+    -   Set the **Output field type** to `Decimal number (real)` (we need to choose this option to ensure that we have decimals in our output)
+
+    -   In the `Expression` tab enter `$area`
+
+    -   Click OK
+
+-   Click `Save Layer Edits` ![image](https://docs.qgis.org/3.44/en/_images/mActionSaveEdits.png){alt="Save Layer Edits Button"}
+
+-   Click `Toggle Editing` ![image](docs.qgis.org/3.44/en/_images/mActionToggleEditing.pngg){alt="Toggle Editing Button"}
 
 ### Intersection
 
@@ -259,6 +250,8 @@ You can now re-run the **Intersection** tool with the resulting **CAPAD_Fixed** 
 
 Magic. Our new layer with be the thin overlap between our two original layers, and will have their shared Attribute Tables. However, this is a double-edged sword, as it has retained the Area columns of the original CAPAD polygons. If we want to know our new shape's area, we need to calculate that.
 
+If we want to we can now `Dissolve` the layer based on the **fid_2** field to recombine the original areas back together to make calculating the area easier.
+
 ### Field Calculator
 
 We can use the **Field Calculator** to calculate the area of our polygon.
@@ -279,6 +272,7 @@ sum($area)
 Do the same **Field Calculator** steps for the original koala_priority_area.
 
 You can now use the **Field calculator** to determine the percentage of the Koala Priority area which is currently protected. 1506573200.936991 / 5776218019.211894 = 26%
+
 
 Only 26%! Let's look into this further. Perhaps our dataset is missing some new conservation areas.
 
@@ -325,6 +319,34 @@ The **Vertex Tool** ![](vertex.png) will allow you to move the location of point
 Despite these missing Refuge area polygons, you can still see that there are a lot of koalas which are found outside of protected areas. In fact, most sightings seem to occur outside of protected areas! Is this poor protected area management, or might our data be biased by when and where people are more likely to encounter koalas?
 
 ## Analysis: How do koalas and people overlap?
+
+## Subset our SA2 data down to SEQ - Select features using an expression
+
+The following code will allow you to select the SA2 features that are in SEQ.
+
+-   Right click on the reprojected SA2 layer, and select **Open Attribute Table**
+-   From the Attribute Table that opens, click the Select features using an expression button: ![image](https://user-images.githubusercontent.com/67612228/195261159-b949e22b-7634-4326-ab50-089b94e76dc4.png)
+-   In the Select by Expression window that opens, paste the code from below into the Expression field, and then click `Select Features` in the bottom right of the window.
+
+``` sql
+ "SA4_name_2021" =  'Gold Coast' 
+ OR
+ "SA4_name_2021" =  'Sunshine Coast' 
+  OR
+ "SA4_name_2021" =  'Toowoomba' 
+ OR
+  "GCCSA_name_2021"  LIKE  '%Brisbane%' 
+```
+
+> This is SQL code, which is great for querying databases. This code selects any row that matches any of the criteria (this OR that). The first three look for exact matches, the last one looks to match the pattern given. The % acts like wildcard, so it's looking for any row that contains Brisbane.
+
+-   Close the Select by Expression window and Attribute Table
+-   You should see the SEQ SA2 areas highlighted in yellow (you may need to turn off other layers or zoom in).
+-   To permanently save this selection, right click on the reprojected SA2 layer, and select `Export > Save Selected Features As...`
+-   Save your file as `SA2_SEQ`
+-   Make sure the CRS stays as `EPSG:7856 - GDA2020 / MGA zone 56`, then click `OK`
+
+If you haven't done so already, untick and hide all the original layers we aren't using any more.
 
 ### Count Points in Polygons
 
