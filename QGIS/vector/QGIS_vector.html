@@ -549,7 +549,6 @@ window.Quarto = {
   <li><a href="#why-are-projections-important-to-us" id="toc-why-are-projections-important-to-us" class="nav-link" data-scroll-target="#why-are-projections-important-to-us">Why are projections important to us?</a></li>
   <li><a href="#reproject" id="toc-reproject" class="nav-link" data-scroll-target="#reproject">Reproject</a></li>
   </ul></li>
-  <li><a href="#subset-our-sa2-data-down-to-seq---select-features-using-an-expression" id="toc-subset-our-sa2-data-down-to-seq---select-features-using-an-expression" class="nav-link" data-scroll-target="#subset-our-sa2-data-down-to-seq---select-features-using-an-expression">Subset our SA2 data down to SEQ - Select features using an expression</a></li>
   <li><a href="#analysis-spatial-overlaps" id="toc-analysis-spatial-overlaps" class="nav-link" data-scroll-target="#analysis-spatial-overlaps">Analysis: Spatial Overlaps</a>
   <ul class="collapse">
   <li><a href="#intersection" id="toc-intersection" class="nav-link" data-scroll-target="#intersection">Intersection</a></li>
@@ -557,7 +556,8 @@ window.Quarto = {
   <li><a href="#field-calculator" id="toc-field-calculator" class="nav-link" data-scroll-target="#field-calculator">Field Calculator</a></li>
   </ul></li>
   <li><a href="#map-digitisation" id="toc-map-digitisation" class="nav-link" data-scroll-target="#map-digitisation">Map Digitisation</a></li>
-  <li><a href="#analysis-how-do-koalas-and-people-overlap" id="toc-analysis-how-do-koalas-and-people-overlap" class="nav-link" data-scroll-target="#analysis-how-do-koalas-and-people-overlap">Analysis: How do koalas and people overlap?</a>
+  <li><a href="#analysis-how-do-koalas-and-people-overlap" id="toc-analysis-how-do-koalas-and-people-overlap" class="nav-link" data-scroll-target="#analysis-how-do-koalas-and-people-overlap">Analysis: How do koalas and people overlap?</a></li>
+  <li><a href="#subset-our-sa2-data-down-to-seq---select-features-using-an-expression" id="toc-subset-our-sa2-data-down-to-seq---select-features-using-an-expression" class="nav-link" data-scroll-target="#subset-our-sa2-data-down-to-seq---select-features-using-an-expression">Subset our SA2 data down to SEQ - Select features using an expression</a>
   <ul class="collapse">
   <li><a href="#count-points-in-polygons" id="toc-count-points-in-polygons" class="nav-link" data-scroll-target="#count-points-in-polygons">Count Points in Polygons</a></li>
   </ul></li>
@@ -806,36 +806,22 @@ window.Quarto = {
 <p>You won’t notice any difference, as QGIS is helpfully doing “on the fly projections” to make the layers sit nicely together. But now that you’ve reprojected your data, you can safely do your analyses.</p>
 </section>
 </section>
-<section id="subset-our-sa2-data-down-to-seq---select-features-using-an-expression" class="level2">
-<h2 class="anchored" data-anchor-id="subset-our-sa2-data-down-to-seq---select-features-using-an-expression">Subset our SA2 data down to SEQ - Select features using an expression</h2>
-<p>The following code will allow you to select the SA2 features that are in SEQ.</p>
-<ul>
-<li>Right click on the reprojected SA2 layer, and select <strong>Open Attribute Table</strong></li>
-<li>From the Attribute Table that opens, click the Select features using an expression button: <img src="https://user-images.githubusercontent.com/67612228/195261159-b949e22b-7634-4326-ab50-089b94e76dc4.png" class="img-fluid" alt="image"></li>
-<li>In the Select by Expression window that opens, paste the code from below into the Expression field, and then click <code>Select Features</code> in the bottom right of the window.</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Gold Coast'</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">OR</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Sunshine Coast'</span> </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">OR</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Toowoomba'</span> </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="kw">OR</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="ot">"GCCSA_name_2021"</span>  <span class="kw">LIKE</span>  <span class="st">'%Brisbane%'</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<blockquote class="blockquote">
-<p>This is SQL code, which is great for querying databases. This code selects any row that matches any of the criteria (this OR that). The first three look for exact matches, the last one looks to match the pattern given. The % acts like wildcard, so it’s looking for any row that contains Brisbane.</p>
-</blockquote>
-<ul>
-<li>Close the Select by Expression window and Attribute Table</li>
-<li>You should see the SEQ SA2 areas highlighted in yellow (you may need to turn off other layers or zoom in).</li>
-<li>To permanently save this selection, right click on the reprojected SA2 layer, and select <code>Export &gt; Save Selected Features As...</code></li>
-<li>Save your file as <code>SA2_SEQ</code></li>
-<li>Make sure the CRS stays as <code>EPSG:7856 - GDA2020 / MGA zone 56</code>, then click <code>OK</code></li>
-</ul>
-<p>If you haven’t done so already, untick and hide all the original layers we aren’t using any more.</p>
-</section>
 <section id="analysis-spatial-overlaps" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-spatial-overlaps">Analysis: Spatial Overlaps</h2>
-<p>Let’s find out how much of our Koala Priority areas are already under federally recognised protection. To do this we will use the Intersection tool. This tool is similar to the <strong>Clip</strong> tool, but rather than just cutting out the overlapping area, it also combines the Attribute Tables of the two layers.</p>
+<p>Let’s find out how much of our Koala Priority Areas are already under federally recognised protection. To do this we will use the Intersection tool. This tool is similar to the <strong>Clip</strong> tool, but rather than just cutting out the overlapping area, it also combines the Attribute Tables of the two layers.</p>
+<p>First we will create a field to represent the original area of our KPAs.</p>
+<ul>
+<li><p>Select <strong>KPA_Reproj</strong> from the <code>Layers</code> panel.</p></li>
+<li><p>Click on the <strong>Field Calculator</strong> button <img src="https://user-images.githubusercontent.com/67612228/195319687-1538f2a0-d8c8-4084-a632-0e3181fb11dd.png" class="img-fluid" alt="image"></p>
+<ul>
+<li><p>Under <strong>Create a new field</strong> set the <strong>Output field name</strong> to <code>KPA_Orig_Area</code></p></li>
+<li><p>Set the <strong>Output field type</strong> to <code>Decimal number (real)</code> (we need to choose this option to ensure that we have decimals in our output)</p></li>
+<li><p>In the <code>Expression</code> tab enter <code>$area</code></p></li>
+<li><p>Click OK</p></li>
+</ul></li>
+<li><p>Click <code>Save Layer Edits</code> <img src="https://docs.qgis.org/3.44/en/_images/mActionSaveEdits.png" class="img-fluid" alt="Save Layer Edits Button"></p></li>
+<li><p>Click <code>Toggle Editing</code> <img src="docs.qgis.org/3.44/en/_images/mActionToggleEditing.pngg" class="img-fluid" alt="Toggle Editing Button"></p></li>
+</ul>
 <section id="intersection" class="level3">
 <h3 class="anchored" data-anchor-id="intersection">Intersection</h3>
 <ul>
@@ -863,13 +849,14 @@ window.Quarto = {
 <li>Click <code>Run</code></li>
 </ul>
 <p>Magic. Our new layer with be the thin overlap between our two original layers, and will have their shared Attribute Tables. However, this is a double-edged sword, as it has retained the Area columns of the original CAPAD polygons. If we want to know our new shape’s area, we need to calculate that.</p>
+<p>If we want to we can now <code>Dissolve</code> the layer based on the <strong>fid_2</strong> field to recombine the original areas back together to make calculating the area easier.</p>
 </section>
 <section id="field-calculator" class="level3">
 <h3 class="anchored" data-anchor-id="field-calculator">Field Calculator</h3>
 <p>We can use the <strong>Field Calculator</strong> to calculate the area of our polygon.</p>
 <p>Select <strong>Intersection</strong> from the <strong>Layers</strong> panel, and the click the <strong>Open Field Calculator</strong> button <img src="https://user-images.githubusercontent.com/67612228/195319687-1538f2a0-d8c8-4084-a632-0e3181fb11dd.png" class="img-fluid" alt="image"></p>
 <p>In the <strong>Field calculator</strong> window, type the following code into the <strong>Expression</strong> tab:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>($area)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>($area)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>$area will give us the area of a single polygon - we could use this to create a new field in our Attribute Table based on area if we wanted to</li>
 <li>sum() will add together the area for every polygon in that layer.</li>
@@ -912,6 +899,33 @@ window.Quarto = {
 </section>
 <section id="analysis-how-do-koalas-and-people-overlap" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-how-do-koalas-and-people-overlap">Analysis: How do koalas and people overlap?</h2>
+</section>
+<section id="subset-our-sa2-data-down-to-seq---select-features-using-an-expression" class="level2">
+<h2 class="anchored" data-anchor-id="subset-our-sa2-data-down-to-seq---select-features-using-an-expression">Subset our SA2 data down to SEQ - Select features using an expression</h2>
+<p>The following code will allow you to select the SA2 features that are in SEQ.</p>
+<ul>
+<li>Right click on the reprojected SA2 layer, and select <strong>Open Attribute Table</strong></li>
+<li>From the Attribute Table that opens, click the Select features using an expression button: <img src="https://user-images.githubusercontent.com/67612228/195261159-b949e22b-7634-4326-ab50-089b94e76dc4.png" class="img-fluid" alt="image"></li>
+<li>In the Select by Expression window that opens, paste the code from below into the Expression field, and then click <code>Select Features</code> in the bottom right of the window.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Gold Coast'</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">OR</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Sunshine Coast'</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">OR</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> <span class="ot">"SA4_name_2021"</span> <span class="op">=</span>  <span class="st">'Toowoomba'</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> <span class="kw">OR</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="ot">"GCCSA_name_2021"</span>  <span class="kw">LIKE</span>  <span class="st">'%Brisbane%'</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p>This is SQL code, which is great for querying databases. This code selects any row that matches any of the criteria (this OR that). The first three look for exact matches, the last one looks to match the pattern given. The % acts like wildcard, so it’s looking for any row that contains Brisbane.</p>
+</blockquote>
+<ul>
+<li>Close the Select by Expression window and Attribute Table</li>
+<li>You should see the SEQ SA2 areas highlighted in yellow (you may need to turn off other layers or zoom in).</li>
+<li>To permanently save this selection, right click on the reprojected SA2 layer, and select <code>Export &gt; Save Selected Features As...</code></li>
+<li>Save your file as <code>SA2_SEQ</code></li>
+<li>Make sure the CRS stays as <code>EPSG:7856 - GDA2020 / MGA zone 56</code>, then click <code>OK</code></li>
+</ul>
+<p>If you haven’t done so already, untick and hide all the original layers we aren’t using any more.</p>
 <section id="count-points-in-polygons" class="level3">
 <h3 class="anchored" data-anchor-id="count-points-in-polygons">Count Points in Polygons</h3>
 <p>Earlier we looked at overlap between polygons, we can also look at points overlapping with a polygon. Let’s use the Count Points in Polygons tool to quickly count the number of points from a particular layer inside a polygon. We could look at a few things here, we could look at koala sightings in protected areas or in the priority areas, but let’s try to get an idea of how people and koala sightings overlap. You would expect there to be more koalas where there are fewer people, but perhaps our data is skewed by population levels.</p>
