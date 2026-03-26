@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2026-03-25">
+<meta name="dcterms.date" content="2026-03-26">
 
 <title>Git version control for collaboration – UQ Library Technology Training</title>
 <style>
@@ -535,7 +535,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 25, 2026</p>
+      <p class="date">March 26, 2026</p>
     </div>
   </div>
   
@@ -547,22 +547,6 @@ window.Quarto = {
 </header>
 
 
-<!-- Upcoming workshops -->
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Upcoming workshop(s) available!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The next workshop is on <strong>today at 02:00 PM.</strong></p>
-<p><a href="https://studenthub.uq.edu.au/students/events/detail/6234686">Book in to the next offering now.</a></p>
-<p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
-</div>
-</div>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>We will use Git inside a command-line shell called Bash.</p>
@@ -647,7 +631,12 @@ cd planets</code></pre>
 <p>To see the recent <strong>history</strong>, we can use <code>git log</code>:</p>
 <pre><code>git log</code></pre>
 <p><code>git log</code> lists all commits made to a repository in reverse chronological order. The listing for each commit includes the commit’s full identifier (which starts with the same characters as the short identifier printed by the <code>git commit</code> command earlier), the commit’s author, when it was created, and the log message Git was given when the commit was created.</p>
-<p><img src="https://github.com/chrisburr/analysis-essentials-1/blob/master/git/fig/git-staging-area.svg" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hsf-training.github.io/analysis-essentials/_images/git-staging-area.svg" class="img-fluid figure-img" alt="Illustration of the process of adding a file change to a staging area, and then committing it to the git history, represented as a stack of cylinders with the most recent at the top."></p>
+<figcaption>Committing changes to a single file (CC BY 4.0, <a href="https://hsf-training.github.io/analysis-essentials">HSF Analysis Essentials</a> contributors)</figcaption>
+</figure>
+</div>
 <p>Now, let’s add a line to our text file:</p>
 <pre><code>nano mars.txt</code></pre>
 <p>After writing out and saving, let’s check the status:</p>
@@ -668,7 +657,13 @@ git commit -m "&lt;your comment&gt;"</code></pre>
 <li>Create a new file venus.txt with your initial thoughts about Venus as a base for you and your friends</li>
 <li>Add changes from both files to the staging area, and commit those changes as one single commit.</li>
 </ol>
-<p>Adding and committing multiple files: <img src="https://github.com/chrisburr/analysis-essentials-1/blob/master/git/fig/git-committing.svg" class="img-fluid"></p>
+<p>Adding and committing multiple files:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hsf-training.github.io/analysis-essentials/_images/git-committing.svg" class="img-fluid figure-img" alt="Illustration of the process of adding changes to several files to the staging area, and then committing it to the git history, represented as a stack of cylinders with the most recent at the top."></p>
+<figcaption>Committing changes to several files, as a single commit (CC BY 4.0, <a href="https://hsf-training.github.io/analysis-essentials">HSF Analysis Essentials</a> contributors)</figcaption>
+</figure>
+</div>
 </section>
 <section id="exploring-history" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-history">Exploring history</h2>
@@ -713,7 +708,12 @@ cat mars.txt</code></pre>
 <li><code>git checkout &lt;unique ID of last commit&gt; data_cruncher.py</code></li>
 <li>Both 2 and 4</li>
 </ol>
-<p>Checkout summary: <img src="https://github.com/chrisburr/analysis-essentials-1/blob/master/git/fig/git-checkout.svg" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hsf-training.github.io/analysis-essentials/_images/git-checkout.svg" class="img-fluid figure-img" alt="Illustration of checking out files at a specific commit: the symbolic stack of commits is split open to show the state of the files one commit before HEAD, which is what is restored by the command 'git checkout' follow by a commit identifier."></p>
+<figcaption>Checking out files in their state at a specific commit (CC BY 4.0, <a href="https://hsf-training.github.io/analysis-essentials">HSF Analysis Essentials</a> contributors)</figcaption>
+</figure>
+</div>
 <section id="recap" class="level3">
 <h3 class="anchored" data-anchor-id="recap">Recap</h3>
 <ul>
@@ -855,7 +855,7 @@ git log -3</code></pre>
 </section>
 <section id="licence" class="level2">
 <h2 class="anchored" data-anchor-id="licence">Licence</h2>
-<p>This short course is based on the longer course <em><a href="http://swcarpentry.github.io/git-novice/">Version Control with Git</a></em> developped by the non-profit organisation <a href="http://carpentries.org/">The Carpentries</a>. The original material <a href="https://software-carpentry.org/license/">is licensed</a> under a Creative Commons Attribution license (<a href="https://creativecommons.org/licenses/by/4.0/legalcode">CC-BY 4.0</a>), and this modified version uses the same license. You are therefore free to:</p>
+<p>This short course is based on the longer course <em><a href="http://swcarpentry.github.io/git-novice/">Version Control with Git</a></em> developped by the non-profit organisation <a href="http://carpentries.org/">The Carpentries</a>. The original material <a href="https://software-carpentry.org/license/">is licensed</a> under a Creative Commons Attribution license (<a href="https://creativecommons.org/licenses/by/4.0/legalcode">CC BY 4.0</a>), and this modified version uses the same license. You are therefore free to:</p>
 <ul>
 <li><strong>Share</strong> — copy and redistribute the material in any medium or format</li>
 <li><strong>Adapt</strong> — remix, transform, and build upon the material</li>
