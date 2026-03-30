@@ -542,8 +542,11 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#install-qfield-plugin" id="toc-install-qfield-plugin" class="nav-link" data-scroll-target="#install-qfield-plugin">Install QField Plugin</a></li>
   <li><a href="#prepare-data-for-qfield" id="toc-prepare-data-for-qfield" class="nav-link" data-scroll-target="#prepare-data-for-qfield">Prepare Data for QField</a></li>
-  <li><a href="#export-to-qfield" id="toc-export-to-qfield" class="nav-link" data-scroll-target="#export-to-qfield">Export to QField</a></li>
-  <li><a href="#opening-the-qfield-project" id="toc-opening-the-qfield-project" class="nav-link" data-scroll-target="#opening-the-qfield-project">Opening the QField Project</a></li>
+  <li><a href="#export-to-qfield" id="toc-export-to-qfield" class="nav-link" data-scroll-target="#export-to-qfield">Export to QField</a>
+  <ul class="collapse">
+  <li><a href="#export-to-qfieldcloud" id="toc-export-to-qfieldcloud" class="nav-link" data-scroll-target="#export-to-qfieldcloud">Export to QFieldCloud</a></li>
+  <li><a href="#opening-the-qfield-project-from-qfieldcloud" id="toc-opening-the-qfield-project-from-qfieldcloud" class="nav-link" data-scroll-target="#opening-the-qfield-project-from-qfieldcloud">Opening the QField Project from QFieldCloud</a></li>
+  </ul></li>
   <li><a href="#using-qfield" id="toc-using-qfield" class="nav-link" data-scroll-target="#using-qfield">Using QField</a>
   <ul class="collapse">
   <li><a href="#turning-on-tracks" id="toc-turning-on-tracks" class="nav-link" data-scroll-target="#turning-on-tracks">Turning on Tracks</a></li>
@@ -593,22 +596,6 @@ window.Quarto = {
 </header>
 
 
-<!-- Upcoming workshops -->
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Upcoming workshop(s) available!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The next workshop is on <strong>today at 01:00 PM.</strong></p>
-<p><a href="https://studenthub.uq.edu.au/students/events/detail/6225143">Book in to the next offering now.</a></p>
-<p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
-</div>
-</div>
 <section id="setup" class="level1">
 <h1>Setup</h1>
 <p>This is an intermediate level tutorial. Before completing this tutorial, we recommend our <a href="../../QGIS/intro/QGIS_intro.html">QGIS: Introduction to Mapping</a> tutorial. This tutorial is designed for <strong>QGIS 3.40</strong>. If you need to install it on your computer, go to the <a href="https://qgis.org/download/">QGIS website</a>.</p>
@@ -626,7 +613,6 @@ window.Quarto = {
 </ul></li>
 <li><p>“output” - for any maps or images we export</p></li>
 <li><p>“DCIM” - this is a new one, it’s for storing images from our phone!</p></li>
-<li><p>“UQ_Fieldwork” - this is also new, it’s for exporting our project to QField</p></li>
 </ul></li>
 <li><p>Finally, let’s save our .qgz project file here, named “qgis_fieldwork_map.qgz”</p></li>
 </ul>
@@ -638,7 +624,7 @@ window.Quarto = {
 <p>QField plugs directly in to QGIS, and allows you to link a QGIS project with your mobile phone for data collection.</p>
 <p><a href="https://play.google.com/store/apps/details?id=ch.opengis.qfield">Android Download</a> <a href="https://apps.apple.com/app/qfield-for-qgis/id1531726814">iOS Download</a></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -647,7 +633,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For Avenza Maps you just need to add a GeoPDF and you can collect data on it. It’s less functional than QField, but it’s a great fallback tool. <a href="https://play.google.com/store/apps/details?id=com.Avenza&amp;hl=en_AU">Android Download</a> <a href="https://apps.apple.com/app/avenza-maps/id388424049">iOS Download</a></p>
 <p>There are alternatives out there, such as <a href="https://merginmaps.com/features">Input (MerginMaps)</a>.</p>
@@ -769,7 +755,7 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 </ul></li>
 <li><p>Make sure you change the CRS, effectively reprojecting the layer</p>
 <ul>
-<li>Choose <code>EPSG:23856 - GDA94 / MGA zone 56</code>
+<li>Choose <code>EPSG:7856 - GDA2020 / MGA zone 56</code>
 <ul>
 <li>This is the same projection as our DEM, and a good local projection</li>
 </ul></li>
@@ -804,7 +790,7 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 </section>
 <section id="explore-projections" class="level2">
 <h2 class="anchored" data-anchor-id="explore-projections">Explore Projections</h2>
-<p>Hopefully it’s clear why we needed to convert from a Geographic Coordinate System to a Projected Coordinate System, but why is it important that we chose the local projection <strong>EPSG:23856 - GDA94 / MGA zone 56</strong>?</p>
+<p>Hopefully it’s clear why we needed to convert from a Geographic Coordinate System to a Projected Coordinate System, but why is it important that we chose the local projection <strong>EPSG:7856 - GDA2020 / MGA zone 56</strong>?</p>
 <p>Let’s see what would happen if we did our buffer on those lines in a different projection.</p>
 <section id="reproject-data" class="level3">
 <h3 class="anchored" data-anchor-id="reproject-data">Reproject Data</h3>
@@ -858,26 +844,35 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <h1>Hillshade</h1>
 <p>Adding a <strong>hillshade</strong> makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.</p>
 <ul>
-<li>Go to <code>Raster &gt; Analysis &gt; Hillshade...</code>.</li>
-<li>Ensure the Input Layer is your clipped DEM “St_Lucia_DEM”</li>
-<li>Scroll down to “Hillshade” and click “…” next to <code>Create Temporary Layer</code>, then “Save to file”, and save it as <strong>UQ_Hillshade</strong> to your project folder.</li>
-<li>Click Run</li>
+<li>Right-click on the DEM layer and “Duplicate layer”</li>
+<li>Rename the duplicated layer “hillshade”</li>
+<li>Open the Symbology menu for the hillshade layer</li>
+<li>Change the “Render type” to “Hillshade”</li>
+<li>The defaults should work well, but you can play with the settings, like the Altitude and the Azimuth</li>
+<li>Make sure you apply some transparency to the pseudocolour DEM, and place the hillshade layer underneath (in <code>Properties &gt; Symbology &gt; Transparency</code>)</li>
+<li>Down the bottom of the window under <strong>Resampling</strong> change the <code>Zoomed: in</code> and <code>out</code> from “Nearest Neighbour” to “Bilinear” (this will remove some of the grid-like patterns you might see in your Hillshade layer otherwise)</li>
 </ul>
+<blockquote class="blockquote">
+<p>Another method is to use the hillshade tool instead of the symbology: <code>Raster &gt; Analysis &gt; Hillshade...</code></p>
+</blockquote>
 </section>
 <section id="dem-symbology" class="level1">
 <h1>DEM symbology</h1>
 <p>We can style our DEM with a <strong>terrain colour palette</strong>:</p>
 <ul>
-<li>double-click on the clipped DEM layer</li>
-<li>go to the “<code>Symbology</code>” tab</li>
+<li>In the <code>Layer Styling</code> tab for the original DEM</li>
 <li>change the Render type to “Singleband pseudocolor”</li>
 <li>by default, it uses the min/max values, which is what we want</li>
 <li>we can change the “Color ramp” to something more suitable with the drop-down menu and <code>Create new color ramp... &gt; Catalog: cpt-city &gt; Topography &gt; Elevation</code>, for example.</li>
-<li>go to the “<code>Transparency</code>” tab</li>
-<li>Set the <strong>Global Opacity</strong> to 50%</li>
-<li>Click <code>OK</code></li>
 </ul>
-<p>Let’s link these two together.</p>
+<p>We can blend the two layers together to get the height benefits of the DEM, and the relief benefits of the Hillshade. We could set the transparency of the top layer to 50% to allow us to see the layer below. But a better approach is to change the <strong>Layer Rendering</strong>.</p>
+<ul>
+<li>In the <code>Layer Styling</code> tab of the original DEM</li>
+<li>Scroll down to <strong>Layer Rendering</strong></li>
+<li>Change the <strong>Blending Mode</strong> from <code>Normal</code> to <code>Multiply</code></li>
+</ul>
+<p>Rather than making the overlaying layer less intense with transparency, <strong>Multiply</strong> will multiply the colours of the top layer with the one beneath it. This can look strange with some layers and colours, but works really well here.</p>
+<p>Let’s link these two layers together.</p>
 <ul>
 <li>Hold <code>Ctrl</code> and select both the Hillshade and the DEM layers</li>
 <li>Press the <code>Add Group</code> button from the top of the <code>Layers</code> panel</li>
@@ -949,7 +944,7 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <h2 class="anchored" data-anchor-id="add-another-field">Add Another Field</h2>
 <p>It would be nice to be able to take photos when we collect our data, let’s add another field.</p>
 <ul>
-<li>Double click on the new <strong>fieldwork_data</strong> layer</li>
+<li>Double click on the new <strong>collected_data</strong> layer</li>
 <li>Click on the <code>Fields</code> tab</li>
 <li>Click the yellow pencil button to <strong>Toggle Editing Mode</strong></li>
 <li>Click the now visible yellow <strong>New field</strong> button
@@ -1039,7 +1034,7 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <li>Go to <code>Layer &gt; Create Layer &gt; New GeoPackage Layer...</code></li>
 <li>Click the three dots <code>...</code> next to the <strong>Database</strong> field, navigate to the project’s <strong>processed data</strong> folder, and type in <strong>tracks</strong> and click <code>Save</code></li>
 <li>For <code>Geometry type</code> choose <strong>MultiLine</strong></li>
-<li>Set the CRS to <code>EPSG:23856 - GDA94 / MGA zone 56</code></li>
+<li>Set the CRS to <code>EPSG:7856 - GDA2020 / MGA zone 56</code></li>
 <li>Under <strong>New Field</strong> we will add just one layer attribute:</li>
 <li>Let’s call the point name “DateTime”
 <ul>
@@ -1053,7 +1048,7 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <p>Let’s prepare the <strong>tracks</strong> DateTime as we did with the <strong>collected_data</strong> - Double click on the new <strong>tracks</strong> layer - Click on the <code>Attributes Form</code> tab - At the very top of the window, click <code>Autogenerate</code> and change it to <code>Drag and Drop Designer</code></p>
 <p>On the left you will see all of our Fields, we can drag and drop these into the <code>Form Layout</code> section - this section lays out how our form will look when we enter new data.</p>
 <ul>
-<li>Click <strong>fid</strong> and press the <strong>red minus button</strong> - we want to keep the field, but don’t need to see this in our form</li>
+<li>We can keep the <em>fid</em> field visible, as this will allow us to differentiate different tracks should we need to.</li>
 <li>Click <strong>DateTime</strong>
 <ul>
 <li>Under <strong>General</strong> untick <code>Editable</code> - we don’t want to edit this field</li>
@@ -1094,9 +1089,30 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <li>World Imagery Tile</li>
 </ul></li>
 </ul>
+<p>QField should allow us to choose what data we copy across to QFieldCloud, however it will often simply copy everything in your project. For this reason we will manually set up a QField Project that we can copy via USB Cable, or via QFieldCloud.</p>
 </section>
 <section id="export-to-qfield" class="level2">
 <h2 class="anchored" data-anchor-id="export-to-qfield">Export to QField</h2>
+<p>We will effectively create a new QGIS Project in this process.</p>
+<p>First we will set it so that any hidden layers don’t copy across to QField.</p>
+<ul>
+<li>Navigate to <code>Plugins &gt; QFieldSync &gt; Configure current project...</code>
+<ul>
+<li>Click the <code>Cable Packaging</code> tab</li>
+<li>Click the <code>Toggle Layers</code> <img src="https://docs.qgis.org/3.44/en/_images/mActionShowPresets.png" class="img-fluid" alt="Toggle Layers"> symbol on the right
+<ul>
+<li>Click <code>Remove Hidden Layers</code></li>
+<li>This will automatically change the <code>Packaging Action</code> column settings from <code>Copy</code> to <code>Remove from project</code> for any layers hidden layers that you don’t want to copy to QField.</li>
+</ul></li>
+<li>Scroll down and tick <strong>Geofencing</strong>
+<ul>
+<li>Set <code>Geofencing areas layer</code> to UQ_Boundary_Buffer</li>
+</ul></li>
+<li>Click <code>OK</code></li>
+</ul></li>
+<li>Save your project - this is necessary to make sure the QField settings we changed will actually stick.</li>
+</ul>
+<p>Now we can create our new QField Cloud Project.</p>
 <ul>
 <li>Navigate to <code>Plugins &gt; QFieldSync &gt; Package for QField</code></li>
 <li>If you get a Message window popup, click <code>Next</code></li>
@@ -1106,32 +1122,59 @@ https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/til
 <ul>
 <li>We want a copy of this folder for our photos to be saved to. The rest of our data will be packaged into the QField folder.</li>
 </ul></li>
-<li>At the bottom of the window click <code>Configure current project...</code>
-<ul>
-<li>Click the <code>Cable Export</code> tab (if we were using QFieldCloud, we would click that option now instead)</li>
-<li>Click the <code>Toggle Layers</code> eye symbol on the right
-<ul>
-<li>In the <code>Action</code> column change <code>Copy</code> to <code>Remove from project</code> for any layers you don’t want to copy to QField.</li>
-</ul></li>
-<li>Scroll down and tick <strong>Geofencing</strong>
-<ul>
-<li>Set <code>Geofencing areas layer</code> to UQ_Boundary_Buffer</li>
-</ul></li>
-<li>Click <code>OK</code></li>
-</ul></li>
 <li>Click <code>Create</code></li>
 </ul>
-<p>We now need to zip the <code>QField</code> folder and send it to our phone!</p>
+<p>From here we could now send this folder to our phone via USB Cable or via QFieldCloud.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>USB Cable Instructions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
 <li>Navigate to your <strong>Project</strong> folder, right click on the <strong>UQ_Fieldwork</strong> folder and compress it to a zip file.</li>
 <li>Send this file to your phone via email, cloud, or using a cable.</li>
 </ul>
-</section>
-<section id="opening-the-qfield-project" class="level2">
-<h2 class="anchored" data-anchor-id="opening-the-qfield-project">Opening the QField Project</h2>
+<p>We now need to zip the <code>QField</code> folder and send it to our phone! If you’ve used this option, you can skip to <a href="#using-qfield">Using QField</a></p>
+<section id="opening-the-qfield-project-from-usb-cable-transfer" class="level2">
+<h2 class="anchored" data-anchor-id="opening-the-qfield-project-from-usb-cable-transfer">Opening the QField Project from USB Cable Transfer</h2>
 <p><strong>Android</strong> - Open QField - Skip any popups - Tap <code>Open local file</code> - Tap the green plus button in the bottom right - Tap <code>Import project from ZIP</code> - Navigate to your zip file. In my case, I had to go to the top left menu, and tap on <strong>Downloads</strong> - The file should open in QField. You may need to tap on the outer folder, and then the <strong>Project</strong> itself.</p>
 <p><strong>iOS</strong> - Open the zip file and extract it to: <code>On My iPhone/QField/Imported Projects</code> - Open QField - Skip any popups - Tap <code>Open local file</code> - Tap <code>Imported projects</code> - Open the <strong>UQ_Fieldwork</strong> folder until you reach the <strong>UQ_Fieldwork</strong> Project file. - The project should open in QField.</p>
 <p>You can now access your map.</p>
+</section>
+</div>
+</div>
+</div>
+<section id="export-to-qfieldcloud" class="level3">
+<h3 class="anchored" data-anchor-id="export-to-qfieldcloud">Export to QFieldCloud</h3>
+<ul>
+<li>Navigate to <code>Plugins &gt; QFieldSync &gt; QFieldCloud Projects Overview</code></li>
+<li>It will prompt you to sign in to your QFieldCloud account. If you don’t have one, use the <strong>Register</strong> link, and then come back and sign in.</li>
+<li>Click the <code>Create New Project</code> cloud shaped button in the bottom left.</li>
+<li>Choose <strong>Create a new empty QFieldCloud project</strong></li>
+<li>Click <code>Next</code></li>
+<li>Name the project <strong>UQ_Fieldwork</strong></li>
+<li>Set the <code>Local Directory</code> as the <strong>UQ_Fieldwork</strong> folder in your project folder.</li>
+<li>Click Create</li>
+<li>It will ask what you want to synchronised, we want all of them, click <code>Upload Files</code></li>
+<li>Once it has sychronized, click <code>OK</code></li>
+</ul>
+<p>Your data should now be on QFieldCloud, and we can go to our phones.</p>
+</section>
+<section id="opening-the-qfield-project-from-qfieldcloud" class="level3">
+<h3 class="anchored" data-anchor-id="opening-the-qfield-project-from-qfieldcloud">Opening the QField Project from QFieldCloud</h3>
+<ul>
+<li>Tap <code>QFieldCloud projects</code></li>
+<li>Tap the Download button next to your project.</li>
+<li>Once it has downloaded, click on the file name of your project</li>
+</ul>
+</section>
 </section>
 <section id="using-qfield" class="level2">
 <h2 class="anchored" data-anchor-id="using-qfield">Using QField</h2>
