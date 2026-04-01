@@ -28,8 +28,6 @@ We will start as always by creating a good folder structure to work within. This
     -   "output" - for any maps or images we export
     
     -   "DCIM" - this is a new one, it's for storing images from our phone!
-    
-    -   "UQ_Fieldwork" - this is also new, it's for exporting our project to QField
 
 
 -   Finally, let's save our .qgz project file here, named "qgis_fieldwork_map.qgz"
@@ -180,7 +178,7 @@ We first need to select the lots that are relevant to us:
 -   See the `Layer name` to "**UQ Boundary**"
     -   The Layer name can have spaces in it, but it's best to avoid spaces in a File name
 -   Make sure you change the CRS, effectively reprojecting the layer 
-    -   Choose `EPSG:23856 - GDA94 / MGA zone 56` 
+    -   Choose `EPSG:7856 - GDA2020 / MGA zone 56` 
         -   This is the same projection as our DEM, and a good local projection
 -   Click `OK` 
     
@@ -213,7 +211,7 @@ To buffer either side of the edges of our boundaries, we need to convert them fr
 
 ## Explore Projections
 
-Hopefully it's clear why we needed to convert from a Geographic Coordinate System to a Projected Coordinate System, but why is it important that we chose the local projection **EPSG:23856 - GDA94 / MGA zone 56**?
+Hopefully it's clear why we needed to convert from a Geographic Coordinate System to a Projected Coordinate System, but why is it important that we chose the local projection **EPSG:7856 - GDA2020 / MGA zone 56**?
 
 Let's see what would happen if we did our buffer on those lines in a different projection.
 
@@ -267,25 +265,35 @@ It's not essential at this stage, it's just a good reminder to save your work re
 
 Adding a **hillshade** makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.
 
--   Go to `Raster > Analysis > Hillshade...`.
--   Ensure the Input Layer is your clipped DEM "St_Lucia_DEM"
--   Scroll down to "Hillshade" and click "..." next to `Create Temporary Layer`, then "Save to file", and save it as **UQ_Hillshade** to your project folder.
--   Click Run
+-   Right-click on the DEM layer and "Duplicate layer"
+-   Rename the duplicated layer "hillshade"
+-   Open the Symbology menu for the hillshade layer
+-   Change the "Render type" to "Hillshade"
+-   The defaults should work well, but you can play with the settings, like the Altitude and the Azimuth
+-   Make sure you apply some transparency to the pseudocolour DEM, and place the hillshade layer underneath (in `Properties > Symbology > Transparency`)
+-   Down the bottom of the window under **Resampling** change the `Zoomed: in` and `out` from "Nearest Neighbour" to "Bilinear" (this will remove some of the grid-like patterns you might see in your Hillshade layer otherwise)
+
+> Another method is to use the hillshade tool instead of the symbology: `Raster > Analysis > Hillshade...`
+
 
 # DEM symbology
 
 We can style our DEM with a **terrain colour palette**:
 
--   double-click on the clipped DEM layer
--   go to the "`Symbology`" tab
+-   In the `Layer Styling` tab for the original DEM
 -   change the Render type to "Singleband pseudocolor"
 -   by default, it uses the min/max values, which is what we want
 -   we can change the "Color ramp" to something more suitable with the drop-down menu and `Create new color ramp... > Catalog: cpt-city > Topography > Elevation`, for example.
--   go to the "`Transparency`" tab
--   Set the **Global Opacity** to 50%
--   Click `OK`
 
-Let's link these two together.
+We can blend the two layers together to get the height benefits of the DEM, and the relief benefits of the Hillshade. We could set the transparency of the top layer to 50% to allow us to see the layer below. But a better approach is to change the **Layer Rendering**.
+
+-   In the `Layer Styling` tab of the original DEM
+-   Scroll down to **Layer Rendering**
+-   Change the **Blending Mode** from `Normal` to `Multiply`
+
+Rather than making the overlaying layer less intense with transparency, **Multiply** will multiply the colours of the top layer with the one beneath it. This can look strange with some layers and colours, but works really well here.
+
+Let's link these two layers together.
 
 -   Hold `Ctrl` and select both the Hillshade and the DEM layers
 -   Press the `Add Group` button from the top of the `Layers` panel
@@ -348,7 +356,7 @@ We could choose a local Geographic Coordinate System like **EPSG:7844 - GDA2020*
 ## Add Another Field
 It would be nice to be able to take photos when we collect our data, let's add another field.
 
--   Double click on the new **fieldwork_data** layer
+-   Double click on the new **collected_data** layer
 -   Click on the `Fields` tab
 -   Click the yellow pencil button to **Toggle Editing Mode**
 -   Click the now visible yellow **New field** button
@@ -432,7 +440,7 @@ This is another important step, as you need to create your tracking layer before
 -   Go to `Layer > Create Layer > New GeoPackage Layer...`
 -   Click the three dots `...` next to the **Database** field, navigate to the project's **processed data** folder, and type in **tracks** and click `Save`
 -   For `Geometry type` choose **MultiLine**
--   Set the CRS to `EPSG:23856 - GDA94 / MGA zone 56`
+-   Set the CRS to `EPSG:7856 - GDA2020 / MGA zone 56`
 -   Under **New Field** we will add just one layer attribute:
 -   Let's call the point name "DateTime"
     -   `Name`: **DateTime**
@@ -449,7 +457,7 @@ Let's prepare the **tracks** DateTime as we did with the **collected_data**
 
 On the left you will see all of our Fields, we can drag and drop these into the `Form Layout` section - this section lays out how our form will look when we enter new data.
 
--   Click **fid** and press the **red minus button** - we want to keep the field, but don't need to see this in our form
+-   We can keep the *fid* field visible, as this will allow us to differentiate different tracks should we need to.
 -   Click **DateTime**
     -   Under **General** untick `Editable` - we don't want to edit this field 
     -   Scroll to the bottom, under **Defaults** change the `Default value` to **$now**
@@ -484,32 +492,52 @@ You don't have to remove everything, but it's worth deciding what layers you wan
     -   UQ_Contours_5m
     -   UQ_DEM_1m
     -   UQ_Hillshade
-    -   World Imagery Tile   
+    -   World Imagery Tile  
+    
+
+QField should allow us to choose what data we copy across to QFieldCloud, however it will often simply copy everything in your project. For this reason we will manually set up a QField Project that we can copy via USB Cable, or via QFieldCloud.
+ 
     
 
 ## Export to QField
 
+We will effectively create a new QGIS Project in this process.
+
+First we will set it so that any hidden layers don't copy across to QField.
+
+-   Navigate to `Plugins > QFieldSync > Configure current project...`
+    -   Click the `Cable Packaging` tab
+    -   Click the `Toggle Layers` ![Toggle Layers](https://docs.qgis.org/3.44/en/_images/mActionShowPresets.png) symbol on the right
+        -   Click `Remove Hidden Layers`
+        -   This will automatically change the `Packaging Action` column settings from `Copy` to `Remove from project` for any layers hidden layers that you don't want to copy to QField.
+    -   Scroll down and tick **Geofencing**
+        -   Set `Geofencing areas layer` to UQ_Boundary_Buffer 
+    -   Click `OK`
+-   Save your project - this is necessary to make sure the QField settings we changed will actually stick.
+
+Now we can create our new QField Cloud Project.
+    
 -   Navigate to `Plugins > QFieldSync > Package for QField`
 -   If you get a Message window popup, click `Next`
 -   Give your project an appropriate title **UQ_Fieldwork** 
 -   Under **Packaged Project Filename** navigate to your **UQ_Fieldwork** folder and click `Save`
 -   Under **Advanced** untick every folder except `DCIM`
     -   We want a copy of this folder for our photos to be saved to. The rest of our data will be packaged into the QField folder.
--   At the bottom of the window click `Configure current project...`
-    -   Click the `Cable Export` tab (if we were using QFieldCloud, we would click that option now instead)
-    -   Click the `Toggle Layers` eye symbol on the right
-        -   In the `Action` column change `Copy` to `Remove from project` for any layers you don't want to copy to QField.
-    -   Scroll down and tick **Geofencing**
-        -   Set `Geofencing areas layer` to UQ_Boundary_Buffer 
-    -   Click `OK`
 -   Click `Create`
 
-We now need to zip the `QField` folder and send it to our phone!
+From here we could now send this folder to our phone via USB Cable or via QFieldCloud.
+
+::: {.callout-note collapse="true"}
+# USB Cable Instructions
 
 -   Navigate to your **Project** folder, right click on the **UQ_Fieldwork** folder and compress it to a zip file.
 -   Send this file to your phone via email, cloud, or using a cable.
 
-## Opening the QField Project
+We now need to zip the `QField` folder and send it to our phone!
+If you've used this option, you can skip to [Using QField](#using-qfield)
+
+
+## Opening the QField Project from USB Cable Transfer
 
 **Android**
 -   Open QField
@@ -530,6 +558,30 @@ We now need to zip the `QField` folder and send it to our phone!
 -   The project should open in QField.
 
 You can now access your map.
+:::
+
+### Export to QFieldCloud
+
+-   Navigate to `Plugins > QFieldSync > QFieldCloud Projects Overview`
+-   It will prompt you to sign in to your QFieldCloud account. If you don't have one, use the **Register** link, and then come back and sign in.
+-   Click the `Create New Project` cloud shaped button in the bottom left.
+-   Choose **Create a new empty QFieldCloud project**
+-   Click `Next`
+-   Name the project **UQ_Fieldwork**
+-   Set the `Local Directory` as the **UQ_Fieldwork** folder in your project folder.
+-   Click Create
+-   It will ask what you want to synchronised, we want all of them, click `Upload Files` 
+-   Once it has sychronized, click `OK`
+
+Your data should now be on QFieldCloud, and we can go to our phones.
+
+
+### Opening the QField Project from QFieldCloud
+
+-   Tap `QFieldCloud projects`
+-   Tap the Download button next to your project.
+-   Once it has downloaded, click on the file name of your project
+
 
 ## Using QField
 
