@@ -5,8 +5,6 @@ date: today
 author: UQ Library
 ---
 
-
-
 ## What are we going to learn?
 
 In this hands-on session, you will use R, RStudio and the `dplyr` package to transform your data.
@@ -24,7 +22,7 @@ Specifically, you will learn how to **explore, filter, reorganise and process** 
 
 -   Everything we write today will be saved in your project. Please remember to save it in your H drive or USB if you are using a Library computer.
 -   R is case sensitive: it will tell the difference between uppercase and lowercase.
--   Respect the naming rules for objects (no spaces, does not start with a number...)
+-   Respect the naming rules for objects (no spaces, does not start with a number...).
 
 ### Help
 
@@ -42,10 +40,10 @@ For any dataset or function doubts that you might have, don't forget the three w
 -   On Library computers (the first time takes about 10 min.):
     -   Log in with your UQ credentials (student account if you have two)
     -   Make sure you have a working internet connection
-    -   Go to search at bottom left corner (magnifiying glass)
-    -   Open the ZENworks application
+    -   Open the Start menu
+    -   Search for and open ZENworks
     -   Look for RStudio
-    -   Double click on RStudio which will install both R and RStudio
+    -   Double-click on RStudio which will install both R and RStudio
 
 ## Setting up
 
@@ -54,7 +52,7 @@ For any dataset or function doubts that you might have, don't forget the three w
 If you don't have it already, you can install dplyr with the command: `install.packages("dplyr")`
 
 ::: {.callout-note}
-At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)", a meta-package useful for data science: `install.packages("tidyverse")`
+At home, you can install the whole "[tidyverse](https://www.tidyverse.org/)", a meta-package useful for data science, which includes dplyr: `install.packages("tidyverse")`
 :::
 
 ### New project
@@ -86,7 +84,7 @@ gapminder <- read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapmind
 ```
 
 ::: {.callout-note}
- Remember you can use <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute a command from the script.
+ Remember you can use <kbd>Ctrl</kbd> + <kbd>Enter</kbd> (or <kbd>Cmd</kbd> + <kbd>Enter</kbd> on a Mac) to execute a command from the script.
 :::
 
 2.  Explore the gapminder dataset using `dim()` and `str()`
@@ -103,24 +101,25 @@ range(gapminder$year) # what is the time range?
 
 ## Basic dplyr verbs
 
-The R package `dplyr` was developed by Hadley Wickham for data manipulation.
+The R package dplyr was originally developed by Hadley Wickham for data manipulation.
 
-The book [*R for Data Science*](https://r4ds.hadley.nz/) introduces the package as follows:
+The [dplyr website](https://r4ds.hadley.nz/) introduces the package as follows:
 
 ::: {.callout-note}
 ## dplyr essentials
-You are going to learn the five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:
 
--   Pick variables by their names with `select()`
--   Pick observations by their values with `filter()`
--   Reorder the rows with `arrange()`
--   Create new variables with functions of existing variables with `mutate()`
--   Collapse many values down to a single summary with `summarise()`
+dplyr is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges:
 
-These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the main **verbs for a language of data manipulation**.
+- `mutate()` adds new variables that are functions of existing variables.
+- `select()` picks variables based on their names.
+- `filter()` picks cases based on their values.
+- `summarise()` reduces multiple values down to a single summary.
+- `arrange()` changes the ordering of the rows.
+
+These all combine naturally with `group_by()` which allows you to perform any operation “by group”.
 :::
 
-To use the verbs to their full extent, we will need **pipes** and **logical operators**, which we will introduce as we go.
+To use the verbs to their full extent, we will need **pipes** and **logical operators**, which we will introduce as we need them.
 
 Let's load the `dplyr` package to access its functions:
 
@@ -183,7 +182,7 @@ To see more helper operators and functions, look at the `select()` help page: `?
 
 ### 2. Pick observations with `filter()`
 
-The `filter()` function allows use to pick observations depending on one or several conditions. But to be able to define these conditions, we need to learn about logical operators.
+The `filter()` function allows us to pick observations depending on one or several conditions. But to be able to define these conditions, we need to learn about logical operators.
 
 **Logical operators** allow us to **compare things**. Here are some of the most important ones:
 
@@ -195,10 +194,10 @@ The `filter()` function allows use to pick observations depending on one or seve
 -   `<=`: smaller or equal
 
 ::: {.callout-warning}
-Remember: `=` is used to pass on a value to an argument, whereas `==` is used to check for equality. Using `=` instead of `==` for a logical statement is one of the most common errors and R will give you a reminder in the console when this happens.
+Remember: `=` is used to pass on a value to an argument, whereas `==` is used to check for equality. Using `=` instead of `==` for a logical statement is one of the most common errors and dplyr will give you a reminder in the console when this happens.
 :::
 
-You can compare any kind of data For example:
+You can compare any kind of data. For example:
 
 ```{r}
 #| label: logicals
@@ -238,6 +237,36 @@ australia
 ```
 
 The function compares the value "Australia" to all the values in the `country` variable, and only keeps the rows that have `TRUE` as an answer.
+
+Since dplyr 1.2, we can use the companion function `filter_out()` to remove the rows that match a condition. For example, to exclude Europe from the dataset:
+
+```{r}
+#| label: filter-out-europe
+no_europe <- filter(gapminder, continent == "Europe")
+# getting the unique values confirms it has worked:
+unique(no_europe$continent)
+```
+
+::: {.callout-warning}
+## Handling of missing values
+
+Both `filter()` and `filter_out()` interpret `NA`s as ``FALSE`. This means that `filter()` discards the rows that return `NA`, and `filter_out()` keeps them, making the two functions complimentary.
+
+It is recommended to use `filter()` when the intent is to keep rows, and `filter_out()` when the intent is to drop rows. This is important because seemingly equivalent operations can result in different results. For example, consider the different number of rows returned by these two operations:
+
+```{r}
+#| label: na-handling
+nrow(filter(starwars, hair_color != "blond")) # discards NAs
+nrow(filter_out(starwars, hair_color == "blond")) # keeps NAs
+```
+
+If the intent is to "drop starwars characters with blond hair", the second command is preferred because it will keep the characters that don't have data about hair colour.
+
+Wrapping up the topic of missing data, here are other useful functions:
+
+* For creating conditions based on NA values, use the `is.na()` function.
+* For handling missing data more easily, see tidyr's [`drop_na()`](https://tidyr.tidyverse.org/reference/drop_na.html) and [`replace_na()`](https://tidyr.tidyverse.org/reference/replace_na.html) functions.
+:::
 
 Now, let's filter the rows that have a life expectancy `lifeExp` greater than 81 years:
 
@@ -281,9 +310,9 @@ We could nest the commands into each other, the first step as the first argument
 arrange(filter(gapminder, lifeExp > 81), -lifeExp)
 ```
 
-... but this becomes very hard to read, very quickly. (Imagine with 3 steps or more!)
+... but this becomes very hard to read (and write), and gets worse with more steps!
 
-We can make our code more readable and avoid creating useless intermediate objects by **piping** commands into each other. The pipe operator `%>%` **strings commands together**, using the left side's output as the first argument of the right side function.
+We can make our code more readable and avoid creating useless intermediate objects by **piping** commands into each other. The pipe operator `%>%` **strings commands together**, using the left side's output as the first argument of the right side's function.
 
 For example, this command:
 
@@ -299,19 +328,19 @@ round(1.23, digits = 1)
 1.23 %>% round(digits = 1)
 ```
 
-Here's another example with the `filter()` verb:
+Here's another example with the `filter_out()` verb:
 
 ```{r}
 #| label: no-france-pipe
 gapminder %>%
-  filter(country != "France")
+  filter_out(country == "France")
 ```
 
 ... becomes:
 
 ```{r}
 #| label: no-france-no-pipe
-filter(gapminder, country != "France")
+filter_out(gapminder, country == "France")
 ```
 
 To do what we did previously in one single command, using the pipe:
@@ -324,7 +353,12 @@ gapminder %>%
 
 ```
 
-The pipe operator can be read as "then" and makes the code a lot **more readable** than when nesting functions into each other, and avoids the creation of several intermediate objects. It is also easier to troubleshoot as it makes it easy to execute the pipeline step by step.
+Writing multi-step processes with the pipe has many benefits:
+
+* The pipe can be read as "then" and makes the code a lot **more readable** than when nesting functions into each other.
+* Avoids the creation of several intermediate objects.
+* Easier to troubleshoot as we can execute the pipeline step by step (by adding the steps to the selection one by one).
+* Trivial to append or insert extra steps.
 
 From now on, we'll use the pipe syntax as a default.
 
@@ -453,9 +487,9 @@ gapminder %>%
 
 ## More examples
 
-Another example of a summary, with a the starwars data set that dplyr provides:
+Another example of a summary, with the starwars dataset that dplyr provides:
 
-Grouping by species, summarise the number of characters per species and find the mean mass. Only for species groups with more than 1 character.
+Summarise the number of characters per species and find the mean mass - but only for species groups with more than 1 character.
 
 ```{r}
 #| label: starwars
@@ -517,7 +551,7 @@ gapminder %>%
 
 ## Close project
 
-If you want to close RStudio, make sure you save your script first.
+Before closing RStudio, make sure you save your script.
 
 You can then close the window, and if your script contains all the steps necessary for your data processing, it is safer to *not* save your workspace at the prompt. It should only take a second to execute all the commands stored in your script when you re-open your project.
 
@@ -526,4 +560,4 @@ You can then close the window, and if your script contains all the steps necessa
 More on dplyr:
 
 -   [dplyr cheatsheet](https://rstudio.github.io/cheatsheets/data-transformation.pdf)
--   *R for Data Science*, [chapter about dplyr](https://r4ds.hadley.nz/transform)
+-   *R for Data Science*, [chapter about dplyr](https://r4ds.hadley.nz/data-transform)
