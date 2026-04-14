@@ -242,7 +242,7 @@ Since dplyr 1.2, we can use the companion function `filter_out()` to remove the 
 
 ```{r}
 #| label: filter-out-europe
-no_europe <- filter(gapminder, continent == "Europe")
+no_europe <- filter_out(gapminder, continent == "Europe")
 # getting the unique values confirms it has worked:
 unique(no_europe$continent)
 ```
@@ -332,6 +332,7 @@ Here's another example with the `filter_out()` verb:
 
 ```{r}
 #| label: no-france-pipe
+#| eval: false
 gapminder %>%
   filter_out(country == "France")
 ```
@@ -340,6 +341,7 @@ gapminder %>%
 
 ```{r}
 #| label: no-france-no-pipe
+#| eval: false
 filter_out(gapminder, country == "France")
 ```
 
