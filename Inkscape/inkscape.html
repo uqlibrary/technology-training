@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-04-15">
+<meta name="dcterms.date" content="2026-04-16">
 
 <title>Inkscape: introduction to vector design – UQ Library Technology Training</title>
 <style>
@@ -515,9 +515,9 @@ window.Quarto = {
   <li><a href="#groups" id="toc-groups" class="nav-link" data-scroll-target="#groups">Groups</a></li>
   <li><a href="#import-and-tweak-plots-created-outside-of-inkscape" id="toc-import-and-tweak-plots-created-outside-of-inkscape" class="nav-link" data-scroll-target="#import-and-tweak-plots-created-outside-of-inkscape">Import and tweak plots created outside of Inkscape</a></li>
   <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text">Text</a></li>
+  <li><a href="#align-and-distribute" id="toc-align-and-distribute" class="nav-link" data-scroll-target="#align-and-distribute">Align and Distribute</a></li>
   <li><a href="#lines-bézier-curves-and-arrows" id="toc-lines-bézier-curves-and-arrows" class="nav-link" data-scroll-target="#lines-bézier-curves-and-arrows">Lines, Bézier curves and arrows</a></li>
   <li><a href="#annotate-the-plots" id="toc-annotate-the-plots" class="nav-link" data-scroll-target="#annotate-the-plots">Annotate the plots</a></li>
-  <li><a href="#align-and-distribute" id="toc-align-and-distribute" class="nav-link" data-scroll-target="#align-and-distribute">Align and Distribute</a></li>
   <li><a href="#path-effects" id="toc-path-effects" class="nav-link" data-scroll-target="#path-effects">Path effects</a></li>
   <li><a href="#clone" id="toc-clone" class="nav-link" data-scroll-target="#clone">Clone</a></li>
   <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates">Templates</a></li>
@@ -542,7 +542,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 15, 2026</p>
+      <p class="date">April 16, 2026</p>
     </div>
   </div>
   
@@ -554,22 +554,6 @@ window.Quarto = {
 </header>
 
 
-<!-- Upcoming workshops -->
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Upcoming workshop(s) available!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The next workshop is on <strong>today at 10:00 AM.</strong></p>
-<p><a href="https://studenthub.uq.edu.au/students/events/detail/6249406">Book in to the next offering now.</a></p>
-<p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
-</div>
-</div>
 <section id="what-will-we-learn" class="level2">
 <h2 class="anchored" data-anchor-id="what-will-we-learn">What will we learn?</h2>
 <p>In this session, you will learn how to:</p>
@@ -584,6 +568,7 @@ window.Quarto = {
 <section id="what-is-inkscape" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-inkscape">What is Inkscape?</h2>
 <p>Inkscape is a free, open source vector drawing tool. It is a desktop application that can be installed on Linux, macOS and Windows.</p>
+<p>This session was designed using Inkscape 1.4.3.</p>
 </section>
 <section id="installing-inkscape" class="level2">
 <h2 class="anchored" data-anchor-id="installing-inkscape">Installing Inkscape</h2>
@@ -696,12 +681,12 @@ Warning
 </figure>
 </div>
 <p>You can also use this tool to modify the paths and fix up small details.</p>
-<p>Once the vector version of the image is cleaned up, place it in a corner of the page. If needed, you can flip objects by using the menu: Object - Flip Horizontal/Vertical.</p>
 <p>If the colours are a bit too dull, try using the Brilliance filter: Filters - Colours - Brilliance. Turn on the Live preview, tweak the Brightness, Over-saturation and Lightness values to reach a good balance, and compare with the original by turning Live preview off. Try for example 1.70, 0.10 and 0.10 respectively.</p>
+<p>Once the vector version of the image is cleaned up and brightened, place it in the bottom-left corner of the page. If needed, you can flip objects by using the menu: Object - Flip Horizontal/Vertical.</p>
 </section>
 <section id="layers-and-objects" class="level2">
 <h2 class="anchored" data-anchor-id="layers-and-objects">Layers and Objects</h2>
-<p>In the Dialogue panel, the “Layers and Objects” dialoge is a very important tool, especially as your composition becomes more complex. It shows in which order all the layers are stacked, and also makes it more obvious that you are inside a multi-layer object (like our traced flower). You can drag-and-drop objects to change the order they are stacked in, and choose to hide and lock them (so you don’t select or modify them by mistake).</p>
+<p>In the Dialogue panel, the “Layers and Objects” dialogue is a very important tool, especially as your composition becomes more complex. It shows in which order all the layers are stacked, and also makes it more obvious that you are inside a group of objects (like our traced flower). You can drag-and-drop objects to change the order they are stacked in, and choose to hide and lock them (so you don’t select or modify them by mistake).</p>
 <p>You can also change the order of objects by using the “Raise” and “Lower” buttons in the top toolbar.</p>
 <p>Using these features, place a circle with a gradient behind the flower.</p>
 <p>This is also where you can control the Opacity of the whole object, and the Blend mode (which allows for creative interactions between objects). Note that you might lose some Filters in the process, like the Brilliance we applied to the flower.</p>
@@ -709,7 +694,7 @@ Warning
 <section id="groups" class="level2">
 <h2 class="anchored" data-anchor-id="groups">Groups</h2>
 <p>Once you think they fit well together, select the two objects (the circle and the flower) and right-click - Group them, so they move together from now on. See how that is reflected in the Layers and Objects panel?</p>
-<p>You can also lock them so you don’t move them by mistake.</p>
+<p>You can now lock so you don’t move or select it by mistake.</p>
 </section>
 <section id="import-and-tweak-plots-created-outside-of-inkscape" class="level2">
 <h2 class="anchored" data-anchor-id="import-and-tweak-plots-created-outside-of-inkscape">Import and tweak plots created outside of Inkscape</h2>
@@ -760,6 +745,19 @@ Warning
 </div>
 </div>
 <p>Also give titles to your plots: “Observation types” and “Observations per year” respectively.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Copy and paste your text objects to easily keep font and sizes consistent across the infographic!</p>
+</div>
+</div>
 <p>You can also trace a rectangle with the Text Tool to define a text area. Do that to the right of the top plot, to include some text about your project:</p>
 <blockquote class="blockquote">
 <p><em>Laelia anceps</em> is an orchid found in Mexico, Guatemala and Honduras. These graphs are based on 500 observations downloaded from the citizen science network iNaturalist.</p>
@@ -778,10 +776,16 @@ Tip
 </div>
 </div>
 </section>
+<section id="align-and-distribute" class="level2">
+<h2 class="anchored" data-anchor-id="align-and-distribute">Align and Distribute</h2>
+<p>With Object - Align and Distribute, you can access many tools to align objects relative to each other or to the page.</p>
+<p>Use this to align your plot titles to the edge of the plot. For example, for the plot on the right, select both objects and use the setting “Relative to biggest objects” and the button “Align right edges”.</p>
+<p>Also make sure that your infographic title is centred relative to the page.</p>
+</section>
 <section id="lines-bézier-curves-and-arrows" class="level2">
 <h2 class="anchored" data-anchor-id="lines-bézier-curves-and-arrows">Lines, Bézier curves and arrows</h2>
 <p>The “Pen Tool” in the left toolbar allows tracing straight lines, paths and curves.</p>
-<p>Use it to trace a path of straight segments, clicking to place each node, and right-click when you are finished. You can also double-click for the last node.</p>
+<p>Use it to trace a path of straight segments, clicking to place each node, and right-click when you are finished. You can also double-click when placing the last node.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -825,17 +829,21 @@ Tip
 <li>Above the “Not enough data” bar, write: “No location, no date, no photo…” (These observations, as well as the cultivated ones, can never reach a “Research” quality level.)</li>
 <li>Next to a curved arrow that goes from the top of the “Needs ID” bar to the middle of the “Research” bar, write: “Can eventually become”. (This denotes that the “Needs ID” observations will become Research-grade when a level of agreement is reached.)</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Copy and paste your text objects to easily keep font and sizes consistent across the infographic!</p>
+<p>When modifying your arrows, pay attention to the difference between using the Selector Tool and the Node Tool:</p>
+<ul>
+<li>The arrows around a selected item will stretch and squish your object, changing the thickness of the line, making the arrows inconsistent.</li>
+<li>On the other hand, editing the object with the Node Tool with allow you to change the length of the path, its curvature, and the direction of the arrow without changing the general appearance.</li>
+</ul>
 </div>
 </div>
 <p>For the bottom plot:</p>
@@ -843,12 +851,6 @@ Tip
 <li>Add an annotation between the legend and the bars to show when iNaturalist started, with the text “2008: iNaturalist is born”.</li>
 <li>Link it to the corresponding bar with a grey, vertical dashed line.</li>
 </ul>
-</section>
-<section id="align-and-distribute" class="level2">
-<h2 class="anchored" data-anchor-id="align-and-distribute">Align and Distribute</h2>
-<p>With Object - Align and Distribute, you can access many tools to align objects relative to each other or to the page.</p>
-<p>Use this to align your plot titles to the edge of the plot. For example, for the plot on the right, select both objects and use the setting “Relative to biggest objects” and the button “Align right edges”.</p>
-<p>Also make sure that your infographic title is centred relative to the page.</p>
 </section>
 <section id="path-effects" class="level2">
 <h2 class="anchored" data-anchor-id="path-effects">Path effects</h2>
