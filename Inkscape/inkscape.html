@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-04-15">
 
-<title>Qualtrics – UQ Library Technology Training</title>
+<title>Inkscape: introduction to vector design – UQ Library Technology Training</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -104,9 +105,13 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Qualtrics – UQ Library Technology Training">
+<meta property="og:title" content="Inkscape: introduction to vector design – UQ Library Technology Training">
 <meta property="og:description" content="">
+<meta property="og:image" content="https://uqlibrary.github.io/technology-training/Inkscape/img/vector_vs_raster.png">
 <meta property="og:site_name" content="UQ Library Technology Training">
+<meta property="og:image:alt" content="Two red circles look the same, but once zoomed in, the raster image shows pixels, whereas the vector image still looks sharp.">
+<meta property="og:image:height" content="500">
+<meta property="og:image:width" content="500">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -173,7 +178,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Qualtrics/qualtrics.html"><img src="../images/XM.svg" class="img-fluid" alt="" width="20"> Qualtrics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Inkscape/inkscape.html"><img src="../images/inkscape.svg" class="img-fluid" alt="" width="20"> Inkscape</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -234,7 +239,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Inkscape/inkscape.html" class="sidebar-item-text sidebar-link">
+  <a href="../Inkscape/inkscape.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><img src="../images/inkscape.svg" class="img-fluid" alt="" width="20"> Inkscape</span></a>
   </div>
 </li>
@@ -376,7 +381,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Qualtrics/qualtrics.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Qualtrics/qualtrics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><img src="../images/XM.svg" class="img-fluid" alt="" width="20"> Qualtrics</span></a>
   </div>
 </li>
@@ -497,7 +502,27 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#using-qualtrics-for-surveys" id="toc-using-qualtrics-for-surveys" class="nav-link active" data-scroll-target="#using-qualtrics-for-surveys">Using Qualtrics for surveys</a></li>
+  <li><a href="#what-will-we-learn" id="toc-what-will-we-learn" class="nav-link active" data-scroll-target="#what-will-we-learn">What will we learn?</a></li>
+  <li><a href="#what-is-inkscape" id="toc-what-is-inkscape" class="nav-link" data-scroll-target="#what-is-inkscape">What is Inkscape?</a></li>
+  <li><a href="#installing-inkscape" id="toc-installing-inkscape" class="nav-link" data-scroll-target="#installing-inkscape">Installing Inkscape</a></li>
+  <li><a href="#vector-and-raster-images" id="toc-vector-and-raster-images" class="nav-link" data-scroll-target="#vector-and-raster-images">Vector and raster images</a></li>
+  <li><a href="#new-file" id="toc-new-file" class="nav-link" data-scroll-target="#new-file">New file</a></li>
+  <li><a href="#draw-shapes" id="toc-draw-shapes" class="nav-link" data-scroll-target="#draw-shapes">Draw shapes</a></li>
+  <li><a href="#controls" id="toc-controls" class="nav-link" data-scroll-target="#controls">Controls</a></li>
+  <li><a href="#filters" id="toc-filters" class="nav-link" data-scroll-target="#filters">Filters</a></li>
+  <li><a href="#trace-a-raster-image" id="toc-trace-a-raster-image" class="nav-link" data-scroll-target="#trace-a-raster-image">Trace a raster image</a></li>
+  <li><a href="#layers-and-objects" id="toc-layers-and-objects" class="nav-link" data-scroll-target="#layers-and-objects">Layers and Objects</a></li>
+  <li><a href="#groups" id="toc-groups" class="nav-link" data-scroll-target="#groups">Groups</a></li>
+  <li><a href="#import-and-tweak-plots-created-outside-of-inkscape" id="toc-import-and-tweak-plots-created-outside-of-inkscape" class="nav-link" data-scroll-target="#import-and-tweak-plots-created-outside-of-inkscape">Import and tweak plots created outside of Inkscape</a></li>
+  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text">Text</a></li>
+  <li><a href="#lines-bézier-curves-and-arrows" id="toc-lines-bézier-curves-and-arrows" class="nav-link" data-scroll-target="#lines-bézier-curves-and-arrows">Lines, Bézier curves and arrows</a></li>
+  <li><a href="#annotate-the-plots" id="toc-annotate-the-plots" class="nav-link" data-scroll-target="#annotate-the-plots">Annotate the plots</a></li>
+  <li><a href="#align-and-distribute" id="toc-align-and-distribute" class="nav-link" data-scroll-target="#align-and-distribute">Align and Distribute</a></li>
+  <li><a href="#path-effects" id="toc-path-effects" class="nav-link" data-scroll-target="#path-effects">Path effects</a></li>
+  <li><a href="#clone" id="toc-clone" class="nav-link" data-scroll-target="#clone">Clone</a></li>
+  <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates">Templates</a></li>
+  <li><a href="#import-web-image" id="toc-import-web-image" class="nav-link" data-scroll-target="#import-web-image">Import Web Image</a></li>
+  <li><a href="#formats-and-exporting" id="toc-formats-and-exporting" class="nav-link" data-scroll-target="#formats-and-exporting">Formats and exporting</a></li>
   </ul>
 </nav>
     </div>
@@ -506,7 +531,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Qualtrics</h1>
+<h1 class="title">Inkscape: introduction to vector design</h1>
 </div>
 
 
@@ -514,6 +539,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 15, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -523,13 +554,333 @@ window.Quarto = {
 </header>
 
 
-<p><a href="https://my.uq.edu.au/information-and-services/information-technology/software-and-web-apps/uq-software-catalogue/qualtrics">Qualtrics</a> is an “experience management” plaftform that can be used for running surveys and analysing the collected responses.</p>
-<p>Find below the resources for our Qualtrics sessions.</p>
-<section id="using-qualtrics-for-surveys" class="level2">
-<h2 class="anchored" data-anchor-id="using-qualtrics-for-surveys">Using Qualtrics for surveys</h2>
+<!-- Upcoming workshops -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Upcoming workshop(s) available!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The next workshop is on <strong>today at 10:00 AM.</strong></p>
+<p><a href="https://studenthub.uq.edu.au/students/events/detail/6249406">Book in to the next offering now.</a></p>
+<p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
+</div>
+</div>
+<section id="what-will-we-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-will-we-learn">What will we learn?</h2>
+<p>In this session, you will learn how to:</p>
 <ul>
-<li><a href="https://github.com/uqlibrary/technology-training-assets/raw/master/Qualtrics/Using_Qualtrics_for_Surveys_Training_Manual.pdf">Manual</a></li>
-<li><a href="https://github.com/uqlibrary/technology-training-assets/raw/master/Qualtrics/Qualtrics_Training_Exercise_Files.zip">Files</a></li>
+<li>Create custom shapes</li>
+<li>Turn bitmap images into a clean vector object</li>
+<li>Integrate plots from other tools into an infographic</li>
+<li>Add text annotations</li>
+<li>Use filters and effects</li>
+</ul>
+</section>
+<section id="what-is-inkscape" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-inkscape">What is Inkscape?</h2>
+<p>Inkscape is a free, open source vector drawing tool. It is a desktop application that can be installed on Linux, macOS and Windows.</p>
+</section>
+<section id="installing-inkscape" class="level2">
+<h2 class="anchored" data-anchor-id="installing-inkscape">Installing Inkscape</h2>
+<p>To install Inkscape:</p>
+<ul>
+<li>On your own computer, go to the <a href="https://inkscape.org/release/">Inkscape download page</a>, download the installer and run it.</li>
+<li>On a UQ (ITS) computer, open Company Portal, search for “Inkscape” and install it.</li>
+<li>On a UQ Library computer, open ZENworks, search for “Inkscape” and install it.</li>
+</ul>
+</section>
+<section id="vector-and-raster-images" class="level2">
+<h2 class="anchored" data-anchor-id="vector-and-raster-images">Vector and raster images</h2>
+<p>Vector images are made of shapes, as opposed to raster graphics that are made of pixels. This means that a vector graphic always looks sharp, and individual objects can be modified independently.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/vector_vs_raster.png" class="img-fluid figure-img" alt="Two red circles look the same, but once zoomed in, the raster image shows pixels, whereas the vector image still looks sharp."></p>
+<figcaption>Zooming onto a vector image (left) and a raster image (right). (By Rex on <a href="https://commons.wikimedia.org/wiki/File:Vector_vs_raster.png">Wikimedia Commons</a>, Public Domain)</figcaption>
+</figure>
+</div>
+<p>Inkscape allows you to create and manipulate vector objects, using the <a href="https://en.wikipedia.org/wiki/SVG">SVG file format</a> (“Scalable Vector Graphics”) as a default. However, images can be exported in a variety of vector and raster formats.</p>
+<p>The SVG format is a widespread open format for 2D images, used in graphic design and web design. It can also support interactivity and animation.</p>
+</section>
+<section id="new-file" class="level2">
+<h2 class="anchored" data-anchor-id="new-file">New file</h2>
+<p>Create a new file by clicking on “New Document” in the Welcome dialog.</p>
+</section>
+<section id="draw-shapes" class="level2">
+<h2 class="anchored" data-anchor-id="draw-shapes">Draw shapes</h2>
+<p>The left toolbar (the “Toolbox”) has various shape tools. Start with tracing a rectangle with the Rectangle Tool. The right panel (the “Dialogues” panel) has a Fill and Stroke tab that allows you to change what you want to fill the shape with, and the look of the outline (if any).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/fill_and_stroke_tab.png" class="img-fluid figure-img" alt="Screenshot of user interface with Fill and Stroke tab highlighted, and showing a colour wheel."></p>
+<figcaption>Fill and Stroke tab in the right sidebar</figcaption>
+</figure>
+</div>
+<p>Try using the colour wheel in the “Fill” tab to change the colour for the “Flat colour” option, then play with defining your own gradient with the “Linear gradient” option. With gradients, you can add and remove colour stops, and you can define where the gradient starts and ends on the shape by moving the blue line’s handles.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/gradient.png" class="img-fluid figure-img" alt="Screenshot of user interface showing two colour stops in the side panel, and a slanted blue line over the coloured shape."></p>
+<figcaption>Gradient with two stops, and its direction modified.</figcaption>
+</figure>
+</div>
+<p>Make sure there is a stoke style selected in the “Stroke style tab”, then style it in the “Stroke paint” tab.</p>
+<p>Try the same thing with the “Ellipse/Arc Tool” now. You can trace a perfect circle by keeping the <kbd>Ctrl</kbd> key pressed when dragging, and use the circle handle to switch between arcs (dragging inside the circle) or segments (dragging outside the circle). You can then switch modes with the top toolbar (“Slice”, “Arc”, “Chord”, “Whole ellipse”).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/ellipses.png" class="img-fluid figure-img" alt="Screenshot of 4 shapes showing the different ellipse modes."></p>
+<figcaption>4 types of ellipses: slice, arc, chord and full ellipse.</figcaption>
+</figure>
+</div>
+</section>
+<section id="controls" class="level2">
+<h2 class="anchored" data-anchor-id="controls">Controls</h2>
+<p>Use <kbd>Ctrl</kbd> + <kbd>Scroll</kbd> to zoom in and out.</p>
+<p>You can resize an object by using the corner handles, but remember that if you want to keep the aspect ratio, you have to press <kbd>Ctrl</kbd> at the same time.</p>
+<p>If you use <kbd>Shift</kbd> while resizing, the centre of the object stays at the same position. (You can also use it to create an object from its centre point.)</p>
+<p>You can also change the size to precise values by using the toolbar (and picking any unit you want to use). The lock button allows you to always keep the same aspect ratio for the object.</p>
+</section>
+<section id="filters" class="level2">
+<h2 class="anchored" data-anchor-id="filters">Filters</h2>
+<p>Select a shape and use the menu Filters - Filter Gallery…</p>
+<p>Although you can find many filters in the Filters menu, this dialog allows searching keywords. Test a few filters: some common ones are “Blur” and “Drop Shadow”. Some filters will have a dialog pop up for settings, others won’t. Don’t forget to click “Apply” before closing the settings dialogue.</p>
+<p>You can modify the filter’s settings (or create a new filter) by going to Filters - Filter Editor…, and remove an object’s filters by going to Filters - Remove Filters.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To instantly what the settings do, tick “Live preview”.</p>
+</div>
+</div>
+</section>
+<section id="trace-a-raster-image" class="level2">
+<h2 class="anchored" data-anchor-id="trace-a-raster-image">Trace a raster image</h2>
+<p>You can transform a raster image into a vector image by using Path - Trace Bitmap.</p>
+<p>Choose a picture from the <a href="https://commons.wikimedia.org/wiki/Category:Botanical_illustrations_in_the_Wellcome_Collection">Wellcome Collection of botanical art</a> (for example, <a href="https://commons.wikimedia.org/wiki/File:An_orchid_(Laelia_anceps);_flowering_stem_and_leaves._Waterc_Wellcome_V0043292.jpg">this orchid</a>). Copy and paste the image into Inkscape, then use the menu: Path - Trace Bitmap.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using a high-resolution image can make the tracing process very slow, and result in unnecessarily detailed objects.</p>
+<p>If you have a large image (e.g.&nbsp;several MB-big), you can use “Edit - Make a Bitmap Copy” to create a lower-resolution copy of the image.</p>
+</div>
+</div>
+<p>In the “Trace Bitmap” dialogue, switch to the “Multicolour” tab, then use the following options:</p>
+<ul>
+<li>Scans: 8 (the number of colours)</li>
+<li>Smooth (to blur the picture before tracing)</li>
+<li>Stack (to stack the scans on top of each other without gaps)</li>
+<li>Remove background</li>
+</ul>
+<p>Then click “Apply”. Inkscape generates a vector version of the original image. You can play with the settings to get better results. For example, increasing the values for “Speckles”, “Smooth corners” and “Optimise” will simplify the object in various ways, making it lighter but less detailed.</p>
+<p>If you double-click on the resulting object, you can access the different layers that make it, and remove / keep as you see fit. For example, there might still be a background depending on the contrast of the picture, which you can remove (if it doesn’t affect the rest of the picture). Double-click out of the object (or click on another object) to get out of the object’s layers.</p>
+<p>If there’s a part of the image you don’t want to keep, but you don’t want to remove the whole layer, you can use the Node Tool, click on the object, and select the nodes, then delete them.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/node_tool.png" class="img-fluid figure-img" alt="Screenshot of traced flower, one scan selected, with all nodes visible. The nodes on the edge of the image are blue because they are selected and ready to be deleted."></p>
+<figcaption>Selected nodes (in blue) to delete, using the Node tool.</figcaption>
+</figure>
+</div>
+<p>You can also use this tool to modify the paths and fix up small details.</p>
+<p>Once the vector version of the image is cleaned up, place it in a corner of the page. If needed, you can flip objects by using the menu: Object - Flip Horizontal/Vertical.</p>
+<p>If the colours are a bit too dull, try using the Brilliance filter: Filters - Colours - Brilliance. Turn on the Live preview, tweak the Brightness, Over-saturation and Lightness values to reach a good balance, and compare with the original by turning Live preview off. Try for example 1.70, 0.10 and 0.10 respectively.</p>
+</section>
+<section id="layers-and-objects" class="level2">
+<h2 class="anchored" data-anchor-id="layers-and-objects">Layers and Objects</h2>
+<p>In the Dialogue panel, the “Layers and Objects” dialoge is a very important tool, especially as your composition becomes more complex. It shows in which order all the layers are stacked, and also makes it more obvious that you are inside a multi-layer object (like our traced flower). You can drag-and-drop objects to change the order they are stacked in, and choose to hide and lock them (so you don’t select or modify them by mistake).</p>
+<p>You can also change the order of objects by using the “Raise” and “Lower” buttons in the top toolbar.</p>
+<p>Using these features, place a circle with a gradient behind the flower.</p>
+<p>This is also where you can control the Opacity of the whole object, and the Blend mode (which allows for creative interactions between objects). Note that you might lose some Filters in the process, like the Brilliance we applied to the flower.</p>
+</section>
+<section id="groups" class="level2">
+<h2 class="anchored" data-anchor-id="groups">Groups</h2>
+<p>Once you think they fit well together, select the two objects (the circle and the flower) and right-click - Group them, so they move together from now on. See how that is reflected in the Layers and Objects panel?</p>
+<p>You can also lock them so you don’t move them by mistake.</p>
+</section>
+<section id="import-and-tweak-plots-created-outside-of-inkscape" class="level2">
+<h2 class="anchored" data-anchor-id="import-and-tweak-plots-created-outside-of-inkscape">Import and tweak plots created outside of Inkscape</h2>
+<p>We will now integrate into our infographic two plots about the orchid <a href="https://www.inaturalist.org/taxa/204984-Laelia-anceps"><em>Laelia anceps</em></a>, based on data from iNaturalist and generated with R.</p>
+<ul>
+<li>Drag and drop both files into Inkscape. (You can also use the menu for that: File - Import.)</li>
+<li>Keep the default setting when prompted to choose an “SVG Image Import Type”: the plots will be added as editable objects.</li>
+</ul>
+<p>For the timeline plot:</p>
+<ul>
+<li>Move the legend to the empty area of the plot. You will have to ungroup the object, select the legend object, and group them again.</li>
+<li>You can remove the useless white background from the group.</li>
+<li>Select the bar for 2026 and modify its fill to denote that the year is not over:
+<ul>
+<li>In the right panel, go to the Fill and Stroke dialogue, “Fill” tab.</li>
+<li>Change the fill to “Pattern”.</li>
+<li>Select the “Stripes 01” pattern.</li>
+<li>Change the pattern Orientation to 45 degrees (for diagonal stripes).</li>
+<li>We lost the original colour! Let’s restore it:
+<ul>
+<li>Click in the “Colour” box.</li>
+<li>In the “Pattern colour” dialog that pops up, click the pipette icon (“Pick colours from image”).</li>
+<li>Click on another light pink bar to use the same colour.</li>
+</ul></li>
+</ul></li>
+<li>Place the plot next to the flower, in the bottom right of the page.</li>
+</ul>
+<p>For the plot about observations:</p>
+<ul>
+<li>Place it above the flower, on the left of the page.</li>
+<li>Remove the title of the X axis (because the title will be very similar).</li>
+</ul>
+</section>
+<section id="text" class="level2">
+<h2 class="anchored" data-anchor-id="text">Text</h2>
+<p>Use the Text Tool in the left toolbar to add text objects to the infographic. For the title, click where the text starts and type: “Laelia anceps”. Pick a suitable size and font from the top toolbar.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Is your text looking bold or hard to read? It might be using a stroke paint! Got to the right panel, in the “Fill and Stroke” dialogue, “Stroke paint” tab, and make sure it is set to “No paint”.</p>
+</div>
+</div>
+<p>Also give titles to your plots: “Observation types” and “Observations per year” respectively.</p>
+<p>You can also trace a rectangle with the Text Tool to define a text area. Do that to the right of the top plot, to include some text about your project:</p>
+<blockquote class="blockquote">
+<p><em>Laelia anceps</em> is an orchid found in Mexico, Guatemala and Honduras. These graphs are based on 500 observations downloaded from the citizen science network iNaturalist.</p>
+</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If the frame is not large enough for the text, it will turn red to let you know that some text can’t be displayed.</p>
+</div>
+</div>
+</section>
+<section id="lines-bézier-curves-and-arrows" class="level2">
+<h2 class="anchored" data-anchor-id="lines-bézier-curves-and-arrows">Lines, Bézier curves and arrows</h2>
+<p>The “Pen Tool” in the left toolbar allows tracing straight lines, paths and curves.</p>
+<p>Use it to trace a path of straight segments, clicking to place each node, and right-click when you are finished. You can also double-click for the last node.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once again, Inkscape reuses your most recent stroke and fill settings. For the Pen Tool, you likely want to set the Fill to “No paint”.</p>
+</div>
+</div>
+<p>To trace a curve:</p>
+<ul>
+<li>Place a first node</li>
+<li>For the second node, click and hold.</li>
+<li>You can now drag to change the curvature of the line.</li>
+<li>The next segment will follow the curve accordingly, to create a smooth path.</li>
+</ul>
+<p>This is called a “<a href="https://en.wikipedia.org/wiki/B%C3%A9zier_curve">Bézier curve</a>”: a line with control points that define its curvature. Double-clicking a vector object turns on the Node Tool, which allows you to move nodes, but also tweak those control points to change the shape of the curve. Alternatively, you can also drag from anywhere on the curve itself (which moves the control points accordingly).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/bezier.png" class="img-fluid figure-img" alt="A node is highlighted in blue, joining to curved segments, and revealing two curvature control points."></p>
+<figcaption>Nodes and curvature control points on a Bézier curve.</figcaption>
+</figure>
+</div>
+<p>To turn a curve into an arrow, go to the “Fill and Stroke” dialog, “Stroke style” tab, and set an end marker.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/arrow.png" class="img-fluid figure-img" alt="Screenshot of Pen Tool active on a curve. The Stroke style settings show an arrow head used as the end marker."></p>
+<figcaption>Arrow marker at the end of a Bézier curve.</figcaption>
+</figure>
+</div>
+</section>
+<section id="annotate-the-plots" class="level2">
+<h2 class="anchored" data-anchor-id="annotate-the-plots">Annotate the plots</h2>
+<p>We can now annotate our plots with text and arrows.</p>
+<p>For the top plot:</p>
+<ul>
+<li>Above the “Not enough data” bar, write: “No location, no date, no photo…” (These observations, as well as the cultivated ones, can never reach a “Research” quality level.)</li>
+<li>Next to a curved arrow that goes from the top of the “Needs ID” bar to the middle of the “Research” bar, write: “Can eventually become”. (This denotes that the “Needs ID” observations will become Research-grade when a level of agreement is reached.)</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Copy and paste your text objects to easily keep font and sizes consistent across the infographic!</p>
+</div>
+</div>
+<p>For the bottom plot:</p>
+<ul>
+<li>Add an annotation between the legend and the bars to show when iNaturalist started, with the text “2008: iNaturalist is born”.</li>
+<li>Link it to the corresponding bar with a grey, vertical dashed line.</li>
+</ul>
+</section>
+<section id="align-and-distribute" class="level2">
+<h2 class="anchored" data-anchor-id="align-and-distribute">Align and Distribute</h2>
+<p>With Object - Align and Distribute, you can access many tools to align objects relative to each other or to the page.</p>
+<p>Use this to align your plot titles to the edge of the plot. For example, for the plot on the right, select both objects and use the setting “Relative to biggest objects” and the button “Align right edges”.</p>
+<p>Also make sure that your infographic title is centred relative to the page.</p>
+</section>
+<section id="path-effects" class="level2">
+<h2 class="anchored" data-anchor-id="path-effects">Path effects</h2>
+<p>Select a simple object, then go to Path - Path Effects. This panel gives you access to numerous effects. Try for example “Rotate copies”, then change the number of copies and move the centre of the modified object.</p>
+<p>Some other useful path effects you could try:</p>
+<ul>
+<li>Roughen: to make something “less neat”</li>
+<li>Tiling: to generate a grid of repeated images, or a tiled pattern.</li>
+</ul>
+</section>
+<section id="clone" class="level2">
+<h2 class="anchored" data-anchor-id="clone">Clone</h2>
+<p>In the right toolbar, use “Create Clone” to have a copy of an object that is synced with the original.</p>
+</section>
+<section id="templates" class="level2">
+<h2 class="anchored" data-anchor-id="templates">Templates</h2>
+<p>In File - New from Template, you can pick various sizes depending on what you are creating a graphic for. For example, there are templates for creating icons, screen wallpapers, zine booklets, business cards and social media images.</p>
+</section>
+<section id="import-web-image" class="level2">
+<h2 class="anchored" data-anchor-id="import-web-image">Import Web Image</h2>
+<p>You can import vector images from different sources in File - Import Web Image…</p>
+<p>Choose a source and type a keyword. Make sure to respect the licensing!</p>
+</section>
+<section id="formats-and-exporting" class="level2">
+<h2 class="anchored" data-anchor-id="formats-and-exporting">Formats and exporting</h2>
+<p>Inkscape uses SVG (“Scalable Vector Graphics”) as a default format. It’s an open standard that is very common, and supported in many applications, which means you usually can share the file as is.</p>
+<p>However, if you need to, you can export your creation in many different formats, including raster formats (like PNG) if needed.</p>
+<ul>
+<li>Open the Export dialogue with File - Export.</li>
+<li>In the “Single File” tab, select “Page” (to crop out anything outside the page).</li>
+<li>You might have to tweak the Background Colour, as PNG supports transparent backgrounds.</li>
+<li>The resolution value (“DPI” for “Dots Per Inch”) depends on what you want to do with the export. If it is going to by printed as a poster, you might want to increase the value.</li>
 </ul>
 
 
