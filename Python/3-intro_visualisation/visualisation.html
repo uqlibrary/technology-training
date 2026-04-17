@@ -61,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -108,6 +108,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -536,7 +539,6 @@ window.Quarto = {
   <ul>
   <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a>
   <ul class="collapse">
-  <li><a href="#spyder-version" id="toc-spyder-version" class="nav-link" data-scroll-target="#spyder-version">Spyder version</a></li>
   <li><a href="#modules-and-data" id="toc-modules-and-data" class="nav-link" data-scroll-target="#modules-and-data">Modules and data</a></li>
   </ul></li>
   <li><a href="#seaborn-for-simple-visualisations" id="toc-seaborn-for-simple-visualisations" class="nav-link" data-scroll-target="#seaborn-for-simple-visualisations">Seaborn for simple visualisations</a>
@@ -604,20 +606,19 @@ window.Quarto = {
 <p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>🚧🚧🚧 Software changes incoming 🚧🚧🚧
+<span class="screen-reader-only">Note</span>Recent update: Positron
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We have decided to shift from the Spyder IDE to <a href="https://positron.posit.co/">Positron</a>.</p>
+<p>These materials have recently been updated to reflect our shift from Spyder to the <a href="https://positron.posit.co/">Positron</a> IDE.</p>
 <p>Positron looks and feels like VS Code with the data science features of RStudio and Spyder.</p>
-<p>These materials still refer to Spyder, and are subject to change over the next few months. Only the <a href="#setting-up">Setting up</a> section is affected.</p>
-<p>The Python content will remain unchanged.</p>
+<p>The Python content remains unchanged.</p>
 </div>
 </div>
 <p>In this third workshop we will cover</p>
@@ -627,16 +628,25 @@ window.Quarto = {
 </ul>
 <section id="setting-up" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
-<section id="spyder-version" class="level3">
-<h3 class="anchored" data-anchor-id="spyder-version">Spyder version</h3>
-<p>Before we begin, please check which version of Spyder you’re using (you can see this in the Anaconda Navigator, or in Help &gt; About Spyder). <strong>If it’s less than 6</strong>, you should update Spyder before continuing. However, if you’re in a workshop, this will take too long - instead, use the following workaround if your plots don’t work:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>More on this later.</p>
-</section>
 <section id="modules-and-data" class="level3">
 <h3 class="anchored" data-anchor-id="modules-and-data">Modules and data</h3>
-<p>We’ll need three modules today:</p>
-<div id="12985c8d" class="cell" data-execution_count="1">
+<p>We’ll need three modules today. Let’s make sure they’re installed by running the following in the console:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%pip</span> install pandas matplotlib seaborn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Anaconda (<code>conda</code>) users
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Anaconda (<code>conda</code>) users should replace <code>pip</code> with <code>conda</code>.</p>
+</div>
+</div>
+<p>Next, create a new script and begin by importing the modules:</p>
+<div id="df88e390" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -648,40 +658,145 @@ window.Quarto = {
 <li>Save the dataset there.</li>
 </ol>
 <p>We should then bring it in with pandas:</p>
-<div id="167da7a2" class="cell" data-execution_count="2">
+<div id="435b68a4" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/Players2024.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Take a quick peak at the dataset to remind yourself</p>
-<div id="bc444501" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                        name  birth_date  height_cm   positions nationality  \
-0               James Milner  1986-01-04      175.0    Midfield     England   
-1        Anastasios Tsokanis  1991-05-02      176.0    Midfield      Greece   
-2              Jonas Hofmann  1992-07-14      176.0    Midfield     Germany   
-3                 Pepe Reina  1982-08-31      188.0  Goalkeeper       Spain   
-4              Lionel Carole  1991-04-12      180.0    Defender      France   
-...                      ...         ...        ...         ...         ...   
-5930  Oleksandr Pshenychnyuk  2006-05-01      180.0    Midfield     Ukraine   
-5931            Alex Marques  2005-10-23      186.0    Defender    Portugal   
-5932             Tomás Silva  2006-05-25      175.0    Defender    Portugal   
-5933             Fábio Sambú  2007-09-06      180.0      Attack    Portugal   
-5934          Hakim Sulemana  2005-02-19      164.0      Attack       Ghana   
+<div id="44c755a2" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
 
-      age                                    club  
-0      38  Brighton and Hove Albion Football Club  
-1      33        Volou Neos Podosferikos Syllogos  
-2      32             Bayer 04 Leverkusen Fußball  
-3      42                             Calcio Como  
-4      33                      Kayserispor Kulübü  
-...   ...                                     ...  
-5930   18              ZAO FK Chornomorets Odessa  
-5931   18                  Boavista Futebol Clube  
-5932   18                  Boavista Futebol Clube  
-5933   17                  Boavista Futebol Clube  
-5934   19                    Randers Fodbold Club  
 
-[5935 rows x 7 columns]</code></pre>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">birth_date</th>
+<th data-quarto-table-cell-role="th">height_cm</th>
+<th data-quarto-table-cell-role="th">positions</th>
+<th data-quarto-table-cell-role="th">nationality</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">club</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>James Milner</td>
+<td>1986-01-04</td>
+<td>175.0</td>
+<td>Midfield</td>
+<td>England</td>
+<td>38</td>
+<td>Brighton and Hove Albion Football Club</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Anastasios Tsokanis</td>
+<td>1991-05-02</td>
+<td>176.0</td>
+<td>Midfield</td>
+<td>Greece</td>
+<td>33</td>
+<td>Volou Neos Podosferikos Syllogos</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Jonas Hofmann</td>
+<td>1992-07-14</td>
+<td>176.0</td>
+<td>Midfield</td>
+<td>Germany</td>
+<td>32</td>
+<td>Bayer 04 Leverkusen Fußball</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Pepe Reina</td>
+<td>1982-08-31</td>
+<td>188.0</td>
+<td>Goalkeeper</td>
+<td>Spain</td>
+<td>42</td>
+<td>Calcio Como</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Lionel Carole</td>
+<td>1991-04-12</td>
+<td>180.0</td>
+<td>Defender</td>
+<td>France</td>
+<td>33</td>
+<td>Kayserispor Kulübü</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">5930</th>
+<td>Oleksandr Pshenychnyuk</td>
+<td>2006-05-01</td>
+<td>180.0</td>
+<td>Midfield</td>
+<td>Ukraine</td>
+<td>18</td>
+<td>ZAO FK Chornomorets Odessa</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5931</th>
+<td>Alex Marques</td>
+<td>2005-10-23</td>
+<td>186.0</td>
+<td>Defender</td>
+<td>Portugal</td>
+<td>18</td>
+<td>Boavista Futebol Clube</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">5932</th>
+<td>Tomás Silva</td>
+<td>2006-05-25</td>
+<td>175.0</td>
+<td>Defender</td>
+<td>Portugal</td>
+<td>18</td>
+<td>Boavista Futebol Clube</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5933</th>
+<td>Fábio Sambú</td>
+<td>2007-09-06</td>
+<td>180.0</td>
+<td>Attack</td>
+<td>Portugal</td>
+<td>17</td>
+<td>Boavista Futebol Clube</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">5934</th>
+<td>Hakim Sulemana</td>
+<td>2005-02-19</td>
+<td>164.0</td>
+<td>Attack</td>
+<td>Ghana</td>
+<td>19</td>
+<td>Randers Fodbold Club</td>
+</tr>
+</tbody>
+</table>
+
+<p>5935 rows × 7 columns</p>
+</div>
 </div>
 </div>
 </section>
@@ -690,9 +805,9 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="seaborn-for-simple-visualisations">Seaborn for simple visualisations</h2>
 <p>To begin our visualisations, we’ll use the package <a href="https://seaborn.pydata.org/index.html">seaborn</a>, which allows you to quickly whip up decent graphs.</p>
 <p>Seaborn has three plotting functions</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(...) <span class="co"># for categorical plotting, e.g. bar plots, box plots etc.</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(...) <span class="co"># for relational plotting, e.g. line plots, scatter plots</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sns.displot(...) <span class="co"># for distributions, e.g. histograms</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(...) <span class="co"># for categorical plotting, e.g. bar plots, box plots etc.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(...) <span class="co"># for relational plotting, e.g. line plots, scatter plots</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sns.displot(...) <span class="co"># for distributions, e.g. histograms</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We’ll begin with the first.</p>
 <blockquote class="blockquote">
 <p>It’s called “seaborn” as a reference to fictional character <a href="https://en.wikipedia.org/wiki/Sam_Seaborn">Sam Seaborn</a>, whose initials are “sns”.</p>
@@ -705,8 +820,8 @@ window.Quarto = {
 <li>The variables</li>
 </ul>
 <p>Let’s see if there’s a relationship between the players’ <strong>heights</strong> and <strong>positions</strong>, by placing their positions on the <span class="math inline">\(x\)</span> axis and heights on the <span class="math inline">\(y\)</span>.</p>
-<div id="c1f82796" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="db7e9043" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -716,39 +831,22 @@ window.Quarto = {
 </div>
 </div>
 <p>Our first graph! This is called a <em>swarm</em> plot; it’s like a scatter plot for categorical variables.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>If your plots don’t appear…
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>…<strong><em>AND</em></strong> you don’t have an error, then you might have a Spyder version with a bug.</p>
-<p>The simplest workaround is to run <code>plt.show()</code> every time you make a plot. If you have time, you should update Spyder.</p>
-</div>
-</div>
-</div>
 <p>It’s already revealed two things to us about the data:</p>
 <ul>
 <li>There are some incorrect heights - nobody is shorter than 25cm!</li>
 <li>Someone’s position is “missing”</li>
 </ul>
 <p>Let’s get rid of these with the data analysis techniques from last session</p>
-<div id="88447dd2" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove missing position</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"positions"</span>] <span class="op">!=</span> <span class="st">"Missing"</span>]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure reasonable heights</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"height_cm"</span>] <span class="op">&gt;</span> <span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="6211041e" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove missing position</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"positions"</span>] <span class="op">!=</span> <span class="st">"Missing"</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure reasonable heights</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"height_cm"</span>] <span class="op">&gt;</span> <span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Run the plot again, it’s more reasonable now</p>
-<div id="8e71eb6a" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="d66af5bd" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -760,8 +858,8 @@ window.Quarto = {
 <section id="bar-plots" class="level4">
 <h4 class="anchored" data-anchor-id="bar-plots">Bar plots</h4>
 <p>Swarm plots are interesting but not standard. You can change the plot type with the <code>kind</code> parameter</p>
-<div id="718678e2" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"bar"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="ce099a9e" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"bar"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -774,8 +872,8 @@ window.Quarto = {
 <p>Many aspects of your plot can be adjusted by sending in additional parameters and is where seaborn excels.</p>
 </blockquote>
 <p>It seems like goalkeepers are taller, but not by much. Let’s look at the standard deviation for each position by changing the <code>estimator =</code> parameter (default is mean)</p>
-<div id="daa91588" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"bar"</span>, estimator <span class="op">=</span> <span class="st">"std"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="b62a76ea" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"bar"</span>, estimator <span class="op">=</span> <span class="st">"std"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -789,9 +887,9 @@ window.Quarto = {
 <section id="detour---line-length" class="level4">
 <h4 class="anchored" data-anchor-id="detour---line-length">Detour - line length</h4>
 <p>Notice that our last line was longer than 79 characters? That’s bad Python, and hard to read. We can fix this by making it a multi-line function, placing arguments on new lines, according to <a href="https://peps.python.org/pep-0008/#code-lay-out">PEP 8</a></p>
-<div id="7135c3cb" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"bar"</span>, </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>            estimator <span class="op">=</span> <span class="st">"std"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="69ffb158" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"bar"</span>, </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>            estimator <span class="op">=</span> <span class="st">"std"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -804,8 +902,8 @@ window.Quarto = {
 <section id="box-plots" class="level4">
 <h4 class="anchored" data-anchor-id="box-plots">Box plots</h4>
 <p>Let’s make box plots instead. It’s the same procedure, just change to <code>kind = "box"</code> and remove <code>estimator =</code></p>
-<div id="3d4e192a" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="0ead69f1" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"positions"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -822,8 +920,8 @@ window.Quarto = {
 <section id="histograms" class="level4">
 <h4 class="anchored" data-anchor-id="histograms">Histograms</h4>
 <p>Let’s move to the “Age” parameter now. We can look at the distribution of ages with</p>
-<div id="ca5d519c" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="d5d78aa5" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -833,8 +931,8 @@ window.Quarto = {
 </div>
 </div>
 <p>Looks a bit funny with those gaps - let’s change the number of bins with <code>bins = 28</code></p>
-<div id="bed512af" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, bins <span class="op">=</span> <span class="dv">28</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="b3adfdae" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, bins <span class="op">=</span> <span class="dv">28</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -844,8 +942,8 @@ window.Quarto = {
 </div>
 </div>
 <p>Now, what if you wanted to look at the distribution for different variables? We can make a separate distribution for each position with the <code>col = "positions"</code> argument, specifying a new row for each position</p>
-<div id="1b194ec1" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, bins <span class="op">=</span> <span class="dv">28</span>, col <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="a0b14165" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, bins <span class="op">=</span> <span class="dv">28</span>, col <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -858,8 +956,8 @@ window.Quarto = {
 <section id="kernel-density-estimates" class="level4">
 <h4 class="anchored" data-anchor-id="kernel-density-estimates">Kernel density estimates</h4>
 <p>Finally, you don’t <em>have</em> to do histograms. You could also do a Kernel Density Estimate, with <code>kind = "kde"</code> (let’s remove <code>bins =</code> and <code>row =</code>)</p>
-<div id="3e9919de" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, kind <span class="op">=</span> <span class="st">"kde"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="c990cc54" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, kind <span class="op">=</span> <span class="st">"kde"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -869,8 +967,8 @@ window.Quarto = {
 </div>
 </div>
 <p>If you want a separate line for each position, we should indicate that each position needs a different colour/hue with <code>hue = "positions"</code></p>
-<div id="14b1a47f" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>, kind <span class="op">=</span> <span class="st">"kde"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="f5834bdb" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>, kind <span class="op">=</span> <span class="st">"kde"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -896,8 +994,8 @@ window.Quarto = {
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="d0298fc5" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>, multiple <span class="op">=</span> <span class="st">"stack"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="1f539358" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>, multiple <span class="op">=</span> <span class="st">"stack"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -916,8 +1014,8 @@ window.Quarto = {
 <section id="scatter-plots" class="level4">
 <h4 class="anchored" data-anchor-id="scatter-plots">Scatter plots</h4>
 <p>We’ll start with a scatter plot</p>
-<div id="8ebdd54c" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="4cd6e823" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -928,8 +1026,8 @@ window.Quarto = {
 </div>
 <p>Not much of a trend there, although the bottom-right looks a bit emptier than the rest (could it be that short old players are the first to retire?).</p>
 <p>We can use <code>hue =</code> to have a look at positions again</p>
-<div id="5b38f771" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="06bd4583" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -943,8 +1041,8 @@ window.Quarto = {
 <section id="line-plots" class="level4">
 <h4 class="anchored" data-anchor-id="line-plots">Line plots</h4>
 <p>Let’s do a line plot of the average height per age.</p>
-<div id="245bd653" class="cell" data-execution_count="19">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"line"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fc55e8b0" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"line"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -954,13 +1052,13 @@ window.Quarto = {
 </div>
 </div>
 <p>Seems pretty flat, except the ends are a bit weird because there’s not much data. Let’s eliminate everything before 17 and after 38 and plot it</p>
-<div id="669da08d" class="cell" data-execution_count="20">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create smaller dataframe</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>condition <span class="op">=</span> (df[<span class="st">"age"</span>] <span class="op">&gt;</span> <span class="dv">17</span>) <span class="op">&amp;</span> (df[<span class="st">"age"</span>] <span class="op">&lt;</span> <span class="dv">38</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>inner_ages <span class="op">=</span> df[condition]</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Line plot</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"line"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="4e7223e7" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create smaller dataframe</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>condition <span class="op">=</span> (df[<span class="st">"age"</span>] <span class="op">&gt;</span> <span class="dv">17</span>) <span class="op">&amp;</span> (df[<span class="st">"age"</span>] <span class="op">&lt;</span> <span class="dv">38</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>inner_ages <span class="op">=</span> df[condition]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Line plot</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"line"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -986,12 +1084,12 @@ window.Quarto = {
 </ul></li>
 </ol>
 <p>For example,</p>
-<div id="ceba5a68" class="cell" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="f26df185" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1004,12 +1102,12 @@ window.Quarto = {
 <p><strong>You can’t include <code>kind =</code> inside an axes level plot</strong></p>
 </blockquote>
 <p>Let’s swap the colour variable from the scatter plot to the line plot</p>
-<div id="88a50e9e" class="cell" data-execution_count="22">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="680a4c7a" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1019,12 +1117,12 @@ window.Quarto = {
 </div>
 </div>
 <p>Finally, let’s make the scatter dots smaller with <code>s = 10</code> and grey with <code>color = "grey"</code>.</p>
-<div id="f4f3425a" class="cell" data-execution_count="23">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="d26d2d75" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1084,12 +1182,12 @@ window.Quarto = {
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="972d8b7b" class="cell" data-execution_count="24">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> [<span class="st">"Attack"</span>, <span class="st">"Midfield"</span>, <span class="st">"Defender"</span>, <span class="st">"Goalkeeper"</span>]</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>, </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>            col <span class="op">=</span> <span class="st">"positions"</span>, col_wrap <span class="op">=</span> <span class="dv">2</span>, hue_order <span class="op">=</span> order, </span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>            col_order <span class="op">=</span> order)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="a72fc595" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> [<span class="st">"Attack"</span>, <span class="st">"Midfield"</span>, <span class="st">"Defender"</span>, <span class="st">"Goalkeeper"</span>]</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>            col <span class="op">=</span> <span class="st">"positions"</span>, col_wrap <span class="op">=</span> <span class="dv">2</span>, hue_order <span class="op">=</span> order, </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>            col_order <span class="op">=</span> order)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1121,16 +1219,16 @@ window.Quarto = {
 <section id="saving-plots" class="level3">
 <h3 class="anchored" data-anchor-id="saving-plots">Saving plots</h3>
 <p>Before we move to adjusting the plot, let’s just look at how you save it. While you <em>can</em> do this with seaborn, the matplotlib way is also very simple.</p>
-<p>As a first step, you should make a new folder. Navigate using your file explorer to the project and create a new folder called “plots”.</p>
-<p>Next, save the current plot with <code>plt.savefig("place_location_here")</code>, and <strong>we have to do this at the same time that we make the plot</strong>. Let’s save our previous overlaying plot:So run all this code at once:</p>
-<div id="088d9f69" class="cell" data-execution_count="25">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"plots/first_saved_plot.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>As a first step, you should make a new folder. Use the <em>New folder</em> <img src="new_folder.png" class="img-fluid" alt="New folder"> button in the <strong>explorer pane</strong> and call it <code>plots</code>.</p>
+<p>Next, save the current plot with <code>plt.savefig("place_location_here")</code>, and <strong>we have to do this at the same time that we make the plot</strong>. Let’s save our previous overlaying plot: So run all this code at once,</p>
+<div id="0c06ccd5" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"plots/first_saved_plot.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1146,13 +1244,13 @@ window.Quarto = {
 <h4 class="anchored" data-anchor-id="titles">Titles</h4>
 <p>Notice that the <span class="math inline">\(y\)</span> axis has an ugly label? That’s because seaborn is just drawing from your dataframe.</p>
 <p>We can change axis labels with <code>plt.ylabel()</code></p>
-<div id="e4c74740" class="cell" data-execution_count="26">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting functions</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Customisation</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e32a4ba7" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting functions</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Customisation</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>Text(4.8166666666666655, 0.5, 'Height (cm)')</code></pre>
 </div>
@@ -1169,7 +1267,24 @@ window.Quarto = {
 <p>Make sure you run the above line <strong>at the same time</strong> as your plotting function. You can either * Highlight <strong>all</strong> the code and press <kbd>F9</kbd> * Make a cell with <code>#%%</code> and press <kbd>ctrl</kbd> + <kbd>enter</kbd></p>
 </blockquote>
 <p>We can also change the legend title to “positions” with <code>plt.legend()</code></p>
-<div id="24b29a61" class="cell" data-execution_count="27">
+<div id="900dfa73" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting functions</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Customisation</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualisation_files/figure-html/cell-28-output-1.png" width="470" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>And its location with <code>loc = "lower left"</code></p>
+<div id="7ee47393" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting functions</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
@@ -1180,40 +1295,23 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="visualisation_files/figure-html/cell-28-output-1.png" width="470" height="470" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>And its location with <code>loc = "lower left"</code></p>
-<div id="b710dc83" class="cell" data-execution_count="28">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting functions</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Customisation</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
 <p><img src="visualisation_files/figure-html/cell-29-output-1.png" width="470" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>And give the whole plot a title with <code>plt.title()</code></p>
-<div id="1bb69164" class="cell" data-execution_count="29">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fd036b0b" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>Text(0.5, 1.0, "Are players' heights and ages related?")</code></pre>
 </div>
@@ -1230,20 +1328,20 @@ window.Quarto = {
 <section id="annotations" class="level3">
 <h3 class="anchored" data-anchor-id="annotations">Annotations</h3>
 <p>You might want to annotate your plot with text and arrows. Text is simple with the <code>plt.text()</code> function; we just need to specify its coordinates and the contents.</p>
-<div id="adeb8693" class="cell" data-execution_count="30">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="f10ff28c" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>Text(38.5, 181, 'Not enough\ndata for mean')</code></pre>
 </div>
@@ -1259,23 +1357,23 @@ window.Quarto = {
 <p>The characters <code>\n</code> mean ‘new line’</p>
 </blockquote>
 <p>We could annotate with arrows too. This is more complex, using the <code>plt.annotate()</code> function:</p>
-<div id="c4a32d37" class="cell" data-execution_count="31">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>plt.annotate(text <span class="op">=</span> <span class="st">"No short</span><span class="ch">\n</span><span class="st">older players"</span>, xy <span class="op">=</span> [<span class="dv">37</span>,<span class="dv">165</span>], xytext <span class="op">=</span> [<span class="dv">40</span>,<span class="dv">172</span>],</span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>             arrowprops <span class="op">=</span> <span class="bu">dict</span>(width <span class="op">=</span> <span class="dv">1</span>, headwidth <span class="op">=</span> <span class="dv">10</span>, headlength <span class="op">=</span> <span class="dv">10</span>, </span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>                          facecolor <span class="op">=</span> <span class="st">"black"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="b479bcc0" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>plt.annotate(text <span class="op">=</span> <span class="st">"No short</span><span class="ch">\n</span><span class="st">older players"</span>, xy <span class="op">=</span> [<span class="dv">37</span>,<span class="dv">165</span>], xytext <span class="op">=</span> [<span class="dv">40</span>,<span class="dv">172</span>],</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>             arrowprops <span class="op">=</span> <span class="bu">dict</span>(width <span class="op">=</span> <span class="dv">1</span>, headwidth <span class="op">=</span> <span class="dv">10</span>, headlength <span class="op">=</span> <span class="dv">10</span>, </span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>                          facecolor <span class="op">=</span> <span class="st">"black"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>Text(40, 172, 'No short\nolder players')</code></pre>
 </div>
@@ -1295,27 +1393,27 @@ window.Quarto = {
 <section id="axis-limits" class="level3">
 <h3 class="anchored" data-anchor-id="axis-limits">Axis limits</h3>
 <p>The last feature we’ll look at is editing axis limits. Let’s try to make more room in the bottom left for the legend with the functions <code>plt.xlim()</code> and <code>plt.ylim()</code></p>
-<div id="ef237e43" class="cell" data-execution_count="32">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>, loc <span class="op">=</span> <span class="st">"lower left"</span>)</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">"No short</span><span class="ch">\n</span><span class="st">older players"</span>, [<span class="dv">37</span>,<span class="dv">165</span>], [<span class="dv">40</span>,<span class="dv">172</span>], </span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>             arrowprops <span class="op">=</span> <span class="bu">dict</span>(width <span class="op">=</span> <span class="dv">1</span>,headwidth <span class="op">=</span> <span class="dv">10</span>,headlength <span class="op">=</span> <span class="dv">10</span>, </span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>                               facecolor <span class="op">=</span> <span class="st">"black"</span>))</span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Axis limits</span></span>
-<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>plt.xlim([<span class="dv">10</span>,<span class="dv">45</span>])</span>
-<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="dv">150</span>,<span class="dv">210</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="970a6f35" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure level plot</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, s <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes level plot (drop the kind = )</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> inner_ages, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, hue <span class="op">=</span> <span class="st">"positions"</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">"Positions"</span>, loc <span class="op">=</span> <span class="st">"lower left"</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Are players' heights and ages related?"</span>)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">38.5</span>, <span class="dv">181</span>, <span class="st">"Not enough</span><span class="ch">\n</span><span class="st">data for mean"</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">"No short</span><span class="ch">\n</span><span class="st">older players"</span>, [<span class="dv">37</span>,<span class="dv">165</span>], [<span class="dv">40</span>,<span class="dv">172</span>], </span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>             arrowprops <span class="op">=</span> <span class="bu">dict</span>(width <span class="op">=</span> <span class="dv">1</span>,headwidth <span class="op">=</span> <span class="dv">10</span>,headlength <span class="op">=</span> <span class="dv">10</span>, </span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>                               facecolor <span class="op">=</span> <span class="st">"black"</span>))</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Axis limits</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>plt.xlim([<span class="dv">10</span>,<span class="dv">45</span>])</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="dv">150</span>,<span class="dv">210</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1376,10 +1474,10 @@ window.Quarto = {
 <section id="figure--to-axes-level-plot" class="level3">
 <h3 class="anchored" data-anchor-id="figure--to-axes-level-plot">Figure- to Axes-level plot</h3>
 <p>All the plots below are figure-level. To produce the axes-level plot of the same type, simply use</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="op">****</span>plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="op">****</span>plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>where <code>****</code> is given in <code>kind = "****"</code> for the corresponding figure-level plot. For example,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sns.relplot( ..., kind <span class="op">=</span> <span class="st">"scatter"</span>, ... ) <span class="co"># Figure-level scatter plot</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>sns.scatterplot( ... ) <span class="co"># Axes-level scatter plot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.relplot( ..., kind <span class="op">=</span> <span class="st">"scatter"</span>, ... ) <span class="co"># Figure-level scatter plot</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>sns.scatterplot( ... ) <span class="co"># Axes-level scatter plot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="relational-plots-1" class="level3">
 <h3 class="anchored" data-anchor-id="relational-plots-1">Relational Plots</h3>

@@ -539,7 +539,7 @@ window.Quarto = {
   <ul>
   <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a>
   <ul class="collapse">
-  <li><a href="#scripts-and-projects" id="toc-scripts-and-projects" class="nav-link" data-scroll-target="#scripts-and-projects">Scripts and projects</a></li>
+  <li><a href="#scripts-and-folders" id="toc-scripts-and-folders" class="nav-link" data-scroll-target="#scripts-and-folders">Scripts and folders</a></li>
   <li><a href="#introducing-pandas" id="toc-introducing-pandas" class="nav-link" data-scroll-target="#introducing-pandas">Introducing pandas</a></li>
   <li><a href="#setting-up-the-workspace" id="toc-setting-up-the-workspace" class="nav-link" data-scroll-target="#setting-up-the-workspace">Setting up the workspace</a></li>
   <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing data</a></li>
@@ -604,20 +604,19 @@ window.Quarto = {
 <p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>🚧🚧🚧 Software changes incoming 🚧🚧🚧
+<span class="screen-reader-only">Note</span>Recent update: Positron
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We have decided to shift from the Spyder IDE to <a href="https://positron.posit.co/">Positron</a>.</p>
+<p>These materials have recently been updated to reflect our shift from Spyder to the <a href="https://positron.posit.co/">Positron</a> IDE.</p>
 <p>Positron looks and feels like VS Code with the data science features of RStudio and Spyder.</p>
-<p>These materials still refer to Spyder, and are subject to change over the next few months. Only the <a href="#setting-up">Setting up</a> section is affected.</p>
-<p>The Python content will remain unchanged.</p>
+<p>The Python content remains unchanged.</p>
 </div>
 </div>
 <p>In this second workshop we will cover</p>
@@ -631,25 +630,40 @@ window.Quarto = {
 <p>This hands-on course – directed at intermediate users – looks at using the <strong>pandas</strong> module to transform and visualise tabular data.</p>
 <section id="setting-up" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
-<section id="scripts-and-projects" class="level3">
-<h3 class="anchored" data-anchor-id="scripts-and-projects">Scripts and projects</h3>
-<p>Recall that we typically write code in scripts and store them in a project. We’ll do the same here.</p>
+<section id="scripts-and-folders" class="level3">
+<h3 class="anchored" data-anchor-id="scripts-and-folders">Scripts and folders</h3>
+<p>Recall that we typically write code in scripts and store them in a folder. We’ll do the same here.</p>
 <ol type="1">
-<li>Create / open a project. If you made one last week, feel free to continue working there. Otherwise, press <code>Projects &gt; New project...</code> and name your project, perhaps “python_data_processing”.</li>
-<li>Create a new script with <kbd>ctrl</kbd>+<kbd>N</kbd>, <code>File &gt; New file...</code> or the new file button.</li>
+<li>Create / open a folder. If you made one last week, feel free to continue working there. Otherwise, create a new folder for your work and open it with <code>File &gt; Open folder...</code>.</li>
+<li>Create a new script with <code>New &gt; New file...</code> and choose “Python file”</li>
+<li>Save the file to give it a name (e.g.&nbsp;<code>processing.py</code>)</li>
 </ol>
 </section>
 <section id="introducing-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="introducing-pandas">Introducing pandas</h3>
 <p>Pandas is a Python module that introduces dataframes to Python. It gives us the tools we need to clean and transform data with Python.</p>
 <p>To be able to use the functions included in pandas, we have to first import it:</p>
-<div id="d2a7fb8d" class="cell" data-execution_count="1">
+<div id="52a9af84" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>pd</code> is the usual nickname for the pandas module.</p>
-<blockquote class="blockquote">
-<p>If you get an error, like <code>No module named 'pandas'</code>, you’ll need to install it first, using either <code>conda install pandas</code> or <code>pip install pandas</code>, depending on your Python installation.</p>
-</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Installing <code>pandas</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <code>pandas</code> is not installed, you will get an error like <code>No module named 'pandas'</code>.</p>
+<p>In Positron, for non-<code>conda</code> users (not using Anaconda), run</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%pip</span> install pandas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>in the console (drop the <code>%</code> if using the terminal). You should restart your Python console before trying to <code>import</code> again.</p>
+<p>For (Ana)conda users, replace <code>pip</code> with <code>conda</code>.</p>
+</div>
+</div>
 <section id="the-dataframe-object" class="level4">
 <h4 class="anchored" data-anchor-id="the-dataframe-object">The DataFrame object</h4>
 <p>Pandas is built upon one key feature: the DataFrame class. In Python we have different built-in types, like <code>int</code> for integers and <code>string</code> for characters. Pandas introduces a new type, <code>DataFrame</code>, which stores data like a spreadsheet.</p>
@@ -659,22 +673,21 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="setting-up-the-workspace">Setting up the workspace</h3>
 <p>To make life easy, we should set up our workspace well.</p>
 <ol type="1">
-<li>Open your project folder using your file explorer, and create a new folder called “data”.</li>
+<li>Open your folder using your file explorer, and create a new folder called “data” if you haven’t got one already.</li>
 <li><a href="data/Players2024.csv">Download the data for today’s session</a></li>
 <li>Move the file into your new “data” folder</li>
-<li>Next, open your project in Spyder, and create a new script called “analysis.py”.</li>
-<li>Open the “Files” tab in Spyder and check that you see two objects:
+<li>Open the <strong>explorer</strong> pane and check that you see two objects:
 <ul>
-<li>The file “analysis.py”</li>
-<li>The folder “data”</li>
+<li>The file “processing.py”</li>
+<li>The folder “data” with your data file(s) inside.</li>
 </ul></li>
 </ol>
 </section>
 <section id="importing-data" class="level3">
 <h3 class="anchored" data-anchor-id="importing-data">Importing data</h3>
 <p>Pandas offers a simple way to access data with its <code>read.csv()</code> function. We’ll save it into the variable <code>df_raw</code>:</p>
-<div id="3b34c017" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="op">=</span> pd.read_csv(<span class="st">"data/Players2024.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="d647d029" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="op">=</span> pd.read_csv(<span class="st">"data/Players2024.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <blockquote class="blockquote">
 <p>You can also provide a URL instead of a file path!</p>
@@ -686,27 +699,27 @@ window.Quarto = {
 <section id="absolute" class="level4">
 <h4 class="anchored" data-anchor-id="absolute">Absolute</h4>
 <p>Absolute file paths always start at the “top” of your file system, e.g.&nbsp;one of the drives (like C:) for Windows users, so they are never ambiguous. It’s like providing your full street address from country to street number.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">C:/Users/my_username/research/data/really_important_secret_data.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">C:/Users/my_username/research/data/really_important_secret_data.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="relative" class="level4">
 <h4 class="anchored" data-anchor-id="relative">Relative</h4>
-<p>Relative file paths start from <strong>your current working directory</strong>, which is usually the top folder of a Spyder project. For files in my current folder, I just provide their name - like referring to another house on your street as “number 7”. <strong>Let’s assume we’re in the “research” folder</strong>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">file_in_my_current_folder.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Relative file paths start from <strong>your current working directory</strong>, which is usually folder opened by Positron. For files in my current folder, I just provide their name - like referring to another house on your street as “number 7”. <strong>Let’s assume we’re in the “research” folder</strong>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">file_in_my_current_folder.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can go to <em>down</em> folders from our current location:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">data/really_important_secret_data.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">data/really_important_secret_data.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And we can go <em>up</em> folders from our current location</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">../../this_file_is_two_levels_up.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">../../this_file_is_two_levels_up.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or a combination of the two (e.g.&nbsp;up one, then down into a <em>different</em> folder)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">../not_research/this_file_is_not_research.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">../not_research/this_file_is_not_research.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>What matters is that the relative reference depends on where your code is and will break if you move the script!</strong></p>
 </section>
 <section id="backslashes" class="level4">
 <h4 class="anchored" data-anchor-id="backslashes">Backslashes</h4>
 <p>One last note: Windows uses backslashes for their file paths</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Users\...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Users\...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>But Python uses backslashes as an escape character. For example, <code>"\n"</code> is a newline, <code>"\u1234"</code> is the unicode character U+1234 and confusingly <code>"\\"</code> is a <strong>single</strong> backslash. The easist way to get around this is by prefixing <code>R</code> to all strings: this makes them <em>raw</em>.</p>
-<div id="19918282" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>windows_url <span class="op">=</span> <span class="vs">R"C:\\Users\..."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="1cb6f843" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>windows_url <span class="op">=</span> <span class="vs">R"C:\\Users\..."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -714,15 +727,15 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="initial-look-at-the-data">Initial look at the data</h3>
 <p>Let’s get back to data.</p>
 <p>We can investigate the size of the data thanks to the <code>shape</code> attribute attached to all pandas dataframes:</p>
-<div id="e282647d" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_raw.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e3cdc81f" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_raw.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(5935, 7)</code></pre>
 </div>
 </div>
 <p>The dataset contains dozens of columns. What are their names?</p>
-<div id="c09079f9" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_raw.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="2b802d49" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_raw.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>Index(['name', 'birth_date', 'height_cm', 'positions', 'nationality', 'age',
        'club'],
@@ -735,8 +748,8 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="creating-a-backup">Creating a backup</h3>
 <p>Data analysis in Python is safe because our variables are <em>copies</em> of the data - we aren’t actually changing the files until we explicitly overwrite them. However, Python also has no <em>undo</em>, so if I delete something in my analysis, I can’t get it back - I have to start all over again.</p>
 <p>One way to mitigate this issue is by making a copy of the data</p>
-<div id="f46c816a" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df_raw.copy()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="6e25b874" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df_raw.copy()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now we have two variables: <code>df</code> is what we’ll use, and <code>df_raw</code> stores the raw data. If we ever need to restart, we can simply run <code>df = df_raw.copy()</code>.</p>
 </section>
@@ -747,8 +760,8 @@ window.Quarto = {
 <section id="accessing-columns" class="level3">
 <h3 class="anchored" data-anchor-id="accessing-columns">Accessing columns</h3>
 <p>To access a column, index with its name: <code>df["column_name"]</code>. For example,</p>
-<div id="aadbb7af" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"name"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="2094735b" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"name"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>0                 James Milner
 1          Anastasios Tsokanis
@@ -765,13 +778,13 @@ Name: name, Length: 5935, dtype: object</code></pre>
 </div>
 </div>
 <p>returns the “name” column. We can access multiple by providing a <strong>list</strong> of names</p>
-<div id="efc7efd9" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the names in a list and then index</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> [<span class="st">"name"</span>, <span class="st">"club"</span>]</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>df[column_names]</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># This is equivalent to</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"name"</span>, <span class="st">"club"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cde95429" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the names in a list and then index</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> [<span class="st">"name"</span>, <span class="st">"club"</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df[column_names]</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># This is equivalent to</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"name"</span>, <span class="st">"club"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
@@ -848,15 +861,15 @@ Name: name, Length: 5935, dtype: object</code></pre>
 </div>
 </div>
 <p>If we want to <em>do</em> anything with it (like statistics or visualisation), it’s worth saving the column(s) as a new variable</p>
-<div id="1e86a69f" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_subset <span class="op">=</span> df[[<span class="st">"name"</span>, <span class="st">"club"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="2ec5db99" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_subset <span class="op">=</span> df[[<span class="st">"name"</span>, <span class="st">"club"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="accessing-rows" class="level3">
 <h3 class="anchored" data-anchor-id="accessing-rows">Accessing rows</h3>
 <p>There’s a few ways to access rows. The easiest is by slicing, <code>df[start_row : end_row]</code>. For example, if you want rows 5 to 10,</p>
-<div id="2e640024" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">5</span> : <span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="8dc19f4a" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">5</span> : <span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
@@ -940,9 +953,9 @@ Name: name, Length: 5935, dtype: object</code></pre>
 <li><code>df.iloc[]</code> accesses rows by row number exclusively</li>
 </ul>
 <p>By default they line up, so</p>
-<div id="c02e8ce4" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">5</span>]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="263523e7" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">5</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>name           Ludovic Butelle
 birth_date          1983-04-03
@@ -956,9 +969,9 @@ Name: 5, dtype: object</code></pre>
 </div>
 <p>are often (<strong>but not always</strong>) the same.</p>
 <p>Finally, we can filter specific rows <strong>by a condition</strong> on one of the variables, e.g.&nbsp;<em>only rows where variable <span class="math inline">\(\text{age} &gt; 25\)</span></em>.</p>
-<div id="872e239b" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"age"</span>] <span class="op">&gt;</span> <span class="dv">25</span>]</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Or any other condition</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="84e02aac" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"age"</span>] <span class="op">&gt;</span> <span class="dv">25</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Or any other condition</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -1095,8 +1108,8 @@ Name: 5, dtype: object</code></pre>
 </div>
 </div>
 <p>As with the column case, it’s useful to save this as a variable</p>
-<div id="03ef3213" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df[df[<span class="st">"age"</span>] <span class="op">&gt;</span> <span class="dv">15</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="bd9f33e9" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df[df[<span class="st">"age"</span>] <span class="op">&gt;</span> <span class="dv">15</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -1104,8 +1117,8 @@ Name: 5, dtype: object</code></pre>
 <h2 class="anchored" data-anchor-id="basic-statistics">Basic statistics</h2>
 <p>How might we perform some basic statistics on our data?</p>
 <p>To check what kind of data each column is stored as, we can use the <code>dtypes</code> attribute:</p>
-<div id="4f90966e" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df.dtypes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fcddc529" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df.dtypes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>name            object
 birth_date      object
@@ -1121,8 +1134,8 @@ dtype: object</code></pre>
 <p>In general, pandas will bring in numbers with <code>float64</code> and non-numeric data with <code>object</code>.</p>
 </blockquote>
 <p>The <code>describe()</code> method is useful for descriptive statistics about our numerical columns:</p>
-<div id="364d9a91" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="06c4d867" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
@@ -1183,8 +1196,8 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>However, it will only show the two first ones and two last ones. We can focus on a specific column instead, for example one that was hidden previously:</p>
-<div id="1c936d23" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"age"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="bd115240" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"age"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>count    5935.000000
 mean       25.501769
@@ -1198,8 +1211,8 @@ Name: age, dtype: float64</code></pre>
 </div>
 </div>
 <p>Or a categorical column:</p>
-<div id="86b382bd" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"nationality"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="2ad7094c" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"nationality"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>count      5935
 unique      135
@@ -1212,29 +1225,29 @@ Name: nationality, dtype: object</code></pre>
 <p>For a categorical column, the information shown is different: for example, how many unique values there are, and what the most common value is.</p>
 </blockquote>
 <p>What if you want specific statistics about a particular column? Usually there are methods available:</p>
-<div id="1da2b524" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Applicable to all columns</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"nationality"</span>].count()</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"nationality"</span>].unique()</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># For numeric columns only</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].<span class="bu">min</span>()</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].<span class="bu">max</span>()</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].mean()</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].median()</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].std()</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="732c128a" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Applicable to all columns</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"nationality"</span>].count()</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"nationality"</span>].unique()</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># For numeric columns only</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].<span class="bu">min</span>()</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].<span class="bu">max</span>()</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].mean()</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].median()</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].std()</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>np.float64(7.478312588515905)</code></pre>
 </div>
 </div>
 <p>We can use these methods to filter our data. For example, the row which has the maximum value of variable <span class="math inline">\(x\)</span> is</p>
-<div id="00fab8d2" class="cell" data-execution_count="19">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x_max <span class="op">=</span> df[<span class="st">"height_cm"</span>].<span class="bu">max</span>()</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"height_cm"</span>] <span class="op">==</span> x_max]</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or in one line</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"height_cm"</span>] <span class="op">==</span> df[<span class="st">"height_cm"</span>].<span class="bu">max</span>()]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="069b0732" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>x_max <span class="op">=</span> df[<span class="st">"height_cm"</span>].<span class="bu">max</span>()</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"height_cm"</span>] <span class="op">==</span> x_max]</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or in one line</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"height_cm"</span>] <span class="op">==</span> df[<span class="st">"height_cm"</span>].<span class="bu">max</span>()]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
@@ -1293,9 +1306,9 @@ Name: nationality, dtype: object</code></pre>
 <section id="activity-1" class="level2">
 <h2 class="anchored" data-anchor-id="activity-1">Activity 1</h2>
 <p>Run the following lines:</p>
-<div id="24bbf2fb" class="cell" data-execution_count="20">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"height_cm"</span>].<span class="bu">min</span>())</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"positions"</span>].unique())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="21a82fe8" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"height_cm"</span>].<span class="bu">min</span>())</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"positions"</span>].unique())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>17.0
 ['Midfield' 'Goalkeeper' 'Defender' 'Attack' 'Missing']</code></pre>
@@ -1306,7 +1319,7 @@ Name: nationality, dtype: object</code></pre>
 <p>Hint: Nobody is 17cm tall, and we don’t want to keep anyone with the “Missing” position either</p>
 </blockquote>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1315,14 +1328,14 @@ Name: nationality, dtype: object</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="a59faa71" class="cell" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with unreasonable heights</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"height_cm"</span>] <span class="op">&gt;</span> <span class="dv">100</span>]</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the rows with position = "Missing"</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"positions"</span>] <span class="op">!=</span> <span class="st">"Missing"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="8aba6efe" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with unreasonable heights</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"height_cm"</span>] <span class="op">&gt;</span> <span class="dv">100</span>]</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the rows with position = "Missing"</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"positions"</span>] <span class="op">!=</span> <span class="st">"Missing"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1332,53 +1345,53 @@ Name: nationality, dtype: object</code></pre>
 <section id="adding-and-removing-columns" class="level2">
 <h2 class="anchored" data-anchor-id="adding-and-removing-columns">Adding and removing columns</h2>
 <p>Sometimes we need to add new columns. It’s the same process as overwriting existing columns - let’s make a new column called “zeroes” where every row is 0</p>
-<div id="561fbffd" class="cell" data-execution_count="22">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"zeroes"</span>] <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="2a8df700" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"zeroes"</span>] <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can also send in a column, for example</p>
-<div id="63f13f57" class="cell" data-execution_count="23">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"copy_of_names"</span>] <span class="op">=</span> df[<span class="st">"name"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="4dbe6e69" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"copy_of_names"</span>] <span class="op">=</span> df[<span class="st">"name"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Perhaps most usefully, we can manipulate the column we send in. For example, the deviation from the mean <span class="math display">\[|\bar{x} - x_i|\]</span> can be computed for each row’s height:</p>
-<div id="a23c5276" class="cell" data-execution_count="24">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>col_x <span class="op">=</span> df[<span class="st">"height_cm"</span>]</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>avg_x <span class="op">=</span> df[<span class="st">"height_cm"</span>].mean()</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"deviation_from_mean_height"</span>] <span class="op">=</span> <span class="bu">abs</span>(col_x <span class="op">-</span> avg_x)</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Or all together on one line,</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"deviation_from_mean_height"</span>] <span class="op">=</span> <span class="bu">abs</span>(df[<span class="st">"height_cm"</span>] <span class="op">-</span> df[<span class="st">"height_cm"</span>].mean())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="55226176" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>col_x <span class="op">=</span> df[<span class="st">"height_cm"</span>]</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>avg_x <span class="op">=</span> df[<span class="st">"height_cm"</span>].mean()</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"deviation_from_mean_height"</span>] <span class="op">=</span> <span class="bu">abs</span>(col_x <span class="op">-</span> avg_x)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Or all together on one line,</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"deviation_from_mean_height"</span>] <span class="op">=</span> <span class="bu">abs</span>(df[<span class="st">"height_cm"</span>] <span class="op">-</span> df[<span class="st">"height_cm"</span>].mean())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>where <code>abs(...)</code> takes the absolute value</p>
 <p>Notice that we subtracted a value from a column. We can also perform mathematics with multiple columns:</p>
-<div id="5cb33ea3" class="cell" data-execution_count="25">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"product"</span>] <span class="op">=</span> df[<span class="st">"age"</span>]<span class="op">*</span>df[<span class="st">"height_cm"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="60c9ab68" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"product"</span>] <span class="op">=</span> df[<span class="st">"age"</span>]<span class="op">*</span>df[<span class="st">"height_cm"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s remove these new columns that we don’t need with the method <code>df.drop(columns = [...])</code>:</p>
-<div id="bbd26feb" class="cell" data-execution_count="26">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns <span class="op">=</span> [<span class="st">"zeroes"</span>, <span class="st">"copy_of_names"</span>, <span class="st">"deviation_from_mean_height"</span>, <span class="st">"product"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="15775278" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns <span class="op">=</span> [<span class="st">"zeroes"</span>, <span class="st">"copy_of_names"</span>, <span class="st">"deviation_from_mean_height"</span>, <span class="st">"product"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="summaries" class="level2">
 <h2 class="anchored" data-anchor-id="summaries">Summaries</h2>
 <p>After cleaning up our data, we need to analyse it. This usually involves some kind of aggregation. For example, <em>what is the average <span class="math inline">\(x\)</span> per year?</em> requires aggregating over variable <span class="math inline">\(x\)</span> for each year.</p>
 <p>First, we need to group by a specific variable</p>
-<div id="6d29beaa" class="cell" data-execution_count="27">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>gb <span class="op">=</span> df.groupby(<span class="st">"age"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="80a04e08" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>gb <span class="op">=</span> df.groupby(<span class="st">"age"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This thing in itself is a pretty abstract Python object, best thought of as a dataframe where we’ve identified a grouping variable.</p>
 <p>Next, we need to apply some aggregation to it (the groupby tells it to do it for each year)</p>
-<div id="6b133e66" class="cell" data-execution_count="28">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>avg_height_by_age <span class="op">=</span> gb[<span class="st">"height_cm"</span>].agg(<span class="st">"mean"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5e2fb607" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>avg_height_by_age <span class="op">=</span> gb[<span class="st">"height_cm"</span>].agg(<span class="st">"mean"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Of course, we could have done this in one line:</p>
-<div id="4e238310" class="cell" data-execution_count="29">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>avg_height_by_age <span class="op">=</span> df.groupby(<span class="st">"age"</span>)[<span class="st">"height_cm"</span>].agg(<span class="st">"mean"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="6f9e3857" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>avg_height_by_age <span class="op">=</span> df.groupby(<span class="st">"age"</span>)[<span class="st">"height_cm"</span>].agg(<span class="st">"mean"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This is a really useful tool, because now we have something we can <em>visualise</em>. As the next session will show us, the visualisation tools generally just take in numbers and turn them into dots. We need to do the stats <em>beforehand</em>.</p>
 <p>As a taster, try running</p>
-<div id="27901085" class="cell" data-execution_count="30">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>avg_height_by_age.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e0cb0e8d" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>avg_height_by_age.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1391,8 +1404,8 @@ Name: nationality, dtype: object</code></pre>
 <section id="exporting-results" class="level2">
 <h2 class="anchored" data-anchor-id="exporting-results">Exporting results</h2>
 <p>The last step in the process is saving the data. Let’s say we want to take that final dataframe and export it to a csv. That’s what the <code>df.to_csv()</code> method is for</p>
-<div id="d65043f1" class="cell" data-execution_count="31">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>avg_height_by_age.to_csv(<span class="st">"data/avg_height_by_age.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="05cffb0f" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>avg_height_by_age.to_csv(<span class="st">"data/avg_height_by_age.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This will save the dataframe to a .csv file and place it in the data folder.</p>
 </section>
@@ -1406,7 +1419,7 @@ Name: nationality, dtype: object</code></pre>
 </ol>
 <p>For step 3., you’ll either want to reduce your data to two columns and use <code>.plot()</code>, or specify your axes with <code>.plot(x = "x_variable", y = "y_variable")</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1415,20 +1428,20 @@ Name: nationality, dtype: object</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>One possible solution with aggregation is</p>
-<div id="590bdb31" class="cell" data-execution_count="32">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the data</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>gapminder <span class="op">=</span> pd.read_csv(<span class="st">"data/gapminder.csv"</span>)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select specific columns</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>subset <span class="op">=</span> gapminder[[<span class="st">"continent"</span>, <span class="st">"year"</span>, <span class="st">"pop"</span>]]</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Max pop per continent of all time</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>continents <span class="op">=</span> subset.groupby(<span class="st">"continent"</span>).agg(<span class="st">"max"</span>)</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>continents.plot(y <span class="op">=</span> <span class="st">"pop"</span>, kind <span class="op">=</span> <span class="st">"bar"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5e34c94e" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the data</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>gapminder <span class="op">=</span> pd.read_csv(<span class="st">"data/gapminder.csv"</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select specific columns</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>subset <span class="op">=</span> gapminder[[<span class="st">"continent"</span>, <span class="st">"year"</span>, <span class="st">"pop"</span>]]</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Max pop per continent of all time</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>continents <span class="op">=</span> subset.groupby(<span class="st">"continent"</span>).agg(<span class="st">"max"</span>)</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>continents.plot(y <span class="op">=</span> <span class="st">"pop"</span>, kind <span class="op">=</span> <span class="st">"bar"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
