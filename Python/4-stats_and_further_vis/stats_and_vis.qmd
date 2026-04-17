@@ -3,17 +3,15 @@ title: 'Python training (4 of 4): Statistics and Further Visualisation'
 jupyter: python3
 ---
 
-:::{.callout-warning}
+:::{.callout-note}
 
-# 🚧🚧🚧 Software changes incoming 🚧🚧🚧
+# Recent update: Positron
 
-We have decided to shift from the Spyder IDE to [Positron](https://positron.posit.co/).
+These materials have recently been updated to reflect our shift from Spyder to the [Positron](https://positron.posit.co/) IDE.
 
 Positron looks and feels like VS Code with the data science features of RStudio and Spyder. 
 
-These materials still refer to Spyder, and are subject to change over the next few months. Only the [Setup](#setup) section is affected.
-
-The Python content will remain unchanged.
+The Python content remains unchanged.
 
 :::
 
@@ -45,19 +43,21 @@ We'll use two new modules:
 
 ## Setup
 
-### Spyder version
-
-Before we begin, please check which version of Spyder you're using (you can see this in the Anaconda Navigator, or in Help > About Spyder). **If it's less than 6**, you should update Spyder before continuing. However, if you're in a workshop, this will take too long - instead, use the following workaround if your plots don't work:
-
-```python
-plt.show()
-```
-
-More on this later.
-
 ### Modules and data
 
-Let's import all our modules for today:
+We'll need three modules today. Let's make sure they're installed by running the following in the console:
+
+```bash
+%pip install pandas matplotlib seaborn scipy statsmodels
+```
+
+:::{.callout-note}
+# Anaconda (`conda`) users
+
+Anaconda (`conda`) users should replace `pip` with `conda`.
+:::
+
+Next, create a new script and begin by importing the modules:
 
 ```{python}
 import matplotlib.pyplot as plt
@@ -120,13 +120,6 @@ Let's visualise our statistics as we go. We can start by producing a histogram o
 sns.displot(df, x = "height_cm", binwidth = 1)
 ```
 
-:::{.callout-warning collapse="true"}
-# If your plots don't appear...
-
-...***AND*** you don't have an error, then you might have a Spyder version with a bug. 
-
-The simplest workaround is to run `plt.show()` every time you make a plot. If you have time, you should update Spyder.
-:::
 
 We can use matplotlib to annotate the locations of these statistics. Let's save them into variables and then make the plot again. The important function is [`plt.vlines`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.vlines.html), which enables you to create vertical line(s) on your plot. We'll do it once for each so that we get separate legend entries. We'll need to provide the parameters
 

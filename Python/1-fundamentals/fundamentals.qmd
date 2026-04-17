@@ -2,43 +2,58 @@
 title: "Python training (1 of 4): The Fundamentals"
 ---
 
-:::{.callout-warning}
+:::{.callout-note}
 
-# 🚧🚧🚧 Software changes incoming 🚧🚧🚧
+# Recent update: Positron
 
-We have decided to shift from the Spyder IDE to [Positron](https://positron.posit.co/).
+These materials have recently been updated to reflect our shift from Spyder to the [Positron](https://positron.posit.co/) IDE.
 
 Positron looks and feels like VS Code with the data science features of RStudio and Spyder. 
 
-These materials still refer to Spyder, and are subject to change over the next few months. The main sections affected are
-
-* [Setup](#setup)
-* [Introducing Python and Spyder](#introducing-python-and-spyder)
-* [Scripts and projects](#scripts-and-projects)
-* [Installing external packages](#installing-external-packages)
-
-The Python content will remain unchanged.
+The Python content remains unchanged.
 
 :::
 
-This hands-on programming course – directed at beginners – will get you started on using **Python 3** and the program **Spyder** to import, explore, analyse and visualise data.
+This hands-on programming course – directed at beginners – will get you started on using **Python 3** and the program **Positron** to import, explore, analyse and visualise data.
 
 ## Setup
 
-The easiest way to use Python 3 and Spyder is to [install the Anaconda Distribution](https://www.anaconda.com/products/distribution), a data science platform for Windows, Linux and macOS.
+You'll need to install Python 3 and Positron (or your preferred IDE). This depends on your machine (and your admin rights).
 
-Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a terminal on Linux), and launch Spyder. On some operating systems, you might be able to find Spyder directly in your applications.
+:::{.panel-tabset}
 
-## Introducing Python and Spyder
+## Most users
+
+If you can, [download and install Python](https://www.python.org/downloads/) with the official install manager. If you don't have admin rights, you should still be able to perform a user-based install.
+
+Next, [download and install Positron](https://positron.posit.co/download.html).
+
+## UQ-owned devices
+
+You should install Positron via Company Portal / Self-service. If Positron cannot detect a Python interpreter, you should install Anaconda as well.
+
+## UQ Library loan laptops
+
+You should install Positron via Zenworks. If Positron cannot detect a Python interpreter, you should install Python with IDLE as well.
+
+:::
+
+
+## Introducing Python and Positron
 
 Python is a **programming language** that can be used to build programs (i.e. a "general programming language"), but it can also be used to analyse data by importing a number of useful modules.
 
-We are using **Spyder** to interact with Python more comfortably. If you have used RStudio to interact with R before, you should feel right at home: Spyder is a program designed for doing data science with Python.
+We are using **Positron** to interact with Python more comfortably. If you have used RStudio to interact with R before, you should feel right at home: Positron is a program designed for doing data science with Python and built by the RStudio developers (Posit).
 
-We will start by using the **console** to work interactively. This is our direct line to the computer, and is the simplest way to run code. Don't worry about any unfamiliar language, fonts or colours - we can ignore most of it for now - all you need to know is that
+We will start by using the **console** to work interactively. If Positron hasn't started with Python (it might have automatically loaded R!), you should "Start new session" or click on the R version button (top right of console) and change it to Python.
 
-- `In [1]: ...` is code that we've sent to the computer, and
-- `Out[1]: ...` is its response.
+This is our direct line to the computer, and is the simplest way to run code. You know it's the console by the distinctive prompt:
+
+```python
+>>> 
+```
+
+which awaits your command.
 
 ### Maths
 
@@ -71,6 +86,8 @@ You can then retrieve the value by running the variable name on its own:
 example_int
 ```
 
+Notice that, in the **variable explorer**, the number has also appeared? This is one way that Positron helps you program.
+
 Let's create more variables. We can use the variable names in place of their values, so we can perform maths:
 
 ```{python}
@@ -78,9 +95,7 @@ example_float = 5.678
 example_int * example_float
 ```
 
-So far, we've only looked at numbers. If you click on the "variable explorer" tab, you should see two variables.
-
-Notice that the "Type" of `example_int` is `int`, while the other is `float`. These are different **variable types** and can operate differently. `int` means integer, and corresponds to whole numbers, while `float` stands for floating point number, meaning decimals. You may occasionally encounter errors where you can only use one type.
+In the variable explorer, the *type* of `example_int` is `int` (far right), while the other is `float`. These are different **variable types** and can operate differently. `int` means integer, and corresponds to whole numbers, while `float` stands for floating point number, meaning decimals. You may occasionally encounter errors where you can only use one type.
 
 ### Booleans
 
@@ -159,7 +174,7 @@ example_list[0:4]
 
 That command returns elements from position 0 up to - but not including! - position 4.
 
-## Scripts and Projects
+## Scripts and folders
 
 So far, we've been working in the console, our direct line to the computer. However, it is often more convenient to use a **script**. These are simple text files which store code and run when we choose. They are useful to
 
@@ -168,24 +183,25 @@ So far, we've been working in the console, our direct line to the computer. Howe
 - share a process with peers easily, and
 - make your work reproducible
 
-Let's create a folder system to store our script in by creating a **project**. 
+Let's create a folder system to store our work and navigate there.
 
-- Press `Projects > New project... ` and name your project, perhaps "python_fundamentals".
-- Create a new script with <kbd>ctrl</kbd>+<kbd>N</kbd>, `File > New file...` or the new file button ![new file symbol](new_file.png) .
+1. Create a new folder on your computer called "python_training" (or something similar).
+2. Press `File > Open folder...`, find and select the new folder
 
-You should now see a script on the left panel in Spyder, looking something like this:
+Positron will now move to the new folder.
 
-![Example of a new script](new_script.png)
+3. Create a new script with `New > New file...` and choose "Python file"
+4. Save the file to give it a name (e.g. `fundamentals.py`)
+
+You should now see a script on the **explorer** pane in Positron, looking something like this:
+
+![Example of a new script](positron_setup.png)
 
 Try typing a line of code in your new script, such as
 ```{python}
 1 + 1
 ```
-Press <kbd>F9</kbd> to run each line, or <kbd>ctrl</kbd>+<kbd>enter</kbd> for the whole script. You should see something like the following appear in the **console** (depending on how you ran it):
-
-![Example of a console input](new_script.png)
-
-We'll work out of a script for the rest of the session. Don't forget to save your script by pressing <kbd>ctrl</kbd>+<kbd>S</kbd> or the save button ![save file symbol](save_file.png).
+Press <kbd>ctrl</kbd>+<kbd>enter</kbd> to run each line (or <kbd>CMD</kbd>+<kbd>return</kbd>). You should see the same code appear in the console with its result.
 
 ## Functions
 
@@ -208,7 +224,7 @@ Here, we use two arguments to modify the default behaviour of the `round()` func
 round(5.123, 2)
 ```
 
-> Notice how Spyder gives you hints about the available arguments after typing the function name?
+> Notice how Positron gives you hints about the available arguments after typing the function name?
 
 ### Operators
 
@@ -249,7 +265,6 @@ help(max)
 print?
 ```
 
-In Spyder, you can use the <kbd>Ctrl</kbd> + <kbd>I</kbd> keyboard shortcut to open the help in a separate pane.
 
 > The help information can often be dense and difficult to read at first, taking some practice. In the [next session](https://github.com/uqlibrary/technology-training/blob/4ea3e86ab8f6f43a73c3b3a44d63a00ac8d366f8/Python/revamp/data_transformation.md) we look closer at interpreting this **documentation**, one of the most important Python skills.
 
@@ -274,7 +289,7 @@ Steps
 :::{.callout-note}
 # Advanced
 
-If this is too easy, try to get the user to provide their age themselves with the command `int(input(...))`. **Make sure to use `int()`**, otherwise the string multiplication will crash Spyder. You'll want the [documentation for `input()`](https://docs.python.org/3/library/functions.html#input).
+If this is too easy, try to get the user to provide their age themselves with the command `int(input(...))`. **Make sure to use `int()`**, otherwise the string multiplication will may cause a crash. You'll want the [documentation for `input()`](https://docs.python.org/3/library/functions.html#input).
 :::
 
 <!--
@@ -553,7 +568,55 @@ Where this naming is used, it is usually the standard, and sharing code with dif
 
 ### Common external packages
 
-There are hundreds of thousands of external packages available, and Anaconda comes with the most common. For example, the `numpy` module, which enables numerical methods in Python. 
+There are hundreds of thousands of external packages available. These **do not normally come with Python installations** (although they *do* often come with Anaconda-based installations).
+
+While the `import` command lets you connect your Python script with a module *on your computer*, you'll need to download and install the package first.
+
+The simplest way to do this is with the `pip` bash command. **This is not a Python command**: it is a separate program that you run in a terminal. Positron gives us a bit of beyond-Python magic to run it in the console anyway:
+
+```bash
+%pip install <package_name>
+```
+
+We recommend that you run this in the console directly, *not in your script*. Just because you only run it once per Python installation.
+
+If you are running this directly the terminal (not the console), you should drop the `%`:
+
+```bash
+pip install <package_name>
+```
+
+::: {.callout-warning}
+# Beware Anaconda (`conda`) users
+
+If you've installed Python via the Anaconda distribution, you should avoid using `pip` to install packages where possible. This is because you can create conflicts with conda-based packages. However, **all the packages for today should already be installed**, so you can skip this step!
+
+Anaconda provides an alternative interface to `pip` for installing packages:
+
+```bash
+conda install <package_name>
+```
+
+which you should preference. Only use `pip` if the package is not accesible via `conda`.
+
+:::
+
+
+We'll look at a few packages today, and a few more as we progress through the series. The ones for today are
+
+* [numpy](https://numpy.org/) (for numerical operations, linear algebra etc.)
+* [pandas](https://pandas.pydata.org/) (for panel data, e.g. csv files, spreadsheets etc.)
+* [seaborn](https://seaborn.pydata.org/) (for high-level visualisations)
+
+To install them all in one go, use
+
+```bash
+%pip install numpy pandas seaborn
+```
+
+Once you've installed the packages, **you will need to restart the console** with the *Restart Python* ![Restart Python](restart_console.png) button in the console.
+
+### An example: `numpy`
 
 You might recall that multiplication for sequences replicates them. This makes multiplying numeric lists unexpected:
 
@@ -561,7 +624,7 @@ You might recall that multiplication for sequences replicates them. This makes m
 3 * [1,2,3]
 ```
 
-What if we wanted to multiply *each* element by `3`? Well, `numpy` has a variable where this *does* happen: the array. To turn a list into an array, use the `np.array()` function
+What if we wanted to multiply *each* element by `3`? Well, the developers of `numpy` decided to create a variable where this *does* happen: the array. To turn a list into an array, use the `np.array()` function
 
 ```{python}
 import numpy as np
@@ -584,46 +647,6 @@ Some popular packages include
 | Statsmodels | `pip/conda install statsmodels` | `import statsmodels.api as sm` and/or `import statsmodels.tsa.api as tsa`| **Stat**istical **model**ling. The first import `sm` is for cross-sectional models, while `tsa` is for time-series models. | 
 | Requests | `pip/conda install requests` | `import requests` | Make HTTP (internet) **requests**. |
 | Beautiful Soup | `pip/conda install beautifulsoup4` | `from bs4 import BeautifulSoup` | Collect HTML data from websites. | 
-
-### Installing external packages
-
-Most external packages do not get shipped with Anaconda, and you'll need to install these yourself.
-
-#### Using `conda`
-
-If you are using **Anaconda**, then the recommended installation method is using the `conda` command, which installs from Anaconda's package database:
-
-```{python}
-#| eval: false
-conda install numpy
-```
-
-If you've got Spyder running, you'll need to **restart the kernel**. In the console, press the options button (three horizontal lines) > restart kernel.
-
-:::{.callout-note}
-# `SyntaxError: invalid syntax`
-
-If this doesn't work for you, try using `!conda install numpy` - using an exclamation mark `!` sends your command straight to your operating system shell.
-
-If *that* doesn't work, try using `conda install numpy` from an Anaconda prompt.
-:::
-
-#### Using `pip`
-
-If you are **not** using Anaconda, then the most common way to install a package is using the command `pip`, which installs packages from the Python Package Index (PyPI)
-
-```{python}
-#| eval: false
-pip install numpy
-```
-
-:::{.callout-note}
-# `SyntaxError: invalid syntax`
-
-If this doesn't work for you, try using `!pip install numpy` - using an exclamation mark `!` sends your command straight to your operating system shell.
-
-If *that* doesn't work, try using `pip install numpy` from an command prompt.
-:::
 
 
 ## Activity 2
@@ -650,9 +673,10 @@ df = pd.read_csv("insert_filepath_here")
 
 Today's data is five (random) people's height and weight. You can download it [here](BMI_data.csv).
 
-1. [Download the data](BMI_data.csv)
-2. Move the data into your project folder
-3. Read it in with `df = pd.read_csv("BMI_data.csv")`
+1. Create a folder called `data` next to your script
+2. [Download the data](BMI_data.csv)
+3. Move the csv into your `data` folder
+4. Read it in with `df = pd.read_csv("data/BMI_data.csv")`
 
 ### Part 1: Modifying the data
 
@@ -761,9 +785,7 @@ sns.catplot(data = df, x = "Names", y = "BMI", kind = "bar")
 
 ## Conclusion and saving your work
 
-Your project can be reopened from the "Projects" menu in Spyder.
-
-By default, your variables are *not* saved, which is another reason why working with a script is important: you can execute the whole script in one go to get everything back. You can however save your variables as a `.spydata` file if you want to (for example, if it takes a lot of time to process your data).
+Save your script as normal. By default, variables are *not* saved, which is another reason why working with a script is important: you can execute the whole script in one go to get everything back. When you next open the folder in Positron, simply re-run the script to get back to the same state.
 
 ### Summary
 
@@ -782,7 +804,7 @@ Today we looked at a lot of Python features, so don't worry if they haven't all 
 
 ### Next session
 
-Thanks for completing this introductory session to Python! You're now ready for our next session, [Data Transformation](https://github.com/uqlibrary/technology-training/blob/55946e771a59b0d82e02e69b25917ad5a0ca5588/Python/revamp/data_transformation.md), which looks at using the **pandas** package in greater depth.
+Thanks for completing this introductory session to Python! You're now ready for our next session, [Managing Data](../2-data_processing/data_processing.qmd), which looks at using the **pandas** package in greater depth.
 
 Before you go, don't forget to check out the [Python User Group](https://uqpug.github.io/), a gathering of Python users at UQ.
 

@@ -3,17 +3,15 @@ title: 'Python Training (3 of 4): Introductory Data Visualisation'
 jupyter: python3
 ---
 
-:::{.callout-warning}
+:::{.callout-note}
 
-# 🚧🚧🚧 Software changes incoming 🚧🚧🚧
+# Recent update: Positron
 
-We have decided to shift from the Spyder IDE to [Positron](https://positron.posit.co/).
+These materials have recently been updated to reflect our shift from Spyder to the [Positron](https://positron.posit.co/) IDE.
 
 Positron looks and feels like VS Code with the data science features of RStudio and Spyder. 
 
-These materials still refer to Spyder, and are subject to change over the next few months. Only the [Setting up](#setting-up) section is affected.
-
-The Python content will remain unchanged.
+The Python content remains unchanged.
 
 :::
 
@@ -25,19 +23,21 @@ In this third workshop we will cover
 ## Setting up
 
 
-### Spyder version
-
-Before we begin, please check which version of Spyder you're using (you can see this in the Anaconda Navigator, or in Help > About Spyder). **If it's less than 6**, you should update Spyder before continuing. However, if you're in a workshop, this will take too long - instead, use the following workaround if your plots don't work:
-
-```python
-plt.show()
-```
-
-More on this later.
-
 ### Modules and data
 
-We'll need three modules today:
+We'll need three modules today. Let's make sure they're installed by running the following in the console:
+
+```bash
+%pip install pandas matplotlib seaborn
+```
+
+:::{.callout-note}
+# Anaconda (`conda`) users
+
+Anaconda (`conda`) users should replace `pip` with `conda`.
+:::
+
+Next, create a new script and begin by importing the modules:
 
 ```{python}
 import pandas as pd
@@ -60,7 +60,7 @@ df = pd.read_csv("data/Players2024.csv")
 Take a quick peak at the dataset to remind yourself
 
 ```{python}
-print(df)
+df
 ```
 
 ## Seaborn for simple visualisations
@@ -101,14 +101,6 @@ sns.catplot(data = df, x = "positions", y = "height_cm")
 
 Our first graph! This is called a *swarm* plot; it’s like a scatter plot
 for categorical variables.
-
-:::{.callout-warning collapse="true"}
-# If your plots don't appear...
-
-...***AND*** you don't have an error, then you might have a Spyder version with a bug. 
-
-The simplest workaround is to run `plt.show()` every time you make a plot. If you have time, you should update Spyder.
-:::
 
 It’s already revealed two things to us about the data:
 
@@ -411,12 +403,11 @@ Before we move to adjusting the plot, let’s just look at how you save
 it. While you *can* do this with seaborn, the matplotlib way is also
 very simple.
 
-As a first step, you should make a new folder. Navigate using your file
-explorer to the project and create a new folder called “plots”.
+As a first step, you should make a new folder. Use the *New folder* ![New folder](new_folder.png) button in the **explorer pane** and call it `plots`.
 
 Next, save the current plot with `plt.savefig("place_location_here")`,
 and **we have to do this at the same time that we make the plot**. Let’s
-save our previous overlaying plot:So run all this code at once:
+save our previous overlaying plot: So run all this code at once,
 
 ```{python}
 # Figure level plot
