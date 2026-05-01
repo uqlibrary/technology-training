@@ -71,7 +71,7 @@ def update_live_links() -> None:
                     upcoming_event = event
                     date = new_date
 
-            banner_path = os.path.splitext(published_path)[0] + "_banner.qmd"
+            banner_path = os.path.splitext(published_path)[0] + "_banner.md"
 
             if len(upcoming_event) == 0:
                 message = ""

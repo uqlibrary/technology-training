@@ -5,7 +5,7 @@ from glob import glob
 def delete_temp_banners():
     print("Deleting temporary banner files.")
 
-    for banner_path in glob("**/*_banner.qmd", recursive=True):
+    for banner_path in glob("**/*_banner.md", recursive=True):
         os.remove(banner_path)
 
 
