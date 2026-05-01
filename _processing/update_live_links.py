@@ -1,7 +1,10 @@
 import os
+from glob import glob
 import requests
 from datetime import datetime, timezone, timedelta
 import textwrap
+
+import delete_temp_banners
 
 MESSAGE_HEADER = f"<!-- Upcoming workshops -->"
 
@@ -30,12 +33,9 @@ def update_live_links() -> None:
         title = content[title_start : content.find("\n", title_start)]
 
         titles = []
-        markers = []
         if published_path[-6:] == ".ipynb":
             titles = [clean(title)]
-            markers = [
-                content.find(",", content.find("---", content.find("---") + 4) + 4) + 2
-            ]
+
         elif "Word" in title or "Excel" in title or "NVivo" in title:
             h1_end = 0
             while True:
@@ -51,14 +51,12 @@ def update_live_links() -> None:
                 )
 
                 titles.append(clean(session_title))
-                markers.append(h1_end + 2)
 
         else:
             titles = [clean(title)]
-            markers = [content.find("---", content.find("---") + 4) + 5]
             # Instead use heading 1s
 
-        for clean_title, marker in zip(titles, markers):
+        for clean_title in titles:
 
             # Get earliest upcoming event
             date = None
@@ -73,84 +71,53 @@ def update_live_links() -> None:
                     upcoming_event = event
                     date = new_date
 
+            banner_path = os.path.splitext(published_path)[0] + "_banner.qmd"
+
             if len(upcoming_event) == 0:
-                continue
-
-            print(f"Inserting upcoming link in {published_path}")
-
-            # Form message
-            link = f"https://studenthub.uq.edu.au/students/events/detail/{upcoming_event['entityId']}"
-            booking_message = "[Book in to the next offering now.]"
-
-            date = datetime.strptime(upcoming_event["start"], "%Y-%m-%dT%H:%M:%S%z")
-
-            if date.day == datetime.now(timezone(timedelta(hours=10))).day:
-                formatted_date = date.strftime("today at %I:%M %p.")
-            elif date.day == datetime.now(timezone(timedelta(hours=10))).day + 1:
-                formatted_date = date.strftime("tomorrow at %I:%M %p.")
+                message = ""
             else:
-                formatted_date = date.strftime("%a %b %d at %I:%M %p.")
 
-            message = textwrap.dedent(
-                f"""
-            {MESSAGE_HEADER}
-            :::{{.callout-tip}}
-            # Upcoming workshop(s) available!
+                print(f"Creating banner in {banner_path}")
 
-            The next workshop is on **{formatted_date}**
-            
-            {booking_message}({link})
+                # Form message
+                link = f"https://studenthub.uq.edu.au/students/events/detail/{upcoming_event['entityId']}"
+                booking_message = "[Book in to the next offering now.]"
 
-            Alternatively, [check our calendar](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=) for future events.
-            :::
-            """
-            )
-            message = message[1:]
+                date = datetime.strptime(
+                    upcoming_event["start"], "%Y-%m-%dT%H:%M:%S%z"
+                ).date()
+                today = datetime.now(timezone(timedelta(hours=10)))
 
-            if published_path[-6:] == ".ipynb":
-                message = message[:-1]
-                message = message.replace("\n", '\\n",\n    "')
-                message = message.replace('""', R'"\n"')
-                message = '    "' + message + '\\n",\n'
+                if date == today.date():
+                    formatted_date = date.strftime("today at %I:%M %p.")
+                elif date == today.date() + timedelta(days=1):
+                    formatted_date = date.strftime("tomorrow at %I:%M %p.")
+                else:
+                    formatted_date = date.strftime("%a %b %d at %I:%M %p.")
 
-            # Insert message after YAML
+                message = textwrap.dedent(f"""
+                {MESSAGE_HEADER}
+                :::{{.callout-tip}}
+                # Upcoming workshop(s) available!
 
-            new_content = "".join([content[:marker], message, content[marker:]])
+                The next workshop is on **{formatted_date}**
+                
+                {booking_message}({link})
 
-            with open(published_path, "w", encoding="utf8") as f:
-                f.write(new_content)
+                Alternatively, [check our calendar](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=) for future events.
+                :::
+                """)
+                message = message[1:]
 
-    return None
+                if published_path[-6:] == ".ipynb":
+                    message = message[:-1]
+                    message = message.replace("\n", '\\n",\n    "')
+                    message = message.replace('""', R'"\n"')
+                    message = '    "' + message + '\\n",\n'
 
-
-def remove_upcoming_links() -> None:
-    """Loops through active .qmds and removes the upcoming links message. Directly reverses changes made by update_live_links()."""
-    for published_path in list_published_files():
-
-        with open(published_path, encoding="utf8") as f:
-            content: str = f.read()
-
-        if MESSAGE_HEADER not in content:
-            continue
-
-        message_start = content.find(MESSAGE_HEADER)
-
-        message_end = (
-            content.find(
-                "\n", content.find(":::", content.find(":::", message_start) + 4)
-            )
-            + 1
-        )
-        if published_path[-6:] == ".ipynb":
-            message_start -= 1
-            message_end += 4
-
-        old_message = content[message_start:message_end]
-
-        new_content = content.replace(old_message, "")
-
-        with open(published_path, "w", encoding="utf8") as f:
-            f.write(new_content)
+            # Create / overwrite banner
+            with open(banner_path, "w") as f:
+                f.write(message)
 
     return None
 
@@ -194,4 +161,4 @@ if __name__ == "__main__":
     input(
         "Upcoming links are temporarily in .qmd files.\n\nPress enter to remove them and finish."
     )
-    remove_upcoming_links()
+    delete_temp_banners.delete_temp_banners()

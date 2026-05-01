@@ -1,6 +1,6 @@
 project:
   type: website
-  pre-render: _processing/preprocessing.py
+  pre-render: _processing/create_temp_banners.py
   render:
     - "*.qmd"
     - "*.ipynb"
@@ -10,7 +10,7 @@ project:
     - "!R/time_series"
     - "!R/UQ R User Group"
     - "!Python/archive"
-  post-render: _processing/postprocessing.py
+  post-render: _processing/delete_temp_banners.py
 
 website:
   open-graph: true
@@ -150,6 +150,8 @@ format:
       body-width: 1200px
       sidebar-width: 225px
     axe: true
+    notebook-links: false
+
 execute:
   # only re-render if there is a code change
   freeze: auto
