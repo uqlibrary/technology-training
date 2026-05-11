@@ -29,8 +29,8 @@ jobs:
           cache: 'pip'
       - run: pip install -r requirements.txt
 
-      # - name: Update package list
-      #   run: sudo apt update && sudo apt upgrade
+      - name: Update package list
+        run: sudo apt update
 
       # The following are possibly unnecessary, but were required on my WSL environment
       - name: Install ComplexHeatmap dependency
