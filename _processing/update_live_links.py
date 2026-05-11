@@ -6,8 +6,6 @@ import textwrap
 
 import delete_temp_banners
 
-MESSAGE_HEADER = f"<!-- Upcoming workshops -->"
-
 
 def update_live_links() -> None:
     """Loops through active .qmds looking for matches with upcoming StudentHub events. On match hit, injects an upcoming event message with links."""
@@ -59,52 +57,48 @@ def update_live_links() -> None:
         for clean_title in titles:
 
             # Get earliest upcoming event
-            date = None
+            start = None
             upcoming_event: dict = {}
 
             for event in sh_body:
-                new_date = datetime.strptime(event["start"], "%Y-%m-%dT%H:%M:%S%z")
+                new_start = datetime.strptime(event["start"], "%Y-%m-%dT%H:%M:%S%z")
 
                 if clean_title in clean(event["name"]) and (
-                    date is None or new_date < date
+                    start is None or new_start < start
                 ):
                     upcoming_event = event
-                    date = new_date
+                    start = new_start
 
             banner_path = os.path.splitext(published_path)[0] + "_banner.qmd"
 
-            if len(upcoming_event) == 0:
+            if start is None:
                 message = ""
             else:
-
                 print(f"Creating banner in {banner_path}")
 
                 # Form message
                 link = f"https://studenthub.uq.edu.au/students/events/detail/{upcoming_event['entityId']}"
                 booking_message = "[Book in to the next offering now.]"
 
-                date = datetime.strptime(
-                    upcoming_event["start"], "%Y-%m-%dT%H:%M:%S%z"
-                ).date()
                 today = datetime.now(timezone(timedelta(hours=10)))
 
-                if date == today.date():
-                    formatted_date = date.strftime("today at %I:%M %p.")
-                elif date == today.date() + timedelta(days=1):
-                    formatted_date = date.strftime("tomorrow at %I:%M %p.")
+                if start.date() == today.date():
+                    formatted_date = start.strftime("today at %I:%M %p.")
+                elif start.date() == today.date() + timedelta(days=1):
+                    formatted_date = start.strftime("tomorrow at %I:%M %p.")
                 else:
-                    formatted_date = date.strftime("%a %b %d at %I:%M %p.")
+                    formatted_date = start.strftime("%a %b %d at %I:%M %p.")
 
                 message = textwrap.dedent(f"""
-                {MESSAGE_HEADER}
-                :::{{.callout-tip}}
+                ::: 
+                {{.callout-tip}}
+
                 # Upcoming workshop(s) available!
 
-                The next workshop is on **{formatted_date}**
-                
-                {booking_message}({link})
+                The next workshop is on **[{formatted_date}]({link})**
 
                 Alternatively, [check our calendar](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=) for future events.
+                
                 :::
                 """)
                 message = message[1:]
