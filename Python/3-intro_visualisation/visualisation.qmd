@@ -50,7 +50,7 @@ import seaborn as sns
 For this workshop we’ll be working from the “Players2024.csv” dataset. If you don't have it yet,
 
 1. [Download the dataset](data/Players2024.csv).
-2. Create a folder in **in the same location as your script** called "data".
+2. Create a folder **in the same location as your script** called "data".
 3. Save the dataset there.
 
 We should then bring it in with pandas:
@@ -182,25 +182,37 @@ of ages with
 sns.displot(data = df, x = "age")
 ```
 
-Looks a bit funny with those gaps - let’s change the number of bins with
-`bins = 28`
+Looks a bit funny with those gaps. This is because the bin widths are not 
+large enough to always catch data (the ages are integers, so bins narrower 
+than a year would sometimes not catch any data). Let's change the bin width with
+`binwidth = 1`
 
 ```{python}
-sns.displot(data = df, x = "age", bins = 28)
+sns.displot(data = df, x = "age", binwidth = 1)
 ```
+
+:::{.callout-note}
+# Shopping for bins
+
+There are many other ways to define your bins. Here are some alternatives:
+
+* Choose how many bins you want to show: `bins = 28`.
+* Provide a list of precise bin breaks (that don't even have to be equidistant): `bins = [10,20,25,30,35,50]`
+* Fix them to the discrete values present (great for integers): `discrete = True`
+:::
 
 Now, what if you wanted to look at the distribution for different
 variables? We can make a separate distribution for each position with
 the `col = "positions"` argument, specifying a new row for each position
 
 ```{python}
-sns.displot(data = df, x = "age", bins = 28, col = "positions")
+sns.displot(data = df, x = "age", binwidth = 1, col = "positions")
 ```
 
 #### Kernel density estimates
 
 Finally, you don’t *have* to do histograms. You could also do a Kernel
-Density Estimate, with `kind = "kde"` (let’s remove `bins =` and
+Density Estimate, with `kind = "kde"` (let’s remove `binwidth =` and
 `row =`)
 
 ```{python}
@@ -337,17 +349,16 @@ and look up the following parameters:
 -   `col`
 -   `col_wrap`
 -   `col_order`
--   `hue_order`
 -   `legend`
 
 Using those parameters, create a scatter plot for age vs height (like
 above), which meets the following conditions:
 
-- Separate the plots for each position.
+- Separate into facets for each position.
 - Apply a different colour to each position. 
-- Arrange the plots in **two** columns
-- Remove the legend
-- Manually order the colours:
+- Arrange the facets in **two** columns.
+- Remove the legend.
+- Manually order the facets:
     1.  Attack
     2.  Midfield
     3.  Defender
@@ -355,7 +366,8 @@ above), which meets the following conditions:
 
 :::{.callout-tip}
 # Hint
-For the ordering, you might want to make a list with the desired order, e.g. `order = ["Attack", "Midfield", ... ]`
+For the ordering, you might want to first make a list with the desired
+order, e.g. `order = ["Attack", "Midfield", ... ]`
 :::
 
 :::{.callout-note collapse="true"}
@@ -365,8 +377,8 @@ For the ordering, you might want to make a list with the desired order, e.g. `o
 order = ["Attack", "Midfield", "Defender", "Goalkeeper"]
 
 sns.relplot(data = df, x = "age", y = "height_cm", hue = "positions", 
-            col = "positions", col_wrap = 2, hue_order = order, 
-            col_order = order)
+            col = "positions", col_wrap = 2, col_order = order,
+            legend = False)
 ```
 
 :::
@@ -407,11 +419,11 @@ very simple.
 
 As a first step, you should make a new folder. Use the *New folder* ![New folder](new_folder.png) button in the **explorer pane** and call it `plots`.
 
-Next, save the current plot with `plt.savefig("place_location_here")`,
+Next, save the current plot with `plt.savefig("location_and_filename_here")`,
 and **we have to do this at the same time that we make the plot**. Let’s
-save our previous overlaying plot: So run all this code at once,
+save our previous overlaying plot by running all this code at once:
 
-```{python}
+```{python eval = FALSE}
 # Figure level plot
 sns.relplot(data = df, x = "age", y = "height_cm", s = 10, color = "grey")
 
@@ -420,6 +432,16 @@ sns.lineplot(data = inner_ages, x = "age", y = "height_cm", hue = "positions")
 
 plt.savefig("plots/first_saved_plot.png")
 ```
+
+:::{.callout-note}
+# Image formats
+
+PNG is a "raster" (or "bitmap") format, meaning that you will see pixels as you zoom in (depending on the resolution). If you want to always have a sharp image, and if you want to further edit your image in a vector graphics editor (like [Inkscape](/Inkscape/inkscape.qmd)), you can use SVG:
+
+```{python eval = FALSE}
+plt.savefig("plots/first_saved_plot.svg")
+```
+:::
 
 ### Making modifications
 
@@ -467,7 +489,7 @@ sns.lineplot(data = inner_ages, x = "age", y = "height_cm", hue = "positions")
 
 # Customisation
 plt.ylabel("Height (cm)")
-plt.legend(title = "Positions")
+plt.legend(title = "Positions", loc = "lower left")
 ```
 
 And give the whole plot a title with `plt.title()`
@@ -481,7 +503,7 @@ sns.lineplot(data = inner_ages, x = "age", y = "height_cm", hue = "positions")
 
 # Titles
 plt.ylabel("Height (cm)")
-plt.legend(title = "Positions")
+plt.legend(title = "Positions", loc = "lower left")
 plt.title("Are players' heights and ages related?")
 ```
 
@@ -500,7 +522,7 @@ sns.lineplot(data = inner_ages, x = "age", y = "height_cm", hue = "positions")
 
 # Titles
 plt.ylabel("Height (cm)")
-plt.legend(title = "Positions")
+plt.legend(title = "Positions", loc = "lower left")
 plt.title("Are players' heights and ages related?")
 
 # Annotations
@@ -521,7 +543,7 @@ sns.lineplot(data = inner_ages, x = "age", y = "height_cm", hue = "positions")
 
 # Titles
 plt.ylabel("Height (cm)")
-plt.legend(title = "Positions")
+plt.legend(title = "Positions", loc = "lower left")
 plt.title("Are players' heights and ages related?")
 
 # Annotations
