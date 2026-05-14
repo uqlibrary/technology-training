@@ -423,7 +423,7 @@ Next, save the current plot with `plt.savefig("location_and_filename_here")`,
 and **we have to do this at the same time that we make the plot**. Let’s
 save our previous overlaying plot by running all this code at once:
 
-```{python eval = FALSE}
+```python
 # Figure level plot
 sns.relplot(data = df, x = "age", y = "height_cm", s = 10, color = "grey")
 
@@ -438,7 +438,7 @@ plt.savefig("plots/first_saved_plot.png")
 
 PNG is a "raster" (or "bitmap") format, meaning that you will see pixels as you zoom in (depending on the resolution). If you want to always have a sharp image, and if you want to further edit your image in a vector graphics editor (like [Inkscape](/Inkscape/inkscape.qmd)), you can use SVG:
 
-```{python eval = FALSE}
+```python
 plt.savefig("plots/first_saved_plot.svg")
 ```
 :::
