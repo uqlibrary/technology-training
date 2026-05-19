@@ -216,15 +216,9 @@ ghg_tidy <- pivot_longer(ghg,
                          values_to = "emissions")
 ```
 
-## Inline code
-
-We can also **include code that will be executed *inside* Markdown text**. For example, you can write the following sentence:
-
-> The dataset contains GHG emissions for the period `` `{{r}} min(ghg$year)` `` to `` `{{r}} max(ghg$year)` ``. The maximum GHG emissions recorded for the mining sector is `` `{{r}} round(max(ghg$Mining), 2)` `` Mt CO<sub>2</sub>-e.
-
 ## Visualisation
 
-We can also include a visualisation using, for example, ggplot2:
+We can now include a visualisation using, for example, ggplot2:
 
 ```{r viz}
 ggplot(ghg_tidy, aes(x = year, y = emissions, colour = sector)) +
@@ -254,6 +248,12 @@ format:
     fig-width: 10
     fig-height: 6
 ```
+
+## Inline code
+
+We can also **include code that will be executed *inside* Markdown text**. For example, you can write the following sentence:
+
+> The dataset contains GHG emissions for the period `` `{{r}} min(ghg$year)` `` to `` `{{r}} max(ghg$year)` ``. The maximum GHG emissions recorded for the mining sector is `` `{{r}} round(max(ghg$Mining), 2)` `` Mt CO<sub>2</sub>-e.
 
 ## Update the report
 
