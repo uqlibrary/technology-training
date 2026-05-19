@@ -4033,11 +4033,11 @@
     ]
   },
   {
-    "objectID": "R/reports/reports.html#inline-code",
-    "href": "R/reports/reports.html#inline-code",
+    "objectID": "R/reports/reports.html#visualisation",
+    "href": "R/reports/reports.html#visualisation",
     "title": "R reproducible reports with Quarto",
-    "section": "Inline code",
-    "text": "Inline code\nWe can also include code that will be executed inside Markdown text. For example, you can write the following sentence:\n\nThe dataset contains GHG emissions for the period `{r} min(ghg$year)` to `{r} max(ghg$year)`. The maximum GHG emissions recorded for the mining sector is `{r} round(max(ghg$Mining), 2)` Mt CO2-e.",
+    "section": "Visualisation",
+    "text": "Visualisation\nWe can now include a visualisation using, for example, ggplot2:\n\nggplot(ghg_tidy, aes(x = year, y = emissions, colour = sector)) +\n  geom_line() +\n  ylab(\"emissions (Mt CO2e)\")\n\n\n\n\n\n\n\n\n\nIf you want to hide the code that created an output, like for this plot, you can add the option #| echo: false to it.\n\nFinally, let’s create an interactive version of our plot:\n\nlibrary(plotly)\np &lt;- ggplot(ghg_tidy, aes(x = year, y = emissions, colour = sector)) +\n  geom_line() +\n  ylab(\"emissions (Mt CO2e)\")\nggplotly(p)\n\nThis will work in a HTML document, but will most likely fail in other output formats.\nIf you want to change the size of your visualisations, you can tweak the width and height with chunk options like fig-width: 8. However, to make that consistent for all your figures, better use an extra default option in the YAML header. For example:\nformat: \n  html:\n    fig-width: 10\n    fig-height: 6",
     "crumbs": [
       "Home",
       "![](/images/R.svg){fig-alt='' width=20} R with RStudio",
@@ -4045,11 +4045,11 @@
     ]
   },
   {
-    "objectID": "R/reports/reports.html#visualisation",
-    "href": "R/reports/reports.html#visualisation",
+    "objectID": "R/reports/reports.html#inline-code",
+    "href": "R/reports/reports.html#inline-code",
     "title": "R reproducible reports with Quarto",
-    "section": "Visualisation",
-    "text": "Visualisation\nWe can also include a visualisation using, for example, ggplot2:\n\nggplot(ghg_tidy, aes(x = year, y = emissions, colour = sector)) +\n  geom_line() +\n  ylab(\"emissions (Mt CO2e)\")\n\n\n\n\n\n\n\n\n\nIf you want to hide the code that created an output, like for this plot, you can add the option #| echo: false to it.\n\nFinally, let’s create an interactive version of our plot:\n\nlibrary(plotly)\np &lt;- ggplot(ghg_tidy, aes(x = year, y = emissions, colour = sector)) +\n  geom_line() +\n  ylab(\"emissions (Mt CO2e)\")\nggplotly(p)\n\nThis will work in a HTML document, but will most likely fail in other output formats.\nIf you want to change the size of your visualisations, you can tweak the width and height with chunk options like fig-width: 8. However, to make that consistent for all your figures, better use an extra default option in the YAML header. For example:\nformat: \n  html:\n    fig-width: 10\n    fig-height: 6",
+    "section": "Inline code",
+    "text": "Inline code\nWe can also include code that will be executed inside Markdown text. For example, you can write the following sentence:\n\nThe dataset contains GHG emissions for the period `{r} min(ghg$year)` to `{r} max(ghg$year)`. The maximum GHG emissions recorded for the mining sector is `{r} round(max(ghg$Mining), 2)` Mt CO2-e.",
     "crumbs": [
       "Home",
       "![](/images/R.svg){fig-alt='' width=20} R with RStudio",

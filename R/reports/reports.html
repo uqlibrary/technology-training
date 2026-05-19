@@ -556,8 +556,8 @@ window.Quarto = {
   <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3">Challenge 3</a></li>
   </ul></li>
   <li><a href="#tidy-the-data" id="toc-tidy-the-data" class="nav-link" data-scroll-target="#tidy-the-data">Tidy the data</a></li>
-  <li><a href="#inline-code" id="toc-inline-code" class="nav-link" data-scroll-target="#inline-code">Inline code</a></li>
   <li><a href="#visualisation" id="toc-visualisation" class="nav-link" data-scroll-target="#visualisation">Visualisation</a></li>
+  <li><a href="#inline-code" id="toc-inline-code" class="nav-link" data-scroll-target="#inline-code">Inline code</a></li>
   <li><a href="#update-the-report" id="toc-update-the-report" class="nav-link" data-scroll-target="#update-the-report">Update the report</a></li>
   <li><a href="#output-formats" id="toc-output-formats" class="nav-link" data-scroll-target="#output-formats">Output formats</a>
   <ul class="collapse">
@@ -601,7 +601,7 @@ window.Quarto = {
 </header>
 
 
-<section id="section" class="level1 quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/R/reports/reports_banner.qmd" data-notebook-cellid="8d6dc7c2-6c32-4f4a-9290-71864cb0fe57">
+<section id="section" class="level1 quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/R/reports/reports_banner.qmd" data-notebook-cellid="8a235ea5-30f9-4311-ac25-7a7653db9004">
 <h1></h1>
 </section>
 <section id="setting-up" class="level2">
@@ -778,16 +778,9 @@ execute:
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">values_to =</span> <span class="st">"emissions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="inline-code" class="level2">
-<h2 class="anchored" data-anchor-id="inline-code">Inline code</h2>
-<p>We can also <strong>include code that will be executed <em>inside</em> Markdown text</strong>. For example, you can write the following sentence:</p>
-<blockquote class="blockquote">
-<p>The dataset contains GHG emissions for the period <code>`{r} min(ghg$year)`</code> to <code>`{r} max(ghg$year)`</code>. The maximum GHG emissions recorded for the mining sector is <code>`{r} round(max(ghg$Mining), 2)`</code> Mt CO<sub>2</sub>-e.</p>
-</blockquote>
-</section>
 <section id="visualisation" class="level2">
 <h2 class="anchored" data-anchor-id="visualisation">Visualisation</h2>
-<p>We can also include a visualisation using, for example, ggplot2:</p>
+<p>We can now include a visualisation using, for example, ggplot2:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ghg_tidy, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> emissions, <span class="at">colour =</span> sector)) <span class="sc">+</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
@@ -817,6 +810,13 @@ execute:
   html:
     fig-width: 10
     fig-height: 6</code></pre>
+</section>
+<section id="inline-code" class="level2">
+<h2 class="anchored" data-anchor-id="inline-code">Inline code</h2>
+<p>We can also <strong>include code that will be executed <em>inside</em> Markdown text</strong>. For example, you can write the following sentence:</p>
+<blockquote class="blockquote">
+<p>The dataset contains GHG emissions for the period <code>`{r} min(ghg$year)`</code> to <code>`{r} max(ghg$year)`</code>. The maximum GHG emissions recorded for the mining sector is <code>`{r} round(max(ghg$Mining), 2)`</code> Mt CO<sub>2</sub>-e.</p>
+</blockquote>
 </section>
 <section id="update-the-report" class="level2">
 <h2 class="anchored" data-anchor-id="update-the-report">Update the report</h2>
