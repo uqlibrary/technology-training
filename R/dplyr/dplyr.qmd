@@ -415,7 +415,8 @@ Let's see what the two following variables can be used for:
 ```{r}
 #| label: gdp-pop
 gapminder %>%
-    select(gdpPercap, pop)
+    select(gdpPercap, pop) %>%
+    head()
 ```
 
 How do you think we could combine them to add something new to our dataset?
@@ -457,11 +458,29 @@ See the effect of the grouping step:
 
 ```{r}
 #| label: group-by
+#| eval: false
 gapminder %>%
     group_by(continent)
 ```
 
-The data in the cells is the same, the size of the object is the same. However, the dataframe was converted to a **tibble**, because a dataframe is not capable of storing grouping information.
+The data in the cells is the same, the size of the object is the same. However, the dataframe was converted to a **tibble**: an augmented version of the dataframe. That's because a dataframe is not capable of storing grouping information.
+
+Another benefit of tibbles is that they are printed diffently to dataframes:
+
+* displays the dimensions and grouping
+* only shows 10 rows
+* no more variables than can fit, with sensible column widths
+* variable types below the headings
+* formatting helps readability (e.g. for numbers and NAs)
+
+```
+# A tibble: 1,704 × 6
+# Groups:   continent [5]
+   country      year      pop continent lifeExp gdpPercap
+   <chr>       <int>    <dbl> <chr>       <dbl>     <dbl>
+ 1 Afghanistan  1952  8425333 Asia         28.8      779.
+ 2 Afghanistan  1957  9240934 Asia         30.3      821.
+```
 
 Using the `group_by()` function before summarising makes things more interesting. Let's re-run the previous command, with the intermediate grouping step:
 
