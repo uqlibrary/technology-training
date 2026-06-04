@@ -1,7 +1,7 @@
 ---
 title: "R dplyr: preparing data for analysis"
 editor: source
-date: today
+date: last-modified
 author: UQ Library
 ---
 
@@ -11,7 +11,7 @@ author: UQ Library
 
 In this hands-on session, you will use R, RStudio and the `dplyr` package to transform your data.
 
-Specifically, you will learn how to **explore, filter, reorganise and process** a table of data with the following verbs:
+Specifically, you will learn how to **explore, filter, reorganise and process** a table of data, focusing on six main "verbs":
 
 -   `select()`: pick variables
 -   `filter()`: pick observations
@@ -275,8 +275,26 @@ Now, let's filter the rows that have a life expectancy `lifeExp` greater than 81
 ```{r}
 #| label: filter-life81
 life81 <- filter(gapminder, lifeExp > 81)
-dim(life81)
 ```
+
+::: {.callout-tip}
+## Against all logic
+
+Note that you do not necessarily need to write your own logical operations to pick rows. dplyr offers "slicing" functions, as shortcuts or to cover different needs:
+
+* `slice()`: by row index
+* `slice_sample()`: random sample of rows (number or fraction)
+* `slice_max()` and `slice_min()`: rows that hold a variable's highest or lowest values
+* `slice_head()` and `slice_tail()`: beginning or end rows
+
+Similarly to the previous example, we can use `slice_max()` to get the 10 (sorted) observations with the highest life expectancy:
+
+```{r}
+#| label: slice-max
+#| eval: false
+slice_max(gapminder, lifeExp, n = 10)
+```
+:::
 
 ### 3. Reorder observations with `arrange()`
 
@@ -372,7 +390,11 @@ This material uses the `magrittr` pipe. The `magrittr` package is the one that i
 
 #### Challenge 1 – a tiny dataset
 
-Use some of the functions we learned about to keep the 2002 life expectancy observation for Eritrea and remove the superfluous variables.
+Use some of the functions we learned about to create a single-row dataset showing the 2002 life expectancy value for Eritrea. Make sure it matches exactly this table:
+
+| year| country| lifeExp|
+|----:|-------:|-------:|
+| 2002| Eritrea|   55.24|
 
 ::: {.callout-tip collapse="true"}
 ## Solution
