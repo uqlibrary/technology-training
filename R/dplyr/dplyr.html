@@ -601,27 +601,13 @@ window.Quarto = {
 </header>
 
 
-<section id="section" class="level1 quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/R/dplyr/dplyr_banner.qmd" data-notebook-title="Upcoming workshop(s) available!" data-notebook-cellid="32440317-dbe6-4d9c-8ad2-e9be439c4c6d">
+<section id="section" class="level1 quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/R/dplyr/dplyr_banner.qmd" data-notebook-cellid="c6927a71-bec9-40df-9f02-3638c4ad6532">
 <h1></h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Upcoming workshop(s) available!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The next workshop is on <strong><a href="https://studenthub.uq.edu.au/students/events/detail/6276530">today at 02:30 PM.</a></strong></p>
-<p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
-</div>
-</div>
 </section>
 <section id="what-are-we-going-to-learn" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-we-going-to-learn">What are we going to learn?</h2>
 <p>In this hands-on session, you will use R, RStudio and the <code>dplyr</code> package to transform your data.</p>
-<p>Specifically, you will learn how to <strong>explore, filter, reorganise and process</strong> a table of data with the following verbs:</p>
+<p>Specifically, you will learn how to <strong>explore, filter, reorganise and process</strong> a table of data, focusing on six main “verbs”:</p>
 <ul>
 <li><code>select()</code>: pick variables</li>
 <li><code>filter()</code>: pick observations</li>
@@ -954,10 +940,29 @@ Warning
 </div>
 <p>Now, let’s filter the rows that have a life expectancy <code>lifeExp</code> greater than 81 years:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>life81 <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, lifeExp <span class="sc">&gt;</span> <span class="dv">81</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(life81)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 7 6</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>life81 <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, lifeExp <span class="sc">&gt;</span> <span class="dv">81</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Against all logic
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that you do not necessarily need to write your own logical operations to pick rows. dplyr offers “slicing” functions, as shortcuts or to cover different needs:</p>
+<ul>
+<li><code>slice()</code>: by row index</li>
+<li><code>slice_sample()</code>: random sample of rows (number or fraction)</li>
+<li><code>slice_max()</code> and <code>slice_min()</code>: rows that hold a variable’s highest or lowest values</li>
+<li><code>slice_head()</code> and <code>slice_tail()</code>: beginning or end rows</li>
+</ul>
+<p>Similarly to the previous example, we can use <code>slice_max()</code> to get the 10 (sorted) observations with the highest life expectancy:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_max</span>(gapminder, lifeExp, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </div>
 </div>
 </section>
@@ -1058,7 +1063,23 @@ Note
 </section>
 <section id="challenge-1-a-tiny-dataset" class="level4">
 <h4 class="anchored" data-anchor-id="challenge-1-a-tiny-dataset">Challenge 1 – a tiny dataset</h4>
-<p>Use some of the functions we learned about to keep the 2002 life expectancy observation for Eritrea and remove the superfluous variables.</p>
+<p>Use some of the functions we learned about to create a single-row dataset showing the 2002 life expectancy value for Eritrea. Make sure it matches exactly this table:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">country</th>
+<th style="text-align: right;">lifeExp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2002</td>
+<td style="text-align: right;">Eritrea</td>
+<td style="text-align: right;">55.24</td>
+</tr>
+</tbody>
+</table>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
