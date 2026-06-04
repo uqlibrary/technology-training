@@ -2,7 +2,7 @@
 
 The [UQ Library Technology Training website](https://uqlibrary.github.io/technology-training/) is where manuals and files used in our training sessions are published.
 
-The website is built using [Quarto](https://quarto.org/) and uses the latest patches of R v4.5 and Python v3.12.
+The website is built using [Quarto](https://quarto.org/) and uses the latest patches of R v4.6 and Python v3.12.
 
 ## Format of training sessions
 
@@ -12,21 +12,14 @@ All programming sessions use the "live-coding" format in which the instructor an
 
 ## Contributing
 
-Contributions are welcome! You can [raise an issue](https://github.com/uqlibrary/technology-training/issues) or submit a change in this repository.
+Contributions are welcome! There are several ways to do so:
 
-### Linked files
+* [raise an issue](https://github.com/uqlibrary/technology-training/issues) (requires a GitHub account)
+* make a change on this repository:
+    * either open a pull request
+    * or commit directly (if you have the rights to do so)
 
-To keep this repository light, PDF manuals, PDF slides and other example files (e.g. DOCX, XLSX, video samples...) that are destined to be downloaded are usually kept in a separate "assets" repository.
-
-1. Go to the appropriate folder [in the assets repository](https://github.com/uqlibrary/technology-training-assets)
-2. Press "Add file" > "Upload files"
-3. Choose the file, include an appropriate message (e.g. "Update Excel manual") and press "Commit changes"
-
-To *update* a file, **make sure the file name and location are the same**. Otherwise, the website will have a broken link.
-
-If you've used a new name, or are uploading a new file, you will also need to update the website by changing the URL in the corresponding `.qmd` file.
-
-### Updating the website
+### Editing website pages
 
 Small changes can be made directly on GitHub, by editing files directly (if you have the rights), or submitting a pull request.
 
@@ -43,14 +36,23 @@ If you prefer to work on your local copy of the repository:
  
  3. Once you are happy with the changes, commit and push them to this repository.
 
+If you are editing manuals for R or Python workshops, please read the "Computational documents" section below.
+
+### Computational documents
+
+R and Python manuals are computational Quarto documents: they include code chunks that are run when the document is rendered. If you are making changes related to executable code, the following information about site settings and development environments is relevant.
+
+<details>
+<summary>Site settings and development environments</summary>
+
 #### The `freeze: auto` setting
 
-This website uses the [`freeze: auto`](https://quarto.org/docs/projects/code-execution.html#freeze) setting in the [_quarto.yml](_quarto.yml) file. This means that when the website is rendered, only the files that have been modified are re-rendered, whereas the others use the previously rendered files stored in the [_freeze](/_freeze/) directory. This helps with:
+This website uses the [`freeze: auto`](https://quarto.org/docs/projects/code-execution.html#freeze) setting in the [_quarto.yml](_quarto.yml) file. This means that when the website is rendered, only the computational documents that have been modified are re-rendered, whereas the others use the previously rendered files stored in the [_freeze](/_freeze/) directory. This helps with:
 
 * reducing rendering times (for contributors as well as the GitHub workflow), and
 * making sure pages don't break when using a system that is not capable of rendering the whole website (packages not installed, dependency on older versions...).
 
-When rendering locally after a change (to a `.qmd` file containing code), the files in the [_freeze](/_freeze/) directory will likely change, so do commit those changes too - as long as your environment is set up properly (more on that in the next section).
+When rendering locally after a change (to a `.qmd` file containing code), the files in the [_freeze](/_freeze/) directory will likely change, so do commit those changes too - **as long as your environment is set up properly** (more on that in the next section).
 
 #### Managing dependencies
 
@@ -96,7 +98,23 @@ To update the file, **use a virtual environment manager**. We recommend [venv](h
 4. Update [requirements.txt](requirements.txt) (typically via `pip freeze > requirements.txt`).
 5. Commit any changes to [requirements.txt](requirements.txt). Do not commit any venv-related files.
 
-#### Captions and alternative text
+</details>
+
+### Linked files
+
+To keep this repository light, we store in a separate repository the "assets" that are not essential in rendering the website pages. That includes PDF manuals, PDF slides and other example files (e.g. DOCX, XLSX, video samples...) that are destined to be downloaded via a link.
+
+To add a file to the assets repository:
+
+1. Go to the appropriate folder [in the assets repository](https://github.com/uqlibrary/technology-training-assets)
+2. Press "Add file" > "Upload files"
+3. Choose the file, include an appropriate message (e.g. "Update Excel manual") and press "Commit changes"
+
+To *update* a file, **make sure the file name and location are the same**. Otherwise, the website will have a broken link.
+
+If you've used a new name, or are uploading a new file, you will also need to update the website by changing the URL in the corresponding `.qmd` file.
+
+### Captions and alternative text
 
 For images that are not generated by code, you can use this syntax for caption and alternative text:
 
@@ -117,8 +135,7 @@ Executable code goes here
 Learn more about alt text:
 
 * [alt text in Quarto](https://quarto.org/docs/authoring/figures.html#alt-text)
-* [Wikipedia's guide on alt text](https://en.wikipedia.org/wiki/Help:Alt_text)
-* [Wikipedia's example of alt text](https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Accessibility/Alternative_text_for_images#Examples)
+* Wikipedia's alt text [guide](https://en.wikipedia.org/wiki/Help:Alt_text) and [examples](https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Accessibility/Alternative_text_for_images#Examples)
 * Amy Cesal's article on [writing alt text for data visualisation](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81)
 
 ## Automation
