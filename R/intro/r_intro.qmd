@@ -1,5 +1,5 @@
 ---
-title: "R with RStudio: getting started"
+title: "R with Positron: getting started"
 editor: source
 date: last-modified
 author: UQ Library
@@ -9,11 +9,11 @@ aliases:
 
 {{< embed r_intro_banner.qmd >}}
 
-## R + RStudio
+## R + Positron
 
 The [R programming language](https://cran.r-project.org/) is a language used for calculations, statistics, visualisations and many more data science tasks.
 
-[RStudio](https://rstudio.com/products/rstudio/) is an open source Integrated Development Environment (IDE) for R, which means it provides many features on top of R to make it easier to write and run code.
+[Positron](https://positron.posit.co/) is an open source Integrated Development Environment (IDE) for data science, which means it provides many features on top of R to make it easier to write and run code. [RStudio](https://posit.co/products/open-source/rstudio) is another IDE suited for writing R which used to be the preferred tool for this training series.
 
 R's main strong points are:
 
@@ -27,19 +27,19 @@ The learning curve will be steeper than point-and-click tools, but as far as pro
 
 ## Installation
 
-For this course, you need to have both R and RStudio installed ([installation instructions](../installation.qmd)).
+For this course, you need to have both R and Positron installed ([installation instructions](../installation.qmd)).
 
-## Open RStudio
+## Open Positron
 
-* If you are using your own laptop please open RStudio
+* If you are using your own laptop please open Positron
   * Make sure you have a working Internet connection
 * On Library computers:
   * Log in with your UQ username and password (if you are both staff and student, use your student account)
   * Make sure you have a working Internet connection
   * Go to search at bottom left corner (magnifying glass) 
   * Open the ZENworks application
-  * Search for "RStudio"
-  * Double-click on RStudio which will install both R and RStudio
+  * Search for "Positron"
+  * Double-click on Positron which will install both R and Positron
 
 ## What are we going to learn?
 
@@ -47,33 +47,33 @@ This session is designed to get straight into using R in a short amount of time,
 
 During this session, you will:
 
-* Create a project for data analysis
-* Create a folder structure
-* Know where to find help
-* Learn about a few useful functions
+* Create and organise a project for data analysis
 * Create a script
+* Learn about a few useful functions
+* Know where to find help
 * Import a dataset
-* Understand the different RStudio panels
+* Fit a statistical model
+* Generate a data visualisation
+* Understand the different Positron panels
 * Use a few shortcuts
 * Know how to extend R with packages
-* Generate a data visualisation
 
 ## R Projects
 
 Let's first create a new project:
 
-* Click the "File" menu button (top left corner), then "New Project"
-* Click "New Directory"
-* Click "New Project"
-* In "Directory name", type the name of your project, for example "YYYY-MM-DD_rstudio-intro"
-* Browse and select a folder where to locate your project (`~` is your home directory). For example, a folder called "r-projects".
-* Click the "Create Project" button
+* Click the "Folder Selector" menu (top right corner), then "New Folder from Template..."
+* Click "R Project" and "Next"
+* In "Folder name", type the name of your project, for example "YYYY-MM-DD_R-intro"
+* For "Location", browse and select a folder where to locate your project (otherwise, the default will be your home directory)
+* Click "Next"
+* In "Project Configuration", keep the defaults, click "Create" and finally "Current window"
 
-> R Projects make your work with R more straight forward, as they allow you to segregate your different projects in separate folders. You can create a .Rproj file in a new directory or an existing directory that already has R code and data. Everything then happens by default in this directory. The .Rproj file stores information about your project options, and allows you to go straight back to your work.
+> R Projects make your work with R more straight forward, as they allow you to segregate your different projects in separate folders. You can create a project in a new directory, or open an existing directory that already has R code and data. Everything then happens by default in this directory. You can then jump from project to project from the "Folder Selector" menu.
 
 ## Maths and objects
 
-The **console** (usually at the bottom left in RStudio) is where most of the action happens. In the console, we can use R interactively. We write a **command** and then **execute** it by pressing <kbd>Enter</kbd>.
+The **console** (usually at the bottom left in Positron) is where most of the action happens. In the console, we can use R interactively. We write a **command** and then **execute** it by pressing <kbd>Enter</kbd>.
 
 In its most basic use, R can be a calculator. Try executing the following commands:
 
@@ -101,7 +101,7 @@ sentence <- "Hello World!"
 sentence
 ```
 
-You should now see your objects listed in you **environment pane** (top right).
+You should now see your objects listed in you **Variables pane** (top of the right sidebar).
 
 As you can see, you can store different kinds of data as objects. If you want to store text data (a "string of characters"), you have to use quotes around them.
 
@@ -115,7 +115,7 @@ To keep it tidy, we are creating 3 folders in our project directory:
 * data
 * plots
 
-For that, we use the function `dir.create()`:
+For that, we can use the function `dir.create()`:
 
 ```r
 dir.create("scripts")
@@ -135,39 +135,25 @@ Scripts are simple text files that contain R code. They are useful for:
 * documenting the code with comments, and
 * sharing your work with peers
 
-Let's create a new R script with a command:
-
-```r
-file.create("scripts/process.R")
-```
-
-> All the file paths are **relative** to our current working directory, i.e. the project directory. To use an **absolute** file path, we can start with `/`.
-
-To edit the new script, use the `file.edit()` function. Try using the <kbd>Tab</kbd> key to autocomplete your function name and your file path!
-
-```r
-file.edit("scripts/process.R")
-```
-
-This opens our fourth panel in RStudio: the **source panel**.
+When creating a new project, Positron opens a new script in the **Editor** above the console. You can straight away save this script and name it something like "process.R".
 
 ### Many ways to do one thing
 
 As in many programs, there are many ways to achieve one thing.
 
-For example, we used commands to create and edit a script, but we could also:
+For example, we used commands to create folders, but we could have done the same in the Explorer panel by either:
 
-* use the shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>
-* use the top left drop-down menus
+* using the toolbar that pops up when hovering the project folder name, or
+* using the menu that pops up when right-clicking the empty space
 
-Learning how to use functions rather than the graphical interface will allow you to integrate them in scripts, and will sometimes help you to do things faster.
+Learning how to use functions rather than the graphical interface will allow you to integrate them in scripts, and will sometimes help you do things faster.
 
 ### Comments
 
 We should start with a couple of **comments**, to document our script. Comments start with `#`, and will be ignored by R:
 
 ```r
-# Description: Introduction to R and RStudio
+# Description: Introduction to R and Positron
 # Author: <your name>
 # Date: <today's date>
 ```
@@ -181,9 +167,9 @@ num1 <- 42
 num2 <- num1 / 9
 ```
 
-Notice the colours? This is called **syntax highlighting**. This is one of the many ways RStudio makes it more comfortable to work with R. The code is more readable when working in a script.
+Notice the colours? This is called **syntax highlighting**. This is one of the many ways Positron makes it more comfortable to work with R. The code is more readable when working in a script.
 
-> While editing your script, you can run the current command (or the selected block of code) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>. Remember to save your script regularly with the shortcut <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>, or the menu "Tools > Keyboard Shortcuts Help".
+> While editing your script, you can run the current command (or the selected block of code) by using <kbd>Ctrl</kbd>+<kbd>Enter</kbd>. Remember to save your script regularly with the shortcut <kbd>Ctrl</kbd>+<kbd>S</kbd>. You can find more shortcuts with <kbd>Ctrl</kbd>+<kbd>K</kbd> followed by <kbd>Ctrl</kbd>+<kbd>S</kbd>, or the menu: "Manage (cog icon) > Keyboard Shortcuts".
 
 ## Functions
 
@@ -209,10 +195,11 @@ The `round()` function rounds a number to the closest integer. The only argument
 
 What if we want to learn more about a function?
 
-There are two main ways to find **help** about a specific function in RStudio:
+There are several ways to find **help** about a specific function in Positron:
 
-1. the shortcut command: `?functionname`
+1. the command `help(functionname)` or its shortcut command: `?functionname`
 1. the keyboard shortcut: press <kbd>F1</kbd> with your cursor in a function name (you can do this by simply clicking on the function name)
+1. hover over a function name with the pointer to see a popup
 
 Let's look through the documentation for the `round()` function:
 
@@ -365,6 +352,8 @@ What do you think they do? Describe each one in detail, and try executing them.
 
 We have downloaded a CSV file from the Internet, and read it into an object called `gapminder`.
 
+> All the file paths are **relative** to our current working directory: the project directory. To use an **absolute** file path (i.e. one that starts from the top of your drive), we can start with `/`.
+
 You can type the name of your new object to print it to screen:
 
 ```{r eval=FALSE}
@@ -393,13 +382,13 @@ All the information we just saw (and more) is available with one single function
 str(gapminder) # general structure
 ```
 
-> The RStudio's environment panel already shows us some of that information (click on the blue arrow next to the object name).
+> Positron's Variables pane already shows us some of that information (click on the arrow next to the object name).
 
-And to explore the data in a viewer, click on the table icon next to the object in the Environment pane.
+And to explore the data in a viewer, click on the table icon next to the object in the Variables pane.
 
-This viewer allows you to explore your data by scrolling through, searching terms, filtering rows and sorting the data. Remember that it is only a viewer: it will never modify your original object.
+This viewer allows you to explore your data by scrolling through, searching terms, filtering rows and sorting the data. It also has a handy "Summary" panel that you can expand to see descriptive statistics and histograms. Remember that it is only a viewer: it will never modify your original object.
 
-> Notice that RStudio actually runs the `View()` function. Feel free to use that instead of clicking on the button, but note that the case matters: using a lowercase "v" will yield an error.
+> You can also use the `View()` function to open the Viewer. Feel free to use that instead of clicking on the button, but note that the case matters: using a lowercase "v" will yield an error.
 
 To see summary statistics for each of our variables, you can use the `summary()` function:
 
@@ -410,6 +399,8 @@ summary(gapminder)
 Notice how categorical and numerical variables are handled differently?
 
 Let's now plot the relationship between GDP per capita and life expectancy:
+
+> Remeber to use the <kbd>Tab</kbd> key to autocomplete your function names, object names and file paths! It saves time and makes typos less likely.
 
 ```{r}
 plot(gapminder$gdpPercap, gapminder$lifeExp,
@@ -430,16 +421,16 @@ The P-value suggests that there is a strong relationship between the two.
 
 ## Packages
 
-Packages add functionalities to R and RStudio. There are [more than 21000](https://cran.r-project.org/web/packages/index.html) available.
+Packages add functionalities to R and Positron. There are [more than 24000](https://cran.r-project.org/web/packages/index.html) available.
 
-You can see the list of installed packages in your "Packages" tab, or by using the `library()` function without any argument.
+You can see the list of installed packages in your "Packages" panel, or by using the `library()` function without any argument.
 
 We are going to install a package called "skimr". We can do that in the Packages tab:
 
-1. Open the "Packages" tab (bottom-right pane)
-1. Click the “Install” button
-1. Search for “skimr”
-1. Click "Install"
+1. Open the "Packages" tab (from the blue sidebar on the left)
+1. Click the three-dot menu and "Install Package"
+1. Search for "skimr" and select it
+1. Select the latest version offered
 
 Notice how it runs an `install.packages()` command in the console? You can use that too.
 
@@ -454,15 +445,11 @@ This function provides further summary statistics, and even displays a small his
 
 > Packages are essential to use R to its full potential, by making the most out of what other users have created and shared with the community. To get an idea of some of the most important packages depending on your field of study, you can start with the [CRAN Task Tiews](https://cran.r-project.org/web/views/).
 
-## Closing RStudio
+## Closing Positron
 
-You can close RStudio after making sure that you saved your script.
+You can close Positron after making sure that you saved your script.
 
-When you create a **project** in RStudio, you create an .Rproj file that gathers information about the state of your project. When you close RStudio, you have the option to save your **workspace** (i.e. the objects in your **environment**) as an .Rdata file. The .Rdata file is used to reload your workspace when you open your project again. Projects also bring back whatever source file (e.g. script) you had open, and your command history. You will find your command history in the "History" tab (upper right panel): all the commands that we used should be in there.
-
-If you have a script that contains all your work, it is a good idea _not_ to save your workspace: it makes it less likely to run into errors because of accumulating objects. The script will allow you to get back to where you left it, by executing all the clearly laid-out steps.
-
-The console, on the other hand, only shows a brand new R **session** when you reopen RStudio. Sessions are not persistent, and a clean one is started when you open your project again, which is why you have to load any extra package your work requires again with the `library()` function.
+When you reopen a project in Positron, it brings back whatever source files (e.g. scripts) you had open, and your command history. You will find your command history in the "History" tab (right sidebar): all the commands that we used should be in there. The console, on the other hand, only shows a brand new R **session** when you reopen Positron. Sessions are not persistent, and a clean one is started when you open your project again, which is why you have to load any extra package your work requires again with the `library()` function. The best way to work is to run your script again every time you go back to your project.
 
 ## What next?
 
