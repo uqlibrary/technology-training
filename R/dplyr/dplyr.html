@@ -746,11 +746,11 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#help" id="toc-help" class="nav-link" data-scroll-target="#help">Help</a></li>
   </ul></li>
-  <li><a href="#open-rstudio" id="toc-open-rstudio" class="nav-link" data-scroll-target="#open-rstudio">Open RStudio</a></li>
+  <li><a href="#open-positron" id="toc-open-positron" class="nav-link" data-scroll-target="#open-positron">Open Positron</a></li>
   <li><a href="#setting-up" id="toc-setting-up" class="nav-link" data-scroll-target="#setting-up">Setting up</a>
   <ul class="collapse">
   <li><a href="#install-the-dplyr-package" id="toc-install-the-dplyr-package" class="nav-link" data-scroll-target="#install-the-dplyr-package">Install the dplyr package</a></li>
-  <li><a href="#new-project" id="toc-new-project" class="nav-link" data-scroll-target="#new-project">New project</a></li>
+  <li><a href="#new-project-folder" id="toc-new-project-folder" class="nav-link" data-scroll-target="#new-project-folder">New project folder</a></li>
   <li><a href="#create-a-script" id="toc-create-a-script" class="nav-link" data-scroll-target="#create-a-script">Create a script</a></li>
   <li><a href="#introducing-our-data" id="toc-introducing-our-data" class="nav-link" data-scroll-target="#introducing-our-data">Introducing our data</a></li>
   </ul></li>
@@ -804,7 +804,7 @@ window.Quarto = {
 </header>
 
 
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/R/dplyr/dplyr_banner.qmd" data-notebook-title="Upcoming workshop(s) available!" data-notebook-cellid="fc54caf3-6fdd-4512-8706-b90e1bace693">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/R/dplyr/dplyr_banner.qmd" data-notebook-title="Upcoming workshop(s) available!" data-notebook-cellid="53c7de07-f796-4675-83af-8f700f1a062a">
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -842,30 +842,32 @@ window.Quarto = {
 </ul>
 <section id="help" class="level3">
 <h3 class="anchored" data-anchor-id="help">Help</h3>
-<p>For any dataset or function doubts that you might have, don’t forget the three ways of getting help in RStudio:</p>
+<p>For any dataset or function doubts that you might have, don’t forget the ways of getting help in Positron:</p>
 <ol type="1">
 <li>the shortcut command: <code>?functionname</code></li>
 <li>the help function: <code>help(functionname)</code></li>
-<li>the keyboard shortcut: press F1 after writing a function name</li>
+<li>the keyboard shortcut: press F1 after placing your cursor on a function name</li>
+<li>the Help pane: use the Search box in the Help pane to find functions, packages, topics</li>
 </ol>
 </section>
 </section>
-<section id="open-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="open-rstudio">Open RStudio</h2>
+<section id="open-positron" class="level2">
+<h2 class="anchored" data-anchor-id="open-positron">Open Positron</h2>
 <ul>
-<li>If you are using your own laptop please open RStudio
+<li>If you are using your own laptop please open Positron
 <ul>
 <li>If you need them, we have <a href="../../R/installation.html">installation instructions</a></li>
 </ul></li>
 <li>Make sure you have a working internet connection</li>
-<li>On Library computers (the first time takes about 10 min.):
+<li>On Library computers (the first time takes about 20 min.):
 <ul>
 <li>Log in with your UQ credentials (student account if you have two)</li>
 <li>Make sure you have a working internet connection</li>
 <li>Open the Start menu</li>
 <li>Search for and open ZENworks</li>
-<li>Look for RStudio</li>
-<li>Double-click on RStudio which will install both R and RStudio</li>
+<li>Look for R - Statistical Computing and double-click it to install</li>
+<li>Look for Positron and double-click it to install</li>
+<li>Open Positron through the Start Menu once the installation is complete</li>
 </ul></li>
 </ul>
 </section>
@@ -888,24 +890,32 @@ Note
 </div>
 </div>
 </section>
-<section id="new-project" class="level3">
-<h3 class="anchored" data-anchor-id="new-project">New project</h3>
+<section id="new-project-folder" class="level3">
+<h3 class="anchored" data-anchor-id="new-project-folder">New project folder</h3>
 <ul>
-<li>Click the “File” menu button (top left corner), then “New Project”</li>
-<li>Click “New Directory”</li>
-<li>Click “New Project” (“Empty project” if you have an older version of RStudio)</li>
-<li>In “Directory name”, type the name of your project, e.g.&nbsp;“dplyr_intro”</li>
-<li>Select the folder where to locate your project: for example, the <code>Documents/RProjects</code> folder, which you can create if it doesn’t exist yet.</li>
-<li>Click the “Create Project” button</li>
+<li>Select New (top left) and choose “New Folder from Template”</li>
+<li>Select “R Project” from the available templates</li>
+<li>Enter a name for your project, for example “dplyr_intro”</li>
+<li>Choose the folder where you want to create the project, such as <code>Documents/RProjects</code>, which you can create if it doesn’t exist yet</li>
+<li>Leave the default options selected unless instructed otherwise</li>
+<li>Click “Create”</li>
 </ul>
 </section>
 <section id="create-a-script" class="level3">
 <h3 class="anchored" data-anchor-id="create-a-script">Create a script</h3>
 <p>We will use a script to write code more comfortably.</p>
 <ul>
-<li>Menu: Top left corner, click the green “plus” symbol, or press the shortcut (for Windows/Linux) <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an “Untitled1” file.</li>
-<li>Go to “File &gt; Save” or press (for Windows/Linux) <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save your file and the name of the new file.</li>
-<li>Call your file “process.R”</li>
+<li>Create a new file by selecting File &gt; New Text File, or press:
+<ul>
+<li><kbd>Ctrl</kbd>+<kbd>N</kbd> (Windows/Linux)</li>
+<li><kbd>Cmd</kbd>+<kbd>N</kbd> (Mac)</li>
+</ul></li>
+<li>Save the file by selecting File &gt; Save, or press:
+<ul>
+<li><kbd>Ctrl</kbd>+<kbd>S</kbd> (Windows/Linux)</li>
+<li><kbd>Cmd</kbd>+<kbd>S</kbd> (Mac)</li>
+</ul></li>
+<li>Navigate to your project folder and save the file as “process.R”</li>
 </ul>
 </section>
 <section id="introducing-our-data" class="level3">
