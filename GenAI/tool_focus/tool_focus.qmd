@@ -62,6 +62,14 @@ Let's start with some quick questions to ask when considering a tool. These can 
 :::
 
 ::: panel-tabset
+
+#### Claude
+
+* Developed by Anthropic, started in 2023
+* For the year up to July 2026, [Statcounter reports a 3.2% market share](https://gs.statcounter.com/ai-chatbot-market-share). Popular for code generation.
+* At UQ: "restricted" for staff as of 2026-08-18
+* Free account with limits; paid plans for more features, models and usage limits (e.g. Code, Cowork, Design...)
+
 #### Copilot
 
 * Microsoft owns it
@@ -93,6 +101,14 @@ Let's start with some quick questions to ask when considering a tool. These can 
 :::
 
 ::: panel-tabset
+#### Claude
+
+* The "Privacy" tab in the Settings links to the Anthropic's [Privacy Center](https://privacy.claude.com/en/) and [Privacy Policy](https://www.anthropic.com/legal/privacy). Note the setting called "[Help improve our AI models](https://privacy.claude.com/en/articles/12109829-how-do-i-change-my-model-improvement-privacy-settings)", which controls [how Anthropic uses your data to train their models](https://privacy.claude.com/en/articles/7996885-how-do-you-use-personal-data-in-model-training). You can also use "[Incognito chat](https://support.claude.com/en/articles/12260368-use-incognito-chats)".
+* Anthropics shares articles about their work on their [Research](https://www.anthropic.com/research) page, which includes some work on how models are trained. News outlets report on what is learned from the outside, for example on Anthropic's moving from first [using pirated copies of copyrighted works](https://www.washingtonpost.com/technology/2025/09/05/anthropic-book-authors-copyright-settlement/) to [digitising and destroying physical books they purchase](https://www.theguardian.com/commentisfree/2026/aug/05/anthropic-ai-destroying-books) (also known as "destructive scanning").
+* On ethics, Anthropic has a "Constitution" that includes a collection of "Principles" based on various sources (Universal Declaration of Human Rights, Apple, DeepMind, their own research, and targeted at "encouraging consideration of non-Western perspectives").
+* 
+* Anthropic was founded in 2021 in the USA.
+
 #### Copilot
 
 * Privacy: [when used with a UQ account](https://systems-training.its.uq.edu.au/systems/collaboration-tools/microsoft-365/copilot-chat-generative-ai), our data is not used for training models.
@@ -120,6 +136,16 @@ Let's start with some quick questions to ask when considering a tool. These can 
 :::
 
 ::: panel-tabset
+#### Claude
+
+* "Profile - Get Help" opens an overlay for searching help articles and opening [Claude Academy](https://academy.claude.com). "Profile - Learn more" leads to tutorials and courses (on [Anthropic Academy](https://www.anthropic.com/learn)).
+* Designed for: chats, code and webapp generation (and other "Artifacts"), learning companion...
+* Features:
+  * Chats (including incognito)
+  * Projects
+  * Artifacts: apps, websites, documents, games, tools, quiz...
+  * Paid: Code, Design, Cowork (agents)...
+
 #### Copilot
 
 * [Documentation available online](https://learn.microsoft.com/en-us/copilot/microsoft-copilot) and integrated in the app
@@ -160,6 +186,13 @@ Let's start with some quick questions to ask when considering a tool. These can 
 :::
 
 ::: panel-tabset
+
+#### Claude
+
+* Various, [Wikipedia offers a list](https://en.wikipedia.org/wiki/Claude_(AI)#Models). In a chat, as of 2026-08-18, it offers Sonnet 5 ("everyday tasks") and Haiku 4.5 ("quick answers"), as well as pro models: Fable 5 ("toughest challenges") and Opus 5 ("complex tasks"). Further models and "Effort" settings can be used.
+* Only online, even for the Desktop version. But it is possible with some effort to make Claude Desktop use a local LLM, or make Ollama use command-line Claude with local LLMs.
+* Not much detail about software and model versions, appart from the main version attached to the model names.
+
 #### Copilot
 
 * Models:
@@ -526,9 +559,19 @@ Keep in mind that tools keep evolving, and tests that higlight failings of genAI
 However:
 
 * Vendors might not be transparent about what was done to "fix" the issue, especially if the tool is closed-source. Was it a change in how the model was trained? Or the [system prompts](https://en.wikipedia.org/wiki/Prompt_engineering#Context_engineering) given to it? Or adding extra deterministic dependencies?
-* Even if a "fix" makes the tool pass our test, for example by giving the more suitable response "The two populations have the same responses, the data is likely fabricated!", it doesn't necessarily mean that an analysis of a real dataset would be more reliable. The "fix" could for example just be an extra system instruction of the type "If the user gives two sets of data to compare, first check that they are not identical." To find out, we could design a similar test, for example with survey responses that use different vocabulary while conveying the same meaning.
+* Even if a "fix" makes the tool pass our test, for example by giving the more suitable response "The two populations have the same responses, the data is likely fabricated!", it doesn't necessarily mean that an analysis of a real dataset would be more reliable. Such a "fix" could for example be an extra system instruction of the type "If the user gives two sets of data to compare, first check that they are not identical." To find out, we could design a similar test, for example with survey responses that use different vocabulary while conveying the same meaning.
 
-Alos consider that a test that has been used before (and the dicussion of its use) can be part of the training data of a model. It could be that the tool behaves well with this well-known test but wouldn't with a novel one.
+Also consider that a test that has been used before (and the dicussion of its use) can be part of the training data of a model. It could be that the tool behaves well with this well-known test but wouldn't with a novel one.
+
+Anthropic's Sonnet 5 (prompted as above on claude.ai, using the "Medium effort" setting, on 2026-08-18) detected that the two groups had the same responses:
+
+> [...] there's nothing substantive to report, because the female and male groups gave the exact same 19 statements, just in a different order.[...]
+
+When given the same file with some words replaced with synonyms, it also gave a sensible response:
+
+> [...] This is the same situation as before, just with the wording lightly paraphrased. Each of the 19 "female" statements has a near-identical twin in the "male" list — same idea, same order, same details, just swapped synonyms. [...]
+
+What could be the next step in checking capabilities? An experiment comparing qualitative analyses of a novel, real-world dataset, executed by researchers and models?
 :::
 
 So are there maybe other tools more suited for this kind of task? The example above hints at how deterministic tools are likely a better choice than this particular tool for this particular task.
