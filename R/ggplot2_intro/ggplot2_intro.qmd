@@ -22,29 +22,36 @@ During this session, you will:
 * Layer several visualisations
 * Learn how to customise a plot with colours, labels and themes.
 
-## Open RStudio
+## Open Positron
 
-* If you are using your own laptop please open RStudio
-    + If you need theme, we have [installation instructions](../installation.qmd)
-    + Make sure you have a working Internet connection
-* On the Library computers (the first time takes about 10 min):
-    + Log in with your UQ username and password (use your student account if you have both a staff and student account)
-    + Make sure you have a working Internet connection
-    + Open the ZENworks application
-    + Look for RStudio
-    + Double-click on RStudio which will install both R and RStudio, and open RStudio
+-   If you are using your own laptop please open Positron
+  -   If you need them, we have [installation instructions](../installation.qmd)
+-   Make sure you have a working internet connection
+-   On Library computers (the first time takes about 20 min.):
+  -   Log in with your UQ credentials (student account if you have two)
+  -   Make sure you have a working internet connection
+  -   Open the Start menu
+  -   Search for and open ZENworks
+  -   Look for R - Statistical Computing and double-click it to install
+  -   Look for Positron and double-click it to install
+  -   Open Positron through the Start Menu once the installation is complete
     
 ## Essential shortcuts
 
-Remember some of the most commonly used RStudio shortcuts:
+Remember some of the most commonly used Positron shortcuts:
 
-* function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in a function name.
+* function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in its name.
 * execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
 * assignment operator (`<-`): <kbd>Alt</kbd> + <kbd>-</kbd>
 
 ## Installing ggplot2
 
-We first need to make sure we have the **ggplot2 package** available on our computer. We can use the "Install" button in the "Packages" pane, or we can execute this command in the console: `install.packages("ggplot2")`
+We first need to make sure we have the **ggplot2 package** available on our computer. We can execute this command in the console: `install.packages("ggplot2")`, or we can use the "Packages" tab:
+
+1. Open the "Packages" tab (from the blue sidebar on the left)
+1. Click the three-dot menu and "Install Package"
+1. Search for "ggplot2" and select it
+1. Select the latest version offered
 
 You only need to install a package once, but you need to load it every time you start a new R session.
 
@@ -54,20 +61,22 @@ You only need to install a package once, but you need to load it every time you 
 
 Let's create a new **R project** to keep everything tidy:
 
-* Click the "File" menu button (top left corner), then "New Project"
-* Click "New Directory"
-* Click "New Project"
-* In "Directory name", type the name of your project, e.g. "ggplot2_intro"
-* Select the folder where to locate your project: e.g. a `Documents/RProjects` folder, which you can create if it doesn't exist yet.
-* Click the "Create Project" button
-* Create a folder to store our plots:
-    + `dir.create("plots")`
+* Click the "Folder Selector" menu (top right corner), then "New Folder from Template..."
+* Click "R Project" and "Next"
+* In "Folder name", type the name of your project, for example "YYYY-MM-DD_R-intro"
+* For "Location", browse and select a folder where to locate your project (otherwise, the default will be your home directory)
+* Click "Next"
+* In "Project Configuration", keep the defaults, click "Create" and finally "Current window"
 
-We will write ggplot2 code more comfortably in a **script**:
+Let's also create a "plots" folder to store exports:
 
-* Menu: Top left corner, click the green "plus" symbol, or press the shortcut (for Windows/Linux) <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will open an "Untitled1" file.
-* Go to "File > Save" or press (for Windows/Linux) <kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac) <kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save your file and the name of the new file.
-* Call your file "process.R"
+```{r}
+#| label: dir-create
+#| eval: false
+dir.create("plots")
+```
+
+When creating a new project, Positron opens a new script in the **Editor** above the console. You can straight away save this script and name it something like "process.R".
 
 We can straight away **load the package** by adding this command to our script and executing it:
 
@@ -272,7 +281,7 @@ A trend line is usually displayed on top of the scatterplot. How can we combine 
 ggplot(mpg,
        aes(x = displ,
            y = hwy)) + 
-    geom_point() +
+    geom_jitter() +
     geom_smooth()
 ```
 
@@ -286,11 +295,11 @@ We can once again add some information to our visualisation by mapping the `clas
 ggplot(mpg,
        aes(x = displ,
            y = hwy)) + 
-    geom_point(aes(colour = class)) + 
+    geom_jitter(aes(colour = class)) + 
     geom_smooth()
 ```
 
-**Challenge 1 – where should aesthetics be defined?**
+### Challenge 1 – where should aesthetics be defined?
 
 Take the last plot we created:
 
@@ -298,7 +307,7 @@ Take the last plot we created:
 ggplot(mpg,
        aes(x = displ,
            y = hwy)) + 
-    geom_point(aes(colour = class)) + 
+    geom_jitter(aes(colour = class)) + 
     geom_smooth()
 ```
 
@@ -306,6 +315,22 @@ What would happen if you moved the `colour = class` aesthetic from the geometry 
 
 Different geometries can also have their own mappings that overwrite the defaults.
 If you place mappings in a geom function, ggplot2 will treat them as local mappings for the layer. It will use these mappings to extend or overwrite the global mappings for that layer only. This makes it possible to display different aesthetics in different layers.
+
+### Change a geometry's default colour
+
+What if you want to change the default colour of the trend line? You need to give a new default value to the geometry's `colour` aesthetic:
+
+```{r}
+ggplot(mpg,
+       aes(x = displ,
+           y = hwy)) + 
+    geom_jitter(aes(colour = class)) + 
+    geom_smooth(colour = "black")
+```
+
+Notice how this is not happening inside an `aes()` function? That's because we are not mapping a variable from the dataset to the geometry's aesthetic! We are only replacing the default colour of this trend line, which is used when there is not mapping to the data.
+
+If you are curious about what colour names exist in R, you can use the `colours()` function.
 
 ## Saving a plot
 
@@ -329,7 +354,7 @@ ggsave(filename = "plots/fuel_efficiency.png", dpi = "screen")
 
 > Saving a .svg file with requires installing the svglite package. This packages seems so work best installing in a fresh R session (Session > Restart R) from source `install.packages("svglite", type = "source")`. Then load the library `library(svglite)` rerun your code including loading previous libraries (`ggplot2` etc.) and now saving a plot with a .svg extension should work! 
 
-**Challenge 2 – add a variable and a smooth line**
+## Challenge 2 – add a variable and a smooth line
 
 Let's use a similar approach to what we did with the `mpg` dataset.
 
@@ -412,21 +437,9 @@ head(diamonds$cut)
 
 See how ggplot2 respects that order in the bar chart?
 
-### Customising a plot
+## Customising a plot
 
 Let's see how we can customise our bar chart's look.
-
-#### Change a geometry's default colour
-
-First, we can pick our favourite colour in `geom_bar()`:
-
-```{r}
-ggplot(diamonds,
-       aes(x = cut)) + 
-    geom_bar(fill = "tomato")
-```
-
-If you are curious about what colour names exist in R, you can use the `colours()` function.
 
 ### Change labels
 
@@ -435,7 +448,7 @@ We can also modify labels with the `labs()` function to make our plot more self-
 ```{r}
 ggplot(diamonds,
        aes(x = cut)) + 
-    geom_bar(fill = "tomato") +
+    geom_bar() +
     labs(title = "Where are the bad ones?",
          x = "Quality of the cut",
          y = "Number of diamonds")
@@ -458,7 +471,7 @@ For a horizontal bar chart, we can map the `cut` variable to the `y` aesthetic i
 ```{r}
 ggplot(diamonds,
        aes(y = cut)) + # switch here...
-  geom_bar(fill = "tomato") +
+  geom_bar() +
   labs(title = "Where are the bad ones?",
        y = "Quality of the cut", # ...but also here!
        x = "Number of diamonds") # ...and here!
@@ -473,7 +486,7 @@ The `theme()` function allows us to really get into the details of our plot's lo
 ```{r}
 ggplot(diamonds,
        aes(y = cut)) + 
-  geom_bar(fill = "tomato") +
+  geom_bar() +
   labs(title = "Where are the bad ones?",
        y = "Quality of the cut",
        x = "Number of diamonds") +
@@ -484,7 +497,7 @@ Try `theme_minimal()` as well, and if you want more options, install the `ggthem
 
 ## Play time!
 
-**Challenge 3: explore geometries**
+### Challenge 3: explore geometries
 
 When creating a new layer, start typing `geom_` and see what suggestions pop up. Are there any suggestions that sound useful or familiar to you?
 
@@ -492,18 +505,18 @@ Modify your plots, play around with different layers and functions, and ask ques
 
 ## Close project
 
-Closing RStudio will ask you if you want to save your workspace and scripts.
-Saving your workspace is usually not recommended if you have all the necessary commands in your script.
+Make sure you save your script before you close Positron.
 
 ## Useful links
 
 * For ggplot2:
-  + [ggplot2 cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
-  + Official [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
-  + Official [ggplot2 website](https://ggplot2.tidyverse.org/)
-  + [Chapter on data visualisation](https://r4ds.hadley.nz/data-visualize.html) in the book _R for Data Science_
-  + [From Data to Viz](https://www.data-to-viz.com/), a website to explore different visualisations and the code that generates them
-  + Selva Prabhakaran's [_r-statistics.co_ section on ggplot2](https://r-statistics.co/ggplot2-Tutorial-With-R.html)
-  + [Coding Club's data visualisation tutorial](https://ourcodingclub.github.io/tutorials/datavis/)
-  + [STHDA's ggplot2 essentials](https://www.sthda.com/english/wiki/ggplot2-essentials)
+  * [ggplot2 cheatsheet](https://www.rstudio.org/links/data_visualization_cheat_sheet)
+  * Official [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
+  * Official [ggplot2 website](https://ggplot2.tidyverse.org/)
+  * [Chapter on data visualisation](https://r4ds.hadley.nz/data-visualize.html) in the book _R for Data Science_
+  * Nicola Rennie's book: [_The Art of Data Visualization with ggplot2_](https://nrennie.rbind.io/art-of-viz/)
+  * [From Data to Viz](https://www.data-to-viz.com/), a website to explore different visualisations and the code that generates them
+  * Selva Prabhakaran's [_r-statistics.co_ section on ggplot2](https://r-statistics.co/ggplot2-Tutorial-With-R.html)
+  * [Coding Club's data visualisation tutorial](https://ourcodingclub.github.io/tutorials/datavis/)
+  * [STHDA's ggplot2 essentials](https://www.sthda.com/english/wiki/ggplot2-essentials)
 * Our compilation of [general R resources](../usefullinks.qmd)
