@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2026-09-03">
+<meta name="dcterms.date" content="2026-09-04">
 
 <title>R dplyr: preparing data for analysis – UQ Library Technology Training</title>
 <style>
@@ -742,18 +742,15 @@ window.Quarto = {
    
   <ul>
   <li><a href="#what-are-we-going-to-learn" id="toc-what-are-we-going-to-learn" class="nav-link active" data-scroll-target="#what-are-we-going-to-learn">What are we going to learn?</a></li>
-  <li><a href="#keep-in-mind" id="toc-keep-in-mind" class="nav-link" data-scroll-target="#keep-in-mind">Keep in mind</a>
-  <ul class="collapse">
-  <li><a href="#help" id="toc-help" class="nav-link" data-scroll-target="#help">Help</a></li>
-  </ul></li>
-  <li><a href="#open-positron" id="toc-open-positron" class="nav-link" data-scroll-target="#open-positron">Open Positron</a></li>
+  <li><a href="#keep-in-mind" id="toc-keep-in-mind" class="nav-link" data-scroll-target="#keep-in-mind">Keep in mind</a></li>
+  <li><a href="#essential-shortcuts" id="toc-essential-shortcuts" class="nav-link" data-scroll-target="#essential-shortcuts">Essential shortcuts</a></li>
   <li><a href="#setting-up" id="toc-setting-up" class="nav-link" data-scroll-target="#setting-up">Setting up</a>
   <ul class="collapse">
-  <li><a href="#install-the-dplyr-package" id="toc-install-the-dplyr-package" class="nav-link" data-scroll-target="#install-the-dplyr-package">Install the dplyr package</a></li>
   <li><a href="#new-project-folder" id="toc-new-project-folder" class="nav-link" data-scroll-target="#new-project-folder">New project folder</a></li>
   <li><a href="#create-a-script" id="toc-create-a-script" class="nav-link" data-scroll-target="#create-a-script">Create a script</a></li>
-  <li><a href="#introducing-our-data" id="toc-introducing-our-data" class="nav-link" data-scroll-target="#introducing-our-data">Introducing our data</a></li>
+  <li><a href="#install-the-dplyr-package" id="toc-install-the-dplyr-package" class="nav-link" data-scroll-target="#install-the-dplyr-package">Install the dplyr package</a></li>
   </ul></li>
+  <li><a href="#introducing-our-data" id="toc-introducing-our-data" class="nav-link" data-scroll-target="#introducing-our-data">Introducing our data</a></li>
   <li><a href="#basic-dplyr-verbs" id="toc-basic-dplyr-verbs" class="nav-link" data-scroll-target="#basic-dplyr-verbs">Basic dplyr verbs</a>
   <ul class="collapse">
   <li><a href="#pick-variables-with-select" id="toc-pick-variables-with-select" class="nav-link" data-scroll-target="#pick-variables-with-select">1. Pick variables with <code>select()</code></a></li>
@@ -792,7 +789,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 3, 2026</p>
+      <p class="date">September 4, 2026</p>
     </div>
   </div>
   
@@ -820,60 +817,29 @@ window.Quarto = {
 <section id="keep-in-mind" class="level2">
 <h2 class="anchored" data-anchor-id="keep-in-mind">Keep in mind</h2>
 <ul>
-<li>Everything we write today will be saved in your project. Please remember to save it in your H drive or USB if you are using a Library computer.</li>
+<li>Everything we write today will be saved in your project. If you are using a Library computer, remember to save it on your H drive or USB stick.</li>
 <li>R is case sensitive: it will tell the difference between uppercase and lowercase.</li>
 <li>Respect the naming rules for objects (no spaces, does not start with a number…).</li>
 </ul>
-<section id="help" class="level3">
-<h3 class="anchored" data-anchor-id="help">Help</h3>
 <p>For any dataset or function doubts that you might have, don’t forget the ways of getting help in Positron:</p>
 <ol type="1">
 <li>the shortcut command: <code>?functionname</code></li>
 <li>the help function: <code>help(functionname)</code></li>
-<li>the keyboard shortcut: press F1 after placing your cursor on a function name</li>
-<li>the Help pane: use the Search box in the Help pane to find functions, packages, topics</li>
+<li>the keyboard shortcut: press <kbd>F1</kbd> after placing your cursor on a function name</li>
+<li>the popup: hover over a function name</li>
 </ol>
 </section>
-</section>
-<section id="open-positron" class="level2">
-<h2 class="anchored" data-anchor-id="open-positron">Open Positron</h2>
+<section id="essential-shortcuts" class="level2">
+<h2 class="anchored" data-anchor-id="essential-shortcuts">Essential shortcuts</h2>
+<p>Remember some of the most commonly used Positron shortcuts:</p>
 <ul>
-<li>If you are using your own laptop please open Positron
-<ul>
-<li>If you need them, we have <a href="../../R/installation.html">installation instructions</a></li>
-</ul></li>
-<li>Make sure you have a working internet connection</li>
-<li>On Library computers (the first time takes about 20 min.):
-<ul>
-<li>Log in with your UQ credentials (student account if you have two)</li>
-<li>Make sure you have a working internet connection</li>
-<li>Open the Start menu</li>
-<li>Search for and open ZENworks</li>
-<li>Look for R - Statistical Computing and double-click it to install</li>
-<li>Look for Positron and double-click it to install</li>
-<li>Open Positron through the Start Menu once the installation is complete</li>
-</ul></li>
+<li>execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd></li>
+<li>assignment operator (<code>&lt;-</code>): <kbd>Alt</kbd> + <kbd>-</kbd></li>
 </ul>
 </section>
 <section id="setting-up" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
-<section id="install-the-dplyr-package" class="level3">
-<h3 class="anchored" data-anchor-id="install-the-dplyr-package">Install the dplyr package</h3>
-<p>If you don’t have it already, you can install dplyr with the command: <code>install.packages("dplyr")</code></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>At home, you can install the whole “<a href="https://www.tidyverse.org/">tidyverse</a>”, a meta-package useful for data science, which includes dplyr: <code>install.packages("tidyverse")</code></p>
-</div>
-</div>
-</section>
+<p>Let’s open Positron and get set up. (If you don’t have it installed already, follow <a href="../../R/installation.html">installation instructions</a>.)</p>
 <section id="new-project-folder" class="level3">
 <h3 class="anchored" data-anchor-id="new-project-folder">New project folder</h3>
 <ul>
@@ -902,8 +868,26 @@ Note
 <li>Navigate to your project folder and save the file as “process.R”</li>
 </ul>
 </section>
-<section id="introducing-our-data" class="level3">
-<h3 class="anchored" data-anchor-id="introducing-our-data">Introducing our data</h3>
+<section id="install-the-dplyr-package" class="level3">
+<h3 class="anchored" data-anchor-id="install-the-dplyr-package">Install the dplyr package</h3>
+<p>If you don’t have it already, you can install dplyr with the command: <code>install.packages("dplyr")</code></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At home, you can install the whole “<a href="https://www.tidyverse.org/">tidyverse</a>”, a meta-package useful for data science, which includes dplyr: <code>install.packages("tidyverse")</code></p>
+</div>
+</div>
+</section>
+</section>
+<section id="introducing-our-data" class="level2">
+<h2 class="anchored" data-anchor-id="introducing-our-data">Introducing our data</h2>
 <p>Let’s import and explore our data.</p>
 <ol type="1">
 <li>read the data into an object called “gapminder”, using <code>read.csv()</code>:</li>
@@ -939,7 +923,6 @@ Note
 <pre><code>[1] 1952 2007</code></pre>
 </div>
 </div>
-</section>
 </section>
 <section id="basic-dplyr-verbs" class="level2">
 <h2 class="anchored" data-anchor-id="basic-dplyr-verbs">Basic dplyr verbs</h2>
