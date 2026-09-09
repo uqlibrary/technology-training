@@ -10,18 +10,16 @@ A project folder helps us keep all files related to one project in a single loca
 
 1. Select New (top left) and choose "New Folder from Template"
 1. Select "R Project" from the available templates
-1. Enter a name for your project, for example "dplyr_intro"
-1. Choose the folder where you want to create the project, such as `Documents/RProjects`, which you can create if it doesn't exist yet
-1. Leave the default options selected unless instructed otherwise
+1. Enter a Folder name for your project
+1. Choose the Location where you want to save the project, such as `Documents/RProjects`, which you can create if it doesn't exist yet
+1. Leave the default options selected (unless instructed otherwise)
 1. Click "Create"
 
 ### Create a script
 
 We use a script to save our code and write more comfortably.
 
-- Create a new file by selecting File > New Text File, or use the shortcut {{< kbd mac="Cmd + N" win="Ctrl + N" linux="Ctrl + N" >}}
-- Save the file by selecting File > Save, or use the shortcut {{< kbd mac="Cmd + S" win="Ctrl + S" linux="Ctrl + S" >}}
-- Navigate to your project folder and save the file as "process.R"
+When creating a new R project, Positron opens a new R script in the **Editor** above the console. You can straight away save this script and name it something like "process.R".
 
 You can now write some comments (lines that start with `#`) to introduce the script.
 
