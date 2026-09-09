@@ -13,28 +13,28 @@ This is an intermediate level tutorial. Before completing this tutorial, we reco
 
 We will start by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.
 
--   Open QGIS and create a **new project** with `Project > New`.
+- Open QGIS and create a **new project** with `Project > New`.
 
--   Let's now **save** our project: `Project > Save`.
+- Let's now **save** our project: `Project > Save`.
 
--   Create a new folder, let's call it "qgis_raster".
+- Create a new folder, let's call it "qgis_raster".
 
 :::::: columns
 ::: {.column width="60%"}
 
--   Inside that folder, create these folders:
+- Inside that folder, create these folders:
 
-    -   "data" - for all the data we will use to make our maps, split into:
+    - "data" - for all the data we will use to make our maps, split into:
 
-        -   "raw" - raw data from your research or the internet
+        - "raw" - raw data from your research or the internet
 
-        -   "processed" - any data you've modified
+        - "processed" - any data you've modified
 
-    -   "output" - for any maps or images we export
+    - "output" - for any maps or images we export
 
-    -   "temp" - this isn't *necessary*, but when you're playing around and testing, it stops things getting messy.
+    - "temp" - this isn't *necessary*, but when you're playing around and testing, it stops things getting messy.
 
--   Finally, let's save our .qgz project file here, named "qgis_raster_map.qgz"
+- Finally, let's save our .qgz project file here, named "qgis_raster_map.qgz"
 
 :::
 
@@ -57,7 +57,7 @@ This might seem necessary now, but things quickly get out of control and hard to
 
 Let's finally add an OpenStreetMap basemap to locate ourselves on the globe:
 
--   `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
+- `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
 
 ## Install the SAGA Plugin
 
@@ -69,11 +69,11 @@ A Digital Elevation Model (DEM) is a common example of **raster data**, i.e. gri
 
 For this tutorial, we are using a DEM sourced from the USGS website.
 
--   Go to https://earthexplorer.usgs.gov/
--   Click the World Features box, and then search for "Brisbane" in the "Feature Name" search box
--   Click Show and select the first result
--   Zoom onto an area of interest around Brisbane and click "Use Map"
--   Click the "Data Sets" button and then `Digital Elevation > SRTM`, select "SRTM 1 Arc-Second Global" and click "Results"
+- Go to https://earthexplorer.usgs.gov/
+- Click the World Features box, and then search for "Brisbane" in the "Feature Name" search box
+- Click Show and select the first result
+- Zoom onto an area of interest around Brisbane and click "Use Map"
+- Click the "Data Sets" button and then `Digital Elevation > SRTM`, select "SRTM 1 Arc-Second Global" and click "Results"
 
 "SRTM" stands for "[Shuttle Radar Topography Mission](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)". It provides global elevation data collected in 2000 by the space shuttle Endeavour.
 
@@ -89,10 +89,10 @@ See the visible line between the two raster tiles? That is because the two separ
 
 To do that, we use the `Raster > Miscellaneous > Merge...` tool to create one single layer from them.
 
--   First, select both DEM layers for the "Input layers"
--   Make sure the option "Place each input file into a separate band" is off, as we want to end up with one single-band layer
--   We can save the output on disk instead of only creating a temporary file (for example, name it `SRTM_DEM_merged` and save it inside your project directory)
--   Click "Run"
+- First, select both DEM layers for the "Input layers"
+- Make sure the option "Place each input file into a separate band" is off, as we want to end up with one single-band layer
+- We can save the output on disk instead of only creating a temporary file (for example, name it `SRTM_DEM_merged` and save it inside your project directory)
+- Click "Run"
 
 > You will need to have GDAL installed for this to work.
 
@@ -102,13 +102,13 @@ We can now remove the two original raster files.
 
 In the merged layer's Properties (`Right click > Properties... > Source`), we can see that the Coordinate Reference System (CRS) in use is [EPSG:4326 - WGS 84](https://epsg.io/4326). It is the one that QGIS detected when opening the file. This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). We will also need a projection that uses Metres, rather than Degrees (as EPSG:4326 does). A good PRS for around Brisbane/Meanjin is "[EPSG:7856 - GDA2020 / MGA zone 56](https://epsg.io/7856)". We can't change that here, we instead will need to use the **Warp (Reproject)** tool.
 
--   Use the tool `Raster > Projections > Warp (Reproject)`
--   use the merged layer as an input
--   pick "EPSG:7856 - GDA2020 / MGA zone 56" as the Target CRS
-    -   you may need to click the Select CRS button ![image](https://user-images.githubusercontent.com/67612228/197653760-a9df4671-5852-499c-a085-3d995489599a.png)
-    -   untick No CRS
-    -   use the filter to search for "7856"
-    -   You should be able to find "EPSG:7856 - GDA2020 / MGA zone 56" under **Predefined Coordinate Reference Systems**
+- Use the tool `Raster > Projections > Warp (Reproject)`
+- use the merged layer as an input
+- pick "EPSG:7856 - GDA2020 / MGA zone 56" as the Target CRS
+    - you may need to click the Select CRS button ![image](https://user-images.githubusercontent.com/67612228/197653760-a9df4671-5852-499c-a085-3d995489599a.png)
+    - untick No CRS
+    - use the filter to search for "7856"
+    - You should be able to find "EPSG:7856 - GDA2020 / MGA zone 56" under **Predefined Coordinate Reference Systems**
 
 > If you want to learn more about the static datum GDA2020 (for "Geocentric Datum of Australia 2020"), an upgrade from the previous, less precise GDA94, see e.g. [a description from Geoscience Australia](https://www.ga.gov.au/scientific-topics/positioning-navigation/positioning-australia/geodesy/datums-projections/gda2020)
 
@@ -122,30 +122,30 @@ Make sure the DEM is selected in the Input layer, and set the clip extent with `
 
 If you don't save to file directly, remember two things:
 
--   **rename** your clipped layer so it is more descriptive than the generic "Clipped (extent)"
--   you are currently using a temporary, **scratch layer**. It will be discarded if you exit QGIS. It is very useful for temporary intermediate files, but it can be safer to save copies of your intermediate data while you work, just in case! You can right-click on the layer and use `Export > Save As..`
+- **rename** your clipped layer so it is more descriptive than the generic "Clipped (extent)"
+- you are currently using a temporary, **scratch layer**. It will be discarded if you exit QGIS. It is very useful for temporary intermediate files, but it can be safer to save copies of your intermediate data while you work, just in case! You can right-click on the layer and use `Export > Save As..`
 
 ## Change the symbology
 
 We can style our DEM with a **terrain colour palette**:
 
--   double-click on the clipped DEM layer
--   go to the "Symbology" tab
--   change the Render type to "Singleband pseudocolor"
--   by default, it uses the min/max values, which is what we want
--   we can change the "Color ramp" to something more suitable with the drop-down menu and `Create new color ramp... > Catalog: cpt-city > Topography > Elevation`, for example.
+- double-click on the clipped DEM layer
+- go to the "Symbology" tab
+- change the Render type to "Singleband pseudocolor"
+- by default, it uses the min/max values, which is what we want
+- we can change the "Color ramp" to something more suitable with the drop-down menu and `Create new color ramp... > Catalog: cpt-city > Topography > Elevation`, for example.
 
 ## Add a hillshade
 
 Adding a **hillshade** makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.
 
--   Right-click on the DEM layer and "Duplicate layer"
--   Rename the duplicated layer "hillshade"
--   Open the Symbology menu for the hillshade layer
--   Change the "Render type" to "Hillshade"
--   The defaults should work well, but you can play with the settings, like the Altitude and the Azimuth
--   Make sure you apply some transparency to the pseudocolour DEM, and place the hillshade layer underneath (in `Properties > Symbology > Transparency`)
--   Down the bottom of the window under **Resampling** change the `Zoomed: in` and `out` from "Nearest Neighbour" to "Cubic" (this will remove some of the grid-like patterns you might see in your Hillshade layer otherwise)
+- Right-click on the DEM layer and "Duplicate layer"
+- Rename the duplicated layer "hillshade"
+- Open the Symbology menu for the hillshade layer
+- Change the "Render type" to "Hillshade"
+- The defaults should work well, but you can play with the settings, like the Altitude and the Azimuth
+- Make sure you apply some transparency to the pseudocolour DEM, and place the hillshade layer underneath (in `Properties > Symbology > Transparency`)
+- Down the bottom of the window under **Resampling** change the `Zoomed: in` and `out` from "Nearest Neighbour" to "Cubic" (this will remove some of the grid-like patterns you might see in your Hillshade layer otherwise)
 
 > Another method is to use the hillshade tool instead of the symbology: `Raster > Analysis > Hillshade...`.
 
@@ -161,8 +161,8 @@ However there is still another issue with our data. A common problem with DEMs i
 
 We can use the "Fill sinks (Wang & Liu)" tool to **fill the sinks** in our clipped DEM.
 
--   When we do that, we might have to play with the "Minimum slope" value. A value of 0.01 degrees should work well if the layer was reprojected to a suitable Projected Reference System.
--   As an output, we only need to tick the "Filled DEM" (first one in the list), which we can also save to file. You can however keep the "Watershed Basins" output to check that your minimum slope is high enough.
+- When we do that, we might have to play with the "Minimum slope" value. A value of 0.01 degrees should work well if the layer was reprojected to a suitable Projected Reference System.
+- As an output, we only need to tick the "Filled DEM" (first one in the list), which we can also save to file. You can however keep the "Watershed Basins" output to check that your minimum slope is high enough.
 
 If we **re-run the Strahler order tool** on the filled DEM, we will be able to see more useful data.
 
@@ -174,34 +174,34 @@ We can now colour the layer with "Singleband pseudocolor" to highlight the bigge
 
 Another analysis we can do is use the "Channel network and drainage basins" tool to calculate the **flow direction, channels and drainage basins**.
 
--   Make sure you run this tool on the filled DEM.
--   We might have to change the threshold to a higher one if the output includes too many small basins and channels. As the threshold is related to the Strahler order number, the middle point of your previous Strahler order values is a usually a good default.
+- Make sure you run this tool on the filled DEM.
+- We might have to change the threshold to a higher one if the output includes too many small basins and channels. As the threshold is related to the Strahler order number, the middle point of your previous Strahler order values is a usually a good default.
 
 You might want to play with different threshold values depending on what you're looking for. If you want to look at the main drainage basins of a region, you need to set the threshold higher. If you want to find all the small channels, you need to set the threshold lower. It's worth trying a few options to find what works best for your dataset and the story you're trying to tell.
 
 As an output, we only want to load (and save to file) the two non-optional outputs:
 
--   Channels
--   Drainage basins (shapefile) (to differentiate the two "Drainage basins" options, you can check what format it saves the file as)
+- Channels
+- Drainage basins (shapefile) (to differentiate the two "Drainage basins" options, you can check what format it saves the file as)
 
 This is an example of **creating vector data from raster data**!
 
 We can now play with the **symbology** for those elements. For example:
 
--   Try using different colours for each basin, by classifying by ID, or remove the fill (`Simple fill > Fill Style > No Brush`) so you can see the colours of the elevation colours underneath. You can also make the borders more obvious by changing the width of the stroke.
--   Change the colour of the channels.
-    -   Change the symbol from "Single Symbol" to Graduated.
-    -   Set the `Value` to "Order"
-    -   Choose an appropriate colour ramp
-    -   Change the `Mode` down the bottom of the window to "Equal Interval"
-    -   Click Apply
--   You can also further differentiate minor channels from major ones by using a "Data defined override" for the Width value:
-    -   Click on the bar next to `Symbol` ![image](https://user-images.githubusercontent.com/67612228/197659925-41753cd0-2fc7-4534-b6ec-7ddc4775d721.png)
-    -   Click on the "Data defined override" icon ![image](https://user-images.githubusercontent.com/67612228/197659891-5474b893-2de3-47a4-95f5-9991b394ecf3.png) next to the Width field
-    -   Use the "Assistant"
-    -   "Source" needs to be the column "ORDER" (which corresponds to the Strahler order)
-    -   Click the double-arrow icon to "Fetch value range from layer"
-    -   Change the "Size from" and "to" values to suitable values
+- Try using different colours for each basin, by classifying by ID, or remove the fill (`Simple fill > Fill Style > No Brush`) so you can see the colours of the elevation colours underneath. You can also make the borders more obvious by changing the width of the stroke.
+- Change the colour of the channels.
+    - Change the symbol from "Single Symbol" to Graduated.
+    - Set the `Value` to "Order"
+    - Choose an appropriate colour ramp
+    - Change the `Mode` down the bottom of the window to "Equal Interval"
+    - Click Apply
+- You can also further differentiate minor channels from major ones by using a "Data defined override" for the Width value:
+    - Click on the bar next to `Symbol` ![image](https://user-images.githubusercontent.com/67612228/197659925-41753cd0-2fc7-4534-b6ec-7ddc4775d721.png)
+    - Click on the "Data defined override" icon ![image](https://user-images.githubusercontent.com/67612228/197659891-5474b893-2de3-47a4-95f5-9991b394ecf3.png) next to the Width field
+    - Use the "Assistant"
+    - "Source" needs to be the column "ORDER" (which corresponds to the Strahler order)
+    - Click the double-arrow icon to "Fetch value range from layer"
+    - Change the "Size from" and "to" values to suitable values
 
 ## Viewshed
 
@@ -209,11 +209,11 @@ If you want to know what can be seen from a certain point in a landscape you can
 
 Open the Processing Toolbox (cog icon) and search for the GDAL tool called "**Viewshed**".
 
--   **Input Layer**: Choose your **Reprojected DEM** layer
--   Click the three dots next to **Observer location** to select a point on the map
--   **Observer height, DEM units**: 1.6 (the average human eye height is around 1.6m, choose a height you think might be appropriate)
--   **Target height, DEM units**: 1 (this means that the points around the observer will be obscured by any surface that is higher than 1m. If you want to know what *ground* your observer will see, choose something closer to 0)
--   **Maximum distance from observer to compute visibility**: 5000 (5km is the distance you can see on flat ground due to the curvature of the earth, this would change if you were higher up, for which you can find [calculators and a formula](https://www.omnicalculator.com/physics/distance-to-horizon))
+- **Input Layer**: Choose your **Reprojected DEM** layer
+- Click the three dots next to **Observer location** to select a point on the map
+- **Observer height, DEM units**: 1.6 (the average human eye height is around 1.6m, choose a height you think might be appropriate)
+- **Target height, DEM units**: 1 (this means that the points around the observer will be obscured by any surface that is higher than 1m. If you want to know what *ground* your observer will see, choose something closer to 0)
+- **Maximum distance from observer to compute visibility**: 5000 (5km is the distance you can see on flat ground due to the curvature of the earth, this would change if you were higher up, for which you can find [calculators and a formula](https://www.omnicalculator.com/physics/distance-to-horizon))
 
 This will produce a black and white raster showing what can be seen, and what can't. Go to the Layer **Styling Menu**, and change it to **Singleband Pseudocolor**, change the **Mode** to **Equal Interval**, and set the **Classes** to **2**. Change one of the Colors to transparent to highlight either what can be see, or what cannot.
 
@@ -227,8 +227,8 @@ A 3D viewer is integrated in QGIS: `View > 3D Map Views > New 3D Map View`
 
 In the 3D map window, make sure to first:
 
--   Click the **Options** wrench icon, choose `Configure > Terrain`, set the "Type" to "DEM (Raster layer)", and set the "Elevation" to your clipped DEM.
--   Exaggerate the relief with the "Vertical scale" setting (try 3).
+- Click the **Options** wrench icon, choose `Configure > Terrain`, set the "Type" to "DEM (Raster layer)", and set the "Elevation" to your clipped DEM.
+- Exaggerate the relief with the "Vertical scale" setting (try 3).
 
 To see the 3D effect, you will have to use your <kbd>Ctrl</kbd> or <kbd>Shift</kbd> keys on your keyboard while panning with the mouse to change the angle of view.
 

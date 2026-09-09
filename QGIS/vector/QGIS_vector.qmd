@@ -23,28 +23,28 @@ This is an intermediate level tutorial. Before completing this tutorial, we reco
 
 We will start as always by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.
 
--   Open QGIS and create a **new project** with `Project > New`.
+- Open QGIS and create a **new project** with `Project > New`.
 
--   Let's now **save** our project: `Project > Save`.
+- Let's now **save** our project: `Project > Save`.
 
--   Create a new folder, let's call it "qgis_vector".
+- Create a new folder, let's call it "qgis_vector".
 
 :::::: columns
 ::: {.column width="60%"}
 
--   Inside that folder, create these folders:
+- Inside that folder, create these folders:
 
-    -   "data" - for all the data we will use to make our maps, split into:
+    - "data" - for all the data we will use to make our maps, split into:
 
-        -   "raw" - raw data from your research or the internet
+        - "raw" - raw data from your research or the internet
 
-        -   "processed" - any data you've modified
+        - "processed" - any data you've modified
 
-    -   "output" - for any maps or images we export
+    - "output" - for any maps or images we export
 
-    -   "temp" - this isn't *necessary*, but when you're playing around and testing, it stops things getting messy.
+    - "temp" - this isn't *necessary*, but when you're playing around and testing, it stops things getting messy.
 
--   Finally, let's save our .qgz project file here, named "qgis_vector_map.qgz"
+- Finally, let's save our .qgz project file here, named "qgis_vector_map.qgz"
 
 :::
 
@@ -67,7 +67,7 @@ This might seem unnecessary now, but things quickly get out of control and hard 
 
 Let's finally add an OpenStreetMap basemap to locate ourselves on the globe:
 
--   `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
+- `Browser panel > XYZ Tiles > OpenStreetMap` (double-click, or drag and drop into the Layers panel).
 
 ## Gather some data
 
@@ -127,20 +127,20 @@ The ABS have a lot of useful data, today we will be using their population data.
 
 You should have:
 
--   Point data for analysis
-    -   Koala Sightings
--   Boundary Files to spatially categorise our data
-    -   Koala Priority Areas
-    -   Protected Areas
-    -   SA2 Areas (with human population)
+- Point data for analysis
+    - Koala Sightings
+- Boundary Files to spatially categorise our data
+    - Koala Priority Areas
+    - Protected Areas
+    - SA2 Areas (with human population)
 
 ## Set the Project Projection
 
 We need to choose the projection for our current session of QGIS. Today we will be focusing on South East Queensland (SEQ), so we will choose GDA2020 / MGA zone 56. We will go into projections in more detail soon.
 
--   Go to `Project > Properties` select the **CRS** tab.
--   In the filter section, type "GDA2020 56"
--   From the **Coordinate Reference System** list, select `EPSG:7856 - GDA2020 / MGA zone 56`
+- Go to `Project > Properties` select the **CRS** tab.
+- In the filter section, type "GDA2020 56"
+- From the **Coordinate Reference System** list, select `EPSG:7856 - GDA2020 / MGA zone 56`
 
 > You will notice that the OpenStreetMap basemap looks very warped, except for the East Coast of Australia. This is because the projection we have selected is very focused on reducing distortion within the bounds of the projection's area (Eastern Australia).
 
@@ -150,22 +150,22 @@ For most of our data, we will simply be able to double click on it in the Projec
 
 Load in:
 
--   SA2_ERP_2021_QLD.gpkg (suburb data)
+- SA2_ERP_2021_QLD.gpkg (suburb data)
 
--   CAPAD2020_terrestrial_QLD.gpkg (Protected Areas)
+- CAPAD2020_terrestrial_QLD.gpkg (Protected Areas)
 
--   koala_priority_area.gpkg
+- koala_priority_area.gpkg
 
 But what about the Koala Encounters location data? We need to handle this differently, as it is currently not in a spatial format, but in a csv file.
 
 ### Importing CSV data
 
--   Go to `Layer > Add Layer > Add Delimited Text Layer...`
--   Click the three dots `...` next to the **File name** field, navigate to the project folder, and select `koala_reduced`
--   Click the Geometry Definition drop down
-    -   This should automatically identify decimalLongitude and the X field, and decimalLatitude as the Y field.
-    -   You may need to set the Geometry CRS. For this data from the ALA it is EPSG:4326 - WGS84
--   Click `Add`
+- Go to `Layer > Add Layer > Add Delimited Text Layer...`
+- Click the three dots `...` next to the **File name** field, navigate to the project folder, and select `koala_reduced`
+- Click the Geometry Definition drop down
+    - This should automatically identify decimalLongitude and the X field, and decimalLatitude as the Y field.
+    - You may need to set the Geometry CRS. For this data from the ALA it is EPSG:4326 - WGS84
+- Click `Add`
 
 > It's usually the case that data like this is in EPSG:4326 - WGS84, as that is the standard used by most GPS units and Google Maps. However, it's still worth checking those details on the website you've downloaded it from. If your data doesn't come with a predefined projection, and the spatial portal doesn't specify, but it uses a Google Maps style interface, it's probably using EPSG:4326 - WGS84
 
@@ -187,19 +187,19 @@ Today we're going to use a suitable local projection: EPSG:7856 - GDA2020 / MGA 
 
 For each of our layers, do the following:
 
--   Go to `Vector > Data Management Tools > Reproject Layer...`
+- Go to `Vector > Data Management Tools > Reproject Layer...`
 
--   Choose the layer in `Input layer`
+- Choose the layer in `Input layer`
 
--   Set the Target CRS to `EPSG:7856 - GDA2020 / MGA zone 56`
+- Set the Target CRS to `EPSG:7856 - GDA2020 / MGA zone 56`
 
-    -   If that option isn't available, click ![](projection.png) (Select CRS), and type "GDA2020 56" into the filter, the option should now appear under the **Predefined Coordinate Reference Systems** section.
+    - If that option isn't available, click ![](projection.png) (Select CRS), and type "GDA2020 56" into the filter, the option should now appear under the **Predefined Coordinate Reference Systems** section.
 
--   Click the three dots `...` next to the `Reprojected` section, and click **Save to File...**
+- Click the three dots `...` next to the `Reprojected` section, and click **Save to File...**
 
--   Navigate to your `data > processed` folder and save the file there. For example, save **SA2_ERP_2021** as **SA2_Reproj**, **CAPAD2020_terrestrial_QLD** as **CAPAD_Reproj**, **koala_reduced** as **Koalas_Reproj** and **koala_priority_area** as **KPA_Reproj**
+- Navigate to your `data > processed` folder and save the file there. For example, save **SA2_ERP_2021** as **SA2_Reproj**, **CAPAD2020_terrestrial_QLD** as **CAPAD_Reproj**, **koala_reduced** as **Koalas_Reproj** and **koala_priority_area** as **KPA_Reproj**
 
--   Click `Run`
+- Click `Run`
 
 You won't notice any difference, as QGIS is helpfully doing "on the fly projections" to make the layers sit nicely together. But now that you've reprojected your data, you can safely do your analyses.
 
@@ -210,45 +210,45 @@ Let's find out how much of our Koala Priority Areas are already under federally 
 
 First we will create a field to represent the original area of our KPAs.
 
--   Select **KPA_Reproj** from the `Layers` panel.
+- Select **KPA_Reproj** from the `Layers` panel.
 
--   Click on the **Field Calculator** button ![image](https://user-images.githubusercontent.com/67612228/195319687-1538f2a0-d8c8-4084-a632-0e3181fb11dd.png){alt="image"}
+- Click on the **Field Calculator** button ![image](https://user-images.githubusercontent.com/67612228/195319687-1538f2a0-d8c8-4084-a632-0e3181fb11dd.png){alt="image"}
 
-    -   Under **Create a new field** set the **Output field name** to `KPA_Orig_Area`
+    - Under **Create a new field** set the **Output field name** to `KPA_Orig_Area`
 
-    -   Set the **Output field type** to `Decimal number (real)` (we need to choose this option to ensure that we have decimals in our output)
+    - Set the **Output field type** to `Decimal number (real)` (we need to choose this option to ensure that we have decimals in our output)
 
-    -   In the `Expression` tab enter `$area`
+    - In the `Expression` tab enter `$area`
 
-    -   Click OK
+    - Click OK
 
--   Click `Save Layer Edits` ![image](https://docs.qgis.org/3.44/en/_images/mActionSaveEdits.png){alt="Save Layer Edits Button"}
+- Click `Save Layer Edits` ![image](https://docs.qgis.org/3.44/en/_images/mActionSaveEdits.png){alt="Save Layer Edits Button"}
 
--   Click `Toggle Editing` ![image](docs.qgis.org/3.44/en/_images/mActionToggleEditing.pngg){alt="Toggle Editing Button"}
+- Click `Toggle Editing` ![image](docs.qgis.org/3.44/en/_images/mActionToggleEditing.pngg){alt="Toggle Editing Button"}
 
 ### Intersection
 
--   Go to `Vector > Geoprocessing Tools > Intersection`
--   Under **Input Layer** select **CAPAD_Reproj**
--   Under **Overlay Layer** select **KPA_Reproj**
--   Click `Run`
+- Go to `Vector > Geoprocessing Tools > Intersection`
+- Under **Input Layer** select **CAPAD_Reproj**
+- Under **Overlay Layer** select **KPA_Reproj**
+- Click `Run`
 
 We get an error `Feature (26) from “CAPAD_Reproj” has invalid geometry.` This is caused by little issues in the polygon layer. Sometimes when polygons are drawn or exported from online sources, they will create errors, and sometimes little slither polygons on the edges. We can investigate the source of these errors using the `Check validity` tool, but for today, we're simply going to fix them with the `Fix Geometries` tool from the Processing Toolbox.
 
 ### Fix Geometries
 
--   Open the Processing Toolbox by clicking the cog icon from the top menu ![image](https://user-images.githubusercontent.com/67612228/195267106-f54d2655-2762-42ec-acd0-a2c744b059e9.png) (alternatively go to `View > Panels > Processing Toolbox`)
--   In the **Processing Toolbox** window `Search` for "Fix geometries"
--   Double-click on the **Fix geometries** option
--   In the **Fix Geometries** window, select `CAPAD_Reproj` from the **Input layer** options, then click `Run`
--   Right click **Fixed Geometries** in the Layer panel, click Rename Layer, and change it to **CAPAD_Fixed**
+- Open the Processing Toolbox by clicking the cog icon from the top menu ![image](https://user-images.githubusercontent.com/67612228/195267106-f54d2655-2762-42ec-acd0-a2c744b059e9.png) (alternatively go to `View > Panels > Processing Toolbox`)
+- In the **Processing Toolbox** window `Search` for "Fix geometries"
+- Double-click on the **Fix geometries** option
+- In the **Fix Geometries** window, select `CAPAD_Reproj` from the **Input layer** options, then click `Run`
+- Right click **Fixed Geometries** in the Layer panel, click Rename Layer, and change it to **CAPAD_Fixed**
 
 You can now re-run the **Intersection** tool with the resulting **CAPAD_Fixed** layer (instead of the **CAPAD2020_terrestrial_QLD** layer)
 
--   Go to `Vector > Geoprocessing Tools > Intersection`
--   Under **Input Layer** select **CAPAD_Fixed**
--   Under **Overlay Layer** select **KPA_Reproj**
--   Click `Run`
+- Go to `Vector > Geoprocessing Tools > Intersection`
+- Under **Input Layer** select **CAPAD_Fixed**
+- Under **Overlay Layer** select **KPA_Reproj**
+- Click `Run`
 
 Magic. Our new layer with be the thin overlap between our two original layers, and will have their shared Attribute Tables. However, this is a double-edged sword, as it has retained the Area columns of the original CAPAD polygons. If we want to know our new shape's area, we need to calculate that.
 
@@ -266,10 +266,10 @@ In the **Field calculator** window, type the following code into the **Expressio
 sum($area)
 ```
 
--   \$area will give us the area of a single polygon - we could use this to create a new field in our Attribute Table based on area if we wanted to
--   sum() will add together the area for every polygon in that layer.
--   Below the text box, you will see a field titled **Preview:**, the value following that contains the results of our expression. Copy that number.
--   Click `Cancel`
+- \$area will give us the area of a single polygon - we could use this to create a new field in our Attribute Table based on area if we wanted to
+- sum() will add together the area for every polygon in that layer.
+- Below the text box, you will see a field titled **Preview:**, the value following that contains the results of our expression. Copy that number.
+- Click `Cancel`
 
 Do the same **Field Calculator** steps for the original koala_priority_area.
 
@@ -284,35 +284,35 @@ Let's turn on the OpenStreetMap to see if we can see anything missing here. Let'
 
 You may often need to create your own points, lines, and polygons when digitising satellite data, or simply highlighting a particular area. Let's use the OpenStreeMap (in Browser, scroll down to XYZ Tiles, and double-click on OpenStreetMap) and digitise the Emu Street Bushland Refuge.
 
--   Go to `Layer > Create Layer > New GeoPackage Layer...`
+- Go to `Layer > Create Layer > New GeoPackage Layer...`
 
--   Click the three dots `...` next to the **Database** section
+- Click the three dots `...` next to the **Database** section
 
--   Navigate to your `data > processed` folder and save the file as **ESBR_polygon**
+- Navigate to your `data > processed` folder and save the file as **ESBR_polygon**
 
--   From **Geometry type** select `MultiPolygon`
+- From **Geometry type** select `MultiPolygon`
 
--   Make sure the CRS is set to `EPSG:7856 - GDA2020 / MGA zone 56`
+- Make sure the CRS is set to `EPSG:7856 - GDA2020 / MGA zone 56`
 
--   Leave the other fields blank for now and click `OK`
+- Leave the other fields blank for now and click `OK`
 
 We now have a brand new layer that we can add polygons to.
 
--   Select the new **ESBR_polygon** layer and then click the **Toggle Editing** pencil ![image](https://user-images.githubusercontent.com/67612228/195329987-d435f41e-c111-40b0-8ee5-043cf135692c.png) from the top menu (or go to `Layer > Toggle Edititng`
+- Select the new **ESBR_polygon** layer and then click the **Toggle Editing** pencil ![image](https://user-images.githubusercontent.com/67612228/195329987-d435f41e-c111-40b0-8ee5-043cf135692c.png) from the top menu (or go to `Layer > Toggle Edititng`
 
--   On your keyboard, press `Ctrl + .` (or click ![](polygon.png) Add Polygon Feature) to start adding a new polygon
+- On your keyboard, press `Ctrl + .` (or click ![](polygon.png) Add Polygon Feature) to start adding a new polygon
 
--   Zoom in to a corner of the area you want to create the polygon, and then `Left click` to start drawing your polygon (You can use the mouse wheel to zoom in, and also press and drag on the mouse wheel to navigate)
+- Zoom in to a corner of the area you want to create the polygon, and then `Left click` to start drawing your polygon (You can use the mouse wheel to zoom in, and also press and drag on the mouse wheel to navigate)
 
-    -   A red dotted line will now appear between that first point and your cursor.
+    - A red dotted line will now appear between that first point and your cursor.
 
--   Continue adding points to your polygon until your return back to the start, `Right click` to stop digitising and create your polygon.
+- Continue adding points to your polygon until your return back to the start, `Right click` to stop digitising and create your polygon.
 
--   Leave the fid as `Autogenerate` and click `OK`
+- Leave the fid as `Autogenerate` and click `OK`
 
--   To save what you've done, click the **Save Layer Edits** button next to the **Toggle Editing** button
+- To save what you've done, click the **Save Layer Edits** button next to the **Toggle Editing** button
 
--   To finish editing your layer click the **Toggle Editing** button
+- To finish editing your layer click the **Toggle Editing** button
 
 You now know how to digitise a polygon, but the same steps apply for creating a point or a line layer. We created a new layer here, and you can also do the same steps to edit a pre-exisitng layer too.
 
@@ -326,9 +326,9 @@ Despite these missing Refuge area polygons, you can still see that there are a l
 
 The following code will allow you to select the SA2 features that are in SEQ.
 
--   Right click on the reprojected SA2 layer, and select **Open Attribute Table**
--   From the Attribute Table that opens, click the Select features using an expression button: ![image](https://user-images.githubusercontent.com/67612228/195261159-b949e22b-7634-4326-ab50-089b94e76dc4.png)
--   In the Select by Expression window that opens, paste the code from below into the Expression field, and then click `Select Features` in the bottom right of the window.
+- Right click on the reprojected SA2 layer, and select **Open Attribute Table**
+- From the Attribute Table that opens, click the Select features using an expression button: ![image](https://user-images.githubusercontent.com/67612228/195261159-b949e22b-7634-4326-ab50-089b94e76dc4.png)
+- In the Select by Expression window that opens, paste the code from below into the Expression field, and then click `Select Features` in the bottom right of the window.
 
 ``` sql
  "SA4_name_2021" =  'Gold Coast' 
@@ -342,11 +342,11 @@ The following code will allow you to select the SA2 features that are in SEQ.
 
 > This is SQL code, which is great for querying databases. This code selects any row that matches any of the criteria (this OR that). The first three look for exact matches, the last one looks to match the pattern given. The % acts like wildcard, so it's looking for any row that contains Brisbane.
 
--   Close the Select by Expression window and Attribute Table
--   You should see the SEQ SA2 areas highlighted in yellow (you may need to turn off other layers or zoom in).
--   To permanently save this selection, right click on the reprojected SA2 layer, and select `Export > Save Selected Features As...`
--   Save your file as `SA2_SEQ`
--   Make sure the CRS stays as `EPSG:7856 - GDA2020 / MGA zone 56`, then click `OK`
+- Close the Select by Expression window and Attribute Table
+- You should see the SEQ SA2 areas highlighted in yellow (you may need to turn off other layers or zoom in).
+- To permanently save this selection, right click on the reprojected SA2 layer, and select `Export > Save Selected Features As...`
+- Save your file as `SA2_SEQ`
+- Make sure the CRS stays as `EPSG:7856 - GDA2020 / MGA zone 56`, then click `OK`
 
 If you haven't done so already, untick and hide all the original layers we aren't using any more.
 
@@ -356,71 +356,71 @@ Earlier we looked at overlap between polygons, we can also look at points overla
 
 Let's determine how many koalas are inside of each SA2 suburb.
 
--   Go to `Vector > Analysis Tools > Count Points in Polygons...`
+- Go to `Vector > Analysis Tools > Count Points in Polygons...`
 
--   In the **Polygons** field select `SA2_SEQ`
+- In the **Polygons** field select `SA2_SEQ`
 
--   In the **Points** field select `Koalas_Reproj`
+- In the **Points** field select `Koalas_Reproj`
 
--   In the **Count field name** field type in something like `NUM_KOALAS`
+- In the **Count field name** field type in something like `NUM_KOALAS`
 
--   Click the three dots `...` next to the **Count** section, and click **Save to File...**
+- Click the three dots `...` next to the **Count** section, and click **Save to File...**
 
--   Navigate to your **processed** folder and save the file as **SA2_SEQ_koalas**
+- Navigate to your **processed** folder and save the file as **SA2_SEQ_koalas**
 
--   Click `Run`
+- Click `Run`
 
 If it's being really slow, we might be able to benefit from the **Fix Geometries** tool again.
 
--   Click `Cancel` in the **Count Points in Polygons** window, but leave it open for now
+- Click `Cancel` in the **Count Points in Polygons** window, but leave it open for now
 
--   In the **Processing Toolbox** double-click on the **Fix geometries** option
+- In the **Processing Toolbox** double-click on the **Fix geometries** option
 
-    -   For Input Layer choose **Koalas_Reproj**
+    - For Input Layer choose **Koalas_Reproj**
 
-    -   Click `Run`
+    - Click `Run`
 
--   Return to the **Count Points in Polygons** window, click `Change Parameters`
+- Return to the **Count Points in Polygons** window, click `Change Parameters`
 
--   Change the `Points` to the new **Fixed geometries** layer
+- Change the `Points` to the new **Fixed geometries** layer
 
--   Click `Run`
+- Click `Run`
 
 You can now look at the **Attribute Table (F6)** for this layer to see the number of koala sightings in each suburb. Let's visualise this.
 
--   Click on the **SA2_SEQ_koalas** layer in the Layers panel
+- Click on the **SA2_SEQ_koalas** layer in the Layers panel
 
--   Open the Layer Styling Panel by pressing F7 (or fn + F7)
+- Open the Layer Styling Panel by pressing F7 (or fn + F7)
 
--   Change the Symbology from `Single Symbol` to `Graduated`
+- Change the Symbology from `Single Symbol` to `Graduated`
 
--   Set the **Value** to `NUM_KOALAS`
+- Set the **Value** to `NUM_KOALAS`
 
--   Choose a **Color ramp** of your liking
+- Choose a **Color ramp** of your liking
 
--   Click `Classify`
+- Click `Classify`
 
--   You might want to play with the **Mode** to get a feel for the data
+- You might want to play with the **Mode** to get a feel for the data
 
 Now we can quickly see how many Koalas are in each suburb.
 
 We can go further and use the **Field Calculator** to compare koala numbers to the current human population in that area, and create a new field with that information.
 
--   Click on the **Field Calculator** button ![image](https://user-images.githubusercontent.com/67612228/195319687-1538f2a0-d8c8-4084-a632-0e3181fb11dd.png){alt="image"}
+- Click on the **Field Calculator** button ![image](https://user-images.githubusercontent.com/67612228/195319687-1538f2a0-d8c8-4084-a632-0e3181fb11dd.png){alt="image"}
 
-    -   Under **Create a new field** set the **Output field name** to `KOALAS_PP`
+    - Under **Create a new field** set the **Output field name** to `KOALAS_PP`
 
-    -   Set the **Output field type** to `Decimal number (real)` (we need to choose this option to ensure that we have decimals in our output)
+    - Set the **Output field type** to `Decimal number (real)` (we need to choose this option to ensure that we have decimals in our output)
 
-    -   In the `Expression` tab enter `"NUM_KOALAS" / "ERP_2021"`
+    - In the `Expression` tab enter `"NUM_KOALAS" / "ERP_2021"`
 
-        -   ERP stands for Estimated Resident Population
+        - ERP stands for Estimated Resident Population
 
-    -   Click OK
+    - Click OK
 
--   Now you can change the **Value** in **Layer Styling** to `KOALA_PP`
+- Now you can change the **Value** in **Layer Styling** to `KOALA_PP`
 
-    -   Click Classify again if needed
+    - Click Classify again if needed
 
 We can now see how koala populations compare with human populations.
 

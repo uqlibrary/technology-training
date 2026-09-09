@@ -17,19 +17,19 @@ Please extract the folder from the zip file.
 
 As always we have our classic setup:
 
--   "**data**" - for all the data we will use to make our maps, split into:
+- "**data**" - for all the data we will use to make our maps, split into:
 
-    -   "**raw**" - raw data from your research or the internet
+    - "**raw**" - raw data from your research or the internet
 
-    -   "**processed**" - any data you've modified
+    - "**processed**" - any data you've modified
 
--   "**output**" - for any maps or images we export
+- "**output**" - for any maps or images we export
 
--   "**temp**" - this folder isn't necessary, but when you're playing around and testing, it can stop things getting messy.
+- "**temp**" - this folder isn't necessary, but when you're playing around and testing, it can stop things getting messy.
 
 <!-- -->
 
--   Finally, we have our .qgz project file named "**qgis_reports_map.qgz**" inside the "**qgis_reports**" folder (the highest level folder) so it's only looking down into folders for data, not back out.
+- Finally, we have our .qgz project file named "**qgis_reports_map.qgz**" inside the "**qgis_reports**" folder (the highest level folder) so it's only looking down into folders for data, not back out.
 
 Let's open our **qgis_reports_map.qgz** file and get started.
 
@@ -37,24 +37,24 @@ Let's open our **qgis_reports_map.qgz** file and get started.
 
 Main aims:
 
--   Create a pretty map for output
--   Automate our map description
--   Use templates
+- Create a pretty map for output
+- Automate our map description
+- Use templates
 
 If we have time:
 
--   Learn to use Web Mapping Services
--   Georeference an Image
+- Learn to use Web Mapping Services
+- Georeference an Image
 
 ## The Brief
 
 We need to use our spatial files to make a map that:
 
--   Shows the project outline
+- Shows the project outline
 
--   Show the access paths
+- Show the access paths
 
--   Categorises the artefacts
+- Categorises the artefacts
 
 The current map in our project does accomplish these goals, but it's not inviting to look at.
 
@@ -62,39 +62,39 @@ To fix this, we need to ask some questions:
 
 **Who is the intended audience for our map**?
 
--   A good looking map for a **Report** map may look different to an **Academic Paper** or a **Technical** map or to a map for the **Public**.
+- A good looking map for a **Report** map may look different to an **Academic Paper** or a **Technical** map or to a map for the **Public**.
 
 **What story am I trying to tell?**
 
--   Do you want to highlight a particular pattern in the data?
+- Do you want to highlight a particular pattern in the data?
 
-    -   You can use shapes and colour (esp. saturation) to bring your viewer to focus on certain elements of the map.
+    - You can use shapes and colour (esp. saturation) to bring your viewer to focus on certain elements of the map.
 
--   Does it need to look friendly or more professional?
+- Does it need to look friendly or more professional?
 
-    -   Your choice of a colour palette can bring cohesion to your map.
+    - Your choice of a colour palette can bring cohesion to your map.
 
--   Do you have a lot of dense information you need to convey?
+- Do you have a lot of dense information you need to convey?
 
-    -   Perhaps you need to make more than one map.
+    - Perhaps you need to make more than one map.
 
--   Do you need to show what the land surface looks like, or not?
+- Do you need to show what the land surface looks like, or not?
 
-    -   That brings us to our next question:
+    - That brings us to our next question:
 
 **What** **basemap does my map need**?
 
 The basemap sets the tone for the rest of the layers in the map, as they can greatly change the visual complexity of the map.
 
--   Satellite image - Geographically informative, but visually busy
+- Satellite image - Geographically informative, but visually busy
 
--   Street map - Geographically informative, but visually busy
+- Street map - Geographically informative, but visually busy
 
--   Historical image - Informative and busy, but black and white imagery can be less visually busy
+- Historical image - Informative and busy, but black and white imagery can be less visually busy
 
--   Simple topo map - Provides some information, but less visually busy
+- Simple topo map - Provides some information, but less visually busy
 
--   No basemap - Centres focus on data, but provides no geographic context
+- No basemap - Centres focus on data, but provides no geographic context
 
 ## Basemaps
 
@@ -106,16 +106,16 @@ There are many ways of doing this, in the past we've used the **QuickMapServices
 
 Today we're going to use an XYZ Tile from CARTODB.
 
--   Scroll down the `Browser` panel until your see **XYZ Tiles**
--   Right click XYZ Tiles and select `New Connection...`
-    -   In `Name` type **Voyager (no labels)**
-    -   In `URL` paste:\
+- Scroll down the `Browser` panel until your see **XYZ Tiles**
+- Right click XYZ Tiles and select `New Connection...`
+    - In `Name` type **Voyager (no labels)**
+    - In `URL` paste:\
         https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png
-    -   Increase the Max. Zoom Level to 20
-        -   This value depends on what is available from the given service in different parts of the world. Increasing that value beyond 20 for this map in Brisbane will show "Map data not yet available" when you zoom in very close.
-    -   Click `OK`
--   In the `Browser` panel, expand `XYZ Tiles` and double click on `Voyager (no labels)`
--   Now do the same for this **Light Gray Basemap** from ESRI, but set the Max. Zoom Level to 16:\
+    - Increase the Max. Zoom Level to 20
+        - This value depends on what is available from the given service in different parts of the world. Increasing that value beyond 20 for this map in Brisbane will show "Map data not yet available" when you zoom in very close.
+    - Click `OK`
+- In the `Browser` panel, expand `XYZ Tiles` and double click on `Voyager (no labels)`
+- Now do the same for this **Light Gray Basemap** from ESRI, but set the Max. Zoom Level to 16:\
     https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}
 
 Arrange the layers so that the **Voyager (no labels)** layer is under your other layers (you can hide the **Light Gray Basemap** and **OpenStreetMap** for now).
@@ -132,55 +132,55 @@ The built in color ramps provide some good options I quite like **`rainfall`** (
 
 Today we're being fancy, we're going to import and build our own Color Ramp and Color Palette.
 
--   In your internet browser, navigate to [colorbrewer2.org](https://colorbrewer2.org/#type=qualitative&scheme=Set2&n=7)
+- In your internet browser, navigate to [colorbrewer2.org](https://colorbrewer2.org/#type=qualitative&scheme=Set2&n=7)
 
-    -   Set "Number of data classes" to 7
+    - Set "Number of data classes" to 7
 
-    -   Set "Nature of data classes" to "qualitative"
+    - Set "Nature of data classes" to "qualitative"
 
-    -   Choose Set2 (should be the second from the right)
+    - Choose Set2 (should be the second from the right)
 
-    -   Click and drag to highlight the 7 HEX codes listed (they should look like this #66c2a5)
+    - Click and drag to highlight the 7 HEX codes listed (they should look like this #66c2a5)
 
-        -   Copy those with Ctrl + C (or Cmd + C)
+        - Copy those with Ctrl + C (or Cmd + C)
 
--   Back in QGIS navigate to `Settings > Options...`
+- Back in QGIS navigate to `Settings > Options...`
 
-    -   Click the `Colors` from the left menu
+    - Click the `Colors` from the left menu
 
-    -   From the top right of the window click the `...` button and select `New Palette...`, name it **Report Palette**
+    - From the top right of the window click the `...` button and select `New Palette...`, name it **Report Palette**
 
-    -   Add your copied colours by clicking![](mActionEditPaste.png) `Paste colors` on the right
+    - Add your copied colours by clicking![](mActionEditPaste.png) `Paste colors` on the right
 
-    -   Click the `...` button again and tick the `Show in Color Buttons` box
+    - Click the `...` button again and tick the `Show in Color Buttons` box
 
-    -   Click `OK`
+    - Click `OK`
 
 We now have a custom palette we can use throughout our projects!
 
 Unfortunately we need to set up the Color Ramp separately.\
 
--   Navigate to `Settings > Style Manager...`
+- Navigate to `Settings > Style Manager...`
 
-    -   Click the ![](images/symbologyAdd.png) `Add item` button at the bottom and select `Color Presets...`
+    - Click the ![](images/symbologyAdd.png) `Add item` button at the bottom and select `Color Presets...`
 
-        -   Select the colour that appeared there and remove it by pressing ![](symbologyRemove.png) `Remove color` at the bottom
+        - Select the colour that appeared there and remove it by pressing ![](symbologyRemove.png) `Remove color` at the bottom
 
-        -   Add your copied colours by clicking![](mActionEditPaste.png) `Paste colors`
+        - Add your copied colours by clicking![](mActionEditPaste.png) `Paste colors`
 
-        -   Click `OK`
+        - Click `OK`
 
-    -   Change the `Destination` to **Default**
+    - Change the `Destination` to **Default**
 
-    -   Give it a meaningful `Name` like **Report Colour Ramp**
+    - Give it a meaningful `Name` like **Report Colour Ramp**
 
-    -   Add the `Tag` **Palettes**
+    - Add the `Tag` **Palettes**
 
-    -   Tick `Add to favourites` (this means it will appear in the color ramp dropdown, and not just in the All Color Ramps section)
+    - Tick `Add to favourites` (this means it will appear in the color ramp dropdown, and not just in the All Color Ramps section)
 
-    -   Click `Save`
+    - Click `Save`
 
--   Click `Close`
+- Click `Close`
 
 You can also use the `Style Manager` to edit the default options and Favorites that appear in the Layer Styling window.
 
@@ -192,11 +192,11 @@ Now we've set up our colours, we can start using them!
 
 #### Categories
 
--   Select the **Artefacts** layer from the `Layer Styling` panel
--   In the `Layer Styling` panel, change **`Single Symbol`** to `Categorized`
--   From `Value` select **Artefact Type**
--   From `Color ramp` choose our **Report Colour Ramp**
--   Click the **`Classify`** button
+- Select the **Artefacts** layer from the `Layer Styling` panel
+- In the `Layer Styling` panel, change **`Single Symbol`** to `Categorized`
+- From `Value` select **Artefact Type**
+- From `Color ramp` choose our **Report Colour Ramp**
+- Click the **`Classify`** button
 
 #### Symbols
 
@@ -204,53 +204,53 @@ With the **Voyager (no labels)** basemap, we can reduce the complexity of our sy
 
 If you want, you can change the properties of all symbols at once:
 
--   Simply click in the white space below your symbol classes so that none are selected.
+- Simply click in the white space below your symbol classes so that none are selected.
 
--   If you click on the button next to `Symbol`, it will take you to `Symbol Settings`**WARNING** if you edit any individual symbols before this step, it will reset any changes you made to those individual symbols.
+- If you click on the button next to `Symbol`, it will take you to `Symbol Settings`**WARNING** if you edit any individual symbols before this step, it will reset any changes you made to those individual symbols.
 
-    -   Try increasing the size of the symbols to 3mm
+    - Try increasing the size of the symbols to 3mm
 
-    -   Click `Simple Marker` and change the `Symbol layer type` to **Filled Marker**
+    - Click `Simple Marker` and change the `Symbol layer type` to **Filled Marker**
 
-        -   Now click `Simple Fill` and change its `Symbol layer type` to **Outline: Simple Line**
+        - Now click `Simple Fill` and change its `Symbol layer type` to **Outline: Simple Line**
 
-        -   Change the `Stroke width` to **0.4**
+        - Change the `Stroke width` to **0.4**
 
-        -   This gives our points a very clean and simple appearance
+        - This gives our points a very clean and simple appearance
 
--   Click the `back arrow button` next to **Symbol Settings**
+- Click the `back arrow button` next to **Symbol Settings**
 
 Now that we have a nice colour scheme, let's give it a new shape.
 
--   Double click on the symbol of the `Artefact Scatter`
-    -   Click **Filled Marker** - this will allow us to change many things including the shape of the marker
-        -   From the bottom of the window select a shape, let's go with the **Triangle**
--   Click the `back arrow button` next to **Artefact Scatter**
+- Double click on the symbol of the `Artefact Scatter`
+    - Click **Filled Marker** - this will allow us to change many things including the shape of the marker
+        - From the bottom of the window select a shape, let's go with the **Triangle**
+- Click the `back arrow button` next to **Artefact Scatter**
 
 ### Polygon Geometry
 
 Depending on your map, you may want your polygon to remain solid, to be transparent, have hatched lines, or simply be an outline. As our project area has items inside it, but an unimportant basemap, we can use an outline with a slightly transparent background to bring focus.
 
--   Open the `Layer Styling` panel by pressing **F7** (or fn+F7)
--   Select the **Project_area** layer from either the `Layer Styling` panel, or the `Layers` panel.
--   Under `Fill`, click `Simple Fill`
-    -   Set the `Stroke width` to **0.8mm**
-    -   Click the dropdown next to `Fill color` and select **orange** from our **Report Palette**
-        -   Click the colour again and change the `Opacity` to 15%
+- Open the `Layer Styling` panel by pressing **F7** (or fn+F7)
+- Select the **Project_area** layer from either the `Layer Styling` panel, or the `Layers` panel.
+- Under `Fill`, click `Simple Fill`
+    - Set the `Stroke width` to **0.8mm**
+    - Click the dropdown next to `Fill color` and select **orange** from our **Report Palette**
+        - Click the colour again and change the `Opacity` to 15%
 
 That's nicer, but let's make it *fancy.* Let's add a dropshadow.
 
--   Click the ![](images/symbologyAdd-02.png) `Add symbology layer` next to `Fill` to add another fill symbol\
+- Click the ![](images/symbologyAdd-02.png) `Add symbology layer` next to `Fill` to add another fill symbol\
     (You can add as many of these as you like, you can even change this with `Symbol layer type` to Arrows, Hashed lines, Filled lines, and more.)
--   Click the new **Simple Fill**
-    -   Change `Symbol layer type` from **Simple Fill** to **Outline: Simple Line**
-    -   Set the `Stroke width` to 3
-    -   Scroll to the bottom, tick `Draw Effects`, then click the ![](images/mIconPaintEffects.png) `Customise effects` button (The one next to "Enable symbol layer", *not* the one in the "Layer Rendering" section!)
-        -   Untick `Source`
-        -   Tick and select `Drop Shadow`
-            -   Change the `Blur Radius` to **6mm**
-            -   Change the `Opacity` to **30%**
-    -   Click the `back arrow button` next to **Effects Properties**
+- Click the new **Simple Fill**
+    - Change `Symbol layer type` from **Simple Fill** to **Outline: Simple Line**
+    - Set the `Stroke width` to 3
+    - Scroll to the bottom, tick `Draw Effects`, then click the ![](images/mIconPaintEffects.png) `Customise effects` button (The one next to "Enable symbol layer", *not* the one in the "Layer Rendering" section!)
+        - Untick `Source`
+        - Tick and select `Drop Shadow`
+            - Change the `Blur Radius` to **6mm**
+            - Change the `Opacity` to **30%**
+    - Click the `back arrow button` next to **Effects Properties**
 
 ### Line Geometry
 
@@ -258,18 +258,18 @@ We *can* make our lines stand out. Sometimes it can be as simple as picking a co
 
 In this case, we want to keep the attention on the point data, let's keep the paths, but reduce their contrast.
 
--   Select the **Paths** layer from the `Layer Styling` panel
--   Under `Line`, click `Simple Line`
-    -   Change the `Color` to a colour in your **Report Palette** that is different to your points, I'm going to use **green**
-    -   Increase the `Stroke width` to **0.4mm**
--   To reduce the focus on the paths, in the `Layers` panel, drag the **Paths** layer **below** the **Project_area** layer
+- Select the **Paths** layer from the `Layer Styling` panel
+- Under `Line`, click `Simple Line`
+    - Change the `Color` to a colour in your **Report Palette** that is different to your points, I'm going to use **green**
+    - Increase the `Stroke width` to **0.4mm**
+- To reduce the focus on the paths, in the `Layers` panel, drag the **Paths** layer **below** the **Project_area** layer
 
 ## Themes
 
 We can use themes to create multiple looks for our map that we can easily swap between. Let's create a theme for our **Data Map**
 
--   Click the **Eye** icon (Manage Map Themes) at the top of the `Layers` panel, and click `Add theme...`
-    -   Let's name our new theme **Data Main**, and click `OK`
+- Click the **Eye** icon (Manage Map Themes) at the top of the `Layers` panel, and click `Add theme...`
+    - Let's name our new theme **Data Main**, and click `OK`
 
 Nothing exciting has happened *yet*, let's change the layers a little to see the power of Themes.
 
@@ -279,16 +279,16 @@ Nothing exciting has happened *yet*, let's change the layers a little to see the
 
 If you want to try different looks for a feature, but not have to undo everything, you can save them as **Styles**
 
--   In the `Layers` panel, `Right click on Project_area > Styles > Rename Current...`
-    -   Let's start by changing the name of our current style from **default** to **Data Main**
--   Let's create a new style, `Right click on Project_area > Styles > Add...`
-    -   Name the style **Data Inset**
-        -   Now any Layer Style edits we do will be attached to the **Data Inset** style
--   Select the **Project_area** layer from the `Layer Styling` panel
-    -   Under `Fill`, click `Simple Fill`
-    -   Click the `Arrow Up` on the right to move it above `Simple Line`
-    -   Change the `Fill color` to an `Opacity` of **100%**
-    -   Change the `Stroke width` to **0.4mm**
+- In the `Layers` panel, `Right click on Project_area > Styles > Rename Current...`
+    - Let's start by changing the name of our current style from **default** to **Data Main**
+- Let's create a new style, `Right click on Project_area > Styles > Add...`
+    - Name the style **Data Inset**
+        - Now any Layer Style edits we do will be attached to the **Data Inset** style
+- Select the **Project_area** layer from the `Layer Styling` panel
+    - Under `Fill`, click `Simple Fill`
+    - Click the `Arrow Up` on the right to move it above `Simple Line`
+    - Change the `Fill color` to an `Opacity` of **100%**
+    - Change the `Stroke width` to **0.4mm**
 
 Now we have a slightly different style to our **Project_area** that will look better in an inset map. We can edit this style and revert back to the original **Data Main** style whenever we like, we will explore how to use that with Themes next.
 
@@ -296,39 +296,39 @@ Now we have a slightly different style to our **Project_area** that will look be
 
 Now that we’ve made some style changes, we can see what themes do.
 
--   In the `Layers` panel, hide the **Voyager (no labels)**, **Paths** and **Artefacts** layers by unticking the boxes next to them.
+- In the `Layers` panel, hide the **Voyager (no labels)**, **Paths** and **Artefacts** layers by unticking the boxes next to them.
 
--   Unhide the **Light Gray Basemap**
+- Unhide the **Light Gray Basemap**
 
 <!-- -->
 
--   Click the **Eye** icon (Manage Map Themes) at the top of the `Layers` panel, and click `Add theme...`
-    -   Let's name our new theme **Data Inset**, and click `OK`
--   Now, click the **Eye** icon again
-    -   You will see that there are two check box options at the bottom: **Data Inset** and **Data Main**
-    -   You can cycle between these two themes by choosing one or the other
-    -   If you want to update a theme, simply hide/unhide layers, change the layer Styles, go to `Eye icon > Replace theme...` and then select the theme you want to overwrite.
--   Save your project
+- Click the **Eye** icon (Manage Map Themes) at the top of the `Layers` panel, and click `Add theme...`
+    - Let's name our new theme **Data Inset**, and click `OK`
+- Now, click the **Eye** icon again
+    - You will see that there are two check box options at the bottom: **Data Inset** and **Data Main**
+    - You can cycle between these two themes by choosing one or the other
+    - If you want to update a theme, simply hide/unhide layers, change the layer Styles, go to `Eye icon > Replace theme...` and then select the theme you want to overwrite.
+- Save your project
 
 ## Layout Manager
 
 Now we can prepare our map for export.
 
--   Navigate to `Project > Layout Manager...`
-    -   Under **New from Template** click `Create`, name the map **Data Map**
--   This will open the **Layout Manager**
+- Navigate to `Project > Layout Manager...`
+    - Under **New from Template** click `Create`, name the map **Data Map**
+- This will open the **Layout Manager**
 
 ### Page Properties
 
 Before we do anything, let's set up out environment.
 
--   Navigate to `Layout > Page Properties..`
-    -   Here we can choose the size and orientation of our map.
-    -   **Size:** A4 is often sensible, as it means you know the map will fit neatly into a report.
-        -   However you may need to make the size suit the data, or the requirements of where you're submitting the map
-        -   We'll make ours **200x200**
-    -   **Orientation:** Portrait means you can have a full page map without rotating the page in your report. But some spatial layouts make more sense in Landscape. Use your judgement.
-        -   Today we have manually changed the size, so this isn't needed.
+- Navigate to `Layout > Page Properties..`
+    - Here we can choose the size and orientation of our map.
+    - **Size:** A4 is often sensible, as it means you know the map will fit neatly into a report.
+        - However you may need to make the size suit the data, or the requirements of where you're submitting the map
+        - We'll make ours **200x200**
+    - **Orientation:** Portrait means you can have a full page map without rotating the page in your report. But some spatial layouts make more sense in Landscape. Use your judgement.
+        - Today we have manually changed the size, so this isn't needed.
 
 ### Guides
 
@@ -336,18 +336,18 @@ Guides seem unnecessary, but they make lining things up much much easier.
 
 We will use a guide to place our map details.
 
--   In the right panel, click `Guides`
--   Click ![](images/symbologyAdd-01.png) `Add new guide` under **Vertical Guides** (if your canvas is a Landscape, or you want your legend at the bottom, choose **Horizontal Guides** for this step)
--   A new row should appear, click on the **0** and change it to **140**
+- In the right panel, click `Guides`
+- Click ![](images/symbologyAdd-01.png) `Add new guide` under **Vertical Guides** (if your canvas is a Landscape, or you want your legend at the bottom, choose **Horizontal Guides** for this step)
+- A new row should appear, click on the **0** and change it to **140**
 
 ### Map
 
--   Add your map by clicking the map icon in the left menu, or navigating `Add Item > Add Map`
-    -   Your mouse will now be a **+**
-    -   If you hover over the top corner of the canvas, the mouse should snap to the corner
-    -   Click and drag until your mouse snaps to the corner created by the bottom of the canvas, and the guide you added
--   In the `Items` panel on the right, double click on **Map 1** and rename it **Main**
-    -   Giving Items clear names makes this process much more straightforward
+- Add your map by clicking the map icon in the left menu, or navigating `Add Item > Add Map`
+    - Your mouse will now be a **+**
+    - If you hover over the top corner of the canvas, the mouse should snap to the corner
+    - Click and drag until your mouse snaps to the corner created by the bottom of the canvas, and the guide you added
+- In the `Items` panel on the right, double click on **Map 1** and rename it **Main**
+    - Giving Items clear names makes this process much more straightforward
 
 ### Scale
 
@@ -355,41 +355,41 @@ Okay, we have our map, but it's not zoomed in right. This is always a little tri
 
 You *could* click the **Move item content** button on the left menu(or press `C` on your keyboard), as this would allow you to drag the map around internally, and zoom in with your scroll wheel. **But there is an easier way!**
 
--   Navigate back to your **qgis_reports** window
-    -   Right click on your **Project_area** layer and select **Zoom to Layer(s)**
--   Navigate back to your **Project Map** window
-    -   In the right menu, click `Item Properties`
-    -   You will see these options: ![](layoutmanager_scale.png)
-    -   Click the first orange arrow button to **Set Map Extent to Match Main Canvas Extent**
-    -   Click the third orange arrow button to **Set Map Scale to Match Main Canvas Scale**
-        -   The other buttons do the reverse
-    -   I like to then round the **Scale** up to a nice round number from something like 3814 to 4000
--   While you're here, scroll to the bottom of the `Item Properties`, and tick the box for `Frame`, it adds a simple border to our map
+- Navigate back to your **qgis_reports** window
+    - Right click on your **Project_area** layer and select **Zoom to Layer(s)**
+- Navigate back to your **Project Map** window
+    - In the right menu, click `Item Properties`
+    - You will see these options: ![](layoutmanager_scale.png)
+    - Click the first orange arrow button to **Set Map Extent to Match Main Canvas Extent**
+    - Click the third orange arrow button to **Set Map Scale to Match Main Canvas Scale**
+        - The other buttons do the reverse
+    - I like to then round the **Scale** up to a nice round number from something like 3814 to 4000
+- While you're here, scroll to the bottom of the `Item Properties`, and tick the box for `Frame`, it adds a simple border to our map
 
 ### Inset Map
 
 You can add your inset map to the blank space at the side of you map canvas, or you can put it on top of you main map in unused space. We don't have a lot of space around our map, so we'll put it to the right. Guides are useful here too.
 
--   In the right menu, click `Guides`
-    -   Click ![](images/symbologyAdd-03.png) `Add new guide` under **Horizontal Guides** *twice*
-        -   In the new row changethe **0** to **155**
-        -   In the other new row change the **0** to **95**
--   Add your map by clicking the map icon in the left menu, or navigating `Add Item > Add Map`
-    -   Hover over the corner created by the top horizontal guide and the vertical guide, the mouse should snap to the corner
-        -   Click and drag until your mouse snaps to the corner created by the side of the canvas, and the lower guide you added
--   Zoom out on the inset map, by selecting it from the `Items` tab and following the same approach as the **Main map**
-    -   Or by using **Move item content** button on the left menu (or press `C` on your keyboard), clicking on the inset and using the scroll wheel
--   In the `Items` panel on the right, double click on **Map 2** and rename it **Inset**
+- In the right menu, click `Guides`
+    - Click ![](images/symbologyAdd-03.png) `Add new guide` under **Horizontal Guides** *twice*
+        - In the new row changethe **0** to **155**
+        - In the other new row change the **0** to **95**
+- Add your map by clicking the map icon in the left menu, or navigating `Add Item > Add Map`
+    - Hover over the corner created by the top horizontal guide and the vertical guide, the mouse should snap to the corner
+        - Click and drag until your mouse snaps to the corner created by the side of the canvas, and the lower guide you added
+- Zoom out on the inset map, by selecting it from the `Items` tab and following the same approach as the **Main map**
+    - Or by using **Move item content** button on the left menu (or press `C` on your keyboard), clicking on the inset and using the scroll wheel
+- In the `Items` panel on the right, double click on **Map 2** and rename it **Inset**
 
 Now we have our maps added, we can bring our themes into play again.
 
 ### Themes (again!)
 
--   Select **Main** from the `Items` panel
-    -   In `Item Properties`, you will see **Layers** section
-    -   Tick `Follow map theme` and from the dropdown change **none** to **Main**
-    -   Now this map is linked to the **Main** theme and will only update when we change that theme, or the layers attributed to the theme
--   Repeat this step for **Inset**
+- Select **Main** from the `Items` panel
+    - In `Item Properties`, you will see **Layers** section
+    - Tick `Follow map theme` and from the dropdown change **none** to **Main**
+    - Now this map is linked to the **Main** theme and will only update when we change that theme, or the layers attributed to the theme
+- Repeat this step for **Inset**
 
 This is also a big advantage for using **Styles**, as the point is a better representation of our site on the inset map.
 
@@ -397,67 +397,67 @@ This is also a big advantage for using **Styles**, as the point is a better repr
 
 Before we add any text, it's worth thinking about what you want the font to be. You can manually set the font for each item in your Layout, or you can set the default font.
 
--   Navigate to `Settings > Options`
+- Navigate to `Settings > Options`
 
-    -   From the left menu, select `Layouts`
+    - From the left menu, select `Layouts`
 
-    -   Change the default font to your preferred font. I'm going to select **Sitka Text Semibold**
+    - Change the default font to your preferred font. I'm going to select **Sitka Text Semibold**
 
 ### Title
 
--   Add a text box to your map by clicking the `Add Label` icon in the left menu, or navigating `Add Item > Add Label`
+- Add a text box to your map by clicking the `Add Label` icon in the left menu, or navigating `Add Item > Add Label`
 
--   Click and drag in the empty canvas below the map where you want to put your title
+- Click and drag in the empty canvas below the map where you want to put your title
 
-    -   In the `Item Properties` panel remove the **Lorem ipsum** text, and add **Brisbane Botanic Gardens**
-    -   Under **Appearance** click the `Font` box to open the `Label Font` window
-        -   Change the text size to **18**, you can make other font changes here too
-        -   Click the `back arrow button` next to `Label Font`
+    - In the `Item Properties` panel remove the **Lorem ipsum** text, and add **Brisbane Botanic Gardens**
+    - Under **Appearance** click the `Font` box to open the `Label Font` window
+        - Change the text size to **18**, you can make other font changes here too
+        - Click the `back arrow button` next to `Label Font`
 
--   In the `Items` panel on the right, double click on **Brisbane Botanic Gardens** and rename it **Title**
+- In the `Items` panel on the right, double click on **Brisbane Botanic Gardens** and rename it **Title**
 
 Okay, that's a some fairly basic text, let's do something interesting with the descriptive text.
 
 ### Dynamic Text
 
--   Add another text box to your map by clicking the `Add Label` icon in the left menu, or navigating `Add Item > Add Label`
-    -   Click and drag in the empty canvas below the inset map
-    -   In the `Items` panel on the right, double click on "**Lorem ipsum**" and rename it **Description**
-        -   In the `Item Properties` panel remove the "**Lorem ipsum**" text and then enter:
-            -   **Created by:**
-            -   **Date:**
-            -   **Scale: 1:**
-            -   **Datum:**
-            -   Normally we'd have to enter the details for each of these manually, but we can use **Dynamic Text** to do it for us
--   In the `Item Properties` panel, click next to **Date:**, so the cursor is sitting there
-    -   Under the **Main Properties** text box, click `Dynamic Text > Current Date > Day/Month/Year (26/09/2025)`
-    -   This will insert code that looks like this: `[%format_date(now(), 'dd/MM/yyyy')%]` which automatically adds today's date
--   Now repeat those steps for the rest:
-    -   Click next to **Scale: 1:**
-        -   Click `Dynamic Text > Map Properties > Main > Scale (4000)`
-            -   The code will look like this: `[%format_number(item_variables('Main')['map_scale']` which automatically adds the main map's scale
-    -   Click next to **Datum:**
-        -   Click `Dynamic Text > Map Properties > Main > CRS Name (GDA2020 / MGA zone 56)`
-            -   The code will look like this: `[%item_variables('Main')['map_crs_description']%]` which automatically adds the main map's CRS
--   Under **Appearance**:
-    -   Set the `Horizontal margin` and `Vertical margin` to **2mm**
+- Add another text box to your map by clicking the `Add Label` icon in the left menu, or navigating `Add Item > Add Label`
+    - Click and drag in the empty canvas below the inset map
+    - In the `Items` panel on the right, double click on "**Lorem ipsum**" and rename it **Description**
+        - In the `Item Properties` panel remove the "**Lorem ipsum**" text and then enter:
+            - **Created by:**
+            - **Date:**
+            - **Scale: 1:**
+            - **Datum:**
+            - Normally we'd have to enter the details for each of these manually, but we can use **Dynamic Text** to do it for us
+- In the `Item Properties` panel, click next to **Date:**, so the cursor is sitting there
+    - Under the **Main Properties** text box, click `Dynamic Text > Current Date > Day/Month/Year (26/09/2025)`
+    - This will insert code that looks like this: `[%format_date(now(), 'dd/MM/yyyy')%]` which automatically adds today's date
+- Now repeat those steps for the rest:
+    - Click next to **Scale: 1:**
+        - Click `Dynamic Text > Map Properties > Main > Scale (4000)`
+            - The code will look like this: `[%format_number(item_variables('Main')['map_scale']` which automatically adds the main map's scale
+    - Click next to **Datum:**
+        - Click `Dynamic Text > Map Properties > Main > CRS Name (GDA2020 / MGA zone 56)`
+            - The code will look like this: `[%item_variables('Main')['map_crs_description']%]` which automatically adds the main map's CRS
+- Under **Appearance**:
+    - Set the `Horizontal margin` and `Vertical margin` to **2mm**
 
 Let's add another text box for our sources, but we'll make the font smaller
 
--   Add another text box to your map by clicking the `Add Label` icon in the left menu, or navigating `Add Item > Add Label`
-    -   Click and drag in the empty canvas below the inset map
-    -   In the `Items` panel on the right, double click on "**Lorem ipsum**" and rename it **Sources**
-    -   In the `Item Properties` panel remove the "**Lorem ipsum**" text and then enter:
-        -   **Sources:**
--   Click next to **Sources:**
-    -   Click `Dynamic Text > Layer Credits`
-        -   The code will look like this: `[%array_to_string(map_credits())%]` which automatically adds the sources built in to some of the data used
-        -   Note that this information lives in the Metadata (layer `Properties > Metadata > Access` under **Rights**) of the baselayers, and the layers we downloaded. Not all layers will necessarily have this information, and sometimes it's very detailed and clunky. You can add this information in the layer's metadata if it is missing.
-        -   It may be simpler to manually enter this to your map.
--   Under **Appearance**:
-    -   Set the `Horizontal margin` and `Vertical margin` to **2mm**
-    -   Click `Font`
-        -   Set the `Size` to **8mm**
+- Add another text box to your map by clicking the `Add Label` icon in the left menu, or navigating `Add Item > Add Label`
+    - Click and drag in the empty canvas below the inset map
+    - In the `Items` panel on the right, double click on "**Lorem ipsum**" and rename it **Sources**
+    - In the `Item Properties` panel remove the "**Lorem ipsum**" text and then enter:
+        - **Sources:**
+- Click next to **Sources:**
+    - Click `Dynamic Text > Layer Credits`
+        - The code will look like this: `[%array_to_string(map_credits())%]` which automatically adds the sources built in to some of the data used
+        - Note that this information lives in the Metadata (layer `Properties > Metadata > Access` under **Rights**) of the baselayers, and the layers we downloaded. Not all layers will necessarily have this information, and sometimes it's very detailed and clunky. You can add this information in the layer's metadata if it is missing.
+        - It may be simpler to manually enter this to your map.
+- Under **Appearance**:
+    - Set the `Horizontal margin` and `Vertical margin` to **2mm**
+    - Click `Font`
+        - Set the `Size` to **8mm**
 
 You could also add any extra text details such as the locality, disclaimers, or any other details needed.
 
@@ -465,125 +465,125 @@ You could also add any extra text details such as the locality, disclaimers, or 
 
 We can add a border around our layout. This isn't necessary, but it looks nice! It also has greater customisability than the map frame options.
 
--   Add a rectangle to your map by clicking the `Add Shape` icon in the left menu, or navigating `Add Item > Add Shape > Add Rectangle`
-    -   Hover over the top left corner of the canvas, the mouse should snap to the corner
-    -   Click and drag until your mouse snaps to the opposite corner of the canvas
--   In the `Item Properties` panel, click the box next to `Style`, this will take you to the `Symbol Settings` window
-    -   Click **Simple Fill**
-        -   Change `Symbol layer type` from **Simple Fill** to **Outline: Simple Line**
-        -   Increase the `Stroke width` to 1mm
-        -   Scroll to the bottom, tick `Draw Effects`, then click the ![](images/mIconPaintEffects.png) `Customise effects` button
-            -   Untick `Source`
-            -   Tick and select `Outer Glow`
-                -   Change the `Spread` to **0.8mm**
-                -   Change the `Blur Radius` to **2.5mm**
-                -   Change the `Single color` to **Black**
--   In the `Items` panel, change the name from \<Rectangle\> to **Outline**
-    -   Then tick the lock box next to the **Outline**
-    -   This means it stays on top of everything else, but you won't select it every time you click the map canvas
+- Add a rectangle to your map by clicking the `Add Shape` icon in the left menu, or navigating `Add Item > Add Shape > Add Rectangle`
+    - Hover over the top left corner of the canvas, the mouse should snap to the corner
+    - Click and drag until your mouse snaps to the opposite corner of the canvas
+- In the `Item Properties` panel, click the box next to `Style`, this will take you to the `Symbol Settings` window
+    - Click **Simple Fill**
+        - Change `Symbol layer type` from **Simple Fill** to **Outline: Simple Line**
+        - Increase the `Stroke width` to 1mm
+        - Scroll to the bottom, tick `Draw Effects`, then click the ![](images/mIconPaintEffects.png) `Customise effects` button
+            - Untick `Source`
+            - Tick and select `Outer Glow`
+                - Change the `Spread` to **0.8mm**
+                - Change the `Blur Radius` to **2.5mm**
+                - Change the `Single color` to **Black**
+- In the `Items` panel, change the name from \<Rectangle\> to **Outline**
+    - Then tick the lock box next to the **Outline**
+    - This means it stays on top of everything else, but you won't select it every time you click the map canvas
 
 ### Legend
 
--   Add a Legend your map by clicking the `Add Legend` icon in the left menu, or navigating `Add Item > Add Legend`
+- Add a Legend your map by clicking the `Add Legend` icon in the left menu, or navigating `Add Item > Add Legend`
 
 The legend always has too much detail to start with. Let's clean it up.
 
--   In the `Item Properties` panel, under **Legend Items** untick `Auto update`
-    -   Click the drop down next to **Artefacts**, select the empty item, and then click the **red –** to remove it
-    -   Remove the **Imagery** layers too
-    -   Right click on **Artefacts** and select **Hidden**, we don't need to see the group name
-    -   Double click on **Project_area** and rename it to **Project Area**
-    -   Double click on **Paths – paths** and rename it to **Footpaths**
--   Scroll down to **Fonts and Text Formatting**, under **Item Labels** click the **Item font** button
-    -   Change the `Size` to **15**
--   Scroll down to **Symbol**
-    -   Change`Symbol width` to 10
-    -   Change`Symbol height` to 12
+- In the `Item Properties` panel, under **Legend Items** untick `Auto update`
+    - Click the drop down next to **Artefacts**, select the empty item, and then click the **red –** to remove it
+    - Remove the **Imagery** layers too
+    - Right click on **Artefacts** and select **Hidden**, we don't need to see the group name
+    - Double click on **Project_area** and rename it to **Project Area**
+    - Double click on **Paths – paths** and rename it to **Footpaths**
+- Scroll down to **Fonts and Text Formatting**, under **Item Labels** click the **Item font** button
+    - Change the `Size` to **15**
+- Scroll down to **Symbol**
+    - Change`Symbol width` to 10
+    - Change`Symbol height` to 12
 
 #### Custom Legend Symbols
 
 Okay, we have a legend, but let's get really fancy with a custom polygon legend.
 
--   Save your Layout
+- Save your Layout
 
-    -   `Layout > Save Project`
+    - `Layout > Save Project`
 
--   Navigate back to QGIS (it's still open in another window)
+- Navigate back to QGIS (it's still open in another window)
 
-    -   Select the **Project_area** in the `Layers` Panel
+    - Select the **Project_area** in the `Layers` Panel
 
-    -   From the top toolbars open the ![](images/mActionCalculateField.png) `Field Calculator`
+    - From the top toolbars open the ![](images/mActionCalculateField.png) `Field Calculator`
 
-        -   In the `Expression` window paste **geom_to_wkt(\$geometry)**
+        - In the `Expression` window paste **geom_to_wkt(\$geometry)**
 
-        -   Under the `Expression` window, **right click** on the text next to **Preview**: (it should start with "MultiSurface"
+        - Under the `Expression` window, **right click** on the text next to **Preview**: (it should start with "MultiSurface"
 
-            -   Select **Copy Expression Value**
+            - Select **Copy Expression Value**
 
-        -   Close the **Field Calculator**
+        - Close the **Field Calculator**
 
--   Back in the **Layout Manager**, in the `Item Properties` panel, double click on **Project Area**
+- Back in the **Layout Manager**, in the `Item Properties` panel, double click on **Project Area**
 
-    -   Under **Patch**, click the `Shape` box
-        -   There should be a large `Shape` box with some "Polygon" details inside. Delete this.
-        -   Paste what you copied from the **Field Calulator** - it should be many lines
-        -   Be careful to delete the single quotes ' at the start and end of what you've just pasted in
-        -   Tick the `Preserve aspect ratio` box
-    -   Click the back arrow button
+    - Under **Patch**, click the `Shape` box
+        - There should be a large `Shape` box with some "Polygon" details inside. Delete this.
+        - Paste what you copied from the **Field Calulator** - it should be many lines
+        - Be careful to delete the single quotes ' at the start and end of what you've just pasted in
+        - Tick the `Preserve aspect ratio` box
+    - Click the back arrow button
 
--   Click the back arrow button again
+- Click the back arrow button again
 
 ### North Arrow
 
--   Add a North Arrow to your map by clicking the **Add North Arrow** icon in the left menu, or navigating `Add Item > Add North Arrow`
-    -   Click and drag in the blank space under the map until you're happy with the size of the arrow
-    -   In the `Item Properties` panel, under the `SVG Images` box, type **arrow** in the search bar
-        -   Choose a North arrow you like
-        -   Scroll down to **SVG Parameters**
-            -   Set the `Fill color` and `Stroke color` to **Black**
+- Add a North Arrow to your map by clicking the **Add North Arrow** icon in the left menu, or navigating `Add Item > Add North Arrow`
+    - Click and drag in the blank space under the map until you're happy with the size of the arrow
+    - In the `Item Properties` panel, under the `SVG Images` box, type **arrow** in the search bar
+        - Choose a North arrow you like
+        - Scroll down to **SVG Parameters**
+            - Set the `Fill color` and `Stroke color` to **Black**
 
 ### Scalebar
 
--   Add a scale bar to your map by clicking the **Add Scale Bar** icon in the left menu, or navigating `Add Item > Add Scale Bar`
-    -   You can click and drag in the blank space under the map, although the scale bar size will be set in a moment
--   In the `Item Properties` panel:
-    -   Change the `Style` from **Single Box** to **Line Ticks Up**
-    -   Scroll down to **Appearance:**
-        -   Change the `Label margin` to **0mm**
-        -   Change `Distance label placement` from **Above Segment Edges** to **Below Segment Edges**
+- Add a scale bar to your map by clicking the **Add Scale Bar** icon in the left menu, or navigating `Add Item > Add Scale Bar`
+    - You can click and drag in the blank space under the map, although the scale bar size will be set in a moment
+- In the `Item Properties` panel:
+    - Change the `Style` from **Single Box** to **Line Ticks Up**
+    - Scroll down to **Appearance:**
+        - Change the `Label margin` to **0mm**
+        - Change `Distance label placement` from **Above Segment Edges** to **Below Segment Edges**
 
 ### Finessing
 
--   Go to the `Layout` panel and scroll down to **Resize Layout to Content**
+- Go to the `Layout` panel and scroll down to **Resize Layout to Content**
 
-    -   Set the `Top`, `Right`, `Left` and `Bottom Margin` to **2mm**
-    -   Click `Resize layout`
-    -   Now we can see the dark glow we added to the **Outline**, without interfering with our neat 200x200 layout
+    - Set the `Top`, `Right`, `Left` and `Bottom Margin` to **2mm**
+    - Click `Resize layout`
+    - Now we can see the dark glow we added to the **Outline**, without interfering with our neat 200x200 layout
 
 Save your project.
 
--   `Layout > Save Project`
+- `Layout > Save Project`
 
 ### Export options
 
 Now that we're done we can export. Generally to PDF or Image. Today we will use image.
 
--   `Layout > Export as Image...`
-    -   You will see a popup warning about WMS servers. Some tile services have limits to the size of file you can export like this. If you exceed it, your basemap will be blank.
-    -   Click `OK`
--   Navigate to your project's **output** folder, and give the file a meaningful name "**Brisbane Botanic Gardens Map**", click `Save`
--   The `Export resolution` should automatically be a print quality **300dpi**, and the width and height should match the page size we set at the beginning.
--   Click `Save`
--   Navigate to and open your file to make sure it worked!
+- `Layout > Export as Image...`
+    - You will see a popup warning about WMS servers. Some tile services have limits to the size of file you can export like this. If you exceed it, your basemap will be blank.
+    - Click `OK`
+- Navigate to your project's **output** folder, and give the file a meaningful name "**Brisbane Botanic Gardens Map**", click `Save`
+- The `Export resolution` should automatically be a print quality **300dpi**, and the width and height should match the page size we set at the beginning.
+- Click `Save`
+- Navigate to and open your file to make sure it worked!
 
 ## Save a Map Template
 
 This is crucial! Save your hard work for next time!
 
--   `Layout > Save as Template...`
--   Navigate to a folder you can easily find again, such as a broader QGIS folder.
--   Give it a meaningful name "**Report_Map_Template**"
--   Click `Save`
+- `Layout > Save as Template...`
+- Navigate to a folder you can easily find again, such as a broader QGIS folder.
+- Give it a meaningful name "**Report_Map_Template**"
+- Click `Save`
 
 ## Load a Map Template
 
@@ -591,43 +591,43 @@ Next time you need to make an export you can load your template in.
 
 Open an old QGIS Project.
 
--   Navigate to `Project > Layout Manager...`
-    -   Under **New from Template** change `Empty Layout` to `Specific`, click the three dots and navigate to your **Report_Map_Template**, select it, and click `Open`
-    -   Click `Create`
-    -   Give the layout an appropriate name, and click `OK`
--   This will open the **Layout Manager**
+- Navigate to `Project > Layout Manager...`
+    - Under **New from Template** change `Empty Layout` to `Specific`, click the three dots and navigate to your **Report_Map_Template**, select it, and click `Open`
+    - Click `Create`
+    - Give the layout an appropriate name, and click `OK`
+- This will open the **Layout Manager**
 
 You will see that the inset and main maps are in the wrong location, the title is wrong, the scale bar is off, and the Legend is empty. But you know how to fix these!
 
 ### Map Scale
 
--   Navigate back to your **QGIS** window
-    -   Right click on the most suitable layer and select **Zoom to Layer(s)**
--   Navigate back to your **Layout Manager** window
-    -   Click the **Main** from the `Item` panel, and click the `Item Properties` panel
-    -   ![](layoutmanager_scale.png)
-    -   Click the first orange arrow button to **Set Map Extent to Match Main Canvas Extent**
-    -   Click the third orange arrow button to **Set Map Scale to Match Main Canvas Scale**
-        -   The other buttons do the reverse
-    -   Round the **Scale** up to a nice round number
--   Fix the inset map too
+- Navigate back to your **QGIS** window
+    - Right click on the most suitable layer and select **Zoom to Layer(s)**
+- Navigate back to your **Layout Manager** window
+    - Click the **Main** from the `Item` panel, and click the `Item Properties` panel
+    - ![](layoutmanager_scale.png)
+    - Click the first orange arrow button to **Set Map Extent to Match Main Canvas Extent**
+    - Click the third orange arrow button to **Set Map Scale to Match Main Canvas Scale**
+        - The other buttons do the reverse
+    - Round the **Scale** up to a nice round number
+- Fix the inset map too
 
 ### Scalebar
 
--   Click the **Scalebar** from the `Item` panel
--   In the `Item Properties` panel, change `Scalebar units` to **Metres** or **Kilometres** - Change `Fixed width` to an appropriate unit
+- Click the **Scalebar** from the `Item` panel
+- In the `Item Properties` panel, change `Scalebar units` to **Metres** or **Kilometres** - Change `Fixed width` to an appropriate unit
 
 ### Legend
 
--   Click the **Legend** from the `Item` panel
--   In the `Item Properties` panel, under the **Legend Items** box and click the **green +** to add a layer
-    -   Double click on and rename the layer if needed
-    -   Repeat for all layers you need to list
+- Click the **Legend** from the `Item` panel
+- In the `Item Properties` panel, under the **Legend Items** box and click the **green +** to add a layer
+    - Double click on and rename the layer if needed
+    - Repeat for all layers you need to list
 
 ### Title
 
--   Click the **Title** from the `Item` panel
--   In the `Item Properties` panel, under the **Main Properties** rename the title
+- Click the **Title** from the `Item` panel
+- In the `Item Properties` panel, under the **Main Properties** rename the title
 
 And that's it, you now have another map looking the way you want it, without too much hassle.
 
@@ -641,14 +641,14 @@ Please visit our website to [provide feedback](https://web.library.uq.edu.au/stu
 
 There are a few places you can aquire aerial photography, today we will look at two sources, one is freely available Government Data from **QImagery**, the other is accessible from using your UQ credentials.
 
--   Go to [QImagery](https://qimagery.information.qld.gov.au/)
--   Read and tick the "I acknowledge I have read and agree to the Terms & Conditions" box, and click `Get Started`
--   Click the Search button, select 'locality, town or city' and search for "St Lucia" in the "Enter search term" search box and select the first result
--   It will zoom to your selected location then click the newly appeared `Search` button
--   From here you can select from a wide array of images of QLD over many years.
--   Click one of the drop-downs and hover over the options to see where those images are located. Preview the image by clicking View.
--   You can then download your desired images by clicking "Download" and selecting TIFF (georeferenced)
--   Move the TIFF file(s) to your project folder, and open them in QGIS
+- Go to [QImagery](https://qimagery.information.qld.gov.au/)
+- Read and tick the "I acknowledge I have read and agree to the Terms & Conditions" box, and click `Get Started`
+- Click the Search button, select 'locality, town or city' and search for "St Lucia" in the "Enter search term" search box and select the first result
+- It will zoom to your selected location then click the newly appeared `Search` button
+- From here you can select from a wide array of images of QLD over many years.
+- Click one of the drop-downs and hover over the options to see where those images are located. Preview the image by clicking View.
+- You can then download your desired images by clicking "Download" and selecting TIFF (georeferenced)
+- Move the TIFF file(s) to your project folder, and open them in QGIS
 
 You can also get historical images from Geoscience Australia's [Historical Aerial Photo (HAP) Collection](https://experience.arcgis.com/experience/9a0ecbafe94f49829712b46fc69186ff)
 

@@ -12,11 +12,11 @@ Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a t
 
 In order to keep everything nicely contained in one directory, and to find files more easily, we need to create a project.
 
--   Projects -\> New project...
--   New directory
--   Project name: "python_pandas"
--   Choose a location that suits you on your computer
--   Click "Create"
+- Projects -\> New project...
+- New directory
+- Project name: "python_pandas"
+- Choose a location that suits you on your computer
+- Click "Create"
 
 This will move our working directory to the directory we just created, and Python will look for files (and save files) in this same directory by default.
 
@@ -24,9 +24,9 @@ This will move our working directory to the directory we just created, and Pytho
 
 Spyder opens a temporary script automatically. You can save that as a file into our project directory:
 
--   File -\> Save as...
--   Make sure you are located in the project directory
--   Name the script "process.py"
+- File -\> Save as...
+- Make sure you are located in the project directory
+- Name the script "process.py"
 
 Working in a script allows us to write code more comfortably, and save a process as a clearly defined list of commands that others can review and reuse.
 
@@ -84,15 +84,15 @@ We want to focus on only a few columns, especially since a lot of the data can b
 
 We want to keep 8 columns:
 
--   The `iso_code`, which is very useful for matching several datasets without having to worry about variations in country names
--   `country`
--   `year`
--   `population`
--   `gdp`
--   The three main greenhouse gases, which according to the codebook are all in million tonnes of CO<sub>2</sub>-equivalent:
-    -   `co2`
-    -   `methane`
-    -   `nitrous_oxide`
+- The `iso_code`, which is very useful for matching several datasets without having to worry about variations in country names
+- `country`
+- `year`
+- `population`
+- `gdp`
+- The three main greenhouse gases, which according to the codebook are all in million tonnes of CO<sub>2</sub>-equivalent:
+    - `co2`
+    - `methane`
+    - `nitrous_oxide`
 
 To only keep these columns, we can index the dataframe with a list of names:
 
@@ -374,16 +374,16 @@ By default, your variables are *not* saved, which is another reason why working 
 
 ## Resources
 
--   [Official pandas documentation](https://pandas.pydata.org/)
-    -   [Getting started](https://pandas.pydata.org/docs/getting_started/index.html)
-    -   [10 Minutes to pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
-    -   [User guide](https://pandas.pydata.org/docs/user_guide/index.html)
--   More visualisation modules:
-    -   [Altair](https://altair-viz.github.io/)
-    -   [Bokeh](https://docs.bokeh.org/en/latest/)
-    -   [Vega](https://vega.github.io/vega/)
-    -   [Matplotlib](https://matplotlib.org/)
--   About our datasets:
-    -   [Our World in Data](https://ourworldindata.org)
-    -   [Social Progress Index](https://www.socialprogress.org)
--   Our [compilation of useful Python links](https://github.com/uqlibrary/technology-training/blob/master/Python/useful_links.md)
+- [Official pandas documentation](https://pandas.pydata.org/)
+    - [Getting started](https://pandas.pydata.org/docs/getting_started/index.html)
+    - [10 Minutes to pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
+    - [User guide](https://pandas.pydata.org/docs/user_guide/index.html)
+- More visualisation modules:
+    - [Altair](https://altair-viz.github.io/)
+    - [Bokeh](https://docs.bokeh.org/en/latest/)
+    - [Vega](https://vega.github.io/vega/)
+    - [Matplotlib](https://matplotlib.org/)
+- About our datasets:
+    - [Our World in Data](https://ourworldindata.org)
+    - [Social Progress Index](https://www.socialprogress.org)
+- Our [compilation of useful Python links](https://github.com/uqlibrary/technology-training/blob/master/Python/useful_links.md)

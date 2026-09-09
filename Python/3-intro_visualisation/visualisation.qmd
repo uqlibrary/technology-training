@@ -19,8 +19,8 @@ The Python content remains unchanged.
 
 In this third workshop we will cover
 
--   Simple visualisations with seaborn
--   Making modifications with matplotlib
+- Simple visualisations with seaborn
+- Making modifications with matplotlib
 
 ## Setting up
 
@@ -90,8 +90,8 @@ We’ll begin with the first.
 Categorical plots are produced with seaborn’s `sns.catplot()` function.
 There are two key pieces of information to pass:
 
--   The data
--   The variables
+- The data
+- The variables
 
 Let’s see if there’s a relationship between the players’ **heights** and
 **positions**, by placing their positions on the $x$ axis and heights on
@@ -106,8 +106,8 @@ for categorical variables.
 
 It’s already revealed two things to us about the data:
 
--   There are some incorrect heights - nobody is shorter than 25cm!
--   Someone’s position is “missing”
+- There are some incorrect heights - nobody is shorter than 25cm!
+- Someone’s position is “missing”
 
 Let’s get rid of these with the data analysis techniques from last
 session
@@ -300,11 +300,11 @@ We can combine our scatter and line plots together.
     instead of `sns.relplot()` etc. These just draw the
     points/bars/lines, and are normally behind-the-scenes. There’s one
     for every plot type, and look like
-    -   `sns.lineplot()`
-    -   `sns.scatterplot()`
-    -   `sns.boxplot()`
-    -   `sns.histplot()`
-    -   etc.
+    - `sns.lineplot()`
+    - `sns.scatterplot()`
+    - `sns.boxplot()`
+    - `sns.histplot()`
+    - etc.
 
 For example,
 
@@ -346,10 +346,10 @@ the [`sns.relplot`
 documentation](https://seaborn.pydata.org/generated/seaborn.relplot.html),
 and look up the following parameters:
 
--   `col`
--   `col_wrap`
--   `col_order`
--   `legend`
+- `col`
+- `col_wrap`
+- `col_order`
+- `legend`
 
 Using those parameters, create a scatter plot for age vs height (like
 above), which meets the following conditions:
@@ -394,18 +394,18 @@ feel familiar.
 
 **Pros**
 
--   Customisable. You can tweak almost every parameter of the
+- Customisable. You can tweak almost every parameter of the
     visualisations
--   Fast. It can handle large data
--   Popular. Lots of people use it, and knowing it will help you
+- Fast. It can handle large data
+- Popular. Lots of people use it, and knowing it will help you
     collaborate
 
 **Cons** - a bit programmy
 
--   Steep-ish learning curve. Creating basic plots can be easy, but its
+- Steep-ish learning curve. Creating basic plots can be easy, but its
     set up with enough complexity that it takes a bit of work to figure
     out what’s going on.
--   Cumbersome. You can tweak almost everything, but this means that it
+- Cumbersome. You can tweak almost everything, but this means that it
     can take some effort to tweak *anything*.
 
 We’re barely going to touch the matplotlib surface, but we’ll look at

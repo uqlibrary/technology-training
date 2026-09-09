@@ -17,11 +17,11 @@ Both beginners and experienced developers increasingly make use of generative AI
 
 In this session, you will learn about:
 
--   AI tools and models for writing code
--   Common pitfalls in AI-assisted coding
--   Prompting strategies to get the best output
--   Recommendations for writing code that is reliable, safe and maintainable
--   Improving the accessibility of generated apps and websites
+- AI tools and models for writing code
+- Common pitfalls in AI-assisted coding
+- Prompting strategies to get the best output
+- Recommendations for writing code that is reliable, safe and maintainable
+- Improving the accessibility of generated apps and websites
 
 Some knowledge about programming can be useful but is not essential.
 
@@ -44,16 +44,16 @@ When talking about AI-assisted coding, some terms are important to understand:
 
 While many generalist genAI tools can produce and analyse code, other tools are designed specifically for programming. Some popular ones are:
 
--   [Antigravity](https://antigravity.google/) (Google): IDE based on VS Code, with AI features
--   [Claude Code](https://claude.com/product/claude-code) (Anthropic)
--   [GitHub Copilot](https://github.com/features/copilot) (Microsoft)
--   [OpenAI Codex](https://openai.com/index/openai-codex/)
--   [Cursor](https://cursor.com/) (Anysphere): IDE based on VS Code, with AI features
+- [Antigravity](https://antigravity.google/) (Google): IDE based on VS Code, with AI features
+- [Claude Code](https://claude.com/product/claude-code) (Anthropic)
+- [GitHub Copilot](https://github.com/features/copilot) (Microsoft)
+- [OpenAI Codex](https://openai.com/index/openai-codex/)
+- [Cursor](https://cursor.com/) (Anysphere): IDE based on VS Code, with AI features
 
 Some Open Source options:
 
--   [Tabby](https://www.tabbyml.com/): assistant integrates in IDEs, can be self-hosted
--   [OpenCode](https://opencode.ai/) (Anomaly): CLI, desktop app and IDE extension, with access to various models
+- [Tabby](https://www.tabbyml.com/): assistant integrates in IDEs, can be self-hosted
+- [OpenCode](https://opencode.ai/) (Anomaly): CLI, desktop app and IDE extension, with access to various models
 
 Some tools are mainly a model and an API that can be integrated into an IDE (sometimes via extensions), others are fully integrated IDEs in which many tools useful to developers are bundled. Some can be installed on your computer, while others are cloud-based web applications. And they differ vastly in the features they provide (for example, access to a variety of models, project management tools, or agentic AI for autonomous tasks).
 
@@ -211,18 +211,18 @@ Many of these issues can be mitigated to some extent with some recommendations a
 
 Prompting a generative AI tool effectively commonly involves:
 
--   Being clear and to the point
--   Assigning a role to the tool
--   Describing the task
--   Giving relevant context
--   Clarify what is expected regarding the output's formatting, style, verbosity...
--   Iterating by modifying the prompt and learning about what works with the model
+- Being clear and to the point
+- Assigning a role to the tool
+- Describing the task
+- Giving relevant context
+- Clarify what is expected regarding the output's formatting, style, verbosity...
+- Iterating by modifying the prompt and learning about what works with the model
 
 If you want to learn more about prompting strategies that are not specific to programming, the UQ Library offers a "Mastering Prompting Engineering" course. Search for [AI-related courses on the website](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=Artificial%20Intelligence;location=;weekstart=).
 
 For AI-assisted coding, here are some more strategies that can help:
 
--   Specify a list of specifications relevant for the whole project, so you don't have to repeat yourself with every prompt. This can be seen as context to and requirements for your project that should always be relevant and taken in consideration, as opposed to a prompt's isolated instructions that generate a specific block of code. You can regularly go back to this "project context" and tweak it as you notice recurring issues in the code generated. Such context and requirements could include:
+- Specify a list of specifications relevant for the whole project, so you don't have to repeat yourself with every prompt. This can be seen as context to and requirements for your project that should always be relevant and taken in consideration, as opposed to a prompt's isolated instructions that generate a specific block of code. You can regularly go back to this "project context" and tweak it as you notice recurring issues in the code generated. Such context and requirements could include:
     - the overall objective of the project;
     - programming language used;
     - formatting rules to use;
@@ -230,11 +230,11 @@ For AI-assisted coding, here are some more strategies that can help:
     - which hardware (processor architecture) and operating system the software needs to run on;
     - security requirements; what balance between dependencies and own code we want to strike;
     - prioritisation of accessibility in UI by always checking generated UI elements (or more precise set of rules).
--   Break down tasks into smaller chunks, similarly to the "decomposed prompting" strategy.[@khot] This allows for more precise instructions, more control over the output, more learning opportunities, easier review. (However, there needs to make sure the tool is not missing useful context.)
--   Ask for several options to resolve one issue or implement one feature, with reasons why one could be preferred over the other.
--   Use different models to compare outputs or compete against each other
-    -   For example, ask one tool to generate code, and ask another tool to check its validity, look for potential bugs, and recommend changes.
--   When prompting to fix a bug or add a feature, ask for an accompanying unit test that verifies that the bug does not re-occur, or that the feature still works as expected.
+- Break down tasks into smaller chunks, similarly to the "decomposed prompting" strategy.[@khot] This allows for more precise instructions, more control over the output, more learning opportunities, easier review. (However, there needs to make sure the tool is not missing useful context.)
+- Ask for several options to resolve one issue or implement one feature, with reasons why one could be preferred over the other.
+- Use different models to compare outputs or compete against each other
+    - For example, ask one tool to generate code, and ask another tool to check its validity, look for potential bugs, and recommend changes.
+- When prompting to fix a bug or add a feature, ask for an accompanying unit test that verifies that the bug does not re-occur, or that the feature still works as expected.
 
 ::: {.callout-note}
 #### AI against AI
@@ -305,11 +305,11 @@ Generating code in smaller steps makes it less likely that one large section of 
 
 When generating code from prompts, make sure you consider the maintenance aspect of the project:
 
--   Understanding the code will make it easier to fix issues when they arise.
--   Try to keep track of what logic has already been implemented so the AI tool does not duplicate it.
--   Will the codebase need to be maintained in the future? Over which period of time? If such maintenance and development entirely relies on one proprietary tool, what happens if that tool is not available anymore, or too expensive?
--   Keep an eye on the dependencies of your code. If the AI-generated code makes use of many external libraries, it will likely increase the maintenance burden (which could be because of new versions, availability or lack of maintenance).
--   Are there tests in place to verify that the code still works as expected?
+- Understanding the code will make it easier to fix issues when they arise.
+- Try to keep track of what logic has already been implemented so the AI tool does not duplicate it.
+- Will the codebase need to be maintained in the future? Over which period of time? If such maintenance and development entirely relies on one proprietary tool, what happens if that tool is not available anymore, or too expensive?
+- Keep an eye on the dependencies of your code. If the AI-generated code makes use of many external libraries, it will likely increase the maintenance burden (which could be because of new versions, availability or lack of maintenance).
+- Are there tests in place to verify that the code still works as expected?
 
 ### Testing your code
 
@@ -323,10 +323,10 @@ Throughout the development process, it is importing to regularly test your code 
 
 It is important to be transparent and acknowledge your use of AI-assisted coding. This might be a requirement coming from your course, the specific assessment your are completing, or your employer - if AI use is not outright disallowed. Not following such requirements may be considered academic misconduct. But even if it isn't a requirement, acknowledging and referencing such practices helps by:
 
--   increasing traceability when issues arise (for example, identifying which model generated buggy code)
--   letting others learn from the methods you used
--   documenting successful processes that you might appreciate reusing in the future
--   comparing results when working on a different project with a different set of tools
+- increasing traceability when issues arise (for example, identifying which model generated buggy code)
+- letting others learn from the methods you used
+- documenting successful processes that you might appreciate reusing in the future
+- comparing results when working on a different project with a different set of tools
 
 ::: {.callout-tip title="Responsibility"}
 Note that, as the person who used the tools, you are likely entirely responsible for the issues in your code. Most AI-assisted coding tools warn you about potentially erroneous outputs (and tell you that the user is responsible for checking the output's validity), and often make you sign a user agreement that specifies that developers and/or the company that created the AI assistant will not be found legally responsible for negative impacts from code generated by their tools.
@@ -338,14 +338,14 @@ For help with referencing AI tools, refer to the UQ Library's [Guide to acknowle
 
 At UQ, we have hubs, guides and books to help you make use of generative AI tools in a safe, responsible and ethical way:
 
--   [AI Student Hub](https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub)
--   [AI Researcher Hub](https://guides.library.uq.edu.au/tools-and-techniques/ai-researcher-hub)
--   [AI Teacher Hub](https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub)
--   [Digital Essentials: Artifical Intelligence](https://uq.pressbooks.pub/digital-essentials-artificial-intelligence/) guide
--   [Guide to acknowledging and referencing AI](https://guides.library.uq.edu.au/referencing/acknowledging-and-referencing-ai)
+- [AI Student Hub](https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub)
+- [AI Researcher Hub](https://guides.library.uq.edu.au/tools-and-techniques/ai-researcher-hub)
+- [AI Teacher Hub](https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub)
+- [Digital Essentials: Artifical Intelligence](https://uq.pressbooks.pub/digital-essentials-artificial-intelligence/) guide
+- [Guide to acknowledging and referencing AI](https://guides.library.uq.edu.au/referencing/acknowledging-and-referencing-ai)
 
 Here are more resources about AI-assisted coding:
 
--   [Best practices for coding with agents](https://cursor.com/blog/agent-best-practices) (2026), by Lee Robinson (Cursor)
--   [Prompt Engineering Guide](https://www.promptingguide.ai) suggests many different prompting strategies
--   [How AI assistance impacts the formation of coding skills](https://www.anthropic.com/research/AI-assistance-coding-skills) (Anthropic, 2026)
+- [Best practices for coding with agents](https://cursor.com/blog/agent-best-practices) (2026), by Lee Robinson (Cursor)
+- [Prompt Engineering Guide](https://www.promptingguide.ai) suggests many different prompting strategies
+- [How AI assistance impacts the formation of coding skills](https://www.anthropic.com/research/AI-assistance-coding-skills) (Anthropic, 2026)

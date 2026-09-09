@@ -12,11 +12,11 @@ Open the Anaconda Navigator (you might have to run `anaconda-navigator` from a t
 
 In order to keep everything nicely contained in one directory, and to find files more easily, we need to create a project.
 
--   Projects -\> New project...
--   New directory
--   Project name: "python_matplotlib"
--   Choose a location that suits you on your computer
--   Click "Create"
+- Projects -\> New project...
+- New directory
+- Project name: "python_matplotlib"
+- Choose a location that suits you on your computer
+- Click "Create"
 
 This will move our working directory to the directory we just created, and Python will look for files (and save files) in this same directory by default.
 
@@ -24,9 +24,9 @@ This will move our working directory to the directory we just created, and Pytho
 
 Spyder opens a temporary script automatically. You can save that as a file into our project directory:
 
--   File -\> Save as...
--   Make sure you are located in the project directory
--   Name the script "process.py"
+- File -\> Save as...
+- Make sure you are located in the project directory
+- Name the script "process.py"
 
 Working in a script allows us to write code more comfortably, and save a process as a clearly defined list of commands that others can review and reuse.
 
