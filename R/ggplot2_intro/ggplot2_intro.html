@@ -817,17 +817,36 @@ window.Quarto = {
 </header>
 
 
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/R/ggplot2_intro/ggplot2_intro_banner.qmd" data-notebook-title="Upcoming workshop(s) available!" data-notebook-cellid="e2bc600d-62c0-413d-9919-2f2fed556697">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Upcoming workshop(s) available!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The next workshop is on <strong><a href="https://studenthub.uq.edu.au/students/events/detail/6450534">Wed Sep 30 at 01:00 PM.</a></strong></p>
+<p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
+</div>
+</div>
+</div>
 <section id="what-are-we-going-to-learn" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-we-going-to-learn">What are we going to learn?</h2>
 <p>This session is directed at R users (a beginner level is sufficient) who are new to the ggplot2 package.</p>
 <p>During this session, you will:</p>
 <ul>
-<li>Have a visualisation package installed (ggplot2)</li>
-<li>Learn how to explore data visually</li>
+<li>Install the most popular R data visualisation package</li>
+<li>Use visual data exploration to explain trends</li>
 <li>Learn about the 3 essential ggplot2 components</li>
-<li>Use different kinds of visualisations</li>
-<li>Layer several visualisations</li>
-<li>Learn how to customise a plot with colours, labels and themes.</li>
+<li>Get familiar with the “grammar of graphics”</li>
+<li>Create different plots for different datasets</li>
+<li>Construct plots by layering components</li>
+<li>Refine your visualisations for effective communication</li>
+<li>Customise plots with colours, labels and themes</li>
+<li>Export plots to use them anywhere</li>
 </ul>
 </section>
 <section id="setting-up" class="level2">
@@ -901,7 +920,7 @@ Tip
 </div>
 <section id="introducing-ggplot2" class="level3">
 <h3 class="anchored" data-anchor-id="introducing-ggplot2">Introducing ggplot2</h3>
-<p>The R package ggplot2 was developed by Hadley Wickham with the objective of creating a grammar of graphics for categorical data (in 2007). It is based on the book <em>The Grammar of Graphics</em> Developed by Leland Wilkinson (first edition published in 1999).</p>
+<p>The R package ggplot2 was originally developed by Hadley Wickham with the objective of creating a grammar of graphics for categorical data (in 2007). It is based on the book <em>The Grammar of Graphics</em> Developed by Leland Wilkinson (first edition published in 1999).</p>
 <p>It is now part of the group of data science packages called Tidyverse.</p>
 </section>
 </section>
@@ -993,7 +1012,7 @@ Tip
 </section>
 <section id="horizontal-bar-charts" class="level3">
 <h3 class="anchored" data-anchor-id="horizontal-bar-charts">Horizontal bar charts</h3>
-<p>What if we prefer to use horizontal bars? We only need to switching the mapping of the variable to the <code>y</code> aesthetic:</p>
+<p>What if we prefer to use horizontal bars? We only need to switch the mapping of the variable to the <code>y</code> aesthetic:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> msleep,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> conservation)) <span class="sc">+</span></span>
@@ -1357,7 +1376,7 @@ Tip
 </div>
 </div>
 <p>You can now see why this is called a “smoother”: we can fit a smooth curve to data that varies a lot.</p>
-<p>To further refine our visualisation , we could visualise the unemployment rate rather than the number of unemployed people, by calculating it straight into our code:</p>
+<p>To further refine our visualisation, we could visualise the unemployment rate rather than the number of unemployed people, by calculating it straight into our code:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
@@ -1379,15 +1398,17 @@ Tip
 </section>
 <section id="themes" class="level2">
 <h2 class="anchored" data-anchor-id="themes">Themes</h2>
-<p>The <code>theme()</code> function allows us to really get into the details of our plot’s look, but some <code>theme_*()</code> functions make it easy to quickly apply a built-in theme, like <code>theme_bw()</code>:</p>
+<p>The <code>theme()</code> function allows us to really get into the details of our plot’s look. However, a handful of convenient <code>theme_*()</code> functions make it easy to quickly apply a number of tweaks to our plot’s theme, like <code>theme_bw()</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds,</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> cut)) <span class="sc">+</span> </span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Where are the bad ones?"</span>,</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Quality of the cut"</span>,</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Number of diamonds"</span>) <span class="sc">+</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> unemploy <span class="sc">/</span> pop)) <span class="sc">+</span> </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> uempmed)) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1397,6 +1418,25 @@ Tip
 </div>
 </div>
 <p>Try <code>theme_minimal()</code> as well, and if you want more options, install the <code>ggthemes</code> package!</p>
+<p>These <code>theme_*()</code> functions also allow changing default colours across different geometries and plot elements, based on their role. For this, use the <code>paper</code>, <code>ink</code> and <code>accent</code> arguments:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> unemploy <span class="sc">/</span> pop)) <span class="sc">+</span> </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> uempmed)) <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">paper =</span> <span class="st">"lavender"</span>, <span class="at">ink =</span> <span class="st">"navy"</span>, <span class="at">accent =</span> <span class="st">"hotpink"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="play-time" class="level2">
 <h2 class="anchored" data-anchor-id="play-time">Play time!</h2>
