@@ -15,12 +15,15 @@ This session is directed at R users (a beginner level is sufficient) who are new
 
 During this session, you will:
 
-* Have a visualisation package installed (ggplot2)
-* Learn how to explore data visually
+* Install the most popular R data visualisation package
+* Use visual data exploration to explain trends
 * Learn about the 3 essential ggplot2 components
-* Use different kinds of visualisations
-* Layer several visualisations
-* Learn how to customise a plot with colours, labels and themes.
+* Get familiar with the "grammar of graphics"
+* Create different plots for different datasets
+* Construct plots by layering components
+* Refine your visualisations for effective communication
+* Customise plots with colours, labels and themes
+* Export plots to use them anywhere
 
 {{< include ../_setup_and_tips.md >}}
 
@@ -43,7 +46,7 @@ library(ggplot2)
 
 ### Introducing ggplot2
 
-The R package ggplot2 was developed by Hadley Wickham with the objective of creating a grammar of graphics for categorical data (in 2007). It is based on the book _The Grammar of Graphics_ Developed by Leland Wilkinson (first edition published in 1999).
+The R package ggplot2 was originally developed by Hadley Wickham with the objective of creating a grammar of graphics for categorical data (in 2007). It is based on the book _The Grammar of Graphics_ Developed by Leland Wilkinson (first edition published in 1999).
 
 It is now part of the group of data science packages called Tidyverse.
 
@@ -115,7 +118,7 @@ Run `?geom_bar` to see that it uses `stat = "count"` as a default, and that `sta
 
 ### Horizontal bar charts
 
-What if we prefer to use horizontal bars? We only need to switching the mapping of the variable to the `y` aesthetic:
+What if we prefer to use horizontal bars? We only need to switch the mapping of the variable to the `y` aesthetic:
 
 ```{r}
 ggplot(data = msleep,
@@ -389,7 +392,7 @@ ggplot(economics,
 
 You can now see why this is called a "smoother": we can fit a smooth curve to data that varies a lot.
 
-To further refine our visualisation , we could visualise the unemployment rate rather than the number of unemployed people, by calculating it straight into our code:
+To further refine our visualisation, we could visualise the unemployment rate rather than the number of unemployed people, by calculating it straight into our code:
 
 ```{r}
 ggplot(economics,
@@ -403,19 +406,29 @@ The [early 1980s recession](https://en.wikipedia.org/wiki/Early_1980s_recession)
 
 ## Themes
 
-The `theme()` function allows us to really get into the details of our plot's look, but some `theme_*()` functions make it easy to quickly apply a built-in theme, like `theme_bw()`:
+The `theme()` function allows us to really get into the details of our plot's look. However, a handful of convenient `theme_*()` functions make it easy to quickly apply a number of tweaks to our plot's theme, like `theme_bw()`:
 
 ```{r}
-ggplot(diamonds,
-       aes(y = cut)) + 
-  geom_bar() +
-  labs(title = "Where are the bad ones?",
-       y = "Quality of the cut",
-       x = "Number of diamonds") +
+ggplot(economics,
+       aes(x = date,
+           y = unemploy / pop)) + 
+    geom_point(aes(colour = uempmed)) +
+    geom_smooth(span = 0.1) +
   theme_bw()
 ```
 
 Try `theme_minimal()` as well, and if you want more options, install the `ggthemes` package!
+
+These `theme_*()` functions also allow changing default colours across different geometries and plot elements, based on their role. For this, use the `paper`, `ink` and `accent` arguments:
+
+```{r}
+ggplot(economics,
+       aes(x = date,
+           y = unemploy / pop)) + 
+    geom_point(aes(colour = uempmed)) +
+    geom_smooth(span = 0.1) +
+  theme_bw(paper = "lavender", ink = "navy", accent = "hotpink")
+```
 
 ## Play time!
 
