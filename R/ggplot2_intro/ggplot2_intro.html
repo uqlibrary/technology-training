@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2026-09-09">
+<meta name="dcterms.date" content="2026-09-10">
 
 <title>R ggplot2: introductory data visualisation – UQ Library Technology Training</title>
 <style>
@@ -91,6 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap-79d2fb61eee2ac57a8ff08ec99fd98d3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark-9182d33c59a7ed864c5874f36fa88429.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-79d2fb61eee2ac57a8ff08ec99fd98d3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/kbd/kbd.js"></script>
+<link href="../../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -742,16 +744,21 @@ window.Quarto = {
    
   <ul>
   <li><a href="#what-are-we-going-to-learn" id="toc-what-are-we-going-to-learn" class="nav-link active" data-scroll-target="#what-are-we-going-to-learn">What are we going to learn?</a></li>
-  <li><a href="#open-positron" id="toc-open-positron" class="nav-link" data-scroll-target="#open-positron">Open Positron</a></li>
-  <li><a href="#essential-shortcuts" id="toc-essential-shortcuts" class="nav-link" data-scroll-target="#essential-shortcuts">Essential shortcuts</a></li>
-  <li><a href="#installing-ggplot2" id="toc-installing-ggplot2" class="nav-link" data-scroll-target="#installing-ggplot2">Installing ggplot2</a></li>
-  <li><a href="#setting-up-a-project" id="toc-setting-up-a-project" class="nav-link" data-scroll-target="#setting-up-a-project">Setting up a project</a></li>
-  <li><a href="#finding-help" id="toc-finding-help" class="nav-link" data-scroll-target="#finding-help">Finding help</a>
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link" data-scroll-target="#setting-up">Setting up</a>
+  <ul class="collapse">
+  <li><a href="#new-project-folder" id="toc-new-project-folder" class="nav-link" data-scroll-target="#new-project-folder">New project folder</a></li>
+  <li><a href="#create-a-script" id="toc-create-a-script" class="nav-link" data-scroll-target="#create-a-script">Create a script</a></li>
+  <li><a href="#finding-help" id="toc-finding-help" class="nav-link" data-scroll-target="#finding-help">Finding help</a></li>
+  </ul></li>
+  <li><a href="#installing-ggplot2" id="toc-installing-ggplot2" class="nav-link" data-scroll-target="#installing-ggplot2">Installing ggplot2</a>
   <ul class="collapse">
   <li><a href="#introducing-ggplot2" id="toc-introducing-ggplot2" class="nav-link" data-scroll-target="#introducing-ggplot2">Introducing ggplot2</a></li>
   </ul></li>
-  <li><a href="#the-components-of-the-grammar-of-graphics" id="toc-the-components-of-the-grammar-of-graphics" class="nav-link" data-scroll-target="#the-components-of-the-grammar-of-graphics">The components of the Grammar of Graphics</a></li>
+  <li><a href="#the-components-of-the-grammar-of-graphics" id="toc-the-components-of-the-grammar-of-graphics" class="nav-link" data-scroll-target="#the-components-of-the-grammar-of-graphics">The components of the Grammar of Graphics</a>
+  <ul class="collapse">
   <li><a href="#ggplot2s-three-essential-components" id="toc-ggplot2s-three-essential-components" class="nav-link" data-scroll-target="#ggplot2s-three-essential-components">ggplot2’s three essential components</a></li>
+  <li><a href="#horizontal-bar-charts" id="toc-horizontal-bar-charts" class="nav-link" data-scroll-target="#horizontal-bar-charts">Horizontal bar charts</a></li>
+  </ul></li>
   <li><a href="#line-plots" id="toc-line-plots" class="nav-link" data-scroll-target="#line-plots">Line plots</a></li>
   <li><a href="#scatterplots" id="toc-scatterplots" class="nav-link" data-scroll-target="#scatterplots">Scatterplots</a></li>
   <li><a href="#adding-aesthetics" id="toc-adding-aesthetics" class="nav-link" data-scroll-target="#adding-aesthetics">Adding aesthetics</a></li>
@@ -762,15 +769,10 @@ window.Quarto = {
   <li><a href="#challenge-1-where-should-aesthetics-be-defined" id="toc-challenge-1-where-should-aesthetics-be-defined" class="nav-link" data-scroll-target="#challenge-1-where-should-aesthetics-be-defined">Challenge 1 – where should aesthetics be defined?</a></li>
   <li><a href="#change-a-geometrys-default-colour" id="toc-change-a-geometrys-default-colour" class="nav-link" data-scroll-target="#change-a-geometrys-default-colour">Change a geometry’s default colour</a></li>
   </ul></li>
+  <li><a href="#customising-labels" id="toc-customising-labels" class="nav-link" data-scroll-target="#customising-labels">Customising labels</a></li>
   <li><a href="#saving-a-plot" id="toc-saving-a-plot" class="nav-link" data-scroll-target="#saving-a-plot">Saving a plot</a></li>
   <li><a href="#challenge-2-add-a-variable-and-a-smooth-line" id="toc-challenge-2-add-a-variable-and-a-smooth-line" class="nav-link" data-scroll-target="#challenge-2-add-a-variable-and-a-smooth-line">Challenge 2 – add a variable and a smooth line</a></li>
-  <li><a href="#bar-charts-and-ordered-factors" id="toc-bar-charts-and-ordered-factors" class="nav-link" data-scroll-target="#bar-charts-and-ordered-factors">Bar charts and ordered factors</a></li>
-  <li><a href="#customising-a-plot" id="toc-customising-a-plot" class="nav-link" data-scroll-target="#customising-a-plot">Customising a plot</a>
-  <ul class="collapse">
-  <li><a href="#change-labels" id="toc-change-labels" class="nav-link" data-scroll-target="#change-labels">Change labels</a></li>
-  <li><a href="#horizontal-bar-charts" id="toc-horizontal-bar-charts" class="nav-link" data-scroll-target="#horizontal-bar-charts">Horizontal bar charts</a></li>
-  <li><a href="#built-in-themes" id="toc-built-in-themes" class="nav-link" data-scroll-target="#built-in-themes">Built-in themes</a></li>
-  </ul></li>
+  <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes">Themes</a></li>
   <li><a href="#play-time" id="toc-play-time" class="nav-link" data-scroll-target="#play-time">Play time!</a>
   <ul class="collapse">
   <li><a href="#challenge-3-explore-geometries" id="toc-challenge-3-explore-geometries" class="nav-link" data-scroll-target="#challenge-3-explore-geometries">Challenge 3: explore geometries</a></li>
@@ -803,7 +805,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 9, 2026</p>
+      <p class="date">September 10, 2026</p>
     </div>
   </div>
   
@@ -828,34 +830,60 @@ window.Quarto = {
 <li>Learn how to customise a plot with colours, labels and themes.</li>
 </ul>
 </section>
-<section id="open-positron" class="level2">
-<h2 class="anchored" data-anchor-id="open-positron">Open Positron</h2>
-<ul>
-<li>If you are using your own laptop please open Positron
-<ul>
-<li>If you need them, we have <a href="../../R/installation.html">installation instructions</a></li>
-</ul></li>
-<li>Make sure you have a working internet connection</li>
-<li>On Library computers (the first time takes about 20 min.):
-<ul>
-<li>Log in with your UQ credentials (student account if you have two)</li>
-<li>Make sure you have a working internet connection</li>
-<li>Open the Start menu</li>
-<li>Search for and open ZENworks</li>
-<li>Look for R - Statistical Computing and double-click it to install</li>
-<li>Look for Positron and double-click it to install</li>
-<li>Open Positron through the Start Menu once the installation is complete</li>
-</ul></li>
-</ul>
+<section id="setting-up" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
+<p>Let’s open Positron and get set up. (If you don’t have it installed already, follow the <a href="../../R/installation.html">installation instructions</a>.)</p>
+<p>Everything we write today will be saved in your project. If you are using a Library computer, remember to save it on your H drive or USB stick.</p>
+<section id="new-project-folder" class="level3">
+<h3 class="anchored" data-anchor-id="new-project-folder">New project folder</h3>
+<p>A project folder helps us keep all files related to one project in a single location. It makes it easy to share it, and to switch from one project to another.</p>
+<ol type="1">
+<li>Select New (top left) and choose “New Folder from Template”</li>
+<li>Select “R Project” from the available templates</li>
+<li>Enter a Folder name for your project</li>
+<li>Choose the Location where you want to save the project, such as <code>Documents/RProjects</code>, which you can create if it doesn’t exist yet</li>
+<li>Leave the default options selected (unless instructed otherwise)</li>
+<li>Click “Create”</li>
+</ol>
 </section>
-<section id="essential-shortcuts" class="level2">
-<h2 class="anchored" data-anchor-id="essential-shortcuts">Essential shortcuts</h2>
-<p>Remember some of the most commonly used Positron shortcuts:</p>
+<section id="create-a-script" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-script">Create a script</h3>
+<p>We use a script to save our code and write more comfortably.</p>
+<p>When creating a new R project, Positron opens a new R script in the <strong>Editor</strong> above the console. You can straight away save this script and name it something like “process.R”.</p>
+<p>You can now write some comments (lines that start with <code>#</code>) to introduce the script.</p>
+<p>Remember some of the most commonly used Positron shortcuts when writing an R script:</p>
 <ul>
-<li>function or dataset help: press <kbd>F1</kbd> with your cursor anywhere in its name.</li>
-<li>execute from script: <kbd>Ctrl</kbd> + <kbd>Enter</kbd></li>
-<li>assignment operator (<code>&lt;-</code>): <kbd>Alt</kbd> + <kbd>-</kbd></li>
+<li>execute the current command: <kbd title="Ctrl + Enter" aria-hidden="true">Ctrl + Enter</kbd><span class="visually-hidden">Ctrl + Enter</span></li>
+<li>assignment operator (<code>&lt;-</code>): <kbd title="Alt + -" aria-hidden="true">Alt + -</kbd><span class="visually-hidden">Alt + -</span></li>
 </ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To avoid common issues, keep in mind:</p>
+<ul>
+<li>R is case sensitive: it will tell the difference between uppercase and lowercase.</li>
+<li>Objects and functions have naming rules, the main ones being: no spaces; don’t start with a number.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="finding-help" class="level3">
+<h3 class="anchored" data-anchor-id="finding-help">Finding help</h3>
+<p>For any dataset or function doubts that you might have, open the documentation! In Positron, you can find it with:</p>
+<ol type="1">
+<li>the shortcut command: <code>?functionname</code></li>
+<li>the help function: <code>help(functionname)</code></li>
+<li>the keyboard shortcut: press <kbd title="F1" aria-hidden="true">F1</kbd><span class="visually-hidden">F1</span> after placing your cursor on a function name</li>
+<li>the popup: hover over a function name</li>
+</ol>
+</section>
 </section>
 <section id="installing-ggplot2" class="level2">
 <h2 class="anchored" data-anchor-id="installing-ggplot2">Installing ggplot2</h2>
@@ -867,41 +895,10 @@ window.Quarto = {
 <li>Select the latest version offered</li>
 </ol>
 <p>You only need to install a package once, but you need to load it every time you start a new R session.</p>
-</section>
-<section id="setting-up-a-project" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-a-project">Setting up a project</h2>
-<blockquote class="blockquote">
-<p>Everything we write today will be saved in your R project. Please remember to save it on your H drive or USB if you are using a Library computer.</p>
-</blockquote>
-<p>Let’s create a new <strong>R project</strong> to keep everything tidy:</p>
-<ul>
-<li>Click the “Folder Selector” menu (top right corner), then “New Folder from Template…”</li>
-<li>Click “R Project” and “Next”</li>
-<li>In “Folder name”, type the name of your project, for example “YYYY-MM-DD_R-intro”</li>
-<li>For “Location”, browse and select a folder where to locate your project (otherwise, the default will be your home directory)</li>
-<li>Click “Next”</li>
-<li>In “Project Configuration”, keep the defaults, click “Create” and finally “Current window”</li>
-</ul>
-<p>Let’s also create a “plots” folder to store exports:</p>
+<p>We can now <strong>load the package</strong> by writing this command in the script and executing it:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"plots"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>When creating a new project, Positron opens a new script in the <strong>Editor</strong> above the console. You can straight away save this script and name it something like “process.R”.</p>
-<p>We can straight away <strong>load the package</strong> by adding this command to our script and executing it:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<blockquote class="blockquote">
-<p>Remember to use <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute a command from the script.</p>
-</blockquote>
-</section>
-<section id="finding-help" class="level2">
-<h2 class="anchored" data-anchor-id="finding-help">Finding help</h2>
-<p>We are going to work with different datasets that come with the ggplot2 package. For any dataset or function doubts that you might have, don’t forget the two main ways to bring up a help page:</p>
-<ol type="1">
-<li>the command: <code>?functionname</code></li>
-<li>the keyboard shortcut: press <kbd>F1</kbd> after writing a function name</li>
-</ol>
 <section id="introducing-ggplot2" class="level3">
 <h3 class="anchored" data-anchor-id="introducing-ggplot2">Introducing ggplot2</h3>
 <p>The R package ggplot2 was developed by Hadley Wickham with the objective of creating a grammar of graphics for categorical data (in 2007). It is based on the book <em>The Grammar of Graphics</em> Developed by Leland Wilkinson (first edition published in 1999).</p>
@@ -923,9 +920,8 @@ window.Quarto = {
 <li>Theme</li>
 </ul>
 <p>In this introductory session, we will mainly focus on the <strong>data</strong>, the <strong>mapping</strong>, the <strong>statistics</strong>, the <strong>geometries</strong> and the <strong>theme</strong>.</p>
-</section>
-<section id="ggplot2s-three-essential-components" class="level2">
-<h2 class="anchored" data-anchor-id="ggplot2s-three-essential-components">ggplot2’s three essential components</h2>
+<section id="ggplot2s-three-essential-components" class="level3">
+<h3 class="anchored" data-anchor-id="ggplot2s-three-essential-components">ggplot2’s three essential components</h3>
 <p>In ggplot2, the 3 main components that we usually have to provide are:</p>
 <ol type="1">
 <li>Where the <strong>data</strong> comes from,</li>
@@ -938,7 +934,7 @@ window.Quarto = {
 </blockquote>
 <p>Let’s start with specifying where the <strong>data</strong> comes from in the <code>ggplot()</code> function:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> msleep)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> msleep)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -949,8 +945,8 @@ window.Quarto = {
 </div>
 <p>This is not very interesting. We need to tell ggplot2 <em>what</em> we want to visualise, by <strong>mapping</strong> <em>aesthetic elements</em> (like our axes) to <em>variables</em> from the data. We want to visualise how common different conservations statuses are, so let’s associate the right variable to the x axis:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> msleep,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> conservation))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> msleep,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> conservation))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -961,9 +957,9 @@ window.Quarto = {
 </div>
 <p>ggplot2 has done what we asked it to do: the conservation variable is on the x axis. But nothing is shown on the plot area, because we haven’t defined <em>how</em> to represent the data, with a <code>geometry_*</code> function:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> msleep,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> conservation)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> msleep,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> conservation)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -980,9 +976,38 @@ window.Quarto = {
 <li>the <strong>geometry</strong> is <code>"bar"</code>, for “bar chart”.</li>
 </ol>
 <p>Here, we don’t need to specify what variable is associated to the y axis, as the “bar” geometry automatically does a count of the different values in the <code>conservation</code> variable. That is what <strong>statistics</strong> are applied automatically to the data.</p>
-<blockquote class="blockquote">
-<p>In ggplot2, each geometry has default statistics, so we often don’t need to specify which stats we want to use. We could use a <code>stat_*()</code> function instead of a <code>geom_*()</code> function, but most people start with the geometry (and let ggplot2 pick the default statistics that are applied).</p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled" title="Statistics and geometries">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Statistics and geometries
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In ggplot2, each geometry has default statistics setting, so we often don’t need to specify which stats we want to use. We could use a <code>stat_*()</code> function instead of a <code>geom_*()</code> function, but most people start with the geometry (and let ggplot2 pick the default statistics that are applied).</p>
+<p>Run <code>?geom_bar</code> to see that it uses <code>stat = "count"</code> as a default, and that <code>stat_count()</code> does the equivalent with <code>geom = "bar"</code>.</p>
+</div>
+</div>
+</section>
+<section id="horizontal-bar-charts" class="level3">
+<h3 class="anchored" data-anchor-id="horizontal-bar-charts">Horizontal bar charts</h3>
+<p>What if we prefer to use horizontal bars? We only need to switching the mapping of the variable to the <code>y</code> aesthetic:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> msleep,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> conservation)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>ggplot2 happily swaps the counts to the <code>x</code> axis. This is particularly helpful when long category names overlap under the x axis.</p>
+</section>
 </section>
 <section id="line-plots" class="level2">
 <h2 class="anchored" data-anchor-id="line-plots">Line plots</h2>
@@ -1008,7 +1033,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1042,7 +1067,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1056,7 +1081,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1070,7 +1095,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1091,7 +1116,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1113,7 +1138,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1134,7 +1159,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1155,7 +1180,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1179,7 +1204,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1212,30 +1237,67 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Notice how this is not happening inside an <code>aes()</code> function? That’s because we are not mapping a variable from the dataset to the geometry’s aesthetic! We are only replacing the default colour of this trend line, which is used when there is not mapping to the data.</p>
+<p>Notice how this is not happening inside an <code>aes()</code> function? That’s because we are not mapping a variable from the dataset to the geometry’s aesthetic! We are only replacing the default colour of this trend line, which is used when there is no mapping to the data.</p>
 <p>If you are curious about what colour names exist in R, you can use the <code>colours()</code> function.</p>
 </section>
 </section>
+<section id="customising-labels" class="level2">
+<h2 class="anchored" data-anchor-id="customising-labels">Customising labels</h2>
+<p>Variable names that are convenient to write code with are rarely suitable for a publication-ready plot. We should modify labels with the <code>labs()</code> function to make our plot more self-explanatory:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg,</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> displ,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">colour =</span> class)) <span class="sc">+</span> </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Does engine size relate to fuel efficiency?"</span>,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Displacement (L)"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Fuel efficiency (mpg)"</span>,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">colour =</span> <span class="st">"Type of car"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <code>labs()</code> function allows us to change</p>
+<blockquote class="blockquote">
+<p>Remember that captions and titles are better sorted out in the publication itself, especially for accessibility reasons (e.g.&nbsp;to help with screen readers).</p>
+</blockquote>
+</section>
 <section id="saving-a-plot" class="level2">
 <h2 class="anchored" data-anchor-id="saving-a-plot">Saving a plot</h2>
-<p>Like your visualisation? You can export it with the “Export” menu in the “Plots” pane.</p>
+<p>Like your visualisation? Let’s export it to use it outside of Positron.</p>
+<p>To keep things tidy, let’s first create a “plots” folder. Use the “Explorer” tab, or run this command in your console:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"plots"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>There are a few ways to manually export the plot from the Plots pane:</p>
 <ul>
-<li>Building a document or a slideshow? You can copy it straight to your clipboard, and paste it into it.</li>
-<li>A PDF is a good, quick option to export an easily shareable file with vector graphics. Try for example the “A5” size, the “Landscape” orientation, and save it into your “plots” directory.</li>
-<li>More options are available in the “Save as image…” option. PNG is a good compressed format for graphics, but if you want to further customise your visualisation in a different program, use SVG or EPS, which are vector formats. (Try to open an SVG file in <a href="https://inkscape.org/">Inkscape</a> for example.)</li>
+<li>Building a document or a slideshow? You can copy it straight to your clipboard with the “Copy plot to Clipboard” button, and paste it into it.</li>
+<li>For more options, use the “Save Plot” button.
+<ul>
+<li>PNG is a good compressed raster format for graphics (prefer this one over JPEG if you can)</li>
+<li>If you want an image that looks sharp regardless of zoom level, and if you want to further customise your visualisation, use SVG. (Try to open an SVG file in <a href="https://inkscape.org/">Inkscape</a> for example.) PDF also uses vector graphics, but is not a format designed to be further edited.</li>
+</ul></li>
 </ul>
 <p>To save the last plot with a command, you can use the <code>ggsave()</code> function:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"plots/fuel_efficiency.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"plots/fuel_efficiency.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This is great to automate the export process for each plot in your script, but <code>ggsave()</code> also has extra options, like setting the DPI, which is useful for getting the right resolution for a specific use. For example, to export a plot for your presentation:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"plots/fuel_efficiency.png"</span>, <span class="at">dpi =</span> <span class="st">"screen"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"plots/fuel_efficiency.png"</span>, <span class="at">dpi =</span> <span class="st">"screen"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <blockquote class="blockquote">
 <p>Saving a .svg file with requires installing the svglite package. This packages seems so work best installing in a fresh R session (Session &gt; Restart R) from source <code>install.packages("svglite", type = "source")</code>. Then load the library <code>library(svglite)</code> rerun your code including loading previous libraries (<code>ggplot2</code> etc.) and now saving a plot with a .svg extension should work!</p>
@@ -1246,10 +1308,10 @@ window.Quarto = {
 <p>Let’s use a similar approach to what we did with the <code>mpg</code> dataset.</p>
 <p>Take our previous unemployment visualisation, but represented with points this time:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> unemploy)) <span class="sc">+</span> </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> unemploy)) <span class="sc">+</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>How could we:</p>
 <ol type="1">
@@ -1257,51 +1319,11 @@ window.Quarto = {
 <li>Colour the points according to the median duration of unemployment (see <code>?economics</code>)</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> unemploy)) <span class="sc">+</span> </span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> uempmed)) <span class="sc">+</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<blockquote class="blockquote">
-<p>See how the legend changes depending on the type of data mapped to the <code>colour</code> aesthetic? (i.e.&nbsp;categorical vs continuous)</p>
-</blockquote>
-<p>This default “trend line” is not particularly useful. We could make it follow the data more closely by using the <code>span</code> argument. The closer to 0, the closer to the data the smoother will be:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> unemploy)) <span class="sc">+</span> </span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> uempmed)) <span class="sc">+</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>You can now see why this is called a “smoother”: we can fit a smooth curve to data that varies a lot.</p>
-<p>To further refine our visualisation , we could visualise the unemployment rate rather than the number of unemployed people, by calculating it straight into our code:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> unemploy <span class="sc">/</span> pop)) <span class="sc">+</span> </span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> uempmed)) <span class="sc">+</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> unemploy)) <span class="sc">+</span> </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> uempmed)) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
@@ -1313,22 +1335,38 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>The <a href="https://en.wikipedia.org/wiki/Early_1980s_recession">early 1980s recession</a> now seems to have had a more significant impact on unemployment than the <a href="https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%9308">Global Financial Crisis</a> of 2007-2008.</p>
-</section>
-<section id="bar-charts-and-ordered-factors" class="level2">
-<h2 class="anchored" data-anchor-id="bar-charts-and-ordered-factors">Bar charts and ordered factors</h2>
-<p>Let’s use the <code>diamonds</code> dataset now. The <code>diamonds</code> dataset comes with ggplot2 and contains information about ~54,000 diamonds, including the price, carat, colour, clarity, and cut quality of each diamond.</p>
-<p>Let’s have a look at the data:</p>
+<blockquote class="blockquote">
+<p>See how the legend changes depending on the type of data mapped to the <code>colour</code> aesthetic? (i.e.&nbsp;categorical vs continuous)</p>
+</blockquote>
+<p>This default “trend line” is not particularly useful. We could make it follow the data more closely by using the <code>span</code> argument. The closer to 0, the closer to the data the smoother will be:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>diamonds</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(diamonds)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>?diamonds</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> unemploy)) <span class="sc">+</span> </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> uempmed)) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
-<p>Back to bar charts. Consider a basic bar chart, as drawn with <code>geom_bar()</code>. The following chart displays the total number of diamonds in the <code>diamonds</code> dataset, grouped by cut:</p>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can now see why this is called a “smoother”: we can fit a smooth curve to data that varies a lot.</p>
+<p>To further refine our visualisation , we could visualise the unemployment rate rather than the number of unemployed people, by calculating it straight into our code:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds,</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> cut)) <span class="sc">+</span> </span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> unemploy <span class="sc">/</span> pop)) <span class="sc">+</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> uempmed)) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1337,88 +1375,28 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>The chart shows that more diamonds are available with high quality cuts than with low quality cuts.</p>
-<p><code>cut</code> is an ordered factor, which you can confirm by printing it to the console:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds<span class="sc">$</span>cut)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] Ideal     Premium   Good      Premium   Good      Very Good
-Levels: Fair &lt; Good &lt; Very Good &lt; Premium &lt; Ideal</code></pre>
-</div>
-</div>
-<p>See how ggplot2 respects that order in the bar chart?</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Early_1980s_recession">early 1980s recession</a> now seems to have had a more significant impact on unemployment than the <a href="https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%9308">Global Financial Crisis</a> of 2007-2008.</p>
 </section>
-<section id="customising-a-plot" class="level2">
-<h2 class="anchored" data-anchor-id="customising-a-plot">Customising a plot</h2>
-<p>Let’s see how we can customise our bar chart’s look.</p>
-<section id="change-labels" class="level3">
-<h3 class="anchored" data-anchor-id="change-labels">Change labels</h3>
-<p>We can also modify labels with the <code>labs()</code> function to make our plot more self-explanatory:</p>
+<section id="themes" class="level2">
+<h2 class="anchored" data-anchor-id="themes">Themes</h2>
+<p>The <code>theme()</code> function allows us to really get into the details of our plot’s look, but some <code>theme_*()</code> functions make it easy to quickly apply a built-in theme, like <code>theme_bw()</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds,</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> cut)) <span class="sc">+</span> </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Where are the bad ones?"</span>,</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Quality of the cut"</span>,</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Number of diamonds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds,</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> cut)) <span class="sc">+</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Where are the bad ones?"</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Quality of the cut"</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Number of diamonds"</span>) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Let’s have a look at what <code>labs()</code> can do:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>?labs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>It can edit the title, the subtitle, the x and y axes labels, and the caption.</p>
-<blockquote class="blockquote">
-<p>Remember that captions and titles are better sorted out in the publication itself, especially for accessibility reasons (e.g.&nbsp;to help with screen readers).</p>
-</blockquote>
-</section>
-<section id="horizontal-bar-charts" class="level3">
-<h3 class="anchored" data-anchor-id="horizontal-bar-charts">Horizontal bar charts</h3>
-<p>For a horizontal bar chart, we can map the <code>cut</code> variable to the <code>y</code> aesthetic instead of <code>x</code>. But remember to also change your labels around!</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds,</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> cut)) <span class="sc">+</span> <span class="co"># switch here...</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Where are the bad ones?"</span>,</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Quality of the cut"</span>, <span class="co"># ...but also here!</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Number of diamonds"</span>) <span class="co"># ...and here!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This is particularly helpful when long category names overlap under the x axis.</p>
-</section>
-<section id="built-in-themes" class="level3">
-<h3 class="anchored" data-anchor-id="built-in-themes">Built-in themes</h3>
-<p>The <code>theme()</code> function allows us to really get into the details of our plot’s look, but some <code>theme_*()</code> functions make it easy to apply a built-in theme, like <code>theme_bw()</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds,</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> cut)) <span class="sc">+</span> </span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Where are the bad ones?"</span>,</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Quality of the cut"</span>,</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Number of diamonds"</span>) <span class="sc">+</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_intro_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Try <code>theme_minimal()</code> as well, and if you want more options, install the <code>ggthemes</code> package!</p>
-</section>
 </section>
 <section id="play-time" class="level2">
 <h2 class="anchored" data-anchor-id="play-time">Play time!</h2>
