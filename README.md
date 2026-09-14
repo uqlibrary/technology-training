@@ -36,6 +36,8 @@ If you prefer to work on your local copy of the repository:
  
  3. Once you are happy with the changes, commit and push them to this repository.
 
+If you use the "Visual Mode" to edit Quarto files, please make sure you use the "Tight List" setting in order to avoid blank space and keep files consistent. (In "File - Preferences - Settings", search for `quarto.visualEditor.defaultListSpacing` and switch from the default "spaced" to "tight".
+
 If you are editing manuals for R or Python workshops, please read the "Computational documents" section below.
 
 ### Computational documents
