@@ -801,7 +801,7 @@ window.Quarto = {
 </header>
 
 
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/Python/4-stats_and_further_vis/stats_and_vis_banner.qmd" data-notebook-title="Upcoming workshop(s) available!" data-notebook-cellid="2db5c50e-521d-4015-aaa2-8c8575a99312">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/Python/4-stats_and_further_vis/stats_and_vis_banner.qmd" data-notebook-title="Upcoming workshop(s) available!" data-notebook-cellid="4420924b-fedf-4d67-b9fe-2525c18bb8dc">
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -881,7 +881,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Next, create a new script and begin by importing the modules:</p>
-<div id="8f659530" class="cell" data-execution_count="1">
+<div id="af5e7e57" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
@@ -895,7 +895,7 @@ window.Quarto = {
 <li>Save the dataset there.</li>
 </ol>
 <p>To bring it in and clean it up,</p>
-<div id="9d7f3ad6" class="cell" data-execution_count="2">
+<div id="20b234de" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/Players2024.csv"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"positions"</span>] <span class="op">!=</span> <span class="st">"Missing"</span>]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"height_cm"</span>] <span class="op">&gt;</span> <span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -906,7 +906,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
 <p>We’ll start with sample size. All dataframes have most descriptive statistics functions available right off the bat which we access via the <code>.</code> operator.</p>
 <p>To calculate the number of non-empty observations in a column, say the numeric variable <code>df["height_cm"]</code>, we use the <code>.count()</code> method</p>
-<div id="4273c580" class="cell" data-execution_count="3">
+<div id="5bf1a6e2" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].count()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>np.int64(5932)</code></pre>
@@ -915,21 +915,21 @@ window.Quarto = {
 <section id="measures-of-central-tendancy" class="level3">
 <h3 class="anchored" data-anchor-id="measures-of-central-tendancy">Measures of central tendancy</h3>
 <p>We can compute measures of central tendancy similarly. The average value is given by</p>
-<div id="43482e42" class="cell" data-execution_count="4">
+<div id="4d679ca8" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>np.float64(183.04130141604855)</code></pre>
 </div>
 </div>
 <p>the median by</p>
-<div id="3ebc046c" class="cell" data-execution_count="5">
+<div id="bbf30697" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].median()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>np.float64(183.0)</code></pre>
 </div>
 </div>
 <p>and the mode by</p>
-<div id="9a4bd299" class="cell" data-execution_count="6">
+<div id="a040c890" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].mode()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>0    185.0
@@ -942,7 +942,7 @@ Name: height_cm, dtype: float64</code></pre>
 <section id="visualisation" class="level4">
 <h4 class="anchored" data-anchor-id="visualisation">Visualisation</h4>
 <p>Let’s visualise our statistics as we go. We can start by producing a histogram of the heights with <code>seaborn</code>:</p>
-<div id="e04ae6a9" class="cell" data-execution_count="7">
+<div id="53d58d75" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sns.displot(df, x <span class="op">=</span> <span class="st">"height_cm"</span>, binwidth <span class="op">=</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -961,7 +961,7 @@ Name: height_cm, dtype: float64</code></pre>
 <li><code>linestyles =</code></li>
 <li><code>label =</code></li>
 </ul>
-<div id="84c3885d" class="cell" data-execution_count="8">
+<div id="018ca7ba" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the statistics</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>height_avg <span class="op">=</span> df[<span class="st">"height_cm"</span>].mean()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>height_med <span class="op">=</span> df[<span class="st">"height_cm"</span>].median()</span>
@@ -1012,7 +1012,7 @@ Name: height_cm, dtype: float64</code></pre>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The following code is one possible solution.</p>
-<div id="3217a8c8" class="cell" data-execution_count="9">
+<div id="7723cf54" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the statistics</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>height_avg <span class="op">=</span> df[<span class="st">"height_cm"</span>].mean()</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>height_med <span class="op">=</span> df[<span class="st">"height_cm"</span>].median()</span>
@@ -1029,13 +1029,10 @@ Name: height_cm, dtype: float64</code></pre>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the legend with the labels</span></span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>plt.legend(frameon <span class="op">=</span> <span class="va">False</span>)</span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Height (cm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>Text(0.5, 9.066666666666652, 'Height (cm)')</code></pre>
-</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="stats_and_vis_files/figure-html/cell-10-output-2.png" width="470" height="470" class="figure-img"></p>
+<p><img src="stats_and_vis_files/figure-html/cell-10-output-1.png" width="470" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1057,61 +1054,55 @@ Name: height_cm, dtype: float64</code></pre>
 <div class="callout-body-container callout-body">
 <p>You can tell <code>matplotlib</code> to execute certain <span class="math inline">\(\LaTeX\)</span> commands in the text you plot, enabling inclusion of mathematics in your plots. This is particularly useful for certain units.</p>
 <p>Let’s imagine we want to use <span class="math inline">\(x_{height}\)</span> for the <span class="math inline">\(x\)</span>-label. Using dollar signs,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"$x_</span><span class="sc">{height}</span><span class="st">$ (cm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="8294f82a" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the statistics</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>height_avg <span class="op">=</span> df[<span class="st">"height_cm"</span>].mean()</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>height_med <span class="op">=</span> df[<span class="st">"height_cm"</span>].median()</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>height_mod <span class="op">=</span> df[<span class="st">"height_cm"</span>].mode()</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the histogram</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>sns.displot(df, x <span class="op">=</span> <span class="st">"height_cm"</span>, binwidth <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate the plot with vertical and horizontal lines</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_avg, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"r"</span>, label <span class="op">=</span> <span class="st">"Average"</span>)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_med, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"k"</span>, linestyles <span class="op">=</span> <span class="st">"dotted"</span>, label <span class="op">=</span> <span class="st">"Median"</span>)</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_mod, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"orange"</span>, label <span class="op">=</span> <span class="st">"Mode"</span>)</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the legend with the labels</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>plt.legend(frameon <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"$x_</span><span class="sc">{height}</span><span class="st">$ (cm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>Text(0.5, 9.066666666666652, '$x_{height}$ (cm)')</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"$x_</span><span class="sc">{height}</span><span class="st">$ (cm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="f9d360d3" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the statistics</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>height_avg <span class="op">=</span> df[<span class="st">"height_cm"</span>].mean()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>height_med <span class="op">=</span> df[<span class="st">"height_cm"</span>].median()</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>height_mod <span class="op">=</span> df[<span class="st">"height_cm"</span>].mode()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the histogram</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>sns.displot(df, x <span class="op">=</span> <span class="st">"height_cm"</span>, binwidth <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate the plot with vertical and horizontal lines</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_avg, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"r"</span>, label <span class="op">=</span> <span class="st">"Average"</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_med, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"k"</span>, linestyles <span class="op">=</span> <span class="st">"dotted"</span>, label <span class="op">=</span> <span class="st">"Median"</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_mod, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"orange"</span>, label <span class="op">=</span> <span class="st">"Mode"</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the legend with the labels</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>plt.legend(frameon <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"$x_</span><span class="sc">{height}</span><span class="st">$ (cm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="stats_and_vis_files/figure-html/cell-11-output-2.png" width="470" height="474" class="figure-img"></p>
+<p><img src="stats_and_vis_files/figure-html/cell-11-output-1.png" width="470" height="474" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p><span class="math inline">\(\LaTeX\)</span> commands use backslashes <code>\</code>, and sometimes this conflicts with Python string’s escape characters. To avoid this, prefix your conflicting strings with <code>R</code>, as in</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">R"$x_</span><span class="sc">{height}</span><span class="vs">$ (m$\times 10^{-2}$)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="52703c24" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the statistics</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>height_avg <span class="op">=</span> df[<span class="st">"height_cm"</span>].mean()</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>height_med <span class="op">=</span> df[<span class="st">"height_cm"</span>].median()</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>height_mod <span class="op">=</span> df[<span class="st">"height_cm"</span>].mode()</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the histogram</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>sns.displot(df, x <span class="op">=</span> <span class="st">"height_cm"</span>, binwidth <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate the plot with vertical and horizontal lines</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_avg, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"r"</span>, label <span class="op">=</span> <span class="st">"Average"</span>)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_med, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"k"</span>, linestyles <span class="op">=</span> <span class="st">"dotted"</span>, label <span class="op">=</span> <span class="st">"Median"</span>)</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_mod, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"orange"</span>, label <span class="op">=</span> <span class="st">"Mode"</span>)</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the legend with the labels</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>plt.legend(frameon <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">R"$x_</span><span class="sc">{height}</span><span class="vs">$ (m$\times 10^{-2}$)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>Text(0.5, 9.066666666666652, '$x_{height}$ (m$\\times 10^{-2}$)')</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">R"$x_</span><span class="sc">{height}</span><span class="vs">$ (m$\times 10^{-2}$)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5034673b" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the statistics</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>height_avg <span class="op">=</span> df[<span class="st">"height_cm"</span>].mean()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>height_med <span class="op">=</span> df[<span class="st">"height_cm"</span>].median()</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>height_mod <span class="op">=</span> df[<span class="st">"height_cm"</span>].mode()</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the histogram</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>sns.displot(df, x <span class="op">=</span> <span class="st">"height_cm"</span>, binwidth <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate the plot with vertical and horizontal lines</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_avg, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"r"</span>, label <span class="op">=</span> <span class="st">"Average"</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_med, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"k"</span>, linestyles <span class="op">=</span> <span class="st">"dotted"</span>, label <span class="op">=</span> <span class="st">"Median"</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_mod, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"orange"</span>, label <span class="op">=</span> <span class="st">"Mode"</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the legend with the labels</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>plt.legend(frameon <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">R"$x_</span><span class="sc">{height}</span><span class="vs">$ (m$\times 10^{-2}$)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="stats_and_vis_files/figure-html/cell-12-output-2.png" width="470" height="476" class="figure-img"></p>
+<p><img src="stats_and_vis_files/figure-html/cell-12-output-1.png" width="470" height="476" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1123,52 +1114,52 @@ Name: height_cm, dtype: float64</code></pre>
 <section id="measures-of-variance" class="level3">
 <h3 class="anchored" data-anchor-id="measures-of-variance">Measures of variance</h3>
 <p>We can also compute measures of variance. The minimum and maximum are as expected</p>
-<div id="771c7b91" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].<span class="bu">min</span>()</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].<span class="bu">max</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="d7a038f6" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].<span class="bu">min</span>()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].<span class="bu">max</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>np.float64(206.0)</code></pre>
 </div>
 </div>
 <p>The range is the difference</p>
-<div id="ba721079" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].<span class="bu">max</span>() <span class="op">-</span> df[<span class="st">"height_cm"</span>].<span class="bu">min</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="4fa586ab" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].<span class="bu">max</span>() <span class="op">-</span> df[<span class="st">"height_cm"</span>].<span class="bu">min</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>np.float64(46.0)</code></pre>
 </div>
 </div>
 <p>Quantiles are given by <code>.quantile(...)</code> with the fraction inside. The inter-quartile range (IQR) is the difference between 25% and 75%.</p>
-<div id="290013e3" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>q1 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.25</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>q3 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.75</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>IQR <span class="op">=</span> q3 <span class="op">-</span> q1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="ca01fc3f" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>q1 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.25</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>q3 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.75</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>IQR <span class="op">=</span> q3 <span class="op">-</span> q1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>A column’s standard deviation and variance are given by</p>
-<div id="1a2636fa" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].std()</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].var()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="4b86bd88" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].std()</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].var()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>np.float64(46.7683158241558)</code></pre>
 </div>
 </div>
 <p>And the standard error of the mean (SEM) with</p>
-<div id="0a48d1a8" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].sem()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="34b16464" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].sem()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>np.float64(0.08879229764682213)</code></pre>
 </div>
 </div>
 <p>You can calculate the skewness and kurtosis (variation of tails) of a sample with</p>
-<div id="68544f21" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].skew()</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].kurt()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="ecda8471" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].skew()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].kurt()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>np.float64(-0.4338044567190438)</code></pre>
 </div>
 </div>
 <p>All together, you can see a nice statistical summary with</p>
-<div id="3fd49dad" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="2e96f821" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"height_cm"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>count    5932.000000
 mean      183.041301
@@ -1198,7 +1189,7 @@ Name: height_cm, dtype: float64</code></pre>
 <li><code>y2 =</code></li>
 </ul>
 <p>i.e.,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x <span class="op">=</span> ..., y1 <span class="op">=</span> ..., y2 <span class="op">=</span> ...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x <span class="op">=</span> ..., y1 <span class="op">=</span> ..., y2 <span class="op">=</span> ...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Once you’ve got it working, try adding the following two - <code>alpha =</code> (for the opacity, a number between 0-1) - <code>label =</code> (for the legend)</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1230,37 +1221,37 @@ Name: height_cm, dtype: float64</code></pre>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The following code is one possible solution.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the quartiles</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>height_Q1 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.25</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>height_Q3 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.75</span>)</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Shade in the IQR</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x <span class="op">=</span> [height_Q1, height_Q3], y1 <span class="op">=</span> <span class="dv">0</span>, y2 <span class="op">=</span> <span class="dv">500</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, label <span class="op">=</span> <span class="st">"IQR"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the quartiles</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>height_Q1 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.25</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>height_Q3 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.75</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Shade in the IQR</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x <span class="op">=</span> [height_Q1, height_Q3], y1 <span class="op">=</span> <span class="dv">0</span>, y2 <span class="op">=</span> <span class="dv">500</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, label <span class="op">=</span> <span class="st">"IQR"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>All together with the original plot, this looks like</p>
-<div id="36c628c7" class="cell" data-execution_count="19">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the statistics</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>height_tot <span class="op">=</span> df[<span class="st">"height_cm"</span>].count()</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>height_avg <span class="op">=</span> df[<span class="st">"height_cm"</span>].mean()</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>height_med <span class="op">=</span> df[<span class="st">"height_cm"</span>].median()</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>height_mod <span class="op">=</span> df[<span class="st">"height_cm"</span>].mode()</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the quartiles</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>height_Q1 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.25</span>)</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>height_Q3 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.75</span>)</span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the histogram</span></span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>sns.displot(df, x <span class="op">=</span> <span class="st">"height_cm"</span>, binwidth <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate the plot with vertical and horizontal lines</span></span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_avg, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"r"</span>, linestyles <span class="op">=</span> <span class="st">"dashed"</span>, label <span class="op">=</span> <span class="st">"Average"</span>)</span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_med, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"k"</span>, linestyles <span class="op">=</span> <span class="st">"dotted"</span>, label <span class="op">=</span> <span class="st">"Median"</span>)</span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_mod, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"orange"</span>, linestyles <span class="op">=</span> <span class="st">"solid"</span>, label <span class="op">=</span> <span class="st">"Mode"</span>)</span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Shade in the IQR</span></span>
-<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x <span class="op">=</span> [height_Q1, height_Q3], y1 <span class="op">=</span> <span class="dv">0</span>, y2 <span class="op">=</span> <span class="dv">500</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, label <span class="op">=</span> <span class="st">"IQR"</span>)</span>
-<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the legend with the labels</span></span>
-<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="17a7f9da" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the statistics</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>height_tot <span class="op">=</span> df[<span class="st">"height_cm"</span>].count()</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>height_avg <span class="op">=</span> df[<span class="st">"height_cm"</span>].mean()</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>height_med <span class="op">=</span> df[<span class="st">"height_cm"</span>].median()</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>height_mod <span class="op">=</span> df[<span class="st">"height_cm"</span>].mode()</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the quartiles</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>height_Q1 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.25</span>)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>height_Q3 <span class="op">=</span> df[<span class="st">"height_cm"</span>].quantile(<span class="fl">0.75</span>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the histogram</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>sns.displot(df, x <span class="op">=</span> <span class="st">"height_cm"</span>, binwidth <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate the plot with vertical and horizontal lines</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_avg, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"r"</span>, linestyles <span class="op">=</span> <span class="st">"dashed"</span>, label <span class="op">=</span> <span class="st">"Average"</span>)</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_med, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"k"</span>, linestyles <span class="op">=</span> <span class="st">"dotted"</span>, label <span class="op">=</span> <span class="st">"Median"</span>)</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>plt.vlines(x <span class="op">=</span> height_mod, ymin <span class="op">=</span> <span class="dv">0</span>, ymax <span class="op">=</span> <span class="dv">500</span>, colors <span class="op">=</span> <span class="st">"orange"</span>, linestyles <span class="op">=</span> <span class="st">"solid"</span>, label <span class="op">=</span> <span class="st">"Mode"</span>)</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Shade in the IQR</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x <span class="op">=</span> [height_Q1, height_Q3], y1 <span class="op">=</span> <span class="dv">0</span>, y2 <span class="op">=</span> <span class="dv">500</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, label <span class="op">=</span> <span class="st">"IQR"</span>)</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the legend with the labels</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1280,16 +1271,16 @@ Name: height_cm, dtype: float64</code></pre>
 <section id="simple-linear-regressions" class="level3">
 <h3 class="anchored" data-anchor-id="simple-linear-regressions">Simple linear regressions</h3>
 <p>Least-squares regression for two sets of measurements can be performed with the function <code>stats.linregress()</code>”</p>
-<div id="513d4797" class="cell" data-execution_count="20">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>stats.linregress(x <span class="op">=</span> df[<span class="st">"age"</span>], y <span class="op">=</span> df[<span class="st">"height_cm"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5a978a44" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>stats.linregress(x <span class="op">=</span> df[<span class="st">"age"</span>], y <span class="op">=</span> df[<span class="st">"height_cm"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>LinregressResult(slope=np.float64(0.025827494764561896), intercept=np.float64(182.38260451315895), rvalue=np.float64(0.01682597901197298), pvalue=np.float64(0.19506275453364344), stderr=np.float64(0.019930266529602007), intercept_stderr=np.float64(0.5159919571772644))</code></pre>
 </div>
 </div>
 <p>If we store this as a variable, we can access the different values with the <code>.</code> operator. For example, the p-value is</p>
-<div id="0972f1b8" class="cell" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>lm <span class="op">=</span> stats.linregress(x <span class="op">=</span> df[<span class="st">"age"</span>], y <span class="op">=</span> df[<span class="st">"height_cm"</span>])</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>lm.pvalue</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="7ae7d2d9" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>lm <span class="op">=</span> stats.linregress(x <span class="op">=</span> df[<span class="st">"age"</span>], y <span class="op">=</span> df[<span class="st">"height_cm"</span>])</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>lm.pvalue</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>np.float64(0.19506275453364344)</code></pre>
 </div>
@@ -1297,8 +1288,8 @@ Name: height_cm, dtype: float64</code></pre>
 <section id="visualisation-1" class="level4">
 <h4 class="anchored" data-anchor-id="visualisation-1">Visualisation</h4>
 <p>Let’s look at implementing the linear regression into our scatter plot from before. Using the scatterplot from before,</p>
-<div id="89a42de8" class="cell" data-execution_count="22">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="88af1fb6" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1310,15 +1301,15 @@ Name: height_cm, dtype: float64</code></pre>
 <p>we’ll need to plot the regression as a line. For reference,</p>
 <p><span class="math display">\[ y = \text{slope}\times x + \text{intercept}\]</span></p>
 <p>So</p>
-<div id="c5b20f09" class="cell" data-execution_count="23">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the linear regression</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>x_lm <span class="op">=</span> df[<span class="st">"age"</span>]</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>y_lm <span class="op">=</span> lm.slope<span class="op">*</span>x_lm <span class="op">+</span> lm.intercept</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the line plot</span></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x <span class="op">=</span> x_lm, y <span class="op">=</span> y_lm, color <span class="op">=</span> <span class="st">"r"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="59092aa4" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the linear regression</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>x_lm <span class="op">=</span> df[<span class="st">"age"</span>]</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>y_lm <span class="op">=</span> lm.slope<span class="op">*</span>x_lm <span class="op">+</span> lm.intercept</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the line plot</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x <span class="op">=</span> x_lm, y <span class="op">=</span> y_lm, color <span class="op">=</span> <span class="st">"r"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1328,20 +1319,20 @@ Name: height_cm, dtype: float64</code></pre>
 </div>
 </div>
 <p>Finally, we can include the details of the linear regression in the legend by specifying them in the label. We’ll need to <code>round()</code> them and <code>str()</code> them (turn them into strings) so that we can include them in the message.</p>
-<div id="f10bbc60" class="cell" data-execution_count="24">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the linear regression</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>x_lm <span class="op">=</span> df[<span class="st">"age"</span>]</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>y_lm <span class="op">=</span> lm.slope<span class="op">*</span>x_lm <span class="op">+</span> lm.intercept</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Round and stringify the values</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>slope_rounded <span class="op">=</span> <span class="bu">str</span>(<span class="bu">round</span>(lm.slope, <span class="dv">2</span>))</span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>intercept_rounded <span class="op">=</span> <span class="bu">str</span>(<span class="bu">round</span>(lm.intercept, <span class="dv">2</span>))</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the line plot</span></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>linreg_label <span class="op">=</span> <span class="st">"Linear regression with</span><span class="ch">\n</span><span class="st">slope = "</span> <span class="op">+</span> slope_rounded <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">intercept = "</span> <span class="op">+</span> intercept_rounded</span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x <span class="op">=</span> x_lm, y <span class="op">=</span> y_lm, color <span class="op">=</span> <span class="st">"r"</span>, label <span class="op">=</span> linreg_label)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="071fc426" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the linear regression</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>x_lm <span class="op">=</span> df[<span class="st">"age"</span>]</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>y_lm <span class="op">=</span> lm.slope<span class="op">*</span>x_lm <span class="op">+</span> lm.intercept</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Round and stringify the values</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>slope_rounded <span class="op">=</span> <span class="bu">str</span>(<span class="bu">round</span>(lm.slope, <span class="dv">2</span>))</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>intercept_rounded <span class="op">=</span> <span class="bu">str</span>(<span class="bu">round</span>(lm.intercept, <span class="dv">2</span>))</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the line plot</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>linreg_label <span class="op">=</span> <span class="st">"Linear regression with</span><span class="ch">\n</span><span class="st">slope = "</span> <span class="op">+</span> slope_rounded <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">intercept = "</span> <span class="op">+</span> intercept_rounded</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x <span class="op">=</span> x_lm, y <span class="op">=</span> y_lm, color <span class="op">=</span> <span class="st">"r"</span>, label <span class="op">=</span> linreg_label)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1357,15 +1348,15 @@ Name: height_cm, dtype: float64</code></pre>
 <p>We can also perform <span class="math inline">\(t\)</span>-tests with the <code>scipy.stats</code> module. Typically, this is performed to examine the statistical signficance of a difference between two samples’ means. Let’s examine whether that earlier groupby result for is accurate for heights, specifically, <strong>are goalkeepers taller than non-goalkeepers?</strong></p>
 <p>The function <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html"><code>stats.ttest_ind()</code></a> requires us to send in the two groups as separate columns, so we’ll need to do a bit of reshaping.</p>
 <p>Let’s start by creating a new variable for <em>goalkeeper status</em>, and then separate the goalkeepers from the non-goalkeepers in two variables</p>
-<div id="f4fdba88" class="cell" data-execution_count="25">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"gk"</span>] <span class="op">=</span> df[<span class="st">"positions"</span>] <span class="op">==</span> <span class="st">"Goalkeeper"</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>goalkeepers <span class="op">=</span> df[df[<span class="st">"gk"</span>] <span class="op">==</span> <span class="va">True</span>]</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>non_goalkeepers <span class="op">=</span> df[df[<span class="st">"gk"</span>] <span class="op">==</span> <span class="va">False</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="15190351" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"gk"</span>] <span class="op">=</span> df[<span class="st">"positions"</span>] <span class="op">==</span> <span class="st">"Goalkeeper"</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>goalkeepers <span class="op">=</span> df[df[<span class="st">"gk"</span>] <span class="op">==</span> <span class="va">True</span>]</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>non_goalkeepers <span class="op">=</span> df[df[<span class="st">"gk"</span>] <span class="op">==</span> <span class="va">False</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The <span class="math inline">\(t\)</span>-test for the means of two independent samples is given by</p>
-<div id="64622eb5" class="cell" data-execution_count="26">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>stats.ttest_ind(goalkeepers[<span class="st">"height_cm"</span>], non_goalkeepers[<span class="st">"height_cm"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="346b497c" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>stats.ttest_ind(goalkeepers[<span class="st">"height_cm"</span>], non_goalkeepers[<span class="st">"height_cm"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>TtestResult(statistic=np.float64(35.2144964816995), pvalue=np.float64(7.551647917141636e-247), df=np.float64(5930.0))</code></pre>
 </div>
@@ -1387,8 +1378,8 @@ Name: height_cm, dtype: float64</code></pre>
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="5a075594" class="cell" data-execution_count="27">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(df, x <span class="op">=</span> <span class="st">"gk"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="00eaf2cf" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(df, x <span class="op">=</span> <span class="st">"gk"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1420,13 +1411,13 @@ Name: height_cm, dtype: float64</code></pre>
 <li>The data</li>
 </ul>
 <p>We create the model and compute the fit</p>
-<div id="01d5dd0b" class="cell" data-execution_count="28">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> smf.ols(<span class="st">"height_cm ~ age"</span>, df)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> mod.fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="4ede8497" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> smf.ols(<span class="st">"height_cm ~ age"</span>, df)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> mod.fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Done! Let’s take a look at the results</p>
-<div id="b0cbb2e4" class="cell" data-execution_count="29">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>res.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="6be961c8" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>res.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <table class="simpletable caption-top table table-sm table-striped small">
 <caption>OLS Regression Results</caption>
@@ -1451,13 +1442,13 @@ Name: height_cm, dtype: float64</code></pre>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Date:</th>
-<td>Fri, 15 May 2026</td>
+<td>Mon, 21 Sep 2026</td>
 <th data-quarto-table-cell-role="th">Prob (F-statistic):</th>
 <td>0.195</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Time:</th>
-<td>13:18:18</td>
+<td>03:27:17</td>
 <th data-quarto-table-cell-role="th">Log-Likelihood:</th>
 <td>-19821.</td>
 </tr>
@@ -1555,9 +1546,9 @@ Name: height_cm, dtype: float64</code></pre>
 </div>
 <p><br>
 That’s a lot nicer than with scipy. We can also make our plot from before by getting the model’s <span class="math inline">\(y\)</span> values with <code>res.fittedvalues</code></p>
-<div id="83638ca1" class="cell" data-execution_count="30">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x <span class="op">=</span> df[<span class="st">"age"</span>], y <span class="op">=</span> res.fittedvalues, color <span class="op">=</span> <span class="st">"r"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="01d68ff4" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"age"</span>, y <span class="op">=</span> <span class="st">"height_cm"</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x <span class="op">=</span> df[<span class="st">"age"</span>], y <span class="op">=</span> res.fittedvalues, color <span class="op">=</span> <span class="st">"r"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1581,23 +1572,23 @@ That’s a lot nicer than with scipy. We can also make our plot from before by g
 </ul>
 <p>We’ll use the <em>binomial</em> option to create logistic regressions.</p>
 <p>Logistic regressions examine the distribution of binary data. For us, we can compare the heights of <strong>goalkeepers vs non-goalkeepers</strong> again. Let’s convert our <strong>gk</strong> column from <code>True</code> <span class="math inline">\(\rightarrow\)</span> <code>1</code> and <code>False</code> <span class="math inline">\(\rightarrow\)</span> <code>0</code> by converting to an <code>int</code>:</p>
-<div id="8c6f35ba" class="cell" data-execution_count="31">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"gk"</span>] <span class="op">=</span> df[<span class="st">"gk"</span>].astype(<span class="bu">int</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="519672a8" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"gk"</span>] <span class="op">=</span> df[<span class="st">"gk"</span>].astype(<span class="bu">int</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now, we can model this column with height. Specifically,</p>
 <p><span class="math display">\[ \text{gk} \sim \text{height}\]</span></p>
 <p>Start by making the model with the function <code>smf.glm()</code>. We need to specify the family of distributions; they all live in <code>sm.families</code>, which comes from a different submodule that we should import:</p>
-<div id="75a0e931" class="cell" data-execution_count="32">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> smf.glm(<span class="st">"gk ~ height_cm"</span>, data <span class="op">=</span> df, family <span class="op">=</span> sm.families.Binomial())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="95a78755" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> smf.glm(<span class="st">"gk ~ height_cm"</span>, data <span class="op">=</span> df, family <span class="op">=</span> sm.families.Binomial())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next, evaluate the results</p>
-<div id="07110031" class="cell" data-execution_count="33">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> mod.fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="1451fc71" class="cell" data-execution_count="33">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> mod.fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s have a look at the summary:</p>
-<div id="0533ac9f" class="cell" data-execution_count="34">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>res.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fdaa220f" class="cell" data-execution_count="34">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>res.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <table class="simpletable caption-top table table-sm table-striped small">
 <caption>Generalized Linear Model Regression Results</caption>
@@ -1634,13 +1625,13 @@ That’s a lot nicer than with scipy. We can also make our plot from before by g
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Date:</th>
-<td>Fri, 15 May 2026</td>
+<td>Mon, 21 Sep 2026</td>
 <th data-quarto-table-cell-role="th">Deviance:</th>
 <td>3167.0</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Time:</th>
-<td>13:18:19</td>
+<td>03:27:18</td>
 <th data-quarto-table-cell-role="th">Pearson chi2:</th>
 <td>4.02e+03</td>
 </tr>
@@ -1694,9 +1685,9 @@ That’s a lot nicer than with scipy. We can also make our plot from before by g
 </div>
 </div>
 <p>Finally, we can plot the result like before</p>
-<div id="ec9a556c" class="cell" data-execution_count="35">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"height_cm"</span>, y <span class="op">=</span> <span class="st">"gk"</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x <span class="op">=</span> df[<span class="st">"height_cm"</span>], y <span class="op">=</span> res.fittedvalues, color <span class="op">=</span> <span class="st">"black"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="6683525f" class="cell" data-execution_count="35">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">"height_cm"</span>, y <span class="op">=</span> <span class="st">"gk"</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x <span class="op">=</span> df[<span class="st">"height_cm"</span>], y <span class="op">=</span> res.fittedvalues, color <span class="op">=</span> <span class="st">"black"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1757,7 +1748,7 @@ That’s a lot nicer than with scipy. We can also make our plot from before by g
 <li><a href="https://www.statsmodels.org/stable/index.html">Official statsmodels documentation</a></li>
 <li><a href="https://seaborn.pydata.org/index.html">Official seaborn documentation</a></li>
 <li><a href="https://matplotlib.org/stable/index.html">Official matplotlib documentation</a></li>
-<li>Our <a href="https://github.com/uqlibrary/technology-training/blob/master/Python/useful_links.md">compilation of useful Python links</a></li>
+<li>Our <a href="../../Python/useful_links.html">compilation of useful Python links</a></li>
 </ul>
 
 
