@@ -769,7 +769,7 @@ window.Quarto = {
 </header>
 
 
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/QGIS/raster/QGIS_raster_banner.qmd" data-notebook-title="Upcoming workshop(s) available!" data-notebook-cellid="6d4ba4be-b277-498d-8cf1-6b15349ab935">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/QGIS/raster/QGIS_raster_banner.qmd" data-notebook-title="Upcoming workshop(s) available!" data-notebook-cellid="6fb00ad1-2722-42ec-baf4-366ef07e50ff">
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -790,24 +790,24 @@ window.Quarto = {
 <p>This is an intermediate level tutorial. Before completing this tutorial, we recommend our <a href="../../QGIS/intro/QGIS_intro.html">QGIS: Introduction to Mapping</a> tutorial. This tutorial is designed for <strong>QGIS 3.44</strong>. If you need to install it on your computer, go to our <a href="../../QGIS/intro/QGIS_intro.html#setting-up">installation instructions</a>.</p>
 <p>We will start by creating a good folder structure to work within. This folder is where our project, our data, and creations will live. Folder structure is very important for keeping your data tidy, as well as for ease of sharing your project with others. You simply need to zip the project folder if you need to share the whole thing.</p>
 <ul>
-<li><p>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>.</p></li>
-<li><p>Let’s now <strong>save</strong> our project: <code>Project &gt; Save</code>.</p></li>
-<li><p>Create a new folder, let’s call it “qgis_raster”.</p></li>
+<li>Open QGIS and create a <strong>new project</strong> with <code>Project &gt; New</code>.</li>
+<li>Let’s now <strong>save</strong> our project: <code>Project &gt; Save</code>.</li>
+<li>Create a new folder, let’s call it “qgis_raster”.</li>
 </ul>
 <div class="columns">
 <div class="column" style="width:60%;">
 <ul>
-<li><p>Inside that folder, create these folders:</p>
+<li>Inside that folder, create these folders:
 <ul>
-<li><p>“data” - for all the data we will use to make our maps, split into:</p>
+<li>“data” - for all the data we will use to make our maps, split into:
 <ul>
-<li><p>“raw” - raw data from your research or the internet</p></li>
-<li><p>“processed” - any data you’ve modified</p></li>
+<li>“raw” - raw data from your research or the internet</li>
+<li>“processed” - any data you’ve modified</li>
 </ul></li>
-<li><p>“output” - for any maps or images we export</p></li>
-<li><p>“temp” - this isn’t <em>necessary</em>, but when you’re playing around and testing, it stops things getting messy.</p></li>
+<li>“output” - for any maps or images we export</li>
+<li>“temp” - this isn’t <em>necessary</em>, but when you’re playing around and testing, it stops things getting messy.</li>
 </ul></li>
-<li><p>Finally, let’s save our .qgz project file here, named “qgis_raster_map.qgz”</p></li>
+<li>Finally, let’s save our .qgz project file here, named “qgis_raster_map.qgz”</li>
 </ul>
 </div><div class="column" style="width:5%;">
 <!-- empty column to create gap -->
@@ -826,18 +826,18 @@ window.Quarto = {
 </section>
 <section id="install-the-saga-plugin" class="level2">
 <h2 class="anchored" data-anchor-id="install-the-saga-plugin">Install the SAGA Plugin</h2>
-<p>We need to install a plugin so we can access certain geoprocessing tools (the built-in SAGA provider has been <a href="https://changelog.qgis.org/en/qgis/version/3.30/#processing-drop-unmainted-saga-provider-from-qgis-">removed in version 3.30</a>). Go to <code>Plugins &gt; Manage and Install Plugins...</code> and <code>Search...</code> for “<strong>SAGA</strong>”. From the list on options choose <strong>Processing Saga NextGen Provider</strong> then in the bottom right, click <code>Install Plugin</code>. You might also need to install SAGA (version 9 or above) on your computer, if not already available.</p>
+<p>We need to install a plugin so we can access certain geoprocessing tools (the built-in SAGA provider was <a href="https://changelog.qgis.org/en/qgis/version/3.30/#processing-drop-unmainted-saga-provider-from-qgis-">removed in version 3.30</a>). Go to <code>Plugins &gt; Manage and Install Plugins... &gt; All</code> and <code>Search...</code> for “<strong>SAGA</strong>”. From the list, select <strong>Processing Saga NextGen Provider</strong> and click <code>Install Plugin</code> (bottom right). If SAGA is not already installed on your computer, you will need to follow the instructions in the plugin description.</p>
 </section>
 <section id="get-some-elevation-data" class="level2">
 <h2 class="anchored" data-anchor-id="get-some-elevation-data">Get some elevation data</h2>
 <p>A Digital Elevation Model (DEM) is a common example of <strong>raster data</strong>, i.e.&nbsp;grid data that contains a value in each cell (a bit like the pixels in a coloured picture).</p>
 <p>For this tutorial, we are using a DEM sourced from the USGS website.</p>
 <ul>
-<li>Go to https://earthexplorer.usgs.gov/</li>
-<li>Click the World Features box, and then search for “Brisbane” in the “Feature Name” search box</li>
+<li>Go to the <a href="https://earthexplorer.usgs.gov/">USGS website</a></li>
+<li>Click the “World Features” box, and then search for “Brisbane” in the “Feature Name” search box</li>
 <li>Click Show and select the first result</li>
 <li>Zoom onto an area of interest around Brisbane and click “Use Map”</li>
-<li>Click the “Data Sets” button and then <code>Digital Elevation &gt; SRTM</code>, select “SRTM 1 Arc-Second Global” and click “Results”</li>
+<li>Click the “Data Sets” tab and then <code>Digital Elevation &gt; SRTM</code>, select “SRTM 1 Arc-Second Global” and click “Results”</li>
 </ul>
 <p>“SRTM” stands for “<a href="https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects">Shuttle Radar Topography Mission</a>”. It provides global elevation data collected in 2000 by the space shuttle Endeavour.</p>
 <p>Our area covers two separate raster files. We can click on the foot icon to see the footprint of each file, and the picture icon to see what the DEM looks like.</p>
@@ -854,34 +854,55 @@ window.Quarto = {
 <li>We can save the output on disk instead of only creating a temporary file (for example, name it <code>SRTM_DEM_merged</code> and save it inside your project directory)</li>
 <li>Click “Run”</li>
 </ul>
-<blockquote class="blockquote">
-<p>You will need to have GDAL installed for this to work.</p>
-</blockquote>
-<p>We can now remove the two original raster files.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Merge tool is an example of a geoprocessing tool that’s listed in the QGIS menu but relies on the GDAL library, a major geospatial library that should already be available in any installation of QGIS. If you search for the Merge tool in the Processing Toolbox panel, you will see it listed under “GDAL”.</p>
+</div>
+</div>
+<p>We can now remove the two original raster layers.</p>
 </section>
 <section id="reproject-the-dem" class="level2">
 <h2 class="anchored" data-anchor-id="reproject-the-dem">Reproject the DEM</h2>
-<p>In the merged layer’s Properties (<code>Right click &gt; Properties... &gt; Source</code>), we can see that the Coordinate Reference System (CRS) in use is <a href="https://epsg.io/4326">EPSG:4326 - WGS 84</a>. It is the one that QGIS detected when opening the file. This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). We will also need a projection that uses Metres, rather than Degrees (as EPSG:4326 does). A good PRS for around Brisbane/Meanjin is “<a href="https://epsg.io/7856">EPSG:7856 - GDA2020 / MGA zone 56</a>”. We can’t change that here, we instead will need to use the <strong>Warp (Reproject)</strong> tool.</p>
+<p>In the merged layer’s Properties (<code>Right click &gt; Properties... &gt; Source</code>), we can see that the Coordinate Reference System (CRS) in use is <a href="https://epsg.io/4326">EPSG:4326 - WGS 84</a>. It is the one that QGIS detected when opening the file. This Geographic Reference System is good for global data, but if we want to focus on a more precise area around Brisbane/Meanjin, and want our analyses to be accurate, we should reproject the data to a local Projected Reference System (PRS). We will also need a projection that uses metres, rather than degrees (as EPSG:4326 does). A good PRS for around Brisbane/Meanjin is “<a href="https://epsg.io/7856">EPSG:7856 - GDA2020 / MGA zone 56</a>”. We don’t want to change it in the Source tab, as it’s the CRS that’s used to understand the original data! Changing it would lead to the data being misplaced on the map. Instead, we use the <strong>Warp (Reproject)</strong> tool.</p>
 <ul>
-<li>Use the tool <code>Raster &gt; Projections &gt; Warp (Reproject)</code></li>
-<li>use the merged layer as an input</li>
-<li>pick “EPSG:7856 - GDA2020 / MGA zone 56” as the Target CRS
+<li>In the top menu: <code>Raster &gt; Projections &gt; Warp (Reproject)</code></li>
+<li>Use the merged layer as an input</li>
+<li>Pick “EPSG:7856 - GDA2020 / MGA zone 56” as the Target CRS
 <ul>
 <li>you may need to click the Select CRS button <img src="https://user-images.githubusercontent.com/67612228/197653760-a9df4671-5852-499c-a085-3d995489599a.png" class="img-fluid" alt="image"></li>
-<li>untick No CRS</li>
+<li>change from “No CRS” to “Predefined CRS”</li>
 <li>use the filter to search for “7856”</li>
 <li>You should be able to find “EPSG:7856 - GDA2020 / MGA zone 56” under <strong>Predefined Coordinate Reference Systems</strong></li>
+<li>click the blue arrow to go back to the main view</li>
 </ul></li>
+<li>Click “Run”</li>
 </ul>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>If you want to learn more about the static datum GDA2020 (for “Geocentric Datum of Australia 2020”), an upgrade from the previous, less precise GDA94, see e.g.&nbsp;<a href="https://www.ga.gov.au/scientific-topics/positioning-navigation/positioning-australia/geodesy/datums-projections/gda2020">a description from Geoscience Australia</a></p>
-</blockquote>
-<p><!-- Seems broken: head to the [ICSM website](https://www.icsm.gov.au/gda2020). --></p>
+</div>
+</div>
 </section>
 <section id="clip-the-dem" class="level2">
 <h2 class="anchored" data-anchor-id="clip-the-dem">Clip the DEM</h2>
 <p>We now use <code>Raster &gt; Extraction &gt; Clip Raster by Extent</code> to <strong>focus on a smaller area of interest</strong>.</p>
-<p>Make sure the DEM is selected in the Input layer, and set the clip extent with <code>... &gt; Draw on Canvas</code>. We want to select an area that is inland, and contains both some of the D’Aguilar National Park, and a section of the Brisbane river (you can untick the DEM in the Layers panel to reveal the basemap).</p>
+<p>Make sure the reprojected DEM is selected in the Input layer, and set the “Clipping extent” with <code>... &gt; Draw on Map Canvas</code>. We want to select an area that is inland, and contains both some of the D’Aguilar National Park, and a section of the Brisbane/Maiwar river (you can untick the DEM in the Layers panel to reveal the basemap).</p>
 <p>If you don’t save to file directly, remember two things:</p>
 <ul>
 <li><strong>rename</strong> your clipped layer so it is more descriptive than the generic “Clipped (extent)”</li>
@@ -895,49 +916,76 @@ window.Quarto = {
 <li>double-click on the clipped DEM layer</li>
 <li>go to the “Symbology” tab</li>
 <li>change the Render type to “Singleband pseudocolor”</li>
-<li>by default, it uses the min/max values, which is what we want</li>
-<li>we can change the “Color ramp” to something more suitable with the drop-down menu and <code>Create new color ramp... &gt; Catalog: cpt-city &gt; Topography &gt; Elevation</code>, for example.</li>
+<li>we can change the “Color ramp” to something more suitable:
+<ul>
+<li>Expand drop-down menu next to the color ramp and select “Create New Color Ramp…”</li>
+<li>Select “Catalog: cpt-city” and click “OK”</li>
+<li>Pick the theme name “Topography” on the left</li>
+<li>Select a suitable palette, “elevation” for example, and click “OK”</li>
+</ul></li>
 </ul>
 </section>
 <section id="add-a-hillshade" class="level2">
 <h2 class="anchored" data-anchor-id="add-a-hillshade">Add a hillshade</h2>
-<p>Adding a <strong>hillshade</strong> makes your visualisation of elevation more readable and visually pleasing by giving an artificial lighting look to your map.</p>
+<p>Adding a <strong>hillshade</strong> makes your visualisation of elevation more readable and visually pleasing by simulating and light source that casts shadows on your map.</p>
 <ul>
 <li>Right-click on the DEM layer and “Duplicate layer”</li>
 <li>Rename the duplicated layer “hillshade”</li>
-<li>Open the Symbology menu for the hillshade layer</li>
-<li>Change the “Render type” to “Hillshade”</li>
+<li>Open the Layer Styling panel for the hillshade layer</li>
+<li>Change the render type from “Singleband pseudocolor” to “Hillshade”</li>
 <li>The defaults should work well, but you can play with the settings, like the Altitude and the Azimuth</li>
-<li>Make sure you apply some transparency to the pseudocolour DEM, and place the hillshade layer underneath (in <code>Properties &gt; Symbology &gt; Transparency</code>)</li>
-<li>Down the bottom of the window under <strong>Resampling</strong> change the <code>Zoomed: in</code> and <code>out</code> from “Nearest Neighbour” to “Cubic” (this will remove some of the grid-like patterns you might see in your Hillshade layer otherwise)</li>
+<li>Down the bottom of the panel, under <strong>Resampling</strong>, change the <code>Zoomed: in</code> from “Nearest Neighbour” to “Cubic (4x4 Kernel)”, which removes some of the grid-like patterns you might see in your Hillshade layer otherwise</li>
+<li>Switch to the pseudocolour DEM and reduce its opacity (in the Transparency tab of the Layer Styling panel)</li>
+<li>Make sure the hillshade layer is underneath the pseudocolor layer</li>
 </ul>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Another method is to use the hillshade tool instead of the symbology: <code>Raster &gt; Analysis &gt; Hillshade...</code>.</p>
-</blockquote>
+<p>The output data would not store elevation data anymore, but instead the computed illumination value based on the settings used. Using the Hillshade render type makes it easy to test and change the settings, whereas the Hillshade tool offers a few more options.</p>
+</div>
+</div>
 </section>
 <section id="create-a-watershed-layer" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-watershed-layer">Create a watershed layer</h2>
-<p>Using the Strahler tool, we can create a <strong>watershed</strong> raster that shows where water would flow according to the DEM.</p>
-<p>Open the Processing Toolbox (cog icon) and try using the SAGA Next Gen tool called “<strong>Strahler order</strong>” using the clipped DEM as an input (a temporary file is fine for now).</p>
-<p>Look at the result. It looks like there are few issues with our data. You may get a question mark symbol <img src="https://user-images.githubusercontent.com/67612228/197657028-314f7460-1c2c-4a5c-b447-25b82bea39ee.png" class="img-fluid" alt="image"> next to your data, when hovered over it will say “There is no coordinate reference system set!”. To resolve this, issue, simply left-click on the question mark symbol and assign “EPSG:7856 - GDA2020 / MGA zone 56” as the CRS.</p>
-<p>However there is still another issue with our data. A common problem with DEMs is that they have sinks and spikes that will make further analyses more difficult. This will mean the analysis is unable to best find where the water would flow. To resolve this, we need to use another tool to smooth out our raster before using the Strahler order tool.</p>
+<p>Using the Strahler Order tool, we can create a <strong>watershed</strong> raster that shows where water would flow according to the DEM. The <a href="https://en.wikipedia.org/wiki/Strahler_number">Strahler order</a> is a measure of branching complexity of the hypothetical waterway network, assigning higher numbers to cells as branching complexity increases. We should therefore end up with a layer in which major watercourses are distinguishable.</p>
+<p>Open the Processing Toolbox (cog icon) and try using the SAGA Next Gen tool called “<strong>Strahler Order</strong>” using the clipped DEM as an input (a temporary file is fine for now).</p>
+<p>Look at the result. It looks like there are few issues with our data. You may get a question mark symbol <img src="https://user-images.githubusercontent.com/67612228/197657028-314f7460-1c2c-4a5c-b447-25b82bea39ee.png" class="img-fluid" alt="image"> next to your data, when hovered over it will say “There is no coordinate reference system set!”. To resolve this issue, simply left-click on the question mark symbol and assign “EPSG:7856 - GDA2020 / MGA zone 56” as the CRS.</p>
+<p>However there is still another issue with our data. A common problem with DEMs is that they have sinks and spikes that will make further analyses more difficult. This will mean the analysis is unable to best find where the water would flow. To resolve this, we need to use another tool to smooth out our raster before using the Strahler Order tool.</p>
 <p>We can use the “Fill sinks (Wang &amp; Liu)” tool to <strong>fill the sinks</strong> in our clipped DEM.</p>
 <ul>
 <li>When we do that, we might have to play with the “Minimum slope” value. A value of 0.01 degrees should work well if the layer was reprojected to a suitable Projected Reference System.</li>
-<li>As an output, we only need to tick the “Filled DEM” (first one in the list), which we can also save to file. You can however keep the “Watershed Basins” output to check that your minimum slope is high enough.</li>
+<li>As an output, we only need to tick the “Filled DEM” (first one in the list), which we can also save to file.</li>
 </ul>
 <p>If we <strong>re-run the Strahler order tool</strong> on the filled DEM, we will be able to see more useful data.</p>
-<p>We can now colour the layer with “Singleband pseudocolor” to highlight the bigger streams. A palette that goes from white (for low values) to a dark colour (for high values) should work well. You can also set the smaller streams to be transparent to filter them out.</p>
-<blockquote class="blockquote">
+<p>We can now colour the layer with “Paletted/Unique values” to highlight the bigger streams. A colour ramp that goes from white (for low values) to a dark colour (for high values) should work well, like “Blues”. After clicking “Classify”, the main streams should pop up with a darker colour. You can also remove the lower values in the list to filter them out.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Another way to filter out the noise of the smaller streams and <strong>highlight the major streams</strong> in the network, we can use the <code>Raster &gt; Raster Calculator</code> tool and use a formula like: <code>"name_of_layer@1" &gt;= 6</code> (the value will depend on how many levels exist in the Strahler layer). We need to save to file to be able to do that (name it “strahler_filtered”, for example). This will assign the value 1 to the cells matching the condition, and 0 to what is under the limit.</p>
-</blockquote>
+</div>
+</div>
 </section>
 <section id="channel-network-and-drainage-basin" class="level2">
 <h2 class="anchored" data-anchor-id="channel-network-and-drainage-basin">Channel network and drainage basin</h2>
 <p>Another analysis we can do is use the “Channel network and drainage basins” tool to calculate the <strong>flow direction, channels and drainage basins</strong>.</p>
 <ul>
 <li>Make sure you run this tool on the filled DEM.</li>
-<li>We might have to change the threshold to a higher one if the output includes too many small basins and channels. As the threshold is related to the Strahler order number, the middle point of your previous Strahler order values is a usually a good default.</li>
+<li>We might have to change the threshold to a higher one if the output includes too many small basins and channels. As the threshold is related to the Strahler order number, the middle point of your previous Strahler order values is usually a good default.</li>
 </ul>
 <p>You might want to play with different threshold values depending on what you’re looking for. If you want to look at the main drainage basins of a region, you need to set the threshold higher. If you want to find all the small channels, you need to set the threshold lower. It’s worth trying a few options to find what works best for your dataset and the story you’re trying to tell.</p>
 <p>As an output, we only want to load (and save to file) the two non-optional outputs:</p>
@@ -993,9 +1041,9 @@ window.Quarto = {
 </ul>
 <p>To see the 3D effect, you will have to use your <kbd>Ctrl</kbd> or <kbd>Shift</kbd> keys on your keyboard while panning with the mouse to change the angle of view.</p>
 <p>To avoid seeing gaps in the rendering, you can go back to your Terrain options and set the “Tile resolution” and “Skirt height” to higher values.</p>
-<blockquote class="blockquote">
-<p>A useful plugin for 3D maps is qgis2threeJS, which might be handy to add a 3D map to a website.</p>
-</blockquote>
+<div class="{-callout-tip}">
+<p>A useful plugin for 3D maps is “Qgis2threejs”, which might be handy to add a 3D map to a website. Once installed, use the menu: <code>Web &gt; Qgis2threejs</code></p>
+</div>
 </section>
 <section id="exporting" class="level2">
 <h2 class="anchored" data-anchor-id="exporting">Exporting</h2>
