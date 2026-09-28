@@ -9,7 +9,7 @@ author: UQ Library
 
 ## Setting up
 
-This is an intermediate level tutorial. Before completing this tutorial, we recommend our [QGIS: Introduction to Mapping](../intro/QGIS_intro.qmd) tutorial. This tutorial is designed for **QGIS 3.40**. If you need to install it on your computer, go to the [QGIS website](https://qgis.org/download/).
+This is an intermediate level tutorial. Before completing this tutorial, we recommend our [QGIS: Introduction to Mapping](../intro/QGIS_intro.qmd) tutorial. This tutorial is designed for **QGIS 3.44**. If you need to install it, go to our [installation instructions](../intro/QGIS_intro.qmd#setting-up).
 
 We will start a little bit differently today, as we're going to get straight into a project. The **data** and **project** for this session can be directly downloaded from [this link](https://github.com/uqlibrary/technology-training-assets/raw/refs/heads/master/QGIS/reports/qgis_reports.zip). This highlights one of the big benefits of creating a good folder structure for your project – it's much easier to share!
 
@@ -18,17 +18,10 @@ Please extract the folder from the zip file.
 As always we have our classic setup:
 
 - "**data**" - for all the data we will use to make our maps, split into:
-
     - "**raw**" - raw data from your research or the internet
-
     - "**processed**" - any data you've modified
-
 - "**output**" - for any maps or images we export
-
 - "**temp**" - this folder isn't necessary, but when you're playing around and testing, it can stop things getting messy.
-
-<!-- -->
-
 - Finally, we have our .qgz project file named "**qgis_reports_map.qgz**" inside the "**qgis_reports**" folder (the highest level folder) so it's only looking down into folders for data, not back out.
 
 Let's open our **qgis_reports_map.qgz** file and get started.
@@ -51,9 +44,7 @@ If we have time:
 We need to use our spatial files to make a map that:
 
 - Shows the project outline
-
 - Show the access paths
-
 - Categorises the artefacts
 
 The current map in our project does accomplish these goals, but it's not inviting to look at.
@@ -67,19 +58,12 @@ To fix this, we need to ask some questions:
 **What story am I trying to tell?**
 
 - Do you want to highlight a particular pattern in the data?
-
     - You can use shapes and colour (esp. saturation) to bring your viewer to focus on certain elements of the map.
-
 - Does it need to look friendly or more professional?
-
     - Your choice of a colour palette can bring cohesion to your map.
-
 - Do you have a lot of dense information you need to convey?
-
     - Perhaps you need to make more than one map.
-
 - Do you need to show what the land surface looks like, or not?
-
     - That brings us to our next question:
 
 **What** **basemap does my map need**?
