@@ -595,11 +595,16 @@ One you have found a potential alternative, consider how you would compare the t
 * It could be that you will need to use two tools instead of one, because of their different strengths.
 * It's also possible to use tools in an "adversarial" way: checking one tool's output with another tool.
 
-The French government created [compar:AI](https://comparia.beta.gouv.fr/?locale=en), a website to compare LLMs by rating their responses to the same prompt, without knowing which one is which.
+The French government created [compar:AI](https://comparia.beta.gouv.fr/en) to compare randomly selected LLMs by rating their responses to the same prompt, without knowing which one is which.
 
-The [live results](https://comparia.beta.gouv.fr/ranking?locale=en), based on more than 230,000 ratings, are published in two tables: sorted by satisfaction and by energy use (which excludes proprietary models).
+![Two models revealed after rating their responses to the same prompt: Qwen 3.5 vs Grok 4.3. For responses of similar quality, and more information provided by Qwen, Comparia estimates that Grok used about 290 times more energy.](img/comparia_qwen_vs_grok.png){fig-alt="Screenshot of two cards comparing the two models. The text is in French and includes information about model openness, size and age, as well as estimated energy consumption and greenhouse gas emissions."}
 
-![Two models revealed after rating their responses to the same prompt: Qwen 3.5 vs Grok 4.3. For responses of similar quality, and more information provided by Qwen, Comparia estimates that Grok used about 290 times more energy.](img/comparia_qwen_vs_grok.png){fig-alt=""}
+The resulting data (including more than 260,000 ratings as of September 2026) is used in a [leaderboard](https://arene.comparia.beta.gouv.fr/ranking?locale=en) that compares models in three ways:
+
+* a table sorted by satisfaction score
+* two graphs plotting the satisfaction score against:
+  * energy consumption (only open-weight models)
+  * output price (both open-weight and proprietary models)
 
 On the topic of environmental impact: there are various reports about genAI in general, often looking at data centres as a whole, with wildly different conclusions depending on the methods, and evolving constantly. It might be useful to search for the latest report from the company, as well as recent peer-reviewed papers to get a sense of it.
 
