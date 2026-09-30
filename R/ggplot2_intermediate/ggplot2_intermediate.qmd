@@ -110,11 +110,11 @@ ggplot(data = gapminder,
 
 ## Modifying scales
 
+In ggplot2, a "scale" is what translates a variable to the aesthetic it is mapped to. In other words, scales turn data into visual properties. Let's first have a look at how we can tweak a scale to change the colour of our points.
+
 ### More control over colours
 
-This plot uses the default discrete palette.
-
-As we will keep tweaking this same plot, we can create an object to easily reuse what stays the same (the `ggplot()` call and the point geometry): 
+As we will keep tweaking this same plot, let's first create an object to easily reuse what stays the same (the `ggplot()` call and the point geometry): 
 
 ```{r}
 #| label: save-as-object
@@ -125,7 +125,7 @@ p <- ggplot(data = gapminder,
   geom_smooth()
 ```
 
-We can use other palettes than the default one. ggplot2 provides extra functions to modify colour scales. For example:
+We can use other palettes than the default one. ggplot2 provides `scale_colour_*()` functions to pick different palettes. For example:
 
 ```{r}
 #| label: scale-viridis
@@ -143,7 +143,7 @@ p +
   scale_colour_brewer(palette = "Set1")
 ```
 
-You can see the palettes available by looking at the help page of `scale_colour_brewer()`, under the header "Palettes". However, the names alone might not be enough to picture them, so head to the [Color Brewer website](https://colorbrewer2.org) to find the one that you like. Importantly, the website allows you to tick the options "colorblind safe" and "print friendly"... which would rule out all the qualitative palettes for our 5 continents!
+You can see the palettes available by looking at the help page of `scale_colour_brewer()`, under the header "Palettes". However, the names alone might not be enough to picture them, so head to the [ColorBrewer website](https://colorbrewer2.org) to find the one that you like. Importantly, the website allows you to tick the options "colorblind safe" and "print friendly"... which would rule out all the qualitative palettes for our 5 continents!
 
 A useful package that introduces many palettes for ggplot2 is the colorspace package, which promotes the [Hue-Chroma-Luminance (HCL) colour space](https://colorspace.r-forge.r-project.org/articles/color_spaces.html#human-color-vision-and-the-hcl-color-model-1). This colour space is perceptually-based, which means it is particularly suited for human perception of colours.
 
