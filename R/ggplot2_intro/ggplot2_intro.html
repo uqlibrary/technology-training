@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="UQ Library">
-<meta name="dcterms.date" content="2026-09-29">
+<meta name="dcterms.date" content="2026-09-30">
 
 <title>R ggplot2: introductory data visualisation – UQ Library Technology Training</title>
 <style>
@@ -817,7 +817,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 29, 2026</p>
+      <p class="date">September 30, 2026</p>
     </div>
   </div>
   
@@ -829,22 +829,6 @@ window.Quarto = {
 </header>
 
 
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/technology-training/technology-training/R/ggplot2_intro/ggplot2_intro_banner.qmd" data-notebook-title="Upcoming workshop(s) available!" data-notebook-cellid="8991da9f-125d-468a-b309-2b6314a1ece8">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Upcoming workshop(s) available!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The next workshop is on <strong><a href="https://studenthub.uq.edu.au/students/events/detail/6450534">today at 01:00 PM.</a></strong></p>
-<p>Alternatively, <a href="https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops#keyword=;campus=;weekstart=">check our calendar</a> for future events.</p>
-</div>
-</div>
-</div>
 <section id="what-are-we-going-to-learn" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-we-going-to-learn">What are we going to learn?</h2>
 <p>This session is directed at R users (a beginner level is sufficient) who are new to the ggplot2 package.</p>
@@ -934,6 +918,7 @@ Tip
 <h3 class="anchored" data-anchor-id="introducing-ggplot2">Introducing ggplot2</h3>
 <p>The R package ggplot2 was originally developed by Hadley Wickham with the objective of creating a grammar of graphics for categorical data (in 2007). It is based on the book <em>The Grammar of Graphics</em> Developed by Leland Wilkinson (first edition published in 1999).</p>
 <p>It is now part of the group of data science packages called Tidyverse.</p>
+<p>Even though R comes with powerful plotting functions (like <code>plot()</code>, <code>barplot()</code>, <code>heatmap()</code> and many more), ggplot2 brings a consistent vovabulary that many find less confusing than base R’s abbreviated arguments, and a lot of customisability while still using sensible defaults. It is very useful to know a bit about base R plotting, and some base R visualisations are not easily replicated in ggplot2 (heatmaps for example), but many R users go straight to ggplot2 for data visualisation, especially since if fits nicely in the Tidyverse.</p>
 </section>
 </section>
 <section id="the-components-of-the-grammar-of-graphics" class="level2">
@@ -960,9 +945,21 @@ Tip
 <li>a <strong>geometry</strong>.</li>
 </ol>
 <p>For our first example, let’s use the <code>msleep</code> dataset (from the ggplot2 package), which contains data about mammals’ sleeping patterns.</p>
-<blockquote class="blockquote">
-<p>You can find out about the dataset with <code>?msleep</code>.</p>
-</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled" title="Data at your fingertips">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Data at your fingertips
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this session, we don’t need to import any data, as we only use datasets that come with ggplot2. Many packages provide example datasets as well as functions! And some packages are entirely about providing access to data.</p>
+<p>Even base R comes with dozens of example datasets. You can list all the datasets available in your current R session with the function <code>data()</code>.</p>
+<p>Need to learn more about the data? It’s not just functions that have documentation: for example, you can find out more about more about this one with <code>?msleep</code>.</p>
+</div>
+</div>
 <p>Let’s start with specifying where the <strong>data</strong> comes from in the <code>ggplot()</code> function:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> msleep)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1174,9 +1171,19 @@ Tip
 </div>
 </div>
 </div>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>We stopped using the argument names because we know in which order they appear: first the data, then the mapping of aesthetics. Let’s save ourselves some typing from now on!</p>
-</blockquote>
+</div>
+</div>
 <p>The console shows you what function / formula was used to draw the trend line. This is important information, as there are countless ways to do that. To better understand what happens in the background, open the function’s help page and notice that the default value for the <code>method</code> argument is “NULL”. Read up on how it automatically picks a suitable method depending on the sample size, in the “Arguments” section.</p>
 <p>Want a linear trend line instead? Add the argument <code>method = "lm"</code> to your function:</p>
 <div class="cell">
@@ -1216,9 +1223,19 @@ Tip
 </div>
 </div>
 </div>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>The order of the functions matters: the points will be drawn before the trend line, which is probably what you’re after.</p>
-</blockquote>
+</div>
+</div>
 </section>
 <section id="the-colour-aesthetic" class="level2">
 <h2 class="anchored" data-anchor-id="the-colour-aesthetic">The <code>colour</code> aesthetic</h2>
@@ -1302,9 +1319,19 @@ Tip
 </div>
 </div>
 <p>The <code>labs()</code> function allows us to change</p>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Remember that captions and titles are better sorted out in the publication itself, especially for accessibility reasons (e.g.&nbsp;to help with screen readers).</p>
-</blockquote>
+</div>
+</div>
 </section>
 <section id="saving-a-plot" class="level2">
 <h2 class="anchored" data-anchor-id="saving-a-plot">Saving a plot</h2>
@@ -1330,9 +1357,19 @@ Tip
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"plots/fuel_efficiency.png"</span>, <span class="at">dpi =</span> <span class="st">"screen"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<blockquote class="blockquote">
-<p>Saving a .svg file with requires installing the svglite package. This packages seems so work best installing in a fresh R session (Session &gt; Restart R) from source <code>install.packages("svglite", type = "source")</code>. Then load the library <code>library(svglite)</code> rerun your code including loading previous libraries (<code>ggplot2</code> etc.) and now saving a plot with a .svg extension should work!</p>
-</blockquote>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Saving an SVG file requires installing the svglite package, which seems to work best in a fresh R session (“Restart” button, the circular arrow in the Console), and installing from source: <code>install.packages("svglite", type = "source")</code>. Then load the library <code>library(svglite)</code>, rerun your code including loading previous libraries (<code>ggplot2</code> etc.) and now saving a plot with <code>.svg</code> extension should work!</p>
+</div>
+</div>
 </section>
 <section id="challenge-2-add-a-variable-and-a-smooth-line" class="level2">
 <h2 class="anchored" data-anchor-id="challenge-2-add-a-variable-and-a-smooth-line">Challenge 2 – add a variable and a smooth line</h2>
@@ -1366,9 +1403,19 @@ Tip
 </div>
 </div>
 </div>
-<blockquote class="blockquote">
-<p>See how the legend changes depending on the type of data mapped to the <code>colour</code> aesthetic? (i.e.&nbsp;categorical vs continuous)</p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>See how the legend changes depending on the type of data mapped to the <code>colour</code> aesthetic? Categorical data uses a “discrete” colour scale whereas numeric data uses a “continuous” colour scale.</p>
+</div>
+</div>
 <p>This default “trend line” is not particularly useful. We could make it follow the data more closely by using the <code>span</code> argument. The closer to 0, the closer to the data the smoother will be:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
@@ -1476,6 +1523,7 @@ Tip
 <li>Selva Prabhakaran’s <a href="https://r-statistics.co/ggplot2-Tutorial-With-R.html"><em>r-statistics.co</em> section on ggplot2</a></li>
 <li><a href="https://ourcodingclub.github.io/tutorials/datavis/">Coding Club’s data visualisation tutorial</a></li>
 <li><a href="https://www.sthda.com/english/wiki/ggplot2-essentials">STHDA’s ggplot2 essentials</a></li>
+<li><a href="https://jtr13.github.io/cc21fall2/base-r-vs.-ggplot2-visualization.html">A comparison of Base R and and ggplot2</a> by Yiquan Li and Zezhong Fan</li>
 </ul></li>
 <li>Our compilation of <a href="../../R/usefullinks.html">general R resources</a></li>
 </ul>
