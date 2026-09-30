@@ -41,6 +41,7 @@ You only need to install a package once, but you need to load it every time you 
 We can now **load the package** by writing this command in the script and executing it:
 
 ```{r}
+#| label: load-package
 library(ggplot2)
 ```
 
@@ -90,12 +91,14 @@ Need to learn more about the data? It's not just functions that have documentati
 Let's start with specifying where the **data** comes from in the `ggplot()` function:
 
 ```{r}
+#| label: initiate-plot
 ggplot(data = msleep)
 ```
 
 This is not very interesting. We need to tell ggplot2 *what* we want to visualise, by **mapping** *aesthetic elements* (like our axes) to *variables* from the data. We want to visualise how common different conservations statuses are, so let's associate the right variable to the x axis:
 
 ```{r}
+#| label: map-aes
 ggplot(data = msleep,
        mapping = aes(x = conservation))
 ```
@@ -103,6 +106,7 @@ ggplot(data = msleep,
 ggplot2 has done what we asked it to do: the conservation variable is on the x axis. But nothing is shown on the plot area, because we haven't defined *how* to represent the data, with a `geometry_*` function:
 
 ```{r}
+#| label: add-geom
 ggplot(data = msleep,
        mapping = aes(x = conservation)) +
   geom_bar()
@@ -129,6 +133,7 @@ Run `?geom_bar` to see that it uses `stat = "count"` as a default, and that `sta
 What if we prefer to use horizontal bars? We only need to switch the mapping of the variable to the `y` aesthetic:
 
 ```{r}
+#| label: horizontal-bars
 ggplot(data = msleep,
        mapping = aes(y = conservation)) +
   geom_bar()
@@ -141,12 +146,14 @@ ggplot2 happily swaps the counts to the `x` axis. This is particularly helpful w
 Let's have a look at another dataset: the `economics` dataset from the US. Learn more about it with `?economics`, and have a peak at its structure with:
 
 ```{r}
+#| label: str-economics
 str(economics)
 ```
 
 Do you think that unemployment is stable over the years? Let's have a look with a line plot, often used to visualise time series:
 
 ```{r}
+#| label: unemployment-line
 ggplot(data = economics,
        mapping = aes(x = date,
                      y = unemploy)) + 
@@ -163,7 +170,9 @@ Let's go through our essential elements once more:
 
 Scatterplots are often used to look at the relationship between two variables. Let's try it with a new dataset: `mpg` (which stands for "miles per gallon"), a dataset about fuel efficiency of different models of cars.
 
-```{r eval=FALSE}
+```{r}
+#| label: mpg-info
+#| eval: false
 ?mpg
 str(mpg)
 ```
@@ -178,6 +187,7 @@ We can focus on two variables:
 For the geometry, we now have use "points":
 
 ```{r}
+#| label: mpg-scatter
 ggplot(data = mpg,
        mapping = aes(x = displ,
                      y = hwy)) +
@@ -187,6 +197,7 @@ ggplot(data = mpg,
 Notice how the points seem to be aligned on a grid? That's because the data was rounded. If we want to better visualise the density of points, we can use the "count" geometry, which makes the dots bigger when data points have the same `x` and `y` values:
 
 ```{r}
+#| label: mpg-count
 ggplot(data = mpg,
        mapping = aes(x = displ,
                      y = hwy)) +
@@ -196,6 +207,7 @@ ggplot(data = mpg,
 Alternatively, we can avoid overlapping of points by using the "jitter" geometry, which gives the points a little shake:
 
 ```{r}
+#| label: mpt-jitter
 ggplot(data = mpg,
        mapping = aes(x = displ,
                      y = hwy)) +
@@ -213,6 +225,7 @@ However, we can see some outliers. We need to find out more about our data.
 We can highlight the "class" factor by adding a new aesthetic:
 
 ```{r}
+#| label: mpg-colour
 ggplot(data = mpg,
        mapping = aes(x = displ,
                      y = hwy,
@@ -229,6 +242,7 @@ We now know how to create a simple scatterplot, and how to visualise extra varia
 A trend line can be created with the `geom_smooth()` function:
 
 ```{r}
+#| label: mpg-smooth
 ggplot(mpg,
        aes(x = displ,
            y = hwy)) +
@@ -244,6 +258,7 @@ The console shows you what function / formula was used to draw the trend line. T
 Want a linear trend line instead? Add the argument `method = "lm"` to your function:
 
 ```{r}
+#| label: mpt-lm
 ggplot(mpg,
        aes(x = displ,
            y = hwy)) +
@@ -255,6 +270,7 @@ ggplot(mpg,
 A trend line is usually displayed on top of the scatterplot. How can we combine several layers? We can string them with the `+` operator:
 
 ```{r}
+#| label: mpg-layers
 ggplot(mpg,
        aes(x = displ,
            y = hwy)) + 
@@ -271,6 +287,7 @@ The order of the functions matters: the points will be drawn before the trend li
 We can once again add some information to our visualisation by mapping the `class` variable to the `colour` aesthetic:
 
 ```{r}
+#| label: mpg-local-aes
 ggplot(mpg,
        aes(x = displ,
            y = hwy)) + 
@@ -282,7 +299,9 @@ ggplot(mpg,
 
 Take the last plot we created:
 
-```{r eval=FALSE}
+```{r}
+#| label: mpg-challenge
+#| eval: false
 ggplot(mpg,
        aes(x = displ,
            y = hwy)) + 
@@ -300,6 +319,7 @@ If you place mappings in a geom function, ggplot2 will treat them as local mappi
 What if you want to change the default colour of the trend line? You need to give a new default value to the geometry's `colour` aesthetic:
 
 ```{r}
+#| label: mpg-geom-colour
 ggplot(mpg,
        aes(x = displ,
            y = hwy)) + 
@@ -316,6 +336,7 @@ If you are curious about what colour names exist in R, you can use the `colours(
 Variable names that are convenient to write code with are rarely suitable for a publication-ready plot. We should modify labels with the `labs()` function to make our plot more self-explanatory:
 
 ```{r}
+#| label: labels
 ggplot(mpg,
        aes(x = displ,
            y = hwy)) + 
@@ -354,13 +375,17 @@ There are a few ways to manually export the plot from the Plots pane:
 
 To save the last plot with a command, you can use the `ggsave()` function:
 
-```{r eval=FALSE}
+```{r}
+#| label: ggsave
+#| eval: false
 ggsave(filename = "plots/fuel_efficiency.png")
 ```
 
 This is great to automate the export process for each plot in your script, but `ggsave()` also has extra options, like setting the DPI, which is useful for getting the right resolution for a specific use. For example, to export a plot for your presentation:
 
-```{r eval=FALSE}
+```{r}
+#| label: ggsave-dpi
+#| eval: false
 ggsave(filename = "plots/fuel_efficiency.png", dpi = "screen")
 ```
 
@@ -374,7 +399,9 @@ Let's use a similar approach to what we did with the `mpg` dataset.
 
 Take our previous unemployment visualisation, but represented with points this time:
 
-```{r eval=FALSE}
+```{r}
+#| label: economics-challenge
+#| eval: false
 ggplot(economics,
        aes(x = date,
            y = unemploy)) + 
@@ -387,6 +414,7 @@ How could we:
 2. Colour the points according to the median duration of unemployment (see `?economics`)
 
 ```{r}
+#| label: economics-smooth
 ggplot(economics,
        aes(x = date,
            y = unemploy)) + 
@@ -401,6 +429,7 @@ See how the legend changes depending on the type of data mapped to the `colour` 
 This default "trend line" is not particularly useful. We could make it follow the data more closely by using the `span` argument. The closer to 0, the closer to the data the smoother will be:
 
 ```{r}
+#| label: economics-span
 ggplot(economics,
        aes(x = date,
            y = unemploy)) + 
@@ -413,6 +442,7 @@ You can now see why this is called a "smoother": we can fit a smooth curve to da
 To further refine our visualisation, we could visualise the unemployment rate rather than the number of unemployed people, by calculating it straight into our code:
 
 ```{r}
+#| label: economics-ratio
 ggplot(economics,
        aes(x = date,
            y = unemploy / pop)) + 
@@ -427,6 +457,7 @@ The [early 1980s recession](https://en.wikipedia.org/wiki/Early_1980s_recession)
 The `theme()` function allows us to really get into the details of our plot's look. However, a handful of convenient `theme_*()` functions make it easy to quickly apply a number of tweaks to our plot's theme, like `theme_bw()`:
 
 ```{r}
+#| label: economics-theme
 ggplot(economics,
        aes(x = date,
            y = unemploy / pop)) + 
@@ -440,6 +471,7 @@ Try `theme_minimal()` as well, and if you want more options, install the `ggthem
 These `theme_*()` functions also allow changing default colours across different geometries and plot elements, based on their role. For this, use the `paper`, `ink` and `accent` arguments:
 
 ```{r}
+#| label: theme-colours
 ggplot(economics,
        aes(x = date,
            y = unemploy / pop)) + 
