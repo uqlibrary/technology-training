@@ -233,7 +233,14 @@ Notice the warning message? ggplot2 informs us that it couldn't represent part o
 
 The method we use works for our point geometry, but is problematic for other shapes that could disappear entirely or change their appearance because they are based on different data: we are actually **clipping** our visualisation! Notice how the trend line now looks different?
 
-A better way to focus on one part of the plot would be to modify the **coordinate system**:
+We are changing the axis limits at the scale level. How we used the `xlim()` shortcut is equivalent to using the corresponding scale function:
+
+```r
+p +
+  scale_x_continuous(limits = c(0, 6e4))
+```
+
+Instead, we can modify the **coordinate system** to actually zoom onto the image without making ggplot2 exclude part of the data:
 
 ```{r}
 #| label: zoom-actual
