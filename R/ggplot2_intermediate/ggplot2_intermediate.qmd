@@ -114,7 +114,7 @@ ggplot(data = gapminder,
 
 This plot uses the default discrete palette.
 
-> **Saving some typing**: We will keep modifying this plot. To reuse the constant base of our plot (the `ggplot()` call and the point geometry), we can create an object:
+As we will keep tweaking this same plot, we can create an object to easily reuse what stays the same (the `ggplot()` call and the point geometry): 
 
 ```{r}
 #| label: save-as-object
@@ -143,7 +143,7 @@ p +
   scale_colour_brewer(palette = "Set1")
 ```
 
-You can see the palettes available by looking at the help page of `scale_colour_brewer()`, under the header "Palettes". However, the names alone might not be enough to picture them, so head to <http://colorbrewer2.org/> to find the one that you like. Importantly, the website allows you to tick the options "colorblind safe" and "print friendly"... which would rule out all the qualitative palettes for our 5 continents!
+You can see the palettes available by looking at the help page of `scale_colour_brewer()`, under the header "Palettes". However, the names alone might not be enough to picture them, so head to the [Color Brewer website](https://colorbrewer2.org) to find the one that you like. Importantly, the website allows you to tick the options "colorblind safe" and "print friendly"... which would rule out all the qualitative palettes for our 5 continents!
 
 A useful package that introduces many palettes for ggplot2 is the colorspace package, which promotes the [Hue-Chroma-Luminance (HCL) colour space](https://colorspace.r-forge.r-project.org/articles/color_spaces.html#human-color-vision-and-the-hcl-color-model-1). This colour space is perceptually-based, which means it is particularly suited for human perception of colours.
 
@@ -183,7 +183,9 @@ p +
 
 You can list all the R colour names with the function `colours()`, which prints out a list of their names, but know that you are not limited to these 657 values: you can also use HEX values, which is particularly useful if you have to respect a colour scheme you were given.
 
-> That was a lot of options about colours, but know that in some cases, the most straight-forward way to make your visualisations readable by most is to use symbols instead of colours. In ggplot2, you would use the `shape` aesthetic.
+::: {.callout-tip title="Is that colour scale accessible?"}
+That was a lot of options about colours, but know that in some cases, the most straight-forward way to make your visualisations readable by most is to use different symbols or line types instead of colours. In ggplot2, you would use the `shape` aesthetic for points and `linetype` for lines.
+:::
 
 ### Axis scale modifiers
 
@@ -206,7 +208,9 @@ p +
                 labels = c("500", "1 k", "10 k", "100 k"))
 ```
 
-> You can use the scientific notation `1e5` to mean "a 1 followed by 5 zeros".
+::: {.callout-tip}
+You can use the scientific notation `1e5` to mean "a 1 followed by 5 zeros".
+:::
 
 ## Zooming in
 
@@ -237,7 +241,7 @@ p +
   coord_cartesian(xlim = c(0, 6e4))
 ```
 
-The Cartesian coordinate system is the default one in ggplot2. You could change the coordinate system to `coord_polar()` for circular visualisations, or to `coord_map()` to visualise spatial data.
+The Cartesian coordinate system is the default one in ggplot2. You could change the coordinate system to `coord_radial()` for circular visualisations, or to `coord_map()` to visualise spatial data.
 
 ## Interactive plots
 
@@ -271,14 +275,14 @@ p <- ggplot(data = gapminder,
   scale_x_log10()
 ```
 
-The interactive version now tells us which country each point correspond to:
+The interactive version now tells us which country each point corresponds to:
 
 ```{r}
 #| label: see-plotly
 ggplotly(p)
 ```
 
-To add yet another variable to the visualisation, we can animate the plot b< associating the `frame` aesthetic with the `year` variable. This adds a slider and a "Play" button under the visualisation.
+To add yet another variable to the visualisation, we can animate the plot by associating the `frame` aesthetic with the `year` variable. This adds a slider and a "Play" button under the visualisation.
 
 ```{r}
 #| label: plotly-time-frames
@@ -293,7 +297,23 @@ p <- ggplot(data = gapminder,
 ggplotly(p)
 ```
 
-> You can export the visualisation as a HTML page for sharing with others.
+::: {.callout-tip title="Export a plotly visualisation"}
+You can export the visualisation as a self-contained HTML file for sharing with others. RStudio allows you to use the Viewer's menu for that, but Positron (as of version 2026.09.1) does not.
+
+You can however use a command that relies on the htmlwidgets package:
+
+```{r}
+#| label: export-html
+#| eval: false
+# create a plotly object
+p_int <- ggplotly(p)
+# export it to a single HTML file
+library(htmlwidgets)
+saveWidget(p_int, "gapminder.html")
+```
+
+You can now share the HTML file so others can interact with it, opening it with any web browser (even offline).
+:::
 
 ## Histograms
 
@@ -307,7 +327,9 @@ ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram() # by default, bins = 30
 ```
 
-> **Saving some typing:** remember we can omit the names of the arguments if we use them in order? Being explicit about the **argument names** is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like `data =` and `mapping =` (as long as they are used in the right order!).
+::: {.callout-tip title="Saving some typing"}
+Remember we can omit the names of the arguments if we use them in order? Being explicit about the **argument names** is useful when learning the ins and outs of a function, but as you get more familiar with ggplot2, you can do away with the obvious ones, like `data =` and `mapping =` (as long as they are used in the right order!).
+:::
 
 Let's change the bin width:
 
@@ -409,7 +431,9 @@ ggplot(gapminder,
 
 We have to wrap the variable(s) we want to facet by into the `vars()` function.
 
-> Faceting is a great way to add yet another variable to your visualisation, instead of using another aesthetic. We can now compare distributions across labelled panels, with the axes using the same ranges by default.
+::: {.callout-note}
+Faceting is a great way to add yet another variable to your visualisation, instead of using another aesthetic. We can now compare distributions across labelled panels, with the axes using the same ranges by default.
+:::
 
 ## Theming
 
@@ -504,7 +528,9 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
 
 This is useful if the x labels get too cramped on the x axis: you can rotate them to whatever angle you want.
 
-> Try turning this plot into an interactive visualisation to see stats easily!
+::: {.callout-tip}
+Try turning this plot into an interactive visualisation to see stats easily!
+:::
 
 What other geometries could be useful to present the data you are working with? With the main ggplot2 concepts now covered, it's time for you to experiment with creating novel, captivating and informative data visualisations!
 

@@ -79,7 +79,13 @@ In ggplot2, the 3 main components that we usually have to provide are:
 
 For our first example, let's use the `msleep` dataset (from the ggplot2 package), which contains data about mammals' sleeping patterns.
 
-> You can find out about the dataset with `?msleep`.
+::: {.callout-tip title="Data at your fingertips"}
+In this session, we don't need to import any data, as we only use datasets that come with ggplot2. Many packages provide example datasets as well as functions! And some packages are entirely about providing access to data.
+
+Even base R comes with dozens of example datasets. You can list all the datasets available in your current R session with the function `data()`.
+
+Need to learn more about the data? It's not just functions that have documentation: for example, you can find out more about more about this one with `?msleep`.
+:::
 
 Let's start with specifying where the **data** comes from in the `ggplot()` function:
 
@@ -229,7 +235,9 @@ ggplot(mpg,
     geom_smooth()
 ```
 
-> We stopped using the argument names because we know in which order they appear: first the data, then the mapping of aesthetics. Let's save ourselves some typing from now on!
+::: {.callout-note}
+We stopped using the argument names because we know in which order they appear: first the data, then the mapping of aesthetics. Let's save ourselves some typing from now on!
+:::
 
 The console shows you what function / formula was used to draw the trend line. This is important information, as there are countless ways to do that. To better understand what happens in the background, open the function's help page and notice that the default value for the `method` argument is "NULL". Read up on how it automatically picks a suitable method depending on the sample size, in the "Arguments" section.
 
@@ -254,7 +262,9 @@ ggplot(mpg,
     geom_smooth()
 ```
 
-> The order of the functions matters: the points will be drawn before the trend line, which is probably what you're after.
+::: {.callout-note}
+The order of the functions matters: the points will be drawn before the trend line, which is probably what you're after.
+:::
 
 ## The `colour` aesthetic
 
@@ -319,13 +329,15 @@ ggplot(mpg,
 
 The `labs()` function allows us to change
 
-> Remember that captions and titles are better sorted out in the publication itself, especially for accessibility reasons (e.g. to help with screen readers).
+::: {.callout-warning}
+Remember that captions and titles are better sorted out in the publication itself, especially for accessibility reasons (e.g. to help with screen readers).
+:::
 
 ## Saving a plot
 
 Like your visualisation? Let's export it to use it outside of Positron.
 
-To keep things tidy, let's first create a  "plots" folder. Use the "Explorer" tab, or run this command in your console:
+To keep things tidy, let's first create a "plots" folder. Use the "Explorer" tab, or run this command in your console:
 
 ```{r}
 #| label: dir-create
@@ -352,7 +364,9 @@ This is great to automate the export process for each plot in your script, but `
 ggsave(filename = "plots/fuel_efficiency.png", dpi = "screen")
 ```
 
-> Saving a .svg file with requires installing the svglite package. This packages seems so work best installing in a fresh R session (Session > Restart R) from source `install.packages("svglite", type = "source")`. Then load the library `library(svglite)` rerun your code including loading previous libraries (`ggplot2` etc.) and now saving a plot with a .svg extension should work! 
+::: {.callout-warning}
+Saving an SVG file requires installing the svglite package, which seems to work best in a fresh R session ("Restart" button, the circular arrow in the Console), and installing from source: `install.packages("svglite", type = "source")`. Then load the library `library(svglite)`, rerun your code including loading previous libraries (`ggplot2` etc.) and now saving a plot with `.svg` extension should work!
+:::
 
 ## Challenge 2 – add a variable and a smooth line
 
@@ -380,7 +394,9 @@ ggplot(economics,
     geom_smooth()
 ```
 
-> See how the legend changes depending on the type of data mapped to the `colour` aesthetic? (i.e. categorical vs continuous)
+::: {.callout-note}
+See how the legend changes depending on the type of data mapped to the `colour` aesthetic? Categorical data uses a "discrete" colour scale whereas numeric data uses a "continuous" colour scale.
+:::
 
 This default "trend line" is not particularly useful. We could make it follow the data more closely by using the `span` argument. The closer to 0, the closer to the data the smoother will be:
 
@@ -456,4 +472,5 @@ Make sure you save your script before you close Positron.
   * Selva Prabhakaran's [_r-statistics.co_ section on ggplot2](https://r-statistics.co/ggplot2-Tutorial-With-R.html)
   * [Coding Club's data visualisation tutorial](https://ourcodingclub.github.io/tutorials/datavis/)
   * [STHDA's ggplot2 essentials](https://www.sthda.com/english/wiki/ggplot2-essentials)
+  * [A comparison of Base R and and ggplot2](https://jtr13.github.io/cc21fall2/base-r-vs.-ggplot2-visualization.html) by Yiquan Li and Zezhong Fan
 * Our compilation of [general R resources](../usefullinks.qmd)
