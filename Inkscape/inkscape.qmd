@@ -57,9 +57,19 @@ Try using the colour wheel in the "Fill" tab to change the colour for the "Flat 
 
 Make sure there is a stoke style selected in the "Stroke style tab", then style it in the "Stroke paint" tab.
 
-Try the same thing with the "Ellipse/Arc Tool" now. You can trace a perfect circle by keeping the <kbd>Ctrl</kbd> key pressed when dragging, and use the circle handle to switch between arcs (dragging inside the circle) or segments (dragging outside the circle). You can then switch modes with the top toolbar ("Slice", "Arc", "Chord", "Whole ellipse").
+Try the same thing with the "Ellipse/Arc Tool" now. You can trace a perfect circle by keeping the <kbd>Ctrl</kbd> key pressed when dragging, and use the circle handle to switch between arcs (dragging inside the circle) or slices (dragging outside the circle). You can then switch modes with the top toolbar ("Slice", "Arc", "Chord", "Whole ellipse").
 
 ![4 types of ellipses: slice, arc, chord and full ellipse.](img/ellipses.png){fig-alt="Screenshot of 4 shapes showing the different ellipse modes."}
+
+::: {.callout-tip}
+Another way to quickly assign and stroke or fill colour (or switch to "No paint") is to use the bottom palette:
+
+* Click for the fill
+* <kbd>Shift</kbd> + click for the stroke
+* Alternatively, right-click for a menu (which allows pinning colours too)
+
+You can switch to a different palette and configure its display by using the sandwich menu on its right.
+:::
 
 ## Controls
 
@@ -73,21 +83,21 @@ You can also change the size to precise values by using the toolbar (and picking
 
 ## Filters
 
-Select a shape and use the menu Filters - Filter Gallery...
+Select a shape and use the menu "Filters - Filter Gallery"...
 
 Although you can find many filters in the Filters menu, this dialog allows searching keywords. Test a few filters: some common ones are "Blur" and "Drop Shadow". Some filters will have a dialog pop up for settings, others won't. Don't forget to click "Apply" before closing the settings dialogue.
 
-You can modify the filter's settings (or create a new filter) by going to Filters - Filter Editor..., and remove an object's filters by going to Filters - Remove Filters.
+You can modify the filter's settings (or create a new filter) by going to "Filters - Filter Editor..."", and remove an object's filters by going to "Filters - Remove Filters".
 
 ::: {.callout-tip}
-To instantly see what the settings do, tick "Live preview".
+To instantly see what the settings do, tick "Live preview" (but remember you still have to click "Apply" before closing).
 :::
 
 ## Trace a raster image
 
-You can transform a raster image into a vector image by using Path - Trace Bitmap.
+You can transform a raster image into a vector image by using "Path - Trace Bitmap".
 
-Choose a picture from the [Wellcome Collection of botanical art](https://commons.wikimedia.org/wiki/Category:Botanical_illustrations_in_the_Wellcome_Collection) (for example, [this orchid](https://commons.wikimedia.org/wiki/File:An_orchid_(Laelia_anceps);_flowering_stem_and_leaves._Waterc_Wellcome_V0043292.jpg)). Copy and paste the image into Inkscape, then use the menu: Path - Trace Bitmap.
+Choose a picture from the [Wellcome Collection of botanical art](https://commons.wikimedia.org/wiki/Category:Botanical_illustrations_in_the_Wellcome_Collection) (for example, [this orchid](https://commons.wikimedia.org/wiki/File:An_orchid_(Laelia_anceps);_flowering_stem_and_leaves._Waterc_Wellcome_V0043292.jpg)). Copy and paste the image into Inkscape, then use the menu: "Path - Trace Bitmap".
 
 ::: {.callout-warning}
 Using a high-resolution image can make the tracing process very slow, and result in unnecessarily detailed objects.
@@ -97,6 +107,7 @@ If you have a large image (e.g. several MB-big), you can use "Edit - Make a Bitm
 
 In the "Trace Bitmap" dialogue, switch to the "Multicolour" tab, then use the following options:
 
+* Detection mode: Colours
 * Scans: 12 (the number of colours)
 * Smooth (to blur the picture before tracing)
 * Stack (to stack the scans on top of each other without gaps)
@@ -112,9 +123,9 @@ If there's a part of the image you don't want to keep, but you don't want to rem
 
 You can also use this tool to modify the paths and fix up small details.
 
-If the colours are a bit too dull, try using the Brilliance filter: Filters - Colours - Brilliance. Turn on the Live preview, tweak the Brightness, Over-saturation and Lightness values to reach a good balance, and compare with the original by turning Live preview off. Try for example 1.70, 0.10 and 0.10 respectively.
+If the colours are a bit too dull, try using the Brilliance filter: "Filters - Colours - Brilliance". Turn on the Live preview, tweak the Brightness, Over-saturation and Lightness values to reach a good balance, and compare with the original by turning Live preview off. Try for example 1.70, 0.10 and 0.10 respectively.
 
-Once the vector version of the image is cleaned up and brightened, place it in the bottom-left corner of the page. If needed, you can flip objects by using the menu: Object - Flip Horizontal/Vertical.
+Once the vector version of the image is cleaned up and brightened, place it in the bottom-left corner of the page. If needed, you can flip objects by using the menu: "Object - Flip Horizontal/Vertical".
 
 ## Layers and Objects
 
@@ -124,19 +135,20 @@ You can also change the order of objects by using the "Raise" and "Lower" button
 
 Using these features, place a circle with a gradient behind the flower.
 
-This is also where you can control the Opacity of the whole object, and the Blend mode (which allows for creative interactions between objects). Note that you might lose some Filters in the process, like the Brilliance we applied to the flower.
+This is also where you can control the Opacity of the whole object, and the Blend mode (which allows for creative interactions between objects): hover over an object in the list and click on the square icon to the right of its name. Note that you might lose some Filters in the process, like the Brilliance we applied to the flower.
 
 ## Groups
 
 Once you think they fit well together, select the two objects (the circle and the flower) and right-click - Group them, so they move together from now on. See how that is reflected in the Layers and Objects panel?
 
-You can now lock so you don't move or select it by mistake.
+You can now lock the group so you don't move or select it by mistake: click on the Lock icon to the right of the group in the list.
 
 ## Import and tweak plots created outside of Inkscape
 
 We will now integrate into our infographic two plots about the orchid [_Laelia anceps_](https://www.inaturalist.org/taxa/204984-Laelia-anceps), based on data from iNaturalist and generated with R.
 
-* Drag and drop both files into Inkscape. (You can also use the menu for that: File - Import.)
+* Download the two SVG files: the [timeline plot](https://raw.githubusercontent.com/uqlibrary/technology-training/master/Inkscape/laelia_anceps_timeline.svg) and the [observation types plot](https://raw.githubusercontent.com/uqlibrary/technology-training/master/Inkscape/laelia_anceps_obs_types.svg).
+* Drag and drop both files into Inkscape. (You can also use the menu for that: "File - Import".)
 * Keep the default setting when prompted to choose an "SVG Image Import Type": the plots will be added as editable objects.
 
 For the timeline plot:
@@ -161,10 +173,10 @@ For the plot about observations:
 
 ## Text
 
-Use the Text Tool in the left toolbar to add text objects to the infographic. For the title, click where the text starts and type: "Laelia anceps". Pick a suitable size and font from the top toolbar.
+Use the Text Tool in the left toolbar to add text objects to the infographic. For the title, click where the text starts and type: "Laelia anceps". Pick a suitable size and font from the top toolbar, or from the "Text and Fonts" dialog that can be opened with the menu: "Text - Text and Font...". The dialog shows previews but requires your to click "Apply" to change the object.
 
 ::: {.callout-warning}
-Is your text looking bold or hard to read? It might be using a stroke paint! Got to the right panel, in the "Fill and Stroke" dialogue, "Stroke paint" tab, and make sure it is set to "No paint".
+Is your text looking bold or hard to read? It might be using a stroke paint! Go to the right panel, in the "Fill and Stroke" dialogue, "Stroke paint" tab, and make sure it is set to "No paint". (Or use the Palette: <kbd>Shift</kbd> + click on the "None" square.)
 :::
 
 Also give titles to your plots: "Observation types" and "Observations per year" respectively.
@@ -183,11 +195,15 @@ If the frame is not large enough for the text, it will turn red to let you know 
 
 ## Align and Distribute
 
-With Object - Align and Distribute, you can access many tools to align objects relative to each other or to the page.
+With "Object - Align and Distribute", you can access many tools to align objects relative to each other or to the page.
 
 Use this to align your plot titles to the edge of the plot. For example, for the plot on the right, select both objects and use the setting "Relative to biggest objects" and the button "Align right edges".
 
 Also make sure that your infographic title is centred relative to the page.
+
+::: {.callout-tip title="Snapping"}
+Another way to organise your objects on the page and relative to each other is to use the "Snapping" feature. Turn it on with the magnet button at the top-right of the window, and tweak the settings with the arrow next to it: you can decide if objects will snap to bounding boxes, nodes and common alignment settings relative to other objects or the page (showing hints whenever it snaps).
+:::
 
 ## Lines, Bézier curves and arrows
 
@@ -235,29 +251,6 @@ For the bottom plot:
 * Add an annotation between the legend and the bars to show when iNaturalist started, with the text "2008: iNaturalist is born".
 * Link it to the corresponding bar with a grey, vertical dashed line.
 
-## Path effects
-
-Select a simple object, then go to Path - Path Effects. This panel gives you access to numerous effects. Try for example "Rotate copies", then change the number of copies and move the centre of the modified object.
-
-Some other useful path effects you could try:
-
-* Roughen: to make something "less neat"
-* Tiling: to generate a grid of repeated images, or a tiled pattern.
-
-## Clone
-
-In the right toolbar, use "Create Clone" to have a copy of an object that is synced with the original.
-
-## Templates
-
-In File - New from Template, you can pick various sizes depending on what you are creating a graphic for. For example, there are templates for creating icons, screen wallpapers, zine booklets, business cards and social media images.
-
-## Import Web Image
-
-You can import vector images from different sources in File - Import Web Image...
-
-Choose a source and type a keyword. Make sure to respect the licensing!
-
 ## Formats and exporting
 
 Inkscape uses SVG ("Scalable Vector Graphics") as a default format. It's an open standard that is very common, and supported in many applications, which means you usually can share the file as is.
@@ -269,4 +262,39 @@ However, if you need to, you can export your creation in many different formats,
 * You might have to tweak the Background Colour, as PNG supports transparent backgrounds.
 * The resolution value ("DPI" for "Dots Per Inch") depends on what you want to do with the export. If it is going to by printed as a poster, you might want to increase the value.
 
+## Some more features
+
+Inkscape is packed with features. Here are a few you might find useful.
+
+### Path effects
+
+Select a simple object, then go to "Path - Path Effects". This panel gives you access to numerous effects. Try for example "Rotate copies", then change the number of copies and move the centre of the modified object.
+
+Some other useful path effects you could try:
+
+* Roughen: to make something "less neat"
+* Tiling: to generate a grid of repeated images, or a tiled pattern.
+
+### Clone
+
+In the right toolbar, use "Create Clone" to have a copy of an object that is synced with the original.
+
+### Templates
+
+In "File - New from Template", you can pick various sizes depending on what you are creating a graphic for. For example, there are templates for creating icons, screen wallpapers, zine booklets, business cards and social media images.
+
+### Import Web Image
+
+You can import vector images from different sources in "File - Import Web Image..."
+
+Choose a source and type a keyword. Make sure to respect the licensing!
+
+## What next?
+
+* Official [Inkscape Beginners' Guide](https://inkscape-manuals.readthedocs.io/en/latest/index.html)
+* You can find several tutorials without leaving Inkscape, in "Help - Tutorials"
+* More resources on the Inkscape website: [tutorials, videos, books](https://inkscape.org/learn/)...
+* [Logos By Nick](https://www.youtube.com/@LogosByNick/videos) is a YouTube channel with dozens of bite-sized tutorials
+* See how you can [contribute to Inkscape](https://inkscape.org/contribute/) and [support the community](https://inkscape.org/support-us/)
+* See what [other training](https://web.library.uq.edu.au/study-and-learning-support/training-and-workshops/online-and-person-workshops) is coming up at the Library
 
