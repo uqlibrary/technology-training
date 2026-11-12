@@ -52,6 +52,8 @@ The questions are:
 
 Let's start with some quick questions to ask when considering a tool. These can help us understand better what the tool is for, who it is for, what it can do, what to look out for, and if it matches whatever requirements we might have.
 
+
+
 ::: {.callout-note}
 ### Vendor, notoriety, access and restrictions
 
@@ -61,15 +63,7 @@ Let's start with some quick questions to ask when considering a tool. These can 
 * Is there / will there be a cost?
 :::
 
-::: panel-tabset
-
-#### Claude
-
-* Developed by Anthropic, started in 2023
-* For July 2026, [Statcounter reports a 3.2% market share](https://gs.statcounter.com/ai-chatbot-market-share). Popular in particular for code generation.
-* At UQ: "restricted" for staff as of 2026-08-18
-* Free account with limits; paid plans for more features, models and usage limits (e.g. Code, Cowork, Design...)
-
+::: {.panel-tabset group="tool"}
 #### Copilot
 
 * Microsoft owns it
@@ -78,6 +72,13 @@ Let's start with some quick questions to ask when considering a tool. These can 
 * [Accessible at UQ](https://systems-training.its.uq.edu.au/systems/collaboration-tools/microsoft-365/copilot-chat-generative-ai): we have "Copilot Chat (Basic)"
   * Can use web data and files we upload, but we are [not allowed to use copyrighted material as input](https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub/ethical-and-responsible-ai-use), and [staff can't input information classified as "sensitive" or "protected"](https://systems-training.its.uq.edu.au/systems/collaboration-tools/microsoft-365/copilot-chat-generative-ai#privacy-and-protections).
 * "Premium" features cost money.
+
+#### Claude
+
+* Developed by Anthropic, started in 2023
+* For July 2026, [Statcounter reports a 3.2% market share](https://gs.statcounter.com/ai-chatbot-market-share). Popular in particular for code generation.
+* At UQ: "restricted" for staff as of 2026-08-18
+* Free account with limits; paid plans for more features, models and usage limits (e.g. Code, Cowork, Design...)
 
 #### ChatGPT
 
@@ -107,7 +108,16 @@ Let's start with some quick questions to ask when considering a tool. These can 
 * Country of origin?
 :::
 
-::: panel-tabset
+::: {.panel-tabset group="tool"}
+#### Copilot
+
+* Microsoft owns it
+* Notoriety: very widely used according to [FirstPageSage](https://firstpagesage.com/reports/top-generative-ai-chatbots/).
+* Proprietary tool
+* [Accessible at UQ](https://systems-training.its.uq.edu.au/systems/collaboration-tools/microsoft-365/copilot-chat-generative-ai): we have "Copilot Chat (Basic)"
+  * Can use web data and files we upload, but we are [not allowed to use copyrighted material as input](https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub/ethical-and-responsible-ai-use), and [staff can't input information classified as "sensitive" or "protected"](https://systems-training.its.uq.edu.au/systems/collaboration-tools/microsoft-365/copilot-chat-generative-ai#privacy-and-protections).
+* "Premium" features cost money.
+
 #### Claude
 
 * The "Privacy" tab in the Settings links to the Anthropic's [Privacy Center](https://privacy.claude.com/en/) and [Privacy Policy](https://www.anthropic.com/legal/privacy). Note the setting called "[Help improve our AI models](https://privacy.claude.com/en/articles/12109829-how-do-i-change-my-model-improvement-privacy-settings)", which controls [how Anthropic uses your data to train their models](https://privacy.claude.com/en/articles/7996885-how-do-you-use-personal-data-in-model-training). You can also use "[Incognito chat](https://support.claude.com/en/articles/12260368-use-incognito-chats)".
@@ -115,14 +125,6 @@ Let's start with some quick questions to ask when considering a tool. These can 
 * On ethics, Anthropic has a (very long) "[Constitution](https://www.anthropic.com/constitution)". A previous version from 2023 used to include a collection of "[Principles](https://www.anthropic.com/news/claudes-constitution#The%20Principles%20in%20Full:~:text=explicit%2E-,The%20Principles%20in%20Full)" based on various sources (including the Universal Declaration of Human Rights), but their specifity is lost in the version [published in 2026](https://www.anthropic.com/news/claude-new-constitution).
 * As of 2026-08-18, Anthropic has not published a report about their environmental impact or any reduction targets related to it.
 * Anthropic was founded in 2021 in the USA.
-
-#### Copilot
-
-* Privacy: [when used with a UQ account](https://systems-training.its.uq.edu.au/systems/collaboration-tools/microsoft-365/copilot-chat-generative-ai), our data is not used for training models.
-* Model training: [Information shared by OpenAI](https://help.openai.com/en/articles/7842364-how-chatgpt-and-our-foundation-models-are-developed)
-* Ethical standards: documentation says Copilot Chat "adheres to [Microsoft's Responsible AI Principles](https://www.microsoft.com/en-au/ai/principles-and-approach)"
-* Environmental impact: Microsoft's [Corporate Responsibility website](https://www.microsoft.com/en-us/corporate-responsibility/sustainability) and their [2025 Environment Sustainability Report](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/2025-Microsoft-Environmental-Sustainability-Report.pdf)
-* Country of origin: USA
 
 #### ChatGPT
 
@@ -151,17 +153,7 @@ Let's start with some quick questions to ask when considering a tool. These can 
 * What features does it offer?
 :::
 
-::: panel-tabset
-#### Claude
-
-* "Profile - Get Help" opens an overlay for searching help articles and opening [Claude Academy](https://academy.claude.com). "Profile - Learn more" leads to tutorials and courses (on [Anthropic Academy](https://www.anthropic.com/learn)).
-* Designed for: chats, code and webapp generation (and other "Artifacts"), learning companion...
-* Features:
-  * Chats (including incognito)
-  * Projects
-  * Artifacts: apps, websites, documents, games, tools, quiz...
-  * Paid: Code, Design, Cowork (agents)...
-
+::: {.panel-tabset group="tool"}
 #### Copilot
 
 * [Documentation available online](https://learn.microsoft.com/en-us/copilot/microsoft-copilot) and integrated in the app
@@ -175,6 +167,16 @@ Let's start with some quick questions to ask when considering a tool. These can 
     * "Library": previously created images, pages and shared items
     * "Create": generate images, videos, infographics, stories, files and more
     * "Teach": generate lesson plans, flash cards, modify reading level, align to standards...
+
+#### Claude
+
+* "Profile - Get Help" opens an overlay for searching help articles and opening [Claude Academy](https://academy.claude.com). "Profile - Learn more" leads to tutorials and courses (on [Anthropic Academy](https://www.anthropic.com/learn)).
+* Designed for: chats, code and webapp generation (and other "Artifacts"), learning companion...
+* Features:
+  * Chats (including incognito)
+  * Projects
+  * Artifacts: apps, websites, documents, games, tools, quiz...
+  * Paid: Code, Design, Cowork (agents)...
 
 #### ChatGPT
 
@@ -214,14 +216,7 @@ Let's start with some quick questions to ask when considering a tool. These can 
 
 :::
 
-::: panel-tabset
-
-#### Claude
-
-* Various, [Wikipedia offers a list](https://en.wikipedia.org/wiki/Claude_(AI)#Models). In a chat, as of 2026-08-18, it offers Sonnet 5 ("everyday tasks") and Haiku 4.5 ("quick answers"), as well as pro models: Fable 5 ("toughest challenges") and Opus 5 ("complex tasks"). Further models and "Effort" settings can be used.
-* Only online, even for the Desktop version. But it is possible with some effort to make Claude Desktop use a local LLM, or make Ollama use command-line Claude with local LLMs.
-* Not much detail about software and model versions, appart from the main version attached to the model names.
-
+::: {.panel-tabset group="tool"}
 #### Copilot
 
 * Models:
@@ -229,6 +224,12 @@ Let's start with some quick questions to ask when considering a tool. These can 
     * GPT (from OpenAI): 5.2, 5.3, 5.4, 5.5 (in "Quick Response" and "Think Deeper" variants)
 * Online only: in Airplane mode, returns "Something went wrong, please try again later".
 * Version number: three dots next to name - General - About Microsoft 365 Copilot
+
+#### Claude
+
+* Various, [Wikipedia offers a list](https://en.wikipedia.org/wiki/Claude_(AI)#Models). In a chat, as of 2026-08-18, it offers Sonnet 5 ("everyday tasks") and Haiku 4.5 ("quick answers"), as well as pro models: Fable 5 ("toughest challenges") and Opus 5 ("complex tasks"). Further models and "Effort" settings can be used.
+* Only online, even for the Desktop version. But it is possible with some effort to make Claude Desktop use a local LLM, or make Ollama use command-line Claude with local LLMs.
+* Not much detail about software and model versions, appart from the main version attached to the model names.
 
 #### ChatGPT
 
@@ -245,7 +246,6 @@ Let's start with some quick questions to ask when considering a tool. These can 
 * Minimal information in the settings. Release notes for mobile apps can be found on GitHub (e.g. for [Android](https://github.com/ProtonLumo/android-lumo/releases)). Using Apertus would be the most transparent option.
 
 :::
-
 
 ## Assessing responses
 
